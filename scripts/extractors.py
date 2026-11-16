@@ -344,6 +344,22 @@ def pl_retrieval(rd, path: str, query: str, col: str = "hit@3"):
 
 
 @extractor
+def pl_retrieval_method(rd, path: str, set: str, query: str, lang: str, method: str, model: str = "", col: str = "hit@3"):
+    """One row of the retrieval comparison table: a hit rate over n labels, turned back into a count."""
+    import csv
+    import io
+    rows = [r for r in csv.DictReader(io.StringIO(rd.text(path)))
+            if (r["set"], r["query"], r["lang"], r["method"], r["model"]) == (set, query, lang, method, model)]
+    if len(rows) != 1:
+        raise ValueError(f"{path}: {len(rows)} rows for {set}/{query}/{lang}/{method}/{model}")
+    n = int(rows[0]["n"])
+    k = round(float(rows[0][col]) * n)
+    if abs(k / n - float(rows[0][col])) > 0.0001:
+        raise ValueError(f"{path}: {col} {rows[0][col]} is not a whole count of {n}")
+    return {"k": k, "n": n}
+
+
+@extractor
 def pl_canary_final_share(rd, path: str):
     """Canary share at the last step of a replay that finished without a rollback."""
     d = rd.json(path)

@@ -1929,6 +1929,311 @@
           "zh": "第一轮：有据审核的 166 条题各回放 2 遍；第二轮：新写 120 条文字广告各 2 遍",
           "en": "Round one: Grounded Review's 166 items, 2 replays each; round two: 120 newly written text ads, 2 runs each"
         }
+      },
+      {
+        "id": "v3",
+        "date": "2026-11-17",
+        "decision": "not_adopted",
+        "change": {
+          "zh": "想让答案清楚的广告少送人工：文字广告没配图、写明出处的事实核实不了、广告主的资质和定向、指导条款明明允许的用语，都不再算“拿不准”。",
+          "en": "Meant to send fewer clear ads to people: a text ad with no image, a sourced fact that cannot be checked, the advertiser's licence and targeting, and words a guidance clause plainly allows no longer count as unsure."
+        },
+        "text": {
+          "zh": "v2 的“拿不准”规则重写（`triage.CERTAINTY_RULE_V3`）：写明几种情况算拿不准、几种不算；输出格式不变",
+          "en": "v2's rule on when to be unsure, rewritten (`triage.CERTAINTY_RULE_V3`): which cases count as unsure and which do not; the output format is unchanged"
+        },
+        "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/reports/compare-v2-v3-round3.md",
+        "why": {
+          "zh": "在另外新写的广告上（采用标准和预测跑前预注册），答案清楚的广告送人工从 44/176 降到 4/176；但写题时定为“要人来定”的广告，送人工也从 44/64 降到 19/64，超过事先写好的上限，不采用，production 留在 v2。第一轮回归里判错又自动生效 9/332 对 9/332。假如照样放量，灰度的回滚规则一条也不会触发，是采用标准拦下的。",
+          "en": "On another set of newly written ads (adoption rules and predictions preregistered), clear ads sent to people fell from 44/176 to 4/176; but ads written as needing a human were also sent to people less often, 44/64 to 19/64, past the limit set beforehand, so it was not adopted and production stays on v2. In the round-one regression, wrong decisions that went live were 9/332 against 9/332. Had it been rolled out, no canary rollback rule would have fired; the adoption standard stopped it."
+        },
+        "scores": [
+          {
+            "label": {
+              "zh": "答案清楚的广告送了人工（v2 → v3）",
+              "en": "Clear ads sent to human review (v2 → v3)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-pipeline-public/data/versions-v3-round3.json"
+                ],
+                "k": 44,
+                "n": 176,
+                "rate": 0.25,
+                "ci95": [
+                  0.1918,
+                  0.3189
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-pipeline-public/data/versions-v3-round3.json"
+                ],
+                "k": 4,
+                "n": 176,
+                "rate": 0.0227,
+                "ci95": [
+                  0.0089,
+                  0.057
+                ]
+              }
+            ],
+            "direction": "lower"
+          },
+          {
+            "label": {
+              "zh": "要人来定的广告送了人工（v2 → v3）",
+              "en": "Ads that need a human, sent to people (v2 → v3)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-pipeline-public/data/versions-v3-round3.json"
+                ],
+                "k": 44,
+                "n": 64,
+                "rate": 0.6875,
+                "ci95": [
+                  0.5661,
+                  0.7877
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-pipeline-public/data/versions-v3-round3.json"
+                ],
+                "k": 19,
+                "n": 64,
+                "rate": 0.2969,
+                "ci95": [
+                  0.1991,
+                  0.4177
+                ]
+              }
+            ],
+            "direction": "higher"
+          },
+          {
+            "label": {
+              "zh": "回归：判错又自动生效（v2 → v3）",
+              "en": "Regression: wrong decisions that went live (v2 → v3)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-pipeline-public/data/versions-v3.json"
+                ],
+                "k": 9,
+                "n": 332,
+                "rate": 0.0271,
+                "ci95": [
+                  0.0143,
+                  0.0507
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-pipeline-public/data/versions-v3.json"
+                ],
+                "k": 9,
+                "n": 332,
+                "rate": 0.0271,
+                "ci95": [
+                  0.0143,
+                  0.0507
+                ]
+              }
+            ],
+            "direction": "lower"
+          },
+          {
+            "label": {
+              "zh": "回归：送人工复核（v2 → v3）",
+              "en": "Regression: sent to human review (v2 → v3)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-pipeline-public/data/versions-v3.json"
+                ],
+                "k": 72,
+                "n": 332,
+                "rate": 0.2169,
+                "ci95": [
+                  0.1759,
+                  0.2643
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-pipeline-public/data/versions-v3.json"
+                ],
+                "k": 30,
+                "n": 332,
+                "rate": 0.0904,
+                "ci95": [
+                  0.064,
+                  0.1261
+                ]
+              }
+            ],
+            "direction": "none"
+          }
+        ],
+        "compare_set": {
+          "zh": "第三轮：另外新写 120 条文字广告各 2 遍；回归：第一轮 166 条题各回放 2 遍",
+          "en": "Round three: another 120 newly written text ads, 2 runs each; regression: the 166 round-one items, 2 replays each"
+        }
+      }
+    ]
+  },
+  {
+    "asset": "evidence-pipeline/kb-qa",
+    "project": "grounded-labelling-pipeline",
+    "name": {
+      "zh": "有据标注流水线：政策知识库问答",
+      "en": "Grounded Labelling Pipeline: policy knowledge-base Q&A"
+    },
+    "what": {
+      "zh": "标注员问“这样写算不算违规”，只按检索到的条款回答：结论、说明、每条依据的编号和原文；库里没有管这件事的条款就说“没有”。每段引文都用 evidence-check 核对。流水线自己的资产库里是同一个资产、同样的标签。",
+      "en": "A labeller asks whether some wording breaks a rule; the answer uses only the retrieved clauses: a verdict, a short explanation, and the id and exact words of each clause it rests on. If no clause covers the question it says so. Every quote is checked with evidence-check. The pipeline's own registry holds the same asset with the same labels."
+    },
+    "where": "pipeline/kb_qa.py",
+    "model_lock": "claude-haiku-5-5, effort medium, top 5 clauses, max_tokens 1500 in the evaluation and 4000 in the bot",
+    "labels": {
+      "production": "v1",
+      "staging": "v1",
+      "history": [
+        {
+          "date": "2026-11-17",
+          "label": "production",
+          "to": "v1",
+          "reason": "first version of the knowledge-base Q&A; evaluated on a question set written beforehand",
+          "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/docs/KBQA-PLAN.md"
+        }
+      ]
+    },
+    "versions": [
+      {
+        "id": "v1",
+        "date": "2026-11-17",
+        "decision": "adopted",
+        "change": {
+          "zh": "第一版。",
+          "en": "First version."
+        },
+        "text": {
+          "zh": "`kb_qa.INSTRUCTIONS`：四种结论（违规、可以、要看条件、库里没有），只能引检索到的条款，引文逐字抄",
+          "en": "`kb_qa.INSTRUCTIONS`: four verdicts (violation, allowed, depends, not in the library), only retrieved clauses may be cited, quotes copied word for word"
+        },
+        "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/reports/kb-qa.md",
+        "why": {
+          "zh": "计划和预测跑前写好。答对 134/160；库里没有的题说了“没有” 44/48；没核对上的引文 1/160。没成立的预测是中文问题的检索：算对的条款进前 5 只有 23/28，库里有答案却说“没有”的都出在这里。",
+          "en": "The plan and predictions were written before the run. Answered right 134/160; said \"not in the library\" when it was not 44/48; quotes that failed the check 1/160. The prediction that failed is retrieval for Chinese questions: the right clause was in the top five for only 23/28, and every \"not in the library\" on an answerable question came from there."
+        },
+        "scores": [
+          {
+            "label": {
+              "zh": "答对",
+              "en": "Answered right"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-pipeline-public/data/kbqa-eval.json"
+                ],
+                "k": 134,
+                "n": 160,
+                "rate": 0.8375,
+                "ci95": [
+                  0.7725,
+                  0.8866
+                ]
+              }
+            ],
+            "direction": "higher"
+          },
+          {
+            "label": {
+              "zh": "库里没有的题说了“没有”",
+              "en": "Said \"not in the library\" when it was not"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-pipeline-public/data/kbqa-eval.json"
+                ],
+                "k": 44,
+                "n": 48,
+                "rate": 0.9167,
+                "ci95": [
+                  0.8045,
+                  0.9671
+                ]
+              }
+            ],
+            "direction": "higher"
+          },
+          {
+            "label": {
+              "zh": "没核对上的引文",
+              "en": "Quotes that failed the check"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-pipeline-public/data/kbqa-eval.json"
+                ],
+                "k": 1,
+                "n": 160,
+                "rate": 0.0063,
+                "ci95": [
+                  0.0011,
+                  0.0345
+                ]
+              }
+            ],
+            "direction": "lower"
+          },
+          {
+            "label": {
+              "zh": "中文问题：算对的条款进前 5（BM25）",
+              "en": "Chinese questions: right clause in the top five (BM25)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-pipeline-public/data/retrieval-methods.csv"
+                ],
+                "k": 23,
+                "n": 28,
+                "rate": 0.8214,
+                "ci95": [
+                  0.6441,
+                  0.9212
+                ]
+              }
+            ],
+            "direction": "higher"
+          }
+        ],
+        "compare_set": {
+          "zh": "题库回放：80 道题（中英各一半，一部分库里没有答案），每道 2 遍",
+          "en": "Replay of a question set: 80 questions (half Chinese, half English, some not answerable from the library), 2 runs each"
+        }
       }
     ]
   }

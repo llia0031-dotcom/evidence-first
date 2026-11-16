@@ -40,3 +40,22 @@ scores = [
   ], direction = "lower" },
   { label = { zh = "第二轮新广告：判对（v1 → v2）", en = "Round two, new ads: decisions right (v1 → v2)" }, refs = ["grounded-labelling-pipeline.r2_v1_right", "grounded-labelling-pipeline.r2_v2_right"], direction = "higher" },
 ]
+
+[[version]]
+id = "v3"
+date = "2026-11-17"
+decision = "not_adopted"
+text = { zh = "v2 的“拿不准”规则重写（`triage.CERTAINTY_RULE_V3`）：写明几种情况算拿不准、几种不算；输出格式不变", en = "v2's rule on when to be unsure, rewritten (`triage.CERTAINTY_RULE_V3`): which cases count as unsure and which do not; the output format is unchanged" }
+change = { zh = "想让答案清楚的广告少送人工：文字广告没配图、写明出处的事实核实不了、广告主的资质和定向、指导条款明明允许的用语，都不再算“拿不准”。", en = "Meant to send fewer clear ads to people: a text ad with no image, a sourced fact that cannot be checked, the advertiser's licence and targeting, and words a guidance clause plainly allows no longer count as unsure." }
+why = { zh = "在另外新写的广告上（采用标准和预测跑前预注册），答案清楚的广告送人工从 {grounded-labelling-pipeline.r3_v2_clear} 降到 {grounded-labelling-pipeline.r3_v3_clear}；但写题时定为“要人来定”的广告，送人工也从 {grounded-labelling-pipeline.r3_v2_handoff} 降到 {grounded-labelling-pipeline.r3_v3_handoff}，超过事先写好的上限，不采用，production 留在 v2。第一轮回归里判错又自动生效 {grounded-labelling-pipeline.r3_reg_v2_escaped} 对 {grounded-labelling-pipeline.r3_reg_v3_escaped}。假如照样放量，灰度的回滚规则一条也不会触发，是采用标准拦下的。", en = "On another set of newly written ads (adoption rules and predictions preregistered), clear ads sent to people fell from {grounded-labelling-pipeline.r3_v2_clear} to {grounded-labelling-pipeline.r3_v3_clear}; but ads written as needing a human were also sent to people less often, {grounded-labelling-pipeline.r3_v2_handoff} to {grounded-labelling-pipeline.r3_v3_handoff}, past the limit set beforehand, so it was not adopted and production stays on v2. In the round-one regression, wrong decisions that went live were {grounded-labelling-pipeline.r3_reg_v2_escaped} against {grounded-labelling-pipeline.r3_reg_v3_escaped}. Had it been rolled out, no canary rollback rule would have fired; the adoption standard stopped it." }
+source = "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/reports/compare-v2-v3-round3.md"
+compare_set = { zh = "第三轮：另外新写 120 条文字广告各 2 遍；回归：第一轮 166 条题各回放 2 遍", en = "Round three: another 120 newly written text ads, 2 runs each; regression: the 166 round-one items, 2 replays each" }
+scores = [
+  { label = { zh = "答案清楚的广告送了人工（v2 → v3）", en = "Clear ads sent to human review (v2 → v3)" }, refs = ["grounded-labelling-pipeline.r3_v2_clear", "grounded-labelling-pipeline.r3_v3_clear"], direction = "lower" },
+  { label = { zh = "要人来定的广告送了人工（v2 → v3）", en = "Ads that need a human, sent to people (v2 → v3)" }, refs = ["grounded-labelling-pipeline.r3_v2_handoff", "grounded-labelling-pipeline.r3_v3_handoff"], direction = "higher" },
+  { label = { zh = "回归：判错又自动生效（v2 → v3）", en = "Regression: wrong decisions that went live (v2 → v3)" }, refs = ["grounded-labelling-pipeline.r3_reg_v2_escaped", "grounded-labelling-pipeline.r3_reg_v3_escaped"], direction = "lower" },
+  { label = { zh = "回归：送人工复核（v2 → v3）", en = "Regression: sent to human review (v2 → v3)" }, pair = [
+    { id = "reg_v2_queued", extractor = "pl_version", args = { path = "evidence-pipeline-public/data/versions-v3.json", version = "v2", field = "queued" } },
+    { id = "reg_v3_queued", extractor = "pl_version", args = { path = "evidence-pipeline-public/data/versions-v3.json", version = "v3", field = "queued" } },
+  ], direction = "none" },
+]

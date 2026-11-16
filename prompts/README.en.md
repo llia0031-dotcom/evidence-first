@@ -14,6 +14,7 @@ Every version of every prompt asset records its id, what changed, its real score
 | `tracedesk/answer` | grounded-v2.4-access | grounded-v2.4-access | The demo and the public repository default to grounded-v2.4-access. |
 | `cairn/answer` | cairn-monash-v2 | cairn-monash-v2 | The live demo uses cairn-monash-v2. |
 | `evidence-pipeline/triage` | v2 | v2 | No live traffic; the canary is a replay of test items. |
+| `evidence-pipeline/kb-qa` | v1 | v1 | No real usage; the evaluation is a replay of a question set, and the bot has only been asked a few test questions. |
 
 ## evidence-check: skill instructions (SKILL.md)
 
@@ -106,8 +107,22 @@ The first decision on each ad in the pipeline: approve or reject, which clause, 
 |---|---|---|---|---|---|
 | **v1** | 2026-11-15 | First version: the whole policy library, the image, the caption and the image's text in one request, answered in the review format.<br>Grounded Review's one-prompt arm as it is (`agent/oneshot.py`) | *Grounded Review's 166 items, 2 replays each*<br>Wrong decisions that went live: 17/332<br>Decisions right: 315/332 | superseded | Every wrong decision in the replay went live (17/332); the quote check only caught answers that were right but quoted badly.<br>Source: [grounded-labelling-pipeline/reports/compare-v1-v2.md](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/reports/compare-v1-v2.md) |
 | **v2** | 2026-11-15 | The model says whether it is sure; unsure answers go to human review.<br>v1 plus one rule on when to be unsure (`triage.CERTAINTY_RULE`) and two output fields, `certainty` and `unsure_reason` | *Round one: Grounded Review's 166 items, 2 replays each; round two: 120 newly written text ads, 2 runs each*<br>Wrong decisions that went live (v1 → v2): 17/332 → 9/332<br>Sent to human review (v1 → v2): 6/332 → 72/332<br>Decisions right (v1 → v2): 315/332 → 312/332<br>Cost per request (v1 → v2): US$0.00062 → US$0.00063<br>Round two, new ads: decisions right (v1 → v2): 239/240 → 240/240 | adopted | It passed all four preregistered adoption rules on the regression set: wrong decisions that went live 17/332 → 9/332. The rollback rules written before the replay rolled it back at 10%; the post-mortem found two of those rules were wrong. With the fixed rules, a second canary on newly written ads fired no rule at any of its three steps, so v2 was adopted and production moved to it. Both versions were almost always right in round two, so that round shows the release process works; the evidence that v2 lets fewer errors through comes from round one.<br>Source: [grounded-labelling-pipeline/docs/CANARY-POSTMORTEM.md](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/docs/CANARY-POSTMORTEM.md) |
+| **v3** | 2026-11-17 | Meant to send fewer clear ads to people: a text ad with no image, a sourced fact that cannot be checked, the advertiser's licence and targeting, and words a guidance clause plainly allows no longer count as unsure.<br>v2's rule on when to be unsure, rewritten (`triage.CERTAINTY_RULE_V3`): which cases count as unsure and which do not; the output format is unchanged | *Round three: another 120 newly written text ads, 2 runs each; regression: the 166 round-one items, 2 replays each*<br>Clear ads sent to human review (v2 → v3): 44/176 → 4/176<br>Ads that need a human, sent to people (v2 → v3): 44/64 → 19/64<br>Regression: wrong decisions that went live (v2 → v3): 9/332 → 9/332<br>Regression: sent to human review (v2 → v3): 72/332 → 30/332 | not adopted | On another set of newly written ads (adoption rules and predictions preregistered), clear ads sent to people fell from 44/176 to 4/176; but ads written as needing a human were also sent to people less often, 44/64 to 19/64, past the limit set beforehand, so it was not adopted and production stays on v2. In the round-one regression, wrong decisions that went live were 9/332 against 9/332. Had it been rolled out, no canary rollback rule would have fired; the adoption standard stopped it.<br>Source: [grounded-labelling-pipeline/reports/compare-v2-v3-round3.md](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/reports/compare-v2-v3-round3.md) |
 
 Label history: 2026-11-15 production ·→v1; 2026-11-15 staging ·→v2; 2026-11-15 staging v2→v1; 2026-11-16 staging v1→v2; 2026-11-16 production v1→v2
+
+## Grounded Labelling Pipeline: policy knowledge-base Q&A
+
+A labeller asks whether some wording breaks a rule; the answer uses only the retrieved clauses: a verdict, a short explanation, and the id and exact words of each clause it rests on. If no clause covers the question it says so. Every quote is checked with evidence-check. The pipeline's own registry holds the same asset with the same labels.
+
+- Location: `pipeline/kb_qa.py` (grounded-labelling-pipeline)
+- Model lock: claude-haiku-5-5, effort medium, top 5 clauses, max_tokens 1500 in the evaluation and 4000 in the bot
+
+| Version | Date | Change | Score at the time | Decision | Why |
+|---|---|---|---|---|---|
+| **v1** | 2026-11-17 | First version.<br>`kb_qa.INSTRUCTIONS`: four verdicts (violation, allowed, depends, not in the library), only retrieved clauses may be cited, quotes copied word for word | *Replay of a question set: 80 questions (half Chinese, half English, some not answerable from the library), 2 runs each*<br>Answered right: 134/160<br>Said "not in the library" when it was not: 44/48<br>Quotes that failed the check: 1/160<br>Chinese questions: right clause in the top five (BM25): 23/28 | adopted | The plan and predictions were written before the run. Answered right 134/160; said "not in the library" when it was not 44/48; quotes that failed the check 1/160. The prediction that failed is retrieval for Chinese questions: the right clause was in the top five for only 23/28, and every "not in the library" on an answerable question came from there.<br>Source: [grounded-labelling-pipeline/reports/kb-qa.md](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/reports/kb-qa.md) |
+
+Label history: 2026-11-17 production ·→v1
 
 ## Regression check
 

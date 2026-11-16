@@ -5,12 +5,12 @@ status = "public"
 links = [
   { label = { zh = "代码和报告", en = "Code and report" }, url = "https://github.com/Jason-d-e/grounded-labelling-pipeline" },
 ]
-card_version = "1.1"
-updated = "2026-11-16"
-period = "2026-11-15 – 2026-11-16"
+card_version = "1.2"
+updated = "2026-11-17"
+period = "2026-11-15 – 2026-11-17"
 team = "Liang Liyuan"
-stack = { zh = "Python、Pandas、BM25、evidence-check、Lark 多维表格（AI Agent 步骤）、批量接口", en = "Python, Pandas, BM25, evidence-check, Lark Base (AI Agent step), Message Batches API" }
-did = { zh = "我把有据审核做成一条四步审核工作流：模型判断，evidence-check 核对引文，核对没过或模型拿不准的进人工复核队列，复核结果回流成回归题；另加政策库检索评测、提示词版本、灰度和回滚规则、每周报告和上线检查清单，复核队列可以同步到 Lark 多维表格。", en = "I turned Grounded Review into a four-step review workflow: the model decides, evidence-check verifies the quotes, ads that fail the check or that the model is unsure of go to a human review queue, and reviewed ads come back as regression items; plus a policy retrieval evaluation, prompt versions, canary and rollback rules, weekly reports and a launch checklist, with the review queue syncable to Lark Base." }
+stack = { zh = "Python、Pandas、DuckDB（SQL）、BM25 和本机向量检索（Qwen3-Embedding-0.6B）、evidence-check、Lark 多维表格（工作流和 AI Agent 步骤）、批量接口", en = "Python, Pandas, DuckDB (SQL), BM25 and local embedding retrieval (Qwen3-Embedding-0.6B), evidence-check, Lark Base (workflows and the AI Agent step), Message Batches API" }
+did = { zh = "我把有据审核做成一条四步审核工作流：模型判断，evidence-check 核对引文，核对没过或模型拿不准的进人工复核队列，复核结果回流成回归题；另加政策库检索评测、只按政策库回答的知识库问答、提示词版本、灰度和回滚规则、用 SQL 取数的每周报告和上线检查清单，并在 Lark 多维表格里搭了判断和复核两条工作流。", en = "I turned Grounded Review into a four-step review workflow: the model decides, evidence-check verifies the quotes, ads that fail the check or that the model is unsure of go to a human review queue, and reviewed ads come back as regression items; plus a policy retrieval evaluation, a knowledge-base Q&A that answers only from the policy library, prompt versions, canary and rollback rules, weekly reports computed in SQL and a launch checklist, with judging and review workflows built in a Lark Base." }
 name = { zh = "有据标注流水线", en = "Grounded Labelling Pipeline" }
 problem = { zh = "能核对的回答，怎么变成团队每天用的审核工作流：拿不准的交给人复核，提示词能灰度、能回滚", en = "How checkable answers become a review workflow a team runs daily: unsure cases go to people, and prompts ship with canary release and rollback" }
 primary_metric = { zh = "漏网错判（判错又自动生效）；送人工复核的比例；判对率", en = "Wrong decisions that went live; share sent to human review; decisions right" }
@@ -19,11 +19,11 @@ headline = [
   { zh = "第一轮按事先写好的规则，灰度放到 {canary_rollback_share} 就回滚了；规则写错两处，已复盘", en = "Round one rolled back at {canary_rollback_share} under the rules written beforehand; two rules were wrong, now reviewed" },
   { zh = "第二轮用改好的规则，在新写的广告上放到 {r2_final_share}，没有回滚，v2 上线", en = "Round two, with the fixed rules on newly written ads, reached {r2_final_share} without a rollback; v2 is live" },
 ]
-summary = { zh = "一条围绕有据审核搭的审核和标注工作流。每条广告先由模型判断并引原文，再用 evidence-check 核对引文，核对没过、读不出或模型拿不准的进人工复核队列，复核结果和模型不同的变成新的回归题。提示词按版本管理，新版本先做回归测试，再按事先写好的规则灰度放量，触发就回滚。流量是有据审核评测题的回放，不是真实用户；回放里的复核结论就是题目定好的答案。", en = "A review and labelling workflow built around Grounded Review. Each ad is decided by the model with quotes, the quotes are checked by evidence-check, and ads that fail the check, cannot be read or that the model is unsure of go to a human review queue; reviewed ads that differ from the model become new regression items. Prompts are versioned; a new version passes a regression test, then a canary release under rules written beforehand, and rolls back when a rule fires. Traffic is a replay of Grounded Review's test items, not real users; reviewer decisions in the replay are the items' fixed answers." }
+summary = { zh = "一条围绕有据审核搭的审核和标注工作流。每条广告先由模型判断并引原文，再用 evidence-check 核对引文，核对没过、读不出或模型拿不准的进人工复核队列，复核结果和模型不同的变成新的回归题。提示词按版本管理，新版本先做回归测试，再按事先写好的规则灰度放量，触发就回滚。另有一个只按政策库回答的知识库问答，库里没有管这件事的条款就说没有。流量是有据审核评测题的回放，不是真实用户；回放里的复核结论就是题目定好的答案。", en = "A review and labelling workflow built around Grounded Review. Each ad is decided by the model with quotes, the quotes are checked by evidence-check, and ads that fail the check, cannot be read or that the model is unsure of go to a human review queue; reviewed ads that differ from the model become new regression items. Prompts are versioned; a new version passes a regression test, then a canary release under rules written beforehand, and rolls back when a rule fires. A knowledge-base Q&A answers only from the policy library and says so when no clause covers the question. Traffic is a replay of Grounded Review's test items, not real users; reviewer decisions in the replay are the items' fixed answers." }
 core_link = { zh = "每段引文都过 evidence-check 的核对脚本；只读地引用有据审核的代码，回放它存下的答案。", en = "Every quote goes through the evidence-check script; it imports Grounded Review's code read-only and replays its stored answers." }
-models = { zh = "分流用 claude-haiku-5-5，批量接口；Lark 工作流里的 AI Agent 步骤用平台模型 Seed 1.8，聊天机器人用 claude-haiku-5-5；检索用政策库自带的 BM25。", en = "Triage uses claude-haiku-5-5 through the Message Batches API; the AI Agent step in the Lark workflow uses the platform model Seed 1.8, and the chat bot uses claude-haiku-5-5; retrieval uses the policy library's BM25." }
-iteration = { zh = ["v1：四步工作流跑通，但判错的 {v1_escaped} 全部自动生效，引文核对拦不住看错的判断。", "v2：让模型说“拿不准”，拿不准的交人工；判错又自动生效的降到 {v2_escaped}，四条采用标准都满足。", "第一轮灰度：按事先写好的回滚规则，放到 {canary_rollback_share} 就回滚了；复盘发现两条规则写错（和改动目的矛盾、样本太小就比比例）。", "第二轮灰度：改好的规则跑前预注册，在新写的广告上三步放量都没回滚，v2 上线；但两版在这批广告上都接近全对，没有再证明 v2 能少漏错判。", "Lark：在多维表格里搭了同样的工作流，用平台自带的 AI Agent 步骤判断、写回，拿不准的自己进复核队列，引文核对由脚本补；另有一个聊天机器人，实测一条。"], en = ["v1: the four-step workflow runs, but all {v1_escaped} wrong decisions went live; quote checks cannot stop a misread decision.", "v2: the model may say it is unsure, and unsure ads go to people; wrong decisions that went live fell to {v2_escaped}, meeting all four adoption criteria.", "Canary round one: under the rules written beforehand it rolled back at {canary_rollback_share}; the review found two wrong rules (at odds with the change's purpose, and comparing rates on too few requests).", "Canary round two: the fixed rules were preregistered, and on newly written ads all three release steps passed without a rollback, so v2 went live; but both versions were almost always right on these ads, so this did not show again that v2 lets fewer errors through.", "Lark: the same workflow built in a Lark Base, with the platform's AI Agent step deciding and writing back, unsure answers queued for review, and quote checks added by script; plus a chat bot, tested once."] }
-conclusion = { zh = "让模型说“拿不准”能减少判错又生效，代价是多送人工；第一轮灰度按规则回滚，暴露的是规则本身写错；改好的规则在新流量上放到全量，v2 上线。v2 少漏错判的证据仍来自第一轮。", en = "Letting the model say it is unsure reduces wrong decisions that go live at the cost of more human review; the first canary rolled back because the rules themselves were wrong; with fixed rules the second canary on new traffic reached full release and v2 went live. The evidence that v2 lets fewer errors through still comes from round one." }
+models = { zh = "分流和知识库问答用 claude-haiku-5-5（评测走批量接口）；Lark 工作流里的 AI Agent 步骤用平台模型 Seed 1.8，聊天机器人用 claude-haiku-5-5；中文条款检索用政策库自带的 BM25，英文用本机向量模型 Qwen3-Embedding-0.6B。", en = "Triage and the knowledge-base Q&A use claude-haiku-5-5 (evaluations through the Message Batches API); the AI Agent step in the Lark workflows uses the platform model Seed 1.8, and the chat bot uses claude-haiku-5-5; Chinese clause retrieval uses the policy library's BM25, English uses the local embedding model Qwen3-Embedding-0.6B." }
+iteration = { zh = ["v1：四步工作流跑通，但判错的 {v1_escaped} 全部自动生效，引文核对拦不住看错的判断。", "v2：让模型说“拿不准”，拿不准的交人工；判错又自动生效的降到 {v2_escaped}，四条采用标准都满足。", "第一轮灰度：按事先写好的回滚规则，放到 {canary_rollback_share} 就回滚了；复盘发现两条规则写错（和改动目的矛盾、样本太小就比比例）。", "第二轮灰度：改好的规则跑前预注册，在新写的广告上三步放量都没回滚，v2 上线；但两版在这批广告上都接近全对，没有再证明 v2 能少漏错判。", "Lark：在多维表格里搭了同样的工作流，用平台自带的 AI Agent 步骤判断、写回，拿不准的自己进复核队列，引文核对由脚本补；另有一个聊天机器人，实测一条。", "v3：重写“拿不准”的规则，想让答案清楚的广告少送人工；清楚广告的多余复核从 {r3_v2_clear} 降到 {r3_v3_clear}，但要人来定的广告送人工也从 {r3_v2_handoff} 降到 {r3_v3_handoff}，超过事先写好的上限，不采用，production 留在 v2。", "知识库问答：只按检索到的条款回答，库里没有就说没有；答对 {kb_right}，库里没有的题说了“没有” {kb_none}。", "英文条款检索换成本机向量模型：在选方法时没用过的标注上，正确条款进前三从 {ret_r3_en_bm25} 到 {ret_r3_en_dense}；中文还用 BM25。", "每周指标改用 SQL 取数，和原来的数逐个比过，一个没变。", "Lark 两条工作流：第一遍条款里的换行挡住了平台的逐字查找，两种引文核对一致 {lark2_agree}，不一致的都是多送了人工；改好后第二遍 {lark3_agree}（看过第一遍才改，不算预注册）。"], en = ["v1: the four-step workflow runs, but all {v1_escaped} wrong decisions went live; quote checks cannot stop a misread decision.", "v2: the model may say it is unsure, and unsure ads go to people; wrong decisions that went live fell to {v2_escaped}, meeting all four adoption criteria.", "Canary round one: under the rules written beforehand it rolled back at {canary_rollback_share}; the review found two wrong rules (at odds with the change's purpose, and comparing rates on too few requests).", "Canary round two: the fixed rules were preregistered, and on newly written ads all three release steps passed without a rollback, so v2 went live; but both versions were almost always right on these ads, so this did not show again that v2 lets fewer errors through.", "Lark: the same workflow built in a Lark Base, with the platform's AI Agent step deciding and writing back, unsure answers queued for review, and quote checks added by script; plus a chat bot, tested once.", "v3: the rule on when to be unsure was rewritten so that clear ads go to people less often; needless reviews of clear ads fell from {r3_v2_clear} to {r3_v3_clear}, but ads that need a human were also sent to people less often, {r3_v2_handoff} to {r3_v3_handoff}, past the limit set beforehand, so it was not adopted and production stays on v2.", "Knowledge-base Q&A: answers only from retrieved clauses and says so when the library has none; answered right {kb_right}, and said \"not in the library\" {kb_none} when it was not.", "English clause retrieval switched to a local embedding model: on labels not used to choose it, the right clause in the top three went from {ret_r3_en_bm25} to {ret_r3_en_dense}; Chinese stays on BM25.", "Weekly metrics are now computed in SQL and were compared one by one with the earlier numbers; none changed.", "Two Lark workflows: on the first pass, line breaks in the clauses blocked the platform's exact-text search, so the two quote checks agreed on {lark2_agree}, every disagreement sending an extra ad to people; after the fix the second pass agreed on {lark3_agree} (changed after seeing the first pass, so not preregistered)."] }
+conclusion = { zh = "让模型说“拿不准”能减少判错又生效，代价是多送人工；第一轮灰度按规则回滚，暴露的是规则本身写错；改好的规则在新流量上放到全量，v2 上线。v2 少漏错判的证据仍来自第一轮。第 3 版在清楚广告上少了多余复核，却把要人来定的广告也少送了人工，按事先写好的标准没采用；假如照样放量，灰度规则拦不下它，拦下它的是题目里那批要人来定的广告。", en = "Letting the model say it is unsure reduces wrong decisions that go live at the cost of more human review; the first canary rolled back because the rules themselves were wrong; with fixed rules the second canary on new traffic reached full release and v2 went live. The evidence that v2 lets fewer errors through still comes from round one. Version 3 cut needless reviews of clear ads but also sent fewer ads that need a human to people, so under the standard written beforehand it was not adopted; a canary would not have stopped it, the ads written as needing a human did." }
 short_name = { zh = "标注流水线", en = "Labelling pipeline" }
 card_title = { zh = "把广告审核做成能灰度、能回滚的工作流", en = "Ad review as a workflow with canary release and rollback" }
 assumed = { zh = "以为四条采用标准都满足，灰度就能顺利放量", en = "Expected a version meeting all four adoption criteria to roll out smoothly" }
@@ -37,6 +37,9 @@ timeline = [
   { date = "2026-11-15", label = { zh = "复盘", en = "Post-mortem" }, text = { zh = "两条回滚规则写错，已改", en = "Two rollback rules were wrong; fixed" } },
   { date = "2026-11-16", label = { zh = "第二轮灰度", en = "Canary round two" }, text = { zh = "新写的广告上三步都没回滚，v2 上线", en = "No rollback on new ads; v2 went live" }, after = "r2_final_share", adopted = true },
   { date = "2026-11-16", label = { zh = "Lark 工作流", en = "Lark workflow" }, text = { zh = "多维表格里搭好，平台模型判断并写回", en = "Built in a Lark Base; platform model decides" }, after = "lark_right" },
+  { date = "2026-11-17", label = { zh = "v3", en = "v3" }, text = { zh = "清楚的少复核，要人定的也少送，不采用", en = "Fewer needless reviews, too few hand-offs" }, before = "r3_v2_handoff", after = "r3_v3_handoff", adopted = false },
+  { date = "2026-11-17", label = { zh = "知识库问答", en = "Knowledge-base Q&A" }, text = { zh = "只按政策库回答，库里没有就说没有", en = "Answers only from the policy library" }, after = "kb_right", adopted = true },
+  { date = "2026-11-17", label = { zh = "Lark 两条工作流", en = "Two Lark workflows" }, text = { zh = "判断和复核两条，改后两种核对全一致", en = "Judge and review; quote checks agree after the fix" }, before = "lark2_agree", after = "lark3_agree" },
 ]
 
 judge = { zh = [
@@ -60,11 +63,15 @@ zh = [
   "评测题回放，不是真实用户。人工复核的结论用题目定好的答案代替。",
   "Lark 里的平台模型和 claude-haiku-5-5 不在同一套题上比谁准；这里只说明工作流能在 Lark 里跑通。",
   "不替代审核员：拿不准、核对没过、读不出的广告都交给人。",
+  "Lark 里的“AI Agent”步骤是固定流程里的一次模型调用，没有工具和记忆。",
+  "机器人问答和使用记录只有测试，没有真实使用量。",
 ]
 en = [
   "A replay of test items, not real users. Reviewer decisions are the items' fixed answers.",
   "The Lark platform model and claude-haiku-5-5 are not compared on one item set; this only shows the workflow runs in Lark.",
   "Does not replace reviewers: unsure, failed and unreadable ads all go to people.",
+  "The \"AI Agent\" step in Lark is one model call inside a fixed flow, with no tools or memory.",
+  "The bot's Q&A and usage log have only been tested; there is no real usage.",
 ]
 
 [[eval]]
@@ -276,21 +283,192 @@ setup = { zh = "不调用模型，用 v1 第一遍存下的答案", en = "No mod
   extractor = "pl_retrieval"
   args = { path = "evidence-pipeline-public/data/retrieval.csv", query = "answer" }
 
+
+[[eval]]
+id = "round3"
+name = { zh = "提示词第 3 版：新写的广告上不采用（回放，不是真实用户）", en = "Prompt v3 on newly written ads: not adopted (a replay, not real users)" }
+date = "2026-11-17"
+data = { zh = "另外新写 120 条文字广告，每条两遍，共 240 个请求；其中一部分写题时就定为“要人来定”，其余答案清楚。采用标准和预测跑前预注册；同时在第一轮的 332 个请求上做回归。", en = "Another 120 newly written text ads, two runs each, 240 requests; some were written as needing a human, the rest have clear answers. Adoption rules and predictions were preregistered; a regression ran on the 332 round-one requests." }
+items = { zh = "240 个请求（另有回归 332 个）", en = "240 requests (plus 332 in the regression)" }
+runs = { zh = "每条广告两遍，每个版本 1 遍", en = "Two runs per ad, 1 run per version" }
+setup = { zh = "claude-haiku-5-5，批量接口（半价）", en = "claude-haiku-5-5, Message Batches API (half price)" }
+frozen = { zh = "`docs/PREREGISTRATION-ROUND3.md`", en = "`docs/PREREGISTRATION-ROUND3.md`" }
+takeaway = { zh = "答案清楚的广告少了多余的复核，但写题时定为“要人来定”的广告送人工也少了，降幅超过事先写好的十个百分点上限，不采用，production 留在 v2。假如照样放量，灰度的回滚规则一条也不会触发：拦下它的是题目里那批要人来定的广告和事先写好的采用标准。", en = "Clear ads got far fewer needless reviews, but ads written as needing a human were also sent to people less often, a drop past the ten-point limit set beforehand, so v3 was not adopted and production stays on v2. Had it been rolled out, no canary rollback rule would have fired: what stopped it was the ads written as needing a human and the adoption standard written beforehand." }
+
+  [[eval.metric]]
+  id = "r3_v2_clear"
+  label = { zh = "答案清楚的广告送了人工（v2）", en = "Clear ads sent to human review (v2)" }
+  extractor = "json_counts"
+  args = { path = "evidence-pipeline-public/data/versions-v3-round3.json", at = ["stats", "v2", "clear"], num = "queued", den = "requests" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "r3_v3_clear"
+  label = { zh = "答案清楚的广告送了人工（v3）", en = "Clear ads sent to human review (v3)" }
+  extractor = "json_counts"
+  args = { path = "evidence-pipeline-public/data/versions-v3-round3.json", at = ["stats", "v3", "clear"], num = "queued", den = "requests" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "r3_v2_handoff"
+  label = { zh = "要人来定的广告送了人工（v2）", en = "Ads that need a human, sent to people (v2)" }
+  extractor = "json_counts"
+  args = { path = "evidence-pipeline-public/data/versions-v3-round3.json", at = ["stats", "v2", "needs_human"], num = "queued", den = "requests" }
+  direction = "higher"
+
+  [[eval.metric]]
+  id = "r3_v3_handoff"
+  label = { zh = "要人来定的广告送了人工（v3）", en = "Ads that need a human, sent to people (v3)" }
+  extractor = "json_counts"
+  args = { path = "evidence-pipeline-public/data/versions-v3-round3.json", at = ["stats", "v3", "needs_human"], num = "queued", den = "requests" }
+  direction = "higher"
+
+  [[eval.metric]]
+  id = "r3_reg_v2_escaped"
+  label = { zh = "回归（第一轮）：判错又自动生效（v2）", en = "Regression (round one): wrong decisions that went live (v2)" }
+  extractor = "pl_version"
+  args = { path = "evidence-pipeline-public/data/versions-v3.json", version = "v2", field = "escaped" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "r3_reg_v3_escaped"
+  label = { zh = "回归（第一轮）：判错又自动生效（v3）", en = "Regression (round one): wrong decisions that went live (v3)" }
+  extractor = "pl_version"
+  args = { path = "evidence-pipeline-public/data/versions-v3.json", version = "v3", field = "escaped" }
+  direction = "lower"
+
+[[eval]]
+id = "kbqa"
+name = { zh = "政策知识库问答：只按检索到的条款回答（80 道题）", en = "Policy knowledge-base Q&A: answers only from retrieved clauses (80 questions)" }
+date = "2026-11-17"
+data = { zh = "80 道题，中英各一半，其中一部分库里没有答案；答案写题时定好；每道题两遍，共 160 个请求。计划和预测跑前写好。答对要结论对、引了对的条款、引文核对通过；库里没有的题要说“没有”且不引条款。", en = "80 questions, half Chinese and half English, some not answerable from the library; answers fixed when the questions were written; two runs each, 160 requests. The plan and predictions were written before the run. A right answer has the right verdict, cites the right clause and passes the quote check; for a question the library cannot answer it must say so and cite nothing." }
+items = { zh = "160 个请求", en = "160 requests" }
+runs = { zh = "每道题 2 遍", en = "2 runs per question" }
+setup = { zh = "claude-haiku-5-5，批量接口；中文检索 BM25，英文检索 Qwen3-Embedding-0.6B，取前 5 条", en = "claude-haiku-5-5, Message Batches API; BM25 for Chinese, Qwen3-Embedding-0.6B for English, top 5 clauses" }
+frozen = { zh = "`docs/KBQA-PLAN.md`", en = "`docs/KBQA-PLAN.md`" }
+takeaway = { zh = "多数题答对，库里没有的题大多说了“没有”，引文几乎全部核对通过。事先写好的预测里只有中文检索那一条没成立；库里有答案却说“没有”的，都是检索没找到条款，不是模型编造。", en = "Most questions were answered right, most questions the library cannot answer got \"not in the library\", and almost every quote passed the check. Of the predictions written beforehand only the one on Chinese retrieval failed; every \"not in the library\" on an answerable question came from retrieval missing the clause, not from an invented answer." }
+
+  [[eval.metric]]
+  id = "kb_right"
+  label = { zh = "答对", en = "Answered right" }
+  extractor = "json_counts"
+  args = { path = "evidence-pipeline-public/data/kbqa-eval.json", at = ["stats", "all"], num = "right", den = "requests" }
+
+  [[eval.metric]]
+  id = "kb_none"
+  label = { zh = "库里没有的题说了“没有”", en = "Said \"not in the library\" when it was not" }
+  extractor = "json_counts"
+  args = { path = "evidence-pipeline-public/data/kbqa-eval.json", at = ["stats", "all"], num = "said_none_when_none", den = "not_in_kb" }
+
+  [[eval.metric]]
+  id = "kb_quotes_failed"
+  label = { zh = "没核对上的引文", en = "Quotes that failed the check" }
+  extractor = "json_counts"
+  args = { path = "evidence-pipeline-public/data/kbqa-eval.json", at = ["stats", "all"], num = "quotes_failed", den = "quotes" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "kb_zh_hit5"
+  label = { zh = "中文问题：算对的条款进前 5（BM25）", en = "Chinese questions: right clause in the top five (BM25)" }
+  extractor = "pl_retrieval_method"
+  args = { path = "evidence-pipeline-public/data/retrieval-methods.csv", set = "questions", query = "question", lang = "zh", method = "bm25", col = "hit@5" }
+  note = { zh = "预测是百分之九十以上，这一条没成立；按题数算，每道题两遍的检索结果相同", en = "predicted ninety percent or more; this prediction did not hold; counted per question, since retrieval is the same on both runs" }
+
+[[eval]]
+id = "retrieval2"
+name = { zh = "英文条款检索换成本机向量模型（选方法时没用过的标注）", en = "English clause retrieval on a local embedding model (labels not used to choose it)" }
+date = "2026-11-17"
+data = { zh = "先在第一轮的标注上比较几种检索方式选定，再在选的时候没用过的第二轮、第三轮标注上验；用模型的答案去搜，只算英文。中文还用 BM25。", en = "Several retrieval methods were compared on the round-one labels to choose one, then checked on the round-two and round-three labels that were not used for the choice; queries are the model's answers, English only. Chinese stays on BM25." }
+items = { zh = "第二轮 40 条、第三轮 23 条英文违规标注", en = "40 round-two and 23 round-three English violation labels" }
+runs = { zh = "确定性检索，1 遍", en = "Deterministic retrieval, 1 run" }
+setup = { zh = "Qwen3-Embedding-0.6B（量化版，fastembed），本机运行，不调用接口", en = "Qwen3-Embedding-0.6B (quantised, fastembed), run locally, no API calls" }
+takeaway = { zh = "两批没用过的标注上，英文正确条款进前三都提高了；第一轮是选方法用的，数字偏乐观，不拿来报告。", en = "On both sets of unused labels the right English clause reached the top three more often; round one was used to choose the method, so its numbers are optimistic and not reported." }
+
+  [[eval.metric]]
+  id = "ret_r2_en_bm25"
+  label = { zh = "第二轮英文：正确条款进前三（BM25）", en = "Round two, English: right clause in the top three (BM25)" }
+  extractor = "pl_retrieval_method"
+  args = { path = "evidence-pipeline-public/data/retrieval-methods.csv", set = "round2 (held out)", query = "answer", lang = "en", method = "bm25" }
+
+  [[eval.metric]]
+  id = "ret_r2_en_dense"
+  label = { zh = "第二轮英文：正确条款进前三（向量）", en = "Round two, English: right clause in the top three (embedding)" }
+  extractor = "pl_retrieval_method"
+  args = { path = "evidence-pipeline-public/data/retrieval-methods.csv", set = "round2 (held out)", query = "answer", lang = "en", method = "dense", model = "Qwen3-Embedding-0.6B-Q" }
+
+  [[eval.metric]]
+  id = "ret_r3_en_bm25"
+  label = { zh = "第三轮英文：正确条款进前三（BM25）", en = "Round three, English: right clause in the top three (BM25)" }
+  extractor = "pl_retrieval_method"
+  args = { path = "evidence-pipeline-public/data/retrieval-methods.csv", set = "round3 (held out)", query = "answer", lang = "en", method = "bm25" }
+
+  [[eval.metric]]
+  id = "ret_r3_en_dense"
+  label = { zh = "第三轮英文：正确条款进前三（向量）", en = "Round three, English: right clause in the top three (embedding)" }
+  extractor = "pl_retrieval_method"
+  args = { path = "evidence-pipeline-public/data/retrieval-methods.csv", set = "round3 (held out)", query = "answer", lang = "en", method = "dense", model = "Qwen3-Embedding-0.6B-Q" }
+
+[[eval]]
+id = "lark2"
+name = { zh = "Lark 两条工作流：判断和复核（60 条中文广告，两遍）", en = "Two Lark workflows: judging and review (60 Chinese ads, two passes)" }
+date = "2026-11-17"
+data = { zh = "第一条工作流判断、逐段核对引文、分流并写明原因；第二条把复核结论写回广告，分歧记进回归题。用第二轮的 60 条中文文字广告跑两遍：第一遍照跑之前写好的计划，第二遍是看过第一遍、改了引文核对之后再跑的，不算预注册。脚本核对和平台核对并排比。", en = "The first workflow judges, checks every quote, routes the ad and records why; the second writes the review back and records disagreements as regression items. 60 Chinese round-two text ads ran twice: the first pass followed the plan written beforehand, the second ran after seeing the first and fixing the quote check, so it is not preregistered. The script's check and the platform's check are compared side by side." }
+items = { zh = "60 条广告", en = "60 ads" }
+runs = { zh = "2 遍（第二遍改过才跑）", en = "2 passes (the second after the fix)" }
+setup = { zh = "Lark 多维表格工作流；AI Agent 步骤用平台模型 Seed 1.8，平台免费额度", en = "Lark Base workflows; the AI Agent step uses the platform model Seed 1.8 on the free allowance" }
+frozen = { zh = "`docs/LARK-AGENT-PLAN.md` 第 8 节（第一遍）", en = "`docs/LARK-AGENT-PLAN.md` section 8 (first pass)" }
+takeaway = { zh = "第一遍平台的逐字查找被条款里的换行挡住，两种核对有不一致的，不一致的都是多送了人工，没有漏送；把换行处理好以后，第二遍两种核对和去向全部一致，复核结论都写回了。第二遍是看过第一遍才改的，只说明改法有效，不算事先的预测。", en = "On the first pass line breaks in the clauses blocked the platform's exact-text search, so the two checks disagreed on some ads, each time sending an extra ad to people and never letting one through; with line breaks handled, the second pass agreed on every check and route, and every review was written back. The second pass came after seeing the first, so it shows the fix works rather than testing a prediction." }
+
+  [[eval.metric]]
+  id = "lark2_agree"
+  label = { zh = "第一遍：两种引文核对一致", en = "First pass: the two quote checks agree" }
+  extractor = "json_counts"
+  args = { path = "evidence-pipeline-public/data/lark-agent-eval2.json", at = ["stats"], num = "quote_checks_agree", den = "requests" }
+
+  [[eval.metric]]
+  id = "lark2_escaped"
+  label = { zh = "第一遍：判错又没送人工", en = "First pass: wrong decisions not sent to people" }
+  extractor = "json_counts"
+  args = { path = "evidence-pipeline-public/data/lark-agent-eval2.json", at = ["stats"], num = "escaped", den = "requests" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "lark3_agree"
+  label = { zh = "第二遍：两种引文核对一致", en = "Second pass: the two quote checks agree" }
+  extractor = "json_counts"
+  args = { path = "evidence-pipeline-public/data/lark-agent-eval3.json", at = ["stats"], num = "quote_checks_agree", den = "requests" }
+
+  [[eval.metric]]
+  id = "lark3_routes"
+  label = { zh = "第二遍：平台的去向和规则一致", en = "Second pass: the platform's route matches the rules" }
+  extractor = "json_counts"
+  args = { path = "evidence-pipeline-public/data/lark-agent-eval3.json", at = ["stats"], num = "routes_agree", den = "requests" }
+
+  [[eval.metric]]
+  id = "lark3_written_back"
+  label = { zh = "第二遍：复核结论写回广告", en = "Second pass: reviews written back to the ad" }
+  extractor = "json_counts"
+  args = { path = "evidence-pipeline-public/data/lark-agent-eval3.json", at = ["stats"], num = "written_back", den = "reviewed" }
+
 [[limitation]]
 text = { zh = "流量是评测题的回放，不是真实用户；复核结论用的是题目定好的答案，没有真的审核员。", en = "Traffic replays test items rather than real users, and reviewer decisions are the items' fixed answers, not real reviewers." }
 advice = { zh = "上线后按版本统计真实请求的漏网错判和复核量，抽检结果回流成回归题。", en = "After launch, track wrong decisions let through and review volume per version on real requests, and feed QA samples back as regression items." }
 
 [[limitation]]
 text = { zh = "v2 少放过判错，但送人工从 {v1_review} 涨到 {v2_review}，很多是清楚的广告也说“拿不准”。", en = "v2 lets fewer wrong decisions through, but human review rose from {v1_review} to {v2_review}, often on clear ads the model called unsure." }
-advice = { zh = "下一版试着减少清楚广告上的“拿不准”，同样先过回归测试再灰度。", en = "Next, reduce \"unsure\" on clear ads, again through a regression test before a canary." }
+advice = { zh = "第 3 版试过放宽“拿不准”，清楚广告少送了，要人来定的也少送了；下一版要两头同时守住，同样先过回归和新题再灰度。", en = "Version 3 relaxed \"unsure\" and sent fewer clear ads to people, but also fewer ads that need a human; the next version has to hold both, again through a regression and new items before a canary." }
 
 [[limitation]]
 text = { zh = "第二轮在新流量上放到全量，但两版在这批广告上都接近全对，没有再证明 v2 能少漏错判；v2 的好处仍来自第一轮。", en = "Round two reached full release on new traffic, but both versions were almost always right on those ads, so it did not show again that v2 lets fewer errors through; that evidence still comes from round one." }
 advice = { zh = "再找 v1 会漏判的新广告（例如更长、更含糊的），在同样的规则下比一次。", en = "Find new ads that v1 misses (longer or vaguer ones) and compare again under the same rules." }
 
 [[limitation]]
-text = { zh = "Lark 里的平台模型一次也没说拿不准（{lark_unsure}），分流模型的存档答案里却有 {ref_unsure} 说了；聊天机器人只实测了一条。", en = "The Lark platform model never said it was unsure ({lark_unsure}), while the triage model did in {ref_unsure} stored answers; the chat bot was tested on one ad only." }
-advice = { zh = "换模型后先重新量复核率，再调“拿不准”的门槛；机器人上线前用一批广告测。", en = "After a model change, measure the review rate again before tuning the unsure threshold; test the bot on a batch before launch." }
+text = { zh = "Lark 里的平台模型一次也没说拿不准（{lark_unsure}），分流模型的存档答案里却有 {ref_unsure} 说了；机器人问答只有测试，没有真实使用量。", en = "The Lark platform model never said it was unsure ({lark_unsure}), while the triage model did in {ref_unsure} stored answers; the bot's Q&A has only been tested, with no real usage." }
+advice = { zh = "换模型后先重新量复核率，再调“拿不准”的门槛；机器人先用一批问题测，再看真实的使用记录。", en = "After a model change, measure the review rate again before tuning the unsure threshold; test the bot on a batch of questions, then read its real usage log." }
+
+[[limitation]]
+text = { zh = "中文问题的检索偏弱：算对的条款进前 5 只有 {kb_zh_hit5}，库里有答案却说“没有”的都出在检索没找到。", en = "Retrieval for Chinese questions is weak: the right clause was in the top five for only {kb_zh_hit5}, and every \"not in the library\" on an answerable question came from retrieval missing it." }
+advice = { zh = "中文检索也试本机向量或混合检索，先在选方法时没用过的问题上验。", en = "Try embedding or hybrid retrieval for Chinese too, checked first on questions not used to choose the method." }
 
 [[version]]
 id = "1.0"
@@ -301,3 +479,8 @@ text = { zh = "第一张卡，照公开仓库 grounded-labelling-pipeline 的结
 id = "1.1"
 date = "2026-11-16"
 text = { zh = "加第二轮灰度（新流量，v2 上线）、Lark 里的工作流评测和截图。", en = "Added canary round two (new traffic, v2 live), the Lark workflow evaluation and screenshots." }
+
+[[version]]
+id = "1.2"
+date = "2026-11-17"
+text = { zh = "加提示词第 3 版（不采用）、知识库问答、英文检索换本机向量模型、Lark 两条工作流；Lark 截图换成新版。", en = "Added prompt v3 (not adopted), the knowledge-base Q&A, English retrieval on a local embedding model and the two Lark workflows; Lark screenshots replaced with the new ones." }

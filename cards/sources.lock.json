@@ -69,9 +69,15 @@
   "grounded-labelling-pipeline": {
     "evidence-pipeline-public/data/canary-round2.json": "377da260789d8305b2d144a32c8fd4e2938528b4e0453952ffad34122484624f",
     "evidence-pipeline-public/data/canary.json": "695a6af0fd22bedcb1bd40c11366e8565bba186ec86a7867dfb703836a4b251e",
+    "evidence-pipeline-public/data/kbqa-eval.json": "27fb2449a6bbe91f07deb02b208cebff5781ddcff64b0dbbc4ba6d048c4b646f",
     "evidence-pipeline-public/data/lark-agent-eval1.json": "b7ee4f744f5e999cd404e16600f3b8f4f299eccaeebe869d99155a47946e633e",
+    "evidence-pipeline-public/data/lark-agent-eval2.json": "d914286e2bf94cd520ececdd440f896089a847bcf226c20eab686e7a17e628fc",
+    "evidence-pipeline-public/data/lark-agent-eval3.json": "265ad01f18d219590a2ead1effa179b56d32b0e81c1d179eac9c64cedc88c1fe",
+    "evidence-pipeline-public/data/retrieval-methods.csv": "e81a9090f3193d4911b5c2dbea9073f8d762dec32bd57ecacebd51a6f9b9d493",
     "evidence-pipeline-public/data/retrieval.csv": "864e758d1a9c6ce82b6daddafb374bf25c9e264729dda32cc80d0cc557e4d8b2",
-    "evidence-pipeline-public/data/versions-round2.json": "f5ed3344c2af1158fae4b0aa28da8c5c78227883d1d0156486ab4d8426868438",
-    "evidence-pipeline-public/data/versions.json": "8daa02468218ee6fa363929d7889c596af29998d0d01365bc8c9d219f6632450"
+    "evidence-pipeline-public/data/versions-round2.json": "f5d7410519ea8b28c5457f2bc2b3f19d18edd2f69669b33a6880372c7a9ab575",
+    "evidence-pipeline-public/data/versions-v3-round3.json": "2067380f73c29123637f80b982ef1ffa841bcb86ce3f54f241d93e5f6fcf183d",
+    "evidence-pipeline-public/data/versions-v3.json": "1698cc31ab6fbf65d6d040d83c76c50c7d37db37498cbba79c65f194d43668ba",
+    "evidence-pipeline-public/data/versions.json": "770a5c0ea9e7d5da5685a511a8e935d100fd1efc03e21da61f1776cb943cca39"
   }
 }

@@ -4377,8 +4377,8 @@
     "order": 9,
     "layer": "operations",
     "status": "public",
-    "updated": "2026-11-16",
-    "card_version": "1.1",
+    "updated": "2026-11-17",
+    "card_version": "1.2",
     "card": {
       "zh": "cards/grounded-labelling-pipeline.md",
       "en": "cards/grounded-labelling-pipeline.en.md"
@@ -4393,16 +4393,16 @@
       }
     ],
     "period": {
-      "zh": "2026-11-15 – 2026-11-16",
-      "en": "2026-11-15 – 2026-11-16"
+      "zh": "2026-11-15 – 2026-11-17",
+      "en": "2026-11-15 – 2026-11-17"
     },
     "team": {
       "zh": "Liang Liyuan",
       "en": "Liang Liyuan"
     },
     "stack": {
-      "zh": "Python、Pandas、BM25、evidence-check、Lark 多维表格（AI Agent 步骤）、批量接口",
-      "en": "Python, Pandas, BM25, evidence-check, Lark Base (AI Agent step), Message Batches API"
+      "zh": "Python、Pandas、DuckDB（SQL）、BM25 和本机向量检索（Qwen3-Embedding-0.6B）、evidence-check、Lark 多维表格（工作流和 AI Agent 步骤）、批量接口",
+      "en": "Python, Pandas, DuckDB (SQL), BM25 and local embedding retrieval (Qwen3-Embedding-0.6B), evidence-check, Lark Base (workflows and the AI Agent step), Message Batches API"
     },
     "evals": [
       {
@@ -4948,6 +4948,464 @@
             ]
           }
         ]
+      },
+      {
+        "id": "round3",
+        "name": {
+          "zh": "提示词第 3 版：新写的广告上不采用（回放，不是真实用户）",
+          "en": "Prompt v3 on newly written ads: not adopted (a replay, not real users)"
+        },
+        "date": "2026-11-17",
+        "metrics": [
+          {
+            "id": "r3_v2_clear",
+            "label": {
+              "zh": "答案清楚的广告送了人工（v2）",
+              "en": "Clear ads sent to human review (v2)"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/versions-v3-round3.json"
+            ],
+            "k": 44,
+            "n": 176,
+            "rate": 0.25,
+            "ci95": [
+              0.1918,
+              0.3189
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json"
+            ]
+          },
+          {
+            "id": "r3_v3_clear",
+            "label": {
+              "zh": "答案清楚的广告送了人工（v3）",
+              "en": "Clear ads sent to human review (v3)"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/versions-v3-round3.json"
+            ],
+            "k": 4,
+            "n": 176,
+            "rate": 0.0227,
+            "ci95": [
+              0.0089,
+              0.057
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json"
+            ]
+          },
+          {
+            "id": "r3_v2_handoff",
+            "label": {
+              "zh": "要人来定的广告送了人工（v2）",
+              "en": "Ads that need a human, sent to people (v2)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/versions-v3-round3.json"
+            ],
+            "k": 44,
+            "n": 64,
+            "rate": 0.6875,
+            "ci95": [
+              0.5661,
+              0.7877
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json"
+            ]
+          },
+          {
+            "id": "r3_v3_handoff",
+            "label": {
+              "zh": "要人来定的广告送了人工（v3）",
+              "en": "Ads that need a human, sent to people (v3)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/versions-v3-round3.json"
+            ],
+            "k": 19,
+            "n": 64,
+            "rate": 0.2969,
+            "ci95": [
+              0.1991,
+              0.4177
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json"
+            ]
+          },
+          {
+            "id": "r3_reg_v2_escaped",
+            "label": {
+              "zh": "回归（第一轮）：判错又自动生效（v2）",
+              "en": "Regression (round one): wrong decisions that went live (v2)"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/versions-v3.json"
+            ],
+            "k": 9,
+            "n": 332,
+            "rate": 0.0271,
+            "ci95": [
+              0.0143,
+              0.0507
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3.json"
+            ]
+          },
+          {
+            "id": "r3_reg_v3_escaped",
+            "label": {
+              "zh": "回归（第一轮）：判错又自动生效（v3）",
+              "en": "Regression (round one): wrong decisions that went live (v3)"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/versions-v3.json"
+            ],
+            "k": 9,
+            "n": 332,
+            "rate": 0.0271,
+            "ci95": [
+              0.0143,
+              0.0507
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3.json"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "kbqa",
+        "name": {
+          "zh": "政策知识库问答：只按检索到的条款回答（80 道题）",
+          "en": "Policy knowledge-base Q&A: answers only from retrieved clauses (80 questions)"
+        },
+        "date": "2026-11-17",
+        "metrics": [
+          {
+            "id": "kb_right",
+            "label": {
+              "zh": "答对",
+              "en": "Answered right"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/kbqa-eval.json"
+            ],
+            "k": 134,
+            "n": 160,
+            "rate": 0.8375,
+            "ci95": [
+              0.7725,
+              0.8866
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/kbqa-eval.json"
+            ]
+          },
+          {
+            "id": "kb_none",
+            "label": {
+              "zh": "库里没有的题说了“没有”",
+              "en": "Said \"not in the library\" when it was not"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/kbqa-eval.json"
+            ],
+            "k": 44,
+            "n": 48,
+            "rate": 0.9167,
+            "ci95": [
+              0.8045,
+              0.9671
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/kbqa-eval.json"
+            ]
+          },
+          {
+            "id": "kb_quotes_failed",
+            "label": {
+              "zh": "没核对上的引文",
+              "en": "Quotes that failed the check"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/kbqa-eval.json"
+            ],
+            "k": 1,
+            "n": 160,
+            "rate": 0.0063,
+            "ci95": [
+              0.0011,
+              0.0345
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/kbqa-eval.json"
+            ]
+          },
+          {
+            "id": "kb_zh_hit5",
+            "label": {
+              "zh": "中文问题：算对的条款进前 5（BM25）",
+              "en": "Chinese questions: right clause in the top five (BM25)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/retrieval-methods.csv"
+            ],
+            "k": 23,
+            "n": 28,
+            "rate": 0.8214,
+            "ci95": [
+              0.6441,
+              0.9212
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "retrieval2",
+        "name": {
+          "zh": "英文条款检索换成本机向量模型（选方法时没用过的标注）",
+          "en": "English clause retrieval on a local embedding model (labels not used to choose it)"
+        },
+        "date": "2026-11-17",
+        "metrics": [
+          {
+            "id": "ret_r2_en_bm25",
+            "label": {
+              "zh": "第二轮英文：正确条款进前三（BM25）",
+              "en": "Round two, English: right clause in the top three (BM25)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/retrieval-methods.csv"
+            ],
+            "k": 38,
+            "n": 40,
+            "rate": 0.95,
+            "ci95": [
+              0.835,
+              0.9862
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv"
+            ]
+          },
+          {
+            "id": "ret_r2_en_dense",
+            "label": {
+              "zh": "第二轮英文：正确条款进前三（向量）",
+              "en": "Round two, English: right clause in the top three (embedding)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/retrieval-methods.csv"
+            ],
+            "k": 39,
+            "n": 40,
+            "rate": 0.975,
+            "ci95": [
+              0.8712,
+              0.9956
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv"
+            ]
+          },
+          {
+            "id": "ret_r3_en_bm25",
+            "label": {
+              "zh": "第三轮英文：正确条款进前三（BM25）",
+              "en": "Round three, English: right clause in the top three (BM25)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/retrieval-methods.csv"
+            ],
+            "k": 21,
+            "n": 23,
+            "rate": 0.913,
+            "ci95": [
+              0.732,
+              0.9758
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv"
+            ]
+          },
+          {
+            "id": "ret_r3_en_dense",
+            "label": {
+              "zh": "第三轮英文：正确条款进前三（向量）",
+              "en": "Round three, English: right clause in the top three (embedding)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/retrieval-methods.csv"
+            ],
+            "k": 23,
+            "n": 23,
+            "rate": 1.0,
+            "ci95": [
+              0.8569,
+              1.0
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "lark2",
+        "name": {
+          "zh": "Lark 两条工作流：判断和复核（60 条中文广告，两遍）",
+          "en": "Two Lark workflows: judging and review (60 Chinese ads, two passes)"
+        },
+        "date": "2026-11-17",
+        "metrics": [
+          {
+            "id": "lark2_agree",
+            "label": {
+              "zh": "第一遍：两种引文核对一致",
+              "en": "First pass: the two quote checks agree"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/lark-agent-eval2.json"
+            ],
+            "k": 49,
+            "n": 60,
+            "rate": 0.8167,
+            "ci95": [
+              0.7008,
+              0.8944
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval2.json"
+            ]
+          },
+          {
+            "id": "lark2_escaped",
+            "label": {
+              "zh": "第一遍：判错又没送人工",
+              "en": "First pass: wrong decisions not sent to people"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/lark-agent-eval2.json"
+            ],
+            "k": 0,
+            "n": 60,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.0602
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval2.json"
+            ]
+          },
+          {
+            "id": "lark3_agree",
+            "label": {
+              "zh": "第二遍：两种引文核对一致",
+              "en": "Second pass: the two quote checks agree"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/lark-agent-eval3.json"
+            ],
+            "k": 60,
+            "n": 60,
+            "rate": 1.0,
+            "ci95": [
+              0.9398,
+              1.0
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval3.json"
+            ]
+          },
+          {
+            "id": "lark3_routes",
+            "label": {
+              "zh": "第二遍：平台的去向和规则一致",
+              "en": "Second pass: the platform's route matches the rules"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/lark-agent-eval3.json"
+            ],
+            "k": 60,
+            "n": 60,
+            "rate": 1.0,
+            "ci95": [
+              0.9398,
+              1.0
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval3.json"
+            ]
+          },
+          {
+            "id": "lark3_written_back",
+            "label": {
+              "zh": "第二遍：复核结论写回广告",
+              "en": "Second pass: reviews written back to the ad"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/lark-agent-eval3.json"
+            ],
+            "k": 8,
+            "n": 8,
+            "rate": 1.0,
+            "ci95": [
+              0.6756,
+              1.0
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval3.json"
+            ]
+          }
+        ]
       }
     ],
     "name": {
@@ -4963,12 +5421,12 @@
       "en": "Wrong decisions that went live; share sent to human review; decisions right"
     },
     "summary": {
-      "zh": "一条围绕有据审核搭的审核和标注工作流。每条广告先由模型判断并引原文，再用 evidence-check 核对引文，核对没过、读不出或模型拿不准的进人工复核队列，复核结果和模型不同的变成新的回归题。提示词按版本管理，新版本先做回归测试，再按事先写好的规则灰度放量，触发就回滚。流量是有据审核评测题的回放，不是真实用户；回放里的复核结论就是题目定好的答案。",
-      "en": "A review and labelling workflow built around Grounded Review. Each ad is decided by the model with quotes, the quotes are checked by evidence-check, and ads that fail the check, cannot be read or that the model is unsure of go to a human review queue; reviewed ads that differ from the model become new regression items. Prompts are versioned; a new version passes a regression test, then a canary release under rules written beforehand, and rolls back when a rule fires. Traffic is a replay of Grounded Review's test items, not real users; reviewer decisions in the replay are the items' fixed answers."
+      "zh": "一条围绕有据审核搭的审核和标注工作流。每条广告先由模型判断并引原文，再用 evidence-check 核对引文，核对没过、读不出或模型拿不准的进人工复核队列，复核结果和模型不同的变成新的回归题。提示词按版本管理，新版本先做回归测试，再按事先写好的规则灰度放量，触发就回滚。另有一个只按政策库回答的知识库问答，库里没有管这件事的条款就说没有。流量是有据审核评测题的回放，不是真实用户；回放里的复核结论就是题目定好的答案。",
+      "en": "A review and labelling workflow built around Grounded Review. Each ad is decided by the model with quotes, the quotes are checked by evidence-check, and ads that fail the check, cannot be read or that the model is unsure of go to a human review queue; reviewed ads that differ from the model become new regression items. Prompts are versioned; a new version passes a regression test, then a canary release under rules written beforehand, and rolls back when a rule fires. A knowledge-base Q&A answers only from the policy library and says so when no clause covers the question. Traffic is a replay of Grounded Review's test items, not real users; reviewer decisions in the replay are the items' fixed answers."
     },
     "did": {
-      "zh": "我把有据审核做成一条四步审核工作流：模型判断，evidence-check 核对引文，核对没过或模型拿不准的进人工复核队列，复核结果回流成回归题；另加政策库检索评测、提示词版本、灰度和回滚规则、每周报告和上线检查清单，复核队列可以同步到 Lark 多维表格。",
-      "en": "I turned Grounded Review into a four-step review workflow: the model decides, evidence-check verifies the quotes, ads that fail the check or that the model is unsure of go to a human review queue, and reviewed ads come back as regression items; plus a policy retrieval evaluation, prompt versions, canary and rollback rules, weekly reports and a launch checklist, with the review queue syncable to Lark Base."
+      "zh": "我把有据审核做成一条四步审核工作流：模型判断，evidence-check 核对引文，核对没过或模型拿不准的进人工复核队列，复核结果回流成回归题；另加政策库检索评测、只按政策库回答的知识库问答、提示词版本、灰度和回滚规则、用 SQL 取数的每周报告和上线检查清单，并在 Lark 多维表格里搭了判断和复核两条工作流。",
+      "en": "I turned Grounded Review into a four-step review workflow: the model decides, evidence-check verifies the quotes, ads that fail the check or that the model is unsure of go to a human review queue, and reviewed ads come back as regression items; plus a policy retrieval evaluation, a knowledge-base Q&A that answers only from the policy library, prompt versions, canary and rollback rules, weekly reports computed in SQL and a launch checklist, with judging and review workflows built in a Lark Base."
     },
     "headline": [
       {

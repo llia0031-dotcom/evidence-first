@@ -1,16 +1,16 @@
 # 有据标注流水线：评测卡
 
-> 卡片版本 1.1 · 数据截至 2026-11-16 · 已公开
+> 卡片版本 1.2 · 数据截至 2026-11-17 · 已公开
 >
 > 数字由 `scripts/build_cards.py` 从项目的结果文件算出；比例附 Wilson 95% 区间。
 
 | 时间 | 团队 | 技术 | 链接 |
 |---|---|---|---|
-| 2026-11-15 – 2026-11-16 | Liang Liyuan | Python、Pandas、BM25、evidence-check、Lark 多维表格（AI Agent 步骤）、批量接口 | [代码和报告](https://github.com/Jason-d-e/grounded-labelling-pipeline) |
+| 2026-11-15 – 2026-11-17 | Liang Liyuan | Python、Pandas、DuckDB（SQL）、BM25 和本机向量检索（Qwen3-Embedding-0.6B）、evidence-check、Lark 多维表格（工作流和 AI Agent 步骤）、批量接口 | [代码和报告](https://github.com/Jason-d-e/grounded-labelling-pipeline) |
 
 **问题**：能核对的回答，怎么变成团队每天用的审核工作流：拿不准的交给人复核，提示词能灰度、能回滚。
 
-**我做了什么**：我把有据审核做成一条四步审核工作流：模型判断，evidence-check 核对引文，核对没过或模型拿不准的进人工复核队列，复核结果回流成回归题；另加政策库检索评测、提示词版本、灰度和回滚规则、每周报告和上线检查清单，复核队列可以同步到 Lark 多维表格。
+**我做了什么**：我把有据审核做成一条四步审核工作流：模型判断，evidence-check 核对引文，核对没过或模型拿不准的进人工复核队列，复核结果回流成回归题；另加政策库检索评测、只按政策库回答的知识库问答、提示词版本、灰度和回滚规则、用 SQL 取数的每周报告和上线检查清单，并在 Lark 多维表格里搭了判断和复核两条工作流。
 
 **结果**：
 
@@ -20,11 +20,11 @@
 
 ## 概况
 
-一条围绕有据审核搭的审核和标注工作流。每条广告先由模型判断并引原文，再用 evidence-check 核对引文，核对没过、读不出或模型拿不准的进人工复核队列，复核结果和模型不同的变成新的回归题。提示词按版本管理，新版本先做回归测试，再按事先写好的规则灰度放量，触发就回滚。流量是有据审核评测题的回放，不是真实用户；回放里的复核结论就是题目定好的答案。
+一条围绕有据审核搭的审核和标注工作流。每条广告先由模型判断并引原文，再用 evidence-check 核对引文，核对没过、读不出或模型拿不准的进人工复核队列，复核结果和模型不同的变成新的回归题。提示词按版本管理，新版本先做回归测试，再按事先写好的规则灰度放量，触发就回滚。另有一个只按政策库回答的知识库问答，库里没有管这件事的条款就说没有。流量是有据审核评测题的回放，不是真实用户；回放里的复核结论就是题目定好的答案。
 
 - **在作品集里的位置**：运营层
 - **和核心部件的关系**：每段引文都过 evidence-check 的核对脚本；只读地引用有据审核的代码，回放它存下的答案。
-- **用到的模型**：分流用 claude-haiku-5-5，批量接口；Lark 工作流里的 AI Agent 步骤用平台模型 Seed 1.8，聊天机器人用 claude-haiku-5-5；检索用政策库自带的 BM25。
+- **用到的模型**：分流和知识库问答用 claude-haiku-5-5（评测走批量接口）；Lark 工作流里的 AI Agent 步骤用平台模型 Seed 1.8，聊天机器人用 claude-haiku-5-5；中文条款检索用政策库自带的 BM25，英文用本机向量模型 Qwen3-Embedding-0.6B。
 
 ## 用途
 
@@ -36,6 +36,8 @@
 - 评测题回放，不是真实用户。人工复核的结论用题目定好的答案代替。
 - Lark 里的平台模型和 claude-haiku-5-5 不在同一套题上比谁准；这里只说明工作流能在 Lark 里跑通。
 - 不替代审核员：拿不准、核对没过、读不出的广告都交给人。
+- Lark 里的“AI Agent”步骤是固定流程里的一次模型调用，没有工具和记忆。
+- 机器人问答和使用记录只有测试，没有真实使用量。
 
 ## 评测数据
 
@@ -98,6 +100,53 @@
 | 跑了几次 | 确定性检索，1 遍 |
 | 模型和发送方式 | 不调用模型，用 v1 第一遍存下的答案 |
 
+### 提示词第 3 版：新写的广告上不采用（回放，不是真实用户）
+
+另外新写 120 条文字广告，每条两遍，共 240 个请求；其中一部分写题时就定为“要人来定”，其余答案清楚。采用标准和预测跑前预注册；同时在第一轮的 332 个请求上做回归。
+
+| 项目 | 内容 |
+|---|---|
+| 日期 | 2026-11-17 |
+| 题目和答案 | 240 个请求（另有回归 332 个） |
+| 跑了几次 | 每条广告两遍，每个版本 1 遍 |
+| 模型和发送方式 | claude-haiku-5-5，批量接口（半价） |
+| 跑前冻结 | `docs/PREREGISTRATION-ROUND3.md` |
+
+### 政策知识库问答：只按检索到的条款回答（80 道题）
+
+80 道题，中英各一半，其中一部分库里没有答案；答案写题时定好；每道题两遍，共 160 个请求。计划和预测跑前写好。答对要结论对、引了对的条款、引文核对通过；库里没有的题要说“没有”且不引条款。
+
+| 项目 | 内容 |
+|---|---|
+| 日期 | 2026-11-17 |
+| 题目和答案 | 160 个请求 |
+| 跑了几次 | 每道题 2 遍 |
+| 模型和发送方式 | claude-haiku-5-5，批量接口；中文检索 BM25，英文检索 Qwen3-Embedding-0.6B，取前 5 条 |
+| 跑前冻结 | `docs/KBQA-PLAN.md` |
+
+### 英文条款检索换成本机向量模型（选方法时没用过的标注）
+
+先在第一轮的标注上比较几种检索方式选定，再在选的时候没用过的第二轮、第三轮标注上验；用模型的答案去搜，只算英文。中文还用 BM25。
+
+| 项目 | 内容 |
+|---|---|
+| 日期 | 2026-11-17 |
+| 题目和答案 | 第二轮 40 条、第三轮 23 条英文违规标注 |
+| 跑了几次 | 确定性检索，1 遍 |
+| 模型和发送方式 | Qwen3-Embedding-0.6B（量化版，fastembed），本机运行，不调用接口 |
+
+### Lark 两条工作流：判断和复核（60 条中文广告，两遍）
+
+第一条工作流判断、逐段核对引文、分流并写明原因；第二条把复核结论写回广告，分歧记进回归题。用第二轮的 60 条中文文字广告跑两遍：第一遍照跑之前写好的计划，第二遍是看过第一遍、改了引文核对之后再跑的，不算预注册。脚本核对和平台核对并排比。
+
+| 项目 | 内容 |
+|---|---|
+| 日期 | 2026-11-17 |
+| 题目和答案 | 60 条广告 |
+| 跑了几次 | 2 遍（第二遍改过才跑） |
+| 模型和发送方式 | Lark 多维表格工作流；AI Agent 步骤用平台模型 Seed 1.8，平台免费额度 |
+| 跑前冻结 | `docs/LARK-AGENT-PLAN.md` 第 8 节（第一遍） |
+
 ## 指标和结果
 
 每个评测版本单独列表。题目或评分规则改过的版本之间不直接比较分数。
@@ -158,6 +207,53 @@ v2 少放过判错的广告，代价是送人工多得多；四条采用标准�
 | 用广告原文搜，正确条款进前三 | 66/124（53.2%，95% 区间 44.5–61.8%） | 越高越好 | [`grounded-labelling-pipeline/data/retrieval.csv`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval.csv) |
 | 用模型的答案搜，正确条款进前三 | 110/124（88.7%，95% 区间 81.9–93.2%） | 越高越好 | [`grounded-labelling-pipeline/data/retrieval.csv`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval.csv) |
 
+### 提示词第 3 版：新写的广告上不采用（回放，不是真实用户）
+
+| 指标 | 结果 | 方向 | 来源文件 |
+|---|---|---|---|
+| 答案清楚的广告送了人工（v2） | 44/176（25.0%，95% 区间 19.2–31.9%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v3-round3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json) |
+| 答案清楚的广告送了人工（v3） | 4/176（2.3%，95% 区间 0.9–5.7%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v3-round3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json) |
+| 要人来定的广告送了人工（v2） | 44/64（68.8%，95% 区间 56.6–78.8%） | 越高越好 | [`grounded-labelling-pipeline/data/versions-v3-round3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json) |
+| 要人来定的广告送了人工（v3） | 19/64（29.7%，95% 区间 19.9–41.8%） | 越高越好 | [`grounded-labelling-pipeline/data/versions-v3-round3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json) |
+| 回归（第一轮）：判错又自动生效（v2） | 9/332（2.7%，95% 区间 1.4–5.1%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3.json) |
+| 回归（第一轮）：判错又自动生效（v3） | 9/332（2.7%，95% 区间 1.4–5.1%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3.json) |
+
+答案清楚的广告少了多余的复核，但写题时定为“要人来定”的广告送人工也少了，降幅超过事先写好的十个百分点上限，不采用，production 留在 v2。假如照样放量，灰度的回滚规则一条也不会触发：拦下它的是题目里那批要人来定的广告和事先写好的采用标准。
+
+### 政策知识库问答：只按检索到的条款回答（80 道题）
+
+| 指标 | 结果 | 方向 | 来源文件 |
+|---|---|---|---|
+| 答对 | 134/160（83.8%，95% 区间 77.3–88.7%） | 越高越好 | [`grounded-labelling-pipeline/data/kbqa-eval.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/kbqa-eval.json) |
+| 库里没有的题说了“没有” | 44/48（91.7%，95% 区间 80.4–96.7%） | 越高越好 | [`grounded-labelling-pipeline/data/kbqa-eval.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/kbqa-eval.json) |
+| 没核对上的引文 | 1/160（0.6%，95% 区间 0.1–3.5%） | 越低越好 | [`grounded-labelling-pipeline/data/kbqa-eval.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/kbqa-eval.json) |
+| 中文问题：算对的条款进前 5（BM25）（预测是百分之九十以上，这一条没成立；按题数算，每道题两遍的检索结果相同） | 23/28（82.1%，95% 区间 64.4–92.1%） | 越高越好 | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
+
+多数题答对，库里没有的题大多说了“没有”，引文几乎全部核对通过。事先写好的预测里只有中文检索那一条没成立；库里有答案却说“没有”的，都是检索没找到条款，不是模型编造。
+
+### 英文条款检索换成本机向量模型（选方法时没用过的标注）
+
+| 指标 | 结果 | 方向 | 来源文件 |
+|---|---|---|---|
+| 第二轮英文：正确条款进前三（BM25） | 38/40（95.0%，95% 区间 83.5–98.6%） | 越高越好 | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
+| 第二轮英文：正确条款进前三（向量） | 39/40（97.5%，95% 区间 87.1–99.6%） | 越高越好 | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
+| 第三轮英文：正确条款进前三（BM25） | 21/23（91.3%，95% 区间 73.2–97.6%） | 越高越好 | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
+| 第三轮英文：正确条款进前三（向量） | 23/23（100.0%，95% 区间 85.7–100.0%） | 越高越好 | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
+
+两批没用过的标注上，英文正确条款进前三都提高了；第一轮是选方法用的，数字偏乐观，不拿来报告。
+
+### Lark 两条工作流：判断和复核（60 条中文广告，两遍）
+
+| 指标 | 结果 | 方向 | 来源文件 |
+|---|---|---|---|
+| 第一遍：两种引文核对一致 | 49/60（81.7%，95% 区间 70.1–89.4%） | 越高越好 | [`grounded-labelling-pipeline/data/lark-agent-eval2.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval2.json) |
+| 第一遍：判错又没送人工 | 0/60（0.0%，95% 区间 0.0–6.0%） | 越低越好 | [`grounded-labelling-pipeline/data/lark-agent-eval2.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval2.json) |
+| 第二遍：两种引文核对一致 | 60/60（100.0%，95% 区间 94.0–100.0%） | 越高越好 | [`grounded-labelling-pipeline/data/lark-agent-eval3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval3.json) |
+| 第二遍：平台的去向和规则一致 | 60/60（100.0%，95% 区间 94.0–100.0%） | 越高越好 | [`grounded-labelling-pipeline/data/lark-agent-eval3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval3.json) |
+| 第二遍：复核结论写回广告 | 8/8（100.0%，95% 区间 67.6–100.0%） | 越高越好 | [`grounded-labelling-pipeline/data/lark-agent-eval3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval3.json) |
+
+第一遍平台的逐字查找被条款里的换行挡住，两种核对有不一致的，不一致的都是多送了人工，没有漏送；把换行处理好以后，第二遍两种核对和去向全部一致，复核结论都写回了。第二遍是看过第一遍才改的，只说明改法有效，不算事先的预测。
+
 ## 评分器校准
 
 - 没有用评分器：判对按题目定好的答案算；回放里的复核结论就是题目的答案。
@@ -167,16 +263,19 @@ v2 少放过判错的广告，代价是送人工多得多；四条采用标准�
 - 流量是评测题的回放，不是真实用户；复核结论用的是题目定好的答案，没有真的审核员。
   - 建议：上线后按版本统计真实请求的漏网错判和复核量，抽检结果回流成回归题。
 - v2 少放过判错，但送人工从 6/332 涨到 72/332，很多是清楚的广告也说“拿不准”。
-  - 建议：下一版试着减少清楚广告上的“拿不准”，同样先过回归测试再灰度。
+  - 建议：第 3 版试过放宽“拿不准”，清楚广告少送了，要人来定的也少送了；下一版要两头同时守住，同样先过回归和新题再灰度。
 - 第二轮在新流量上放到全量，但两版在这批广告上都接近全对，没有再证明 v2 能少漏错判；v2 的好处仍来自第一轮。
   - 建议：再找 v1 会漏判的新广告（例如更长、更含糊的），在同样的规则下比一次。
-- Lark 里的平台模型一次也没说拿不准（0/25），分流模型的存档答案里却有 13/50 说了；聊天机器人只实测了一条。
-  - 建议：换模型后先重新量复核率，再调“拿不准”的门槛；机器人上线前用一批广告测。
+- Lark 里的平台模型一次也没说拿不准（0/25），分流模型的存档答案里却有 13/50 说了；机器人问答只有测试，没有真实使用量。
+  - 建议：换模型后先重新量复核率，再调“拿不准”的门槛；机器人先用一批问题测，再看真实的使用记录。
+- 中文问题的检索偏弱：算对的条款进前 5 只有 23/28，库里有答案却说“没有”的都出在检索没找到。
+  - 建议：中文检索也试本机向量或混合检索，先在选方法时没用过的问题上验。
 
 ## 版本
 
 - **1.0**（2026-11-16）第一张卡，照公开仓库 grounded-labelling-pipeline 的结果文件写。
 - **1.1**（2026-11-16）加第二轮灰度（新流量，v2 上线）、Lark 里的工作流评测和截图。
+- **1.2**（2026-11-17）加提示词第 3 版（不采用）、知识库问答、英文检索换本机向量模型、Lark 两条工作流；Lark 截图换成新版。
 
 ## 出处
 

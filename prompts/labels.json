@@ -264,5 +264,18 @@
         "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/reports/compare-v1-v2-round2.md"
       }
     ]
+  },
+  "evidence-pipeline/kb-qa": {
+    "production": "v1",
+    "staging": "v1",
+    "history": [
+      {
+        "date": "2026-11-17",
+        "label": "production",
+        "to": "v1",
+        "reason": "first version of the knowledge-base Q&A; evaluated on a question set written beforehand",
+        "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/docs/KBQA-PLAN.md"
+      }
+    ]
   }
 }
