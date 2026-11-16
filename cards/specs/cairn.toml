@@ -18,6 +18,7 @@ headline = [
 links = [
   { label = { zh = "代码", en = "Code" }, url = "https://github.com/Jason-d-e/cairn" },
   { label = { zh = "在线演示", en = "Live demo" }, url = "https://jason-d-e.github.io/cairn/" },
+  { label = { zh = "演示视频", en = "Demo video" }, url = "https://youtu.be/0OJ8MqxsqYE" },
 ]
 summary = { zh = "一个按机构公开规定回答问题的问答台，每句话都逐字引原文。公开的这一版用 Monash 学生事务的 58 个公开页面。检索先把问题翻译成英文，再做向量检索和重排；回答里的引文先核对通过才显示，不能逐字对上的改写会被拦下。评测比较了 7 种检索做法。", en = "A desk that answers questions from an organisation's published rules and quotes them word for word. The public instance uses 58 public Monash student pages. Retrieval translates the question into English, then runs vector search and reranking; quotes in the answer are shown only after they pass the check, and paraphrases that do not match word for word are withheld. The evaluation compares seven retrieval methods." }
 core_link = { zh = "检索问答场景，主线的起点：回答必须附原文。卖点体检的“先检索”做法用的就是这里的检索模型和 Orama 混合检索。", en = "The grounded Q&A scenario where the thread starts: every answer carries its source. Sellpoint Check's retrieval arms reuse its embedding models and Orama hybrid search." }

@@ -423,6 +423,13 @@
           "en": "Live demo"
         },
         "url": "https://jason-d-e.github.io/cairn/"
+      },
+      {
+        "label": {
+          "zh": "演示视频",
+          "en": "Demo video"
+        },
+        "url": "https://youtu.be/0OJ8MqxsqYE"
       }
     ],
     "period": {
@@ -690,6 +697,13 @@
           "en": "Code"
         },
         "url": "https://github.com/Jason-d-e/tracedesk-lite"
+      },
+      {
+        "label": {
+          "zh": "演示视频",
+          "en": "Demo video"
+        },
+        "url": "https://youtu.be/eEHcymuLP58"
       }
     ],
     "period": {

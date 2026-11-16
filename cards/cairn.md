@@ -6,7 +6,7 @@
 
 | 时间 | 团队 | 技术 | 链接 |
 |---|---|---|---|
-| 2026-11-09 – 2026-11-11（LaunchPad Hacks） | Liang Liyuan、ZIzi821 | Node.js、React、本机向量检索和重排、Claude Haiku 5.5 | [代码](https://github.com/Jason-d-e/cairn) · [在线演示](https://jason-d-e.github.io/cairn/) |
+| 2026-11-09 – 2026-11-11（LaunchPad Hacks） | Liang Liyuan、ZIzi821 | Node.js、React、本机向量检索和重排、Claude Haiku 5.5 | [代码](https://github.com/Jason-d-e/cairn) · [在线演示](https://jason-d-e.github.io/cairn/) · [演示视频](https://youtu.be/0OJ8MqxsqYE) |
 
 **问题**：按一个机构自己公开的规定回答问题，每句话逐字引原文；先要把对的那一页找出来。
 
