@@ -4378,7 +4378,7 @@
     "layer": "operations",
     "status": "public",
     "updated": "2026-11-17",
-    "card_version": "1.2",
+    "card_version": "1.3",
     "card": {
       "zh": "cards/grounded-labelling-pipeline.md",
       "en": "cards/grounded-labelling-pipeline.en.md"
@@ -5087,6 +5087,192 @@
             ],
             "source_urls": [
               "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3.json"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "round4",
+        "name": {
+          "zh": "提示词第 4 版：又一批新写的广告上不采用（回放，不是真实用户）",
+          "en": "Prompt v4 on another set of newly written ads: not adopted (a replay, not real users)"
+        },
+        "date": "2026-11-17",
+        "metrics": [
+          {
+            "id": "r4_v2_clear",
+            "label": {
+              "zh": "答案清楚的广告送了人工（v2）",
+              "en": "Clear ads sent to human review (v2)"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/versions-v4-round4.json"
+            ],
+            "k": 43,
+            "n": 176,
+            "rate": 0.2443,
+            "ci95": [
+              0.1867,
+              0.3128
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json"
+            ]
+          },
+          {
+            "id": "r4_v4_clear",
+            "label": {
+              "zh": "答案清楚的广告送了人工（v4）",
+              "en": "Clear ads sent to human review (v4)"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/versions-v4-round4.json"
+            ],
+            "k": 11,
+            "n": 176,
+            "rate": 0.0625,
+            "ci95": [
+              0.0353,
+              0.1084
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json"
+            ]
+          },
+          {
+            "id": "r4_v2_handoff",
+            "label": {
+              "zh": "要人来定的广告送了人工（v2）",
+              "en": "Ads that need a human, sent to people (v2)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/versions-v4-round4.json"
+            ],
+            "k": 42,
+            "n": 64,
+            "rate": 0.6562,
+            "ci95": [
+              0.534,
+              0.7608
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json"
+            ]
+          },
+          {
+            "id": "r4_v4_handoff",
+            "label": {
+              "zh": "要人来定的广告送了人工（v4）",
+              "en": "Ads that need a human, sent to people (v4)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/versions-v4-round4.json"
+            ],
+            "k": 47,
+            "n": 64,
+            "rate": 0.7344,
+            "ci95": [
+              0.6152,
+              0.827
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json"
+            ]
+          },
+          {
+            "id": "r4_v2_clear_escaped",
+            "label": {
+              "zh": "答案清楚的广告判错又自动生效（v2）",
+              "en": "Clear ads decided wrongly and gone live (v2)"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/versions-v4-round4.json"
+            ],
+            "k": 0,
+            "n": 176,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.0214
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json"
+            ]
+          },
+          {
+            "id": "r4_v4_clear_escaped",
+            "label": {
+              "zh": "答案清楚的广告判错又自动生效（v4）",
+              "en": "Clear ads decided wrongly and gone live (v4)"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/versions-v4-round4.json"
+            ],
+            "k": 2,
+            "n": 176,
+            "rate": 0.0114,
+            "ci95": [
+              0.0031,
+              0.0405
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json"
+            ]
+          },
+          {
+            "id": "r4_reg_v2_escaped",
+            "label": {
+              "zh": "回归（第一轮）：判错又自动生效（v2）",
+              "en": "Regression (round one): wrong decisions that went live (v2)"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/versions-v4.json"
+            ],
+            "k": 9,
+            "n": 332,
+            "rate": 0.0271,
+            "ci95": [
+              0.0143,
+              0.0507
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4.json"
+            ]
+          },
+          {
+            "id": "r4_reg_v4_escaped",
+            "label": {
+              "zh": "回归（第一轮）：判错又自动生效（v4）",
+              "en": "Regression (round one): wrong decisions that went live (v4)"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/versions-v4.json"
+            ],
+            "k": 13,
+            "n": 332,
+            "rate": 0.0392,
+            "ci95": [
+              0.023,
+              0.0658
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4.json"
             ]
           }
         ]

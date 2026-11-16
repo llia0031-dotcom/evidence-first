@@ -1,6 +1,6 @@
 # Grounded Labelling Pipeline: evaluation card
 
-> Card version 1.2 · Data as of 2026-11-17 · public
+> Card version 1.3 · Data as of 2026-11-17 · public
 >
 > Numbers are computed by `scripts/build_cards.py` from the project's result files; proportions carry a Wilson 95% interval.
 
@@ -112,6 +112,18 @@ Another 120 newly written text ads, two runs each, 240 requests; some were writt
 | Model and send mode | claude-haiku-5-5, Message Batches API (half price) |
 | Frozen before the run | `docs/PREREGISTRATION-ROUND3.md` |
 
+### Prompt v4 on another set of newly written ads: not adopted (a replay, not real users)
+
+Another 120 newly written text ads, two runs each, 240 requests; some were written as needing a human. The adoption rules are word for word those of round three, and the predictions were frozen before the run; a regression ran on the 332 round-one requests.
+
+| Field | Value |
+|---|---|
+| Date | 2026-11-17 |
+| Items and answers | 240 requests (plus 332 in the regression) |
+| Runs | Two runs per ad, 1 run per version |
+| Model and send mode | claude-haiku-5-5, Message Batches API (half price) |
+| Frozen before the run | `docs/PREREGISTRATION-ROUND4.md` |
+
 ### Policy knowledge-base Q&A: answers only from retrieved clauses (80 questions)
 
 80 questions, half Chinese and half English, some not answerable from the library; answers fixed when the questions were written; two runs each, 160 requests. The plan and predictions were written before the run. A right answer has the right verdict, cites the right clause and passes the quote check; for a question the library cannot answer it must say so and cite nothing.
@@ -220,6 +232,21 @@ The workflow runs in Lark: every ad was written back and decided right; two answ
 
 Clear ads got far fewer needless reviews, but ads written as needing a human were also sent to people less often, a drop past the ten-point limit set beforehand, so v3 was not adopted and production stays on v2. Had it been rolled out, no canary rollback rule would have fired: what stopped it was the ads written as needing a human and the adoption standard written beforehand.
 
+### Prompt v4 on another set of newly written ads: not adopted (a replay, not real users)
+
+| Metric | Result | Direction | Source file |
+|---|---|---|---|
+| Clear ads sent to human review (v2) | 43/176 (24.4%, 95% CI 18.7–31.3%) | lower is better | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| Clear ads sent to human review (v4) | 11/176 (6.2%, 95% CI 3.5–10.8%) | lower is better | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| Ads that need a human, sent to people (v2) | 42/64 (65.6%, 95% CI 53.4–76.1%) | higher is better | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| Ads that need a human, sent to people (v4) | 47/64 (73.4%, 95% CI 61.5–82.7%) | higher is better | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| Clear ads decided wrongly and gone live (v2) | 0/176 (0.0%, 95% CI 0.0–2.1%) | lower is better | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| Clear ads decided wrongly and gone live (v4) (both runs of the same trap item) | 2/176 (1.1%, 95% CI 0.3–4.0%) | lower is better | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| Regression (round one): wrong decisions that went live (v2) | 9/332 (2.7%, 95% CI 1.4–5.1%) | lower is better | [`grounded-labelling-pipeline/data/versions-v4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4.json) |
+| Regression (round one): wrong decisions that went live (v4) | 13/332 (3.9%, 95% CI 2.3–6.6%) | lower is better | [`grounded-labelling-pipeline/data/versions-v4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4.json) |
+
+Better than v2 at both ends: fewer needless reviews of clear ads and more of the ads that need a human sent to people. But it is more often sure when wrong: one trap item was decided wrongly and went live in both runs (v2 decided it the same way but said it was unsure and sent it to people), and more wrong decisions got through in the round-one regression, so under the standard written beforehand it was not adopted and production stays on v2. That trap item's answer is debatable; as preregistered, it was not changed.
+
 ### Policy knowledge-base Q&A: answers only from retrieved clauses (80 questions)
 
 | Metric | Result | Direction | Source file |
@@ -263,7 +290,7 @@ On the first pass line breaks in the clauses blocked the platform's exact-text s
 - Traffic replays test items rather than real users, and reviewer decisions are the items' fixed answers, not real reviewers.
   - Recommendation: After launch, track wrong decisions let through and review volume per version on real requests, and feed QA samples back as regression items.
 - v2 lets fewer wrong decisions through, but human review rose from 6/332 to 72/332, often on clear ads the model called unsure.
-  - Recommendation: Version 3 relaxed "unsure" and sent fewer clear ads to people, but also fewer ads that need a human; the next version has to hold both, again through a regression and new items before a canary.
+  - Recommendation: Version 3 relaxed "unsure" and sent fewer ads that need a human to people; version 4 improved both ends but was more often sure when wrong. The next version has to hold all three: fewer clear ads sent, no fewer ads that need a human, and no wrong decisions let through, again through a regression and new items before a canary.
 - Round two reached full release on new traffic, but both versions were almost always right on those ads, so it did not show again that v2 lets fewer errors through; that evidence still comes from round one.
   - Recommendation: Find new ads that v1 misses (longer or vaguer ones) and compare again under the same rules.
 - The Lark platform model never said it was unsure (0/25), while the triage model did in 13/50 stored answers; the bot's Q&A has only been tested, with no real usage.
@@ -276,6 +303,7 @@ On the first pass line breaks in the clauses blocked the platform's exact-text s
 - **1.0** (2026-11-16) First card, from the result files in the public grounded-labelling-pipeline repository.
 - **1.1** (2026-11-16) Added canary round two (new traffic, v2 live), the Lark workflow evaluation and screenshots.
 - **1.2** (2026-11-17) Added prompt v3 (not adopted), the knowledge-base Q&A, English retrieval on a local embedding model and the two Lark workflows; Lark screenshots replaced with the new ones.
+- **1.3** (2026-11-17) Added prompt v4 (round four on newly written ads, not adopted); the Lark dashboard screenshot was replaced upstream.
 
 ## Provenance
 

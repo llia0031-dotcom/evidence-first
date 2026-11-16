@@ -6454,6 +6454,7 @@
       "**Lark 里的工作流：平台 AI Agent 步骤（25 条中文广告）**：25 条广告，每条一遍；Lark 多维表格 AI Agent 步骤（Seed 1.8）",
       "**政策库检索：正确条款进前三（124 条违规标注）**：124 条违规标注；确定性检索，1 遍；不调用模型，用 v1 第一遍存下的答案",
       "**提示词第 3 版：新写的广告上不采用（回放，不是真实用户）**：240 个请求（另有回归 332 个）；每条广告两遍，每个版本 1 遍；claude-haiku-5-5，批量接口（半价）",
+      "**提示词第 4 版：又一批新写的广告上不采用（回放，不是真实用户）**：240 个请求（另有回归 332 个）；每条广告两遍，每个版本 1 遍；claude-haiku-5-5，批量接口（半价）",
       "**政策知识库问答：只按检索到的条款回答（80 道题）**：160 个请求；每道题 2 遍；claude-haiku-5-5，批量接口；中文检索 BM25，英文检索 Qwen3-Embedding-0.6B，取前 5 条",
       "**英文条款检索换成本机向量模型（选方法时没用过的标注）**：第二轮 40 条、第三轮 23 条英文违规标注；确定性检索，1 遍；Qwen3-Embedding-0.6B（量化版，fastembed），本机运行，不调用接口",
       "**Lark 两条工作流：判断和复核（60 条中文广告，两遍）**：60 条广告；2 遍（第二遍改过才跑）；Lark 多维表格工作流；AI Agent 步骤用平台模型 Seed 1.8，平台免费额度"
@@ -6465,17 +6466,18 @@
       "第二轮灰度：改好的规则跑前预注册，在新写的广告上三步放量都没回滚，v2 上线；但两版在这批广告上都接近全对，没有再证明 v2 能少漏错判。",
       "Lark：在多维表格里搭了同样的工作流，用平台自带的 AI Agent 步骤判断、写回，拿不准的自己进复核队列，引文核对由脚本补；另有一个聊天机器人，实测一条。",
       "v3：重写“拿不准”的规则，想让答案清楚的广告少送人工；清楚广告的多余复核从 44/176 降到 4/176，但要人来定的广告送人工也从 44/64 降到 19/64，超过事先写好的上限，不采用，production 留在 v2。",
+      "v4：两头都比 v2 好，清楚广告的多余复核 43/176 → 11/176，要人来定的送人工 42/64 → 47/64；但判错时更常说“确定”，清楚广告判错又自动生效 0/176 → 2/176，回归漏网 9/332 → 13/332，不采用。",
       "知识库问答：只按检索到的条款回答，库里没有就说没有；答对 134/160，库里没有的题说了“没有” 44/48。",
       "英文条款检索换成本机向量模型：在选方法时没用过的标注上，正确条款进前三从 21/23 到 23/23；中文还用 BM25。",
       "每周指标改用 SQL 取数，和原来的数逐个比过，一个没变。",
       "Lark 两条工作流：第一遍条款里的换行挡住了平台的逐字查找，两种引文核对一致 49/60，不一致的都是多送了人工；改好后第二遍 60/60（看过第一遍才改，不算预注册）。"
     ],
     "result": [
-      "让模型说“拿不准”能减少判错又生效，代价是多送人工；第一轮灰度按规则回滚，暴露的是规则本身写错；改好的规则在新流量上放到全量，v2 上线。v2 少漏错判的证据仍来自第一轮。第 3 版在清楚广告上少了多余复核，却把要人来定的广告也少送了人工，按事先写好的标准没采用；假如照样放量，灰度规则拦不下它，拦下它的是题目里那批要人来定的广告。"
+      "让模型说“拿不准”能减少判错又生效，代价是多送人工；第一轮灰度按规则回滚，暴露的是规则本身写错；改好的规则在新流量上放到全量，v2 上线。v2 少漏错判的证据仍来自第一轮。第 3 版在清楚广告上少了多余复核，却把要人来定的广告也少送了人工；第 4 版两头都好了，判错时却更常说“确定”。两版都按事先写好的标准没采用；假如照样放量，灰度规则都拦不下，拦下它们的是题目设计和采用标准。"
     ],
     "limitations": [
       "流量是评测题的回放，不是真实用户；复核结论用的是题目定好的答案，没有真的审核员。建议：上线后按版本统计真实请求的漏网错判和复核量，抽检结果回流成回归题。",
-      "v2 少放过判错，但送人工从 6/332 涨到 72/332，很多是清楚的广告也说“拿不准”。建议：第 3 版试过放宽“拿不准”，清楚广告少送了，要人来定的也少送了；下一版要两头同时守住，同样先过回归和新题再灰度。",
+      "v2 少放过判错，但送人工从 6/332 涨到 72/332，很多是清楚的广告也说“拿不准”。建议：第 3 版放宽“拿不准”，要人来定的也少送了；第 4 版两头都好了，判错时却更常说“确定”。下一版要同时守住三头：清楚的少送、要人定的不少送、判错的不放过，同样先过回归和新题再灰度。",
       "第二轮在新流量上放到全量，但两版在这批广告上都接近全对，没有再证明 v2 能少漏错判；v2 的好处仍来自第一轮。建议：再找 v1 会漏判的新广告（例如更长、更含糊的），在同样的规则下比一次。",
       "Lark 里的平台模型一次也没说拿不准（0/25），分流模型的存档答案里却有 13/50 说了；机器人问答只有测试，没有真实使用量。建议：换模型后先重新量复核率，再调“拿不准”的门槛；机器人先用一批问题测，再看真实的使用记录。",
       "中文问题的检索偏弱：算对的条款进前 5 只有 23/28，库里有答案却说“没有”的都出在检索没找到。建议：中文检索也试本机向量或混合检索，先在选方法时没用过的问题上验。"
@@ -6708,6 +6710,190 @@
       },
       {
         "id": "N11",
+        "metric": "r4_v2_clear",
+        "label": "答案清楚的广告送了人工（v2）",
+        "value": "43/176",
+        "full": "43/176（24.4%，95% 区间 18.7–31.3%）",
+        "evaluation": "提示词第 4 版：又一批新写的广告上不采用（回放，不是真实用户）",
+        "sources": [
+          "evidence-pipeline-public/data/versions-v4-round4.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json"
+        ],
+        "kind": "proportion",
+        "k": 43,
+        "n": 176,
+        "rate": 0.2443,
+        "ci95": [
+          0.1867,
+          0.3128
+        ],
+        "display": "43/176"
+      },
+      {
+        "id": "N12",
+        "metric": "r4_v4_clear",
+        "label": "答案清楚的广告送了人工（v4）",
+        "value": "11/176",
+        "full": "11/176（6.2%，95% 区间 3.5–10.8%）",
+        "evaluation": "提示词第 4 版：又一批新写的广告上不采用（回放，不是真实用户）",
+        "sources": [
+          "evidence-pipeline-public/data/versions-v4-round4.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json"
+        ],
+        "kind": "proportion",
+        "k": 11,
+        "n": 176,
+        "rate": 0.0625,
+        "ci95": [
+          0.0353,
+          0.1084
+        ],
+        "display": "11/176"
+      },
+      {
+        "id": "N13",
+        "metric": "r4_v2_handoff",
+        "label": "要人来定的广告送了人工（v2）",
+        "value": "42/64",
+        "full": "42/64（65.6%，95% 区间 53.4–76.1%）",
+        "evaluation": "提示词第 4 版：又一批新写的广告上不采用（回放，不是真实用户）",
+        "sources": [
+          "evidence-pipeline-public/data/versions-v4-round4.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json"
+        ],
+        "kind": "proportion",
+        "k": 42,
+        "n": 64,
+        "rate": 0.6562,
+        "ci95": [
+          0.534,
+          0.7608
+        ],
+        "display": "42/64"
+      },
+      {
+        "id": "N14",
+        "metric": "r4_v4_handoff",
+        "label": "要人来定的广告送了人工（v4）",
+        "value": "47/64",
+        "full": "47/64（73.4%，95% 区间 61.5–82.7%）",
+        "evaluation": "提示词第 4 版：又一批新写的广告上不采用（回放，不是真实用户）",
+        "sources": [
+          "evidence-pipeline-public/data/versions-v4-round4.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json"
+        ],
+        "kind": "proportion",
+        "k": 47,
+        "n": 64,
+        "rate": 0.7344,
+        "ci95": [
+          0.6152,
+          0.827
+        ],
+        "display": "47/64"
+      },
+      {
+        "id": "N15",
+        "metric": "r4_v2_clear_escaped",
+        "label": "答案清楚的广告判错又自动生效（v2）",
+        "value": "0/176",
+        "full": "0/176（0.0%，95% 区间 0.0–2.1%）",
+        "evaluation": "提示词第 4 版：又一批新写的广告上不采用（回放，不是真实用户）",
+        "sources": [
+          "evidence-pipeline-public/data/versions-v4-round4.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json"
+        ],
+        "kind": "proportion",
+        "k": 0,
+        "n": 176,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0214
+        ],
+        "display": "0/176"
+      },
+      {
+        "id": "N16",
+        "metric": "r4_v4_clear_escaped",
+        "label": "答案清楚的广告判错又自动生效（v4）（同一条陷阱题的两遍）",
+        "value": "2/176",
+        "full": "2/176（1.1%，95% 区间 0.3–4.0%）",
+        "evaluation": "提示词第 4 版：又一批新写的广告上不采用（回放，不是真实用户）",
+        "sources": [
+          "evidence-pipeline-public/data/versions-v4-round4.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json"
+        ],
+        "kind": "proportion",
+        "k": 2,
+        "n": 176,
+        "rate": 0.0114,
+        "ci95": [
+          0.0031,
+          0.0405
+        ],
+        "display": "2/176"
+      },
+      {
+        "id": "N17",
+        "metric": "r4_reg_v2_escaped",
+        "label": "回归（第一轮）：判错又自动生效（v2）",
+        "value": "9/332",
+        "full": "9/332（2.7%，95% 区间 1.4–5.1%）",
+        "evaluation": "提示词第 4 版：又一批新写的广告上不采用（回放，不是真实用户）",
+        "sources": [
+          "evidence-pipeline-public/data/versions-v4.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4.json"
+        ],
+        "kind": "proportion",
+        "k": 9,
+        "n": 332,
+        "rate": 0.0271,
+        "ci95": [
+          0.0143,
+          0.0507
+        ],
+        "display": "9/332"
+      },
+      {
+        "id": "N18",
+        "metric": "r4_reg_v4_escaped",
+        "label": "回归（第一轮）：判错又自动生效（v4）",
+        "value": "13/332",
+        "full": "13/332（3.9%，95% 区间 2.3–6.6%）",
+        "evaluation": "提示词第 4 版：又一批新写的广告上不采用（回放，不是真实用户）",
+        "sources": [
+          "evidence-pipeline-public/data/versions-v4.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4.json"
+        ],
+        "kind": "proportion",
+        "k": 13,
+        "n": 332,
+        "rate": 0.0392,
+        "ci95": [
+          0.023,
+          0.0658
+        ],
+        "display": "13/332"
+      },
+      {
+        "id": "N19",
         "metric": "kb_right",
         "label": "答对",
         "value": "134/160",
@@ -6730,7 +6916,7 @@
         "display": "134/160"
       },
       {
-        "id": "N12",
+        "id": "N20",
         "metric": "kb_none",
         "label": "库里没有的题说了“没有”",
         "value": "44/48",
@@ -6753,7 +6939,7 @@
         "display": "44/48"
       },
       {
-        "id": "N13",
+        "id": "N21",
         "metric": "ret_r3_en_bm25",
         "label": "第三轮英文：正确条款进前三（BM25）",
         "value": "21/23",
@@ -6776,7 +6962,7 @@
         "display": "21/23"
       },
       {
-        "id": "N14",
+        "id": "N22",
         "metric": "ret_r3_en_dense",
         "label": "第三轮英文：正确条款进前三（向量）",
         "value": "23/23",
@@ -6799,7 +6985,7 @@
         "display": "23/23"
       },
       {
-        "id": "N15",
+        "id": "N23",
         "metric": "lark2_agree",
         "label": "第一遍：两种引文核对一致",
         "value": "49/60",
@@ -6822,7 +7008,7 @@
         "display": "49/60"
       },
       {
-        "id": "N16",
+        "id": "N24",
         "metric": "lark3_agree",
         "label": "第二遍：两种引文核对一致",
         "value": "60/60",
@@ -6845,7 +7031,7 @@
         "display": "60/60"
       },
       {
-        "id": "N17",
+        "id": "N25",
         "metric": "lark_unsure",
         "label": "平台模型说“拿不准”",
         "value": "0/25",
@@ -6868,7 +7054,7 @@
         "display": "0/25"
       },
       {
-        "id": "N18",
+        "id": "N26",
         "metric": "ref_unsure",
         "label": "参照：分流模型存档答案里说“拿不准”",
         "value": "13/50",
@@ -6891,7 +7077,7 @@
         "display": "13/50"
       },
       {
-        "id": "N19",
+        "id": "N27",
         "metric": "kb_zh_hit5",
         "label": "中文问题：算对的条款进前 5（BM25）（预测是百分之九十以上，这一条没成立；按题数算，每道题两遍的检索结果相同）",
         "value": "23/28",
@@ -6914,7 +7100,7 @@
         "display": "23/28"
       },
       {
-        "id": "N20",
+        "id": "N28",
         "metric": "lark_right",
         "label": "判对",
         "value": "25/25",
@@ -7001,7 +7187,7 @@
         "label": "Lark 工作流",
         "text": "多维表格里搭好，平台模型判断并写回",
         "after": "25/25",
-        "after_id": "N20"
+        "after_id": "N28"
       },
       {
         "date": "2026-11-17",
@@ -7015,10 +7201,20 @@
       },
       {
         "date": "2026-11-17",
+        "label": "v4",
+        "text": "两头都好了，判错时却更常说确定",
+        "before": "9/332",
+        "before_id": "N17",
+        "after": "13/332",
+        "after_id": "N18",
+        "adopted": false
+      },
+      {
+        "date": "2026-11-17",
         "label": "知识库问答",
         "text": "只按政策库回答，库里没有就说没有",
         "after": "134/160",
-        "after_id": "N11",
+        "after_id": "N19",
         "adopted": true
       },
       {
@@ -7026,9 +7222,9 @@
         "label": "Lark 两条工作流",
         "text": "判断和复核两条，改后两种核对全一致",
         "before": "49/60",
-        "before_id": "N15",
+        "before_id": "N23",
         "after": "60/60",
-        "after_id": "N16"
+        "after_id": "N24"
       }
     ],
     "images": [
@@ -7146,6 +7342,7 @@
       "**The workflow in Lark: the platform AI Agent step (25 Chinese ads)**: 25 ads, one run each; Lark Base AI Agent step (Seed 1.8)",
       "**Policy retrieval: right clause in the top three (124 labelled violations)**: 124 labelled violations; Deterministic retrieval, 1 run; No model calls; v1's stored first-run answers",
       "**Prompt v3 on newly written ads: not adopted (a replay, not real users)**: 240 requests (plus 332 in the regression); Two runs per ad, 1 run per version; claude-haiku-5-5, Message Batches API (half price)",
+      "**Prompt v4 on another set of newly written ads: not adopted (a replay, not real users)**: 240 requests (plus 332 in the regression); Two runs per ad, 1 run per version; claude-haiku-5-5, Message Batches API (half price)",
       "**Policy knowledge-base Q&A: answers only from retrieved clauses (80 questions)**: 160 requests; 2 runs per question; claude-haiku-5-5, Message Batches API; BM25 for Chinese, Qwen3-Embedding-0.6B for English, top 5 clauses",
       "**English clause retrieval on a local embedding model (labels not used to choose it)**: 40 round-two and 23 round-three English violation labels; Deterministic retrieval, 1 run; Qwen3-Embedding-0.6B (quantised, fastembed), run locally, no API calls",
       "**Two Lark workflows: judging and review (60 Chinese ads, two passes)**: 60 ads; 2 passes (the second after the fix); Lark Base workflows; the AI Agent step uses the platform model Seed 1.8 on the free allowance"
@@ -7157,17 +7354,18 @@
       "Canary round two: the fixed rules were preregistered, and on newly written ads all three release steps passed without a rollback, so v2 went live; but both versions were almost always right on these ads, so this did not show again that v2 lets fewer errors through.",
       "Lark: the same workflow built in a Lark Base, with the platform's AI Agent step deciding and writing back, unsure answers queued for review, and quote checks added by script; plus a chat bot, tested once.",
       "v3: the rule on when to be unsure was rewritten so that clear ads go to people less often; needless reviews of clear ads fell from 44/176 to 4/176, but ads that need a human were also sent to people less often, 44/64 to 19/64, past the limit set beforehand, so it was not adopted and production stays on v2.",
+      "v4: better than v2 at both ends, needless reviews of clear ads 43/176 → 11/176 and ads that need a human sent to people 42/64 → 47/64; but more often sure when wrong, with clear ads decided wrongly and gone live 0/176 → 2/176 and regression escapes 9/332 → 13/332, so it was not adopted.",
       "Knowledge-base Q&A: answers only from retrieved clauses and says so when the library has none; answered right 134/160, and said \"not in the library\" 44/48 when it was not.",
       "English clause retrieval switched to a local embedding model: on labels not used to choose it, the right clause in the top three went from 21/23 to 23/23; Chinese stays on BM25.",
       "Weekly metrics are now computed in SQL and were compared one by one with the earlier numbers; none changed.",
       "Two Lark workflows: on the first pass, line breaks in the clauses blocked the platform's exact-text search, so the two quote checks agreed on 49/60, every disagreement sending an extra ad to people; after the fix the second pass agreed on 60/60 (changed after seeing the first pass, so not preregistered)."
     ],
     "result": [
-      "Letting the model say it is unsure reduces wrong decisions that go live at the cost of more human review; the first canary rolled back because the rules themselves were wrong; with fixed rules the second canary on new traffic reached full release and v2 went live. The evidence that v2 lets fewer errors through still comes from round one. Version 3 cut needless reviews of clear ads but also sent fewer ads that need a human to people, so under the standard written beforehand it was not adopted; a canary would not have stopped it, the ads written as needing a human did."
+      "Letting the model say it is unsure reduces wrong decisions that go live at the cost of more human review; the first canary rolled back because the rules themselves were wrong; with fixed rules the second canary on new traffic reached full release and v2 went live. The evidence that v2 lets fewer errors through still comes from round one. Version 3 cut needless reviews of clear ads but also sent fewer ads that need a human to people; version 4 improved both but was more often sure when wrong. Neither met the standard written beforehand; a canary would not have stopped either, the item design and the adoption standard did."
     ],
     "limitations": [
       "Traffic replays test items rather than real users, and reviewer decisions are the items' fixed answers, not real reviewers. Recommendation: After launch, track wrong decisions let through and review volume per version on real requests, and feed QA samples back as regression items.",
-      "v2 lets fewer wrong decisions through, but human review rose from 6/332 to 72/332, often on clear ads the model called unsure. Recommendation: Version 3 relaxed \"unsure\" and sent fewer clear ads to people, but also fewer ads that need a human; the next version has to hold both, again through a regression and new items before a canary.",
+      "v2 lets fewer wrong decisions through, but human review rose from 6/332 to 72/332, often on clear ads the model called unsure. Recommendation: Version 3 relaxed \"unsure\" and sent fewer ads that need a human to people; version 4 improved both ends but was more often sure when wrong. The next version has to hold all three: fewer clear ads sent, no fewer ads that need a human, and no wrong decisions let through, again through a regression and new items before a canary.",
       "Round two reached full release on new traffic, but both versions were almost always right on those ads, so it did not show again that v2 lets fewer errors through; that evidence still comes from round one. Recommendation: Find new ads that v1 misses (longer or vaguer ones) and compare again under the same rules.",
       "The Lark platform model never said it was unsure (0/25), while the triage model did in 13/50 stored answers; the bot's Q&A has only been tested, with no real usage. Recommendation: After a model change, measure the review rate again before tuning the unsure threshold; test the bot on a batch of questions, then read its real usage log.",
       "Retrieval for Chinese questions is weak: the right clause was in the top five for only 23/28, and every \"not in the library\" on an answerable question came from retrieval missing it. Recommendation: Try embedding or hybrid retrieval for Chinese too, checked first on questions not used to choose the method."
@@ -7400,6 +7598,190 @@
       },
       {
         "id": "N11",
+        "metric": "r4_v2_clear",
+        "label": "Clear ads sent to human review (v2)",
+        "value": "43/176",
+        "full": "43/176 (24.4%, 95% CI 18.7–31.3%)",
+        "evaluation": "Prompt v4 on another set of newly written ads: not adopted (a replay, not real users)",
+        "sources": [
+          "evidence-pipeline-public/data/versions-v4-round4.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json"
+        ],
+        "kind": "proportion",
+        "k": 43,
+        "n": 176,
+        "rate": 0.2443,
+        "ci95": [
+          0.1867,
+          0.3128
+        ],
+        "display": "43/176"
+      },
+      {
+        "id": "N12",
+        "metric": "r4_v4_clear",
+        "label": "Clear ads sent to human review (v4)",
+        "value": "11/176",
+        "full": "11/176 (6.2%, 95% CI 3.5–10.8%)",
+        "evaluation": "Prompt v4 on another set of newly written ads: not adopted (a replay, not real users)",
+        "sources": [
+          "evidence-pipeline-public/data/versions-v4-round4.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json"
+        ],
+        "kind": "proportion",
+        "k": 11,
+        "n": 176,
+        "rate": 0.0625,
+        "ci95": [
+          0.0353,
+          0.1084
+        ],
+        "display": "11/176"
+      },
+      {
+        "id": "N13",
+        "metric": "r4_v2_handoff",
+        "label": "Ads that need a human, sent to people (v2)",
+        "value": "42/64",
+        "full": "42/64 (65.6%, 95% CI 53.4–76.1%)",
+        "evaluation": "Prompt v4 on another set of newly written ads: not adopted (a replay, not real users)",
+        "sources": [
+          "evidence-pipeline-public/data/versions-v4-round4.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json"
+        ],
+        "kind": "proportion",
+        "k": 42,
+        "n": 64,
+        "rate": 0.6562,
+        "ci95": [
+          0.534,
+          0.7608
+        ],
+        "display": "42/64"
+      },
+      {
+        "id": "N14",
+        "metric": "r4_v4_handoff",
+        "label": "Ads that need a human, sent to people (v4)",
+        "value": "47/64",
+        "full": "47/64 (73.4%, 95% CI 61.5–82.7%)",
+        "evaluation": "Prompt v4 on another set of newly written ads: not adopted (a replay, not real users)",
+        "sources": [
+          "evidence-pipeline-public/data/versions-v4-round4.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json"
+        ],
+        "kind": "proportion",
+        "k": 47,
+        "n": 64,
+        "rate": 0.7344,
+        "ci95": [
+          0.6152,
+          0.827
+        ],
+        "display": "47/64"
+      },
+      {
+        "id": "N15",
+        "metric": "r4_v2_clear_escaped",
+        "label": "Clear ads decided wrongly and gone live (v2)",
+        "value": "0/176",
+        "full": "0/176 (0.0%, 95% CI 0.0–2.1%)",
+        "evaluation": "Prompt v4 on another set of newly written ads: not adopted (a replay, not real users)",
+        "sources": [
+          "evidence-pipeline-public/data/versions-v4-round4.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json"
+        ],
+        "kind": "proportion",
+        "k": 0,
+        "n": 176,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0214
+        ],
+        "display": "0/176"
+      },
+      {
+        "id": "N16",
+        "metric": "r4_v4_clear_escaped",
+        "label": "Clear ads decided wrongly and gone live (v4) (both runs of the same trap item)",
+        "value": "2/176",
+        "full": "2/176 (1.1%, 95% CI 0.3–4.0%)",
+        "evaluation": "Prompt v4 on another set of newly written ads: not adopted (a replay, not real users)",
+        "sources": [
+          "evidence-pipeline-public/data/versions-v4-round4.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json"
+        ],
+        "kind": "proportion",
+        "k": 2,
+        "n": 176,
+        "rate": 0.0114,
+        "ci95": [
+          0.0031,
+          0.0405
+        ],
+        "display": "2/176"
+      },
+      {
+        "id": "N17",
+        "metric": "r4_reg_v2_escaped",
+        "label": "Regression (round one): wrong decisions that went live (v2)",
+        "value": "9/332",
+        "full": "9/332 (2.7%, 95% CI 1.4–5.1%)",
+        "evaluation": "Prompt v4 on another set of newly written ads: not adopted (a replay, not real users)",
+        "sources": [
+          "evidence-pipeline-public/data/versions-v4.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4.json"
+        ],
+        "kind": "proportion",
+        "k": 9,
+        "n": 332,
+        "rate": 0.0271,
+        "ci95": [
+          0.0143,
+          0.0507
+        ],
+        "display": "9/332"
+      },
+      {
+        "id": "N18",
+        "metric": "r4_reg_v4_escaped",
+        "label": "Regression (round one): wrong decisions that went live (v4)",
+        "value": "13/332",
+        "full": "13/332 (3.9%, 95% CI 2.3–6.6%)",
+        "evaluation": "Prompt v4 on another set of newly written ads: not adopted (a replay, not real users)",
+        "sources": [
+          "evidence-pipeline-public/data/versions-v4.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4.json"
+        ],
+        "kind": "proportion",
+        "k": 13,
+        "n": 332,
+        "rate": 0.0392,
+        "ci95": [
+          0.023,
+          0.0658
+        ],
+        "display": "13/332"
+      },
+      {
+        "id": "N19",
         "metric": "kb_right",
         "label": "Answered right",
         "value": "134/160",
@@ -7422,7 +7804,7 @@
         "display": "134/160"
       },
       {
-        "id": "N12",
+        "id": "N20",
         "metric": "kb_none",
         "label": "Said \"not in the library\" when it was not",
         "value": "44/48",
@@ -7445,7 +7827,7 @@
         "display": "44/48"
       },
       {
-        "id": "N13",
+        "id": "N21",
         "metric": "ret_r3_en_bm25",
         "label": "Round three, English: right clause in the top three (BM25)",
         "value": "21/23",
@@ -7468,7 +7850,7 @@
         "display": "21/23"
       },
       {
-        "id": "N14",
+        "id": "N22",
         "metric": "ret_r3_en_dense",
         "label": "Round three, English: right clause in the top three (embedding)",
         "value": "23/23",
@@ -7491,7 +7873,7 @@
         "display": "23/23"
       },
       {
-        "id": "N15",
+        "id": "N23",
         "metric": "lark2_agree",
         "label": "First pass: the two quote checks agree",
         "value": "49/60",
@@ -7514,7 +7896,7 @@
         "display": "49/60"
       },
       {
-        "id": "N16",
+        "id": "N24",
         "metric": "lark3_agree",
         "label": "Second pass: the two quote checks agree",
         "value": "60/60",
@@ -7537,7 +7919,7 @@
         "display": "60/60"
       },
       {
-        "id": "N17",
+        "id": "N25",
         "metric": "lark_unsure",
         "label": "Platform model said it was unsure",
         "value": "0/25",
@@ -7560,7 +7942,7 @@
         "display": "0/25"
       },
       {
-        "id": "N18",
+        "id": "N26",
         "metric": "ref_unsure",
         "label": "Reference: triage model's stored answers saying unsure",
         "value": "13/50",
@@ -7583,7 +7965,7 @@
         "display": "13/50"
       },
       {
-        "id": "N19",
+        "id": "N27",
         "metric": "kb_zh_hit5",
         "label": "Chinese questions: right clause in the top five (BM25) (predicted ninety percent or more; this prediction did not hold; counted per question, since retrieval is the same on both runs)",
         "value": "23/28",
@@ -7606,7 +7988,7 @@
         "display": "23/28"
       },
       {
-        "id": "N20",
+        "id": "N28",
         "metric": "lark_right",
         "label": "Decisions right",
         "value": "25/25",
@@ -7693,7 +8075,7 @@
         "label": "Lark workflow",
         "text": "Built in a Lark Base; platform model decides",
         "after": "25/25",
-        "after_id": "N20"
+        "after_id": "N28"
       },
       {
         "date": "2026-11-17",
@@ -7707,10 +8089,20 @@
       },
       {
         "date": "2026-11-17",
+        "label": "v4",
+        "text": "Better at both ends, but surer when wrong",
+        "before": "9/332",
+        "before_id": "N17",
+        "after": "13/332",
+        "after_id": "N18",
+        "adopted": false
+      },
+      {
+        "date": "2026-11-17",
         "label": "Knowledge-base Q&A",
         "text": "Answers only from the policy library",
         "after": "134/160",
-        "after_id": "N11",
+        "after_id": "N19",
         "adopted": true
       },
       {
@@ -7718,9 +8110,9 @@
         "label": "Two Lark workflows",
         "text": "Judge and review; quote checks agree after the fix",
         "before": "49/60",
-        "before_id": "N15",
+        "before_id": "N23",
         "after": "60/60",
-        "after_id": "N16"
+        "after_id": "N24"
       }
     ],
     "images": [

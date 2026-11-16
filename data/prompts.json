@@ -2093,6 +2093,170 @@
           "zh": "第三轮：另外新写 120 条文字广告各 2 遍；回归：第一轮 166 条题各回放 2 遍",
           "en": "Round three: another 120 newly written text ads, 2 runs each; regression: the 166 round-one items, 2 replays each"
         }
+      },
+      {
+        "id": "v4",
+        "date": "2026-11-17",
+        "decision": "not_adopted",
+        "change": {
+          "zh": "想两头都过：答案清楚的广告少送人工，该交人工的不少送。写明几类常见边界，并加一句自查：另一种读法也说得通就答拿不准。",
+          "en": "Meant to pass at both ends: fewer clear ads sent to people, and no fewer of those that need one. It names common boundary cases and adds a self-check: if another reading also holds, answer unsure."
+        },
+        "text": {
+          "zh": "v3 的“拿不准”规则加一类：结论取决于把一句话放进还是放出某条规则、而这句话正好在边界上（`triage.CERTAINTY_RULE_V4`）；输出格式不变",
+          "en": "v3's rule on when to be unsure plus one case: the decision turns on placing the ad's words inside or outside a rule and the words sit on the boundary (`triage.CERTAINTY_RULE_V4`); the output format is unchanged"
+        },
+        "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/reports/compare-v2-v4-round4.md",
+        "why": {
+          "zh": "在又一批新写的广告上（采用标准和第三轮一字不改，预测跑前冻结），两头都比 v2 好：答案清楚的广告送人工 43/176 → 11/176，要人来定的送人工 42/64 → 47/64。但它判错时更常说“确定”：答案清楚的广告判错又自动生效 0/176 → 2/176（同一条陷阱题两遍，答案有争议，按预注册没改），第一轮回归漏网 9/332 → 13/332。不采用，production 留在 v2；假如照样放量，灰度的回滚规则一条也不会触发。",
+          "en": "On another set of newly written ads (adoption rules word for word those of round three, predictions frozen before the run), it beat v2 at both ends: clear ads sent to people 43/176 → 11/176, ads that need a human sent to people 42/64 → 47/64. But it was more often sure when wrong: clear ads decided wrongly and gone live 0/176 → 2/176 (both runs of one trap item whose answer is debatable and, as preregistered, unchanged), and round-one regression escapes 9/332 → 13/332. Not adopted; production stays on v2. Had it been rolled out, no canary rollback rule would have fired."
+        },
+        "scores": [
+          {
+            "label": {
+              "zh": "答案清楚的广告送了人工（v2 → v4）",
+              "en": "Clear ads sent to human review (v2 → v4)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-pipeline-public/data/versions-v4-round4.json"
+                ],
+                "k": 43,
+                "n": 176,
+                "rate": 0.2443,
+                "ci95": [
+                  0.1867,
+                  0.3128
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-pipeline-public/data/versions-v4-round4.json"
+                ],
+                "k": 11,
+                "n": 176,
+                "rate": 0.0625,
+                "ci95": [
+                  0.0353,
+                  0.1084
+                ]
+              }
+            ],
+            "direction": "lower"
+          },
+          {
+            "label": {
+              "zh": "要人来定的广告送了人工（v2 → v4）",
+              "en": "Ads that need a human, sent to people (v2 → v4)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-pipeline-public/data/versions-v4-round4.json"
+                ],
+                "k": 42,
+                "n": 64,
+                "rate": 0.6562,
+                "ci95": [
+                  0.534,
+                  0.7608
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-pipeline-public/data/versions-v4-round4.json"
+                ],
+                "k": 47,
+                "n": 64,
+                "rate": 0.7344,
+                "ci95": [
+                  0.6152,
+                  0.827
+                ]
+              }
+            ],
+            "direction": "higher"
+          },
+          {
+            "label": {
+              "zh": "答案清楚的广告判错又自动生效（v2 → v4）",
+              "en": "Clear ads decided wrongly and gone live (v2 → v4)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-pipeline-public/data/versions-v4-round4.json"
+                ],
+                "k": 0,
+                "n": 176,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.0214
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-pipeline-public/data/versions-v4-round4.json"
+                ],
+                "k": 2,
+                "n": 176,
+                "rate": 0.0114,
+                "ci95": [
+                  0.0031,
+                  0.0405
+                ]
+              }
+            ],
+            "direction": "lower"
+          },
+          {
+            "label": {
+              "zh": "回归：判错又自动生效（v2 → v4）",
+              "en": "Regression: wrong decisions that went live (v2 → v4)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-pipeline-public/data/versions-v4.json"
+                ],
+                "k": 9,
+                "n": 332,
+                "rate": 0.0271,
+                "ci95": [
+                  0.0143,
+                  0.0507
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-pipeline-public/data/versions-v4.json"
+                ],
+                "k": 13,
+                "n": 332,
+                "rate": 0.0392,
+                "ci95": [
+                  0.023,
+                  0.0658
+                ]
+              }
+            ],
+            "direction": "lower"
+          }
+        ],
+        "compare_set": {
+          "zh": "第四轮：又一批新写的 120 条文字广告各 2 遍；回归：第一轮 166 条题各回放 2 遍",
+          "en": "Round four: another 120 newly written text ads, 2 runs each; regression: the 166 round-one items, 2 replays each"
+        }
       }
     ]
   },

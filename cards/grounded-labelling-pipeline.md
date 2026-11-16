@@ -1,6 +1,6 @@
 # 有据标注流水线：评测卡
 
-> 卡片版本 1.2 · 数据截至 2026-11-17 · 已公开
+> 卡片版本 1.3 · 数据截至 2026-11-17 · 已公开
 >
 > 数字由 `scripts/build_cards.py` 从项目的结果文件算出；比例附 Wilson 95% 区间。
 
@@ -112,6 +112,18 @@
 | 模型和发送方式 | claude-haiku-5-5，批量接口（半价） |
 | 跑前冻结 | `docs/PREREGISTRATION-ROUND3.md` |
 
+### 提示词第 4 版：又一批新写的广告上不采用（回放，不是真实用户）
+
+又一批新写 120 条文字广告，每条两遍，共 240 个请求；其中一部分写题时就定为“要人来定”。采用标准和第三轮一字不改，预测跑前冻结；同时在第一轮的 332 个请求上做回归。
+
+| 项目 | 内容 |
+|---|---|
+| 日期 | 2026-11-17 |
+| 题目和答案 | 240 个请求（另有回归 332 个） |
+| 跑了几次 | 每条广告两遍，每个版本 1 遍 |
+| 模型和发送方式 | claude-haiku-5-5，批量接口（半价） |
+| 跑前冻结 | `docs/PREREGISTRATION-ROUND4.md` |
+
 ### 政策知识库问答：只按检索到的条款回答（80 道题）
 
 80 道题，中英各一半，其中一部分库里没有答案；答案写题时定好；每道题两遍，共 160 个请求。计划和预测跑前写好。答对要结论对、引了对的条款、引文核对通过；库里没有的题要说“没有”且不引条款。
@@ -220,6 +232,21 @@ v2 少放过判错的广告，代价是送人工多得多；四条采用标准�
 
 答案清楚的广告少了多余的复核，但写题时定为“要人来定”的广告送人工也少了，降幅超过事先写好的十个百分点上限，不采用，production 留在 v2。假如照样放量，灰度的回滚规则一条也不会触发：拦下它的是题目里那批要人来定的广告和事先写好的采用标准。
 
+### 提示词第 4 版：又一批新写的广告上不采用（回放，不是真实用户）
+
+| 指标 | 结果 | 方向 | 来源文件 |
+|---|---|---|---|
+| 答案清楚的广告送了人工（v2） | 43/176（24.4%，95% 区间 18.7–31.3%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| 答案清楚的广告送了人工（v4） | 11/176（6.2%，95% 区间 3.5–10.8%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| 要人来定的广告送了人工（v2） | 42/64（65.6%，95% 区间 53.4–76.1%） | 越高越好 | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| 要人来定的广告送了人工（v4） | 47/64（73.4%，95% 区间 61.5–82.7%） | 越高越好 | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| 答案清楚的广告判错又自动生效（v2） | 0/176（0.0%，95% 区间 0.0–2.1%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| 答案清楚的广告判错又自动生效（v4）（同一条陷阱题的两遍） | 2/176（1.1%，95% 区间 0.3–4.0%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| 回归（第一轮）：判错又自动生效（v2） | 9/332（2.7%，95% 区间 1.4–5.1%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4.json) |
+| 回归（第一轮）：判错又自动生效（v4） | 13/332（3.9%，95% 区间 2.3–6.6%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4.json) |
+
+两头都比 v2 好：答案清楚的广告少了多余的复核，要人来定的广告送人工也多了。但它判错时更常说“确定”：新题上一条陷阱题两遍都判错又自动生效（v2 判得一样，但说了拿不准、送了人工），第一轮回归里漏网的错判也变多，按事先写好的标准不采用，production 留在 v2。那条陷阱题的答案有争议，按预注册没有改。
+
 ### 政策知识库问答：只按检索到的条款回答（80 道题）
 
 | 指标 | 结果 | 方向 | 来源文件 |
@@ -263,7 +290,7 @@ v2 少放过判错的广告，代价是送人工多得多；四条采用标准�
 - 流量是评测题的回放，不是真实用户；复核结论用的是题目定好的答案，没有真的审核员。
   - 建议：上线后按版本统计真实请求的漏网错判和复核量，抽检结果回流成回归题。
 - v2 少放过判错，但送人工从 6/332 涨到 72/332，很多是清楚的广告也说“拿不准”。
-  - 建议：第 3 版试过放宽“拿不准”，清楚广告少送了，要人来定的也少送了；下一版要两头同时守住，同样先过回归和新题再灰度。
+  - 建议：第 3 版放宽“拿不准”，要人来定的也少送了；第 4 版两头都好了，判错时却更常说“确定”。下一版要同时守住三头：清楚的少送、要人定的不少送、判错的不放过，同样先过回归和新题再灰度。
 - 第二轮在新流量上放到全量，但两版在这批广告上都接近全对，没有再证明 v2 能少漏错判；v2 的好处仍来自第一轮。
   - 建议：再找 v1 会漏判的新广告（例如更长、更含糊的），在同样的规则下比一次。
 - Lark 里的平台模型一次也没说拿不准（0/25），分流模型的存档答案里却有 13/50 说了；机器人问答只有测试，没有真实使用量。
@@ -276,6 +303,7 @@ v2 少放过判错的广告，代价是送人工多得多；四条采用标准�
 - **1.0**（2026-11-16）第一张卡，照公开仓库 grounded-labelling-pipeline 的结果文件写。
 - **1.1**（2026-11-16）加第二轮灰度（新流量，v2 上线）、Lark 里的工作流评测和截图。
 - **1.2**（2026-11-17）加提示词第 3 版（不采用）、知识库问答、英文检索换本机向量模型、Lark 两条工作流；Lark 截图换成新版。
+- **1.3**（2026-11-17）加提示词第 4 版（第四轮新写的广告，不采用）；Lark 看板截图线上换了新图。
 
 ## 出处
 

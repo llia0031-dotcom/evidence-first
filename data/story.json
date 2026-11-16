@@ -227,12 +227,12 @@
       },
       "result": [
         {
-          "zh": "有据标注流水线：判错又自动生效的从 17/332 降到 9/332；第一轮灰度按事先写好的规则在 10% 回滚，改好规则后第二轮放到全量，v2 上线；第 3 版没达到事先写好的采用标准，没上线（回放，不是真实用户）",
-          "en": "Grounded Labelling Pipeline: wrong decisions that went live fell from 17/332 to 9/332; the first canary rolled back at 10% under the rules written beforehand, the second, with fixed rules, reached full release and v2 went live; version 3 missed the adoption standard written beforehand and was not released (a replay, not real users)"
+          "zh": "有据标注流水线：判错又自动生效的从 17/332 降到 9/332；第一轮灰度按事先写好的规则在 10% 回滚，改好规则后第二轮放到全量，v2 上线；第 3、4 版都没达到事先写好的采用标准，没上线（回放，不是真实用户）",
+          "en": "Grounded Labelling Pipeline: wrong decisions that went live fell from 17/332 to 9/332; the first canary rolled back at 10% under the rules written beforehand, the second, with fixed rules, reached full release and v2 went live; versions 3 and 4 missed the adoption standard written beforehand and were not released (a replay, not real users)"
         },
         {
-          "zh": "10 张评测卡、222 个数字全部由脚本从结果文件算出，0 处和项目记录对照",
-          "en": "10 evaluation cards and 222 numbers, all computed from result files and checked against 0 project records"
+          "zh": "10 张评测卡、230 个数字全部由脚本从结果文件算出，0 处和项目记录对照",
+          "en": "10 evaluation cards and 230 numbers, all computed from result files and checked against 0 project records"
         },
         {
           "zh": "灰度回放：有据审核 v1.3 放到全量，v1.2 在放量中途触发回滚（回放，不是真实用户）",
