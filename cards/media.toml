@@ -327,3 +327,17 @@ path = "evidence-pipeline-public/lark/screenshots/bot-card.png"
 url = "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/bot-card.png"
 public = true
 caption = { zh = "聊天机器人回的卡片：判断通过，模型拿不准，送人工复核", en = "The card the chat bot replied with: approve, unsure, sent to a human." }
+
+[[media]]
+project = "grounded-business-review"
+path = "grounded-business-review-public/reports/contribution_visits_channel.png"
+url = "https://raw.githubusercontent.com/Jason-d-e/grounded-business-review/main/reports/contribution_visits_channel.png"
+public = true
+caption = { zh = "访问次数的变化按渠道拆开：下降主要来自直播（合成数据）", en = "Where the change in visits came from, by channel: the drop comes mostly from live streaming (synthetic data)." }
+
+[[media]]
+project = "grounded-business-review"
+path = "grounded-business-review-public/dify/screenshots/workflow.png"
+url = "https://raw.githubusercontent.com/Jason-d-e/grounded-business-review/main/dify/screenshots/workflow.png"
+public = true
+caption = { zh = "Dify 里的同一条流程：监控和拆解、写周报、数字核对，没放行就改一次再核对", en = "The same flow in Dify: monitor and break down, write the review, check the numbers, and revise once if it is held back." }

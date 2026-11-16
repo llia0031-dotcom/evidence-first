@@ -7785,5 +7785,923 @@
         "url": "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/bot-card.png"
       }
     ]
+  },
+  {
+    "id": "grounded-business-review",
+    "lang": "zh",
+    "order": 10,
+    "name": "有据经营分析",
+    "status": "public",
+    "layer": "场景：判断类",
+    "period": "2026-11-16 – 2026-11-17",
+    "team": "Liang Liyuan",
+    "stack": "Python、DuckDB（SQL）、Pandas、evidence-check 0.4.0、批量接口、Excel、Dify",
+    "one_line": "在一份合成的到店团购数据上，把“每周监控 → 按维度拆解 → 写经营周报 → 数字核对”做成一条可以重跑的线，并比较三种找原因的做法：固定规则的脚本、把固定查询结果交给模型的一次提示词、让模型自己用工具查数的 Agent。",
+    "facts": [
+      {
+        "label": "时间",
+        "value": "2026-11-16 – 2026-11-17"
+      },
+      {
+        "label": "团队",
+        "value": "Liang Liyuan"
+      },
+      {
+        "label": "技术",
+        "value": "Python、DuckDB（SQL）、Pandas、evidence-check 0.4.0、批量接口、Excel、Dify"
+      },
+      {
+        "label": "在作品集里的位置",
+        "value": "场景：判断类"
+      },
+      {
+        "label": "状态",
+        "value": "已公开"
+      }
+    ],
+    "links": [
+      {
+        "label": "代码和报告",
+        "url": "https://github.com/Jason-d-e/grounded-business-review"
+      }
+    ],
+    "problem": [
+      "每周看经营数据的人要知道哪些指标异动、原因在哪；让模型找原因、写周报，原因找得准不准，周报里的数字能不能都对回查询结果。"
+    ],
+    "did": [
+      "我在合成的到店团购数据上搭了指标字典、一条 SQL 的周监控、贡献度和率效应拆解、带数字核对的经营周报，比较固定脚本、一次提示词和 Agent 三种找原因的做法；埋好答案的测试题和评测计划在跑之前冻结；另把同一条流程搭成 Dify 工作流。"
+    ],
+    "evaluation": [
+      "**测试集：埋好答案的题（脚本、一次提示词、Agent）**：36 道题；每种做法每题 1 遍；claude-haiku-5-5，effort medium，批量接口；脚本不调用模型",
+      "**开发集：用来写规则和提示词（第 4 版）**：16 道题；每种做法每题 1 遍；claude-haiku-5-5，effort medium，批量接口"
+    ],
+    "iteration": [
+      "先把指标字典、周监控、拆解和数字核对搭成一条线，三种做法共用。",
+      "脚本的下钻规则在开发集上重写一次：先定环节再定分组，已找到的原因能解释的分组不再报。",
+      "提示词 v1 到 v4：有的稿子删掉数字来过核对，第 3 版起要求“发现”段必须有数字、“原因”段必须引用行；第 4 版写明中文数字也会被核对。",
+      "开发集上第 4 版：脚本 12/16，一次提示词 13/16，Agent 16/16；随后冻结文件指纹，再跑测试集。",
+      "测试集：Agent 34/36，脚本 31/36，一次提示词 28/36；两个维度交叉的原因，一次提示词 0/6。",
+      "Dify 版：同一条“一次提示词”流程搭成 Dify 工作流，几个场景周试跑过，不在评测里。"
+    ],
+    "result": [
+      "让模型自己决定查什么，原因找得最准，两个维度交叉的原因尤其明显；代价是第一稿更常引错行，费用约是一次提示词的 1.8 倍。固定脚本在单一原因上不差，这批题分不出它和 Agent 的高下。数字核对拦住了引错行的数，但对中文数字太严，把没有错数的周报也拦下了。"
+    ],
+    "limitations": [
+      "数据、埋的事件、监控和三种做法都出自同一个项目；埋的事件干净，都落在现有维度里，真实的原因常常不是这样。建议：换到真实数据前，先拿历史上已经查清原因的周做一批题再测。",
+      "Agent 和脚本只差几题（p = 0.45），这批题分不出高下。建议：要分出高下得加题，尤其是两个原因和两个维度交叉的题。",
+      "数字核对对中文数字太严：最后没放行的周报里没有一个错数，没过的段落都卡在“这两项”“前一天”这类词上。建议：把计数词和数量分开处理，或给计数词单独的规则；严到什么程度是产品上的取舍，要和使用的人一起定。",
+      "Agent 第一稿引了不在引用行里的数的段落有 22 段，靠退回改一次才全部改好；没有核对就会发出去。建议：核对放在发出之前，不能省。",
+      "建议没有打分。建议：给建议定评分规则，再在同一批题上测。"
+    ],
+    "headline": [
+      "埋好的原因全找对：脚本 31/36，一次提示词 28/36，Agent 34/36",
+      "按题配对，Agent 比一次提示词多对 6 题、少对 0 题（p = 0.031）；和脚本比分不出高下（p = 0.45）",
+      "改一次以内放行：一次提示词 35/36，Agent 33/36；没放行的都卡在中文数字上，没有一个错数"
+    ],
+    "numbers": [
+      {
+        "id": "N1",
+        "metric": "script_all",
+        "label": "埋好的原因全找对（脚本）",
+        "value": "31/36",
+        "full": "31/36（86.1%，95% 区间 71.3–93.9%）",
+        "evaluation": "测试集：埋好答案的题（脚本、一次提示词、Agent）",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-test.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json"
+        ],
+        "kind": "proportion",
+        "k": 31,
+        "n": 36,
+        "rate": 0.8611,
+        "ci95": [
+          0.7134,
+          0.9392
+        ],
+        "display": "31/36"
+      },
+      {
+        "id": "N2",
+        "metric": "oneshot_all",
+        "label": "埋好的原因全找对（一次提示词）",
+        "value": "28/36",
+        "full": "28/36（77.8%，95% 区间 61.9–88.3%）",
+        "evaluation": "测试集：埋好答案的题（脚本、一次提示词、Agent）",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-test.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json"
+        ],
+        "kind": "proportion",
+        "k": 28,
+        "n": 36,
+        "rate": 0.7778,
+        "ci95": [
+          0.6192,
+          0.8828
+        ],
+        "display": "28/36"
+      },
+      {
+        "id": "N3",
+        "metric": "agent_all",
+        "label": "埋好的原因全找对（Agent）",
+        "value": "34/36",
+        "full": "34/36（94.4%，95% 区间 81.9–98.5%）",
+        "evaluation": "测试集：埋好答案的题（脚本、一次提示词、Agent）",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-test.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json"
+        ],
+        "kind": "proportion",
+        "k": 34,
+        "n": 36,
+        "rate": 0.9444,
+        "ci95": [
+          0.8186,
+          0.9846
+        ],
+        "display": "34/36"
+      },
+      {
+        "id": "N4",
+        "metric": "pair_agent_only",
+        "label": "按题配对：只有 Agent 对、一次提示词错的题",
+        "value": 6.0,
+        "full": "6",
+        "evaluation": "测试集：埋好答案的题（脚本、一次提示词、Agent）",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-test.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "6"
+      },
+      {
+        "id": "N5",
+        "metric": "pair_oneshot_only",
+        "label": "按题配对：只有一次提示词对、Agent 错的题",
+        "value": 0.0,
+        "full": "0",
+        "evaluation": "测试集：埋好答案的题（脚本、一次提示词、Agent）",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-test.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "0"
+      },
+      {
+        "id": "N6",
+        "metric": "pair_p",
+        "label": "Agent 对一次提示词：精确检验的 p 值",
+        "value": 0.0312,
+        "full": "0.031",
+        "evaluation": "测试集：埋好答案的题（脚本、一次提示词、Agent）",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-test.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "0.031"
+      },
+      {
+        "id": "N7",
+        "metric": "pair_script_p",
+        "label": "Agent 对脚本：精确检验的 p 值",
+        "value": 0.4531,
+        "full": "0.45",
+        "evaluation": "测试集：埋好答案的题（脚本、一次提示词、Agent）",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-test.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "0.45"
+      },
+      {
+        "id": "N8",
+        "metric": "oneshot_released",
+        "label": "改一次以内放行（一次提示词）",
+        "value": "35/36",
+        "full": "35/36（97.2%，95% 区间 85.8–99.5%）",
+        "evaluation": "测试集：埋好答案的题（脚本、一次提示词、Agent）",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-test.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json"
+        ],
+        "kind": "proportion",
+        "k": 35,
+        "n": 36,
+        "rate": 0.9722,
+        "ci95": [
+          0.8583,
+          0.9951
+        ],
+        "display": "35/36"
+      },
+      {
+        "id": "N9",
+        "metric": "agent_released",
+        "label": "改一次以内放行（Agent）",
+        "value": "33/36",
+        "full": "33/36（91.7%，95% 区间 78.2–97.1%）",
+        "evaluation": "测试集：埋好答案的题（脚本、一次提示词、Agent）",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-test.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json"
+        ],
+        "kind": "proportion",
+        "k": 33,
+        "n": 36,
+        "rate": 0.9167,
+        "ci95": [
+          0.7817,
+          0.9713
+        ],
+        "display": "33/36"
+      },
+      {
+        "id": "N10",
+        "metric": "dev_script",
+        "label": "开发集：原因全找对（脚本）",
+        "value": "12/16",
+        "full": "12/16（75.0%，95% 区间 50.5–89.8%）",
+        "evaluation": "开发集：用来写规则和提示词（第 4 版）",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-dev.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-dev.json"
+        ],
+        "kind": "proportion",
+        "k": 12,
+        "n": 16,
+        "rate": 0.75,
+        "ci95": [
+          0.505,
+          0.8982
+        ],
+        "display": "12/16"
+      },
+      {
+        "id": "N11",
+        "metric": "dev_oneshot",
+        "label": "开发集：原因全找对（一次提示词）",
+        "value": "13/16",
+        "full": "13/16（81.2%，95% 区间 57.0–93.4%）",
+        "evaluation": "开发集：用来写规则和提示词（第 4 版）",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-dev.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-dev.json"
+        ],
+        "kind": "proportion",
+        "k": 13,
+        "n": 16,
+        "rate": 0.8125,
+        "ci95": [
+          0.5699,
+          0.9341
+        ],
+        "display": "13/16"
+      },
+      {
+        "id": "N12",
+        "metric": "dev_agent",
+        "label": "开发集：原因全找对（Agent）",
+        "value": "16/16",
+        "full": "16/16（100.0%，95% 区间 80.6–100.0%）",
+        "evaluation": "开发集：用来写规则和提示词（第 4 版）",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-dev.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-dev.json"
+        ],
+        "kind": "proportion",
+        "k": 16,
+        "n": 16,
+        "rate": 1.0,
+        "ci95": [
+          0.8064,
+          1.0
+        ],
+        "display": "16/16"
+      },
+      {
+        "id": "N13",
+        "metric": "oneshot_2d",
+        "label": "两个维度交叉的原因找对（一次提示词）",
+        "value": "0/6",
+        "full": "0/6（0.0%，95% 区间 0.0–39.0%）",
+        "evaluation": "测试集：埋好答案的题（脚本、一次提示词、Agent）",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-test.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json"
+        ],
+        "kind": "proportion",
+        "k": 0,
+        "n": 6,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.3903
+        ],
+        "display": "0/6"
+      },
+      {
+        "id": "N14",
+        "metric": "oneshot_first",
+        "label": "第一次交卷就放行（一次提示词）（预测在七成到八成五之间，这一条没成立）",
+        "value": "19/36",
+        "full": "19/36（52.8%，95% 区间 37.0–68.0%）",
+        "evaluation": "测试集：埋好答案的题（脚本、一次提示词、Agent）",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-test.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json"
+        ],
+        "kind": "proportion",
+        "k": 19,
+        "n": 36,
+        "rate": 0.5278,
+        "ci95": [
+          0.3701,
+          0.6801
+        ],
+        "display": "19/36"
+      },
+      {
+        "id": "N15",
+        "metric": "agent_bad_rows",
+        "label": "Agent 第一稿：引了不在引用行里的数的段落（改一次以后是零）",
+        "value": 22.0,
+        "full": "22",
+        "evaluation": "测试集：埋好答案的题（脚本、一次提示词、Agent）",
+        "sources": [
+          "grounded-business-review-public/eval/EVALUATION.md"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/EVALUATION.md"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "22"
+      }
+    ],
+    "short_name": "经营分析",
+    "card_title": "经营周报：找异动原因，每个数字都对回查询结果",
+    "assumed": "以为一次提示词第一次交卷大多能过数字核对",
+    "showed": "第一次交卷只过了 19/36；最后没放行的都卡在中文数字上，没有一个错数",
+    "result_line": "按题配对，Agent 比一次提示词多对 6 题、少对 0 题（p = 0.031）",
+    "key_numbers": [
+      {
+        "id": "N3",
+        "label": "Agent 原因全找对（一次提示词 28/36）"
+      },
+      {
+        "id": "N13",
+        "label": "两个维度交叉的原因，一次提示词答对的题"
+      },
+      {
+        "id": "N15",
+        "label": "Agent 第一稿数字对不上引用行的段落"
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-11-17",
+        "label": "开发集",
+        "text": "规则和提示词改到第 4 版",
+        "after": "16/16",
+        "after_id": "N12"
+      },
+      {
+        "date": "2026-11-17",
+        "label": "测试集",
+        "text": "Agent 找对最多，比一次提示词多对",
+        "before": "28/36",
+        "before_id": "N2",
+        "after": "34/36",
+        "after_id": "N3",
+        "adopted": true
+      },
+      {
+        "date": "2026-11-17",
+        "label": "数字核对",
+        "text": "逐段核对，卡住的只有中文数字",
+        "after": "33/36",
+        "after_id": "N9"
+      },
+      {
+        "date": "2026-11-17",
+        "label": "Dify 版",
+        "text": "同一条流程搭成 Dify 工作流"
+      }
+    ],
+    "images": [
+      {
+        "path": "grounded-business-review-public/reports/contribution_visits_channel.png",
+        "caption": "访问次数的变化按渠道拆开：下降主要来自直播（合成数据）",
+        "public": true,
+        "url": "https://raw.githubusercontent.com/Jason-d-e/grounded-business-review/main/reports/contribution_visits_channel.png"
+      },
+      {
+        "path": "grounded-business-review-public/dify/screenshots/workflow.png",
+        "caption": "Dify 里的同一条流程：监控和拆解、写周报、数字核对，没放行就改一次再核对",
+        "public": true,
+        "url": "https://raw.githubusercontent.com/Jason-d-e/grounded-business-review/main/dify/screenshots/workflow.png"
+      }
+    ]
+  },
+  {
+    "id": "grounded-business-review",
+    "lang": "en",
+    "order": 10,
+    "name": "Grounded Business Review",
+    "status": "public",
+    "layer": "Scenario: judgement",
+    "period": "2026-11-16 – 2026-11-17",
+    "team": "Liang Liyuan",
+    "stack": "Python, DuckDB (SQL), Pandas, evidence-check 0.4.0, Message Batches API, Excel, Dify",
+    "one_line": "On synthetic local-services group-buying data, \"weekly monitor → breakdown by dimension → weekly review → number check\" runs as one repeatable line, and three ways of finding the cause are compared: a fixed-rule script, a one-prompt approach that hands the model a fixed pack of query results, and an agent that queries with tools.",
+    "facts": [
+      {
+        "label": "When",
+        "value": "2026-11-16 – 2026-11-17"
+      },
+      {
+        "label": "Team",
+        "value": "Liang Liyuan"
+      },
+      {
+        "label": "Stack",
+        "value": "Python, DuckDB (SQL), Pandas, evidence-check 0.4.0, Message Batches API, Excel, Dify"
+      },
+      {
+        "label": "Place in the portfolio",
+        "value": "Scenario: judgement"
+      },
+      {
+        "label": "Status",
+        "value": "Public"
+      }
+    ],
+    "links": [
+      {
+        "label": "Code and report",
+        "url": "https://github.com/Jason-d-e/grounded-business-review"
+      }
+    ],
+    "problem": [
+      "Whoever reads the weekly numbers needs to know which metrics moved and why; when a model finds the cause and writes the review, is the cause right, and does every number trace back to a query result?"
+    ],
+    "did": [
+      "On synthetic local-services group-buying data I built a metric dictionary, a one-query weekly monitor, contribution and rate-mix breakdowns and number-checked weekly reviews, and compared three ways of finding the cause: a fixed-rule script, a one-prompt approach and an agent; the known-answer test cases and the evaluation plan were frozen before the run; the same flow was also built as a Dify workflow."
+    ],
+    "evaluation": [
+      "**Test set: known-answer cases (script, one prompt, agent)**: 36 cases; 1 run per case per approach; claude-haiku-5-5, effort medium, Message Batches API; the script makes no model calls",
+      "**Development set: used to write the rules and prompts (version 4)**: 16 cases; 1 run per case per approach; claude-haiku-5-5, effort medium, Message Batches API"
+    ],
+    "iteration": [
+      "First the metric dictionary, weekly monitor, breakdowns and number check were built as one line shared by all three approaches.",
+      "The script's drill-down was rewritten once on the development set: stage first, then segment, and segments the found cause already explains are dropped.",
+      "Prompts v1 to v4: some drafts passed the check by dropping their numbers, so from v3 a finding must contain a number and a cause must cite a row; v4 says Chinese number words are checked too.",
+      "Version 4 on the development set: script 12/16, one prompt 13/16, agent 16/16; then the file fingerprints were frozen and the test set ran.",
+      "Test set: agent 34/36, script 31/36, one prompt 28/36; on causes that cross two dimensions the one prompt got 0/6.",
+      "Dify version: the same one-prompt flow built as a Dify workflow and tried on a few scenario weeks; not in the evaluation."
+    ],
+    "result": [
+      "Letting the model decide what to query finds causes best, most clearly when a cause crosses two dimensions; the price is first drafts that cite the wrong row more often and about 1.8× the one prompt's cost. The fixed script does well on single causes, and these cases cannot separate it from the agent. The number check stopped every number quoted from the wrong row, but it is too strict on Chinese number words and also held back reviews with no wrong number."
+    ],
+    "limitations": [
+      "The data, the planted events, the monitor and all three approaches come from the same project; the events are clean and sit inside existing dimensions, which real causes often do not. Recommendation: Before real data, build cases from past weeks whose causes are already known and test again.",
+      "The agent and the script differ by a few cases (p = 0.45); these cases cannot separate them. Recommendation: Separating them needs more cases, especially two-cause and two-dimension ones.",
+      "The number check is too strict on Chinese number words: the reviews held back in the end had no wrong number, and their failing paragraphs failed on words like 这两项 (\"these two\") or 前一天 (\"the day before\"). Recommendation: Treat counting words apart from quantities, or give them their own rule; how strict to be is a product decision to make with the people who use it.",
+      "The agent's first drafts had 22 paragraphs quoting a number not in the cited row, all fixed only by the one revision; without the check they would have gone out. Recommendation: Keep the check before anything goes out.",
+      "Recommended actions are not scored. Recommendation: Write scoring rules for the actions and test them on the same cases."
+    ],
+    "headline": [
+      "All planted causes right: script 31/36, one prompt 28/36, agent 34/36",
+      "Case by case the agent beat the one prompt 6 to 0 (p = 0.031); against the script it is too close to call (p = 0.45)",
+      "Released after at most one revision: one prompt 35/36, agent 33/36; every review held back failed on Chinese number words, none on a wrong number"
+    ],
+    "numbers": [
+      {
+        "id": "N1",
+        "metric": "script_all",
+        "label": "All planted causes right (script)",
+        "value": "31/36",
+        "full": "31/36 (86.1%, 95% CI 71.3–93.9%)",
+        "evaluation": "Test set: known-answer cases (script, one prompt, agent)",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-test.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json"
+        ],
+        "kind": "proportion",
+        "k": 31,
+        "n": 36,
+        "rate": 0.8611,
+        "ci95": [
+          0.7134,
+          0.9392
+        ],
+        "display": "31/36"
+      },
+      {
+        "id": "N2",
+        "metric": "oneshot_all",
+        "label": "All planted causes right (one prompt)",
+        "value": "28/36",
+        "full": "28/36 (77.8%, 95% CI 61.9–88.3%)",
+        "evaluation": "Test set: known-answer cases (script, one prompt, agent)",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-test.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json"
+        ],
+        "kind": "proportion",
+        "k": 28,
+        "n": 36,
+        "rate": 0.7778,
+        "ci95": [
+          0.6192,
+          0.8828
+        ],
+        "display": "28/36"
+      },
+      {
+        "id": "N3",
+        "metric": "agent_all",
+        "label": "All planted causes right (agent)",
+        "value": "34/36",
+        "full": "34/36 (94.4%, 95% CI 81.9–98.5%)",
+        "evaluation": "Test set: known-answer cases (script, one prompt, agent)",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-test.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json"
+        ],
+        "kind": "proportion",
+        "k": 34,
+        "n": 36,
+        "rate": 0.9444,
+        "ci95": [
+          0.8186,
+          0.9846
+        ],
+        "display": "34/36"
+      },
+      {
+        "id": "N4",
+        "metric": "pair_agent_only",
+        "label": "Case by case: agent right, one prompt wrong",
+        "value": 6.0,
+        "full": "6",
+        "evaluation": "Test set: known-answer cases (script, one prompt, agent)",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-test.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "6"
+      },
+      {
+        "id": "N5",
+        "metric": "pair_oneshot_only",
+        "label": "Case by case: one prompt right, agent wrong",
+        "value": 0.0,
+        "full": "0",
+        "evaluation": "Test set: known-answer cases (script, one prompt, agent)",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-test.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "0"
+      },
+      {
+        "id": "N6",
+        "metric": "pair_p",
+        "label": "Agent vs one prompt: exact test p value",
+        "value": 0.0312,
+        "full": "0.031",
+        "evaluation": "Test set: known-answer cases (script, one prompt, agent)",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-test.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "0.031"
+      },
+      {
+        "id": "N7",
+        "metric": "pair_script_p",
+        "label": "Agent vs script: exact test p value",
+        "value": 0.4531,
+        "full": "0.45",
+        "evaluation": "Test set: known-answer cases (script, one prompt, agent)",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-test.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "0.45"
+      },
+      {
+        "id": "N8",
+        "metric": "oneshot_released",
+        "label": "Released after at most one revision (one prompt)",
+        "value": "35/36",
+        "full": "35/36 (97.2%, 95% CI 85.8–99.5%)",
+        "evaluation": "Test set: known-answer cases (script, one prompt, agent)",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-test.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json"
+        ],
+        "kind": "proportion",
+        "k": 35,
+        "n": 36,
+        "rate": 0.9722,
+        "ci95": [
+          0.8583,
+          0.9951
+        ],
+        "display": "35/36"
+      },
+      {
+        "id": "N9",
+        "metric": "agent_released",
+        "label": "Released after at most one revision (agent)",
+        "value": "33/36",
+        "full": "33/36 (91.7%, 95% CI 78.2–97.1%)",
+        "evaluation": "Test set: known-answer cases (script, one prompt, agent)",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-test.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json"
+        ],
+        "kind": "proportion",
+        "k": 33,
+        "n": 36,
+        "rate": 0.9167,
+        "ci95": [
+          0.7817,
+          0.9713
+        ],
+        "display": "33/36"
+      },
+      {
+        "id": "N10",
+        "metric": "dev_script",
+        "label": "Development set: all causes right (script)",
+        "value": "12/16",
+        "full": "12/16 (75.0%, 95% CI 50.5–89.8%)",
+        "evaluation": "Development set: used to write the rules and prompts (version 4)",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-dev.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-dev.json"
+        ],
+        "kind": "proportion",
+        "k": 12,
+        "n": 16,
+        "rate": 0.75,
+        "ci95": [
+          0.505,
+          0.8982
+        ],
+        "display": "12/16"
+      },
+      {
+        "id": "N11",
+        "metric": "dev_oneshot",
+        "label": "Development set: all causes right (one prompt)",
+        "value": "13/16",
+        "full": "13/16 (81.2%, 95% CI 57.0–93.4%)",
+        "evaluation": "Development set: used to write the rules and prompts (version 4)",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-dev.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-dev.json"
+        ],
+        "kind": "proportion",
+        "k": 13,
+        "n": 16,
+        "rate": 0.8125,
+        "ci95": [
+          0.5699,
+          0.9341
+        ],
+        "display": "13/16"
+      },
+      {
+        "id": "N12",
+        "metric": "dev_agent",
+        "label": "Development set: all causes right (agent)",
+        "value": "16/16",
+        "full": "16/16 (100.0%, 95% CI 80.6–100.0%)",
+        "evaluation": "Development set: used to write the rules and prompts (version 4)",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-dev.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-dev.json"
+        ],
+        "kind": "proportion",
+        "k": 16,
+        "n": 16,
+        "rate": 1.0,
+        "ci95": [
+          0.8064,
+          1.0
+        ],
+        "display": "16/16"
+      },
+      {
+        "id": "N13",
+        "metric": "oneshot_2d",
+        "label": "Two-dimension causes right (one prompt)",
+        "value": "0/6",
+        "full": "0/6 (0.0%, 95% CI 0.0–39.0%)",
+        "evaluation": "Test set: known-answer cases (script, one prompt, agent)",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-test.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json"
+        ],
+        "kind": "proportion",
+        "k": 0,
+        "n": 6,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.3903
+        ],
+        "display": "0/6"
+      },
+      {
+        "id": "N14",
+        "metric": "oneshot_first",
+        "label": "Released on the first draft (one prompt) (predicted between seventy and eighty-five percent; this prediction did not hold)",
+        "value": "19/36",
+        "full": "19/36 (52.8%, 95% CI 37.0–68.0%)",
+        "evaluation": "Test set: known-answer cases (script, one prompt, agent)",
+        "sources": [
+          "grounded-business-review-public/eval/results/summary-test.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json"
+        ],
+        "kind": "proportion",
+        "k": 19,
+        "n": 36,
+        "rate": 0.5278,
+        "ci95": [
+          0.3701,
+          0.6801
+        ],
+        "display": "19/36"
+      },
+      {
+        "id": "N15",
+        "metric": "agent_bad_rows",
+        "label": "Agent first drafts: paragraphs quoting a number not in the cited row (zero after one revision)",
+        "value": 22.0,
+        "full": "22",
+        "evaluation": "Test set: known-answer cases (script, one prompt, agent)",
+        "sources": [
+          "grounded-business-review-public/eval/EVALUATION.md"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/EVALUATION.md"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "22"
+      }
+    ],
+    "short_name": "Business review",
+    "card_title": "Weekly review: find the cause, trace every number",
+    "assumed": "Expected most one-prompt first drafts to pass the number check",
+    "showed": "First drafts passed only 19/36; reviews held back in the end failed on Chinese number words, never on a wrong number",
+    "result_line": "Case by case, the agent beat the one prompt 6 to 0 (exact p = 0.031)",
+    "key_numbers": [
+      {
+        "id": "N3",
+        "label": "Agent named every planted cause (one prompt: 28/36)"
+      },
+      {
+        "id": "N13",
+        "label": "Two-dimension causes the one prompt got right"
+      },
+      {
+        "id": "N15",
+        "label": "Agent first-draft paragraphs citing a number not in the row"
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-11-17",
+        "label": "Development set",
+        "text": "Rules and prompts revised up to v4",
+        "after": "16/16",
+        "after_id": "N12"
+      },
+      {
+        "date": "2026-11-17",
+        "label": "Test set",
+        "text": "The agent finds the most causes",
+        "before": "28/36",
+        "before_id": "N2",
+        "after": "34/36",
+        "after_id": "N3",
+        "adopted": true
+      },
+      {
+        "date": "2026-11-17",
+        "label": "Number check",
+        "text": "Every paragraph checked; only number words held reviews back",
+        "after": "33/36",
+        "after_id": "N9"
+      },
+      {
+        "date": "2026-11-17",
+        "label": "Dify version",
+        "text": "The same flow as a Dify workflow"
+      }
+    ],
+    "images": [
+      {
+        "path": "grounded-business-review-public/reports/contribution_visits_channel.png",
+        "caption": "Where the change in visits came from, by channel: the drop comes mostly from live streaming (synthetic data).",
+        "public": true,
+        "url": "https://raw.githubusercontent.com/Jason-d-e/grounded-business-review/main/reports/contribution_visits_channel.png"
+      },
+      {
+        "path": "grounded-business-review-public/dify/screenshots/workflow.png",
+        "caption": "The same flow in Dify: monitor and break down, write the review, check the numbers, and revise once if it is held back.",
+        "public": true,
+        "url": "https://raw.githubusercontent.com/Jason-d-e/grounded-business-review/main/dify/screenshots/workflow.png"
+      }
+    ]
   }
 ]

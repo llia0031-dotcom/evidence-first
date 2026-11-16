@@ -136,20 +136,21 @@
         "en": "How does an agent bring evidence through multi-turn, tool-using work?"
       },
       "projects": [
-        "grounded-review"
+        "grounded-review",
+        "grounded-business-review"
       ],
       "links": [],
       "purpose": {
-        "zh": "广告审核不能只给“通过 / 拒绝”，要说出违反哪一条、是哪几个字，广告主改了以后还要复审。",
-        "en": "Ad review must name the clause and the exact words, not just approve or reject, and re-review the advertiser's revision."
+        "zh": "广告审核不能只给“通过 / 拒绝”，要说出违反哪一条、是哪几个字，广告主改了以后还要复审；经营周报要从指标异动找到原因，每个数字都要对回查询结果。",
+        "en": "Ad review must name the clause and the exact words, not just approve or reject, and re-review the advertiser's revision; a weekly business review must trace a metric change to its cause, with every number traced to a query result."
       },
       "did": {
-        "zh": "做了查条款、引原文、多轮改稿和复审的 Agent，和单个提示词、违禁词表、开源审核模型比较；改稿建议从 v1 迭代到 v1.3；最后换成监管机构和法院定答案的真实广告。",
-        "en": "An agent that looks up clauses, quotes them, revises and re-reviews, compared with a single prompt, a banned-word list and open-source moderation models; the advice iterated from v1 to v1.3; then real ads judged by regulators and courts."
+        "zh": "做了查条款、引原文、多轮改稿和复审的 Agent，和单个提示词、违禁词表、开源审核模型比较；改稿建议从 v1 迭代到 v1.3；最后换成监管机构和法院定答案的真实广告。经营分析里比较固定脚本、一次提示词和自己查数的 Agent，周报放行前逐段核对数字。",
+        "en": "An agent that looks up clauses, quotes them, revises and re-reviews, compared with a single prompt, a banned-word list and open-source moderation models; the advice iterated from v1 to v1.3; then real ads judged by regulators and courts. For business reviews a fixed script, a single prompt and an agent that queries for itself were compared, with every paragraph's numbers checked before release."
       },
       "reuse": {
-        "zh": "evidence-check 的脚本是 Agent 的一个工具；演示页复用了简历初筛的页面骨架。",
-        "en": "The evidence-check script is one of the agent's tools; the demo reuses the screening study's page skeleton."
+        "zh": "evidence-check 的脚本是 Agent 的一个工具；演示页复用了简历初筛的页面骨架；经营周报的数字核对也直接调用这个脚本。",
+        "en": "The evidence-check script is one of the agent's tools, and the demo reuses the screening study's page skeleton; the business review's number check calls the same script."
       },
       "result": [
         {
@@ -163,6 +164,10 @@
         {
           "zh": "改稿字段写错：6/36 → 0/36",
           "en": "Advice fields filled wrongly: 6/36 → 0/36"
+        },
+        {
+          "zh": "经营分析，埋好的原因全找对：一次提示词 28/36，Agent 34/36",
+          "en": "Business review, all planted causes right: single prompt 28/36, agent 34/36"
         }
       ]
     },
@@ -226,8 +231,8 @@
           "en": "Grounded Labelling Pipeline: wrong decisions that went live fell from 17/332 to 9/332; the first canary rolled back at 10% under the rules written beforehand, the second, with fixed rules, reached full release and v2 went live; version 3 missed the adoption standard written beforehand and was not released (a replay, not real users)"
         },
         {
-          "zh": "9 张评测卡、200 个数字全部由脚本从结果文件算出，0 处和项目记录对照",
-          "en": "9 evaluation cards and 200 numbers, all computed from result files and checked against 0 project records"
+          "zh": "10 张评测卡、222 个数字全部由脚本从结果文件算出，0 处和项目记录对照",
+          "en": "10 evaluation cards and 222 numbers, all computed from result files and checked against 0 project records"
         },
         {
           "zh": "灰度回放：有据审核 v1.3 放到全量，v1.2 在放量中途触发回滚（回放，不是真实用户）",

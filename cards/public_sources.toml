@@ -34,3 +34,8 @@ url = "https://github.com/Jason-d-e/voice-agent-eval/blob/main/"
 prefix = "evidence-pipeline-public/"
 repo = "grounded-labelling-pipeline"
 url = "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/"
+
+[[map]]
+prefix = "grounded-business-review-public/"
+repo = "grounded-business-review"
+url = "https://github.com/Jason-d-e/grounded-business-review/blob/main/"
