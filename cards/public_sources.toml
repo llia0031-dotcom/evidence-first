@@ -24,3 +24,8 @@ url = "https://github.com/Jason-d-e/sellpoint-check/blob/main/"
 prefix = "screening-audit/"
 repo = "evidence-screening"
 url = "https://github.com/Jason-d-e/evidence-screening/blob/main/"
+
+[[map]]
+prefix = "voice-agent-eval/"
+repo = "voice-agent-eval"
+url = "https://github.com/Jason-d-e/voice-agent-eval/blob/main/"

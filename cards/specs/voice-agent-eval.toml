@@ -1,8 +1,11 @@
 id = "voice-agent-eval"
 order = 8
 layer = "interaction"
-status = "private"
-card_version = "1.1"
+status = "public"
+links = [
+  { label = { zh = "代码和报告", en = "Code and report" }, url = "https://github.com/Jason-d-e/voice-agent-eval" },
+]
+card_version = "1.2"
 updated = "2026-11-15"
 period = "2026-11-13 – 2026-11-15"
 team = "Liang Liyuan"
@@ -232,3 +235,8 @@ text = { zh = "第一张卡，项目未公开。", en = "First card; the project
 id = "1.1"
 date = "2026-11-15"
 text = { zh = "开头加了时间、团队、技术、链接和“问题 / 我做了什么 / 结果”，照作品集案例页的写法；评测部分不变。", en = "Added when, team, stack, links and \"problem / what I did / results\" at the top, the way portfolio case studies open; the evaluation sections are unchanged." }
+
+[[version]]
+id = "1.2"
+date = "2026-11-16"
+text = { zh = "项目已公开：加上代码和报告的链接；数字的来源文件链到公开仓库里的同一份。", en = "The project is public: link to the code and report added; source files link to the identical copies in the public repository." }

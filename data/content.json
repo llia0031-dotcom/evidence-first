@@ -5494,7 +5494,7 @@
     "lang": "zh",
     "order": 8,
     "name": "实时语音 Agent 体验评测",
-    "status": "private",
+    "status": "public",
     "layer": "场景：交互类",
     "period": "2026-11-13 – 2026-11-15",
     "team": "Liang Liyuan",
@@ -5519,10 +5519,15 @@
       },
       {
         "label": "状态",
-        "value": "未公开"
+        "value": "已公开"
       }
     ],
-    "links": [],
+    "links": [
+      {
+        "label": "代码和报告",
+        "url": "https://github.com/Jason-d-e/voice-agent-eval"
+      }
+    ],
     "problem": [
       "语音助手在用户停顿、插话、说“嗯”、背景有人说话时还能不能把事办对，体验用时延、打断、误停的数字来衡量。"
     ],
@@ -5564,8 +5569,8 @@
           "voice-agent-eval/eval/results/run2/scores.json"
         ],
         "source_urls": [
-          null,
-          null
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
         ],
         "kind": "proportion",
         "k": 61,
@@ -5589,8 +5594,8 @@
           "voice-agent-eval/eval/results/run2/scores.json"
         ],
         "source_urls": [
-          null,
-          null
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
         ],
         "kind": "proportion",
         "k": 62,
@@ -5614,8 +5619,8 @@
           "voice-agent-eval/eval/results/run2/scores.json"
         ],
         "source_urls": [
-          null,
-          null
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
         ],
         "kind": "proportion",
         "k": 82,
@@ -5639,8 +5644,8 @@
           "voice-agent-eval/eval/results/run2/scores.json"
         ],
         "source_urls": [
-          null,
-          null
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
         ],
         "kind": "median",
         "unit": "s",
@@ -5663,8 +5668,8 @@
           "voice-agent-eval/eval/results/run2/scores.json"
         ],
         "source_urls": [
-          null,
-          null
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
         ],
         "kind": "median",
         "unit": "s",
@@ -5687,8 +5692,8 @@
           "voice-agent-eval/eval/results/run2/scores.json"
         ],
         "source_urls": [
-          null,
-          null
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
         ],
         "kind": "proportion",
         "k": 16,
@@ -5712,8 +5717,8 @@
           "voice-agent-eval/eval/results/run2/scores.json"
         ],
         "source_urls": [
-          null,
-          null
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
         ],
         "kind": "median",
         "unit": "s",
@@ -5736,8 +5741,8 @@
           "voice-agent-eval/eval/results/run2/scores.json"
         ],
         "source_urls": [
-          null,
-          null
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
         ],
         "kind": "proportion",
         "k": 0,
@@ -5761,8 +5766,8 @@
           "voice-agent-eval/eval/results/run2/scores.json"
         ],
         "source_urls": [
-          null,
-          null
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
         ],
         "kind": "proportion",
         "k": 4,
@@ -5786,8 +5791,8 @@
           "voice-agent-eval/eval/results/run2/scores.json"
         ],
         "source_urls": [
-          null,
-          null
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
         ],
         "kind": "proportion",
         "k": 4,
@@ -5894,7 +5899,7 @@
     "lang": "en",
     "order": 8,
     "name": "Real-time voice agent evaluation",
-    "status": "private",
+    "status": "public",
     "layer": "Scenario: interaction",
     "period": "2026-11-13 – 2026-11-15",
     "team": "Liang Liyuan",
@@ -5919,10 +5924,15 @@
       },
       {
         "label": "Status",
-        "value": "Not public"
+        "value": "Public"
       }
     ],
-    "links": [],
+    "links": [
+      {
+        "label": "Code and report",
+        "url": "https://github.com/Jason-d-e/voice-agent-eval"
+      }
+    ],
     "problem": [
       "Whether a voice assistant still gets the task right when the user pauses, interrupts, says \"mm\" or talks over background speech, with experience measured as latency, barge-in and false-stop numbers."
     ],
@@ -5964,8 +5974,8 @@
           "voice-agent-eval/eval/results/run2/scores.json"
         ],
         "source_urls": [
-          null,
-          null
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
         ],
         "kind": "proportion",
         "k": 61,
@@ -5989,8 +5999,8 @@
           "voice-agent-eval/eval/results/run2/scores.json"
         ],
         "source_urls": [
-          null,
-          null
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
         ],
         "kind": "proportion",
         "k": 62,
@@ -6014,8 +6024,8 @@
           "voice-agent-eval/eval/results/run2/scores.json"
         ],
         "source_urls": [
-          null,
-          null
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
         ],
         "kind": "proportion",
         "k": 82,
@@ -6039,8 +6049,8 @@
           "voice-agent-eval/eval/results/run2/scores.json"
         ],
         "source_urls": [
-          null,
-          null
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
         ],
         "kind": "median",
         "unit": "s",
@@ -6063,8 +6073,8 @@
           "voice-agent-eval/eval/results/run2/scores.json"
         ],
         "source_urls": [
-          null,
-          null
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
         ],
         "kind": "median",
         "unit": "s",
@@ -6087,8 +6097,8 @@
           "voice-agent-eval/eval/results/run2/scores.json"
         ],
         "source_urls": [
-          null,
-          null
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
         ],
         "kind": "proportion",
         "k": 16,
@@ -6112,8 +6122,8 @@
           "voice-agent-eval/eval/results/run2/scores.json"
         ],
         "source_urls": [
-          null,
-          null
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
         ],
         "kind": "median",
         "unit": "s",
@@ -6136,8 +6146,8 @@
           "voice-agent-eval/eval/results/run2/scores.json"
         ],
         "source_urls": [
-          null,
-          null
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
         ],
         "kind": "proportion",
         "k": 0,
@@ -6161,8 +6171,8 @@
           "voice-agent-eval/eval/results/run2/scores.json"
         ],
         "source_urls": [
-          null,
-          null
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
         ],
         "kind": "proportion",
         "k": 4,
@@ -6186,8 +6196,8 @@
           "voice-agent-eval/eval/results/run2/scores.json"
         ],
         "source_urls": [
-          null,
-          null
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+          "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
         ],
         "kind": "proportion",
         "k": 4,

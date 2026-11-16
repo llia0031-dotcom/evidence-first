@@ -3685,14 +3685,22 @@
     "id": "voice-agent-eval",
     "order": 8,
     "layer": "interaction",
-    "status": "private",
+    "status": "public",
     "updated": "2026-11-15",
-    "card_version": "1.1",
+    "card_version": "1.2",
     "card": {
       "zh": "cards/voice-agent-eval.md",
       "en": "cards/voice-agent-eval.en.md"
     },
-    "links": [],
+    "links": [
+      {
+        "label": {
+          "zh": "代码和报告",
+          "en": "Code and report"
+        },
+        "url": "https://github.com/Jason-d-e/voice-agent-eval"
+      }
+    ],
     "period": "2026-11-13 – 2026-11-15",
     "team": "Liang Liyuan",
     "stack": {
@@ -3728,8 +3736,8 @@
               0.9934
             ],
             "source_urls": [
-              null,
-              null
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
             ]
           },
           {
@@ -3752,8 +3760,8 @@
               0.7896
             ],
             "source_urls": [
-              null,
-              null
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
             ]
           },
           {
@@ -3776,8 +3784,8 @@
               0.8101
             ],
             "source_urls": [
-              null,
-              null
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
             ]
           },
           {
@@ -3800,8 +3808,8 @@
               3.138
             ],
             "source_urls": [
-              null,
-              null
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
             ]
           },
           {
@@ -3824,8 +3832,8 @@
               4.656
             ],
             "source_urls": [
-              null,
-              null
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
             ]
           },
           {
@@ -3848,8 +3856,8 @@
               1.0
             ],
             "source_urls": [
-              null,
-              null
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
             ]
           },
           {
@@ -3872,8 +3880,8 @@
               0.3244
             ],
             "source_urls": [
-              null,
-              null
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
             ]
           },
           {
@@ -3896,8 +3904,8 @@
               0.3775
             ],
             "source_urls": [
-              null,
-              null
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
             ]
           },
           {
@@ -3920,8 +3928,8 @@
               22.503
             ],
             "source_urls": [
-              null,
-              null
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
             ]
           }
         ]
@@ -3954,8 +3962,8 @@
               0.8303
             ],
             "source_urls": [
-              null,
-              null
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
             ]
           },
           {
@@ -3978,8 +3986,8 @@
               5.693
             ],
             "source_urls": [
-              null,
-              null
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
             ]
           },
           {
@@ -4002,8 +4010,8 @@
               0.7896
             ],
             "source_urls": [
-              null,
-              null
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
             ]
           },
           {
@@ -4026,8 +4034,8 @@
               0.8202
             ],
             "source_urls": [
-              null,
-              null
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
             ]
           },
           {
@@ -4050,8 +4058,8 @@
               4.116
             ],
             "source_urls": [
-              null,
-              null
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
             ]
           },
           {
@@ -4074,8 +4082,8 @@
               1.0
             ],
             "source_urls": [
-              null,
-              null
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
             ]
           },
           {
@@ -4098,8 +4106,8 @@
               0.283
             ],
             "source_urls": [
-              null,
-              null
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
             ]
           },
           {
@@ -4122,8 +4130,8 @@
               0.7848
             ],
             "source_urls": [
-              null,
-              null
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
             ]
           },
           {
@@ -4146,8 +4154,8 @@
               0.7848
             ],
             "source_urls": [
-              null,
-              null
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run1/scores.json",
+              "https://github.com/Jason-d-e/voice-agent-eval/blob/main/eval/results/run2/scores.json"
             ]
           }
         ]

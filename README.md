@@ -55,7 +55,7 @@
 
 ### 第五幕：生成的内容和交互体验怎么拿证据
 
-**AI 生图创作指南：电商主图上的中文字**（[评测卡](cards/text-on-product.md) · [创作指南](https://jason-d-e.github.io/text-on-product/) · [上线前核对工具](https://jason-d-e.github.io/text-on-product/check/) · [代码](https://github.com/Jason-d-e/text-on-product)）；**实时语音 Agent 体验评测**（[评测卡](cards/voice-agent-eval.md) · 未公开）
+**AI 生图创作指南：电商主图上的中文字**（[评测卡](cards/text-on-product.md) · [创作指南](https://jason-d-e.github.io/text-on-product/) · [上线前核对工具](https://jason-d-e.github.io/text-on-product/check/) · [代码](https://github.com/Jason-d-e/text-on-product)）；**实时语音 Agent 体验评测**（[评测卡](cards/voice-agent-eval.md) · [代码和报告](https://github.com/Jason-d-e/voice-agent-eval)）
 
 - **问题**：画面里的字写对没有，语音助手被打断、听到“嗯”、背景有人说话时还办不办得对，都要用数字说话。
 - **我做了什么**：AI 生图：OCR 逐字核对画面里的字，结论写成给商家的创作指南和上线前核对工具。语音：42 段事先定好答案的对话，一项一项试改进，把有效的合在一起。
@@ -100,7 +100,7 @@ flowchart TB
 | **卖点体检**<br>2026-11-12 – 2026-11-14 | 场景：判断类 | 商品页的卖点有没有被买家评价证实：买家只看到被证实的卖点和原话，其余卖点私下交给商家，附修改建议 | 卖点判对率（证实、反驳、有争议、没提到）；每个商品的调用次数和费用 | 答案已知的 60 条卖点：采用的做法 60/60，逐条判断 58/60，先检索 52/60<br>真实数据：调用次数是逐条判断的 2.8%，费用是 17%<br>修改建议第 5 版，真实数据两次独立评分：142/151、143/151 | [代码](https://github.com/Jason-d-e/sellpoint-check) · [设计案例](https://jason-d-e.github.io/sellpoint-check/design/case/) · [可点击原型](https://jason-d-e.github.io/sellpoint-check/design/prototype/product.html)<br>[评测卡](cards/sellpoint-check.md) |
 | **有据审核（广告审核 Agent）**<br>2026-11-13 – 2026-11-15 | 场景：判断类 | 广告审核要说得出违反哪一条、是哪几个字违反的，而不只是给“通过 / 拒绝” | 判对率（放行和拒绝都算）；违规拦截率；条款引对率 | 留出集判对：单个提示词 191/192，Agent 187/192<br>真实广告（英国 ASA 裁决）：49/60 和 51/60<br>改稿字段写错：6/36 → 0/36（v1.3） | [代码和报告](https://github.com/Jason-d-e/grounded-review)<br>[评测卡](cards/grounded-review.md) |
 | **AI 生图创作指南：电商主图上的中文字**<br>2026-11-12 – 2026-11-14 | 场景：生成类 | 用 Seedream 做中文电商主图时，画面里的卖点文字能不能一字不差；怎么写提示词、怎么排版，字最稳；上架前怎么核对 | 画面文字全对的图片比例（OCR 逐字核对）；按评分表的观感分 | 图片文字全对：Seedream 4.5 16/16，4.0 15/16，5.0 lite 16/16<br>图生视频里的字全对：1/4 | [创作指南](https://jason-d-e.github.io/text-on-product/) · [上线前核对工具](https://jason-d-e.github.io/text-on-product/check/) · [代码](https://github.com/Jason-d-e/text-on-product)<br>[评测卡](cards/text-on-product.md) |
-| **实时语音 Agent 体验评测**<br>2026-11-13 – 2026-11-15 | 场景：交互类 | 语音助手在用户停顿、插话、说“嗯”、背景有人说话时还能不能把事办对，体验用时延、打断、误停的数字来衡量 | 严格通过率（事办对且交互对）；开口时延中位数；插话停下率；附和后继续说的比例 | 严格通过：基线（开思考）61/84，四项改进合在一起 62/84；纯文字对照 82/84<br>背景人声时开口：20.4 秒 → 4.56 秒（只听主说话人）<br>真插话停下 16/16，停下时延 0.25 秒 | 未公开<br>[评测卡](cards/voice-agent-eval.md) |
+| **实时语音 Agent 体验评测**<br>2026-11-13 – 2026-11-15 | 场景：交互类 | 语音助手在用户停顿、插话、说“嗯”、背景有人说话时还能不能把事办对，体验用时延、打断、误停的数字来衡量 | 严格通过率（事办对且交互对）；开口时延中位数；插话停下率；附和后继续说的比例 | 严格通过：基线（开思考）61/84，四项改进合在一起 62/84；纯文字对照 82/84<br>背景人声时开口：20.4 秒 → 4.56 秒（只听主说话人）<br>真插话停下 16/16，停下时延 0.25 秒 | [代码和报告](https://github.com/Jason-d-e/voice-agent-eval)<br>[评测卡](cards/voice-agent-eval.md) |
 
 ## 方法
 
