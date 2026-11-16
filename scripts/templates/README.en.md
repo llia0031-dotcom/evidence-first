@@ -28,8 +28,10 @@ flowchart TB
   method --> judge["Judgement<br>Resume screening → Sellpoint Check → Grounded Review"]
   method --> gen["Generation<br>Text on Product"]
   method --> talk["Interaction<br>Real-time voice agent evaluation"]
-  judge --> ops["Operations (in progress)<br>Evidence-backed labelling pipeline"]
+  judge --> ops["Operations<br>Grounded Labelling Pipeline"]
 ```
+
+The operations layer is the [Grounded Labelling Pipeline](https://github.com/Jason-d-e/grounded-labelling-pipeline): it turns Grounded Review into a review workflow with quote checks, a review queue for uncertain ads, prompt versions, canary and rollback, and weekly metrics; its traffic is a replay of test items, not real users.
 
 ## All projects
 

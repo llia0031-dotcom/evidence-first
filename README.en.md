@@ -64,10 +64,10 @@ Each scene states the problem, what I did and the results, then how it connects 
 
 ### Scene 6: How does this become something a team uses every day?
 
-**This repository** ([cards](cards/) · [prompt registry](prompts/README.en.md))
+**This repository** ([cards](cards/) · [prompt registry](prompts/README.en.md)); **Grounded Labelling Pipeline** ([code](https://github.com/Jason-d-e/grounded-labelling-pipeline))
 
 - **Problem**: Once the studies exist, every capability needs evaluation evidence in one format, every prompt change needs old and new scores side by side, and releases and rollbacks need a routine.
-- **What I did**: This repository: evaluation cards in one format and a prompt registry (versions, release labels, canary replay, release checklist, scores posted on every prompt change); an evidence-backed labelling pipeline is in progress.
+- **What I did**: This repository: evaluation cards in one format and a prompt registry (versions, release labels, canary replay, release checklist, scores posted on every prompt change); the Grounded Labelling Pipeline turns Grounded Review into a review workflow: quote checks, a review queue, versions, canary and rollback, weekly metrics.
 - **Results**: 8 evaluation cards and 154 numbers, all computed from result files and checked against 0 project records; Canary replay: Grounded Review v1.3 reaches full release, v1.2 rolls back partway (a replay, not real users)
 - **Connections**: The registry holds the prompt versions from the earlier scenes; the canary replay uses Grounded Review's real comparison data.
 
@@ -82,8 +82,10 @@ flowchart TB
   method --> judge["Judgement<br>Resume screening → Sellpoint Check → Grounded Review"]
   method --> gen["Generation<br>Text on Product"]
   method --> talk["Interaction<br>Real-time voice agent evaluation"]
-  judge --> ops["Operations (in progress)<br>Evidence-backed labelling pipeline"]
+  judge --> ops["Operations<br>Grounded Labelling Pipeline"]
 ```
+
+The operations layer is the [Grounded Labelling Pipeline](https://github.com/Jason-d-e/grounded-labelling-pipeline): it turns Grounded Review into a review workflow with quote checks, a review queue for uncertain ads, prompt versions, canary and rollback, and weekly metrics; its traffic is a replay of test items, not real users.
 
 ## All projects
 

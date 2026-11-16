@@ -61,7 +61,7 @@
     "aigc-scene-eval/report/results.json": "f4a423e654e18ec2091ca00bb79a9a98b274b7ede6e02f9af6711f371191da6d"
   },
   "voice-agent-eval": {
-    "voice-agent-eval/eval/results/run1/scores.json": "30cd39981649a90b55749fa3566d67de25db0fa6bff0a312061c0b671bcea08d",
-    "voice-agent-eval/eval/results/run2/scores.json": "27ca415ab200fd2a18818289a34c6958cfc1634994123912d32fd508aba1fdab"
+    "voice-agent-eval/eval/results/run1/scores.json": "21e433fd24b69081da0226bd5eb64432ae6b7abc621a76beaa0bc3ae171db892",
+    "voice-agent-eval/eval/results/run2/scores.json": "517b760ce67548b4b5b0c5050d553dafb31e1dca108cbdb9c032046812947dbd"
   }
 }

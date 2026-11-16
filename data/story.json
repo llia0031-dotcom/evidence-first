@@ -30,6 +30,7 @@
         "cairn",
         "evidence-check"
       ],
+      "links": [],
       "purpose": {
         "zh": "按资料回答问题时，AI 会悄悄改掉截止时间、数字，或者多出资料里没有的话。",
         "en": "Answering from documents, an AI quietly shifts deadlines and numbers or adds what no document says."
@@ -65,6 +66,7 @@
       "projects": [
         "screening-audit"
       ],
+      "links": [],
       "purpose": {
         "zh": "模型初筛简历时，“符合 / 不符合”能不能都指到简历原文，换掉名字、性别、学校后结论变不变。",
         "en": "When a model screens resumes, can every met / not-met verdict point to the resume, and does it change when name, gender or school change?"
@@ -100,6 +102,7 @@
       "projects": [
         "sellpoint-check"
       ],
+      "links": [],
       "purpose": {
         "zh": "商品页的一条卖点，要从上百条评价里找出支持或反驳它的原话，再下结论；结论只给能改的一方看。",
         "en": "One listing claim needs supporting or refuting quotes found among hundreds of reviews before a conclusion; the conclusion goes only to the side that can act on it."
@@ -131,6 +134,7 @@
       "projects": [
         "grounded-review"
       ],
+      "links": [],
       "purpose": {
         "zh": "广告审核不能只给“通过 / 拒绝”，要说出违反哪一条、是哪几个字，广告主改了以后还要复审。",
         "en": "Ad review must name the clause and the exact words, not just approve or reject, and re-review the advertiser's revision."
@@ -167,6 +171,7 @@
         "text-on-product",
         "voice-agent-eval"
       ],
+      "links": [],
       "purpose": {
         "zh": "画面里的字写对没有，语音助手被打断、听到“嗯”、背景有人说话时还办不办得对，都要用数字说话。",
         "en": "Whether the text in an image is right, and whether a voice assistant still gets things right when interrupted, hearing \"mm\" or over background speech, both need numbers."
@@ -196,13 +201,22 @@
         "en": "How does this become something a team uses every day?"
       },
       "projects": [],
+      "links": [
+        {
+          "label": {
+            "zh": "有据标注流水线",
+            "en": "Grounded Labelling Pipeline"
+          },
+          "url": "https://github.com/Jason-d-e/grounded-labelling-pipeline"
+        }
+      ],
       "purpose": {
         "zh": "一个个评测做完以后，要让每个能力都有同样格式的评测证据、每次改提示词都能看到新旧分数、上线和回滚有章可循。",
         "en": "Once the studies exist, every capability needs evaluation evidence in one format, every prompt change needs old and new scores side by side, and releases and rollbacks need a routine."
       },
       "did": {
-        "zh": "这个仓库：统一评测卡、Prompt 资产库（版本、上线标签、灰度回放、上线清单、改提示词时自动贴分数）；有据标注流水线在建设中。",
-        "en": "This repository: evaluation cards in one format and a prompt registry (versions, release labels, canary replay, release checklist, scores posted on every prompt change); an evidence-backed labelling pipeline is in progress."
+        "zh": "这个仓库：统一评测卡、Prompt 资产库（版本、上线标签、灰度回放、上线清单、改提示词时自动贴分数）；有据标注流水线把有据审核接成一条审核工作流：核对引文、复核队列、版本、灰度和回滚、每周指标。",
+        "en": "This repository: evaluation cards in one format and a prompt registry (versions, release labels, canary replay, release checklist, scores posted on every prompt change); the Grounded Labelling Pipeline turns Grounded Review into a review workflow: quote checks, a review queue, versions, canary and rollback, weekly metrics."
       },
       "reuse": {
         "zh": "资产库收的是前面各幕已有的提示词版本；灰度回放用的是有据审核的真实对比数据。",

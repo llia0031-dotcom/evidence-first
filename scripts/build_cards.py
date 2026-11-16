@@ -537,8 +537,10 @@ def render_scenes(story: dict, projects: list[dict], flat: dict[str, Value], lan
                              else f"**{tr(spec['name'], lang)}** ({' · '.join(bits)})")
             out.append("；".join(names) if zh else "; ".join(names))
         else:
-            out.append("**本仓库**（[评测卡](cards/) · [Prompt 资产库](prompts/README.md)）" if zh
-                       else "**This repository** ([cards](cards/) · [prompt registry](prompts/README.en.md))")
+            extra = "".join(f"；**{tr(l['label'], lang)}**（[代码]({tr(l['url'], lang)})）" if zh
+                            else f"; **{tr(l['label'], lang)}** ([code]({tr(l['url'], lang)}))" for l in sc.get("links", []))
+            out.append(("**本仓库**（[评测卡](cards/) · [Prompt 资产库](prompts/README.md)）" if zh
+                        else "**This repository** ([cards](cards/) · [prompt registry](prompts/README.en.md))") + extra)
         out.append("")
         out.append(f"- **{'问题' if zh else 'Problem'}**{sep}{fill_global(tr(sc['purpose'], lang), flat, lang, 'story')}")
         out.append(f"- **{'我做了什么' if zh else 'What I did'}**{sep}{fill_global(tr(sc['did'], lang), flat, lang, 'story')}")
@@ -562,7 +564,7 @@ def story_json(projects: list[dict]) -> dict:
            "links": story.get("links", []), "scenes": []}
     for sc in story["scene"]:
         out["scenes"].append({
-            "title": sc["title"], "projects": sc["projects"],
+            "title": sc["title"], "projects": sc["projects"], "links": sc.get("links", []),
             **{k: {l: fill_global(tr(sc[k], l), flat, l, "story") for l in ("zh", "en")} for k in ("purpose", "did", "reuse")},
             "result": [{l: fill_global(tr(r, l), flat, l, "story") for l in ("zh", "en")} for r in shown_results(sc)],
         })

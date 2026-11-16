@@ -28,8 +28,10 @@ flowchart TB
   method --> judge["判断<br>简历初筛 → 卖点体检 → 有据审核"]
   method --> gen["生成<br>AI 生图创作指南"]
   method --> talk["交互<br>实时语音 Agent 评测"]
-  judge --> ops["运营（建设中）<br>有据标注流水线"]
+  judge --> ops["运营<br>有据标注流水线"]
 ```
+
+运营层是[有据标注流水线](https://github.com/Jason-d-e/grounded-labelling-pipeline)：把有据审核接成一条审核工作流，核对引文、拿不准的进复核队列、提示词版本、灰度和回滚、每周指标；流量是评测题回放，不是真实用户。
 
 ## 全部项目
 

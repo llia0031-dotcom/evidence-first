@@ -72,7 +72,8 @@ reuse = { zh = "语音评测照 evidence-check v2 的做法预注册；AI 生图
 title = { zh = "怎么变成团队能天天用的能力", en = "How does this become something a team uses every day?" }
 projects = []
 purpose = { zh = "一个个评测做完以后，要让每个能力都有同样格式的评测证据、每次改提示词都能看到新旧分数、上线和回滚有章可循。", en = "Once the studies exist, every capability needs evaluation evidence in one format, every prompt change needs old and new scores side by side, and releases and rollbacks need a routine." }
-did = { zh = "这个仓库：统一评测卡、Prompt 资产库（版本、上线标签、灰度回放、上线清单、改提示词时自动贴分数）；有据标注流水线在建设中。", en = "This repository: evaluation cards in one format and a prompt registry (versions, release labels, canary replay, release checklist, scores posted on every prompt change); an evidence-backed labelling pipeline is in progress." }
+did = { zh = "这个仓库：统一评测卡、Prompt 资产库（版本、上线标签、灰度回放、上线清单、改提示词时自动贴分数）；有据标注流水线把有据审核接成一条审核工作流：核对引文、复核队列、版本、灰度和回滚、每周指标。", en = "This repository: evaluation cards in one format and a prompt registry (versions, release labels, canary replay, release checklist, scores posted on every prompt change); the Grounded Labelling Pipeline turns Grounded Review into a review workflow: quote checks, a review queue, versions, canary and rollback, weekly metrics." }
+links = [{ label = { zh = "有据标注流水线", en = "Grounded Labelling Pipeline" }, url = "https://github.com/Jason-d-e/grounded-labelling-pipeline" }]
 result = [
   { zh = "{_cards} 张评测卡、{_numbers} 个数字全部由脚本从结果文件算出，{_records} 处和项目记录对照", en = "{_cards} evaluation cards and {_numbers} numbers, all computed from result files and checked against {_records} project records" },
   { zh = "灰度回放：有据审核 v1.3 放到全量，v1.2 在放量中途触发回滚（回放，不是真实用户）", en = "Canary replay: Grounded Review v1.3 reaches full release, v1.2 rolls back partway (a replay, not real users)" },
