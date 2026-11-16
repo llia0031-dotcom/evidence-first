@@ -1,12 +1,12 @@
 # Grounded Review (ad-review agent): evaluation card
 
-> Card version 1.1 · Data as of 2026-11-15 · public
+> Card version 1.2 · Data as of 2026-11-15 · public
 >
 > Numbers are computed by `scripts/build_cards.py` from the project's result files; proportions carry a Wilson 95% interval.
 
 | When | Team | Stack | Links |
 |---|---|---|---|
-| 2026-11-13 – 2026-11-15 | Liang Liyuan | Python, RapidOCR, BM25, evidence-check, Transformers (baselines), Message Batches API | [Code and report](https://github.com/Jason-d-e/grounded-review) |
+| 2026-11-13 – 2026-11-16 | Liang Liyuan | Python, RapidOCR, BM25, evidence-check, Transformers (baselines), Message Batches API | [Code and report](https://github.com/Jason-d-e/grounded-review) · [Demo](https://jason-d-e.github.io/grounded-review/en.html) · [Product plan](https://github.com/Jason-d-e/grounded-review/blob/main/product/PRD.md) |
 
 **Problem**: An ad decision should name the rule and the exact words that break it, not just approve or reject.
 
@@ -135,6 +135,18 @@ v1.3 asks for the corrected caption before the explanation; items were written a
 | Model and send mode | claude-haiku-5-5, standard API |
 | Frozen before the run | `eval/PREREGISTRATION.md`, v1.3 section |
 
+### Memory test: earlier confirmed decisions shown to the agent (24 new ads)
+
+24 fictional text ads (12 Chinese, 12 English), each paired with an earlier decision on the same advertiser: half should follow it, half should not (fixed, qualified, history only, reworded, or a new violation). The memory is read-only; similar earlier decisions are attached to the review request with no extra model call. Ads, earlier decisions and answers were written together and preregistered before the run.
+
+| Field | Value |
+|---|---|
+| Date | 2026-11-16 |
+| Items and answers | 24 ads, 3 runs per arm |
+| Runs | 3 runs per arm, pooled; runs are not independent, so intervals are too narrow |
+| Model and send mode | claude-haiku-5-5, Message Batches API (half price) |
+| Frozen before the run | `eval/PREREGISTRATION.md`, memory section |
+
 ## Metrics and results
 
 Each evaluation version has its own table. Scores are not compared across versions whose items or scoring rules differ.
@@ -227,6 +239,17 @@ Sending it back does not help: the model repeats the fault, so v1.2 is dropped.
 | Cost per three-turn conversation (v1.1) | US$0.0069 (n=36) | lower is better | [`grounded-review/eval/results/multiturn-mt4-v1.1.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt4-v1.1.jsonl) |
 | Cost per three-turn conversation (v1.3) | US$0.0068 (n=36) | lower is better | [`grounded-review/eval/results/multiturn-mt4-v1.3.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt4-v1.3.jsonl) |
 
+### Memory test: earlier confirmed decisions shown to the agent (24 new ads)
+
+| Metric | Result | Direction | Source file |
+|---|---|---|---|
+| Decisions right (no memory) | 69/72 (95.8%, 95% CI 88.5–98.6%) | higher is better | [`grounded-review/eval/results/memory-2026-11-16.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json) |
+| Decisions right (with memory) | 72/72 (100.0%, 95% CI 94.9–100.0%) | higher is better | [`grounded-review/eval/results/memory-2026-11-16.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json) |
+| Earlier decision copied where it should not apply (with memory) | 0/36 (0.0%, 95% CI 0.0–9.6%) | lower is better | [`grounded-review/eval/results/memory-2026-11-16.report.md`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.report.md) |
+| Cost per review with memory, relative to without | 0.89× | lower is better | [`grounded-review/eval/results/memory-2026-11-16.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json) |
+
+With memory every decision is right; the errors without memory all come from one ad, so this demonstrates the mechanism rather than a rate. On ads where the earlier decision should not apply, it was never copied.
+
 ## Grader calibration
 
 - Decisions, catches and clause citations are scored by script against answers fixed in advance; no grader is used.
@@ -244,11 +267,14 @@ Sending it back does not help: the model repeats the fault, so v1.2 is dropped.
   - Recommendation: Before the next advice prompt ships, test it on image ads and longer captions.
 - The open-source moderation model takes minutes per image and gives no clause or quote; SafeGuard-VL-RL takes about 178.3 s per image.
   - Recommendation: Use open-source models as a cheap first filter and pass uncertain ads to the grounded review.
+- The memory result rests on a single ad, and the short text ads and the store of earlier decisions were written together.
+  - Recommendation: Before launch, test on real past decisions and longer ads; keep the memory read-only, with writes confirmed by a person.
 
 ## Versions
 
 - **1.0** (2026-11-15) First card, following the public grounded-review repository: the public release has no Granite Guardian results on real ads, so neither does this card. The two text guardrails are compared only in report tables with no summary data file, so they are not on the card.
 - **1.1** (2026-11-15) Added when, team, stack, links and "problem / what I did / results" at the top, the way portfolio case studies open; the evaluation sections are unchanged.
+- **1.2** (2026-11-16) Added links to the demo and the product plan, and the memory test.
 
 ## Provenance
 

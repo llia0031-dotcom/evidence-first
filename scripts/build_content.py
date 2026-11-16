@@ -255,7 +255,7 @@ def render(proj: dict, media: list[dict], lang: str, card_text: str) -> tuple[st
 
     out.append(L("## 配图", "## Images"))
     out.append("")
-    mine = [m for m in media if m["project"] == pid]
+    mine = [m for m in media if m["project"] == pid and m.get("lang", lang) == lang]
     if mine:
         out.append(f"| {L('文件', 'File')} | {L('说明', 'Caption')} | {L('已公开', 'Public')} |")
         out.append("|---|---|---|")
@@ -266,7 +266,8 @@ def render(proj: dict, media: list[dict], lang: str, card_text: str) -> tuple[st
     else:
         out.append(L("暂无。", "None yet."))
     out.append("")
-    data["images"] = [{"path": m["path"], "caption": bc.tr(m["caption"], lang), "public": m["public"]} for m in mine]
+    data["images"] = [{"path": m["path"], "caption": bc.tr(m["caption"], lang), "public": m["public"],
+                       **({"url": m["url"]} if "url" in m else {})} for m in mine]
     return "\n".join(out), claims, data
 
 

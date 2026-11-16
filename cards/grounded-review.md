@@ -1,12 +1,12 @@
 # 有据审核（广告审核 Agent）：评测卡
 
-> 卡片版本 1.1 · 数据截至 2026-11-15 · 已公开
+> 卡片版本 1.2 · 数据截至 2026-11-15 · 已公开
 >
 > 数字由 `scripts/build_cards.py` 从项目的结果文件算出；比例附 Wilson 95% 区间。
 
 | 时间 | 团队 | 技术 | 链接 |
 |---|---|---|---|
-| 2026-11-13 – 2026-11-15 | Liang Liyuan | Python、RapidOCR、BM25、evidence-check、Transformers（对比组）、批量接口 | [代码和报告](https://github.com/Jason-d-e/grounded-review) |
+| 2026-11-13 – 2026-11-16 | Liang Liyuan | Python、RapidOCR、BM25、evidence-check、Transformers（对比组）、批量接口 | [代码和报告](https://github.com/Jason-d-e/grounded-review) · [演示页](https://jason-d-e.github.io/grounded-review/) · [产品方案](https://github.com/Jason-d-e/grounded-review/blob/main/product/PRD.zh-CN.md) |
 
 **问题**：广告审核要说得出违反哪一条、是哪几个字违反的，而不只是给“通过 / 拒绝”。
 
@@ -135,6 +135,18 @@ v1.3 让模型先填修改后的文案、再写说明；题目在 v1.3 写好之
 | 模型和发送方式 | claude-haiku-5-5，普通接口 |
 | 跑前冻结 | `eval/PREREGISTRATION.md` v1.3 一节 |
 
+### 记忆评测：给 Agent 看过去确认过的判定（24 条新广告）
+
+24 条虚构文字广告（中英各 12），每条都对应同一广告主的一条旧判定：一半应照旧判，另一半旧判定不该套用（已经改掉、加了限定、只是历史、换了说法、出现新违规）。记忆只读、不写入，按相似度找出旧判定附在审核请求里，不多调用模型。广告、旧判定和答案一起写好，跑前预注册。
+
+| 项目 | 内容 |
+|---|---|
+| 日期 | 2026-11-16 |
+| 题目和答案 | 24 条广告，每组 3 遍 |
+| 跑了几次 | 每组 3 遍，合并计算；同一题几遍不独立，区间偏窄 |
+| 模型和发送方式 | claude-haiku-5-5，批量接口（半价） |
+| 跑前冻结 | `eval/PREREGISTRATION.md` 记忆一节 |
+
 ## 指标和结果
 
 每个评测版本单独列表。题目或评分规则改过的版本之间不直接比较分数。
@@ -227,6 +239,17 @@ v1.3 让模型先填修改后的文案、再写说明；题目在 v1.3 写好之
 | 每段三轮对话的费用（v1.1） | 0.0069 美元（n=36） | 越低越好 | [`grounded-review/eval/results/multiturn-mt4-v1.1.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt4-v1.1.jsonl) |
 | 每段三轮对话的费用（v1.3） | 0.0068 美元（n=36） | 越低越好 | [`grounded-review/eval/results/multiturn-mt4-v1.3.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt4-v1.3.jsonl) |
 
+### 记忆评测：给 Agent 看过去确认过的判定（24 条新广告）
+
+| 指标 | 结果 | 方向 | 来源文件 |
+|---|---|---|---|
+| 判对（不带记忆） | 69/72（95.8%，95% 区间 88.5–98.6%） | 越高越好 | [`grounded-review/eval/results/memory-2026-11-16.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json) |
+| 判对（带记忆） | 72/72（100.0%，95% 区间 94.9–100.0%） | 越高越好 | [`grounded-review/eval/results/memory-2026-11-16.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json) |
+| 旧判定不该套用时照搬了旧判定（带记忆） | 0/36（0.0%，95% 区间 0.0–9.6%） | 越低越好 | [`grounded-review/eval/results/memory-2026-11-16.report.md`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.report.md) |
+| 带记忆的一次审核费用，是不带记忆的 | 0.89 倍 | 越低越好 | [`grounded-review/eval/results/memory-2026-11-16.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json) |
+
+带记忆全对，不带记忆的错都出在同一条广告上，所以这是机制演示，不是比例；旧判定不该套用的广告上，没有一次照搬旧判定。
+
 ## 评分器校准
 
 - 判对、拦截、条款是否引对都是按事先定好的答案用脚本算的，没有用评分器。
@@ -244,11 +267,14 @@ v1.3 让模型先填修改后的文案、再写说明；题目在 v1.3 写好之
   - 建议：下一版改稿提示词上线前，用图片广告和更长的文案再测一轮。
 - 开源审核模型一张图要几分钟，不给条款和原话；SafeGuard-VL-RL 每张图约 178.3 秒。
   - 建议：开源模型适合当便宜的第一道筛子，拿不准的再交给带依据的审核。
+- 记忆评测的差别只来自一条广告，题目是自己写的短文字广告，旧判定库也是一起写的。
+  - 建议：上线前在真实的历史判定和更长的广告上再测；记忆保持只读，写入要经过人工确认。
 
 ## 版本
 
 - **1.0**（2026-11-15）第一张卡，照公开仓库 grounded-review 的内容写：公开版没有 Granite Guardian 在真实广告上的结果，这里也不放。两个文字审核模型的对比只有报告里的表格、没有汇总数据文件，所以没有收进卡片。
 - **1.1**（2026-11-15）开头加了时间、团队、技术、链接和“问题 / 我做了什么 / 结果”，照作品集案例页的写法；评测部分不变。
+- **1.2**（2026-11-16）加了演示页和产品方案的链接，加了记忆评测。
 
 ## 出处
 

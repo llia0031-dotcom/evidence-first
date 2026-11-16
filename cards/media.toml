@@ -1,112 +1,132 @@
 # Existing screenshots and videos for each project, for the portfolio template. Paths are relative
 # to the folder that holds all projects; build_content.py checks that every file exists.
 # public = true means the file is already published (a public repository or the personal site).
-
-[[media]]
-project = "evidence-check"
-path = "evidence-check-public/README.md"
-public = true
-caption = { zh = "没有现成截图；README 里“核对四条说法”的结果表可以截一张图", en = "No screenshot yet; the four-claim result table in the README can be captured" }
+# lang = "zh" / "en" limits an image to that language's page; without lang it is shown on both
+# (used for the study samples themselves, such as product images with Chinese copy).
 
 [[media]]
 project = "cairn"
 path = "jason-d-e.github.io/assets/cairn/hero-zh.jpg"
+lang = "zh"
 public = true
 caption = { zh = "首屏", en = "First screen" }
 
 [[media]]
 project = "cairn"
 path = "jason-d-e.github.io/assets/cairn/zh-answer.webp"
+lang = "zh"
 public = true
 caption = { zh = "先给结论和截止时间，再列页面和校区", en = "The bottom line and deadline first, then the page and campus" }
 
 [[media]]
 project = "cairn"
 path = "jason-d-e.github.io/assets/cairn/zh-quotes.webp"
+lang = "zh"
 public = true
 caption = { zh = "每个要点下面是逐字核对过的原句", en = "Each point over its verified sentence" }
 
 [[media]]
 project = "cairn"
 path = "jason-d-e.github.io/assets/cairn/zh-trace.webp"
+lang = "zh"
 public = true
 caption = { zh = "这个回答是怎么来的：检索到的段落和分数", en = "How the answer was made: retrieved passages and scores" }
 
 [[media]]
 project = "tracedesk"
 path = "jason-d-e.github.io/assets/tracedesk/hero-zh.jpg"
+lang = "zh"
 public = true
 caption = { zh = "首屏", en = "First screen" }
 
 [[media]]
 project = "tracedesk"
 path = "jason-d-e.github.io/assets/tracedesk/zh-answer.webp"
+lang = "zh"
 public = true
 caption = { zh = "一句结论、一张清单、再是证据", en = "One sentence, a checklist, then the evidence" }
 
 [[media]]
 project = "tracedesk"
 path = "jason-d-e.github.io/assets/tracedesk/zh-focus.webp"
+lang = "zh"
 public = true
 caption = { zh = "专注模式只留下回答", en = "Focus mode keeps only the answer" }
 
 [[media]]
 project = "tracedesk"
 path = "jason-d-e.github.io/assets/tracedesk/zh-dashboard.webp"
+lang = "zh"
 public = true
 caption = { zh = "组织者后台：读者问了什么、资料缺什么", en = "Organiser dashboard: what readers asked, what the documents lack" }
 
 [[media]]
 project = "sellpoint-check"
 path = "sellpoint-check/design/review-shots/1_字体C_案例页首屏.jpg"
+lang = "zh"
 public = false
 caption = { zh = "案例页首屏", en = "Case page first screen" }
 
 [[media]]
 project = "sellpoint-check"
 path = "sellpoint-check/design/review-shots/5_字体C_买家页状态.png"
+lang = "zh"
 public = false
 caption = { zh = "买家页：只展示被评价证实的卖点", en = "Buyer page: only confirmed claims" }
 
 [[media]]
 project = "sellpoint-check"
 path = "sellpoint-check/design/review-shots/6_字体C_卖点体检状态.png"
+lang = "zh"
 public = false
 caption = { zh = "商家后台的卖点体检", en = "The merchant's private claim check" }
 
 [[media]]
 project = "sellpoint-check"
 path = "sellpoint-check/design/review-shots/轻文字动效_中文案例页.mp4"
+lang = "zh"
 public = false
 caption = { zh = "案例页录屏（轻文字动效）", en = "Case page recording (light text motion)" }
 
 [[media]]
 project = "grounded-review"
 path = "grounded-review-public/docs/images/first-screen.jpg"
+lang = "en"
 public = true
 caption = { zh = "演示页：每个结论都说出条款和原话", en = "Demo: every decision names the clause and the words" }
 
 [[media]]
 project = "grounded-review"
 path = "grounded-review-public/docs/images/review.jpg"
+lang = "en"
 public = true
 caption = { zh = "被拒的广告，附违规原话和条款", en = "A rejected ad with the offending words and clause" }
 
 [[media]]
 project = "grounded-review"
 path = "grounded-review-public/docs/images/fix-and-resubmit.jpg"
+lang = "en"
 public = true
 caption = { zh = "广告主问怎么改，再复审", en = "The advertiser asks how to fix it, then re-review" }
 
 [[media]]
 project = "grounded-review"
 path = "grounded-review-public/docs/images/results.jpg"
+lang = "en"
 public = true
 caption = { zh = "留出集上的结果", en = "Results on the held-out set" }
 
 [[media]]
 project = "text-on-product"
 path = "jason-d-e.github.io/assets/text-on-product/hero-zh.jpg"
+lang = "zh"
+public = true
+caption = { zh = "创作指南首屏", en = "Guide first screen" }
+
+[[media]]
+project = "text-on-product"
+path = "jason-d-e.github.io/assets/text-on-product/hero-en.jpg"
+lang = "en"
 public = true
 caption = { zh = "创作指南首屏", en = "Guide first screen" }
 
@@ -143,11 +163,132 @@ caption = { zh = "开口时延对比", en = "First-audio latency comparison" }
 [[media]]
 project = "screening-audit"
 path = "evidence-screening-public/assets/demo-zh.jpg"
+lang = "zh"
 public = true
 caption = { zh = "演示页（中文）：逐条要求的判断，每条附简历原文", en = "Demo (Chinese): verdict per requirement, each with the resume quote" }
 
 [[media]]
 project = "screening-audit"
 path = "evidence-screening-public/assets/demo-en.jpg"
+lang = "en"
 public = true
 caption = { zh = "演示页（英文）", en = "Demo (English)" }
+
+[[media]]
+project = "cairn"
+path = "jason-d-e.github.io/assets/cairn/hero-en.jpg"
+lang = "en"
+public = true
+caption = { zh = "首屏", en = "First screen" }
+
+[[media]]
+project = "cairn"
+path = "jason-d-e.github.io/assets/cairn/en-answer.webp"
+lang = "en"
+public = true
+caption = { zh = "先给结论和截止时间，再列页面和校区", en = "The bottom line and deadline first, then the page and campus" }
+
+[[media]]
+project = "cairn"
+path = "jason-d-e.github.io/assets/cairn/en-quotes.webp"
+lang = "en"
+public = true
+caption = { zh = "每个要点下面是逐字核对过的原句", en = "Each point over its verified sentence" }
+
+[[media]]
+project = "cairn"
+path = "jason-d-e.github.io/assets/cairn/en-trace.webp"
+lang = "en"
+public = true
+caption = { zh = "这个回答是怎么来的：检索到的段落和分数", en = "How the answer was made: retrieved passages and scores" }
+
+[[media]]
+project = "tracedesk"
+path = "jason-d-e.github.io/assets/tracedesk/hero-en.jpg"
+lang = "en"
+public = true
+caption = { zh = "首屏", en = "First screen" }
+
+[[media]]
+project = "tracedesk"
+path = "jason-d-e.github.io/assets/tracedesk/en-answer.webp"
+lang = "en"
+public = true
+caption = { zh = "一句结论、一张清单、再是证据", en = "One sentence, a checklist, then the evidence" }
+
+[[media]]
+project = "tracedesk"
+path = "jason-d-e.github.io/assets/tracedesk/en-focus.webp"
+lang = "en"
+public = true
+caption = { zh = "专注模式只留下回答", en = "Focus mode keeps only the answer" }
+
+[[media]]
+project = "tracedesk"
+path = "jason-d-e.github.io/assets/tracedesk/en-dashboard.webp"
+lang = "en"
+public = true
+caption = { zh = "组织者后台：读者问了什么、资料缺什么", en = "Organiser dashboard: what readers asked, what the documents lack" }
+
+[[media]]
+project = "grounded-review"
+path = "ad-review-agent/design/shots/1_电脑_首屏.jpg"
+lang = "zh"
+public = false
+caption = { zh = "演示页首屏", en = "Demo first screen" }
+
+[[media]]
+project = "grounded-review"
+path = "ad-review-agent/design/shots/2_电脑_审核工作台.jpg"
+lang = "zh"
+public = false
+caption = { zh = "审核工作台：结论、条款和违规原话", en = "Review desk: decision, clause and offending words" }
+
+[[media]]
+project = "grounded-review"
+path = "ad-review-agent/design/shots/3_电脑_追问和复审.jpg"
+lang = "zh"
+public = false
+caption = { zh = "广告主追问怎么改，再复审", en = "The advertiser asks how to fix it, then re-review" }
+
+[[media]]
+project = "grounded-review"
+path = "ad-review-agent/design/shots/4_电脑_测试结果.jpg"
+lang = "zh"
+public = false
+caption = { zh = "测试结果", en = "Test results" }
+
+[[media]]
+project = "grounded-labelling-pipeline"
+path = "evidence-pipeline-public/lark/screenshots/workflow.png"
+url = "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/workflow.png"
+public = true
+caption = { zh = "Lark 多维表格里的工作流：新广告 → AI Agent 判断 → 写回 → 拿不准的进复核队列", en = "The workflow in a Lark Base: new ad → AI Agent step → write back → unsure answers go to the review queue." }
+
+[[media]]
+project = "grounded-labelling-pipeline"
+path = "evidence-pipeline-public/lark/screenshots/agent-step.png"
+url = "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/agent-step.png"
+public = true
+caption = { zh = "AI Agent 步骤的设置：提问里引用表里的广告文字，输出格式固定", en = "The AI Agent step: the prompt refers to the ad text in the table, and the output format is fixed." }
+
+[[media]]
+project = "grounded-labelling-pipeline"
+path = "evidence-pipeline-public/lark/screenshots/results.png"
+url = "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/results.png"
+public = true
+caption = { zh = "“待判广告”表里的结果：判断、条款、引文核对、去向", en = "Results in the table: decision, clause, quote check and route." }
+
+[[media]]
+project = "grounded-labelling-pipeline"
+path = "evidence-pipeline-public/lark/screenshots/review-queue.png"
+url = "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/review-queue.png"
+public = true
+caption = { zh = "复核队列里由工作流和脚本送来的 3 行", en = "The 3 rows that the workflow and the script sent to the review queue." }
+
+[[media]]
+project = "grounded-labelling-pipeline"
+path = "evidence-pipeline-public/lark/screenshots/bot-card.png"
+url = "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/bot-card.png"
+public = true
+caption = { zh = "聊天机器人回的卡片：判断通过，模型拿不准，送人工复核", en = "The card the chat bot replied with: approve, unsure, sent to a human." }

@@ -341,3 +341,12 @@ def pl_retrieval(rd, path: str, query: str, col: str = "hit@3"):
     import io
     rows = [r for r in csv.DictReader(io.StringIO(rd.text(path))) if r["query"] == query]
     return {"k": sum(1 for r in rows if r[col] == "True"), "n": len(rows)}
+
+
+@extractor
+def pl_canary_final_share(rd, path: str):
+    """Canary share at the last step of a replay that finished without a rollback."""
+    d = rd.json(path)
+    if d.get("result") != "full":
+        raise ValueError(f"{path}: replay did not reach full release")
+    return {"kind": "value", "value": d["steps"][-1]["share"], "unit": "pct", "decimals": 0}

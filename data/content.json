@@ -373,13 +373,7 @@
         "adopted": true
       }
     ],
-    "images": [
-      {
-        "path": "evidence-check-public/README.md",
-        "caption": "没有现成截图；README 里“核对四条说法”的结果表可以截一张图",
-        "public": true
-      }
-    ]
+    "images": []
   },
   {
     "id": "evidence-check",
@@ -755,13 +749,7 @@
         "adopted": true
       }
     ],
-    "images": [
-      {
-        "path": "evidence-check-public/README.md",
-        "caption": "No screenshot yet; the four-claim result table in the README can be captured",
-        "public": true
-      }
-    ]
+    "images": []
   },
   {
     "id": "cairn",
@@ -1308,22 +1296,22 @@
     ],
     "images": [
       {
-        "path": "jason-d-e.github.io/assets/cairn/hero-zh.jpg",
+        "path": "jason-d-e.github.io/assets/cairn/hero-en.jpg",
         "caption": "First screen",
         "public": true
       },
       {
-        "path": "jason-d-e.github.io/assets/cairn/zh-answer.webp",
+        "path": "jason-d-e.github.io/assets/cairn/en-answer.webp",
         "caption": "The bottom line and deadline first, then the page and campus",
         "public": true
       },
       {
-        "path": "jason-d-e.github.io/assets/cairn/zh-quotes.webp",
+        "path": "jason-d-e.github.io/assets/cairn/en-quotes.webp",
         "caption": "Each point over its verified sentence",
         "public": true
       },
       {
-        "path": "jason-d-e.github.io/assets/cairn/zh-trace.webp",
+        "path": "jason-d-e.github.io/assets/cairn/en-trace.webp",
         "caption": "How the answer was made: retrieved passages and scores",
         "public": true
       }
@@ -1924,22 +1912,22 @@
     ],
     "images": [
       {
-        "path": "jason-d-e.github.io/assets/tracedesk/hero-zh.jpg",
+        "path": "jason-d-e.github.io/assets/tracedesk/hero-en.jpg",
         "caption": "First screen",
         "public": true
       },
       {
-        "path": "jason-d-e.github.io/assets/tracedesk/zh-answer.webp",
+        "path": "jason-d-e.github.io/assets/tracedesk/en-answer.webp",
         "caption": "One sentence, a checklist, then the evidence",
         "public": true
       },
       {
-        "path": "jason-d-e.github.io/assets/tracedesk/zh-focus.webp",
+        "path": "jason-d-e.github.io/assets/tracedesk/en-focus.webp",
         "caption": "Focus mode keeps only the answer",
         "public": true
       },
       {
-        "path": "jason-d-e.github.io/assets/tracedesk/zh-dashboard.webp",
+        "path": "jason-d-e.github.io/assets/tracedesk/en-dashboard.webp",
         "caption": "Organiser dashboard: what readers asked, what the documents lack",
         "public": true
       }
@@ -2277,11 +2265,6 @@
         "path": "evidence-screening-public/assets/demo-zh.jpg",
         "caption": "演示页（中文）：逐条要求的判断，每条附简历原文",
         "public": true
-      },
-      {
-        "path": "evidence-screening-public/assets/demo-en.jpg",
-        "caption": "演示页（英文）",
-        "public": true
       }
     ]
   },
@@ -2613,11 +2596,6 @@
       }
     ],
     "images": [
-      {
-        "path": "evidence-screening-public/assets/demo-zh.jpg",
-        "caption": "Demo (Chinese): verdict per requirement, each with the resume quote",
-        "public": true
-      },
       {
         "path": "evidence-screening-public/assets/demo-en.jpg",
         "caption": "Demo (English)",
@@ -4014,28 +3992,7 @@
         "adopted": false
       }
     ],
-    "images": [
-      {
-        "path": "sellpoint-check/design/review-shots/1_字体C_案例页首屏.jpg",
-        "caption": "Case page first screen",
-        "public": false
-      },
-      {
-        "path": "sellpoint-check/design/review-shots/5_字体C_买家页状态.png",
-        "caption": "Buyer page: only confirmed claims",
-        "public": false
-      },
-      {
-        "path": "sellpoint-check/design/review-shots/6_字体C_卖点体检状态.png",
-        "caption": "The merchant's private claim check",
-        "public": false
-      },
-      {
-        "path": "sellpoint-check/design/review-shots/轻文字动效_中文案例页.mp4",
-        "caption": "Case page recording (light text motion)",
-        "public": false
-      }
-    ]
+    "images": []
   },
   {
     "id": "grounded-review",
@@ -4044,14 +4001,14 @@
     "name": "有据审核（广告审核 Agent）",
     "status": "public",
     "layer": "场景：判断类",
-    "period": "2026-11-13 – 2026-11-15",
+    "period": "2026-11-13 – 2026-11-16",
     "team": "Liang Liyuan",
     "stack": "Python、RapidOCR、BM25、evidence-check、Transformers（对比组）、批量接口",
     "one_line": "审核广告的 Agent：读文案和图片里的字，在 32 条政策条款里查依据，给出放行或拒绝；每处违规附类别、条款、违规原话和条款原文，引文先过 evidence-check 的核对脚本才算数。",
     "facts": [
       {
         "label": "时间",
-        "value": "2026-11-13 – 2026-11-15"
+        "value": "2026-11-13 – 2026-11-16"
       },
       {
         "label": "团队",
@@ -4074,6 +4031,14 @@
       {
         "label": "代码和报告",
         "url": "https://github.com/Jason-d-e/grounded-review"
+      },
+      {
+        "label": "演示页",
+        "url": "https://jason-d-e.github.io/grounded-review/"
+      },
+      {
+        "label": "产品方案",
+        "url": "https://github.com/Jason-d-e/grounded-review/blob/main/product/PRD.zh-CN.md"
       }
     ],
     "problem": [
@@ -4090,7 +4055,8 @@
       "**真实广告（中文）：16 个公开案例**：16 个案例，每组 2 遍；claude-haiku-5-5，批量接口（半价）",
       "**多轮改稿 mt2：v1 对 v1.1（12 条新广告）**：12 条新广告，每个版本 2 遍，共 24 段对话；claude-haiku-5-5，普通接口",
       "**多轮改稿 mt3：v1.1 对 v1.2（12 条新广告）**：12 条新广告，每个版本 3 遍，共 36 段对话；claude-haiku-5-5，普通接口",
-      "**多轮改稿 mt4：v1.1 对 v1.3（12 条新广告）**：12 条新广告，每个版本 3 遍，共 36 段对话；claude-haiku-5-5，普通接口"
+      "**多轮改稿 mt4：v1.1 对 v1.3（12 条新广告）**：12 条新广告，每个版本 3 遍，共 36 段对话；claude-haiku-5-5，普通接口",
+      "**记忆评测：给 Agent 看过去确认过的判定（24 条新广告）**：24 条广告，每组 3 遍；claude-haiku-5-5，批量接口（半价）"
     ],
     "iteration": [
       "改稿建议 v1.1：改后版本不再留模板占位符，3/24 → 0/24。",
@@ -4106,7 +4072,8 @@
       "Agent 比单个提示词更容易误拒陷阱：留出集陷阱放行 55/60，单个提示词 59/60；Agent 的费用也更高。建议：合规但像违规的广告（送达保证、文化遗产名录、定价）要给 Agent 补正面例子或条款说明。",
       "真实广告上的错大多来自规则不同：英国判不违规的酒类广告，按 TikTok 政策要写酒精度，两组都拒了。建议：上线时政策库要和执行规则的那一方一致；跨市场时按市场分库。",
       "多轮改稿的题只有 12 条短文字广告、一个模型；相差一两段对话属于噪声。建议：下一版改稿提示词上线前，用图片广告和更长的文案再测一轮。",
-      "开源审核模型一张图要几分钟，不给条款和原话；SafeGuard-VL-RL 每张图约 178.3 秒。建议：开源模型适合当便宜的第一道筛子，拿不准的再交给带依据的审核。"
+      "开源审核模型一张图要几分钟，不给条款和原话；SafeGuard-VL-RL 每张图约 178.3 秒。建议：开源模型适合当便宜的第一道筛子，拿不准的再交给带依据的审核。",
+      "记忆评测的差别只来自一条广告，题目是自己写的短文字广告，旧判定库也是一起写的。建议：上线前在真实的历史判定和更长的广告上再测；记忆保持只读，写入要经过人工确认。"
     ],
     "headline": [
       "留出集判对：单个提示词 191/192，Agent 187/192",
@@ -4430,6 +4397,52 @@
           1.0
         ],
         "display": "124/124"
+      },
+      {
+        "id": "N15",
+        "metric": "mem_off_right",
+        "label": "判对（不带记忆）",
+        "value": "69/72",
+        "full": "69/72（95.8%，95% 区间 88.5–98.6%）",
+        "evaluation": "记忆评测：给 Agent 看过去确认过的判定（24 条新广告）",
+        "sources": [
+          "grounded-review-public/eval/results/memory-2026-11-16.summary.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json"
+        ],
+        "kind": "proportion",
+        "k": 69,
+        "n": 72,
+        "rate": 0.9583,
+        "ci95": [
+          0.8845,
+          0.9857
+        ],
+        "display": "69/72"
+      },
+      {
+        "id": "N16",
+        "metric": "mem_on_right",
+        "label": "判对（带记忆）",
+        "value": "72/72",
+        "full": "72/72（100.0%，95% 区间 94.9–100.0%）",
+        "evaluation": "记忆评测：给 Agent 看过去确认过的判定（24 条新广告）",
+        "sources": [
+          "grounded-review-public/eval/results/memory-2026-11-16.summary.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json"
+        ],
+        "kind": "proportion",
+        "k": 72,
+        "n": 72,
+        "rate": 1.0,
+        "ci95": [
+          0.9493,
+          1.0
+        ],
+        "display": "72/72"
       }
     ],
     "short_name": "有据审核",
@@ -4486,28 +4499,37 @@
         "date": "2026-11-14",
         "label": "真实广告",
         "text": "换成监管机构和法院定答案的广告"
+      },
+      {
+        "date": "2026-11-16",
+        "label": "记忆",
+        "text": "给 Agent 看过去确认过的判定",
+        "before": "69/72",
+        "before_id": "N15",
+        "after": "72/72",
+        "after_id": "N16"
       }
     ],
     "images": [
       {
-        "path": "grounded-review-public/docs/images/first-screen.jpg",
-        "caption": "演示页：每个结论都说出条款和原话",
-        "public": true
+        "path": "ad-review-agent/design/shots/1_电脑_首屏.jpg",
+        "caption": "演示页首屏",
+        "public": false
       },
       {
-        "path": "grounded-review-public/docs/images/review.jpg",
-        "caption": "被拒的广告，附违规原话和条款",
-        "public": true
+        "path": "ad-review-agent/design/shots/2_电脑_审核工作台.jpg",
+        "caption": "审核工作台：结论、条款和违规原话",
+        "public": false
       },
       {
-        "path": "grounded-review-public/docs/images/fix-and-resubmit.jpg",
-        "caption": "广告主问怎么改，再复审",
-        "public": true
+        "path": "ad-review-agent/design/shots/3_电脑_追问和复审.jpg",
+        "caption": "广告主追问怎么改，再复审",
+        "public": false
       },
       {
-        "path": "grounded-review-public/docs/images/results.jpg",
-        "caption": "留出集上的结果",
-        "public": true
+        "path": "ad-review-agent/design/shots/4_电脑_测试结果.jpg",
+        "caption": "测试结果",
+        "public": false
       }
     ]
   },
@@ -4518,14 +4540,14 @@
     "name": "Grounded Review (ad-review agent)",
     "status": "public",
     "layer": "Scenario: judgement",
-    "period": "2026-11-13 – 2026-11-15",
+    "period": "2026-11-13 – 2026-11-16",
     "team": "Liang Liyuan",
     "stack": "Python, RapidOCR, BM25, evidence-check, Transformers (baselines), Message Batches API",
     "one_line": "An agent that reviews ads: it reads the caption and the words in the image, looks up 32 policy clauses, and approves or rejects.",
     "facts": [
       {
         "label": "When",
-        "value": "2026-11-13 – 2026-11-15"
+        "value": "2026-11-13 – 2026-11-16"
       },
       {
         "label": "Team",
@@ -4548,6 +4570,14 @@
       {
         "label": "Code and report",
         "url": "https://github.com/Jason-d-e/grounded-review"
+      },
+      {
+        "label": "Demo",
+        "url": "https://jason-d-e.github.io/grounded-review/en.html"
+      },
+      {
+        "label": "Product plan",
+        "url": "https://github.com/Jason-d-e/grounded-review/blob/main/product/PRD.md"
       }
     ],
     "problem": [
@@ -4564,7 +4594,8 @@
       "**Real ads (Chinese): 16 published cases**: 16 cases, 2 runs per arm; claude-haiku-5-5, Message Batches API (half price)",
       "**Multi-turn mt2: v1 vs v1.1 (12 new ads)**: 12 new ads, 2 runs per version, 24 conversations; claude-haiku-5-5, standard API",
       "**Multi-turn mt3: v1.1 vs v1.2 (12 new ads)**: 12 new ads, 3 runs per version, 36 conversations; claude-haiku-5-5, standard API",
-      "**Multi-turn mt4: v1.1 vs v1.3 (12 new ads)**: 12 new ads, 3 runs per version, 36 conversations; claude-haiku-5-5, standard API"
+      "**Multi-turn mt4: v1.1 vs v1.3 (12 new ads)**: 12 new ads, 3 runs per version, 36 conversations; claude-haiku-5-5, standard API",
+      "**Memory test: earlier confirmed decisions shown to the agent (24 new ads)**: 24 ads, 3 runs per arm; claude-haiku-5-5, Message Batches API (half price)"
     ],
     "iteration": [
       "Advice v1.1: no template placeholders left in corrected versions, 3/24 → 0/24.",
@@ -4580,7 +4611,8 @@
       "The agent rejects more traps: traps approved 55/60 against 59/60 for the single prompt, and it costs more. Recommendation: Add positive examples or clause notes for compliant ads that look like violations (delivery guarantees, heritage listings, set prices).",
       "Most errors on real ads come from different rules: alcohol ads the ASA cleared lack the alcohol-content line TikTok requires, and both arms rejected them. Recommendation: Keep the policy library identical to the rules being enforced; split it by market.",
       "Each multi-turn check uses 12 short text ads and one model; a difference of one or two conversations is noise. Recommendation: Before the next advice prompt ships, test it on image ads and longer captions.",
-      "The open-source moderation model takes minutes per image and gives no clause or quote; SafeGuard-VL-RL takes about 178.3 s per image. Recommendation: Use open-source models as a cheap first filter and pass uncertain ads to the grounded review."
+      "The open-source moderation model takes minutes per image and gives no clause or quote; SafeGuard-VL-RL takes about 178.3 s per image. Recommendation: Use open-source models as a cheap first filter and pass uncertain ads to the grounded review.",
+      "The memory result rests on a single ad, and the short text ads and the store of earlier decisions were written together. Recommendation: Before launch, test on real past decisions and longer ads; keep the memory read-only, with writes confirmed by a person."
     ],
     "headline": [
       "Held-out decisions right: single prompt 191/192, agent 187/192",
@@ -4904,6 +4936,52 @@
           1.0
         ],
         "display": "124/124"
+      },
+      {
+        "id": "N15",
+        "metric": "mem_off_right",
+        "label": "Decisions right (no memory)",
+        "value": "69/72",
+        "full": "69/72 (95.8%, 95% CI 88.5–98.6%)",
+        "evaluation": "Memory test: earlier confirmed decisions shown to the agent (24 new ads)",
+        "sources": [
+          "grounded-review-public/eval/results/memory-2026-11-16.summary.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json"
+        ],
+        "kind": "proportion",
+        "k": 69,
+        "n": 72,
+        "rate": 0.9583,
+        "ci95": [
+          0.8845,
+          0.9857
+        ],
+        "display": "69/72"
+      },
+      {
+        "id": "N16",
+        "metric": "mem_on_right",
+        "label": "Decisions right (with memory)",
+        "value": "72/72",
+        "full": "72/72 (100.0%, 95% CI 94.9–100.0%)",
+        "evaluation": "Memory test: earlier confirmed decisions shown to the agent (24 new ads)",
+        "sources": [
+          "grounded-review-public/eval/results/memory-2026-11-16.summary.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json"
+        ],
+        "kind": "proportion",
+        "k": 72,
+        "n": 72,
+        "rate": 1.0,
+        "ci95": [
+          0.9493,
+          1.0
+        ],
+        "display": "72/72"
       }
     ],
     "short_name": "Grounded Review",
@@ -4960,6 +5038,15 @@
         "date": "2026-11-14",
         "label": "Real ads",
         "text": "Ads judged by regulators and courts"
+      },
+      {
+        "date": "2026-11-16",
+        "label": "Memory",
+        "text": "Earlier confirmed decisions shown to the agent",
+        "before": "69/72",
+        "before_id": "N15",
+        "after": "72/72",
+        "after_id": "N16"
       }
     ],
     "images": [
@@ -5473,7 +5560,7 @@
     ],
     "images": [
       {
-        "path": "jason-d-e.github.io/assets/text-on-product/hero-zh.jpg",
+        "path": "jason-d-e.github.io/assets/text-on-product/hero-en.jpg",
         "caption": "Guide first screen",
         "public": true
       },
@@ -6308,7 +6395,7 @@
     "layer": "运营层",
     "period": "2026-11-15 – 2026-11-16",
     "team": "Liang Liyuan",
-    "stack": "Python、Pandas、BM25、evidence-check、Lark 多维表格、批量接口",
+    "stack": "Python、Pandas、BM25、evidence-check、Lark 多维表格（AI Agent 步骤）、批量接口",
     "one_line": "一条围绕有据审核搭的审核和标注工作流。",
     "facts": [
       {
@@ -6321,7 +6408,7 @@
       },
       {
         "label": "技术",
-        "value": "Python、Pandas、BM25、evidence-check、Lark 多维表格、批量接口"
+        "value": "Python、Pandas、BM25、evidence-check、Lark 多维表格（AI Agent 步骤）、批量接口"
       },
       {
         "label": "在作品集里的位置",
@@ -6347,24 +6434,30 @@
     "evaluation": [
       "**回归测试：分流提示词 v1 对 v2（332 个回放请求）**：332 个请求，每个版本 1 遍；claude-haiku-5-5，批量接口（半价）",
       "**灰度回放：按事先写好的回滚规则（回放，不是真实用户）**：四周，共 332 个请求；回放 1 遍；不调用模型，回放存下的答案",
+      "**第二轮灰度：改好的规则，新写的广告（回放，不是真实用户）**：240 个请求；每条广告两遍，每个版本 1 遍；claude-haiku-5-5，批量接口（半价）",
+      "**Lark 里的工作流：平台 AI Agent 步骤（25 条中文广告）**：25 条广告，每条一遍；Lark 多维表格 AI Agent 步骤（Seed 1.8）",
       "**政策库检索：正确条款进前三（124 条违规标注）**：124 条违规标注；确定性检索，1 遍；不调用模型，用 v1 第一遍存下的答案"
     ],
     "iteration": [
       "v1：四步工作流跑通，但判错的 17/332 全部自动生效，引文核对拦不住看错的判断。",
       "v2：让模型说“拿不准”，拿不准的交人工；判错又自动生效的降到 9/332，四条采用标准都满足。",
-      "灰度：按事先写好的回滚规则，放到 10% 就回滚了；复盘发现两条规则写错（和改动目的矛盾、样本太小就比比例），改好了，但要在新流量上重新灰度才算数，线上仍是 v1。"
+      "第一轮灰度：按事先写好的回滚规则，放到 10% 就回滚了；复盘发现两条规则写错（和改动目的矛盾、样本太小就比比例）。",
+      "第二轮灰度：改好的规则跑前预注册，在新写的广告上三步放量都没回滚，v2 上线；但两版在这批广告上都接近全对，没有再证明 v2 能少漏错判。",
+      "Lark：在多维表格里搭了同样的工作流，用平台自带的 AI Agent 步骤判断、写回，拿不准的自己进复核队列，引文核对由脚本补；另有一个聊天机器人，实测一条。"
     ],
     "result": [
-      "让模型说“拿不准”能减少判错又生效，代价是多送人工；灰度按事先写好的规则回滚，暴露的是回滚规则本身写错，已复盘，线上留在 v1。"
+      "让模型说“拿不准”能减少判错又生效，代价是多送人工；第一轮灰度按规则回滚，暴露的是规则本身写错；改好的规则在新流量上放到全量，v2 上线。v2 少漏错判的证据仍来自第一轮。"
     ],
     "limitations": [
       "流量是评测题的回放，不是真实用户；复核结论用的是题目定好的答案，没有真的审核员。建议：上线后按版本统计真实请求的漏网错判和复核量，抽检结果回流成回归题。",
       "v2 少放过判错，但送人工从 6/332 涨到 72/332，很多是清楚的广告也说“拿不准”。建议：下一版试着减少清楚广告上的“拿不准”，同样先过回归测试再灰度。",
-      "回滚规则写错两处，改好的规则是看过结果之后写的，在同一批请求上回放放到全量不算证据。建议：回滚条件要和改动目的、采用标准对齐；样本小的一步只查硬条件；用改好的规则在新写的题上重新灰度。"
+      "第二轮在新流量上放到全量，但两版在这批广告上都接近全对，没有再证明 v2 能少漏错判；v2 的好处仍来自第一轮。建议：再找 v1 会漏判的新广告（例如更长、更含糊的），在同样的规则下比一次。",
+      "Lark 里的平台模型一次也没说拿不准（0/25），分流模型的存档答案里却有 13/50 说了；聊天机器人只实测了一条。建议：换模型后先重新量复核率，再调“拿不准”的门槛；机器人上线前用一批广告测。"
     ],
     "headline": [
       "判错又自动生效：v1 17/332 → v2 9/332；送人工复核 6/332 → 72/332",
-      "按事先写好的回滚规则，灰度放到 10% 就回滚了；规则写错两处，已复盘"
+      "第一轮按事先写好的规则，灰度放到 10% 就回滚了；规则写错两处，已复盘",
+      "第二轮用改好的规则，在新写的广告上放到 100%，没有回滚，v2 上线"
     ],
     "numbers": [
       {
@@ -6476,12 +6569,99 @@
         "unit": "pct",
         "n": null,
         "display": "10%"
+      },
+      {
+        "id": "N6",
+        "metric": "r2_final_share",
+        "label": "没有回滚、最后放到的灰度比例",
+        "value": 100.0,
+        "full": "100%",
+        "evaluation": "第二轮灰度：改好的规则，新写的广告（回放，不是真实用户）",
+        "sources": [
+          "evidence-pipeline-public/data/canary-round2.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/canary-round2.json"
+        ],
+        "kind": "value",
+        "unit": "pct",
+        "n": null,
+        "display": "100%"
+      },
+      {
+        "id": "N7",
+        "metric": "lark_unsure",
+        "label": "平台模型说“拿不准”",
+        "value": "0/25",
+        "full": "0/25（0.0%，95% 区间 0.0–13.3%）",
+        "evaluation": "Lark 里的工作流：平台 AI Agent 步骤（25 条中文广告）",
+        "sources": [
+          "evidence-pipeline-public/data/lark-agent-eval1.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json"
+        ],
+        "kind": "proportion",
+        "k": 0,
+        "n": 25,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.1332
+        ],
+        "display": "0/25"
+      },
+      {
+        "id": "N8",
+        "metric": "ref_unsure",
+        "label": "参照：分流模型存档答案里说“拿不准”",
+        "value": "13/50",
+        "full": "13/50（26.0%，95% 区间 15.9–39.6%）",
+        "evaluation": "Lark 里的工作流：平台 AI Agent 步骤（25 条中文广告）",
+        "sources": [
+          "evidence-pipeline-public/data/lark-agent-eval1.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json"
+        ],
+        "kind": "proportion",
+        "k": 13,
+        "n": 50,
+        "rate": 0.26,
+        "ci95": [
+          0.1587,
+          0.3955
+        ],
+        "display": "13/50"
+      },
+      {
+        "id": "N9",
+        "metric": "lark_right",
+        "label": "判对",
+        "value": "25/25",
+        "full": "25/25（100.0%，95% 区间 86.7–100.0%）",
+        "evaluation": "Lark 里的工作流：平台 AI Agent 步骤（25 条中文广告）",
+        "sources": [
+          "evidence-pipeline-public/data/lark-agent-eval1.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json"
+        ],
+        "kind": "proportion",
+        "k": 25,
+        "n": 25,
+        "rate": 1.0,
+        "ci95": [
+          0.8668,
+          1.0
+        ],
+        "display": "25/25"
       }
     ],
     "short_name": "标注流水线",
     "card_title": "把广告审核做成能灰度、能回滚的工作流",
     "assumed": "以为四条采用标准都满足，灰度就能顺利放量",
-    "showed": "放到 10% 就按规则回滚了：毛病出在回滚规则本身，线上留在 v1",
+    "showed": "第一轮放到 10% 就回滚：毛病在规则本身；改好后在新流量上放到了全量",
     "result_line": "让模型说“拿不准”后，判错又自动生效的从 17/332 降到 9/332",
     "key_numbers": [
       {
@@ -6489,12 +6669,12 @@
         "label": "判错又自动生效的（v1 是 17/332）"
       },
       {
-        "id": "N4",
-        "label": "送人工复核的请求（v1 是 6/332）"
+        "id": "N5",
+        "label": "第一轮按事先写好的规则，放到这里就回滚了"
       },
       {
-        "id": "N5",
-        "label": "按事先写好的规则，灰度放到这里就回滚了"
+        "id": "N6",
+        "label": "第二轮在新写的广告上灰度，放到了全量"
       }
     ],
     "timeline": [
@@ -6527,10 +6707,56 @@
       {
         "date": "2026-11-15",
         "label": "复盘",
-        "text": "两条回滚规则写错，已改，待新流量验证"
+        "text": "两条回滚规则写错，已改"
+      },
+      {
+        "date": "2026-11-16",
+        "label": "第二轮灰度",
+        "text": "新写的广告上三步都没回滚，v2 上线",
+        "after": "100%",
+        "after_id": "N6",
+        "adopted": true
+      },
+      {
+        "date": "2026-11-16",
+        "label": "Lark 工作流",
+        "text": "多维表格里搭好，平台模型判断并写回",
+        "after": "25/25",
+        "after_id": "N9"
       }
     ],
-    "images": []
+    "images": [
+      {
+        "path": "evidence-pipeline-public/lark/screenshots/workflow.png",
+        "caption": "Lark 多维表格里的工作流：新广告 → AI Agent 判断 → 写回 → 拿不准的进复核队列",
+        "public": true,
+        "url": "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/workflow.png"
+      },
+      {
+        "path": "evidence-pipeline-public/lark/screenshots/agent-step.png",
+        "caption": "AI Agent 步骤的设置：提问里引用表里的广告文字，输出格式固定",
+        "public": true,
+        "url": "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/agent-step.png"
+      },
+      {
+        "path": "evidence-pipeline-public/lark/screenshots/results.png",
+        "caption": "“待判广告”表里的结果：判断、条款、引文核对、去向",
+        "public": true,
+        "url": "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/results.png"
+      },
+      {
+        "path": "evidence-pipeline-public/lark/screenshots/review-queue.png",
+        "caption": "复核队列里由工作流和脚本送来的 3 行",
+        "public": true,
+        "url": "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/review-queue.png"
+      },
+      {
+        "path": "evidence-pipeline-public/lark/screenshots/bot-card.png",
+        "caption": "聊天机器人回的卡片：判断通过，模型拿不准，送人工复核",
+        "public": true,
+        "url": "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/bot-card.png"
+      }
+    ]
   },
   {
     "id": "grounded-labelling-pipeline",
@@ -6541,7 +6767,7 @@
     "layer": "Operations",
     "period": "2026-11-15 – 2026-11-16",
     "team": "Liang Liyuan",
-    "stack": "Python, Pandas, BM25, evidence-check, Lark Base, Message Batches API",
+    "stack": "Python, Pandas, BM25, evidence-check, Lark Base (AI Agent step), Message Batches API",
     "one_line": "A review and labelling workflow built around Grounded Review.",
     "facts": [
       {
@@ -6554,7 +6780,7 @@
       },
       {
         "label": "Stack",
-        "value": "Python, Pandas, BM25, evidence-check, Lark Base, Message Batches API"
+        "value": "Python, Pandas, BM25, evidence-check, Lark Base (AI Agent step), Message Batches API"
       },
       {
         "label": "Place in the portfolio",
@@ -6580,24 +6806,30 @@
     "evaluation": [
       "**Regression test: triage prompt v1 vs v2 (332 replayed requests)**: 332 requests, 1 run per version; claude-haiku-5-5, Message Batches API (half price)",
       "**Canary replay under the rules written beforehand (a replay, not real users)**: Four weeks, 332 requests; 1 replay; No model calls; stored answers replayed",
+      "**Canary round two: fixed rules on newly written ads (a replay, not real users)**: 240 requests; Two runs per ad, 1 run per version; claude-haiku-5-5, Message Batches API (half price)",
+      "**The workflow in Lark: the platform AI Agent step (25 Chinese ads)**: 25 ads, one run each; Lark Base AI Agent step (Seed 1.8)",
       "**Policy retrieval: right clause in the top three (124 labelled violations)**: 124 labelled violations; Deterministic retrieval, 1 run; No model calls; v1's stored first-run answers"
     ],
     "iteration": [
       "v1: the four-step workflow runs, but all 17/332 wrong decisions went live; quote checks cannot stop a misread decision.",
       "v2: the model may say it is unsure, and unsure ads go to people; wrong decisions that went live fell to 9/332, meeting all four adoption criteria.",
-      "Canary: under the rules written beforehand it rolled back at 10%; the review found two wrong rules (at odds with the change's purpose, and comparing rates on too few requests); they are fixed, but only a canary on new traffic counts, so production stays at v1."
+      "Canary round one: under the rules written beforehand it rolled back at 10%; the review found two wrong rules (at odds with the change's purpose, and comparing rates on too few requests).",
+      "Canary round two: the fixed rules were preregistered, and on newly written ads all three release steps passed without a rollback, so v2 went live; but both versions were almost always right on these ads, so this did not show again that v2 lets fewer errors through.",
+      "Lark: the same workflow built in a Lark Base, with the platform's AI Agent step deciding and writing back, unsure answers queued for review, and quote checks added by script; plus a chat bot, tested once."
     ],
     "result": [
-      "Letting the model say it is unsure reduces wrong decisions that go live at the cost of more human review; the canary rolled back under the rules written beforehand, which exposed mistakes in the rules themselves; these are reviewed and production stays at v1."
+      "Letting the model say it is unsure reduces wrong decisions that go live at the cost of more human review; the first canary rolled back because the rules themselves were wrong; with fixed rules the second canary on new traffic reached full release and v2 went live. The evidence that v2 lets fewer errors through still comes from round one."
     ],
     "limitations": [
       "Traffic replays test items rather than real users, and reviewer decisions are the items' fixed answers, not real reviewers. Recommendation: After launch, track wrong decisions let through and review volume per version on real requests, and feed QA samples back as regression items.",
       "v2 lets fewer wrong decisions through, but human review rose from 6/332 to 72/332, often on clear ads the model called unsure. Recommendation: Next, reduce \"unsure\" on clear ads, again through a regression test before a canary.",
-      "Two rollback rules were wrong; the fixed rules were written after seeing the results, so reaching full release on the same requests is not evidence. Recommendation: Align rollback rules with the change's purpose and adoption criteria, check only hard conditions on small steps, and rerun the canary on newly written items."
+      "Round two reached full release on new traffic, but both versions were almost always right on those ads, so it did not show again that v2 lets fewer errors through; that evidence still comes from round one. Recommendation: Find new ads that v1 misses (longer or vaguer ones) and compare again under the same rules.",
+      "The Lark platform model never said it was unsure (0/25), while the triage model did in 13/50 stored answers; the chat bot was tested on one ad only. Recommendation: After a model change, measure the review rate again before tuning the unsure threshold; test the bot on a batch before launch."
     ],
     "headline": [
       "Wrong decisions that went live: v1 17/332 → v2 9/332; sent to review 6/332 → 72/332",
-      "Under the rollback rules written beforehand, the canary rolled back at 10%; two rules were wrong, now reviewed"
+      "Round one rolled back at 10% under the rules written beforehand; two rules were wrong, now reviewed",
+      "Round two, with the fixed rules on newly written ads, reached 100% without a rollback; v2 is live"
     ],
     "numbers": [
       {
@@ -6709,12 +6941,99 @@
         "unit": "pct",
         "n": null,
         "display": "10%"
+      },
+      {
+        "id": "N6",
+        "metric": "r2_final_share",
+        "label": "Canary share reached without a rollback",
+        "value": 100.0,
+        "full": "100%",
+        "evaluation": "Canary round two: fixed rules on newly written ads (a replay, not real users)",
+        "sources": [
+          "evidence-pipeline-public/data/canary-round2.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/canary-round2.json"
+        ],
+        "kind": "value",
+        "unit": "pct",
+        "n": null,
+        "display": "100%"
+      },
+      {
+        "id": "N7",
+        "metric": "lark_unsure",
+        "label": "Platform model said it was unsure",
+        "value": "0/25",
+        "full": "0/25 (0.0%, 95% CI 0.0–13.3%)",
+        "evaluation": "The workflow in Lark: the platform AI Agent step (25 Chinese ads)",
+        "sources": [
+          "evidence-pipeline-public/data/lark-agent-eval1.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json"
+        ],
+        "kind": "proportion",
+        "k": 0,
+        "n": 25,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.1332
+        ],
+        "display": "0/25"
+      },
+      {
+        "id": "N8",
+        "metric": "ref_unsure",
+        "label": "Reference: triage model's stored answers saying unsure",
+        "value": "13/50",
+        "full": "13/50 (26.0%, 95% CI 15.9–39.6%)",
+        "evaluation": "The workflow in Lark: the platform AI Agent step (25 Chinese ads)",
+        "sources": [
+          "evidence-pipeline-public/data/lark-agent-eval1.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json"
+        ],
+        "kind": "proportion",
+        "k": 13,
+        "n": 50,
+        "rate": 0.26,
+        "ci95": [
+          0.1587,
+          0.3955
+        ],
+        "display": "13/50"
+      },
+      {
+        "id": "N9",
+        "metric": "lark_right",
+        "label": "Decisions right",
+        "value": "25/25",
+        "full": "25/25 (100.0%, 95% CI 86.7–100.0%)",
+        "evaluation": "The workflow in Lark: the platform AI Agent step (25 Chinese ads)",
+        "sources": [
+          "evidence-pipeline-public/data/lark-agent-eval1.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json"
+        ],
+        "kind": "proportion",
+        "k": 25,
+        "n": 25,
+        "rate": 1.0,
+        "ci95": [
+          0.8668,
+          1.0
+        ],
+        "display": "25/25"
       }
     ],
     "short_name": "Labelling pipeline",
     "card_title": "Ad review as a workflow with canary release and rollback",
     "assumed": "Expected a version meeting all four adoption criteria to roll out smoothly",
-    "showed": "It rolled back at 10% under the rules; the fault was in the rules themselves, so production stays at v1",
+    "showed": "Round one rolled back at 10% because the rules were wrong; with fixed rules it reached full release on new traffic",
     "result_line": "Letting the model say it is unsure cut wrong decisions that went live from 17/332 to 9/332",
     "key_numbers": [
       {
@@ -6722,12 +7041,12 @@
         "label": "Wrong decisions that went live (v1: 17/332)"
       },
       {
-        "id": "N4",
-        "label": "Requests sent to human review (v1: 6/332)"
+        "id": "N5",
+        "label": "Round one: share where the written rules rolled it back"
       },
       {
-        "id": "N5",
-        "label": "Canary share where the rules rolled it back"
+        "id": "N6",
+        "label": "Fixed rules, new ads: share reached without a rollback"
       }
     ],
     "timeline": [
@@ -6760,9 +7079,55 @@
       {
         "date": "2026-11-15",
         "label": "Post-mortem",
-        "text": "Two rules were wrong; fixed, new traffic needed"
+        "text": "Two rollback rules were wrong; fixed"
+      },
+      {
+        "date": "2026-11-16",
+        "label": "Canary round two",
+        "text": "No rollback on new ads; v2 went live",
+        "after": "100%",
+        "after_id": "N6",
+        "adopted": true
+      },
+      {
+        "date": "2026-11-16",
+        "label": "Lark workflow",
+        "text": "Built in a Lark Base; platform model decides",
+        "after": "25/25",
+        "after_id": "N9"
       }
     ],
-    "images": []
+    "images": [
+      {
+        "path": "evidence-pipeline-public/lark/screenshots/workflow.png",
+        "caption": "The workflow in a Lark Base: new ad → AI Agent step → write back → unsure answers go to the review queue.",
+        "public": true,
+        "url": "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/workflow.png"
+      },
+      {
+        "path": "evidence-pipeline-public/lark/screenshots/agent-step.png",
+        "caption": "The AI Agent step: the prompt refers to the ad text in the table, and the output format is fixed.",
+        "public": true,
+        "url": "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/agent-step.png"
+      },
+      {
+        "path": "evidence-pipeline-public/lark/screenshots/results.png",
+        "caption": "Results in the table: decision, clause, quote check and route.",
+        "public": true,
+        "url": "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/results.png"
+      },
+      {
+        "path": "evidence-pipeline-public/lark/screenshots/review-queue.png",
+        "caption": "The 3 rows that the workflow and the script sent to the review queue.",
+        "public": true,
+        "url": "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/review-queue.png"
+      },
+      {
+        "path": "evidence-pipeline-public/lark/screenshots/bot-card.png",
+        "caption": "The card the chat bot replied with: approve, unsure, sent to a human.",
+        "public": true,
+        "url": "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/bot-card.png"
+      }
+    ]
   }
 ]

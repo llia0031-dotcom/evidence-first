@@ -5,35 +5,38 @@ status = "public"
 links = [
   { label = { zh = "代码和报告", en = "Code and report" }, url = "https://github.com/Jason-d-e/grounded-labelling-pipeline" },
 ]
-card_version = "1.0"
+card_version = "1.1"
 updated = "2026-11-16"
 period = "2026-11-15 – 2026-11-16"
 team = "Liang Liyuan"
-stack = { zh = "Python、Pandas、BM25、evidence-check、Lark 多维表格、批量接口", en = "Python, Pandas, BM25, evidence-check, Lark Base, Message Batches API" }
+stack = { zh = "Python、Pandas、BM25、evidence-check、Lark 多维表格（AI Agent 步骤）、批量接口", en = "Python, Pandas, BM25, evidence-check, Lark Base (AI Agent step), Message Batches API" }
 did = { zh = "我把有据审核做成一条四步审核工作流：模型判断，evidence-check 核对引文，核对没过或模型拿不准的进人工复核队列，复核结果回流成回归题；另加政策库检索评测、提示词版本、灰度和回滚规则、每周报告和上线检查清单，复核队列可以同步到 Lark 多维表格。", en = "I turned Grounded Review into a four-step review workflow: the model decides, evidence-check verifies the quotes, ads that fail the check or that the model is unsure of go to a human review queue, and reviewed ads come back as regression items; plus a policy retrieval evaluation, prompt versions, canary and rollback rules, weekly reports and a launch checklist, with the review queue syncable to Lark Base." }
 name = { zh = "有据标注流水线", en = "Grounded Labelling Pipeline" }
 problem = { zh = "能核对的回答，怎么变成团队每天用的审核工作流：拿不准的交给人复核，提示词能灰度、能回滚", en = "How checkable answers become a review workflow a team runs daily: unsure cases go to people, and prompts ship with canary release and rollback" }
 primary_metric = { zh = "漏网错判（判错又自动生效）；送人工复核的比例；判对率", en = "Wrong decisions that went live; share sent to human review; decisions right" }
 headline = [
   { zh = "判错又自动生效：v1 {v1_escaped} → v2 {v2_escaped}；送人工复核 {v1_review} → {v2_review}", en = "Wrong decisions that went live: v1 {v1_escaped} → v2 {v2_escaped}; sent to review {v1_review} → {v2_review}" },
-  { zh = "按事先写好的回滚规则，灰度放到 {canary_rollback_share} 就回滚了；规则写错两处，已复盘", en = "Under the rollback rules written beforehand, the canary rolled back at {canary_rollback_share}; two rules were wrong, now reviewed" },
+  { zh = "第一轮按事先写好的规则，灰度放到 {canary_rollback_share} 就回滚了；规则写错两处，已复盘", en = "Round one rolled back at {canary_rollback_share} under the rules written beforehand; two rules were wrong, now reviewed" },
+  { zh = "第二轮用改好的规则，在新写的广告上放到 {r2_final_share}，没有回滚，v2 上线", en = "Round two, with the fixed rules on newly written ads, reached {r2_final_share} without a rollback; v2 is live" },
 ]
 summary = { zh = "一条围绕有据审核搭的审核和标注工作流。每条广告先由模型判断并引原文，再用 evidence-check 核对引文，核对没过、读不出或模型拿不准的进人工复核队列，复核结果和模型不同的变成新的回归题。提示词按版本管理，新版本先做回归测试，再按事先写好的规则灰度放量，触发就回滚。流量是有据审核评测题的回放，不是真实用户；回放里的复核结论就是题目定好的答案。", en = "A review and labelling workflow built around Grounded Review. Each ad is decided by the model with quotes, the quotes are checked by evidence-check, and ads that fail the check, cannot be read or that the model is unsure of go to a human review queue; reviewed ads that differ from the model become new regression items. Prompts are versioned; a new version passes a regression test, then a canary release under rules written beforehand, and rolls back when a rule fires. Traffic is a replay of Grounded Review's test items, not real users; reviewer decisions in the replay are the items' fixed answers." }
 core_link = { zh = "每段引文都过 evidence-check 的核对脚本；只读地引用有据审核的代码，回放它存下的答案。", en = "Every quote goes through the evidence-check script; it imports Grounded Review's code read-only and replays its stored answers." }
-models = { zh = "claude-haiku-5-5，批量接口；检索用政策库自带的 BM25。", en = "claude-haiku-5-5 through the Message Batches API; retrieval uses the policy library's BM25." }
-iteration = { zh = ["v1：四步工作流跑通，但判错的 {v1_escaped} 全部自动生效，引文核对拦不住看错的判断。", "v2：让模型说“拿不准”，拿不准的交人工；判错又自动生效的降到 {v2_escaped}，四条采用标准都满足。", "灰度：按事先写好的回滚规则，放到 {canary_rollback_share} 就回滚了；复盘发现两条规则写错（和改动目的矛盾、样本太小就比比例），改好了，但要在新流量上重新灰度才算数，线上仍是 v1。"], en = ["v1: the four-step workflow runs, but all {v1_escaped} wrong decisions went live; quote checks cannot stop a misread decision.", "v2: the model may say it is unsure, and unsure ads go to people; wrong decisions that went live fell to {v2_escaped}, meeting all four adoption criteria.", "Canary: under the rules written beforehand it rolled back at {canary_rollback_share}; the review found two wrong rules (at odds with the change's purpose, and comparing rates on too few requests); they are fixed, but only a canary on new traffic counts, so production stays at v1."] }
-conclusion = { zh = "让模型说“拿不准”能减少判错又生效，代价是多送人工；灰度按事先写好的规则回滚，暴露的是回滚规则本身写错，已复盘，线上留在 v1。", en = "Letting the model say it is unsure reduces wrong decisions that go live at the cost of more human review; the canary rolled back under the rules written beforehand, which exposed mistakes in the rules themselves; these are reviewed and production stays at v1." }
+models = { zh = "分流用 claude-haiku-5-5，批量接口；Lark 工作流里的 AI Agent 步骤用平台模型 Seed 1.8，聊天机器人用 claude-haiku-5-5；检索用政策库自带的 BM25。", en = "Triage uses claude-haiku-5-5 through the Message Batches API; the AI Agent step in the Lark workflow uses the platform model Seed 1.8, and the chat bot uses claude-haiku-5-5; retrieval uses the policy library's BM25." }
+iteration = { zh = ["v1：四步工作流跑通，但判错的 {v1_escaped} 全部自动生效，引文核对拦不住看错的判断。", "v2：让模型说“拿不准”，拿不准的交人工；判错又自动生效的降到 {v2_escaped}，四条采用标准都满足。", "第一轮灰度：按事先写好的回滚规则，放到 {canary_rollback_share} 就回滚了；复盘发现两条规则写错（和改动目的矛盾、样本太小就比比例）。", "第二轮灰度：改好的规则跑前预注册，在新写的广告上三步放量都没回滚，v2 上线；但两版在这批广告上都接近全对，没有再证明 v2 能少漏错判。", "Lark：在多维表格里搭了同样的工作流，用平台自带的 AI Agent 步骤判断、写回，拿不准的自己进复核队列，引文核对由脚本补；另有一个聊天机器人，实测一条。"], en = ["v1: the four-step workflow runs, but all {v1_escaped} wrong decisions went live; quote checks cannot stop a misread decision.", "v2: the model may say it is unsure, and unsure ads go to people; wrong decisions that went live fell to {v2_escaped}, meeting all four adoption criteria.", "Canary round one: under the rules written beforehand it rolled back at {canary_rollback_share}; the review found two wrong rules (at odds with the change's purpose, and comparing rates on too few requests).", "Canary round two: the fixed rules were preregistered, and on newly written ads all three release steps passed without a rollback, so v2 went live; but both versions were almost always right on these ads, so this did not show again that v2 lets fewer errors through.", "Lark: the same workflow built in a Lark Base, with the platform's AI Agent step deciding and writing back, unsure answers queued for review, and quote checks added by script; plus a chat bot, tested once."] }
+conclusion = { zh = "让模型说“拿不准”能减少判错又生效，代价是多送人工；第一轮灰度按规则回滚，暴露的是规则本身写错；改好的规则在新流量上放到全量，v2 上线。v2 少漏错判的证据仍来自第一轮。", en = "Letting the model say it is unsure reduces wrong decisions that go live at the cost of more human review; the first canary rolled back because the rules themselves were wrong; with fixed rules the second canary on new traffic reached full release and v2 went live. The evidence that v2 lets fewer errors through still comes from round one." }
 short_name = { zh = "标注流水线", en = "Labelling pipeline" }
 card_title = { zh = "把广告审核做成能灰度、能回滚的工作流", en = "Ad review as a workflow with canary release and rollback" }
 assumed = { zh = "以为四条采用标准都满足，灰度就能顺利放量", en = "Expected a version meeting all four adoption criteria to roll out smoothly" }
-showed = { zh = "放到 {canary_rollback_share} 就按规则回滚了：毛病出在回滚规则本身，线上留在 v1", en = "It rolled back at {canary_rollback_share} under the rules; the fault was in the rules themselves, so production stays at v1" }
+showed = { zh = "第一轮放到 {canary_rollback_share} 就回滚：毛病在规则本身；改好后在新流量上放到了全量", en = "Round one rolled back at {canary_rollback_share} because the rules were wrong; with fixed rules it reached full release on new traffic" }
 result_line = { zh = "让模型说“拿不准”后，判错又自动生效的从 {v1_escaped} 降到 {v2_escaped}", en = "Letting the model say it is unsure cut wrong decisions that went live from {v1_escaped} to {v2_escaped}" }
-key_numbers = [{ metric = "v2_escaped", label = { zh = "判错又自动生效的（v1 是 {v1_escaped}）", en = "Wrong decisions that went live (v1: {v1_escaped})" } }, { metric = "v2_review", label = { zh = "送人工复核的请求（v1 是 {v1_review}）", en = "Requests sent to human review (v1: {v1_review})" } }, { metric = "canary_rollback_share", label = { zh = "按事先写好的规则，灰度放到这里就回滚了", en = "Canary share where the rules rolled it back" } }]
+key_numbers = [{ metric = "v2_escaped", label = { zh = "判错又自动生效的（v1 是 {v1_escaped}）", en = "Wrong decisions that went live (v1: {v1_escaped})" } }, { metric = "canary_rollback_share", label = { zh = "第一轮按事先写好的规则，放到这里就回滚了", en = "Round one: share where the written rules rolled it back" } }, { metric = "r2_final_share", label = { zh = "第二轮在新写的广告上灰度，放到了全量", en = "Fixed rules, new ads: share reached without a rollback" } }]
 timeline = [
   { date = "2026-11-15", label = { zh = "v1", en = "v1" }, text = { zh = "四步工作流跑通，判错全部自动生效", en = "Workflow runs; every wrong decision went live" }, after = "v1_escaped", adopted = true },
   { date = "2026-11-15", label = { zh = "v2", en = "v2" }, text = { zh = "让模型说“拿不准”，交人工复核", en = "Model may say unsure; people review" }, before = "v1_escaped", after = "v2_escaped", adopted = false },
   { date = "2026-11-15", label = { zh = "灰度回放", en = "Canary replay" }, text = { zh = "按事先写好的规则，第一步就回滚", en = "Rolled back at the first step, by the rules" }, after = "canary_rollback_share", adopted = false },
-  { date = "2026-11-15", label = { zh = "复盘", en = "Post-mortem" }, text = { zh = "两条回滚规则写错，已改，待新流量验证", en = "Two rules were wrong; fixed, new traffic needed" } },
+  { date = "2026-11-15", label = { zh = "复盘", en = "Post-mortem" }, text = { zh = "两条回滚规则写错，已改", en = "Two rollback rules were wrong; fixed" } },
+  { date = "2026-11-16", label = { zh = "第二轮灰度", en = "Canary round two" }, text = { zh = "新写的广告上三步都没回滚，v2 上线", en = "No rollback on new ads; v2 went live" }, after = "r2_final_share", adopted = true },
+  { date = "2026-11-16", label = { zh = "Lark 工作流", en = "Lark workflow" }, text = { zh = "多维表格里搭好，平台模型判断并写回", en = "Built in a Lark Base; platform model decides" }, after = "lark_right" },
 ]
 
 judge = { zh = [
@@ -54,11 +57,13 @@ en = [
 
 [out_of_scope]
 zh = [
-  "不是线上流量：请求是有据审核评测题的回放，复核结论是题目定好的答案。",
+  "评测题回放，不是真实用户。人工复核的结论用题目定好的答案代替。",
+  "Lark 里的平台模型和 claude-haiku-5-5 不在同一套题上比谁准；这里只说明工作流能在 Lark 里跑通。",
   "不替代审核员：拿不准、核对没过、读不出的广告都交给人。",
 ]
 en = [
-  "Not live traffic: requests replay Grounded Review's test items, and reviewer decisions are the items' fixed answers.",
+  "A replay of test items, not real users. Reviewer decisions are the items' fixed answers.",
+  "The Lark platform model and claude-haiku-5-5 are not compared on one item set; this only shows the workflow runs in Lark.",
   "Does not replace reviewers: unsure, failed and unreadable ads all go to people.",
 ]
 
@@ -145,6 +150,111 @@ takeaway = { zh = "第一步就触发了三条规则，回滚，线上留在 v1�
   args = { path = "evidence-pipeline-public/data/canary.json", share = 10, arm = "production", field = "escaped" }
   direction = "lower"
 
+
+[[eval]]
+id = "round2"
+name = { zh = "第二轮灰度：改好的规则，新写的广告（回放，不是真实用户）", en = "Canary round two: fixed rules on newly written ads (a replay, not real users)" }
+date = "2026-11-16"
+data = { zh = "新写 120 条文字广告（中英各 60），每条两遍，共 240 个请求；改好的回滚规则和预测跑前预注册。灰度分三步放到全量，灰度组从开始累计和线上组比。", en = "120 newly written text ads (60 Chinese, 60 English), two runs each, 240 requests; the fixed rollback rules and predictions were preregistered. The canary went to full release in three steps, comparing the canary's cumulative requests with production." }
+items = { zh = "240 个请求", en = "240 requests" }
+runs = { zh = "每条广告两遍，每个版本 1 遍", en = "Two runs per ad, 1 run per version" }
+setup = { zh = "claude-haiku-5-5，批量接口（半价）", en = "claude-haiku-5-5, Message Batches API (half price)" }
+frozen = { zh = "`docs/PREREGISTRATION-ROUND2.md`", en = "`docs/PREREGISTRATION-ROUND2.md`" }
+takeaway = { zh = "三步都没触发回滚，v2 上线。两版在这批广告上都接近全对，所以这一轮只说明放量流程走通了；v2 少漏错判的证据仍来自第一轮。", en = "No rule fired at any step and v2 went live. Both versions were almost always right on these ads, so this round shows the release process works; the evidence that v2 lets fewer errors through still comes from round one." }
+
+  [[eval.metric]]
+  id = "r2_final_share"
+  label = { zh = "没有回滚、最后放到的灰度比例", en = "Canary share reached without a rollback" }
+  extractor = "pl_canary_final_share"
+  args = { path = "evidence-pipeline-public/data/canary-round2.json" }
+  direction = "none"
+
+
+  [[eval.metric]]
+  id = "r2_v1_right"
+  label = { zh = "判对（v1）", en = "Decisions right (v1)" }
+  extractor = "pl_version"
+  args = { path = "evidence-pipeline-public/data/versions-round2.json", version = "v1", field = "decision_right" }
+
+  [[eval.metric]]
+  id = "r2_v2_right"
+  label = { zh = "判对（v2）", en = "Decisions right (v2)" }
+  extractor = "pl_version"
+  args = { path = "evidence-pipeline-public/data/versions-round2.json", version = "v2", field = "decision_right" }
+
+  [[eval.metric]]
+  id = "r2_v2_review"
+  label = { zh = "送人工复核（v2）", en = "Sent to human review (v2)" }
+  extractor = "pl_version"
+  args = { path = "evidence-pipeline-public/data/versions-round2.json", version = "v2", field = "queued" }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "r2_canary_escaped"
+  label = { zh = "放到全量时，灰度组累计判错又生效", en = "At full release, canary: wrong decisions that went live (cumulative)" }
+  extractor = "pl_canary_step"
+  args = { path = "evidence-pipeline-public/data/canary-round2.json", share = 100, arm = "staging", field = "escaped" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "r2_prod_escaped"
+  label = { zh = "放到全量时，线上组累计判错又生效", en = "At full release, production: wrong decisions that went live (cumulative)" }
+  extractor = "pl_canary_step"
+  args = { path = "evidence-pipeline-public/data/canary-round2.json", share = 100, arm = "production", field = "escaped" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "r2_cost_ratio"
+  label = { zh = "v2 每个请求的费用，是 v1 的", en = "v2 cost per request, relative to v1" }
+  extractor = "json_ratio"
+  args = { path = "evidence-pipeline-public/data/versions-round2.json", num_at = ["stats", "v2", "cost_per_request"], den_at = ["stats", "v1", "cost_per_request"], unit = "x", decimals = 4 }
+  direction = "lower"
+  note = { zh = "预测是不超过 1.05 倍，这一条没成立", en = "predicted at most 1.05×; this prediction did not hold" }
+
+[[eval]]
+id = "lark"
+name = { zh = "Lark 里的工作流：平台 AI Agent 步骤（25 条中文广告）", en = "The workflow in Lark: the platform AI Agent step (25 Chinese ads)" }
+date = "2026-11-16"
+data = { zh = "在 Lark 多维表格里加广告，平台自带的 AI Agent 步骤判断并写回表格，引文核对由脚本补；拿不准、核对没过的进复核队列。25 条中文文字广告，答案写题时定好；评测计划先写再跑。", en = "Ads added to a Lark Base are decided by the platform's AI Agent step and written back; quote checks are added by script, and unsure or failed answers go to the review queue. 25 Chinese text ads with answers fixed at writing; the plan was written before the run." }
+items = { zh = "25 条广告，每条一遍", en = "25 ads, one run each" }
+runs = { zh = "1 遍", en = "1 run" }
+setup = { zh = "Lark 多维表格 AI Agent 步骤（Seed 1.8）", en = "Lark Base AI Agent step (Seed 1.8)" }
+frozen = { zh = "`docs/LARK-AGENT-PLAN.md`", en = "`docs/LARK-AGENT-PLAN.md`" }
+takeaway = { zh = "工作流在 Lark 里跑通：每条都写回、都判对；两条把条款里不相邻的几句拼成一句当引文，被脚本拦下送了人工。平台模型一次也没说拿不准，而分流用的模型在存档答案里常说，所以换模型后复核率要重新量。", en = "The workflow runs in Lark: every ad was written back and decided right; two answers stitched non-adjacent clause sentences into one quote and the script sent them to review. The platform model never said it was unsure, while the triage model often did in its stored answers, so the review rate must be measured again after a model change." }
+
+  [[eval.metric]]
+  id = "lark_written"
+  label = { zh = "写回表格", en = "Written back to the table" }
+  extractor = "json_counts"
+  args = { path = "evidence-pipeline-public/data/lark-agent-eval1.json", at = ["stats"], num = "written", den = "requests" }
+
+  [[eval.metric]]
+  id = "lark_right"
+  label = { zh = "判对", en = "Decisions right" }
+  extractor = "json_counts"
+  args = { path = "evidence-pipeline-public/data/lark-agent-eval1.json", at = ["stats"], num = "right", den = "requests" }
+
+  [[eval.metric]]
+  id = "lark_quote_failed"
+  label = { zh = "引文核对没过、送了人工", en = "Quote check failed, sent to review" }
+  extractor = "json_counts"
+  args = { path = "evidence-pipeline-public/data/lark-agent-eval1.json", at = ["stats"], num = "quotes_failed", den = "requests" }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "lark_unsure"
+  label = { zh = "平台模型说“拿不准”", en = "Platform model said it was unsure" }
+  extractor = "json_counts"
+  args = { path = "evidence-pipeline-public/data/lark-agent-eval1.json", at = ["stats"], num = "unsure", den = "requests" }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "ref_unsure"
+  label = { zh = "参照：分流模型存档答案里说“拿不准”", en = "Reference: triage model's stored answers saying unsure" }
+  extractor = "json_counts"
+  args = { path = "evidence-pipeline-public/data/lark-agent-eval1.json", at = ["reference_v2_haiku"], num = "unsure", den = "requests" }
+  direction = "none"
+
 [[eval]]
 id = "retrieval"
 name = { zh = "政策库检索：正确条款进前三（124 条违规标注）", en = "Policy retrieval: right clause in the top three (124 labelled violations)" }
@@ -175,10 +285,19 @@ text = { zh = "v2 少放过判错，但送人工从 {v1_review} 涨到 {v2_revie
 advice = { zh = "下一版试着减少清楚广告上的“拿不准”，同样先过回归测试再灰度。", en = "Next, reduce \"unsure\" on clear ads, again through a regression test before a canary." }
 
 [[limitation]]
-text = { zh = "回滚规则写错两处，改好的规则是看过结果之后写的，在同一批请求上回放放到全量不算证据。", en = "Two rollback rules were wrong; the fixed rules were written after seeing the results, so reaching full release on the same requests is not evidence." }
-advice = { zh = "回滚条件要和改动目的、采用标准对齐；样本小的一步只查硬条件；用改好的规则在新写的题上重新灰度。", en = "Align rollback rules with the change's purpose and adoption criteria, check only hard conditions on small steps, and rerun the canary on newly written items." }
+text = { zh = "第二轮在新流量上放到全量，但两版在这批广告上都接近全对，没有再证明 v2 能少漏错判；v2 的好处仍来自第一轮。", en = "Round two reached full release on new traffic, but both versions were almost always right on those ads, so it did not show again that v2 lets fewer errors through; that evidence still comes from round one." }
+advice = { zh = "再找 v1 会漏判的新广告（例如更长、更含糊的），在同样的规则下比一次。", en = "Find new ads that v1 misses (longer or vaguer ones) and compare again under the same rules." }
+
+[[limitation]]
+text = { zh = "Lark 里的平台模型一次也没说拿不准（{lark_unsure}），分流模型的存档答案里却有 {ref_unsure} 说了；聊天机器人只实测了一条。", en = "The Lark platform model never said it was unsure ({lark_unsure}), while the triage model did in {ref_unsure} stored answers; the chat bot was tested on one ad only." }
+advice = { zh = "换模型后先重新量复核率，再调“拿不准”的门槛；机器人上线前用一批广告测。", en = "After a model change, measure the review rate again before tuning the unsure threshold; test the bot on a batch before launch." }
 
 [[version]]
 id = "1.0"
 date = "2026-11-16"
 text = { zh = "第一张卡，照公开仓库 grounded-labelling-pipeline 的结果文件写。", en = "First card, from the result files in the public grounded-labelling-pipeline repository." }
+
+[[version]]
+id = "1.1"
+date = "2026-11-16"
+text = { zh = "加第二轮灰度（新流量，v2 上线）、Lark 里的工作流评测和截图。", en = "Added canary round two (new traffic, v2 live), the Lark workflow evaluation and screenshots." }

@@ -2,9 +2,9 @@ id = "grounded-review"
 order = 6
 layer = "judgement"
 status = "public"
-card_version = "1.1"
+card_version = "1.2"
 updated = "2026-11-15"
-period = "2026-11-13 – 2026-11-15"
+period = "2026-11-13 – 2026-11-16"
 team = "Liang Liyuan"
 stack = { zh = "Python、RapidOCR、BM25、evidence-check、Transformers（对比组）、批量接口", en = "Python, RapidOCR, BM25, evidence-check, Transformers (baselines), Message Batches API" }
 did = { zh = "我从官方原文整理了 32 条政策条款，写了带陷阱的留出集，做了能查条款、引原文、多轮改稿和复审的 Agent，并和单个提示词、违禁词表、开源审核模型比较；改稿建议从 v1 迭代到 v1.3；最后换成监管机构和法院定答案的真实广告。", en = "I extracted 32 policy clauses from official sources, wrote a held-out set with traps, built an agent that looks up clauses, quotes them, revises and re-reviews over several turns, and compared it with a single prompt, a banned-word list and open-source moderation models; iterated the advice from v1 to v1.3; then switched to real ads judged by regulators and courts." }
@@ -18,6 +18,8 @@ headline = [
 ]
 links = [
   { label = { zh = "代码和报告", en = "Code and report" }, url = "https://github.com/Jason-d-e/grounded-review" },
+  { label = { zh = "演示页", en = "Demo" }, url = { zh = "https://jason-d-e.github.io/grounded-review/", en = "https://jason-d-e.github.io/grounded-review/en.html" } },
+  { label = { zh = "产品方案", en = "Product plan" }, url = { zh = "https://github.com/Jason-d-e/grounded-review/blob/main/product/PRD.zh-CN.md", en = "https://github.com/Jason-d-e/grounded-review/blob/main/product/PRD.md" } },
 ]
 summary = { zh = "审核广告的 Agent：读文案和图片里的字，在 32 条政策条款里查依据，给出放行或拒绝；每处违规附类别、条款、违规原话和条款原文，引文先过 evidence-check 的核对脚本才算数。广告主追问时，它写修改后的版本，再复审广告主自己改的版本。评测对比两组：把材料一次交给模型的单个提示词，和带工具的 Agent。", en = "An agent that reviews ads: it reads the caption and the words in the image, looks up 32 policy clauses, and approves or rejects. Every violation carries a category, the clause, the offending words and the clause text, and every quote must pass the evidence-check script before it counts. When the advertiser asks, it writes a corrected version and re-reviews the advertiser's own revision. The evaluation compares two arms: a single prompt with all material, and a tool-using agent." }
 core_link = { zh = "每段广告引文和条款引文都交给 evidence-check 的核对脚本；不是逐字出自原文的引文在回答给出之前就被拦下。", en = "Every ad quote and clause quote goes through the evidence-check script; a quote that is not word for word in its source is stopped before the answer is shown." }
@@ -38,6 +40,7 @@ timeline = [
   { date = "2026-11-13", label = { zh = "v1.2", en = "v1.2" }, text = { zh = "填错退回重交，没用", en = "Sending it back did not help" }, before = "mt3_v11_field", after = "mt3_v12_field", adopted = false },
   { date = "2026-11-14", label = { zh = "v1.3", en = "v1.3" }, text = { zh = "先填修改后的文案，再写说明", en = "Corrected caption before the explanation" }, before = "mt4_v11_fault", after = "mt4_v13_fault", adopted = true },
   { date = "2026-11-14", label = { zh = "真实广告", en = "Real ads" }, text = { zh = "换成监管机构和法院定答案的广告", en = "Ads judged by regulators and courts" } },
+  { date = "2026-11-16", label = { zh = "记忆", en = "Memory" }, text = { zh = "给 Agent 看过去确认过的判定", en = "Earlier confirmed decisions shown to the agent" }, before = "mem_off_right", after = "mem_on_right" },
 ]
 
 [uses]
@@ -399,6 +402,44 @@ frozen = { zh = "`eval/PREREGISTRATION.md` v1.3 一节", en = "`eval/PREREGISTRA
   args = { path = "grounded-review-public/eval/results/multiturn-mt4-v1.3.jsonl" }
   direction = "lower"
 
+
+[[eval]]
+id = "memory"
+name = { zh = "记忆评测：给 Agent 看过去确认过的判定（24 条新广告）", en = "Memory test: earlier confirmed decisions shown to the agent (24 new ads)" }
+date = "2026-11-16"
+data = { zh = "24 条虚构文字广告（中英各 12），每条都对应同一广告主的一条旧判定：一半应照旧判，另一半旧判定不该套用（已经改掉、加了限定、只是历史、换了说法、出现新违规）。记忆只读、不写入，按相似度找出旧判定附在审核请求里，不多调用模型。广告、旧判定和答案一起写好，跑前预注册。", en = "24 fictional text ads (12 Chinese, 12 English), each paired with an earlier decision on the same advertiser: half should follow it, half should not (fixed, qualified, history only, reworded, or a new violation). The memory is read-only; similar earlier decisions are attached to the review request with no extra model call. Ads, earlier decisions and answers were written together and preregistered before the run." }
+items = { zh = "24 条广告，每组 3 遍", en = "24 ads, 3 runs per arm" }
+runs = { zh = "每组 3 遍，合并计算；同一题几遍不独立，区间偏窄", en = "3 runs per arm, pooled; runs are not independent, so intervals are too narrow" }
+setup = { zh = "claude-haiku-5-5，批量接口（半价）", en = "claude-haiku-5-5, Message Batches API (half price)" }
+frozen = { zh = "`eval/PREREGISTRATION.md` 记忆一节", en = "`eval/PREREGISTRATION.md`, memory section" }
+takeaway = { zh = "带记忆全对，不带记忆的错都出在同一条广告上，所以这是机制演示，不是比例；旧判定不该套用的广告上，没有一次照搬旧判定。", en = "With memory every decision is right; the errors without memory all come from one ad, so this demonstrates the mechanism rather than a rate. On ads where the earlier decision should not apply, it was never copied." }
+
+  [[eval.metric]]
+  id = "mem_off_right"
+  label = { zh = "判对（不带记忆）", en = "Decisions right (no memory)" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/memory-2026-11-16.summary.json", arm = "agent", num = ["tp", "tn"], den = "items" }
+
+  [[eval.metric]]
+  id = "mem_on_right"
+  label = { zh = "判对（带记忆）", en = "Decisions right (with memory)" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/memory-2026-11-16.summary.json", arm = "agent_memory", num = ["tp", "tn"], den = "items" }
+
+  [[eval.metric]]
+  id = "mem_on_copied"
+  label = { zh = "旧判定不该套用时照搬了旧判定（带记忆）", en = "Earlier decision copied where it should not apply (with memory)" }
+  extractor = "md_cell"
+  args = { path = "grounded-review-public/eval/results/memory-2026-11-16.report.md", row = "Distinguish: repeats the earlier decision", col = "Agent with memory" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "mem_cost_ratio"
+  label = { zh = "带记忆的一次审核费用，是不带记忆的", en = "Cost per review with memory, relative to without" }
+  extractor = "json_ratio"
+  args = { path = "grounded-review-public/eval/results/memory-2026-11-16.summary.json", num_at = ["agent_memory", "cost_per_item"], den_at = ["agent", "cost_per_item"], unit = "x", decimals = 2 }
+  direction = "lower"
+
 [[limitation]]
 text = { zh = "自己写的题到顶了：留出集两组都接近满分，难题集两组都全对，分不出 Agent 和单个提示词谁更好。", en = "Written items hit the ceiling: both arms are near-perfect on the held-out set and fully right on the harder set, so they cannot separate the agent from the single prompt." }
 advice = { zh = "要分高低，用不是自己写的题：更多真实裁决、更长的视频，或模型没见过的规则。", en = "To separate them, use items the author did not write: more real rulings, longer videos, or rules the model has not seen." }
@@ -419,6 +460,11 @@ advice = { zh = "下一版改稿提示词上线前，用图片广告和更长的
 text = { zh = "开源审核模型一张图要几分钟，不给条款和原话；SafeGuard-VL-RL 每张图约 {img_safeguard_latency}。", en = "The open-source moderation model takes minutes per image and gives no clause or quote; SafeGuard-VL-RL takes about {img_safeguard_latency} per image." }
 advice = { zh = "开源模型适合当便宜的第一道筛子，拿不准的再交给带依据的审核。", en = "Use open-source models as a cheap first filter and pass uncertain ads to the grounded review." }
 
+
+[[limitation]]
+text = { zh = "记忆评测的差别只来自一条广告，题目是自己写的短文字广告，旧判定库也是一起写的。", en = "The memory result rests on a single ad, and the short text ads and the store of earlier decisions were written together." }
+advice = { zh = "上线前在真实的历史判定和更长的广告上再测；记忆保持只读，写入要经过人工确认。", en = "Before launch, test on real past decisions and longer ads; keep the memory read-only, with writes confirmed by a person." }
+
 [[version]]
 id = "1.0"
 date = "2026-11-15"
@@ -428,3 +474,8 @@ text = { zh = "第一张卡，照公开仓库 grounded-review 的内容写：公
 id = "1.1"
 date = "2026-11-15"
 text = { zh = "开头加了时间、团队、技术、链接和“问题 / 我做了什么 / 结果”，照作品集案例页的写法；评测部分不变。", en = "Added when, team, stack, links and \"problem / what I did / results\" at the top, the way portfolio case studies open; the evaluation sections are unchanged." }
+
+[[version]]
+id = "1.2"
+date = "2026-11-16"
+text = { zh = "加了演示页和产品方案的链接，加了记忆评测。", en = "Added links to the demo and the product plan, and the memory test." }

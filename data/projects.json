@@ -2403,7 +2403,7 @@
     "layer": "judgement",
     "status": "public",
     "updated": "2026-11-15",
-    "card_version": "1.1",
+    "card_version": "1.2",
     "card": {
       "zh": "cards/grounded-review.md",
       "en": "cards/grounded-review.en.md"
@@ -2415,9 +2415,29 @@
           "en": "Code and report"
         },
         "url": "https://github.com/Jason-d-e/grounded-review"
+      },
+      {
+        "label": {
+          "zh": "演示页",
+          "en": "Demo"
+        },
+        "url": {
+          "zh": "https://jason-d-e.github.io/grounded-review/",
+          "en": "https://jason-d-e.github.io/grounded-review/en.html"
+        }
+      },
+      {
+        "label": {
+          "zh": "产品方案",
+          "en": "Product plan"
+        },
+        "url": {
+          "zh": "https://github.com/Jason-d-e/grounded-review/blob/main/product/PRD.zh-CN.md",
+          "en": "https://github.com/Jason-d-e/grounded-review/blob/main/product/PRD.md"
+        }
       }
     ],
-    "period": "2026-11-13 – 2026-11-15",
+    "period": "2026-11-13 – 2026-11-16",
     "team": "Liang Liyuan",
     "stack": {
       "zh": "Python、RapidOCR、BM25、evidence-check、Transformers（对比组）、批量接口",
@@ -3319,6 +3339,100 @@
             ]
           }
         ]
+      },
+      {
+        "id": "memory",
+        "name": {
+          "zh": "记忆评测：给 Agent 看过去确认过的判定（24 条新广告）",
+          "en": "Memory test: earlier confirmed decisions shown to the agent (24 new ads)"
+        },
+        "date": "2026-11-16",
+        "metrics": [
+          {
+            "id": "mem_off_right",
+            "label": {
+              "zh": "判对（不带记忆）",
+              "en": "Decisions right (no memory)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "grounded-review-public/eval/results/memory-2026-11-16.summary.json"
+            ],
+            "k": 69,
+            "n": 72,
+            "rate": 0.9583,
+            "ci95": [
+              0.8845,
+              0.9857
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json"
+            ]
+          },
+          {
+            "id": "mem_on_right",
+            "label": {
+              "zh": "判对（带记忆）",
+              "en": "Decisions right (with memory)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "grounded-review-public/eval/results/memory-2026-11-16.summary.json"
+            ],
+            "k": 72,
+            "n": 72,
+            "rate": 1.0,
+            "ci95": [
+              0.9493,
+              1.0
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json"
+            ]
+          },
+          {
+            "id": "mem_on_copied",
+            "label": {
+              "zh": "旧判定不该套用时照搬了旧判定（带记忆）",
+              "en": "Earlier decision copied where it should not apply (with memory)"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "grounded-review-public/eval/results/memory-2026-11-16.report.md"
+            ],
+            "k": 0,
+            "n": 36,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.0964
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.report.md"
+            ]
+          },
+          {
+            "id": "mem_cost_ratio",
+            "label": {
+              "zh": "带记忆的一次审核费用，是不带记忆的",
+              "en": "Cost per review with memory, relative to without"
+            },
+            "direction": "lower",
+            "kind": "value",
+            "sources": [
+              "grounded-review-public/eval/results/memory-2026-11-16.summary.json"
+            ],
+            "value": 0.8887716184125308,
+            "unit": "x",
+            "n": null,
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json"
+            ]
+          }
+        ]
       }
     ],
     "name": {
@@ -4202,7 +4316,7 @@
     "layer": "operations",
     "status": "public",
     "updated": "2026-11-16",
-    "card_version": "1.0",
+    "card_version": "1.1",
     "card": {
       "zh": "cards/grounded-labelling-pipeline.md",
       "en": "cards/grounded-labelling-pipeline.en.md"
@@ -4219,8 +4333,8 @@
     "period": "2026-11-15 – 2026-11-16",
     "team": "Liang Liyuan",
     "stack": {
-      "zh": "Python、Pandas、BM25、evidence-check、Lark 多维表格、批量接口",
-      "en": "Python, Pandas, BM25, evidence-check, Lark Base, Message Batches API"
+      "zh": "Python、Pandas、BM25、evidence-check、Lark 多维表格（AI Agent 步骤）、批量接口",
+      "en": "Python, Pandas, BM25, evidence-check, Lark Base (AI Agent step), Message Batches API"
     },
     "evals": [
       {
@@ -4438,6 +4552,282 @@
         ]
       },
       {
+        "id": "round2",
+        "name": {
+          "zh": "第二轮灰度：改好的规则，新写的广告（回放，不是真实用户）",
+          "en": "Canary round two: fixed rules on newly written ads (a replay, not real users)"
+        },
+        "date": "2026-11-16",
+        "metrics": [
+          {
+            "id": "r2_final_share",
+            "label": {
+              "zh": "没有回滚、最后放到的灰度比例",
+              "en": "Canary share reached without a rollback"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "evidence-pipeline-public/data/canary-round2.json"
+            ],
+            "value": 100.0,
+            "unit": "pct",
+            "n": null,
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/canary-round2.json"
+            ]
+          },
+          {
+            "id": "r2_v1_right",
+            "label": {
+              "zh": "判对（v1）",
+              "en": "Decisions right (v1)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/versions-round2.json"
+            ],
+            "k": 239,
+            "n": 240,
+            "rate": 0.9958,
+            "ci95": [
+              0.9768,
+              0.9993
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-round2.json"
+            ]
+          },
+          {
+            "id": "r2_v2_right",
+            "label": {
+              "zh": "判对（v2）",
+              "en": "Decisions right (v2)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/versions-round2.json"
+            ],
+            "k": 240,
+            "n": 240,
+            "rate": 1.0,
+            "ci95": [
+              0.9842,
+              1.0
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-round2.json"
+            ]
+          },
+          {
+            "id": "r2_v2_review",
+            "label": {
+              "zh": "送人工复核（v2）",
+              "en": "Sent to human review (v2)"
+            },
+            "direction": "none",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/versions-round2.json"
+            ],
+            "k": 36,
+            "n": 240,
+            "rate": 0.15,
+            "ci95": [
+              0.1104,
+              0.2007
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-round2.json"
+            ]
+          },
+          {
+            "id": "r2_canary_escaped",
+            "label": {
+              "zh": "放到全量时，灰度组累计判错又生效",
+              "en": "At full release, canary: wrong decisions that went live (cumulative)"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/canary-round2.json"
+            ],
+            "k": 0,
+            "n": 101,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.0366
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/canary-round2.json"
+            ]
+          },
+          {
+            "id": "r2_prod_escaped",
+            "label": {
+              "zh": "放到全量时，线上组累计判错又生效",
+              "en": "At full release, production: wrong decisions that went live (cumulative)"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/canary-round2.json"
+            ],
+            "k": 1,
+            "n": 150,
+            "rate": 0.0067,
+            "ci95": [
+              0.0012,
+              0.0368
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/canary-round2.json"
+            ]
+          },
+          {
+            "id": "r2_cost_ratio",
+            "label": {
+              "zh": "v2 每个请求的费用，是 v1 的",
+              "en": "v2 cost per request, relative to v1"
+            },
+            "direction": "lower",
+            "kind": "value",
+            "sources": [
+              "evidence-pipeline-public/data/versions-round2.json"
+            ],
+            "value": 1.050320058612134,
+            "unit": "x",
+            "n": null,
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-round2.json"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "lark",
+        "name": {
+          "zh": "Lark 里的工作流：平台 AI Agent 步骤（25 条中文广告）",
+          "en": "The workflow in Lark: the platform AI Agent step (25 Chinese ads)"
+        },
+        "date": "2026-11-16",
+        "metrics": [
+          {
+            "id": "lark_written",
+            "label": {
+              "zh": "写回表格",
+              "en": "Written back to the table"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/lark-agent-eval1.json"
+            ],
+            "k": 25,
+            "n": 25,
+            "rate": 1.0,
+            "ci95": [
+              0.8668,
+              1.0
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json"
+            ]
+          },
+          {
+            "id": "lark_right",
+            "label": {
+              "zh": "判对",
+              "en": "Decisions right"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/lark-agent-eval1.json"
+            ],
+            "k": 25,
+            "n": 25,
+            "rate": 1.0,
+            "ci95": [
+              0.8668,
+              1.0
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json"
+            ]
+          },
+          {
+            "id": "lark_quote_failed",
+            "label": {
+              "zh": "引文核对没过、送了人工",
+              "en": "Quote check failed, sent to review"
+            },
+            "direction": "none",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/lark-agent-eval1.json"
+            ],
+            "k": 2,
+            "n": 25,
+            "rate": 0.08,
+            "ci95": [
+              0.0222,
+              0.2497
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json"
+            ]
+          },
+          {
+            "id": "lark_unsure",
+            "label": {
+              "zh": "平台模型说“拿不准”",
+              "en": "Platform model said it was unsure"
+            },
+            "direction": "none",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/lark-agent-eval1.json"
+            ],
+            "k": 0,
+            "n": 25,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.1332
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json"
+            ]
+          },
+          {
+            "id": "ref_unsure",
+            "label": {
+              "zh": "参照：分流模型存档答案里说“拿不准”",
+              "en": "Reference: triage model's stored answers saying unsure"
+            },
+            "direction": "none",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/lark-agent-eval1.json"
+            ],
+            "k": 13,
+            "n": 50,
+            "rate": 0.26,
+            "ci95": [
+              0.1587,
+              0.3955
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json"
+            ]
+          }
+        ]
+      },
+      {
         "id": "retrieval",
         "name": {
           "zh": "政策库检索：正确条款进前三（124 条违规标注）",
@@ -4518,8 +4908,12 @@
         "en": "Wrong decisions that went live: v1 17/332 → v2 9/332; sent to review 6/332 → 72/332"
       },
       {
-        "zh": "按事先写好的回滚规则，灰度放到 10% 就回滚了；规则写错两处，已复盘",
-        "en": "Under the rollback rules written beforehand, the canary rolled back at 10%; two rules were wrong, now reviewed"
+        "zh": "第一轮按事先写好的规则，灰度放到 10% 就回滚了；规则写错两处，已复盘",
+        "en": "Round one rolled back at 10% under the rules written beforehand; two rules were wrong, now reviewed"
+      },
+      {
+        "zh": "第二轮用改好的规则，在新写的广告上放到 100%，没有回滚，v2 上线",
+        "en": "Round two, with the fixed rules on newly written ads, reached 100% without a rollback; v2 is live"
       }
     ]
   }
