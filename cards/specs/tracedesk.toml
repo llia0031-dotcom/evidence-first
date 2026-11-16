@@ -7,7 +7,7 @@ updated = "2026-11-15"
 period = { zh = "2026-11-03 – 2026-11-10（Ctrl+V Hackathon）", en = "2026-11-03 – 2026-11-10 (Ctrl+V Hackathon)" }
 team = { zh = "Liang Liyuan、ZIzi821", en = "Liang Liyuan, ZIzi821" }
 stack = { zh = "Node.js、React、promptfoo、Claude Haiku 5.5", en = "Node.js, React, promptfoo, Claude Haiku 5.5" }
-did = { zh = "我们做了给读密集文字吃力的读者用的常见问题助手：先一句结论、再一张清单、最后是证据；服务器核对每段引文和每个截止时间；提示词从 grounded-v2 改到 v2.4，v2.2 到 v2.4 每版都和普通提示在同一组题上比较。", en = "We built an FAQ assistant for readers who find dense text hard: one sentence first, then a checklist, then the evidence; the server checks every quote and deadline; the prompt went from grounded-v2 to v2.4, with v2.2 to v2.4 each compared with a plain prompt on the same cases." }
+did = { zh = "我们做了给读密集文字吃力的读者用的常见问题助手：先一句结论、再一张清单、最后是证据；服务器核对每段引文和每个截止时间；提示词从 grounded-v2 改到 v2.4，v2.2 到 v2.4 每版都和普通提示在同一组题上并排比较（v2.2 用开发组，v2.3、v2.4 用检查组）。", en = "We built an FAQ assistant for readers who find dense text hard: one sentence first, then a checklist, then the evidence; the server checks every quote and deadline; the prompt went from grounded-v2 to v2.4, with v2.2 to v2.4 each compared side by side with a plain prompt on the same cases (v2.2 on the development set, v2.3 and v2.4 on the check set)." }
 name = { zh = "TraceDesk Lite", en = "TraceDesk Lite" }
 problem = { zh = "常见问题助手只按给定资料回答，每个回答附逐字原文；截止时间这类关键信息要放在最前、写清出处", en = "An FAQ assistant that answers only from given documents with word-for-word quotes, putting key facts such as deadlines first with their source" }
 primary_metric = { zh = "自动检查全部通过的回答数（状态、引文、截止时间有出处、先说结论、抗注入）", en = "Answers passing every automatic check (reply type, quotes, sourced deadlines, bottom line first, injection resisted)" }

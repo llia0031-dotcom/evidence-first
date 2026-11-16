@@ -174,3 +174,5 @@
 ## 出处
 
 模板照 Hugging Face 模型卡（Apache-2.0）的章节；每个数字的来源文件和指纹见 `cards/sources.lock.json`。
+
+第三方数据、模型和代码的来源与许可，见[项目仓库](https://github.com/Jason-d-e/evidence-screening)里的说明。

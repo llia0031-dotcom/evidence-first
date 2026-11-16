@@ -4,7 +4,7 @@ order = 0
 name = { zh = "evidence-check：Skill 说明（SKILL.md）", en = "evidence-check: skill instructions (SKILL.md)" }
 what = { zh = "装进 Agent 的 Skill 说明：每句事实附逐字原文、跑核对脚本、逐条重读通过的说法。核对脚本另有版本号（0.2.0 → 0.4.0），见评测卡。", en = "The skill instructions loaded into an agent: a word-for-word quote for every fact, run the checker, reread every passing claim. The checker script has its own versions (0.2.0 → 0.4.0); see the evaluation card." }
 where = "skills/evidence-check/SKILL.md"
-model_lock = "claude-haiku-5-5, effort medium（评测时）"
+model_lock = { zh = "claude-haiku-5-5，评测时 effort medium", en = "claude-haiku-5-5, effort medium in the evaluations" }
 production_note = { zh = "公开仓库和插件里发布的是 v0.2。", en = "The public repository and plugin ship v0.2." }
 regression = "evidence-check"
 

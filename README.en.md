@@ -31,8 +31,8 @@ Each scene states the problem, what I did and the results, then how it connects 
 **Evidence-backed resume screening** ([card](cards/screening-audit.en.md) · [Code and report](https://github.com/Jason-d-e/evidence-screening))
 
 - **Problem**: When a model screens resumes, can every met / not-met verdict point to the resume, and does it change when name, gender or school change?
-- **What I did**: Fictional jobs and resumes with answers fixed in advance; several wirings compared, the one that discarded correct verdicts rewired twice; then traps, planted errors and an independent second review.
-- **Results**: Advance decisions changed by a name swap: 0/240; Correct "met" verdicts lost to the check: 70/424 → 0/424; Second review catches planted misreadings: 80/80
+- **What I did**: Fictional jobs and resumes with answers fixed in advance; several wirings compared, the one that discarded correct verdicts rewired twice; then traps, planted errors and an independent second pass by the same model.
+- **Results**: Advance decisions changed by a name swap: 0/240; Correct "met" verdicts lost to the check: 70/424 → 0/424; A second, independent pass by the same model catches planted misreadings: 80/80
 - **Connections**: Uses a frozen copy of the evidence-check 0.2.0 script for every quote.
 
 ### Scene 3: How do many pieces of evidence add up to one conclusion?
@@ -49,7 +49,7 @@ Each scene states the problem, what I did and the results, then how it connects 
 **Grounded Review (ad-review agent)** ([card](cards/grounded-review.en.md) · [Code and report](https://github.com/Jason-d-e/grounded-review) · [Demo](https://jason-d-e.github.io/grounded-review/en.html) · [Product plan](https://github.com/Jason-d-e/grounded-review/blob/main/product/PRD.md)); **Grounded Business Review** ([card](cards/grounded-business-review.en.md) · [Code and report](https://github.com/Jason-d-e/grounded-business-review))
 
 - **Problem**: Ad review must name the clause and the exact words, not just approve or reject, and re-review the advertiser's revision; a weekly business review must trace a metric change to its cause, with every number traced to a query result.
-- **What I did**: An agent that looks up clauses, quotes them, revises and re-reviews, compared with a single prompt, a banned-word list and open-source moderation models; the advice iterated from v1 to v1.3; then real ads judged by regulators and courts. For business reviews a fixed script, a single prompt and an agent that queries for itself were compared, with every paragraph's numbers checked before release.
+- **What I did**: An agent that looks up clauses, quotes them, revises and re-reviews, compared with a single prompt, a banned-word list and open-source moderation models; the advice iterated from v1 to v1.3; then real ads judged by regulators and courts. For business reviews, on synthetic business data, a fixed script, a single prompt and an agent that queries for itself were compared, with every paragraph's numbers checked before release.
 - **Results**: Held-out decisions right: single prompt 191/192, agent 187/192; Real ads (UK ASA rulings): 49/60, 51/60; Advice fields filled wrongly: 6/36 → 0/36; Business review, all planted causes right: single prompt 28/36, agent 34/36
 - **Connections**: The evidence-check script is one of the agent's tools, and the demo reuses the screening study's page skeleton; the business review's number check calls the same script.
 
@@ -58,7 +58,7 @@ Each scene states the problem, what I did and the results, then how it connects 
 **Text on Product: Chinese copy on AI product images** ([card](cards/text-on-product.en.md) · [Guide](https://jason-d-e.github.io/text-on-product/) · [Pre-listing checker](https://jason-d-e.github.io/text-on-product/check/) · [Code](https://github.com/Jason-d-e/text-on-product)); **Real-time voice agent evaluation** ([card](cards/voice-agent-eval.en.md) · [Code and report](https://github.com/Jason-d-e/voice-agent-eval))
 
 - **Problem**: Whether the text in an image is right, and whether a voice assistant still gets things right when interrupted, hearing "mm" or over background speech, both need numbers.
-- **What I did**: Images: OCR checks every character in the picture, and the findings became a merchant guide and a pre-listing checker. Voice: 42 conversations with fixed answers, fixes tried one at a time and the useful ones combined.
+- **What I did**: Images: OCR checks every character in the picture, and the findings became a merchant guide and a pre-listing checker. Voice: 42 conversations with fixed answers (the user's speech is synthesised), fixes tried one at a time and the useful ones combined.
 - **Results**: Images with exactly right text: Seedream 4.5 16/16; videos only 1/4; First audio over background speech: 20.4 s → 4.56 s
 - **Connections**: The voice study preregisters the way evidence-check v2 did; the image study applies the same word-for-word idea with its own OCR check.
 
@@ -67,8 +67,8 @@ Each scene states the problem, what I did and the results, then how it connects 
 **This repository** ([cards](cards/) · [prompt registry](prompts/README.en.md)); **Grounded Labelling Pipeline** ([card](cards/grounded-labelling-pipeline.en.md) · [Code and report](https://github.com/Jason-d-e/grounded-labelling-pipeline))
 
 - **Problem**: Once the studies exist, every capability needs evaluation evidence in one format, every prompt change needs old and new scores side by side, and releases and rollbacks need a routine.
-- **What I did**: This repository: evaluation cards in one format and a prompt registry (versions, release labels, canary replay, release checklist, scores posted on every prompt change); the Grounded Labelling Pipeline turns Grounded Review into a review workflow: quote checks, a review queue, versions, canary and rollback, weekly metrics.
-- **Results**: Grounded Labelling Pipeline: wrong decisions that went live fell from 17/332 to 9/332; the first canary rolled back at 10% under the rules written beforehand, the second, with fixed rules, reached full release and v2 went live; versions 3 and 4 missed the adoption standard written beforehand and were not released (a replay, not real users); 10 evaluation cards and 230 numbers, all computed from result files and checked against 0 project records; Canary replay: Grounded Review v1.3 reaches full release, v1.2 rolls back partway (a replay, not real users)
+- **What I did**: This repository: evaluation cards in one format and a prompt registry (versions, release labels, canary replay, a release checklist in Chinese, scores posted on every prompt change); the Grounded Labelling Pipeline turns Grounded Review into a review workflow: quote checks, a review queue, versions, canary and rollback, weekly metrics.
+- **Results**: Grounded Labelling Pipeline: wrong decisions that went live fell from 17/332 to 9/332; the first canary rolled back at 10% under the rules written beforehand, the second, with fixed rules, reached full release and v2 was promoted to production; versions 3 and 4 missed the adoption standard written beforehand and were not released (a replay, not real users); 10 evaluation cards and 230 numbers, all computed by script from the result files; Canary replay: Grounded Review v1.3 reaches full release, v1.2 rolls back partway
 - **Connections**: The registry holds the prompt versions from the earlier scenes; the canary replay uses Grounded Review's real comparison data.
 
 ## Structure
@@ -100,9 +100,9 @@ The operations layer is the [Grounded Labelling Pipeline](https://github.com/Jas
 | **Sellpoint Check**<br>2026-11-12 – 2026-11-14 | Scenario: judgement | Which listing claims do buyer reviews confirm: buyers see only confirmed claims with quotes, and the rest go privately to the merchant with suggested rewrites | Claims labelled correctly (supported, refuted, mixed, not mentioned); calls and cost per product | 60 claims with known answers: adopted method 60/60, per-review judging 58/60, retrieval first 52/60<br>Real data: 2.8% of the calls and 17% of the cost of per-review judging<br>Rewrite advice v5 on real data, two independent gradings: 142/151, 143/151 | [Code](https://github.com/Jason-d-e/sellpoint-check) · [Design case study](https://jason-d-e.github.io/sellpoint-check/design/case/en/) · [Clickable prototype](https://jason-d-e.github.io/sellpoint-check/design/prototype/product-en.html)<br>[Card](cards/sellpoint-check.en.md) |
 | **Grounded Review (ad-review agent)**<br>2026-11-13 – 2026-11-16 | Scenario: judgement | An ad decision should name the rule and the exact words that break it, not just approve or reject | Decisions right (approve and reject); violations caught; clauses cited correctly | Held-out decisions right: single prompt 191/192, agent 187/192<br>Real ads (UK ASA rulings): 49/60 and 51/60<br>Advice fields filled wrongly: 6/36 → 0/36 (v1.3) | [Code and report](https://github.com/Jason-d-e/grounded-review) · [Demo](https://jason-d-e.github.io/grounded-review/en.html) · [Product plan](https://github.com/Jason-d-e/grounded-review/blob/main/product/PRD.md)<br>[Card](cards/grounded-review.en.md) |
 | **Text on Product: Chinese copy on AI product images**<br>2026-11-12 – 2026-11-14 | Scenario: generation | When Seedream makes Chinese product images, does the selling-point text come out exactly; how to write and lay it out so the text holds; how to check before listing | Images whose text is exactly right (character-by-character OCR check); rubric rating | Images with exactly right text: Seedream 4.5 16/16, 4.0 15/16, 5.0 lite 16/16<br>Image-to-video clips with exactly right text: 1/4 | [Guide](https://jason-d-e.github.io/text-on-product/) · [Pre-listing checker](https://jason-d-e.github.io/text-on-product/check/) · [Code](https://github.com/Jason-d-e/text-on-product)<br>[Card](cards/text-on-product.en.md) |
-| **Real-time voice agent evaluation**<br>2026-11-13 – 2026-11-15 | Scenario: interaction | Whether a voice assistant still gets the task right when the user pauses, interrupts, says "mm" or talks over background speech, with experience measured as latency, barge-in and false-stop numbers | Strict pass (task and interaction right); median time to first audio; barge-ins stopped; backchannels talked through | Strict pass: baseline (thinking on) 61/84, four fixes combined 62/84; text-only control 82/84<br>First audio over background speech: 20.4 s → 4.56 s (primary-speaker VAD)<br>Real barge-ins stopped 16/16, in 0.25 s | [Code and report](https://github.com/Jason-d-e/voice-agent-eval)<br>[Card](cards/voice-agent-eval.en.md) |
-| **Grounded Labelling Pipeline**<br>2026-11-15 – 2026-11-17 | Operations | How checkable answers become a review workflow a team runs daily: unsure cases go to people, and prompts ship with canary release and rollback | Wrong decisions that went live; share sent to human review; decisions right | Wrong decisions that went live: v1 17/332 → v2 9/332; sent to review 6/332 → 72/332<br>Round one rolled back at 10% under the rules written beforehand; two rules were wrong, now reviewed<br>Round two, with the fixed rules on newly written ads, reached 100% without a rollback; v2 is live | [Code and report](https://github.com/Jason-d-e/grounded-labelling-pipeline)<br>[Card](cards/grounded-labelling-pipeline.en.md) |
-| **Grounded Business Review**<br>2026-11-16 – 2026-11-17 | Scenario: judgement | Whoever reads the weekly numbers needs to know which metrics moved and why; when a model finds the cause and writes the review, is the cause right, and does every number trace back to a query result? | Every planted cause found (nothing extra, nothing too coarse); reviews released after at most one revision; cost per case | All planted causes right: script 31/36, one prompt 28/36, agent 34/36<br>Case by case the agent beat the one prompt 6 to 0 (p = 0.031); against the script it is too close to call (p = 0.45)<br>Released after at most one revision: one prompt 35/36, agent 33/36; every review held back failed on Chinese number words, none on a wrong number | [Code and report](https://github.com/Jason-d-e/grounded-business-review)<br>[Card](cards/grounded-business-review.en.md) |
+| **Real-time voice agent evaluation**<br>2026-11-13 – 2026-11-15 | Scenario: interaction | Whether a voice assistant still gets the task right when the user pauses, interrupts, says "mm" or talks over background speech, with experience measured as latency, barge-in and false-stop numbers (the user's speech is synthesised) | Strict pass (task and interaction right); median time to first audio; barge-ins stopped; backchannels talked through | Strict pass: baseline (thinking on) 61/84, four fixes combined 62/84; text-only control 82/84<br>First audio over background speech: 20.4 s → 4.56 s (primary-speaker VAD)<br>Real barge-ins stopped 16/16, in 0.25 s | [Code and report](https://github.com/Jason-d-e/voice-agent-eval)<br>[Card](cards/voice-agent-eval.en.md) |
+| **Grounded Labelling Pipeline**<br>2026-11-15 – 2026-11-17 | Operations | How checkable answers become a review workflow a team runs daily: unsure cases go to people, and prompts ship with canary release and rollback | Wrong decisions that went live; share sent to human review; decisions right | Wrong decisions that went live: v1 17/332 → v2 9/332; sent to review 6/332 → 72/332<br>Round one rolled back at 10% under the rules written beforehand; two rules were wrong and have been fixed<br>Round two, with the fixed rules on newly written ads, reached 100% without a rollback; in the replay v2 became the production version | [Code and report](https://github.com/Jason-d-e/grounded-labelling-pipeline)<br>[Card](cards/grounded-labelling-pipeline.en.md) |
+| **Grounded Business Review**<br>2026-11-16 – 2026-11-17 | Scenario: judgement | Whoever reads the weekly numbers needs to know which metrics moved and why; when a model finds the cause and writes the review, is the cause right, and does every number trace back to a query result? (tested on synthetic data) | Every planted cause found (nothing extra, nothing too coarse); reviews released after at most one revision; cost per case | All planted causes right: script 31/36, one prompt 28/36, agent 34/36<br>Case by case the agent beat the one prompt 6 to 0 (p = 0.031); against the script it is too close to call (p = 0.45)<br>Released after at most one revision: one prompt 35/36, agent 33/36; every review held back failed on Chinese number words, none on a wrong number | [Code and report](https://github.com/Jason-d-e/grounded-business-review)<br>[Card](cards/grounded-business-review.en.md) |
 
 ## Method
 
@@ -110,12 +110,12 @@ The operations layer is the [Grounded Labelling Pipeline](https://github.com/Jas
 |---|---|
 | [docs/eval-protocol.en.md](docs/eval-protocol.en.md) | Evaluation protocol: preregistration; rule checks on every change, calibrated model grading on every version, canary comparison last; how to report numbers |
 | [cards/](cards/) | One evaluation card per project: when, team, stack and "problem / what I did / results" first, then Hugging Face model card sections: uses, out of scope, evaluation data, metrics and results, grader calibration, limitations and failure cases, versions |
-| [prompts/](prompts/README.en.md) | Prompt registry: what each version changed, its score at the time, adopted or not and why; production / staging labels; canary replay; release checklist |
+| [prompts/](prompts/README.en.md) | Prompt registry: what each version changed, its score at the time, adopted or not and why; production / staging labels; canary replay; release checklist (in Chinese) |
 | [data/](data/) | JSON versions of all of the above |
 
 ## Scores on every prompt change
 
-`.github/workflows/prompt-regression.yml`: when a pull request changes files under `prompts/`, a GitHub Action runs promptfoo on the versions behind the production and staging labels over one item set (evidence-check development set v1, 12 drafts, model claude-haiku-5-5) and posts both pass counts on the pull request. Every prompt change is re-tested this way; see [the first run on GitHub](https://github.com/Jason-d-e/evidence-first/pull/1).
+`.github/workflows/prompt-regression.yml`: when a pull request changes files under `prompts/`, a GitHub Action runs promptfoo on the versions behind the production and staging labels over one item set (evidence-check development set v1, 12 drafts, model claude-haiku-5-5) and posts both pass counts on the pull request. Every prompt change is re-tested this way; see [the first run on GitHub](https://github.com/Jason-d-e/evidence-first/pull/1) (both labels then pointed at the same version, so it only shows the flow works).
 
 The Action needs an API key stored in the repository:
 
@@ -126,11 +126,26 @@ During a run the key is written to a temporary file that only the evaluation pro
 
 ## Rebuild
 
-Python 3.11+, standard library only. The project folders must sit next to this repository.
+Python 3.11+, standard library only. The project folders must sit next to this repository, and their names differ from the GitHub repository names:
+
+| Folder | Public repository |
+|---|---|
+| `evidence-check-public/` | [evidence-check](https://github.com/Jason-d-e/evidence-check) |
+| `cairn-public/` | [cairn](https://github.com/Jason-d-e/cairn) |
+| `grounded-review-public/` | [grounded-review](https://github.com/Jason-d-e/grounded-review) |
+| `sellpoint-check/` | [sellpoint-check](https://github.com/Jason-d-e/sellpoint-check) |
+| `screening-audit/` | [evidence-screening](https://github.com/Jason-d-e/evidence-screening) |
+| `voice-agent-eval/` | [voice-agent-eval](https://github.com/Jason-d-e/voice-agent-eval) |
+| `evidence-pipeline-public/` | [grounded-labelling-pipeline](https://github.com/Jason-d-e/grounded-labelling-pipeline) |
+| `grounded-business-review-public/` | [grounded-business-review](https://github.com/Jason-d-e/grounded-business-review) |
+| `launchpad-tracedesk/` | not public (source of the TraceDesk card) |
+| `aigc-scene-eval/` | not public (source of the text-on-product card) |
+
+The result files of the TraceDesk and text-on-product cards are not public, so a rebuild from the public repositories alone reports missing files; the three offline tests that need the project folders are skipped.
 
 ```
 python scripts/build_cards.py          # cards, project table, data/projects.json, data/story.json
-python scripts/build_cards.py --check  # check only: fails if a number disagrees with a project record or a source file changed
+python scripts/build_cards.py --check  # check only: fails if a source result file changed or a generated file is out of date
 python scripts/prompts.py build        # prompt registry tables and data/prompts.json
 python scripts/replay_canary.py        # canary replay
 python -m unittest discover -s tests   # offline tests, no model calls

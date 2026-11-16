@@ -10,7 +10,7 @@
 
 **Problem**: Answers and drafts written from documents quietly shift dates and numbers or add facts no document states; every factual sentence should carry a word-for-word quote that a script checks.
 
-**What I did**: I took TraceDesk's word-for-word quote and number rules out into a skill and checker anyone can install; found problems in a development run, wrote v0.2, and compared it with a plain prompt on frozen held-out items; then revised the rules twice (0.3.0, 0.4.0) from false alarms in real use and a list of known gaps, writing new items before each change.
+**What I did**: I took TraceDesk's word-for-word quote and number rules out into a skill and checker anyone can install; found problems in a development run, wrote v0.2, and compared it with a plain prompt on frozen held-out items; then revised the rules twice (0.3.0, 0.4.0) from false alarms when other projects used the script and a list of known gaps, writing new items before each change.
 
 **Results**: 
 
@@ -54,7 +54,7 @@ Documents for a fictional event: 16 questions (8 Chinese, 8 English) and 8 draft
 
 ### Script 0.3.0: 36 new claims (script only)
 
-Nine rules changed after false alarms in real use. 36 new claims were written before the change: correct claims should pass, claims with a changed number must be flagged, and claims beyond the script's reach are flagged on purpose. Script only, no model calls.
+Nine rules changed after false alarms when other projects used the script. 36 new claims were written before the change: correct claims should pass, claims with a changed number must be flagged, and claims beyond the script's reach are flagged on purpose. Script only, no model calls.
 
 | Field | Value |
 |---|---|
@@ -132,3 +132,5 @@ All three arms flag every planted error; the skill's effect shows in free answer
 ## Provenance
 
 Sections follow the Hugging Face model card template (Apache-2.0); the source file and fingerprint of every number are in `cards/sources.lock.json`.
+
+Sources and licences of third-party data, models and code are listed in the [project repository](https://github.com/Jason-d-e/evidence-check).

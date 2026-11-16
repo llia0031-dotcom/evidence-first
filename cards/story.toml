@@ -27,11 +27,11 @@ reuse = { zh = "evidence-check 的匹配和数字规则移植自 TraceDesk 的�
 title = { zh = "一条判断有没有依据", en = "Does a judgement have grounds?" }
 projects = ["screening-audit"]
 purpose = { zh = "模型初筛简历时，“符合 / 不符合”能不能都指到简历原文，换掉名字、性别、学校后结论变不变。", en = "When a model screens resumes, can every met / not-met verdict point to the resume, and does it change when name, gender or school change?" }
-did = { zh = "虚构岗位和简历、事先定好答案；比较几种接法，把误伤正确判断的接法改了两版；再用陷阱、植入错误和第二次独立复核检验。", en = "Fictional jobs and resumes with answers fixed in advance; several wirings compared, the one that discarded correct verdicts rewired twice; then traps, planted errors and an independent second review." }
+did = { zh = "虚构岗位和简历、事先定好答案；比较几种接法，把误伤正确判断的接法改了两版；再用陷阱、植入错误和同一个模型的第二次独立复核检验。", en = "Fictional jobs and resumes with answers fixed in advance; several wirings compared, the one that discarded correct verdicts rewired twice; then traps, planted errors and an independent second pass by the same model." }
 result = [
   { zh = "换名字后去留变化：{screening-audit.v1_name_flip_evidence}", en = "Advance decisions changed by a name swap: {screening-audit.v1_name_flip_evidence}" },
   { zh = "核对误伤正确的“符合”：{screening-audit.v2_loss_evidence} → {screening-audit.v2_loss_self}", en = "Correct \"met\" verdicts lost to the check: {screening-audit.v2_loss_evidence} → {screening-audit.v2_loss_self}" },
-  { zh = "第二次独立复核挑出植入的错读：{screening-audit.verify_full}", en = "Second review catches planted misreadings: {screening-audit.verify_full}" },
+  { zh = "同一个模型再独立复核一次，挑出植入的错读：{screening-audit.verify_full}", en = "A second, independent pass by the same model catches planted misreadings: {screening-audit.verify_full}" },
 ]
 reuse = { zh = "用 evidence-check 0.2.0 脚本的冻结副本核对每条引文。", en = "Uses a frozen copy of the evidence-check 0.2.0 script for every quote." }
 
@@ -50,7 +50,7 @@ reuse = { zh = "直接调用 evidence-check 的核对脚本；“先检索”的
 title = { zh = "Agent 在多轮、带工具的任务里怎么拿出证据", en = "How does an agent bring evidence through multi-turn, tool-using work?" }
 projects = ["grounded-review", "grounded-business-review"]
 purpose = { zh = "广告审核不能只给“通过 / 拒绝”，要说出违反哪一条、是哪几个字，广告主改了以后还要复审；经营周报要从指标异动找到原因，每个数字都要对回查询结果。", en = "Ad review must name the clause and the exact words, not just approve or reject, and re-review the advertiser's revision; a weekly business review must trace a metric change to its cause, with every number traced to a query result." }
-did = { zh = "做了查条款、引原文、多轮改稿和复审的 Agent，和单个提示词、违禁词表、开源审核模型比较；改稿建议从 v1 迭代到 v1.3；最后换成监管机构和法院定答案的真实广告。经营分析里比较固定脚本、一次提示词和自己查数的 Agent，周报放行前逐段核对数字。", en = "An agent that looks up clauses, quotes them, revises and re-reviews, compared with a single prompt, a banned-word list and open-source moderation models; the advice iterated from v1 to v1.3; then real ads judged by regulators and courts. For business reviews a fixed script, a single prompt and an agent that queries for itself were compared, with every paragraph's numbers checked before release." }
+did = { zh = "做了查条款、引原文、多轮改稿和复审的 Agent，和单个提示词、违禁词表、开源审核模型比较；改稿建议从 v1 迭代到 v1.3；最后换成监管机构和法院定答案的真实广告。经营分析在合成的经营数据上比较固定脚本、一次提示词和自己查数的 Agent，周报放行前逐段核对数字。", en = "An agent that looks up clauses, quotes them, revises and re-reviews, compared with a single prompt, a banned-word list and open-source moderation models; the advice iterated from v1 to v1.3; then real ads judged by regulators and courts. For business reviews, on synthetic business data, a fixed script, a single prompt and an agent that queries for itself were compared, with every paragraph's numbers checked before release." }
 result = [
   { zh = "留出集判对：单个提示词 {grounded-review.heldout_oneshot}，Agent {grounded-review.heldout_agent}", en = "Held-out decisions right: single prompt {grounded-review.heldout_oneshot}, agent {grounded-review.heldout_agent}" },
   { zh = "真实广告（英国 ASA 裁决）：{grounded-review.real_en_oneshot}、{grounded-review.real_en_agent}", en = "Real ads (UK ASA rulings): {grounded-review.real_en_oneshot}, {grounded-review.real_en_agent}" },
@@ -63,7 +63,7 @@ reuse = { zh = "evidence-check 的脚本是 Agent 的一个工具；演示页复
 title = { zh = "生成的内容和交互体验怎么拿证据", en = "How do generated content and interaction get evidence?" }
 projects = ["text-on-product", "voice-agent-eval"]
 purpose = { zh = "画面里的字写对没有，语音助手被打断、听到“嗯”、背景有人说话时还办不办得对，都要用数字说话。", en = "Whether the text in an image is right, and whether a voice assistant still gets things right when interrupted, hearing \"mm\" or over background speech, both need numbers." }
-did = { zh = "AI 生图：OCR 逐字核对画面里的字，结论写成给商家的创作指南和上线前核对工具。语音：42 段事先定好答案的对话，一项一项试改进，把有效的合在一起。", en = "Images: OCR checks every character in the picture, and the findings became a merchant guide and a pre-listing checker. Voice: 42 conversations with fixed answers, fixes tried one at a time and the useful ones combined." }
+did = { zh = "AI 生图：OCR 逐字核对画面里的字，结论写成给商家的创作指南和上线前核对工具。语音：42 段事先定好答案的对话（用户语音是合成的），一项一项试改进，把有效的合在一起。", en = "Images: OCR checks every character in the picture, and the findings became a merchant guide and a pre-listing checker. Voice: 42 conversations with fixed answers (the user's speech is synthesised), fixes tried one at a time and the useful ones combined." }
 result = [
   { zh = "图片文字全对：Seedream 4.5 {text-on-product.img_exact_45}；视频只有 {text-on-product.video_exact}", en = "Images with exactly right text: Seedream 4.5 {text-on-product.img_exact_45}; videos only {text-on-product.video_exact}" },
   { zh = "背景人声时开口：{voice-agent-eval.babble_base} → {voice-agent-eval.babble_pvad}", en = "First audio over background speech: {voice-agent-eval.babble_base} → {voice-agent-eval.babble_pvad}" },
@@ -75,10 +75,10 @@ title = { zh = "怎么变成团队能天天用的能力", en = "How does this be
 projects = ["grounded-labelling-pipeline"]
 self = true
 purpose = { zh = "一个个评测做完以后，要让每个能力都有同样格式的评测证据、每次改提示词都能看到新旧分数、上线和回滚有章可循。", en = "Once the studies exist, every capability needs evaluation evidence in one format, every prompt change needs old and new scores side by side, and releases and rollbacks need a routine." }
-did = { zh = "这个仓库：统一评测卡、Prompt 资产库（版本、上线标签、灰度回放、上线清单、改提示词时自动贴分数）；有据标注流水线把有据审核接成一条审核工作流：核对引文、复核队列、版本、灰度和回滚、每周指标。", en = "This repository: evaluation cards in one format and a prompt registry (versions, release labels, canary replay, release checklist, scores posted on every prompt change); the Grounded Labelling Pipeline turns Grounded Review into a review workflow: quote checks, a review queue, versions, canary and rollback, weekly metrics." }
+did = { zh = "这个仓库：统一评测卡、Prompt 资产库（版本、上线标签、灰度回放、上线清单、改提示词时自动贴分数）；有据标注流水线把有据审核接成一条审核工作流：核对引文、复核队列、版本、灰度和回滚、每周指标。", en = "This repository: evaluation cards in one format and a prompt registry (versions, release labels, canary replay, a release checklist in Chinese, scores posted on every prompt change); the Grounded Labelling Pipeline turns Grounded Review into a review workflow: quote checks, a review queue, versions, canary and rollback, weekly metrics." }
 result = [
-  { zh = "有据标注流水线：判错又自动生效的从 {grounded-labelling-pipeline.v1_escaped} 降到 {grounded-labelling-pipeline.v2_escaped}；第一轮灰度按事先写好的规则在 {grounded-labelling-pipeline.canary_rollback_share} 回滚，改好规则后第二轮放到全量，v2 上线；第 3、4 版都没达到事先写好的采用标准，没上线（回放，不是真实用户）", en = "Grounded Labelling Pipeline: wrong decisions that went live fell from {grounded-labelling-pipeline.v1_escaped} to {grounded-labelling-pipeline.v2_escaped}; the first canary rolled back at {grounded-labelling-pipeline.canary_rollback_share} under the rules written beforehand, the second, with fixed rules, reached full release and v2 went live; versions 3 and 4 missed the adoption standard written beforehand and were not released (a replay, not real users)" },
-  { zh = "{_cards} 张评测卡、{_numbers} 个数字全部由脚本从结果文件算出，{_records} 处和项目记录对照", en = "{_cards} evaluation cards and {_numbers} numbers, all computed from result files and checked against {_records} project records" },
-  { zh = "灰度回放：有据审核 v1.3 放到全量，v1.2 在放量中途触发回滚（回放，不是真实用户）", en = "Canary replay: Grounded Review v1.3 reaches full release, v1.2 rolls back partway (a replay, not real users)" },
+  { zh = "有据标注流水线：判错又自动生效的从 {grounded-labelling-pipeline.v1_escaped} 降到 {grounded-labelling-pipeline.v2_escaped}；第一轮灰度按事先写好的规则在 {grounded-labelling-pipeline.canary_rollback_share} 回滚，改好规则后第二轮放到全量，v2 转为正式版本；第 3、4 版都没达到事先写好的采用标准，没上线（回放，不是真实用户）", en = "Grounded Labelling Pipeline: wrong decisions that went live fell from {grounded-labelling-pipeline.v1_escaped} to {grounded-labelling-pipeline.v2_escaped}; the first canary rolled back at {grounded-labelling-pipeline.canary_rollback_share} under the rules written beforehand, the second, with fixed rules, reached full release and v2 was promoted to production; versions 3 and 4 missed the adoption standard written beforehand and were not released (a replay, not real users)" },
+  { zh = "{_cards} 张评测卡、{_numbers} 个数字全部由脚本从结果文件算出", en = "{_cards} evaluation cards and {_numbers} numbers, all computed by script from the result files" },
+  { zh = "灰度回放：有据审核 v1.3 放到全量，v1.2 在放量中途触发回滚", en = "Canary replay: Grounded Review v1.3 reaches full release, v1.2 rolls back partway" },
 ]
 reuse = { zh = "资产库收的是前面各幕已有的提示词版本；灰度回放用的是有据审核的真实对比数据。", en = "The registry holds the prompt versions from the earlier scenes; the canary replay uses Grounded Review's real comparison data." }

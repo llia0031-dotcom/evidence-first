@@ -1,6 +1,6 @@
 # Grounded Review (ad-review agent): evaluation card
 
-> Card version 1.2 · Data as of 2026-11-15 · public
+> Card version 1.3 · Data as of 2026-11-16 · public
 >
 > Numbers are computed by `scripts/build_cards.py` from the project's result files; proportions carry a Wilson 95% interval.
 
@@ -24,7 +24,7 @@ An agent that reviews ads: it reads the caption and the words in the image, look
 
 - **Place in the portfolio**: Scenario: judgement
 - **Link to the core component**: Every ad quote and clause quote goes through the evidence-check script; a quote that is not word for word in its source is stopped before the answer is shown.
-- **Models used**: Both arms use claude-haiku-5-5 (effort medium) with one output format. Baselines: a banned-word list, CLIP, SigLIP 2 and SafeGuard-VL-RL (run locally).
+- **Models used**: Both arms use claude-haiku-5-5 (effort medium) with one output format. Baselines: a banned-word list, CLIP, SigLIP 2, SafeGuard-VL-RL, Qwen3Guard-Gen-4B and Granite Guardian 3.3 8B (all run locally).
 
 ## Uses
 
@@ -275,7 +275,10 @@ With memory every decision is right; the errors without memory all come from one
 - **1.0** (2026-11-15) First card, following the public grounded-review repository: the public release has no Granite Guardian results on real ads, so neither does this card. The two text guardrails are compared only in report tables with no summary data file, so they are not on the card.
 - **1.1** (2026-11-15) Added when, team, stack, links and "problem / what I did / results" at the top, the way portfolio case studies open; the evaluation sections are unchanged.
 - **1.2** (2026-11-16) Added links to the demo and the product plan, and the memory test.
+- **1.3** (2026-11-17) Wording corrected: the real-ad and held-out numbers are stated as decisions (two runs per ad), not as ad counts; the data date is now 2026-11-16, when the memory evaluation was added; Qwen3Guard and Granite Guardian added to the baselines. The two text guardrails' real-ad results are now in the report but have no summary data file, so they are still not on the card. Numbers unchanged.
 
 ## Provenance
 
 Sections follow the Hugging Face model card template (Apache-2.0); the source file and fingerprint of every number are in `cards/sources.lock.json`.
+
+Sources and licences of third-party data, models and code are listed in the [project repository](https://github.com/Jason-d-e/grounded-review).

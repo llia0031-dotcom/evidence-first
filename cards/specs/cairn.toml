@@ -140,7 +140,7 @@ setup = { zh = "采用的做法，同上", en = "Method in use, as above" }
   args = { path = "cairn-public/app/eval/results/student-retrieval-2026-11-11.json", list_key = "summary", match = { method = "translate + vector + rerank", lang = "all" }, num = "mrr", value = true }
 
 [[limitation]]
-text = { zh = "真实提问比自己写的题难：学生问题的 MRR {student_mrr}，自己写的题 {team_mrr}；漏掉的是断网的线上考试和马来文的问题。", en = "Real wording is harder: MRR {student_mrr} on students' questions against {team_mrr} on the written set; the misses were an online exam that lost connection and the Malay question." }
+text = { zh = "真实提问比自己写的题难：学生问题的 MRR {student_mrr}，自己写的题 {team_mrr}；前五名里只漏了断网的线上考试那一题，马来文的问题排第五。", en = "Real wording is harder: MRR {student_mrr} on students' questions against {team_mrr} on the written set; the only question missing from the top five was an online exam that lost connection, and the Malay question ranked fifth." }
 advice = { zh = "上线后把用户的真实问题按同样的方法单独打分，持续盯住这个差距。", en = "After launch, score real user questions the same way as a separate set and keep watching the gap." }
 
 [[limitation]]

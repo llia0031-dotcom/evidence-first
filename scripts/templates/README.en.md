@@ -45,12 +45,12 @@ The operations layer is the [Grounded Labelling Pipeline](https://github.com/Jas
 |---|---|
 | [docs/eval-protocol.en.md](docs/eval-protocol.en.md) | Evaluation protocol: preregistration; rule checks on every change, calibrated model grading on every version, canary comparison last; how to report numbers |
 | [cards/](cards/) | One evaluation card per project: when, team, stack and "problem / what I did / results" first, then Hugging Face model card sections: uses, out of scope, evaluation data, metrics and results, grader calibration, limitations and failure cases, versions |
-| [prompts/](prompts/README.en.md) | Prompt registry: what each version changed, its score at the time, adopted or not and why; production / staging labels; canary replay; release checklist |
+| [prompts/](prompts/README.en.md) | Prompt registry: what each version changed, its score at the time, adopted or not and why; production / staging labels; canary replay; release checklist (in Chinese) |
 | [data/](data/) | JSON versions of all of the above |
 
 ## Scores on every prompt change
 
-`.github/workflows/prompt-regression.yml`: when a pull request changes files under `prompts/`, a GitHub Action runs promptfoo on the versions behind the production and staging labels over one item set (evidence-check development set v1, 12 drafts, model claude-haiku-5-5) and posts both pass counts on the pull request. Every prompt change is re-tested this way; see [the first run on GitHub](https://github.com/Jason-d-e/evidence-first/pull/1).
+`.github/workflows/prompt-regression.yml`: when a pull request changes files under `prompts/`, a GitHub Action runs promptfoo on the versions behind the production and staging labels over one item set (evidence-check development set v1, 12 drafts, model claude-haiku-5-5) and posts both pass counts on the pull request. Every prompt change is re-tested this way; see [the first run on GitHub](https://github.com/Jason-d-e/evidence-first/pull/1) (both labels then pointed at the same version, so it only shows the flow works).
 
 The Action needs an API key stored in the repository:
 
@@ -61,11 +61,26 @@ During a run the key is written to a temporary file that only the evaluation pro
 
 ## Rebuild
 
-Python 3.11+, standard library only. The project folders must sit next to this repository.
+Python 3.11+, standard library only. The project folders must sit next to this repository, and their names differ from the GitHub repository names:
+
+| Folder | Public repository |
+|---|---|
+| `evidence-check-public/` | [evidence-check](https://github.com/Jason-d-e/evidence-check) |
+| `cairn-public/` | [cairn](https://github.com/Jason-d-e/cairn) |
+| `grounded-review-public/` | [grounded-review](https://github.com/Jason-d-e/grounded-review) |
+| `sellpoint-check/` | [sellpoint-check](https://github.com/Jason-d-e/sellpoint-check) |
+| `screening-audit/` | [evidence-screening](https://github.com/Jason-d-e/evidence-screening) |
+| `voice-agent-eval/` | [voice-agent-eval](https://github.com/Jason-d-e/voice-agent-eval) |
+| `evidence-pipeline-public/` | [grounded-labelling-pipeline](https://github.com/Jason-d-e/grounded-labelling-pipeline) |
+| `grounded-business-review-public/` | [grounded-business-review](https://github.com/Jason-d-e/grounded-business-review) |
+| `launchpad-tracedesk/` | not public (source of the TraceDesk card) |
+| `aigc-scene-eval/` | not public (source of the text-on-product card) |
+
+The result files of the TraceDesk and text-on-product cards are not public, so a rebuild from the public repositories alone reports missing files; the three offline tests that need the project folders are skipped.
 
 ```
 python scripts/build_cards.py          # cards, project table, data/projects.json, data/story.json
-python scripts/build_cards.py --check  # check only: fails if a number disagrees with a project record or a source file changed
+python scripts/build_cards.py --check  # check only: fails if a source result file changed or a generated file is out of date
 python scripts/prompts.py build        # prompt registry tables and data/prompts.json
 python scripts/replay_canary.py        # canary replay
 python -m unittest discover -s tests   # offline tests, no model calls

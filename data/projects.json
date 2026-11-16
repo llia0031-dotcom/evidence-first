@@ -49,7 +49,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-check-public/eval/v2/results/run-2026-11-12.summary.md"
+              "evidence-check/eval/v2/results/run-2026-11-12.summary.md"
             ],
             "k": 60,
             "n": 60,
@@ -71,7 +71,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "evidence-check-public/eval/v2/results/run-2026-11-12.summary.md"
+              "evidence-check/eval/v2/results/run-2026-11-12.summary.md"
             ],
             "k": 12,
             "n": 150,
@@ -93,7 +93,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "evidence-check-public/eval/v2/results/run-2026-11-12.summary.md"
+              "evidence-check/eval/v2/results/run-2026-11-12.summary.md"
             ],
             "k": 3,
             "n": 150,
@@ -115,7 +115,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "evidence-check-public/eval/v2/results/run-2026-11-12.summary.md"
+              "evidence-check/eval/v2/results/run-2026-11-12.summary.md"
             ],
             "k": 4,
             "n": 32,
@@ -137,7 +137,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "evidence-check-public/eval/v2/results/run-2026-11-12.summary.md"
+              "evidence-check/eval/v2/results/run-2026-11-12.summary.md"
             ],
             "k": 2,
             "n": 32,
@@ -159,7 +159,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "evidence-check-public/eval/v2/results/run-2026-11-12.summary.md"
+              "evidence-check/eval/v2/results/run-2026-11-12.summary.md"
             ],
             "k": 0,
             "n": 32,
@@ -181,7 +181,7 @@
             "direction": "lower",
             "kind": "value",
             "sources": [
-              "evidence-check-public/eval/v2/results/run-2026-11-12.summary.md"
+              "evidence-check/eval/v2/results/run-2026-11-12.summary.md"
             ],
             "value": 0.052,
             "unit": "usd",
@@ -199,7 +199,7 @@
             "direction": "lower",
             "kind": "value",
             "sources": [
-              "evidence-check-public/eval/v2/results/run-2026-11-12.summary.md"
+              "evidence-check/eval/v2/results/run-2026-11-12.summary.md"
             ],
             "value": 0.1603,
             "unit": "usd",
@@ -227,7 +227,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-check-public/eval/v3/results/script-only.md"
+              "evidence-check/eval/v3/results/script-only.md"
             ],
             "k": 3,
             "n": 16,
@@ -249,7 +249,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-check-public/eval/v3/results/script-only.md"
+              "evidence-check/eval/v3/results/script-only.md"
             ],
             "k": 16,
             "n": 16,
@@ -271,7 +271,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-check-public/eval/v3/results/script-only.md"
+              "evidence-check/eval/v3/results/script-only.md"
             ],
             "k": 17,
             "n": 17,
@@ -303,7 +303,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-check-public/eval/v4/results/script-only.md"
+              "evidence-check/eval/v4/results/script-only.md"
             ],
             "k": 0,
             "n": 11,
@@ -325,7 +325,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-check-public/eval/v4/results/script-only.md"
+              "evidence-check/eval/v4/results/script-only.md"
             ],
             "k": 11,
             "n": 11,
@@ -347,7 +347,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-check-public/eval/v4/results/script-only.md"
+              "evidence-check/eval/v4/results/script-only.md"
             ],
             "k": 13,
             "n": 13,
@@ -380,8 +380,8 @@
       "en": "An Agent Skill plus a checker script. The skill has the agent attach a word-for-word quote from the documents to every factual sentence; the script checks that the quote is really in the cited file (case, spacing, curly quotes and punctuation forgiven) and that every date, time, amount and count in the sentence also appears in its quotes, across Chinese and English numerals (\"下午2点\" matches 14:00). The script cannot judge meaning, so the skill also has the agent reread every passing claim. Two modes: answer from documents, and check a draft."
     },
     "did": {
-      "zh": "我把 TraceDesk 里逐字核对引文和数字的规则抽出来，做成谁都能装的 Skill 加核对脚本；先在开发评测里找问题、改出 v0.2，再在冻结的留出题上和普通提示比较；之后按真实使用中的误报和待改清单两次改规则（0.3.0、0.4.0），每次改之前先写好新题。",
-      "en": "I took TraceDesk's word-for-word quote and number rules out into a skill and checker anyone can install; found problems in a development run, wrote v0.2, and compared it with a plain prompt on frozen held-out items; then revised the rules twice (0.3.0, 0.4.0) from false alarms in real use and a list of known gaps, writing new items before each change."
+      "zh": "我把 TraceDesk 里逐字核对引文和数字的规则抽出来，做成谁都能装的 Skill 加核对脚本；先在开发评测里找问题、改出 v0.2，再在冻结的留出题上和普通提示比较；之后按其他几个项目实际使用这个脚本时的误报和待改清单两次改规则（0.3.0、0.4.0），每次改之前先写好新题。",
+      "en": "I took TraceDesk's word-for-word quote and number rules out into a skill and checker anyone can install; found problems in a development run, wrote v0.2, and compared it with a plain prompt on frozen held-out items; then revised the rules twice (0.3.0, 0.4.0) from false alarms when other projects used the script and a list of known gaps, writing new items before each change."
     },
     "headline": [
       {
@@ -462,7 +462,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "cairn-public/app/eval/results/retrieval-2026-11-10.json"
+              "cairn/app/eval/results/retrieval-2026-11-10.json"
             ],
             "k": 34,
             "n": 45,
@@ -484,7 +484,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "cairn-public/app/eval/results/retrieval-2026-11-10.json"
+              "cairn/app/eval/results/retrieval-2026-11-10.json"
             ],
             "k": 44,
             "n": 45,
@@ -506,7 +506,7 @@
             "direction": "higher",
             "kind": "value",
             "sources": [
-              "cairn-public/app/eval/results/retrieval-2026-11-10.json"
+              "cairn/app/eval/results/retrieval-2026-11-10.json"
             ],
             "value": 0.839,
             "unit": "",
@@ -524,7 +524,7 @@
             "direction": "higher",
             "kind": "value",
             "sources": [
-              "cairn-public/app/eval/results/retrieval-2026-11-10.json"
+              "cairn/app/eval/results/retrieval-2026-11-10.json"
             ],
             "value": 0.709,
             "unit": "",
@@ -542,7 +542,7 @@
             "direction": "higher",
             "kind": "value",
             "sources": [
-              "cairn-public/app/eval/results/retrieval-2026-11-10.json"
+              "cairn/app/eval/results/retrieval-2026-11-10.json"
             ],
             "value": 0.375,
             "unit": "",
@@ -560,7 +560,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "cairn-public/app/eval/results/retrieval-2026-11-10.json"
+              "cairn/app/eval/results/retrieval-2026-11-10.json"
             ],
             "k": 18,
             "n": 20,
@@ -582,7 +582,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "cairn-public/app/eval/results/retrieval-2026-11-10.json"
+              "cairn/app/eval/results/retrieval-2026-11-10.json"
             ],
             "k": 19,
             "n": 20,
@@ -614,7 +614,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "cairn-public/app/eval/results/student-retrieval-2026-11-11.json"
+              "cairn/app/eval/results/student-retrieval-2026-11-11.json"
             ],
             "k": 14,
             "n": 15,
@@ -636,7 +636,7 @@
             "direction": "higher",
             "kind": "value",
             "sources": [
-              "cairn-public/app/eval/results/student-retrieval-2026-11-11.json"
+              "cairn/app/eval/results/student-retrieval-2026-11-11.json"
             ],
             "value": 0.724,
             "unit": "",
@@ -925,8 +925,8 @@
       "en": "An FAQ assistant that answers only from the given documents, designed for readers who find dense text hard: bottom line first, then steps and deadlines, each with a word-for-word quote. Quotes are checked before display and failures are withheld. The demo documents describe a fictional event, DemoClub. The evaluation compares a plain prompt with the grounded prompt series on the same model."
     },
     "did": {
-      "zh": "我们做了给读密集文字吃力的读者用的常见问题助手：先一句结论、再一张清单、最后是证据；服务器核对每段引文和每个截止时间；提示词从 grounded-v2 改到 v2.4，v2.2 到 v2.4 每版都和普通提示在同一组题上比较。",
-      "en": "We built an FAQ assistant for readers who find dense text hard: one sentence first, then a checklist, then the evidence; the server checks every quote and deadline; the prompt went from grounded-v2 to v2.4, with v2.2 to v2.4 each compared with a plain prompt on the same cases."
+      "zh": "我们做了给读密集文字吃力的读者用的常见问题助手：先一句结论、再一张清单、最后是证据；服务器核对每段引文和每个截止时间；提示词从 grounded-v2 改到 v2.4，v2.2 到 v2.4 每版都和普通提示在同一组题上并排比较（v2.2 用开发组，v2.3、v2.4 用检查组）。",
+      "en": "We built an FAQ assistant for readers who find dense text hard: one sentence first, then a checklist, then the evidence; the server checks every quote and deadline; the prompt went from grounded-v2 to v2.4, with v2.2 to v2.4 each compared side by side with a plain prompt on the same cases (v2.2 on the development set, v2.3 and v2.4 on the check set)."
     },
     "headline": [
       {
@@ -989,7 +989,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "screening-audit/eval/results/run-2026-11-13.summary.json"
+              "evidence-screening/eval/results/run-2026-11-13.summary.json"
             ],
             "k": 2728,
             "n": 2736,
@@ -1011,7 +1011,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "screening-audit/eval/results/run-2026-11-13.summary.json"
+              "evidence-screening/eval/results/run-2026-11-13.summary.json"
             ],
             "k": 2735,
             "n": 2736,
@@ -1033,7 +1033,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "screening-audit/eval/results/run-2026-11-13.summary.json"
+              "evidence-screening/eval/results/run-2026-11-13.summary.json"
             ],
             "k": 2379,
             "n": 2736,
@@ -1055,7 +1055,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "screening-audit/eval/results/run-2026-11-13.summary.json"
+              "evidence-screening/eval/results/run-2026-11-13.summary.json"
             ],
             "k": 2510,
             "n": 2736,
@@ -1077,7 +1077,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "screening-audit/eval/results/run-2026-11-13.summary.json"
+              "evidence-screening/eval/results/run-2026-11-13.summary.json"
             ],
             "k": 0,
             "n": 240,
@@ -1099,7 +1099,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "screening-audit/eval/results/run-2026-11-13.summary.json"
+              "evidence-screening/eval/results/run-2026-11-13.summary.json"
             ],
             "k": 0,
             "n": 240,
@@ -1121,7 +1121,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "screening-audit/eval/results/run-2026-11-13.summary.json"
+              "evidence-screening/eval/results/run-2026-11-13.summary.json"
             ],
             "k": 0,
             "n": 48,
@@ -1153,7 +1153,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "screening-audit/eval/v2/results/run-2026-11-13.summary.json"
+              "evidence-screening/eval/v2/results/run-2026-11-13.summary.json"
             ],
             "k": 70,
             "n": 424,
@@ -1175,7 +1175,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "screening-audit/eval/v2/results/run-2026-11-13.summary.json"
+              "evidence-screening/eval/v2/results/run-2026-11-13.summary.json"
             ],
             "k": 10,
             "n": 424,
@@ -1197,7 +1197,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "screening-audit/eval/v2/results/run-2026-11-13.summary.json"
+              "evidence-screening/eval/v2/results/run-2026-11-13.summary.json"
             ],
             "k": 0,
             "n": 424,
@@ -1229,7 +1229,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "screening-audit/eval/v3/results/run-2026-11-14.summary.json"
+              "evidence-screening/eval/v3/results/run-2026-11-14.summary.json"
             ],
             "k": 80,
             "n": 80,
@@ -1251,7 +1251,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "screening-audit/eval/v3/results/run-2026-11-14.summary.json"
+              "evidence-screening/eval/v3/results/run-2026-11-14.summary.json"
             ],
             "k": 80,
             "n": 80,
@@ -1273,7 +1273,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "screening-audit/eval/v3/results/run-2026-11-14.summary.json"
+              "evidence-screening/eval/v3/results/run-2026-11-14.summary.json"
             ],
             "k": 286,
             "n": 288,
@@ -1305,7 +1305,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "screening-audit/eval/seeded/results/seeded-2026-11-14.json"
+              "evidence-screening/eval/seeded/results/seeded-2026-11-14.json"
             ],
             "k": 409,
             "n": 409,
@@ -1327,7 +1327,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "screening-audit/eval/seeded/results/seeded-2026-11-14.json"
+              "evidence-screening/eval/seeded/results/seeded-2026-11-14.json"
             ],
             "k": 409,
             "n": 409,
@@ -1349,7 +1349,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "screening-audit/eval/seeded/results/seeded-2026-11-14.json"
+              "evidence-screening/eval/seeded/results/seeded-2026-11-14.json"
             ],
             "k": 0,
             "n": 40,
@@ -1381,7 +1381,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "screening-audit/eval/verify/results/run-2026-11-14.summary.json"
+              "evidence-screening/eval/verify/results/run-2026-11-14.summary.json"
             ],
             "k": 80,
             "n": 80,
@@ -1403,7 +1403,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "screening-audit/eval/verify/results/run-2026-11-14.summary.json"
+              "evidence-screening/eval/verify/results/run-2026-11-14.summary.json"
             ],
             "k": 79,
             "n": 80,
@@ -1425,7 +1425,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "screening-audit/eval/verify/results/run-2026-11-14.summary.json"
+              "evidence-screening/eval/verify/results/run-2026-11-14.summary.json"
             ],
             "k": 0,
             "n": 206,
@@ -2446,8 +2446,8 @@
     "order": 6,
     "layer": "judgement",
     "status": "public",
-    "updated": "2026-11-15",
-    "card_version": "1.2",
+    "updated": "2026-11-16",
+    "card_version": "1.3",
     "card": {
       "zh": "cards/grounded-review.md",
       "en": "cards/grounded-review.en.md"
@@ -2511,7 +2511,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/test-2026-11-13.summary.json"
+              "grounded-review/eval/results/test-2026-11-13.summary.json"
             ],
             "k": 191,
             "n": 192,
@@ -2533,7 +2533,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/test-2026-11-13.summary.json"
+              "grounded-review/eval/results/test-2026-11-13.summary.json"
             ],
             "k": 187,
             "n": 192,
@@ -2555,7 +2555,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/test-2026-11-13.summary.json"
+              "grounded-review/eval/results/test-2026-11-13.summary.json"
             ],
             "k": 124,
             "n": 124,
@@ -2577,7 +2577,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/test-2026-11-13.summary.json"
+              "grounded-review/eval/results/test-2026-11-13.summary.json"
             ],
             "k": 124,
             "n": 124,
@@ -2599,7 +2599,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/test-2026-11-13.summary.json"
+              "grounded-review/eval/results/test-2026-11-13.summary.json"
             ],
             "k": 59,
             "n": 60,
@@ -2621,7 +2621,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/test-2026-11-13.summary.json"
+              "grounded-review/eval/results/test-2026-11-13.summary.json"
             ],
             "k": 55,
             "n": 60,
@@ -2643,7 +2643,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/test-2026-11-13.summary.json"
+              "grounded-review/eval/results/test-2026-11-13.summary.json"
             ],
             "k": 129,
             "n": 129,
@@ -2665,7 +2665,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/test-2026-11-13.summary.json"
+              "grounded-review/eval/results/test-2026-11-13.summary.json"
             ],
             "k": 129,
             "n": 129,
@@ -2687,7 +2687,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/test-2026-11-13.summary.json"
+              "grounded-review/eval/results/test-2026-11-13.summary.json"
             ],
             "k": 224,
             "n": 225,
@@ -2709,7 +2709,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/test-2026-11-13.summary.json"
+              "grounded-review/eval/results/test-2026-11-13.summary.json"
             ],
             "k": 200,
             "n": 200,
@@ -2731,7 +2731,7 @@
             "direction": "lower",
             "kind": "value",
             "sources": [
-              "grounded-review-public/eval/results/test-2026-11-13.summary.json"
+              "grounded-review/eval/results/test-2026-11-13.summary.json"
             ],
             "value": 0.0010365208333333333,
             "unit": "usd",
@@ -2749,7 +2749,7 @@
             "direction": "lower",
             "kind": "value",
             "sources": [
-              "grounded-review-public/eval/results/test-2026-11-13.summary.json"
+              "grounded-review/eval/results/test-2026-11-13.summary.json"
             ],
             "value": 0.002281947916666667,
             "unit": "usd",
@@ -2777,7 +2777,7 @@
             "direction": "none",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/test-2026-11-13.images.summary.json"
+              "grounded-review/eval/results/test-2026-11-13.images.summary.json"
             ],
             "k": 37,
             "n": 57,
@@ -2799,7 +2799,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/test-2026-11-13.images.summary.json"
+              "grounded-review/eval/results/test-2026-11-13.images.summary.json"
             ],
             "k": 49,
             "n": 57,
@@ -2821,7 +2821,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/test-2026-11-13.images.summary.json"
+              "grounded-review/eval/results/test-2026-11-13.images.summary.json"
             ],
             "k": 36,
             "n": 57,
@@ -2843,7 +2843,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/test-2026-11-13.images.summary.json"
+              "grounded-review/eval/results/test-2026-11-13.images.summary.json"
             ],
             "k": 35,
             "n": 57,
@@ -2865,7 +2865,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/test-2026-11-13.images.summary.json"
+              "grounded-review/eval/results/test-2026-11-13.images.summary.json"
             ],
             "k": 27,
             "n": 57,
@@ -2887,7 +2887,7 @@
             "direction": "lower",
             "kind": "value",
             "sources": [
-              "grounded-review-public/eval/results/test-2026-11-13.images.summary.json"
+              "grounded-review/eval/results/test-2026-11-13.images.summary.json"
             ],
             "value": 178.3,
             "unit": "s",
@@ -2915,7 +2915,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/hard-2026-11-14.summary.json"
+              "grounded-review/eval/results/hard-2026-11-14.summary.json"
             ],
             "k": 48,
             "n": 48,
@@ -2937,7 +2937,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/hard-2026-11-14.summary.json"
+              "grounded-review/eval/results/hard-2026-11-14.summary.json"
             ],
             "k": 48,
             "n": 48,
@@ -2969,7 +2969,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/real-2026-11-14.summary.json"
+              "grounded-review/eval/results/real-2026-11-14.summary.json"
             ],
             "k": 49,
             "n": 60,
@@ -2991,7 +2991,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/real-2026-11-14.summary.json"
+              "grounded-review/eval/results/real-2026-11-14.summary.json"
             ],
             "k": 51,
             "n": 60,
@@ -3013,7 +3013,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/real-2026-11-14.summary.json"
+              "grounded-review/eval/results/real-2026-11-14.summary.json"
             ],
             "k": 43,
             "n": 46,
@@ -3035,7 +3035,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/real-2026-11-14.summary.json"
+              "grounded-review/eval/results/real-2026-11-14.summary.json"
             ],
             "k": 46,
             "n": 46,
@@ -3057,7 +3057,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/real-2026-11-14.summary.json"
+              "grounded-review/eval/results/real-2026-11-14.summary.json"
             ],
             "k": 6,
             "n": 14,
@@ -3079,7 +3079,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/real-2026-11-14.summary.json"
+              "grounded-review/eval/results/real-2026-11-14.summary.json"
             ],
             "k": 5,
             "n": 14,
@@ -3111,7 +3111,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/real-zh-2026-11-14.summary.json"
+              "grounded-review/eval/results/real-zh-2026-11-14.summary.json"
             ],
             "k": 27,
             "n": 32,
@@ -3133,7 +3133,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/real-zh-2026-11-14.summary.json"
+              "grounded-review/eval/results/real-zh-2026-11-14.summary.json"
             ],
             "k": 26,
             "n": 32,
@@ -3165,7 +3165,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/multiturn-mt2-v1.jsonl"
+              "grounded-review/eval/results/multiturn-mt2-v1.jsonl"
             ],
             "k": 3,
             "n": 24,
@@ -3187,7 +3187,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/multiturn-mt2-v1.1.jsonl"
+              "grounded-review/eval/results/multiturn-mt2-v1.1.jsonl"
             ],
             "k": 0,
             "n": 24,
@@ -3219,7 +3219,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/multiturn-mt3-v1.1.jsonl"
+              "grounded-review/eval/results/multiturn-mt3-v1.1.jsonl"
             ],
             "k": 4,
             "n": 36,
@@ -3241,7 +3241,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/multiturn-mt3-v1.2.jsonl"
+              "grounded-review/eval/results/multiturn-mt3-v1.2.jsonl"
             ],
             "k": 6,
             "n": 36,
@@ -3273,7 +3273,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/multiturn-mt4-v1.1.jsonl"
+              "grounded-review/eval/results/multiturn-mt4-v1.1.jsonl"
             ],
             "k": 6,
             "n": 36,
@@ -3295,7 +3295,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/multiturn-mt4-v1.3.jsonl"
+              "grounded-review/eval/results/multiturn-mt4-v1.3.jsonl"
             ],
             "k": 0,
             "n": 36,
@@ -3317,7 +3317,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/multiturn-mt4-v1.1.jsonl"
+              "grounded-review/eval/results/multiturn-mt4-v1.1.jsonl"
             ],
             "k": 34,
             "n": 36,
@@ -3339,7 +3339,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/multiturn-mt4-v1.3.jsonl"
+              "grounded-review/eval/results/multiturn-mt4-v1.3.jsonl"
             ],
             "k": 36,
             "n": 36,
@@ -3361,7 +3361,7 @@
             "direction": "lower",
             "kind": "value",
             "sources": [
-              "grounded-review-public/eval/results/multiturn-mt4-v1.1.jsonl"
+              "grounded-review/eval/results/multiturn-mt4-v1.1.jsonl"
             ],
             "value": 0.006850166666666667,
             "unit": "usd",
@@ -3379,7 +3379,7 @@
             "direction": "lower",
             "kind": "value",
             "sources": [
-              "grounded-review-public/eval/results/multiturn-mt4-v1.3.jsonl"
+              "grounded-review/eval/results/multiturn-mt4-v1.3.jsonl"
             ],
             "value": 0.006784638888888889,
             "unit": "usd",
@@ -3407,7 +3407,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/memory-2026-11-16.summary.json"
+              "grounded-review/eval/results/memory-2026-11-16.summary.json"
             ],
             "k": 69,
             "n": 72,
@@ -3429,7 +3429,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/memory-2026-11-16.summary.json"
+              "grounded-review/eval/results/memory-2026-11-16.summary.json"
             ],
             "k": 72,
             "n": 72,
@@ -3451,7 +3451,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "grounded-review-public/eval/results/memory-2026-11-16.report.md"
+              "grounded-review/eval/results/memory-2026-11-16.report.md"
             ],
             "k": 0,
             "n": 36,
@@ -3473,7 +3473,7 @@
             "direction": "lower",
             "kind": "value",
             "sources": [
-              "grounded-review-public/eval/results/memory-2026-11-16.summary.json"
+              "grounded-review/eval/results/memory-2026-11-16.summary.json"
             ],
             "value": 0.8887716184125308,
             "unit": "x",
@@ -3526,7 +3526,7 @@
     "layer": "generation",
     "status": "public",
     "updated": "2026-11-15",
-    "card_version": "1.1",
+    "card_version": "1.2",
     "card": {
       "zh": "cards/text-on-product.md",
       "en": "cards/text-on-product.en.md"
@@ -3857,7 +3857,7 @@
     "layer": "interaction",
     "status": "public",
     "updated": "2026-11-15",
-    "card_version": "1.2",
+    "card_version": "1.3",
     "card": {
       "zh": "cards/voice-agent-eval.md",
       "en": "cards/voice-agent-eval.en.md"
@@ -4342,8 +4342,8 @@
       "en": "Real-time voice agent evaluation"
     },
     "problem": {
-      "zh": "语音助手在用户停顿、插话、说“嗯”、背景有人说话时还能不能把事办对，体验用时延、打断、误停的数字来衡量",
-      "en": "Whether a voice assistant still gets the task right when the user pauses, interrupts, says \"mm\" or talks over background speech, with experience measured as latency, barge-in and false-stop numbers"
+      "zh": "语音助手在用户停顿、插话、说“嗯”、背景有人说话时还能不能把事办对，体验用时延、打断、误停的数字来衡量（用户语音是合成的）",
+      "en": "Whether a voice assistant still gets the task right when the user pauses, interrupts, says \"mm\" or talks over background speech, with experience measured as latency, barge-in and false-stop numbers (the user's speech is synthesised)"
     },
     "primary_metric": {
       "zh": "严格通过率（事办对且交互对）；开口时延中位数；插话停下率；附和后继续说的比例",
@@ -4422,7 +4422,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/versions.json"
+              "grounded-labelling-pipeline/data/versions.json"
             ],
             "k": 17,
             "n": 332,
@@ -4444,7 +4444,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/versions.json"
+              "grounded-labelling-pipeline/data/versions.json"
             ],
             "k": 9,
             "n": 332,
@@ -4466,7 +4466,7 @@
             "direction": "none",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/versions.json"
+              "grounded-labelling-pipeline/data/versions.json"
             ],
             "k": 6,
             "n": 332,
@@ -4488,7 +4488,7 @@
             "direction": "none",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/versions.json"
+              "grounded-labelling-pipeline/data/versions.json"
             ],
             "k": 72,
             "n": 332,
@@ -4510,7 +4510,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/versions.json"
+              "grounded-labelling-pipeline/data/versions.json"
             ],
             "k": 315,
             "n": 332,
@@ -4532,7 +4532,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/versions.json"
+              "grounded-labelling-pipeline/data/versions.json"
             ],
             "k": 312,
             "n": 332,
@@ -4564,7 +4564,7 @@
             "direction": "none",
             "kind": "value",
             "sources": [
-              "evidence-pipeline-public/data/canary.json"
+              "grounded-labelling-pipeline/data/canary.json"
             ],
             "value": 10.0,
             "unit": "pct",
@@ -4582,7 +4582,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/canary.json"
+              "grounded-labelling-pipeline/data/canary.json"
             ],
             "k": 1,
             "n": 10,
@@ -4604,7 +4604,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/canary.json"
+              "grounded-labelling-pipeline/data/canary.json"
             ],
             "k": 6,
             "n": 80,
@@ -4622,8 +4622,8 @@
       {
         "id": "round2",
         "name": {
-          "zh": "第二轮灰度：改好的规则，新写的广告（回放，不是真实用户）",
-          "en": "Canary round two: fixed rules on newly written ads (a replay, not real users)"
+          "zh": "第二轮灰度：改好的规则，新写的广告",
+          "en": "Canary round two: fixed rules on newly written ads"
         },
         "date": "2026-11-16",
         "metrics": [
@@ -4636,7 +4636,7 @@
             "direction": "none",
             "kind": "value",
             "sources": [
-              "evidence-pipeline-public/data/canary-round2.json"
+              "grounded-labelling-pipeline/data/canary-round2.json"
             ],
             "value": 100.0,
             "unit": "pct",
@@ -4654,7 +4654,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/versions-round2.json"
+              "grounded-labelling-pipeline/data/versions-round2.json"
             ],
             "k": 239,
             "n": 240,
@@ -4676,7 +4676,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/versions-round2.json"
+              "grounded-labelling-pipeline/data/versions-round2.json"
             ],
             "k": 240,
             "n": 240,
@@ -4698,7 +4698,7 @@
             "direction": "none",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/versions-round2.json"
+              "grounded-labelling-pipeline/data/versions-round2.json"
             ],
             "k": 36,
             "n": 240,
@@ -4720,7 +4720,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/canary-round2.json"
+              "grounded-labelling-pipeline/data/canary-round2.json"
             ],
             "k": 0,
             "n": 101,
@@ -4742,7 +4742,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/canary-round2.json"
+              "grounded-labelling-pipeline/data/canary-round2.json"
             ],
             "k": 1,
             "n": 150,
@@ -4764,7 +4764,7 @@
             "direction": "lower",
             "kind": "value",
             "sources": [
-              "evidence-pipeline-public/data/versions-round2.json"
+              "grounded-labelling-pipeline/data/versions-round2.json"
             ],
             "value": 1.050320058612134,
             "unit": "x",
@@ -4792,7 +4792,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/lark-agent-eval1.json"
+              "grounded-labelling-pipeline/data/lark-agent-eval1.json"
             ],
             "k": 25,
             "n": 25,
@@ -4814,7 +4814,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/lark-agent-eval1.json"
+              "grounded-labelling-pipeline/data/lark-agent-eval1.json"
             ],
             "k": 25,
             "n": 25,
@@ -4836,7 +4836,7 @@
             "direction": "none",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/lark-agent-eval1.json"
+              "grounded-labelling-pipeline/data/lark-agent-eval1.json"
             ],
             "k": 2,
             "n": 25,
@@ -4858,7 +4858,7 @@
             "direction": "none",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/lark-agent-eval1.json"
+              "grounded-labelling-pipeline/data/lark-agent-eval1.json"
             ],
             "k": 0,
             "n": 25,
@@ -4880,7 +4880,7 @@
             "direction": "none",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/lark-agent-eval1.json"
+              "grounded-labelling-pipeline/data/lark-agent-eval1.json"
             ],
             "k": 13,
             "n": 50,
@@ -4912,7 +4912,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/retrieval.csv"
+              "grounded-labelling-pipeline/data/retrieval.csv"
             ],
             "k": 66,
             "n": 124,
@@ -4934,7 +4934,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/retrieval.csv"
+              "grounded-labelling-pipeline/data/retrieval.csv"
             ],
             "k": 110,
             "n": 124,
@@ -4952,8 +4952,8 @@
       {
         "id": "round3",
         "name": {
-          "zh": "提示词第 3 版：新写的广告上不采用（回放，不是真实用户）",
-          "en": "Prompt v3 on newly written ads: not adopted (a replay, not real users)"
+          "zh": "提示词第 3 版：新写的广告上不采用",
+          "en": "Prompt v3 on newly written ads: not adopted"
         },
         "date": "2026-11-17",
         "metrics": [
@@ -4966,7 +4966,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/versions-v3-round3.json"
+              "grounded-labelling-pipeline/data/versions-v3-round3.json"
             ],
             "k": 44,
             "n": 176,
@@ -4988,7 +4988,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/versions-v3-round3.json"
+              "grounded-labelling-pipeline/data/versions-v3-round3.json"
             ],
             "k": 4,
             "n": 176,
@@ -5010,7 +5010,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/versions-v3-round3.json"
+              "grounded-labelling-pipeline/data/versions-v3-round3.json"
             ],
             "k": 44,
             "n": 64,
@@ -5032,7 +5032,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/versions-v3-round3.json"
+              "grounded-labelling-pipeline/data/versions-v3-round3.json"
             ],
             "k": 19,
             "n": 64,
@@ -5054,7 +5054,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/versions-v3.json"
+              "grounded-labelling-pipeline/data/versions-v3.json"
             ],
             "k": 9,
             "n": 332,
@@ -5076,7 +5076,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/versions-v3.json"
+              "grounded-labelling-pipeline/data/versions-v3.json"
             ],
             "k": 9,
             "n": 332,
@@ -5094,8 +5094,8 @@
       {
         "id": "round4",
         "name": {
-          "zh": "提示词第 4 版：又一批新写的广告上不采用（回放，不是真实用户）",
-          "en": "Prompt v4 on another set of newly written ads: not adopted (a replay, not real users)"
+          "zh": "提示词第 4 版：又一批新写的广告上不采用",
+          "en": "Prompt v4 on another set of newly written ads: not adopted"
         },
         "date": "2026-11-17",
         "metrics": [
@@ -5108,7 +5108,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/versions-v4-round4.json"
+              "grounded-labelling-pipeline/data/versions-v4-round4.json"
             ],
             "k": 43,
             "n": 176,
@@ -5130,7 +5130,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/versions-v4-round4.json"
+              "grounded-labelling-pipeline/data/versions-v4-round4.json"
             ],
             "k": 11,
             "n": 176,
@@ -5152,7 +5152,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/versions-v4-round4.json"
+              "grounded-labelling-pipeline/data/versions-v4-round4.json"
             ],
             "k": 42,
             "n": 64,
@@ -5174,7 +5174,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/versions-v4-round4.json"
+              "grounded-labelling-pipeline/data/versions-v4-round4.json"
             ],
             "k": 47,
             "n": 64,
@@ -5196,7 +5196,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/versions-v4-round4.json"
+              "grounded-labelling-pipeline/data/versions-v4-round4.json"
             ],
             "k": 0,
             "n": 176,
@@ -5218,7 +5218,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/versions-v4-round4.json"
+              "grounded-labelling-pipeline/data/versions-v4-round4.json"
             ],
             "k": 2,
             "n": 176,
@@ -5240,7 +5240,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/versions-v4.json"
+              "grounded-labelling-pipeline/data/versions-v4.json"
             ],
             "k": 9,
             "n": 332,
@@ -5262,7 +5262,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/versions-v4.json"
+              "grounded-labelling-pipeline/data/versions-v4.json"
             ],
             "k": 13,
             "n": 332,
@@ -5294,7 +5294,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/kbqa-eval.json"
+              "grounded-labelling-pipeline/data/kbqa-eval.json"
             ],
             "k": 134,
             "n": 160,
@@ -5316,7 +5316,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/kbqa-eval.json"
+              "grounded-labelling-pipeline/data/kbqa-eval.json"
             ],
             "k": 44,
             "n": 48,
@@ -5338,7 +5338,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/kbqa-eval.json"
+              "grounded-labelling-pipeline/data/kbqa-eval.json"
             ],
             "k": 1,
             "n": 160,
@@ -5360,7 +5360,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/retrieval-methods.csv"
+              "grounded-labelling-pipeline/data/retrieval-methods.csv"
             ],
             "k": 23,
             "n": 28,
@@ -5392,7 +5392,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/retrieval-methods.csv"
+              "grounded-labelling-pipeline/data/retrieval-methods.csv"
             ],
             "k": 38,
             "n": 40,
@@ -5414,7 +5414,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/retrieval-methods.csv"
+              "grounded-labelling-pipeline/data/retrieval-methods.csv"
             ],
             "k": 39,
             "n": 40,
@@ -5436,7 +5436,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/retrieval-methods.csv"
+              "grounded-labelling-pipeline/data/retrieval-methods.csv"
             ],
             "k": 21,
             "n": 23,
@@ -5458,7 +5458,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/retrieval-methods.csv"
+              "grounded-labelling-pipeline/data/retrieval-methods.csv"
             ],
             "k": 23,
             "n": 23,
@@ -5490,7 +5490,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/lark-agent-eval2.json"
+              "grounded-labelling-pipeline/data/lark-agent-eval2.json"
             ],
             "k": 49,
             "n": 60,
@@ -5512,7 +5512,7 @@
             "direction": "lower",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/lark-agent-eval2.json"
+              "grounded-labelling-pipeline/data/lark-agent-eval2.json"
             ],
             "k": 0,
             "n": 60,
@@ -5534,7 +5534,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/lark-agent-eval3.json"
+              "grounded-labelling-pipeline/data/lark-agent-eval3.json"
             ],
             "k": 60,
             "n": 60,
@@ -5556,7 +5556,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/lark-agent-eval3.json"
+              "grounded-labelling-pipeline/data/lark-agent-eval3.json"
             ],
             "k": 60,
             "n": 60,
@@ -5578,7 +5578,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "evidence-pipeline-public/data/lark-agent-eval3.json"
+              "grounded-labelling-pipeline/data/lark-agent-eval3.json"
             ],
             "k": 8,
             "n": 8,
@@ -5621,11 +5621,11 @@
       },
       {
         "zh": "第一轮按事先写好的规则，灰度放到 10% 就回滚了；规则写错两处，已复盘",
-        "en": "Round one rolled back at 10% under the rules written beforehand; two rules were wrong, now reviewed"
+        "en": "Round one rolled back at 10% under the rules written beforehand; two rules were wrong and have been fixed"
       },
       {
-        "zh": "第二轮用改好的规则，在新写的广告上放到 100%，没有回滚，v2 上线",
-        "en": "Round two, with the fixed rules on newly written ads, reached 100% without a rollback; v2 is live"
+        "zh": "第二轮用改好的规则，在新写的广告上放到 100%，没有回滚，回放里 v2 转为正式版本",
+        "en": "Round two, with the fixed rules on newly written ads, reached 100% without a rollback; in the replay v2 became the production version"
       }
     ]
   },
@@ -5679,7 +5679,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-business-review-public/eval/results/summary-test.json"
+              "grounded-business-review/eval/results/summary-test.json"
             ],
             "k": 31,
             "n": 36,
@@ -5701,7 +5701,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-business-review-public/eval/results/summary-test.json"
+              "grounded-business-review/eval/results/summary-test.json"
             ],
             "k": 28,
             "n": 36,
@@ -5723,7 +5723,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-business-review-public/eval/results/summary-test.json"
+              "grounded-business-review/eval/results/summary-test.json"
             ],
             "k": 34,
             "n": 36,
@@ -5745,7 +5745,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-business-review-public/eval/results/summary-test.json"
+              "grounded-business-review/eval/results/summary-test.json"
             ],
             "k": 6,
             "n": 6,
@@ -5767,7 +5767,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-business-review-public/eval/results/summary-test.json"
+              "grounded-business-review/eval/results/summary-test.json"
             ],
             "k": 0,
             "n": 6,
@@ -5789,7 +5789,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-business-review-public/eval/results/summary-test.json"
+              "grounded-business-review/eval/results/summary-test.json"
             ],
             "k": 4,
             "n": 6,
@@ -5811,7 +5811,7 @@
             "direction": "none",
             "kind": "value",
             "sources": [
-              "grounded-business-review-public/eval/results/summary-test.json"
+              "grounded-business-review/eval/results/summary-test.json"
             ],
             "value": 6.0,
             "unit": "",
@@ -5829,7 +5829,7 @@
             "direction": "none",
             "kind": "value",
             "sources": [
-              "grounded-business-review-public/eval/results/summary-test.json"
+              "grounded-business-review/eval/results/summary-test.json"
             ],
             "value": 0.0,
             "unit": "",
@@ -5847,7 +5847,7 @@
             "direction": "none",
             "kind": "value",
             "sources": [
-              "grounded-business-review-public/eval/results/summary-test.json"
+              "grounded-business-review/eval/results/summary-test.json"
             ],
             "value": 0.0312,
             "unit": "",
@@ -5865,7 +5865,7 @@
             "direction": "none",
             "kind": "value",
             "sources": [
-              "grounded-business-review-public/eval/results/summary-test.json"
+              "grounded-business-review/eval/results/summary-test.json"
             ],
             "value": 0.4531,
             "unit": "",
@@ -5883,7 +5883,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-business-review-public/eval/results/summary-test.json"
+              "grounded-business-review/eval/results/summary-test.json"
             ],
             "k": 36,
             "n": 36,
@@ -5905,7 +5905,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-business-review-public/eval/results/summary-test.json"
+              "grounded-business-review/eval/results/summary-test.json"
             ],
             "k": 35,
             "n": 36,
@@ -5927,7 +5927,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-business-review-public/eval/results/summary-test.json"
+              "grounded-business-review/eval/results/summary-test.json"
             ],
             "k": 33,
             "n": 36,
@@ -5949,7 +5949,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-business-review-public/eval/results/summary-test.json"
+              "grounded-business-review/eval/results/summary-test.json"
             ],
             "k": 19,
             "n": 36,
@@ -5971,7 +5971,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-business-review-public/eval/results/summary-test.json"
+              "grounded-business-review/eval/results/summary-test.json"
             ],
             "k": 12,
             "n": 36,
@@ -5993,9 +5993,9 @@
             "direction": "lower",
             "kind": "value",
             "sources": [
-              "grounded-business-review-public/eval/EVALUATION.md"
+              "grounded-business-review/eval/EVALUATION.md"
             ],
-            "value": 22.0,
+            "value": 19.0,
             "unit": "",
             "n": null,
             "source_urls": [
@@ -6011,7 +6011,7 @@
             "direction": "lower",
             "kind": "value",
             "sources": [
-              "grounded-business-review-public/eval/results/summary-test.json"
+              "grounded-business-review/eval/results/summary-test.json"
             ],
             "value": 0.00316,
             "unit": "usd",
@@ -6029,7 +6029,7 @@
             "direction": "lower",
             "kind": "value",
             "sources": [
-              "grounded-business-review-public/eval/results/summary-test.json"
+              "grounded-business-review/eval/results/summary-test.json"
             ],
             "value": 0.00574,
             "unit": "usd",
@@ -6047,7 +6047,7 @@
             "direction": "lower",
             "kind": "value",
             "sources": [
-              "grounded-business-review-public/eval/results/summary-test.json"
+              "grounded-business-review/eval/results/summary-test.json"
             ],
             "value": 1.8164556962025318,
             "unit": "x",
@@ -6075,7 +6075,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-business-review-public/eval/results/summary-dev.json"
+              "grounded-business-review/eval/results/summary-dev.json"
             ],
             "k": 12,
             "n": 16,
@@ -6097,7 +6097,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-business-review-public/eval/results/summary-dev.json"
+              "grounded-business-review/eval/results/summary-dev.json"
             ],
             "k": 13,
             "n": 16,
@@ -6119,7 +6119,7 @@
             "direction": "higher",
             "kind": "proportion",
             "sources": [
-              "grounded-business-review-public/eval/results/summary-dev.json"
+              "grounded-business-review/eval/results/summary-dev.json"
             ],
             "k": 16,
             "n": 16,
@@ -6140,8 +6140,8 @@
       "en": "Grounded Business Review"
     },
     "problem": {
-      "zh": "每周看经营数据的人要知道哪些指标异动、原因在哪；让模型找原因、写周报，原因找得准不准，周报里的数字能不能都对回查询结果",
-      "en": "Whoever reads the weekly numbers needs to know which metrics moved and why; when a model finds the cause and writes the review, is the cause right, and does every number trace back to a query result?"
+      "zh": "每周看经营数据的人要知道哪些指标异动、原因在哪；让模型找原因、写周报，原因找得准不准，周报里的数字能不能都对回查询结果（在合成数据上测）",
+      "en": "Whoever reads the weekly numbers needs to know which metrics moved and why; when a model finds the cause and writes the review, is the cause right, and does every number trace back to a query result? (tested on synthetic data)"
     },
     "primary_metric": {
       "zh": "埋好的原因全找对（不多报、不答粗）；改一次以内放行的周报；每题费用",

@@ -10,7 +10,7 @@
 
 **Problem**: An FAQ assistant that answers only from given documents with word-for-word quotes, putting key facts such as deadlines first with their source.
 
-**What I did**: We built an FAQ assistant for readers who find dense text hard: one sentence first, then a checklist, then the evidence; the server checks every quote and deadline; the prompt went from grounded-v2 to v2.4, with v2.2 to v2.4 each compared with a plain prompt on the same cases.
+**What I did**: We built an FAQ assistant for readers who find dense text hard: one sentence first, then a checklist, then the evidence; the server checks every quote and deadline; the prompt went from grounded-v2 to v2.4, with v2.2 to v2.4 each compared side by side with a plain prompt on the same cases (v2.2 on the development set, v2.3 and v2.4 on the check set).
 
 **Results**: 
 
@@ -101,3 +101,5 @@ Each evaluation version has its own table. Scores are not compared across versio
 ## Provenance
 
 Sections follow the Hugging Face model card template (Apache-2.0); the source file and fingerprint of every number are in `cards/sources.lock.json`.
+
+Sources and licences of third-party data, models and code are listed in the [project repository](https://github.com/Jason-d-e/tracedesk-lite).

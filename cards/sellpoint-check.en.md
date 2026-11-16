@@ -54,7 +54,7 @@ The listing's claims are split out, buyer reviews are searched for quotes that s
 
 ### Real data (30 products, no answer key)
 
-30 beauty products, 538 reviews and 210 claims from a public research dataset. There is no answer key, so the comparison covers cost and calls, and every piece of evidence gets a second, independent judgement.
+30 beauty products, 538 reviews and 210 claims from the public research dataset Amazon Reviews 2023 (Beauty). There is no answer key, so the comparison covers cost and calls, and every piece of evidence gets a second, independent judgement.
 
 | Field | Value |
 |---|---|
@@ -210,3 +210,5 @@ A2 beats A, but C stays adopted; A2 is the fallback when there are too many revi
 ## Provenance
 
 Sections follow the Hugging Face model card template (Apache-2.0); the source file and fingerprint of every number are in `cards/sources.lock.json`.
+
+Sources and licences of third-party data, models and code are listed in the [project repository](https://github.com/Jason-d-e/sellpoint-check).

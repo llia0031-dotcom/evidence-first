@@ -8,7 +8,7 @@
 |---|---|---|---|
 | 2026-11-16 – 2026-11-17 | Liang Liyuan | Python、DuckDB（SQL）、Pandas、evidence-check 0.4.0、批量接口、Excel、Dify | [代码和报告](https://github.com/Jason-d-e/grounded-business-review) |
 
-**问题**：每周看经营数据的人要知道哪些指标异动、原因在哪；让模型找原因、写周报，原因找得准不准，周报里的数字能不能都对回查询结果。
+**问题**：每周看经营数据的人要知道哪些指标异动、原因在哪；让模型找原因、写周报，原因找得准不准，周报里的数字能不能都对回查询结果（在合成数据上测）。
 
 **我做了什么**：我在合成的到店团购数据上搭了指标字典、一条 SQL 的周监控、贡献度和率效应拆解、带数字核对的经营周报，比较固定脚本、一次提示词和 Agent 三种找原因的做法；埋好答案的测试题和评测计划在跑之前冻结；另把同一条流程搭成 Dify 工作流。
 
@@ -85,7 +85,7 @@
 | 改一次以内放行（Agent） | 33/36（91.7%，95% 区间 78.2–97.1%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
 | 第一次交卷就放行（一次提示词）（预测在七成到八成五之间，这一条没成立） | 19/36（52.8%，95% 区间 37.0–68.0%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
 | 第一次交卷就放行（Agent） | 12/36（33.3%，95% 区间 20.2–49.7%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| Agent 第一稿：引了不在引用行里的数的段落（改一次以后是零） | 22 | 越低越好 | [`grounded-business-review/eval/EVALUATION.md`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/EVALUATION.md) |
+| Agent 第一稿：引了不在引用行里的数的段落（改一次以后是零） | 19 | 越低越好 | [`grounded-business-review/eval/EVALUATION.md`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/EVALUATION.md) |
 | 每题费用（一次提示词，批量价） | 0.0032 美元 | 越低越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
 | 每题费用（Agent，批量价） | 0.0057 美元 | 越低越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
 | Agent 每题费用是一次提示词的 | 1.8 倍 | 越低越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
@@ -114,7 +114,7 @@ Agent 原因找得最准，按题配对明显好过一次提示词；和脚本�
   - 建议：要分出高下得加题，尤其是两个原因和两个维度交叉的题。
 - 数字核对对中文数字太严：最后没放行的周报里没有一个错数，没过的段落都卡在“这两项”“前一天”这类词上。
   - 建议：把计数词和数量分开处理，或给计数词单独的规则；严到什么程度是产品上的取舍，要和使用的人一起定。
-- Agent 第一稿引了不在引用行里的数的段落有 22 段，靠退回改一次才全部改好；没有核对就会发出去。
+- Agent 第一稿引了不在引用行里的数的段落有 19 段，靠退回改一次才全部改好；没有核对就会发出去。
   - 建议：核对放在发出之前，不能省。
 - 建议没有打分。
   - 建议：给建议定评分规则，再在同一批题上测。
@@ -126,3 +126,5 @@ Agent 原因找得最准，按题配对明显好过一次提示词；和脚本�
 ## 出处
 
 模板照 Hugging Face 模型卡（Apache-2.0）的章节；每个数字的来源文件和指纹见 `cards/sources.lock.json`。
+
+第三方数据、模型和代码的来源与许可，见[项目仓库](https://github.com/Jason-d-e/grounded-business-review)里的说明。

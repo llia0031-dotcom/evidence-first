@@ -2,8 +2,8 @@ id = "grounded-review"
 order = 6
 layer = "judgement"
 status = "public"
-card_version = "1.2"
-updated = "2026-11-15"
+card_version = "1.3"
+updated = "2026-11-16"
 period = "2026-11-13 – 2026-11-16"
 team = "Liang Liyuan"
 stack = { zh = "Python、RapidOCR、BM25、evidence-check、Transformers（对比组）、批量接口", en = "Python, RapidOCR, BM25, evidence-check, Transformers (baselines), Message Batches API" }
@@ -23,7 +23,7 @@ links = [
 ]
 summary = { zh = "审核广告的 Agent：读文案和图片里的字，在 32 条政策条款里查依据，给出放行或拒绝；每处违规附类别、条款、违规原话和条款原文，引文先过 evidence-check 的核对脚本才算数。广告主追问时，它写修改后的版本，再复审广告主自己改的版本。评测对比两组：把材料一次交给模型的单个提示词，和带工具的 Agent。", en = "An agent that reviews ads: it reads the caption and the words in the image, looks up 32 policy clauses, and approves or rejects. Every violation carries a category, the clause, the offending words and the clause text, and every quote must pass the evidence-check script before it counts. When the advertiser asks, it writes a corrected version and re-reviews the advertiser's own revision. The evaluation compares two arms: a single prompt with all material, and a tool-using agent." }
 core_link = { zh = "每段广告引文和条款引文都交给 evidence-check 的核对脚本；不是逐字出自原文的引文在回答给出之前就被拦下。", en = "Every ad quote and clause quote goes through the evidence-check script; a quote that is not word for word in its source is stopped before the answer is shown." }
-models = { zh = "两组都用 claude-haiku-5-5（effort medium），同一份输出格式。对比组：违禁词表、CLIP、SigLIP 2、SafeGuard-VL-RL（本机运行）。", en = "Both arms use claude-haiku-5-5 (effort medium) with one output format. Baselines: a banned-word list, CLIP, SigLIP 2 and SafeGuard-VL-RL (run locally)." }
+models = { zh = "两组都用 claude-haiku-5-5（effort medium），同一份输出格式。对比组：违禁词表、CLIP、SigLIP 2、SafeGuard-VL-RL、Qwen3Guard-Gen-4B、Granite Guardian 3.3 8B（都在本机运行）。", en = "Both arms use claude-haiku-5-5 (effort medium) with one output format. Baselines: a banned-word list, CLIP, SigLIP 2, SafeGuard-VL-RL, Qwen3Guard-Gen-4B and Granite Guardian 3.3 8B (all run locally)." }
 
 iteration = { zh = ["改稿建议 v1.1：改后版本不再留模板占位符，{mt2_v1_placeholder} → {mt2_v11_placeholder}。", "v1.2：字段填错就退回重交，没用（{mt3_v11_field} 对 {mt3_v12_field}），不采用。", "v1.3：先填修改后的文案再写说明，字段写错 {mt4_v11_fault} → {mt4_v13_fault}，费用不变，采用。", "题目来源：自己写的留出集和难题集两组都到顶，换成监管机构和法院定答案的真实广告后才分出差别。"], en = ["Advice v1.1: no template placeholders left in corrected versions, {mt2_v1_placeholder} → {mt2_v11_placeholder}.", "v1.2: sending malformed advice back did not help ({mt3_v11_field} vs {mt3_v12_field}) and was dropped.", "v1.3: corrected caption before the explanation; advice fields filled wrongly {mt4_v11_fault} → {mt4_v13_fault} at the same cost; adopted.", "Item sources: both arms hit the ceiling on written items, and only real ads judged by regulators and courts separated them."] }
 
@@ -33,8 +33,8 @@ short_name = { zh = "有据审核", en = "Grounded Review" }
 card_title = { zh = "广告审核说清违反哪一条、是哪几个字", en = "Ad review that names the rule and the exact words" }
 assumed = { zh = "以为会漏在小字、小国旗和画出来的喝酒场景上", en = "Expected misses on small print, small flags and drawn drinking scenes" }
 showed = { zh = "这些一次都没漏；自己写的题到顶，换成真实广告才分出差别", en = "None was missed; written items hit the ceiling and only real ads separated the arms" }
-result_line = { zh = "对照英国监管机构的真实裁决判对 {real_en_agent}，并指出违反哪条规定、哪几个字", en = "Matched the UK regulator's real rulings on {real_en_agent} ads, naming the rule and the exact words" }
-key_numbers = [{ metric = "heldout_caught_agent", label = { zh = "违规广告全部拦下（自己写的题）", en = "Violating ads stopped (written test ads)" } }, { metric = "real_en_agent", label = { zh = "对照英国监管机构的真实裁决，判对", en = "Agreed with the UK regulator's real rulings" } }, { metric = "mt4_v13_fault", label = { zh = "改稿时文案填错位置（改进前 {mt4_v11_fault}）", en = "Corrected copy put in the wrong field (before: {mt4_v11_fault})" } }]
+result_line = { zh = "对照英国监管机构的真实裁决，{real_en_agent} 次判断一致，并指出违反哪条规定、哪几个字", en = "Matched the UK regulator's real rulings in {real_en_agent} decisions, naming the rule and the exact words" }
+key_numbers = [{ metric = "heldout_caught_agent", label = { zh = "违规广告的判断全部拦下（按判断次数）", en = "Decisions on violating test ads that stopped them (per decision)" } }, { metric = "real_en_agent", label = { zh = "和英国监管裁决一致的判断（按判断次数）", en = "Decisions matching UK regulator rulings (per decision)" } }, { metric = "mt4_v13_fault", label = { zh = "改稿时文案填错位置（改进前 {mt4_v11_fault}）", en = "Corrected copy put in the wrong field (before: {mt4_v11_fault})" } }]
 timeline = [
   { date = "2026-11-13", label = { zh = "v1.1", en = "v1.1" }, text = { zh = "改后版本不留模板占位符", en = "No template placeholders left" }, before = "mt2_v1_placeholder", after = "mt2_v11_placeholder", adopted = true },
   { date = "2026-11-13", label = { zh = "v1.2", en = "v1.2" }, text = { zh = "填错退回重交，没用", en = "Sending it back did not help" }, before = "mt3_v11_field", after = "mt3_v12_field", adopted = false },
@@ -479,3 +479,8 @@ text = { zh = "开头加了时间、团队、技术、链接和“问题 / 我�
 id = "1.2"
 date = "2026-11-16"
 text = { zh = "加了演示页和产品方案的链接，加了记忆评测。", en = "Added links to the demo and the product plan, and the memory test." }
+
+[[version]]
+id = "1.3"
+date = "2026-11-17"
+text = { zh = "改正说法：真实广告和留出集的数字按判断次数说（每条广告跑两遍），不说成广告条数；数据日期改成收进记忆评测的 2026-11-16；对比组补上 Qwen3Guard 和 Granite Guardian。两个文字审核模型在真实广告上的结果现在写在报告里，但没有汇总数据文件，所以仍不收进卡片。数字不变。", en = "Wording corrected: the real-ad and held-out numbers are stated as decisions (two runs per ad), not as ad counts; the data date is now 2026-11-16, when the memory evaluation was added; Qwen3Guard and Granite Guardian added to the baselines. The two text guardrails' real-ad results are now in the report but have no summary data file, so they are still not on the card. Numbers unchanged." }

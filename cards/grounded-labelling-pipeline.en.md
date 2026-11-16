@@ -15,8 +15,8 @@
 **Results**: 
 
 - Wrong decisions that went live: v1 17/332 → v2 9/332; sent to review 6/332 → 72/332
-- Round one rolled back at 10% under the rules written beforehand; two rules were wrong, now reviewed
-- Round two, with the fixed rules on newly written ads, reached 100% without a rollback; v2 is live
+- Round one rolled back at 10% under the rules written beforehand; two rules were wrong and have been fixed
+- Round two, with the fixed rules on newly written ads, reached 100% without a rollback; in the replay v2 became the production version
 
 ## Summary
 
@@ -43,7 +43,7 @@ A review and labelling workflow built around Grounded Review. Each ad is decided
 
 ### Regression test: triage prompt v1 vs v2 (332 replayed requests)
 
-Stored answers to Grounded Review's held-out, harder and real-ad items, replayed request by request; each request's answer was fixed when the item was written. v2's adoption criteria were preregistered.
+Stored answers to Grounded Review's held-out, harder and real-ad items, replayed request by request; answers to the written items were fixed when they were written, and the real ads' answers come from regulators' and courts' rulings. v2's adoption criteria were preregistered.
 
 | Field | Value |
 |---|---|
@@ -65,7 +65,7 @@ The same requests replayed week by week, split between v1 (production) and v2 (c
 | Model and send mode | No model calls; stored answers replayed |
 | Frozen before the run | `docs/PREREGISTRATION.md` and `docs/CANARY-POSTMORTEM.md` |
 
-### Canary round two: fixed rules on newly written ads (a replay, not real users)
+### Canary round two: fixed rules on newly written ads
 
 120 newly written text ads (60 Chinese, 60 English), two runs each, 240 requests; the fixed rollback rules and predictions were preregistered. The canary went to full release in three steps, comparing the canary's cumulative requests with production.
 
@@ -100,7 +100,7 @@ Grounded Review's 32 policy clauses searched with its BM25; one query per labell
 | Runs | Deterministic retrieval, 1 run |
 | Model and send mode | No model calls; v1's stored first-run answers |
 
-### Prompt v3 on newly written ads: not adopted (a replay, not real users)
+### Prompt v3 on newly written ads: not adopted
 
 Another 120 newly written text ads, two runs each, 240 requests; some were written as needing a human, the rest have clear answers. Adoption rules and predictions were preregistered; a regression ran on the 332 round-one requests.
 
@@ -112,7 +112,7 @@ Another 120 newly written text ads, two runs each, 240 requests; some were writt
 | Model and send mode | claude-haiku-5-5, Message Batches API (half price) |
 | Frozen before the run | `docs/PREREGISTRATION-ROUND3.md` |
 
-### Prompt v4 on another set of newly written ads: not adopted (a replay, not real users)
+### Prompt v4 on another set of newly written ads: not adopted
 
 Another 120 newly written text ads, two runs each, 240 requests; some were written as needing a human. The adoption rules are word for word those of round three, and the predictions were frozen before the run; a regression ran on the 332 round-one requests.
 
@@ -186,7 +186,7 @@ v2 lets fewer wrong decisions through at the cost of far more human review; all 
 
 Three rules fired at the first step, it rolled back, and production stayed at v1. The review found two wrong rules: the review-rate rule contradicted v2's purpose, and rates were compared when the canary had only 10 requests. The fixed rules were written after seeing the results; replayed on the same requests they reach full release, which proves nothing; a canary on new traffic is needed.
 
-### Canary round two: fixed rules on newly written ads (a replay, not real users)
+### Canary round two: fixed rules on newly written ads
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
@@ -198,7 +198,7 @@ Three rules fired at the first step, it rolled back, and production stayed at v1
 | At full release, production: wrong decisions that went live (cumulative) | 1/150 (0.7%, 95% CI 0.1–3.7%) | lower is better | [`grounded-labelling-pipeline/data/canary-round2.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/canary-round2.json) |
 | v2 cost per request, relative to v1 (predicted at most 1.05×; this prediction did not hold) | 1.0503× | lower is better | [`grounded-labelling-pipeline/data/versions-round2.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-round2.json) |
 
-No rule fired at any step and v2 went live. Both versions were almost always right on these ads, so this round shows the release process works; the evidence that v2 lets fewer errors through still comes from round one.
+No rule fired at any step and v2 was promoted to production. Both versions were almost always right on these ads, so this round shows the release process works; the evidence that v2 lets fewer errors through still comes from round one.
 
 ### The workflow in Lark: the platform AI Agent step (25 Chinese ads)
 
@@ -219,7 +219,7 @@ The workflow runs in Lark: every ad was written back and decided right; two answ
 | Searching with the ad text: right clause in the top three | 66/124 (53.2%, 95% CI 44.5–61.8%) | higher is better | [`grounded-labelling-pipeline/data/retrieval.csv`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval.csv) |
 | Searching with the model's answer: right clause in the top three | 110/124 (88.7%, 95% CI 81.9–93.2%) | higher is better | [`grounded-labelling-pipeline/data/retrieval.csv`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval.csv) |
 
-### Prompt v3 on newly written ads: not adopted (a replay, not real users)
+### Prompt v3 on newly written ads: not adopted
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
@@ -232,7 +232,7 @@ The workflow runs in Lark: every ad was written back and decided right; two answ
 
 Clear ads got far fewer needless reviews, but ads written as needing a human were also sent to people less often, a drop past the ten-point limit set beforehand, so v3 was not adopted and production stays on v2. Had it been rolled out, no canary rollback rule would have fired: what stopped it was the ads written as needing a human and the adoption standard written beforehand.
 
-### Prompt v4 on another set of newly written ads: not adopted (a replay, not real users)
+### Prompt v4 on another set of newly written ads: not adopted
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
@@ -308,3 +308,5 @@ On the first pass line breaks in the clauses blocked the platform's exact-text s
 ## Provenance
 
 Sections follow the Hugging Face model card template (Apache-2.0); the source file and fingerprint of every number are in `cards/sources.lock.json`.
+
+Sources and licences of third-party data, models and code are listed in the [project repository](https://github.com/Jason-d-e/grounded-labelling-pipeline).

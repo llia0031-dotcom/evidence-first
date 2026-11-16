@@ -102,7 +102,7 @@ class Value:
         return v
 
     def as_json(self) -> dict:
-        d = {"kind": self.kind, "sources": self.sources}
+        d = {"kind": self.kind, "sources": shown_sources(self.sources)}
         if self.kind == "proportion":
             d.update(k=self.k, n=self.n, rate=round(self.k / self.n, 4),
                      ci95=[round(self.ci[0], 4), round(self.ci[1], 4)])
@@ -386,6 +386,11 @@ def render_card(proj: dict, lang: str) -> str:
     out.append("")
     out.append(L("模板照 Hugging Face 模型卡（Apache-2.0）的章节；每个数字的来源文件和指纹见 `cards/sources.lock.json`。",
                  "Sections follow the Hugging Face model card template (Apache-2.0); the source file and fingerprint of every number are in `cards/sources.lock.json`."))
+    repo = next((tr(l["url"], lang) for l in s.get("links", []) if "github.com/" in tr(l["url"], lang)), None)
+    if s["status"] == "public" and repo:
+        out.append("")
+        out.append(L(f"第三方数据、模型和代码的来源与许可，见[项目仓库]({repo})里的说明。",
+                     f"Sources and licences of third-party data, models and code are listed in the [project repository]({repo})."))
     out.append("")
     return "\n".join(out)
 
@@ -402,6 +407,9 @@ def _load_toml(path: Path) -> dict:
 
 
 PUBLIC_MAP = _load_toml(ROOT / "cards" / "public_sources.toml").get("map", [])
+# The public copy is built without the export script; there, data files name public repositories
+# instead of local folder names and leave out images that are not published.
+PUBLIC_BUILD = not (HERE / "export_public.py").exists()
 WITHHOLD = set(_load_toml(ROOT / "cards" / "hold.toml").get("withhold", []))
 
 
@@ -413,6 +421,11 @@ def public_source(rel: str) -> tuple[str, str | None]:
             rest = rel[len(m["prefix"]):]
             return f"{m['repo']}/{rest}", m["url"] + rest
     return rel, None
+
+
+def shown_sources(rels: list[str]) -> list[str]:
+    """Source paths as written into data files: public repository paths in the public build."""
+    return [public_source(r)[0] for r in rels] if PUBLIC_BUILD else list(rels)
 
 
 def source_md(rel: str) -> str:
@@ -621,7 +634,9 @@ def main(argv: list[str] | None = None) -> int:
         if stale:
             print("Out of date (run without --check):", ", ".join(stale))
             return 1
-        print(f"OK: {len(projects)} cards, every number matches its project record.")
+        n_rec = sum(1 for p in projects for ev in p["spec"]["eval"] for m in ev["metric"] if "record" in m)
+        extra = f", {n_rec} numbers match the project reports" if n_rec else ""
+        print(f"OK: {len(projects)} cards up to date, source files unchanged{extra}.")
         return 0
     for p, text in outputs.items():
         p.parent.mkdir(parents=True, exist_ok=True)

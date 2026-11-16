@@ -89,7 +89,7 @@ Each evaluation version has its own table. Scores are not compared across versio
 
 ## Limitations and failure cases
 
-- Real wording is harder: MRR 0.724 on students' questions against 0.839 on the written set; the misses were an online exam that lost connection and the Malay question.
+- Real wording is harder: MRR 0.724 on students' questions against 0.839 on the written set; the only question missing from the top five was an online exam that lost connection, and the Malay question ranked fifth.
   - Recommendation: After launch, score real user questions the same way as a separate set and keep watching the gap.
 - Answer quality itself is not evaluated; in a smoke test one Malaysia-campus question was answered from Australian rules.
   - Recommendation: Add campus-specific items and check that the cited page matches the asker's campus.
@@ -102,3 +102,5 @@ Each evaluation version has its own table. Scores are not compared across versio
 ## Provenance
 
 Sections follow the Hugging Face model card template (Apache-2.0); the source file and fingerprint of every number are in `cards/sources.lock.json`.
+
+Sources and licences of third-party data, models and code are listed in the [project repository](https://github.com/Jason-d-e/cairn).

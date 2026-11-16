@@ -17,7 +17,7 @@ why = { zh = "真实数据里有一部分改写还留着被评价反驳的说法
 source = "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-run.md"
 compare_set = { zh = "答案已知的 40 条；真实数据 151 条", en = "40 claims with known answers; 151 real claims" }
 scores = [
-  { label = { zh = "测试集可以直接照着改（两次评分）", en = "Test set usable as is (two gradings)" }, refs = ["sellpoint-check.adv_v1_test_g1", "sellpoint-check.adv_v1_test_g2"] },
+  { label = { zh = "测试集可以直接照着改（两次评分）", en = "Test set usable as is (two gradings)" }, refs = ["sellpoint-check.adv_v1_test_g1", "sellpoint-check.adv_v1_test_g2"], sep = "and" },
   { label = { zh = "真实数据：没有残留被反驳的说法", en = "Real data: no refuted wording left" }, extractor = "json_counts", args = { path = "sellpoint-check/results/suggest-run.json", at = ["rules"], num = "no_residual", den = 151 } },
 ]
 

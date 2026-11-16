@@ -119,7 +119,7 @@ frozen = { zh = "`testset/PREREGISTRATION.md`（题目指纹、预期）", en = 
 id = "real"
 name = { zh = "真实数据（30 个商品，没有标准答案）", en = "Real data (30 products, no answer key)" }
 date = "2026-11-12"
-data = { zh = "公开研究数据集里的 30 个美妆商品、538 条评价、210 条卖点。没有标准答案，所以比较费用、调用次数，并对每条证据做第二次独立判断。", en = "30 beauty products, 538 reviews and 210 claims from a public research dataset. There is no answer key, so the comparison covers cost and calls, and every piece of evidence gets a second, independent judgement." }
+data = { zh = "公开研究数据集 Amazon Reviews 2023（美妆类）里的 30 个美妆商品、538 条评价、210 条卖点。没有标准答案，所以比较费用、调用次数，并对每条证据做第二次独立判断。", en = "30 beauty products, 538 reviews and 210 claims from the public research dataset Amazon Reviews 2023 (Beauty). There is no answer key, so the comparison covers cost and calls, and every piece of evidence gets a second, independent judgement." }
 items = { zh = "30 个商品、210 条卖点", en = "30 products, 210 claims" }
 runs = { zh = "每种做法 1 遍；A 和 C 另各重跑 1 遍看一致率", en = "1 run per method; A and C were run a second time to measure repeatability" }
 setup = { zh = "claude-haiku-5-5，普通接口", en = "claude-haiku-5-5, standard API" }

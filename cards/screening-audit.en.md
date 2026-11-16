@@ -174,3 +174,5 @@ Quote checking stops fabrication, not misreading; that is why a second review is
 ## Provenance
 
 Sections follow the Hugging Face model card template (Apache-2.0); the source file and fingerprint of every number are in `cards/sources.lock.json`.
+
+Sources and licences of third-party data, models and code are listed in the [project repository](https://github.com/Jason-d-e/evidence-screening).

@@ -224,7 +224,7 @@ def render(proj: dict, media: list[dict], lang: str, card_text: str) -> tuple[st
         src = "<br>".join(f"`{p}`" for p in v.sources)
         out.append(f"| N{i} | {v.full(lang)} | {label} | {bc.tr(ev['name'], lang)} | {L('评测卡', 'card')} + {src} |")
         numbers.append({"id": f"N{i}", "metric": mid, "label": label, "value": v.short(lang), "full": v.full(lang),
-                        "evaluation": bc.tr(ev["name"], lang), "sources": v.sources,
+                        "evaluation": bc.tr(ev["name"], lang), "sources": bc.shown_sources(v.sources),
                         "source_urls": [bc.public_source(x)[1] for x in v.sources], **v.as_json(),
                         "display": v.short(lang)})  # as shown on the card, with the card's precision and unit
         claims.append({"id": f"{pid}-{lang}-N{i}", "text": f"{label}{L('，结果 ', ', result ')}{v.short(lang)}",
@@ -267,7 +267,8 @@ def render(proj: dict, media: list[dict], lang: str, card_text: str) -> tuple[st
         out.append(L("暂无。", "None yet."))
     out.append("")
     data["images"] = [{"path": m["path"], "caption": bc.tr(m["caption"], lang), "public": m["public"],
-                       **({"url": m["url"]} if "url" in m else {})} for m in mine]
+                       **({"url": m["url"]} if "url" in m else {})}
+                      for m in mine if m["public"] or not bc.PUBLIC_BUILD]
     return "\n".join(out), claims, data
 
 

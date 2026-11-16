@@ -158,7 +158,13 @@ class Labels(unittest.TestCase):
             self.assertIn(labels[a["asset"]]["staging"], ids)
 
 
-@unittest.skipUnless((bc.PORTFOLIO / "grounded-review-public").is_dir(), "project folders not present")
+PROJECT_FOLDERS = ["evidence-check-public", "cairn-public", "grounded-review-public", "sellpoint-check", "screening-audit",
+                   "voice-agent-eval", "evidence-pipeline-public", "grounded-business-review-public",
+                   "launchpad-tracedesk", "aigc-scene-eval"]
+
+
+@unittest.skipUnless(all((bc.PORTFOLIO / f).is_dir() for f in PROJECT_FOLDERS),
+                     "needs every project folder next to this repository (two are not public)")
 class AgainstProjects(unittest.TestCase):
     def test_cards_match_project_records(self):
         self.assertEqual(bc.main(["--check"]), 0)

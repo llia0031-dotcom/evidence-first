@@ -21,7 +21,7 @@
 装进 Agent 的 Skill 说明：每句事实附逐字原文、跑核对脚本、逐条重读通过的说法。核对脚本另有版本号（0.2.0 → 0.4.0），见评测卡。
 
 - 代码位置：`skills/evidence-check/SKILL.md`（evidence-check）
-- 模型锁定：claude-haiku-5-5, effort medium（评测时）
+- 模型锁定：claude-haiku-5-5，评测时 effort medium
 
 | 版本 | 日期 | 改了什么 | 当时的分数 | 决定 | 为什么 |
 |---|---|---|---|---|---|
@@ -55,7 +55,7 @@
 
 | 版本 | 日期 | 改了什么 | 当时的分数 | 决定 | 为什么 |
 |---|---|---|---|---|---|
-| **v1** | 2026-11-13 | 第一版：对每条没被证实的卖点给出原因、买家原话和可以直接照着改的文案。<br>`pipeline/lib/suggest_prompts.mjs`（指纹 b5b2a58fdbde） | *答案已知的 40 条；真实数据 151 条*<br>测试集可以直接照着改（两次评分）：35/40 → 32/40<br>真实数据：没有残留被反驳的说法：136/151 | 已被替换 | 真实数据里有一部分改写还留着被评价反驳的说法。<br>出处：[sellpoint-check/results/suggest-run.md](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-run.md) |
+| **v1** | 2026-11-13 | 第一版：对每条没被证实的卖点给出原因、买家原话和可以直接照着改的文案。<br>`pipeline/lib/suggest_prompts.mjs`（指纹 b5b2a58fdbde） | *答案已知的 40 条；真实数据 151 条*<br>测试集可以直接照着改（两次评分）：35/40、32/40<br>真实数据：没有残留被反驳的说法：136/151 | 已被替换 | 真实数据里有一部分改写还留着被评价反驳的说法。<br>出处：[sellpoint-check/results/suggest-run.md](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-run.md) |
 | **v2** | 2026-11-14 | 加三条规则，并在代码里检查：改写里还留着被反驳的说法就退回重写。<br>`pipeline/lib/suggest_v2.mjs`（指纹 279e9280f000） | *中文测试集 34 条（v1 对 v2）；真实数据 151 条*<br>中文测试集可以直接照着改，第一次评分（v1 → v2）：30/34 → 32/34<br>真实数据：没有残留被反驳的说法（v1 → v2）：136/151 → 151/151<br>中文商品的建议用中文（v2）：10/34 | 采用（后被 v3 替换） | 残留问题清零，在新写的中文题上更好；但中文商品的建议大多还是英文。<br>出处：[sellpoint-check/results/suggest-testset-zh-v2.md](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-zh-v2.md) |
 | **v3** | 2026-11-14 | 有争议的卖点保留每个被证实的部分和它的条件；商品的语言在代码里定好；退回重写的范围放宽。<br>`pipeline/lib/suggest_v3.mjs`（指纹 c346201974cd） | *混合测试集 40 条（v2 对 v3）；真实数据 151 条*<br>用对语言（v2 → v3）：20/40 → 40/40<br>可以直接照着改，第一次评分（v2 → v3）：37/40 → 37/40<br>真实数据可以直接照着改，第一次评分（v3）：143/151 | 采用（后被 v5 替换） | 中文商家必须收到中文的建议：在新写的混合测试集上，用对语言的从 v2 的一半变成全部，可以直接照着改的条数基本持平。<br>出处：[sellpoint-check/results/suggest-testset-mixed-v3.md](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed-v3.md) |
 | **v4** | 2026-11-14 | 新加“被反驳的词”字段和四条规则，更多情况退回重写。<br>`pipeline/lib/suggest_v4.mjs`（指纹 7b0d5b8debfe） | *混合测试集二 39 条（v3 对 v4）；真实数据 151 条*<br>可以直接照着改，第一次评分（v3 → v4）：38/39 → 36/39<br>真实数据可以直接照着改，第一次评分（v4）：136/151 | 不采用 | 让模型先列出被反驳的词，它就倾向于把这些词整个删掉，删得太多，总分下降。<br>出处：[sellpoint-check/results/suggest-testset-mixed2-v4.md](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed2-v4.md) |
@@ -75,9 +75,9 @@
 |---|---|---|---|---|---|
 | **grounded-v2-access** | 2026-11-09 | 输出格式升级为 v2：加一句话结论和行动清单。<br>原文没有存档 | 没有存成结果文件的评测 | 已被替换 | 只做过冒烟测试，没有存成评测结果。<br>出处：[tracedesk-lite/app/lib/prompts.js](https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js) |
 | **grounded-v2.1-access** | 2026-11-09 | 日期按读者的语言写。<br>原文没有存档 | 没有存成结果文件的评测 | 已被替换 | 没有单独评测。<br>出处：[tracedesk-lite/app/lib/prompts.js](https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js) |
-| **grounded-v2.2-access** | 2026-11-09 | 加入改编自 i-have-adhd 的写作风格规则。<br>公开仓库提交 2eb9009 的 `app/lib/prompts.js` | *开发组 20 道题（普通提示对 v2.2）*<br>自动检查全部通过（普通提示 → v2.2）：17/20 → 19/20 | 已被替换 | 开发组上通过自动检查的比普通提示多；之后发现截止时间有时没挂在对应的步骤上。<br>出处：[tracedesk-lite/app/lib/prompts.js](https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js) |
-| **grounded-v2.3-access** | 2026-11-09 | 每个步骤的截止时间必须挂在这个步骤上，引文里要写着这个时间。<br>公开仓库提交 dc1ba2f 的 `app/lib/prompts.js` | *检查组 20 道题，第一轮*<br>自动检查全部通过（普通提示 → v2.3）：15/20 → 19/20 | 已被替换 | 检查组第一轮通过自动检查的比普通提示多；中文问题的截止时间还会按英文写。<br>出处：[tracedesk-lite/EVALUATION.md](https://github.com/Jason-d-e/tracedesk-lite/blob/main/EVALUATION.md) |
-| **grounded-v2.4-access** | 2026-11-09 | 截止时间也按读者的语言写。<br>公开仓库提交 d626ef3 的 `app/lib/prompts.js`（现行默认） | *检查组 20 道题，第二轮*<br>自动检查全部通过（普通提示 → v2.4）：17/20 → 20/20<br>20 道题的费用（普通提示 → v2.4）：0.0093 美元 → 0.0134 美元 | 采用 | 检查组第二轮自动检查全部通过；但这一轮是在看过第一轮之后、用同一组题跑的，不算干净的留出结果。<br>出处：[tracedesk-lite/EVALUATION.md](https://github.com/Jason-d-e/tracedesk-lite/blob/main/EVALUATION.md) |
+| **grounded-v2.2-access** | 2026-11-09 | 加入改编自 i-have-adhd 的写作风格规则。<br>公开仓库提交 d78874c 的 `app/lib/prompts.js` | *开发组 20 道题（普通提示对 v2.2）*<br>自动检查全部通过（普通提示 → v2.2）：17/20 → 19/20 | 已被替换 | 开发组上通过自动检查的比普通提示多；之后发现截止时间有时没挂在对应的步骤上。<br>出处：[tracedesk-lite/app/lib/prompts.js](https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js) |
+| **grounded-v2.3-access** | 2026-11-09 | 每个步骤的截止时间必须挂在这个步骤上，引文里要写着这个时间。<br>公开仓库提交 8064b58 的 `app/lib/prompts.js` | *检查组 20 道题，第一轮*<br>自动检查全部通过（普通提示 → v2.3）：15/20 → 19/20 | 已被替换 | 检查组第一轮通过自动检查的比普通提示多；中文问题的截止时间还会按英文写。<br>出处：[tracedesk-lite/EVALUATION.md](https://github.com/Jason-d-e/tracedesk-lite/blob/main/EVALUATION.md) |
+| **grounded-v2.4-access** | 2026-11-09 | 截止时间也按读者的语言写。<br>公开仓库提交 2951bef 的 `app/lib/prompts.js`（现行默认） | *检查组 20 道题，第二轮*<br>自动检查全部通过（普通提示 → v2.4）：17/20 → 20/20<br>20 道题的费用（普通提示 → v2.4）：0.0093 美元 → 0.0134 美元 | 采用 | 检查组第二轮自动检查全部通过；但这一轮是在看过第一轮之后、用同一组题跑的，不算干净的留出结果。<br>出处：[tracedesk-lite/EVALUATION.md](https://github.com/Jason-d-e/tracedesk-lite/blob/main/EVALUATION.md) |
 
 标签记录：2026-11-09 production ·→grounded-v2-access；2026-11-09 production grounded-v2-access→grounded-v2.1-access；2026-11-09 production grounded-v2.1-access→grounded-v2.2-access；2026-11-09 production grounded-v2.2-access→grounded-v2.3-access；2026-11-09 production grounded-v2.3-access→grounded-v2.4-access
 
@@ -90,9 +90,9 @@ Cairn 回答问题时用的系统提示词：先结论，写截止时间和下�
 
 | 版本 | 日期 | 改了什么 | 当时的分数 | 决定 | 为什么 |
 |---|---|---|---|---|---|
-| **cairn-v1** | 2026-11-09 | 最早的版本，资料是无障碍规范（WCAG）。<br>公开仓库提交 442709d 的 `app/lib/prompt.js` | 没有存成结果文件的评测 | 停用 | 资料换成学生事务页面后停用。 |
-| **cairn-monash-v1** | 2026-11-10 | 先结论、写截止时间和下一步、标明校区、不编日期费用联系方式。<br>公开仓库提交 5674011 的 `app/lib/prompt.js` | 没有存成结果文件的评测 | 已被替换 | 最后一轮可读性检查之后改出 v2。 |
-| **cairn-monash-v2** | 2026-11-10 | 对读者只说“页面”、不说“段落”；规定各校区一样时不提校区；回答了的问题不再补充页面没写什么；校区直接告诉模型，不让它反问。<br>公开仓库提交 33dbd17 的 `app/lib/prompt.js`（现行） | 没有存成结果文件的评测 | 采用 | 来自可读性检查。两版都只做了冒烟测试，结果只打印在控制台、没有存成结果文件，所以这里不列分数；检索评测和提示词无关。<br>出处：[cairn/app/lib/prompt.js](https://github.com/Jason-d-e/cairn/blob/main/app/lib/prompt.js) |
+| **cairn-v1** | 2026-11-09 | 最早的版本，资料是无障碍规范（WCAG）。<br>公开仓库提交 f63aafa 的 `app/lib/prompt.js` | 没有存成结果文件的评测 | 停用 | 资料换成学生事务页面后停用。 |
+| **cairn-monash-v1** | 2026-11-10 | 先结论、写截止时间和下一步、标明校区、不编日期费用联系方式。<br>公开仓库提交 921e557 的 `app/lib/prompt.js` | 没有存成结果文件的评测 | 已被替换 | 最后一轮可读性检查之后改出 v2。 |
+| **cairn-monash-v2** | 2026-11-10 | 对读者只说“页面”、不说“段落”；规定各校区一样时不提校区；回答了的问题不再补充页面没写什么；校区直接告诉模型，不让它反问。<br>公开仓库提交 45f0b13 的 `app/lib/prompt.js`（现行） | 没有存成结果文件的评测 | 采用 | 来自可读性检查。两版都只做了冒烟测试，结果只打印在控制台、没有存成结果文件，所以这里不列分数；检索评测和提示词无关。<br>出处：[cairn/app/lib/prompt.js](https://github.com/Jason-d-e/cairn/blob/main/app/lib/prompt.js) |
 
 标签记录：2026-11-09 production ·→cairn-v1；2026-11-10 production cairn-v1→cairn-monash-v1；2026-11-10 production cairn-monash-v1→cairn-monash-v2
 
@@ -117,7 +117,7 @@ Cairn 回答问题时用的系统提示词：先结论，写截止时间和下�
 标注员问“这样写算不算违规”，只按检索到的条款回答：结论、说明、每条依据的编号和原文；库里没有管这件事的条款就说“没有”。每段引文都用 evidence-check 核对。流水线自己的资产库里是同一个资产、同样的标签。
 
 - 代码位置：`pipeline/kb_qa.py`（grounded-labelling-pipeline）
-- 模型锁定：claude-haiku-5-5, effort medium, top 5 clauses, max_tokens 1500 in the evaluation and 4000 in the bot
+- 模型锁定：claude-haiku-5-5，effort medium，取前 5 条条款，max_tokens 评测时 1500、机器人里 4000
 
 | 版本 | 日期 | 改了什么 | 当时的分数 | 决定 | 为什么 |
 |---|---|---|---|---|---|

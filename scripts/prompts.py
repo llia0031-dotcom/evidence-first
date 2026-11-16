@@ -90,8 +90,10 @@ def fill(text: str, values: dict[str, bc.Value], lang: str, where: str) -> str:
 
 
 def score_text(s: dict, lang: str) -> str:
+    """Old → new on the same items; `sep = "and"` lists repeated gradings of one version instead."""
     vals = s["_values"]
-    return " → ".join(v.short(lang) for v in vals)
+    sep = ("、" if lang == "zh" else " and ") if s.get("sep") == "and" else " → "
+    return sep.join(v.short(lang) for v in vals)
 
 
 def render(assets: list[dict], labels: dict, values: dict, lang: str) -> str:
@@ -121,7 +123,7 @@ def render(assets: list[dict], labels: dict, values: dict, lang: str) -> str:
         out.append("")
         out.append(f"- {L('代码位置', 'Location')}{L('：', ': ')}`{a['where']}`（{a['project']}）" if zh
                    else f"- Location: `{a['where']}` ({a['project']})")
-        out.append(f"- {L('模型锁定', 'Model lock')}{L('：', ': ')}{a['model_lock']}")
+        out.append(f"- {L('模型锁定', 'Model lock')}{L('：', ': ')}{bc.tr(a['model_lock'], lang)}")
         out.append("")
         out.append(f"| {L('版本', 'Version')} | {L('日期', 'Date')} | {L('改了什么', 'Change')} | {L('当时的分数', 'Score at the time')} | {L('决定', 'Decision')} | {L('为什么', 'Why')} |")
         out.append("|---|---|---|---|---|---|")
