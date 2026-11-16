@@ -5600,7 +5600,7 @@
       "**逐项改进（同一套 42 段对话）**：42 段对话，每种设置 2 遍；claude-haiku-5-5，普通流式接口"
     ],
     "iteration": [
-      "附和不算打断、声音至少 0.5 秒才算插话、先暂停再确认是不是真插话：一项一项试下来，“嗯”“好的”“Okay”不再让它停下或只停一下就接着说，“嗯嗯”仍会打断。",
+      "附和不算打断、声音至少 0.5 秒才算插话、先暂停再确认是不是真插话：一项一项试下来，“嗯”“好的”“Okay”不再让它停下或只停一下就接着说，单项改进时“嗯嗯”仍会打断。",
       "只听主说话人（pVAD）：背景人声时开口 20.4 秒 → 4.56 秒，三项改进里效果最大。",
       "四项合在一起：严格通过 62/84，真插话仍然 16/16 停下。"
     ],
@@ -5869,7 +5869,7 @@
     "short_name": "语音评测",
     "card_title": "语音助手被打断、听到“嗯”时，还能办对事吗",
     "assumed": "以为固定识别语言，就能把“嗯”和真插话分开",
-    "showed": "“嗯”照样被认成别的字，光看文字分不出附和，得看声音本身",
+    "showed": "“嗯嗯”仍被认成别的字，四项合在一起时只因发声不到半秒才没打断",
     "result_line": "背景有人说话时，助手从等 20.4 秒才开口，缩短到 4.56 秒",
     "key_numbers": [
       {
@@ -5989,7 +5989,7 @@
       "**Fixes one at a time (same 42 conversations)**: 42 conversations, 2 runs per setting; claude-haiku-5-5, standard streaming API"
     ],
     "iteration": [
-      "Backchannels not counted as barge-ins, a 0.5 s minimum before a barge-in counts, pause before cancelling: tried one at a time, \"mm\", \"okay\" and \"好的\" no longer stop it or only pause it briefly, though \"mm-mm\" still interrupts.",
+      "Backchannels not counted as barge-ins, a 0.5 s minimum before a barge-in counts, pause before cancelling: tried one at a time, \"mm\", \"okay\" and \"好的\" no longer stop it or only pause it briefly, though with any single fix \"mm-mm\" still interrupts.",
       "Primary-speaker VAD: first audio over background speech 20.4 s → 4.56 s, the largest effect of the three fixes.",
       "All four together: strict pass 62/84, real barge-ins still stopped 16/16."
     ],
@@ -6258,7 +6258,7 @@
     "short_name": "Voice agent eval",
     "card_title": "Can a voice agent stay right when interrupted?",
     "assumed": "Expected a fixed recognition language to tell \"mm\" from a barge-in",
-    "showed": "\"Mm\" was still heard as other words; text alone cannot tell, the audio must",
+    "showed": "\"Mm-mm\" was still heard as other words; with all four fixes it only avoided interrupting by staying under half a second",
     "result_line": "With someone talking in the background, the assistant's wait before replying fell from 20.4 s to 4.56 s",
     "key_numbers": [
       {

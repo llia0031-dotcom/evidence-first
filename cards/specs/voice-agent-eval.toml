@@ -31,14 +31,14 @@ judge = { zh = [
   "Reasoning said aloud is detected with a fixed pattern.",
 ] }
 
-iteration = { zh = ["附和不算打断、声音至少 0.5 秒才算插话、先暂停再确认是不是真插话：一项一项试下来，“嗯”“好的”“Okay”不再让它停下或只停一下就接着说，“嗯嗯”仍会打断。", "只听主说话人（pVAD）：背景人声时开口 {babble_base} → {babble_pvad}，三项改进里效果最大。", "四项合在一起：严格通过 {combo_strict}，真插话仍然 {combo_stopped} 停下。"], en = ["Backchannels not counted as barge-ins, a 0.5 s minimum before a barge-in counts, pause before cancelling: tried one at a time, \"mm\", \"okay\" and \"好的\" no longer stop it or only pause it briefly, though \"mm-mm\" still interrupts.", "Primary-speaker VAD: first audio over background speech {babble_base} → {babble_pvad}, the largest effect of the three fixes.", "All four together: strict pass {combo_strict}, real barge-ins still stopped {combo_stopped}."] }
+iteration = { zh = ["附和不算打断、声音至少 0.5 秒才算插话、先暂停再确认是不是真插话：一项一项试下来，“嗯”“好的”“Okay”不再让它停下或只停一下就接着说，单项改进时“嗯嗯”仍会打断。", "只听主说话人（pVAD）：背景人声时开口 {babble_base} → {babble_pvad}，三项改进里效果最大。", "四项合在一起：严格通过 {combo_strict}，真插话仍然 {combo_stopped} 停下。"], en = ["Backchannels not counted as barge-ins, a 0.5 s minimum before a barge-in counts, pause before cancelling: tried one at a time, \"mm\", \"okay\" and \"好的\" no longer stop it or only pause it briefly, though with any single fix \"mm-mm\" still interrupts.", "Primary-speaker VAD: first audio over background speech {babble_base} → {babble_pvad}, the largest effect of the three fixes.", "All four together: strict pass {combo_strict}, real barge-ins still stopped {combo_stopped}."] }
 
 conclusion = { zh = "四项改进合在一起，在这几项改动针对的问题上是测过最好的设置：背景人声不再占住对话、真插话一停就停、每次附和后回答都保住了；按事先写好的严格通过和基线持平。“嗯嗯”仍被识别成别的字，合在一起时只因为发声时间刚好不到 0.5 秒才没打断，余量很小，光看文字分不出附和。", en = "Together the four fixes are the best setting tested on the problems they target: background talk no longer holds the turn, a real barge-in stops at once and every reply survives its backchannel; on the strict pass written beforehand they are level with the baseline. \"Mm-mm\" is still transcribed as other words and only avoids an interruption because its voiced time falls just under 0.5 s, a thin margin; text alone cannot tell a backchannel." }
 
 short_name = { zh = "语音评测", en = "Voice agent eval" }
 card_title = { zh = "语音助手被打断、听到“嗯”时，还能办对事吗", en = "Can a voice agent stay right when interrupted?" }
 assumed = { zh = "以为固定识别语言，就能把“嗯”和真插话分开", en = "Expected a fixed recognition language to tell \"mm\" from a barge-in" }
-showed = { zh = "“嗯”照样被认成别的字，光看文字分不出附和，得看声音本身", en = "\"Mm\" was still heard as other words; text alone cannot tell, the audio must" }
+showed = { zh = "“嗯嗯”仍被认成别的字，四项合在一起时只因发声不到半秒才没打断", en = "\"Mm-mm\" was still heard as other words; with all four fixes it only avoided interrupting by staying under half a second" }
 result_line = { zh = "背景有人说话时，助手从等 {babble_base}才开口，缩短到 {babble_pvad}", en = "With someone talking in the background, the assistant's wait before replying fell from {babble_base} to {babble_pvad}" }
 key_numbers = [{ metric = "babble_pvad", label = { zh = "背景有人说话时，开口要等（原来 {babble_base}）", en = "Wait before replying over background talk (was {babble_base})" } }, { metric = "combo_stop_latency", label = { zh = "用户插话后，助手多快停下来", en = "How fast it stops when the user cuts in" } }, { metric = "combo_stopped", label = { zh = "用户真的插话时，助手每次都停下", en = "Stopped every time the user really cut in" } }]
 timeline = [
