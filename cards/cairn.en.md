@@ -6,7 +6,7 @@
 
 | When | Team | Stack | Links |
 |---|---|---|---|
-| 2026-11-09 – 2026-11-11（LaunchPad Hacks） | Liang Liyuan、ZIzi821 | Node.js, React, local embedding and reranking, Claude Haiku 5.5 | [Code](https://github.com/Jason-d-e/cairn) · [Live demo](https://jason-d-e.github.io/cairn/) |
+| 2026-11-09 – 2026-11-11 (LaunchPad Hacks) | Liang Liyuan, ZIzi821 | Node.js, React, local embedding and reranking, Claude Haiku 5.5 | [Code](https://github.com/Jason-d-e/cairn) · [Live demo](https://jason-d-e.github.io/cairn/) |
 
 **Problem**: Answer questions from an organisation's own published rules with word-for-word quotes, which first needs the right page to be found.
 

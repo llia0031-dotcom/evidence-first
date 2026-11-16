@@ -19,8 +19,14 @@
         "url": "https://github.com/Jason-d-e/evidence-check"
       }
     ],
-    "period": "2026-11-12 – 2026-11-14",
-    "team": "Liang Liyuan",
+    "period": {
+      "zh": "2026-11-12 – 2026-11-14",
+      "en": "2026-11-12 – 2026-11-14"
+    },
+    "team": {
+      "zh": "Liang Liyuan",
+      "en": "Liang Liyuan"
+    },
     "stack": {
       "zh": "Python（只用标准库）、Agent Skill、promptfoo",
       "en": "Python (standard library only), Agent Skill, promptfoo"
@@ -419,8 +425,14 @@
         "url": "https://jason-d-e.github.io/cairn/"
       }
     ],
-    "period": "2026-11-09 – 2026-11-11（LaunchPad Hacks）",
-    "team": "Liang Liyuan、ZIzi821",
+    "period": {
+      "zh": "2026-11-09 – 2026-11-11（LaunchPad Hacks）",
+      "en": "2026-11-09 – 2026-11-11 (LaunchPad Hacks)"
+    },
+    "team": {
+      "zh": "Liang Liyuan、ZIzi821",
+      "en": "Liang Liyuan, ZIzi821"
+    },
     "stack": {
       "zh": "Node.js、React、本机向量检索和重排、Claude Haiku 5.5",
       "en": "Node.js, React, local embedding and reranking, Claude Haiku 5.5"
@@ -680,8 +692,14 @@
         "url": "https://github.com/Jason-d-e/tracedesk-lite"
       }
     ],
-    "period": "2026-11-03 – 2026-11-10（Ctrl+V Hackathon）",
-    "team": "Liang Liyuan、ZIzi821",
+    "period": {
+      "zh": "2026-11-03 – 2026-11-10（Ctrl+V Hackathon）",
+      "en": "2026-11-03 – 2026-11-10 (Ctrl+V Hackathon)"
+    },
+    "team": {
+      "zh": "Liang Liyuan、ZIzi821",
+      "en": "Liang Liyuan, ZIzi821"
+    },
     "stack": {
       "zh": "Node.js、React、promptfoo、Claude Haiku 5.5",
       "en": "Node.js, React, promptfoo, Claude Haiku 5.5"
@@ -927,8 +945,14 @@
         "url": "https://github.com/Jason-d-e/evidence-screening"
       }
     ],
-    "period": "2026-11-13 – 2026-11-14",
-    "team": "Liang Liyuan",
+    "period": {
+      "zh": "2026-11-13 – 2026-11-14",
+      "en": "2026-11-13 – 2026-11-14"
+    },
+    "team": {
+      "zh": "Liang Liyuan",
+      "en": "Liang Liyuan"
+    },
     "stack": {
       "zh": "Node.js、Python、evidence-check 0.2.0、批量接口",
       "en": "Node.js, Python, evidence-check 0.2.0, Message Batches API"
@@ -1478,8 +1502,14 @@
         }
       }
     ],
-    "period": "2026-11-12 – 2026-11-14",
-    "team": "Liang Liyuan",
+    "period": {
+      "zh": "2026-11-12 – 2026-11-14",
+      "en": "2026-11-12 – 2026-11-14"
+    },
+    "team": {
+      "zh": "Liang Liyuan",
+      "en": "Liang Liyuan"
+    },
     "stack": {
       "zh": "Node.js、DuckDB、Orama、evidence-check、批量接口",
       "en": "Node.js, DuckDB, Orama, evidence-check, Message Batches API"
@@ -2437,8 +2467,14 @@
         }
       }
     ],
-    "period": "2026-11-13 – 2026-11-16",
-    "team": "Liang Liyuan",
+    "period": {
+      "zh": "2026-11-13 – 2026-11-16",
+      "en": "2026-11-13 – 2026-11-16"
+    },
+    "team": {
+      "zh": "Liang Liyuan",
+      "en": "Liang Liyuan"
+    },
     "stack": {
       "zh": "Python、RapidOCR、BM25、evidence-check、Transformers（对比组）、批量接口",
       "en": "Python, RapidOCR, BM25, evidence-check, Transformers (baselines), Message Batches API"
@@ -3504,8 +3540,14 @@
         "url": "https://github.com/Jason-d-e/text-on-product"
       }
     ],
-    "period": "2026-11-12 – 2026-11-14",
-    "team": "Liang Liyuan",
+    "period": {
+      "zh": "2026-11-12 – 2026-11-14",
+      "en": "2026-11-12 – 2026-11-14"
+    },
+    "team": {
+      "zh": "Liang Liyuan",
+      "en": "Liang Liyuan"
+    },
     "stack": {
       "zh": "BytePlus 接口上的 Seedream 和 Seedance、RapidOCR、浏览器端 OCR",
       "en": "Seedream and Seedance through the BytePlus API, RapidOCR, in-browser OCR"
@@ -3815,8 +3857,14 @@
         "url": "https://github.com/Jason-d-e/voice-agent-eval"
       }
     ],
-    "period": "2026-11-13 – 2026-11-15",
-    "team": "Liang Liyuan",
+    "period": {
+      "zh": "2026-11-13 – 2026-11-15",
+      "en": "2026-11-13 – 2026-11-15"
+    },
+    "team": {
+      "zh": "Liang Liyuan",
+      "en": "Liang Liyuan"
+    },
     "stack": {
       "zh": "Python、SenseVoice、本机 MCP 工具、FireRedChat pVAD、Claude Haiku 5.5",
       "en": "Python, SenseVoice, local MCP tools, FireRedChat pVAD, Claude Haiku 5.5"
@@ -4330,8 +4378,14 @@
         "url": "https://github.com/Jason-d-e/grounded-labelling-pipeline"
       }
     ],
-    "period": "2026-11-15 – 2026-11-16",
-    "team": "Liang Liyuan",
+    "period": {
+      "zh": "2026-11-15 – 2026-11-16",
+      "en": "2026-11-15 – 2026-11-16"
+    },
+    "team": {
+      "zh": "Liang Liyuan",
+      "en": "Liang Liyuan"
+    },
     "stack": {
       "zh": "Python、Pandas、BM25、evidence-check、Lark 多维表格（AI Agent 步骤）、批量接口",
       "en": "Python, Pandas, BM25, evidence-check, Lark Base (AI Agent step), Message Batches API"

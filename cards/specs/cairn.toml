@@ -4,8 +4,8 @@ layer = "retrieval"
 status = "public"
 card_version = "1.1"
 updated = "2026-11-15"
-period = "2026-11-09 – 2026-11-11（LaunchPad Hacks）"
-team = "Liang Liyuan、ZIzi821"
+period = { zh = "2026-11-09 – 2026-11-11（LaunchPad Hacks）", en = "2026-11-09 – 2026-11-11 (LaunchPad Hacks)" }
+team = { zh = "Liang Liyuan、ZIzi821", en = "Liang Liyuan, ZIzi821" }
 stack = { zh = "Node.js、React、本机向量检索和重排、Claude Haiku 5.5", en = "Node.js, React, local embedding and reranking, Claude Haiku 5.5" }
 did = { zh = "我们做了按公开规定回答、逐字引原文的问答台：先选校区再提问，检索、生成、在代码里核对引文；用 45 道写好正确页面的题比较 7 种检索做法，再用学生的真实提问单独测。", en = "We built a desk that answers from published rules with word-for-word quotes: pick a campus, ask, then retrieval, generation and quote checking in code; seven retrieval methods were compared on 45 questions with known right pages, and real student questions were scored separately." }
 name = { zh = "Cairn", en = "Cairn" }

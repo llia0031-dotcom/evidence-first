@@ -283,7 +283,7 @@ def render_card(proj: dict, lang: str) -> str:
     # Case header, the way portfolio case studies open: a metadata row, then problem / what I did / result.
     out.append(f"| {L('时间', 'When')} | {L('团队', 'Team')} | {L('技术', 'Stack')} | {L('链接', 'Links')} |")
     out.append("|---|---|---|---|")
-    out.append(f"| {s['period']} | {s['team']} | {tr(s['stack'], lang)} | {links} |")
+    out.append(f"| {tr(s['period'], lang)} | {tr(s['team'], lang)} | {tr(s['stack'], lang)} | {links} |")
     out.append("")
     sep = "：" if zh else ": "
     problem = fill(tr(s['problem'], lang), vals, lang, f'{pid}.problem')
@@ -429,7 +429,8 @@ def project_json(proj: dict) -> dict:
     out = {"id": s["id"], "order": s.get("order"), "layer": s["layer"], "status": s["status"],
            "updated": s["updated"], "card_version": s["card_version"],
            "card": {"zh": f"cards/{s['id']}.md", "en": f"cards/{s['id']}.en.md"},
-           "links": s.get("links", []), "period": s["period"], "team": s["team"], "stack": s["stack"], "evals": []}
+           "links": s.get("links", []), "period": {l: tr(s["period"], l) for l in ("zh", "en")},
+           "team": {l: tr(s["team"], l) for l in ("zh", "en")}, "stack": s["stack"], "evals": []}
     for key in ("name", "problem", "primary_metric", "summary", "did"):
         out[key] = {lang: fill(tr(s[key], lang), vals, lang, f"{s['id']}.{key}") for lang in ("zh", "en")}
     out["headline"] = []
@@ -462,7 +463,7 @@ def render_readme(projects: list[dict], lang: str) -> str:
         problem = fill(tr(s["problem"], lang), vals, lang, f"{s['id']}.problem")
         metric = fill(tr(s["primary_metric"], lang), vals, lang, f"{s['id']}.primary_metric")
         if s["id"] in WITHHOLD:
-            rows.append(f"| **{name}**<br>{s['period']} | {layer} | {fill(tr(s['problem'], lang), vals, lang, 'p')} | — | — | "
+            rows.append(f"| **{name}**<br>{tr(s['period'], lang)} | {layer} | {fill(tr(s['problem'], lang), vals, lang, 'p')} | — | — | "
                         f"{'未公开' if zh else 'not public'} |")
             continue
         nums = "<br>".join(fill(tr(h, lang), vals, lang, f"{s['id']}.headline") for h in s.get("headline", []))
@@ -472,7 +473,7 @@ def render_readme(projects: list[dict], lang: str) -> str:
             links = "未公开" if zh else "not public"
         card = f"[{'评测卡' if zh else 'Card'}](cards/{s['id']}{'' if zh else '.en'}.md)"
         links = f"{links}<br>{card}"
-        rows.append(f"| **{name}**<br>{s['period']} | {layer} | {problem} | {metric} | {nums} | {links} |")
+        rows.append(f"| **{name}**<br>{tr(s['period'], lang)} | {layer} | {problem} | {metric} | {nums} | {links} |")
     story = load_story()
     flat = global_values(projects)
     intro = fill_global(tr(story["intro"], lang), flat, lang, "story.intro")
@@ -564,6 +565,8 @@ def story_json(projects: list[dict]) -> dict:
     story = load_story()
     flat = global_values(projects)
     out = {"intro": {l: fill_global(tr(story["intro"], l), flat, l, "story") for l in ("zh", "en")},
+           **({"about": {l: fill_global(tr(story["about"], l), flat, l, "story.about") for l in ("zh", "en")}}
+              if "about" in story else {}),
            "links": story.get("links", []), "scenes": []}
     for sc in story["scene"]:
         out["scenes"].append({

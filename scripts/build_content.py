@@ -143,7 +143,7 @@ def render(proj: dict, media: list[dict], lang: str, card_text: str) -> tuple[st
     out: list[str] = []
     data: dict = {"id": pid, "lang": lang, "order": s["order"], "name": bc.tr(s["name"], lang),
                   "status": s["status"], "layer": bc.LAYERS[s["layer"]][0 if zh else 1],
-                  "period": s["period"], "team": s["team"], "stack": bc.tr(s["stack"], lang)}
+                  "period": bc.tr(s["period"], lang), "team": bc.tr(s["team"], lang), "stack": bc.tr(s["stack"], lang)}
 
     out.append(f"# {bc.tr(s['name'], lang)}")
     out.append("")
@@ -164,7 +164,7 @@ def render(proj: dict, media: list[dict], lang: str, card_text: str) -> tuple[st
     status = L("已公开", "Public") if s["status"] == "public" else L("未公开", "Not public")
     links = [{"label": bc.tr(l["label"], lang), "url": bc.tr(l["url"], lang)} for l in s.get("links", [])] if s["status"] == "public" else []
     card_rel = f"evidence-first/cards/{pid}{'' if zh else '.en'}.md"
-    facts = [(L("时间", "When"), s["period"]), (L("团队", "Team"), s["team"]),
+    facts = [(L("时间", "When"), bc.tr(s["period"], lang)), (L("团队", "Team"), bc.tr(s["team"], lang)),
              (L("技术", "Stack"), bc.tr(s["stack"], lang)),
              (L("在作品集里的位置", "Place in the portfolio"), bc.LAYERS[s["layer"]][0 if zh else 1]),
              (L("状态", "Status"), status)]

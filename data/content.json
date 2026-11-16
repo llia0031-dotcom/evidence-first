@@ -1041,18 +1041,18 @@
     "name": "Cairn",
     "status": "public",
     "layer": "Scenario: grounded Q&A",
-    "period": "2026-11-09 – 2026-11-11（LaunchPad Hacks）",
-    "team": "Liang Liyuan、ZIzi821",
+    "period": "2026-11-09 – 2026-11-11 (LaunchPad Hacks)",
+    "team": "Liang Liyuan, ZIzi821",
     "stack": "Node.js, React, local embedding and reranking, Claude Haiku 5.5",
     "one_line": "A desk that answers questions from an organisation's published rules and quotes them word for word.",
     "facts": [
       {
         "label": "When",
-        "value": "2026-11-09 – 2026-11-11（LaunchPad Hacks）"
+        "value": "2026-11-09 – 2026-11-11 (LaunchPad Hacks)"
       },
       {
         "label": "Team",
-        "value": "Liang Liyuan、ZIzi821"
+        "value": "Liang Liyuan, ZIzi821"
       },
       {
         "label": "Stack",
@@ -1632,18 +1632,18 @@
     "name": "TraceDesk Lite",
     "status": "public",
     "layer": "Scenario: grounded Q&A",
-    "period": "2026-11-03 – 2026-11-10（Ctrl+V Hackathon）",
-    "team": "Liang Liyuan、ZIzi821",
+    "period": "2026-11-03 – 2026-11-10 (Ctrl+V Hackathon)",
+    "team": "Liang Liyuan, ZIzi821",
     "stack": "Node.js, React, promptfoo, Claude Haiku 5.5",
     "one_line": "An FAQ assistant that answers only from the given documents, designed for readers who find dense text hard: bottom line first, then steps and deadlines, each with a word-for-word quote.",
     "facts": [
       {
         "label": "When",
-        "value": "2026-11-03 – 2026-11-10（Ctrl+V Hackathon）"
+        "value": "2026-11-03 – 2026-11-10 (Ctrl+V Hackathon)"
       },
       {
         "label": "Team",
-        "value": "Liang Liyuan、ZIzi821"
+        "value": "Liang Liyuan, ZIzi821"
       },
       {
         "label": "Stack",
