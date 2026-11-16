@@ -1,0 +1,51 @@
+# When a pull request changes a prompt asset or its labels, run the regression check and post the
+# production and staging pass counts on the pull request. The API key comes from the repository secret
+# ANTHROPIC_API_KEY and is written to a temporary env file that only the provider reads.
+name: Prompt regression
+
+on:
+  pull_request:
+    paths:
+      - "prompts/**"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Offline checks (no model calls)
+        run: |
+          python3 -m unittest discover -s tests -v
+
+      - name: Write the key to a temporary env file
+        env:
+          KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          umask 077
+          printf 'ANTHROPIC_API_KEY=%s\n' "$KEY" > "$RUNNER_TEMP/eval.env"
+
+      - name: Compare production and staging
+        uses: promptfoo/promptfoo-action@promptfoo-action-v1.3.4
+        env:
+          EF_ENV_FILE: ${{ runner.temp }}/eval.env
+          PROMPTFOO_DISABLE_TELEMETRY: "1"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          config: prompts/regression/promptfooconfig.yaml
+          prompts: "prompts/**"
+          promptfoo-version: "0.125.1"
+          no-share: true
+          no-cache: true
+
+      - name: Remove the env file
+        if: always()
+        run: rm -f "$RUNNER_TEMP/eval.env"

@@ -1,0 +1,399 @@
+id = "sellpoint-check"
+order = 5
+layer = "judgement"
+status = "public"
+links = [
+  { label = { zh = "代码", en = "Code" }, url = "https://github.com/Jason-d-e/sellpoint-check" },
+  { label = { zh = "设计案例", en = "Design case study" }, url = { zh = "https://jason-d-e.github.io/sellpoint-check/design/case/", en = "https://jason-d-e.github.io/sellpoint-check/design/case/en/" } },
+  { label = { zh = "可点击原型", en = "Clickable prototype" }, url = { zh = "https://jason-d-e.github.io/sellpoint-check/design/prototype/product.html", en = "https://jason-d-e.github.io/sellpoint-check/design/prototype/product-en.html" } },
+]
+card_version = "1.2"
+updated = "2026-11-15"
+period = "2026-11-12 – 2026-11-14"
+team = "Liang Liyuan"
+stack = { zh = "Node.js、DuckDB、Orama、evidence-check、批量接口", en = "Node.js, DuckDB, Orama, evidence-check, Message Batches API" }
+did = { zh = "我把卖点核对设计成平台和商家一起用的功能：买家只看被证实的卖点，其余私下交给商家；比较三种找证据的做法的准确率和费用；给商家的修改建议迭代了六版，每版先在新写的冻结题上测，再决定用不用。", en = "I designed claim checking as a feature the platform and merchants share: buyers see only confirmed claims, the rest go privately to the merchant; compared three evidence-finding methods on accuracy and cost; and iterated the merchant advice six times, testing each version on new frozen items before deciding." }
+name = { zh = "卖点体检", en = "Sellpoint Check" }
+problem = { zh = "商品页的卖点有没有被买家评价证实：买家只看到被证实的卖点和原话，其余卖点私下交给商家，附修改建议", en = "Which listing claims do buyer reviews confirm: buyers see only confirmed claims with quotes, and the rest go privately to the merchant with suggested rewrites" }
+primary_metric = { zh = "卖点判对率（证实、反驳、有争议、没提到）；每个商品的调用次数和费用", en = "Claims labelled correctly (supported, refuted, mixed, not mentioned); calls and cost per product" }
+headline = [
+  { zh = "答案已知的 60 条卖点：采用的做法 {v1_c}，逐条判断 {v1_b}，先检索 {v1_a}", en = "60 claims with known answers: adopted method {v1_c}, per-review judging {v1_b}, retrieval first {v1_a}" },
+  { zh = "真实数据：调用次数是逐条判断的 {real_calls_share}，费用是 {real_cost_share}", en = "Real data: {real_calls_share} of the calls and {real_cost_share} of the cost of per-review judging" },
+  { zh = "修改建议第 5 版，真实数据两次独立评分：{adv_v5_real_g1}、{adv_v5_real_g2}", en = "Rewrite advice v5 on real data, two independent gradings: {adv_v5_real_g1}, {adv_v5_real_g2}" },
+]
+summary = { zh = "把商品页的卖点拆开，在买家评价里找支持或反驳的原话，每段原话用 evidence-check 的脚本逐字核对，再给每条卖点贴上“证实、反驳、有争议、没提到”。买家页只展示被证实的卖点和原话；没被证实的进商家后台的“卖点体检”，附原话和修改建议，只有商家本人看得到。评测比较三种找证据的做法：先检索再判断（A）、逐条评价判断再汇总（B，照 PRAISE 论文的做法）、全部评价一次交给模型（C，采用）。", en = "The listing's claims are split out, buyer reviews are searched for quotes that support or refute each one, every quote is checked word for word by the evidence-check script, and each claim is labelled supported, refuted, mixed or not mentioned. The buyer page shows only supported claims with their quotes; the rest go to the merchant's private claim check with quotes and a suggested rewrite. The evaluation compares three ways of finding evidence: retrieve then judge (A), judge review by review and aggregate (B, after the PRAISE paper), and all reviews in one call (C, adopted)." }
+core_link = { zh = "直接调用 evidence-check 的核对脚本：引文没通过就丢掉，不算证据。", en = "Calls the evidence-check script directly: a quote that fails is dropped and does not count as evidence." }
+models = { zh = "claude-haiku-5-5（effort medium）；先检索的做法用本机的检索模型和 Orama 混合检索（来自 Cairn）。", en = "claude-haiku-5-5 (effort medium); the retrieval arms use local embedding models and Orama hybrid search (from Cairn)." }
+
+judge = { zh = [
+  "卖点判对按写题时定好的答案用脚本算，没有用评分器。",
+  "真实数据没有标准答案，所以每条证据另做一次独立判断：先在答案已知的题上检验这个判断，和答案一致 {audit_vs_gold}。",
+  "修改建议由评分器按评分表独立评两次。评分器先在事先写好、已知好坏的建议上校准：两次分别判对 {adv_cal_1}、{adv_cal_2}。评分器和生成建议用的是同一个模型（claude-haiku-5-5），这是局限。",
+], en = [
+  "Claim labels are scored by script against answers fixed when the items were written; no grader is used.",
+  "Real data has no answer key, so every piece of evidence gets a second, independent judgement. That judgement was first checked on items with known answers: {audit_vs_gold} agree.",
+  "Rewrite advice is graded twice, independently, by a rubric grader. The grader was first calibrated on advice written in advance with known quality: {adv_cal_1} and {adv_cal_2} right. The grader and the advice generator use the same model (claude-haiku-5-5), which is a limit.",
+] }
+
+iteration = { zh = ["找证据的做法：三种比较下来，全部评价一次交给模型（C）最准，费用远低于逐条判断（B），采用。", "检索改进 A2：在 A 没见过的题上 {a2_a} → {a2_a2}，仍不如 C 的 {a2_c}，留作评价太多时的备选。", "修改建议：六版，第 2、3、5 版采用，第 4、6 版测完不采用；第 5 版让新文案不再出现“买家说”（{adv_v3_review_talk} → {adv_v5_review_talk}）。每一版见 Prompt 资产库。"], en = ["Evidence finding: of the three methods, all reviews in one call (C) was the most accurate and far cheaper than per-review judging (B), and was adopted.", "Retrieval upgrade A2: on claims A had not seen, {a2_a} → {a2_a2}, still below C's {a2_c}; kept as the fallback when there are too many reviews.", "Rewrite advice: six versions; v2, v3 and v5 adopted, v4 and v6 dropped after testing; v5 removed \"buyers say\" phrasing from new copy ({adv_v3_review_talk} → {adv_v5_review_talk}). Every version is in the prompt registry."] }
+
+conclusion = { zh = "全部评价一次交给模型最准、费用远低于逐条判断；给商家的修改建议停在第 5 版。", en = "Giving the model all reviews in one call is the most accurate and far cheaper than per-review judging; the merchant advice stays at version 5." }
+
+short_name = { zh = "卖点体检", en = "Sellpoint Check" }
+card_title = { zh = "从买家评价里找原话，证实商品页的卖点", en = "Checks listing claims against buyer reviews" }
+assumed = { zh = "以为会有道听途说、只是期望的评价被当成证据", en = "Expected hearsay and wishful reviews to be cited as evidence" }
+showed = { zh = "一条陷阱评价都没被引用；最便宜的一次全给反而最准", en = "No trap review was cited, and the cheapest one-call method was the most accurate" }
+result_line = { zh = "用买家评价核对卖点：答案已知的卖点判对 {v1_c}，花费只有逐条读评价的 {real_cost_share}", en = "Claims checked against reviews: {v1_c} right on known answers, at {real_cost_share} of the cost of reading reviews one by one" }
+key_numbers = [{ metric = "v1_c", label = { zh = "已知答案的卖点全判对（逐条读评价 {v1_b}）", en = "Claims judged right on known answers (one by one: {v1_b})" } }, { metric = "real_cost_share", label = { zh = "费用是逐条读评价做法的", en = "Cost compared with reading reviews one by one" } }, { metric = "adv_v5_real_g1", label = { zh = "给商家的修改建议，可以直接照着改", en = "Rewrite advice merchants can use as is" } }]
+timeline = [
+  { date = "2026-11-13", label = { zh = "建议第 1 版", en = "Advice v1" }, text = { zh = "第一版修改建议", en = "First rewrite advice" }, adopted = true },
+  { date = "2026-11-14", label = { zh = "建议第 2 版", en = "Advice v2" }, text = { zh = "清掉改写里残留的被反驳说法", en = "Refuted wording cleared" }, before = "adv_v2_zh_v1", after = "adv_v2_zh_v2", adopted = true },
+  { date = "2026-11-14", label = { zh = "建议第 3 版", en = "Advice v3" }, text = { zh = "中文商品给中文建议", en = "Chinese advice for Chinese listings" }, before = "adv_v3_mixed_lang_v2", after = "adv_v3_mixed_lang_v3", adopted = true },
+  { date = "2026-11-14", label = { zh = "建议第 4 版", en = "Advice v4" }, text = { zh = "删得太多，总分下降", en = "Removed too much; score fell" }, before = "adv_v4_mixed2_v3", after = "adv_v4_mixed2_v4", adopted = false },
+  { date = "2026-11-14", label = { zh = "建议第 5 版", en = "Advice v5" }, text = { zh = "新文案不再出现“买家说”", en = "No \"buyers say\" in new copy" }, before = "adv_v3_review_talk", after = "adv_v5_review_talk", adopted = true },
+  { date = "2026-11-14", label = { zh = "建议第 6 版", en = "Advice v6" }, text = { zh = "补漏洞反而总分下降", en = "Patch lowered the score" }, before = "adv_v6_voice2_v5", after = "adv_v6_voice2_v6", adopted = false },
+  { date = "2026-11-14", label = { zh = "检索 A2", en = "Retrieval A2" }, text = { zh = "混合检索好于 A，仍不如 C", en = "Beats A, still below C" }, before = "a2_a", after = "a2_a2", adopted = false },
+]
+
+[uses]
+zh = [
+  "平台在商品页和门店页只展示被买家评价证实的卖点，配原话。",
+  "商家后台私下看到哪些卖点没被证实、买家原话是什么、怎么改写。",
+]
+en = [
+  "A platform shows only review-confirmed claims, with quotes, on product and store pages.",
+  "A merchant sees privately which claims reviews do not confirm, the buyers' words, and a suggested rewrite.",
+]
+
+[out_of_scope]
+zh = [
+  "不对外公布“被反驳”“有争议”的标签，不用来判违规、不触发处罚。",
+  "不判断买家看不到的卖点，例如成分含量、实验室检测结果。",
+  "评价太少的商品不判；第一版不碰推荐排序。",
+  "研究用的真实评价数据没有商用许可，评价原文不转载。",
+]
+en = [
+  "Does not publish refuted or mixed labels, judge violations or trigger penalties.",
+  "Does not judge claims buyers cannot observe, such as ingredient amounts or lab results.",
+  "Skips products with too few reviews; the first version does not touch recommendation ranking.",
+  "The real review data used for research has no commercial licence, and review text is not redistributed.",
+]
+
+
+[[eval]]
+id = "v1"
+name = { zh = "构造测试集 v1（60 条卖点，答案已知）", en = "Constructed set v1 (60 claims, known answers)" }
+date = "2026-11-12"
+data = { zh = "12 个虚构商品、433 条评价，答案在写题时定好，其中有专门的陷阱评价（看着像证据、其实不是）。题目在真实数据跑完之后由同一作者写成；跑前冻结。", en = "12 fictional products and 433 reviews, answers fixed at writing, with trap reviews that look like evidence but are not. Written after the real-data run by the same author; frozen before the run." }
+items = { zh = "60 条卖点", en = "60 claims" }
+runs = { zh = "每种做法 1 遍", en = "1 run per method" }
+setup = { zh = "claude-haiku-5-5，普通接口", en = "claude-haiku-5-5, standard API" }
+frozen = { zh = "`testset/PREREGISTRATION.md`（题目指纹、预期）", en = "`testset/PREREGISTRATION.md` (item fingerprint, expectations)" }
+
+  [[eval.metric]]
+  id = "v1_c"
+  label = { zh = "判对：全部评价一次给（C，采用）", en = "Correct: all reviews in one call (C, adopted)" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/score-testset.json", at = ["arms", "allinone", "all"], num = "correct", den = "n" }
+
+  [[eval.metric]]
+  id = "v1_b"
+  label = { zh = "判对：逐条判断再汇总（B）", en = "Correct: per-review judging (B)" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/score-testset.json", at = ["arms", "praise", "all"], num = "correct", den = "n" }
+
+  [[eval.metric]]
+  id = "v1_a"
+  label = { zh = "判对：先检索再判断（A）", en = "Correct: retrieve then judge (A)" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/score-testset.json", at = ["arms", "retrieval", "all"], num = "correct", den = "n" }
+
+  [[eval.metric]]
+  id = "v1_traps_c"
+  label = { zh = "陷阱评价被当成证据（C）", en = "Trap reviews cited as evidence (C)" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/score-testset.json", at = ["arms", "allinone", "traps"], num = "cited", den = "total" }
+  direction = "lower"
+
+[[eval]]
+id = "real"
+name = { zh = "真实数据（30 个商品，没有标准答案）", en = "Real data (30 products, no answer key)" }
+date = "2026-11-12"
+data = { zh = "公开研究数据集里的 30 个美妆商品、538 条评价、210 条卖点。没有标准答案，所以比较费用、调用次数，并对每条证据做第二次独立判断。", en = "30 beauty products, 538 reviews and 210 claims from a public research dataset. There is no answer key, so the comparison covers cost and calls, and every piece of evidence gets a second, independent judgement." }
+items = { zh = "30 个商品、210 条卖点", en = "30 products, 210 claims" }
+runs = { zh = "每种做法 1 遍；A 和 C 另各重跑 1 遍看一致率", en = "1 run per method; A and C were run a second time to measure repeatability" }
+setup = { zh = "claude-haiku-5-5，普通接口", en = "claude-haiku-5-5, standard API" }
+
+  [[eval.metric]]
+  id = "real_calls_share"
+  label = { zh = "调用次数：C 占 B 的比例", en = "Calls: C as a share of B" }
+  extractor = "json_ratio"
+  args = { path = "sellpoint-check/results/compare-run.json", num_at = ["arms", "allinone", "calls"], den_at = ["arms", "praise", "calls"], decimals = 1 }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "real_cost_share"
+  label = { zh = "费用：C 占 B 的比例", en = "Cost: C as a share of B" }
+  extractor = "json_ratio"
+  args = { path = "sellpoint-check/results/compare-run.json", num_at = ["arms", "allinone", "cost_usd"], den_at = ["arms", "praise", "cost_usd"] }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "real_audit_c_support"
+  label = { zh = "第二次独立判断同意：C 的支持证据", en = "Second judgement agrees: C's supporting evidence" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/audit-run.json", at = ["per_arm", "allinone", "support"], num = "agree", den = "n" }
+
+  [[eval.metric]]
+  id = "real_audit_c_refute"
+  label = { zh = "第二次独立判断同意：C 的反驳证据", en = "Second judgement agrees: C's refuting evidence" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/audit-run.json", at = ["per_arm", "allinone", "refute"], num = "agree", den = "n" }
+
+  [[eval.metric]]
+  id = "real_audit_a_support"
+  label = { zh = "第二次独立判断同意：A 的支持证据", en = "Second judgement agrees: A's supporting evidence" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/audit-run.json", at = ["per_arm", "retrieval", "support"], num = "agree", den = "n" }
+
+  [[eval.metric]]
+  id = "real_repeat_c"
+  label = { zh = "C 跑两遍标签一致", en = "C labels identical across two runs" }
+  extractor = "json_value"
+  args = { path = "sellpoint-check/results/repeat-run.json", keys = ["rows", 1, "same_label_pct"], unit = "pct", decimals = 1, n_keys = ["rows", 1, "claims"] }
+
+  [[eval.metric]]
+  id = "audit_vs_gold"
+  label = { zh = "参照：第二次判断在答案已知的题上和答案一致", en = "Reference: the second judgement against known answers" }
+  extractor = "json_value"
+  args = { path = "sellpoint-check/results/audit-testset.json", keys = ["auditor_vs_gold", "accuracy_pct"], unit = "pct", decimals = 1, n_keys = ["auditor_vs_gold", "items"] }
+  direction = "higher"
+
+[[eval]]
+id = "zh"
+name = { zh = "中文测试集（50 条卖点，网络用语和反话）", en = "Chinese set (50 claims, slang and sarcasm)" }
+date = "2026-11-14"
+data = { zh = "10 个虚构商品、312 条中文评价，含网络用语、反话和陷阱，答案写题时定好，跑前冻结。", en = "10 fictional products and 312 Chinese reviews with slang, sarcasm and traps; answers fixed at writing, frozen before the run." }
+items = { zh = "50 条卖点", en = "50 claims" }
+runs = { zh = "每种做法 1 遍", en = "1 run per method" }
+setup = { zh = "claude-haiku-5-5，普通接口", en = "claude-haiku-5-5, standard API" }
+frozen = { zh = "`testset/zh/PREREGISTRATION.md`", en = "`testset/zh/PREREGISTRATION.md`" }
+
+  [[eval.metric]]
+  id = "zh_c"
+  label = { zh = "判对（C）", en = "Correct (C)" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/score-testset-zh.json", at = ["arms", "allinone", "all"], num = "correct", den = "n" }
+
+  [[eval.metric]]
+  id = "zh_b"
+  label = { zh = "判对（B）", en = "Correct (B)" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/score-testset-zh.json", at = ["arms", "praise", "all"], num = "correct", den = "n" }
+
+  [[eval.metric]]
+  id = "zh_a"
+  label = { zh = "判对（A）", en = "Correct (A)" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/score-testset-zh.json", at = ["arms", "retrieval", "all"], num = "correct", den = "n" }
+
+[[eval]]
+id = "v2en"
+name = { zh = "英文测试集 v2（50 条卖点，长评价、错别字、反话）", en = "English set v2 (50 claims, long reviews, typos, sarcasm)" }
+date = "2026-11-14"
+data = { zh = "10 个虚构商品、490 条评价，比 v1 更难，答案写题时定好，跑前冻结。", en = "10 fictional products and 490 reviews, harder than v1; answers fixed at writing, frozen before the run." }
+items = { zh = "50 条卖点", en = "50 claims" }
+runs = { zh = "每种做法 1 遍", en = "1 run per method" }
+setup = { zh = "claude-haiku-5-5，批量接口（半价）", en = "claude-haiku-5-5, Message Batches API (half price)" }
+frozen = { zh = "`testset/v2/PREREGISTRATION.md`", en = "`testset/v2/PREREGISTRATION.md`" }
+
+  [[eval.metric]]
+  id = "v2_c"
+  label = { zh = "判对（C）", en = "Correct (C)" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/score-testset-v2.json", at = ["arms", "allinone", "all"], num = "correct", den = "n" }
+
+  [[eval.metric]]
+  id = "v2_b"
+  label = { zh = "判对（B）", en = "Correct (B)" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/score-testset-v2.json", at = ["arms", "praise", "all"], num = "correct", den = "n" }
+
+  [[eval.metric]]
+  id = "v2_a"
+  label = { zh = "判对（A）", en = "Correct (A)" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/score-testset-v2.json", at = ["arms", "retrieval", "all"], num = "correct", den = "n" }
+
+[[eval]]
+id = "a2"
+name = { zh = "检索改进 A2：A 没跑过的 180 条卖点", en = "Retrieval upgrade A2: 180 claims A had not seen" }
+date = "2026-11-14"
+data = { zh = "A2 换用 Orama 混合检索和句子窗口。在四套新写的测试集（混合、混合二、口语、口语二）上和 A、C 比较；计划和判断标准跑前写好。", en = "A2 switches to Orama hybrid search with sentence windows. It is compared with A and C on four newly written sets (mixed, mixed 2, spoken, spoken 2); plan and decision rule written before the run." }
+items = { zh = "四套共 180 条卖点", en = "180 claims across four sets" }
+runs = { zh = "每种做法 1 遍", en = "1 run per method" }
+setup = { zh = "claude-haiku-5-5，大部分走批量接口", en = "claude-haiku-5-5, mostly Message Batches API" }
+frozen = { zh = "`testset/ARM_A2_PLAN.md`", en = "`testset/ARM_A2_PLAN.md`" }
+takeaway = { zh = "A2 比 A 好，但采用的仍是 C；A2 留作评价太多、一次放不下时的备选。", en = "A2 beats A, but C stays adopted; A2 is the fallback when there are too many reviews for one call." }
+
+  [[eval.metric]]
+  id = "a2_a"
+  label = { zh = "判对（A）", en = "Correct (A)" }
+  extractor = "json_counts_sum"
+  args = { paths = ["sellpoint-check/results/score-testset-mixed.json", "sellpoint-check/results/score-testset-mixed2.json", "sellpoint-check/results/score-testset-voice.json", "sellpoint-check/results/score-testset-voice2.json"], at = ["arms", "retrieval", "all"] }
+
+  [[eval.metric]]
+  id = "a2_a2"
+  label = { zh = "判对（A2）", en = "Correct (A2)" }
+  extractor = "json_counts_sum"
+  args = { paths = ["sellpoint-check/results/score-testset-mixed.json", "sellpoint-check/results/score-testset-mixed2.json", "sellpoint-check/results/score-testset-voice.json", "sellpoint-check/results/score-testset-voice2.json"], at = ["arms", "retrieval2", "all"] }
+
+  [[eval.metric]]
+  id = "a2_c"
+  label = { zh = "判对（C）", en = "Correct (C)" }
+  extractor = "json_counts_sum"
+  args = { paths = ["sellpoint-check/results/score-testset-mixed.json", "sellpoint-check/results/score-testset-mixed2.json", "sellpoint-check/results/score-testset-voice.json", "sellpoint-check/results/score-testset-voice2.json"], at = ["arms", "allinone", "all"] }
+
+[[eval]]
+id = "advice"
+name = { zh = "修改建议（商家后台）：第 1 版和现在采用的第 5 版", en = "Rewrite advice (merchant view): v1 and the adopted v5" }
+date = "2026-11-14"
+data = { zh = "答案已知的 40 条卖点和真实数据的 151 条没被证实的卖点。每条建议按评分表独立打两次分（能不能直接照着改）。第 2 到第 6 版各在为它新写的测试集上测过，逐版记录见 Prompt 资产库；这里只列第 1 版和第 5 版在同一批真实数据上的结果。", en = "40 claims with known answers and 151 unconfirmed claims from the real data. Each suggestion is graded twice, independently, against a rubric (can the merchant apply it as is). Versions 2 to 6 were each tested on a set written for them; see the prompt registry. Only v1 and v5 on the same real data are listed here." }
+items = { zh = "测试集 40 条；真实数据 151 条", en = "40 test claims; 151 real claims" }
+runs = { zh = "每版生成 1 遍，评分 2 遍", en = "Generated once per version, graded twice" }
+setup = { zh = "claude-haiku-5-5；第 1 到 3 版普通接口，第 4 到 6 版批量接口", en = "claude-haiku-5-5; v1–v3 standard API, v4–v6 Message Batches API" }
+frozen = { zh = "`testset/SUGGEST_PLAN.md` 和各测试集的 PREREGISTRATION", en = "`testset/SUGGEST_PLAN.md` and each set's PREREGISTRATION" }
+
+  [[eval.metric]]
+  id = "adv_v1_test_g1"
+  label = { zh = "第 1 版，测试集，第一次评分可以直接照着改", en = "v1, test set, first grading: usable as is" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/suggest-testset.json", at = ["grading", 0], num = "pass", den = "n" }
+
+  [[eval.metric]]
+  id = "adv_v1_test_g2"
+  label = { zh = "第 1 版，测试集，第二次评分", en = "v1, test set, second grading" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/suggest-testset.json", at = ["grading", 1], num = "pass", den = "n" }
+
+  [[eval.metric]]
+  id = "adv_v1_real_g1"
+  label = { zh = "第 1 版，真实数据，第一次评分", en = "v1, real data, first grading" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/suggest-run.json", at = ["grading", 0], num = "pass", den = "n" }
+
+  [[eval.metric]]
+  id = "adv_v5_real_g1"
+  label = { zh = "第 5 版，真实数据，第一次评分", en = "v5, real data, first grading" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/suggest-run-v5.json", at = ["grading", 0], num = "pass", den = "n" }
+
+  [[eval.metric]]
+  id = "adv_v5_real_g2"
+  label = { zh = "第 5 版，真实数据，第二次评分", en = "v5, real data, second grading" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/suggest-run-v5.json", at = ["grading", 1], num = "pass", den = "n" }
+
+  [[eval.metric]]
+  id = "adv_v3_review_talk"
+  label = { zh = "第 3 版：新文案里没有“买家说”这类写法", en = "v3: new copy free of \"buyers say\" phrasing" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/suggest-run-v3.json", at = ["rules"], num = "no_review_talk", den = 151 }
+
+  [[eval.metric]]
+  id = "adv_v5_review_talk"
+  label = { zh = "第 5 版：新文案里没有“买家说”这类写法", en = "v5: new copy free of \"buyers say\" phrasing" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/suggest-run-v5.json", at = ["rules"], num = "no_review_talk", den = 151 }
+
+  [[eval.metric]]
+  id = "adv_cal_1"
+  label = { zh = "评分器校准：第一次判对已知好坏的建议", en = "Grader calibration: first pass on advice of known quality" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/suggest-testset.json", at = ["calibration", 0], num = "correct", den = "n" }
+
+  [[eval.metric]]
+  id = "adv_cal_2"
+  label = { zh = "评分器校准：第二次", en = "Grader calibration: second pass" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/suggest-testset.json", at = ["calibration", 1], num = "correct", den = "n" }
+
+
+  [[eval.metric]]
+  id = "adv_v2_zh_v1"
+  label = { zh = "中文测试集（第 2 版的对比）：第 1 版可以直接照着改", en = "Chinese set (v2 comparison): v1 usable as is" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/suggest-testset-zh.json", at = ["grading", 0], num = "pass", den = "n" }
+
+  [[eval.metric]]
+  id = "adv_v2_zh_v2"
+  label = { zh = "中文测试集（第 2 版的对比）：第 2 版可以直接照着改", en = "Chinese set (v2 comparison): v2 usable as is" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/suggest-testset-zh-v2.json", at = ["grading", 0], num = "pass", den = "n" }
+
+  [[eval.metric]]
+  id = "adv_v3_mixed_lang_v2"
+  label = { zh = "混合测试集（第 3 版的对比）：第 2 版用对语言", en = "Mixed set (v3 comparison): v2 in the right language" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/suggest-testset-mixed-v2.json", at = ["rules"], num = "same_language", den = 40 }
+
+  [[eval.metric]]
+  id = "adv_v3_mixed_lang_v3"
+  label = { zh = "混合测试集（第 3 版的对比）：第 3 版用对语言", en = "Mixed set (v3 comparison): v3 in the right language" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/suggest-testset-mixed-v3.json", at = ["rules"], num = "same_language", den = 40 }
+
+  [[eval.metric]]
+  id = "adv_v4_mixed2_v3"
+  label = { zh = "混合测试集二（第 4 版的对比）：第 3 版可以直接照着改", en = "Mixed set 2 (v4 comparison): v3 usable as is" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/suggest-testset-mixed2-v3.json", at = ["grading", 0], num = "pass", den = "n" }
+
+  [[eval.metric]]
+  id = "adv_v4_mixed2_v4"
+  label = { zh = "混合测试集二（第 4 版的对比）：第 4 版可以直接照着改", en = "Mixed set 2 (v4 comparison): v4 usable as is" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/suggest-testset-mixed2-v4.json", at = ["grading", 0], num = "pass", den = "n" }
+
+  [[eval.metric]]
+  id = "adv_v6_voice2_v5"
+  label = { zh = "口语测试集二（第 6 版的对比）：第 5 版可以直接照着改", en = "Spoken set 2 (v6 comparison): v5 usable as is" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/suggest-testset-voice2-v5.json", at = ["grading", 0], num = "pass", den = "n" }
+
+  [[eval.metric]]
+  id = "adv_v6_voice2_v6"
+  label = { zh = "口语测试集二（第 6 版的对比）：第 6 版可以直接照着改", en = "Spoken set 2 (v6 comparison): v6 usable as is" }
+  extractor = "json_counts"
+  args = { path = "sellpoint-check/results/suggest-testset-voice2-v6.json", at = ["grading", 0], num = "pass", den = "n" }
+
+[[limitation]]
+text = { zh = "测试集的评价比真实评价短、干净；测试题在真实数据跑完之后由同一作者写成。", en = "Test reviews are shorter and cleaner than real ones, and the items were written by the same author after the real-data run." }
+advice = { zh = "上线前用平台自己的、有许可的评价数据重做一遍真实数据的评测。", en = "Before launch, repeat the real-data evaluation on the platform's own licensed reviews." }
+
+[[limitation]]
+text = { zh = "真实数据没有标准答案：第二次独立判断和第一次的一致率（C 的支持证据 {real_audit_c_support:pct}、反驳证据 {real_audit_c_refute:pct}）只说明两次判断接近，不等于判对。", en = "Real data has no answer key: agreement between the first and second judgements (C: {real_audit_c_support:pct} for supporting and {real_audit_c_refute:pct} for refuting evidence) shows consistency, not correctness." }
+advice = { zh = "上线时抽一部分请人工复核，复核结果回流成新的评测题。", en = "Sample cases for human review at launch and turn the reviewed cases into new test items." }
+
+[[limitation]]
+text = { zh = "修改建议的评分器和生成建议用的是同一个模型；两次评分之间的一致性中等。", en = "The advice grader uses the same model as the generator, and agreement between the two gradings is moderate." }
+advice = { zh = "换一个不同厂家的模型当第二评分方，或抽样人工评分。", en = "Use a model from another provider as a second grader, or grade a sample by hand." }
+
+[[limitation]]
+text = { zh = "evidence-check 对中文引文要求至少 4 个字，两条完整的 3 个字的标题评价被挡下。", en = "evidence-check requires Chinese quotes of at least four characters, which blocked two complete three-character review titles." }
+advice = { zh = "核对脚本对“整条评价就是这几个字”的情况放行。", en = "Let the checker accept a short quote when it is the whole review." }
+
+[[version]]
+id = "1.0"
+date = "2026-11-15"
+text = { zh = "第一张卡，项目未公开。", en = "First card; the project is not public." }
+
+[[version]]
+id = "1.1"
+date = "2026-11-15"
+text = { zh = "开头加了时间、团队、技术、链接和“问题 / 我做了什么 / 结果”，照作品集案例页的写法；评测部分不变。", en = "Added when, team, stack, links and \"problem / what I did / results\" at the top, the way portfolio case studies open; the evaluation sections are unchanged." }
+
+[[version]]
+id = "1.2"
+date = "2026-11-16"
+text = { zh = "项目已公开：加上代码、设计案例和可点击原型的链接。", en = "The project is public: links to the code, design case study and clickable prototype added." }

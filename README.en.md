@@ -1,0 +1,133 @@
+# evidence-first
+
+I'm Liang Liyuan. I build AI features that show their evidence: every sentence points to its source, and every capability brings an evaluation before it ships.
+
+[Website](https://jason-d-e.github.io/) · [GitHub](https://github.com/Jason-d-e)
+
+**Make AI show its evidence.** In two senses:
+
+1. Every sentence an AI writes should point to its source.
+2. Every AI capability should bring evaluation evidence before it ships: answers and plan written and frozen first, then the run; every new version re-tested, with the change in score and the reason for adopting it on record.
+
+Each project below applies this thread in one setting: one checking component and one evaluation method, used for grounded Q&A, judgement, generation and interaction.
+
+[中文](README.md)
+
+## Six scenes, from the simplest question to the hardest
+
+Each scene states the problem, what I did and the results, then how it connects to the other projects. Every number is computed by script from the project's result files.
+
+### Scene 1: Does a sentence have a source?
+
+**TraceDesk Lite** ([card](cards/tracedesk.en.md) · [Code](https://github.com/Jason-d-e/tracedesk-lite)); **Cairn** ([card](cards/cairn.en.md) · [Code](https://github.com/Jason-d-e/cairn) · [Live demo](https://jason-d-e.github.io/cairn/)); **evidence-check** ([card](cards/evidence-check.en.md) · [Code and report](https://github.com/Jason-d-e/evidence-check))
+
+- **Problem**: Answering from documents, an AI quietly shifts deadlines and numbers or adds what no document says.
+- **What I did**: Two hackathon assistants came first, each answer quoted and checked by the server (TraceDesk, Cairn); the checking rules were then extracted into evidence-check, which anyone can install.
+- **Results**: TraceDesk: all automatic checks passed 20/20, plain prompt 17/20; Cairn: right page in the top five 44/45; evidence-check: answers with an invented number 4/32 → 0/32
+- **Connections**: evidence-check's matching and number rules were ported from TraceDesk's checker.
+
+### Scene 2: Does a judgement have grounds?
+
+**Evidence-backed resume screening** ([card](cards/screening-audit.en.md) · [Code and report](https://github.com/Jason-d-e/evidence-screening))
+
+- **Problem**: When a model screens resumes, can every met / not-met verdict point to the resume, and does it change when name, gender or school change?
+- **What I did**: Fictional jobs and resumes with answers fixed in advance; several wirings compared, the one that discarded correct verdicts rewired twice; then traps, planted errors and an independent second review.
+- **Results**: Advance decisions changed by a name swap: 0/240; Correct "met" verdicts lost to the check: 70/424 → 0/424; Second review catches planted misreadings: 80/80
+- **Connections**: Uses a frozen copy of the evidence-check 0.2.0 script for every quote.
+
+### Scene 3: How do many pieces of evidence add up to one conclusion?
+
+**Sellpoint Check** ([card](cards/sellpoint-check.en.md) · [Code](https://github.com/Jason-d-e/sellpoint-check) · [Design case study](https://jason-d-e.github.io/sellpoint-check/design/case/en/) · [Clickable prototype](https://jason-d-e.github.io/sellpoint-check/design/prototype/product-en.html))
+
+- **Problem**: One listing claim needs supporting or refuting quotes found among hundreds of reviews before a conclusion; the conclusion goes only to the side that can act on it.
+- **What I did**: Designed for platform and merchants together: buyers see only confirmed claims, the rest go privately to the merchant; three evidence-finding methods compared; the advice iterated six times, each version tested on new frozen items.
+- **Results**: Claims with known answers: adopted method 60/60, per-review judging 58/60; Cost only 17% of per-review judging
+- **Connections**: Calls the evidence-check script directly; the retrieval arms use Cairn's embedding models and Orama hybrid search.
+
+### Scene 4: How does an agent bring evidence through multi-turn, tool-using work?
+
+**Grounded Review (ad-review agent)** ([card](cards/grounded-review.en.md) · [Code and report](https://github.com/Jason-d-e/grounded-review))
+
+- **Problem**: Ad review must name the clause and the exact words, not just approve or reject, and re-review the advertiser's revision.
+- **What I did**: An agent that looks up clauses, quotes them, revises and re-reviews, compared with a single prompt, a banned-word list and open-source moderation models; the advice iterated from v1 to v1.3; then real ads judged by regulators and courts.
+- **Results**: Held-out decisions right: single prompt 191/192, agent 187/192; Real ads (UK ASA rulings): 49/60, 51/60; Advice fields filled wrongly: 6/36 → 0/36
+- **Connections**: The evidence-check script is one of the agent's tools; the demo reuses the screening study's page skeleton.
+
+### Scene 5: How do generated content and interaction get evidence?
+
+**Text on Product: Chinese copy on AI product images** ([card](cards/text-on-product.en.md) · [Guide](https://jason-d-e.github.io/text-on-product/) · [Pre-listing checker](https://jason-d-e.github.io/text-on-product/check/) · [Code](https://github.com/Jason-d-e/text-on-product)); **Real-time voice agent evaluation** ([card](cards/voice-agent-eval.en.md) · not public)
+
+- **Problem**: Whether the text in an image is right, and whether a voice assistant still gets things right when interrupted, hearing "mm" or over background speech, both need numbers.
+- **What I did**: Images: OCR checks every character in the picture, and the findings became a merchant guide and a pre-listing checker. Voice: 42 conversations with fixed answers, fixes tried one at a time and the useful ones combined.
+- **Results**: Images with exactly right text: Seedream 4.5 16/16; videos only 1/4; First audio over background speech: 20.4 s → 4.56 s
+- **Connections**: The voice study preregisters the way evidence-check v2 did; the image study applies the same word-for-word idea with its own OCR check.
+
+### Scene 6: How does this become something a team uses every day?
+
+**This repository** ([cards](cards/) · [prompt registry](prompts/README.en.md))
+
+- **Problem**: Once the studies exist, every capability needs evaluation evidence in one format, every prompt change needs old and new scores side by side, and releases and rollbacks need a routine.
+- **What I did**: This repository: evaluation cards in one format and a prompt registry (versions, release labels, canary replay, release checklist, scores posted on every prompt change); an evidence-backed labelling pipeline is in progress.
+- **Results**: 8 evaluation cards and 154 numbers, all computed from result files and checked against 0 project records; Canary replay: Grounded Review v1.3 reaches full release, v1.2 rolls back partway (a replay, not real users)
+- **Connections**: The registry holds the prompt versions from the earlier scenes; the canary replay uses Grounded Review's real comparison data.
+
+## Structure
+
+```mermaid
+flowchart TB
+  core["Core component<br>evidence-check: word-for-word quote and number check"]
+  method["Method<br>Preregistered evaluation · evaluation cards · prompt registry"]
+  core --> method
+  method --> qa["Grounded Q&A<br>Cairn · TraceDesk Lite"]
+  method --> judge["Judgement<br>Resume screening → Sellpoint Check → Grounded Review"]
+  method --> gen["Generation<br>Text on Product"]
+  method --> talk["Interaction<br>Real-time voice agent evaluation"]
+  judge --> ops["Operations (in progress)<br>Evidence-backed labelling pipeline"]
+```
+
+## All projects
+
+95% intervals, number of runs and source files are on each project's evaluation card.
+
+| Project | Layer | Problem | Main metric | Key numbers | Links |
+|---|---|---|---|---|---|
+| **evidence-check**<br>2026-11-12 – 2026-11-14 | Core component | Answers and drafts written from documents quietly shift dates and numbers or add facts no document states; every factual sentence should carry a word-for-word quote that a script checks | Planted errors flagged; correct facts wrongly flagged; answers with an invented number | Held-out: planted errors flagged 60/60, correct facts wrongly flagged 3/150<br>Answers with an invented number: plain prompt 4/32 → skill v0.2 0/32<br>Script 0.4.0: correct claims passing 0/11 → 11/11, changed numbers still all flagged 13/13 | [Code and report](https://github.com/Jason-d-e/evidence-check)<br>[Card](cards/evidence-check.en.md) |
+| **Cairn**<br>2026-11-09 – 2026-11-11（LaunchPad Hacks） | Scenario: grounded Q&A | Answer questions from an organisation's own published rules with word-for-word quotes, which first needs the right page to be found | Retrieval hit rate: right page in the top 1, 3 and 5; MRR@10 | 45 questions, 7 retrieval methods: the method in use has the right page in the top five for 44/45, MRR 0.839<br>Questions from students in their own words: top five 14/15, MRR 0.724 | [Code](https://github.com/Jason-d-e/cairn) · [Live demo](https://jason-d-e.github.io/cairn/)<br>[Card](cards/cairn.en.md) |
+| **TraceDesk Lite**<br>2026-11-03 – 2026-11-10（Ctrl+V Hackathon） | Scenario: grounded Q&A | An FAQ assistant that answers only from given documents with word-for-word quotes, putting key facts such as deadlines first with their source | Answers passing every automatic check (reply type, quotes, sourced deadlines, bottom line first, injection resisted) | 20 check cases: plain prompt 17/20, grounded-v2.4 20/20<br>Deadlines with a source: plain prompt 17/20, v2.4 20/20 | [Code](https://github.com/Jason-d-e/tracedesk-lite)<br>[Card](cards/tracedesk.en.md) |
+| **Evidence-backed resume screening**<br>2026-11-13 – 2026-11-14 | Scenario: judgement | When a model screens resumes, every met / not-met verdict should carry a resume quote; does that make it more accurate, and do verdicts change when name, gender or school change | Requirement verdicts right; advance decisions that change when names and other details change; correct "met" verdicts lost to the quote check | Advance decisions changed by a name swap: plain 0/240, with quotes 0/240<br>Correct "met" verdicts lost to the check: 70/424 → 10/424 (resume facts split out) → 0/424 (self-check before submitting)<br>Second review catches planted misreadings: 80/80 | [Code and report](https://github.com/Jason-d-e/evidence-screening)<br>[Card](cards/screening-audit.en.md) |
+| **Sellpoint Check**<br>2026-11-12 – 2026-11-14 | Scenario: judgement | Which listing claims do buyer reviews confirm: buyers see only confirmed claims with quotes, and the rest go privately to the merchant with suggested rewrites | Claims labelled correctly (supported, refuted, mixed, not mentioned); calls and cost per product | 60 claims with known answers: adopted method 60/60, per-review judging 58/60, retrieval first 52/60<br>Real data: 2.8% of the calls and 17% of the cost of per-review judging<br>Rewrite advice v5 on real data, two independent gradings: 142/151, 143/151 | [Code](https://github.com/Jason-d-e/sellpoint-check) · [Design case study](https://jason-d-e.github.io/sellpoint-check/design/case/en/) · [Clickable prototype](https://jason-d-e.github.io/sellpoint-check/design/prototype/product-en.html)<br>[Card](cards/sellpoint-check.en.md) |
+| **Grounded Review (ad-review agent)**<br>2026-11-13 – 2026-11-15 | Scenario: judgement | An ad decision should name the rule and the exact words that break it, not just approve or reject | Decisions right (approve and reject); violations caught; clauses cited correctly | Held-out decisions right: single prompt 191/192, agent 187/192<br>Real ads (UK ASA rulings): 49/60 and 51/60<br>Advice fields filled wrongly: 6/36 → 0/36 (v1.3) | [Code and report](https://github.com/Jason-d-e/grounded-review)<br>[Card](cards/grounded-review.en.md) |
+| **Text on Product: Chinese copy on AI product images**<br>2026-11-12 – 2026-11-14 | Scenario: generation | When Seedream makes Chinese product images, does the selling-point text come out exactly; how to write and lay it out so the text holds; how to check before listing | Images whose text is exactly right (character-by-character OCR check); rubric rating | Images with exactly right text: Seedream 4.5 16/16, 4.0 15/16, 5.0 lite 16/16<br>Image-to-video clips with exactly right text: 1/4 | [Guide](https://jason-d-e.github.io/text-on-product/) · [Pre-listing checker](https://jason-d-e.github.io/text-on-product/check/) · [Code](https://github.com/Jason-d-e/text-on-product)<br>[Card](cards/text-on-product.en.md) |
+| **Real-time voice agent evaluation**<br>2026-11-13 – 2026-11-15 | Scenario: interaction | Whether a voice assistant still gets the task right when the user pauses, interrupts, says "mm" or talks over background speech, with experience measured as latency, barge-in and false-stop numbers | Strict pass (task and interaction right); median time to first audio; barge-ins stopped; backchannels talked through | Strict pass: baseline (thinking on) 61/84, four fixes combined 62/84; text-only control 82/84<br>First audio over background speech: 20.4 s → 4.56 s (primary-speaker VAD)<br>Real barge-ins stopped 16/16, in 0.25 s | not public<br>[Card](cards/voice-agent-eval.en.md) |
+
+## Method
+
+| File | What it is |
+|---|---|
+| [docs/eval-protocol.md](docs/eval-protocol.md) | Evaluation protocol (Chinese): preregistration; rule checks on every change, calibrated model grading on every version, canary comparison last; how to report numbers |
+| [cards/](cards/) | One evaluation card per project: when, team, stack and "problem / what I did / results" first, then Hugging Face model card sections: uses, out of scope, evaluation data, metrics and results, grader calibration, limitations and failure cases, versions |
+| [prompts/](prompts/README.en.md) | Prompt registry: what each version changed, its score at the time, adopted or not and why; production / staging labels; canary replay; release checklist |
+| [data/](data/) | JSON versions of all of the above |
+
+## Scores on every prompt change
+
+`.github/workflows/prompt-regression.yml`: when a pull request changes files under `prompts/`, a GitHub Action runs promptfoo on the versions behind the production and staging labels over one item set (evidence-check development set v1, 12 drafts, model claude-haiku-5-5) and posts both pass counts on the pull request.
+
+The Action needs an API key stored in the repository:
+
+1. Open the repository's **Settings → Secrets and variables → Actions**;
+2. Click **New repository secret**, name it `ANTHROPIC_API_KEY`, paste your Anthropic API key and save.
+
+During a run the key is written to a temporary file that only the evaluation provider reads, and the file is deleted afterwards; the repository never stores the key.
+
+## Rebuild
+
+Python 3.11+, standard library only. The project folders must sit next to this repository.
+
+```
+python scripts/build_cards.py          # cards, project table, data/projects.json, data/story.json
+python scripts/build_cards.py --check  # check only: fails if a number disagrees with a project record or a source file changed
+python scripts/prompts.py build        # prompt registry tables and data/prompts.json
+python scripts/replay_canary.py        # canary replay
+python -m unittest discover -s tests   # offline tests, no model calls
+```

@@ -1,0 +1,58 @@
+asset = "grounded-review/advice"
+project = "grounded-review"
+order = 1
+name = { zh = "有据审核：改稿建议", en = "Grounded Review: revision advice" }
+what = { zh = "广告主问“哪里违规、怎么改”时，Agent 给出解释和修改后版本的那一段提示词、规则和输出格式。审核本身的提示词在各版之间没有变。", en = "The prompt, rules and output format the agent uses when the advertiser asks what is wrong and how to fix it. The review prompt itself is the same in every version." }
+where = "agent/review_agent.py"
+model_lock = "claude-haiku-5-5, effort medium"
+production_note = { zh = "项目决定以后的评测和演示用 v1.3；代码里的默认值仍是 v1，演示页存的也是 v1 的对话。没有线上流量。", en = "The project decided that new runs and demos use v1.3; the code default is still v1, and the demo shows stored v1 conversations. There is no live traffic." }
+
+[[version]]
+id = "v1"
+date = "2026-11-13"
+decision = "superseded"
+text = { zh = "`SYSTEM`、`ADVICE_SCHEMA` 和改稿提问（`agent/review_agent.py`）", en = "`SYSTEM`, `ADVICE_SCHEMA` and the advice question (`agent/review_agent.py`)" }
+change = { zh = "第一版：审核、给建议和改后版本、复审广告主的版本。", en = "First version: review, advice with a corrected version, re-review of the advertiser's version." }
+why = { zh = "多轮任务里，改后版本偶尔留下要人填的模板占位符。", en = "In multi-turn runs the corrected version sometimes kept template placeholders for a person to fill in." }
+source = "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+
+[[version]]
+id = "v1.1"
+date = "2026-11-13"
+decision = "superseded"
+text = { zh = "v1 加 `ADVICE_RULES_V11` 和 `check_revision` 工具", en = "v1 plus `ADVICE_RULES_V11` and the `check_revision` tool" }
+change = { zh = "改后版本要能直接上线、不留空格子；缺的信息写进回答让广告主补；加一个检查改后版本的工具。", en = "The corrected version must be ready to publish with no blanks; missing information goes into the answer for the advertiser; a tool checks the corrected version." }
+why = { zh = "在为它新写的 12 条广告上，占位符从 {grounded-review.mt2_v1_placeholder} 降到 {grounded-review.mt2_v11_placeholder}；之后发现“修改后的文案”有时写错位置。", en = "On 12 ads written for it, placeholders fell from {grounded-review.mt2_v1_placeholder} to {grounded-review.mt2_v11_placeholder}; later the corrected caption was found to land in the wrong field at times." }
+source = "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+compare_set = { zh = "mt2：12 条新广告，每版 2 遍", en = "mt2: 12 new ads, 2 runs per version" }
+scores = [
+  { label = { zh = "改后版本留了占位符（v1 → v1.1）", en = "Placeholders left (v1 → v1.1)" }, refs = ["grounded-review.mt2_v1_placeholder", "grounded-review.mt2_v11_placeholder"], direction = "lower" },
+]
+
+[[version]]
+id = "v1.2"
+date = "2026-11-13"
+decision = "not_adopted"
+text = { zh = "v1.1 加“字段填错就退回重交一次”", en = "v1.1 plus sending malformed advice back once" }
+change = { zh = "检查建议的各个字段，填错了退回给模型重交一次。", en = "Checks the advice fields and sends malformed advice back to the model once." }
+why = { zh = "退回重交没用：模型第二次照样写错；字段写错 v1.1 {grounded-review.mt3_v11_field}，v1.2 {grounded-review.mt3_v12_field}，费用还更高。", en = "Sending it back does not help: the model repeats the fault; fields wrong {grounded-review.mt3_v11_field} for v1.1 and {grounded-review.mt3_v12_field} for v1.2, at a higher cost." }
+source = "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+compare_set = { zh = "mt3：12 条新广告，每版 3 遍", en = "mt3: 12 new ads, 3 runs per version" }
+scores = [
+  { label = { zh = "最后采用的建议里字段写错（v1.1 → v1.2）", en = "Fields wrong in the accepted advice (v1.1 → v1.2)" }, refs = ["grounded-review.mt3_v11_field", "grounded-review.mt3_v12_field"], direction = "lower" },
+]
+
+[[version]]
+id = "v1.3"
+date = "2026-11-14"
+decision = "adopted"
+text = { zh = "`ADVICE_SCHEMA_V13`（先填修改后的文案，再写说明）和 `common.clean_advice`", en = "`ADVICE_SCHEMA_V13` (corrected caption before the explanation) and `common.clean_advice`" }
+change = { zh = "输出格式里先填修改后的文案、再写说明；混进来的格式标签在代码里清掉，不多调用模型。", en = "The output format asks for the corrected caption before the explanation; leaked markup is cleaned in code with no extra call." }
+why = { zh = "在又一组新写的 12 条广告上，交上来的建议字段写错从 {grounded-review.mt4_v11_fault} 降到 {grounded-review.mt4_v13_fault}；品牌和价格保住 {grounded-review.mt4_v13_facts}；费用没变。", en = "On another 12 newly written ads, advice fields filled wrongly fell from {grounded-review.mt4_v11_fault} to {grounded-review.mt4_v13_fault}; brand and price kept {grounded-review.mt4_v13_facts}; cost unchanged." }
+source = "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+compare_set = { zh = "mt4：12 条新广告，每版 3 遍", en = "mt4: 12 new ads, 3 runs per version" }
+scores = [
+  { label = { zh = "交上来的建议字段写错（v1.1 → v1.3）", en = "Advice fields filled wrongly (v1.1 → v1.3)" }, refs = ["grounded-review.mt4_v11_fault", "grounded-review.mt4_v13_fault"], direction = "lower" },
+  { label = { zh = "品牌和价格保住（v1.1 → v1.3）", en = "Brand and price kept (v1.1 → v1.3)" }, refs = ["grounded-review.mt4_v11_facts", "grounded-review.mt4_v13_facts"], direction = "higher" },
+  { label = { zh = "每段三轮对话的费用（v1.1 → v1.3）", en = "Cost per three-turn conversation (v1.1 → v1.3)" }, refs = ["grounded-review.mt4_v11_cost", "grounded-review.mt4_v13_cost"], direction = "lower" },
+]

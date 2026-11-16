@@ -1,0 +1,159 @@
+{
+  "note": {
+    "zh": "用评测题回放的演示，不是真实用户",
+    "en": "Replay of test conversations, not real users"
+  },
+  "steps": [
+    10,
+    50,
+    100
+  ],
+  "rules": {
+    "fault": {
+      "zh": "灰度组的字段写错比例高于线上组",
+      "en": "staging's share of malformed advice is above production's"
+    },
+    "facts": {
+      "zh": "灰度组改后版本丢品牌或价格的比例高于线上组",
+      "en": "staging loses brand or price more often than production"
+    },
+    "cost": {
+      "zh": "灰度组每段对话的平均费用比线上组高 10% 以上",
+      "en": "staging's mean cost per conversation is more than 10% above production's"
+    }
+  },
+  "rollouts": [
+    {
+      "id": "grounded-review-advice-v1.3",
+      "asset": "grounded-review/advice",
+      "production": "v1.1",
+      "staging": "v1.3",
+      "requests": 36,
+      "set": {
+        "zh": "mt4：12 条新广告，每版 3 遍",
+        "en": "mt4: 12 new ads, 3 runs per version"
+      },
+      "steps": [
+        {
+          "share": 10,
+          "staging": {
+            "n": 1,
+            "faults": 0,
+            "facts_lost": 0,
+            "cost": 0.005668
+          },
+          "production": {
+            "n": 35,
+            "faults": 6,
+            "facts_lost": 2,
+            "cost": 0.006884628571428571
+          },
+          "production_baseline": "served",
+          "fired": []
+        },
+        {
+          "share": 50,
+          "staging": {
+            "n": 17,
+            "faults": 0,
+            "facts_lost": 0,
+            "cost": 0.006513764705882353
+          },
+          "production": {
+            "n": 19,
+            "faults": 3,
+            "facts_lost": 1,
+            "cost": 0.007237473684210526
+          },
+          "production_baseline": "served",
+          "fired": []
+        },
+        {
+          "share": 100,
+          "staging": {
+            "n": 36,
+            "faults": 0,
+            "facts_lost": 0,
+            "cost": 0.006784638888888889
+          },
+          "production": {
+            "n": 36,
+            "faults": 6,
+            "facts_lost": 2,
+            "cost": 0.006850166666666667
+          },
+          "production_baseline": "all requests (100% step)",
+          "fired": []
+        }
+      ],
+      "decision": "full",
+      "sources": [
+        "grounded-review-public/eval/results/multiturn-mt4-v1.1.jsonl",
+        "grounded-review-public/eval/results/multiturn-mt4-v1.3.jsonl"
+      ],
+      "fingerprints": {
+        "grounded-review-public/eval/results/multiturn-mt4-v1.1.jsonl": "bb262b3d8268",
+        "grounded-review-public/eval/results/multiturn-mt4-v1.3.jsonl": "ff1db0e0ca09"
+      }
+    },
+    {
+      "id": "grounded-review-advice-v1.2",
+      "asset": "grounded-review/advice",
+      "production": "v1.1",
+      "staging": "v1.2",
+      "requests": 36,
+      "set": {
+        "zh": "mt3：12 条新广告，每版 3 遍",
+        "en": "mt3: 12 new ads, 3 runs per version"
+      },
+      "steps": [
+        {
+          "share": 10,
+          "staging": {
+            "n": 3,
+            "faults": 0,
+            "facts_lost": 0,
+            "cost": 0.007571333333333333
+          },
+          "production": {
+            "n": 33,
+            "faults": 4,
+            "facts_lost": 3,
+            "cost": 0.006889121212121212
+          },
+          "production_baseline": "served",
+          "fired": []
+        },
+        {
+          "share": 50,
+          "staging": {
+            "n": 15,
+            "faults": 3,
+            "facts_lost": 1,
+            "cost": 0.007997266666666666
+          },
+          "production": {
+            "n": 21,
+            "faults": 3,
+            "facts_lost": 3,
+            "cost": 0.006564952380952381
+          },
+          "production_baseline": "served",
+          "fired": [
+            "fault",
+            "cost"
+          ]
+        }
+      ],
+      "decision": "rollback",
+      "sources": [
+        "grounded-review-public/eval/results/multiturn-mt3-v1.1.jsonl",
+        "grounded-review-public/eval/results/multiturn-mt3-v1.2.jsonl"
+      ],
+      "fingerprints": {
+        "grounded-review-public/eval/results/multiturn-mt3-v1.1.jsonl": "903512b60ade",
+        "grounded-review-public/eval/results/multiturn-mt3-v1.2.jsonl": "547256bcdcb8"
+      }
+    }
+  ]
+}

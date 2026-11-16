@@ -1,0 +1,30 @@
+# Regression check for prompt assets: the versions behind the production and staging labels
+# (prompts/labels.json) run side by side on the same frozen items, so a pull request shows old and new
+# pass counts together. promptfoo's GitHub Action evaluates only the current checkout, which is why both
+# labels live in one config instead of comparing two branches.
+#
+# Asset wired in: evidence-check/skill, on its development set v1 (12 drafts, 84 sentences, fictional
+# DemoClub documents; MIT, copied from the evidence-check repository). Answers were fixed when the drafts
+# were written.
+#
+# Run from the repository root (the key is read only from the file named by EF_ENV_FILE):
+#   EF_ENV_FILE=path/to/.env PROMPTFOO_DISABLE_TELEMETRY=1 npx -y promptfoo@0.125.1 eval -c prompts/regression/promptfooconfig.yaml --no-cache
+description: evidence-check skill — production vs staging
+
+prompts:
+  - "{{draft_id}}"
+
+providers:
+  - id: file://evidence-check/provider.mjs
+    label: production
+    config:
+      label: production
+  - id: file://evidence-check/provider.mjs
+    label: staging
+    config:
+      label: staging
+
+tests: file://evidence-check/tests.mjs
+
+evaluateOptions:
+  maxConcurrency: 2

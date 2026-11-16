@@ -1,0 +1,430 @@
+id = "grounded-review"
+order = 6
+layer = "judgement"
+status = "public"
+card_version = "1.1"
+updated = "2026-11-15"
+period = "2026-11-13 – 2026-11-15"
+team = "Liang Liyuan"
+stack = { zh = "Python、RapidOCR、BM25、evidence-check、Transformers（对比组）、批量接口", en = "Python, RapidOCR, BM25, evidence-check, Transformers (baselines), Message Batches API" }
+did = { zh = "我从官方原文整理了 32 条政策条款，写了带陷阱的留出集，做了能查条款、引原文、多轮改稿和复审的 Agent，并和单个提示词、违禁词表、开源审核模型比较；改稿建议从 v1 迭代到 v1.3；最后换成监管机构和法院定答案的真实广告。", en = "I extracted 32 policy clauses from official sources, wrote a held-out set with traps, built an agent that looks up clauses, quotes them, revises and re-reviews over several turns, and compared it with a single prompt, a banned-word list and open-source moderation models; iterated the advice from v1 to v1.3; then switched to real ads judged by regulators and courts." }
+name = { zh = "有据审核（广告审核 Agent）", en = "Grounded Review (ad-review agent)" }
+problem = { zh = "广告审核要说得出违反哪一条、是哪几个字违反的，而不只是给“通过 / 拒绝”", en = "An ad decision should name the rule and the exact words that break it, not just approve or reject" }
+primary_metric = { zh = "判对率（放行和拒绝都算）；违规拦截率；条款引对率", en = "Decisions right (approve and reject); violations caught; clauses cited correctly" }
+headline = [
+  { zh = "留出集判对：单个提示词 {heldout_oneshot}，Agent {heldout_agent}", en = "Held-out decisions right: single prompt {heldout_oneshot}, agent {heldout_agent}" },
+  { zh = "真实广告（英国 ASA 裁决）：{real_en_oneshot} 和 {real_en_agent}", en = "Real ads (UK ASA rulings): {real_en_oneshot} and {real_en_agent}" },
+  { zh = "改稿字段写错：{mt4_v11_fault} → {mt4_v13_fault}（v1.3）", en = "Advice fields filled wrongly: {mt4_v11_fault} → {mt4_v13_fault} (v1.3)" },
+]
+links = [
+  { label = { zh = "代码和报告", en = "Code and report" }, url = "https://github.com/Jason-d-e/grounded-review" },
+]
+summary = { zh = "审核广告的 Agent：读文案和图片里的字，在 32 条政策条款里查依据，给出放行或拒绝；每处违规附类别、条款、违规原话和条款原文，引文先过 evidence-check 的核对脚本才算数。广告主追问时，它写修改后的版本，再复审广告主自己改的版本。评测对比两组：把材料一次交给模型的单个提示词，和带工具的 Agent。", en = "An agent that reviews ads: it reads the caption and the words in the image, looks up 32 policy clauses, and approves or rejects. Every violation carries a category, the clause, the offending words and the clause text, and every quote must pass the evidence-check script before it counts. When the advertiser asks, it writes a corrected version and re-reviews the advertiser's own revision. The evaluation compares two arms: a single prompt with all material, and a tool-using agent." }
+core_link = { zh = "每段广告引文和条款引文都交给 evidence-check 的核对脚本；不是逐字出自原文的引文在回答给出之前就被拦下。", en = "Every ad quote and clause quote goes through the evidence-check script; a quote that is not word for word in its source is stopped before the answer is shown." }
+models = { zh = "两组都用 claude-haiku-5-5（effort medium），同一份输出格式。对比组：违禁词表、CLIP、SigLIP 2、SafeGuard-VL-RL（本机运行）。", en = "Both arms use claude-haiku-5-5 (effort medium) with one output format. Baselines: a banned-word list, CLIP, SigLIP 2 and SafeGuard-VL-RL (run locally)." }
+
+iteration = { zh = ["改稿建议 v1.1：改后版本不再留模板占位符，{mt2_v1_placeholder} → {mt2_v11_placeholder}。", "v1.2：字段填错就退回重交，没用（{mt3_v11_field} 对 {mt3_v12_field}），不采用。", "v1.3：先填修改后的文案再写说明，字段写错 {mt4_v11_fault} → {mt4_v13_fault}，费用不变，采用。", "题目来源：自己写的留出集和难题集两组都到顶，换成监管机构和法院定答案的真实广告后才分出差别。"], en = ["Advice v1.1: no template placeholders left in corrected versions, {mt2_v1_placeholder} → {mt2_v11_placeholder}.", "v1.2: sending malformed advice back did not help ({mt3_v11_field} vs {mt3_v12_field}) and was dropped.", "v1.3: corrected caption before the explanation; advice fields filled wrongly {mt4_v11_fault} → {mt4_v13_fault} at the same cost; adopted.", "Item sources: both arms hit the ceiling on written items, and only real ads judged by regulators and courts separated them."] }
+
+conclusion = { zh = "自己写的题两组都到顶；换成真实广告后，Agent 比单个提示词更严，大部分错来自监管规则和政策库不同。", en = "Both arms hit the ceiling on written items; on real ads the agent is stricter than the single prompt, and most errors come from the regulator's rules differing from the policy library." }
+
+short_name = { zh = "有据审核", en = "Grounded Review" }
+card_title = { zh = "广告审核说清违反哪一条、是哪几个字", en = "Ad review that names the rule and the exact words" }
+assumed = { zh = "以为会漏在小字、小国旗和画出来的喝酒场景上", en = "Expected misses on small print, small flags and drawn drinking scenes" }
+showed = { zh = "这些一次都没漏；自己写的题到顶，换成真实广告才分出差别", en = "None was missed; written items hit the ceiling and only real ads separated the arms" }
+result_line = { zh = "对照英国监管机构的真实裁决判对 {real_en_agent}，并指出违反哪条规定、哪几个字", en = "Matched the UK regulator's real rulings on {real_en_agent} ads, naming the rule and the exact words" }
+key_numbers = [{ metric = "heldout_caught_agent", label = { zh = "违规广告全部拦下（自己写的题）", en = "Violating ads stopped (written test ads)" } }, { metric = "real_en_agent", label = { zh = "对照英国监管机构的真实裁决，判对", en = "Agreed with the UK regulator's real rulings" } }, { metric = "mt4_v13_fault", label = { zh = "改稿时文案填错位置（改进前 {mt4_v11_fault}）", en = "Corrected copy put in the wrong field (before: {mt4_v11_fault})" } }]
+timeline = [
+  { date = "2026-11-13", label = { zh = "v1.1", en = "v1.1" }, text = { zh = "改后版本不留模板占位符", en = "No template placeholders left" }, before = "mt2_v1_placeholder", after = "mt2_v11_placeholder", adopted = true },
+  { date = "2026-11-13", label = { zh = "v1.2", en = "v1.2" }, text = { zh = "填错退回重交，没用", en = "Sending it back did not help" }, before = "mt3_v11_field", after = "mt3_v12_field", adopted = false },
+  { date = "2026-11-14", label = { zh = "v1.3", en = "v1.3" }, text = { zh = "先填修改后的文案，再写说明", en = "Corrected caption before the explanation" }, before = "mt4_v11_fault", after = "mt4_v13_fault", adopted = true },
+  { date = "2026-11-14", label = { zh = "真实广告", en = "Real ads" }, text = { zh = "换成监管机构和法院定答案的广告", en = "Ads judged by regulators and courts" } },
+]
+
+[uses]
+zh = [
+  "给审核员一个带依据的初判：违反哪一条、哪几个字，审核员对照原文就能确认。",
+  "给广告主解释为什么被拒、怎么改，并复审改后的版本。",
+  "当作“带工具的 Agent 和单个提示词谁更好”的对照评测样例。",
+]
+en = [
+  "Give a reviewer a first decision with its grounds: which clause and which words, checkable against the source.",
+  "Explain a rejection to the advertiser, suggest a fix and re-review the revision.",
+  "Serve as a worked comparison of a tool-using agent against a single prompt.",
+]
+
+[out_of_scope]
+zh = [
+  "不能代替平台的完整政策：政策库是 32 条的节选，TikTok 各市场的专门规则没有收。",
+  "不是线上流量的测量：留出集和难题集都是自己写的题，真实广告只有公开裁决的文字描述。",
+  "不判断证据本身真不真：广告里“经临床验证”这类说法，要看广告主的证据，模型看不到。",
+]
+en = [
+  "Not a platform's full policy set: the library is a 32-clause excerpt and leaves out market-specific TikTok rules.",
+  "Not a measurement on live traffic: the held-out and hard sets are written for the project, and the real ads are published descriptions in regulator rulings.",
+  "Does not judge the advertiser's evidence: claims such as \"clinically proven\" depend on documents the model never sees.",
+]
+
+[judge]
+zh = [
+  "判对、拦截、条款是否引对都是按事先定好的答案用脚本算的，没有用评分器。",
+  "多轮任务里“改后的版本能不能通过”由另一次单个提示词复审来判；这个复审没有单独校准过，参考依据是同一组在留出集上的判对 {heldout_oneshot}。",
+]
+en = [
+  "Decisions, catches and clause citations are scored by script against answers fixed in advance; no grader is used.",
+  "In the multi-turn task, whether a corrected version passes is judged by a separate single-prompt review. That review was not calibrated on its own; the nearest evidence is the same arm's {heldout_oneshot} on the held-out set.",
+]
+
+[[eval]]
+id = "heldout"
+name = { zh = "留出集 v1（96 条自己写的广告）", en = "Held-out set v1 (96 written ads)" }
+date = "2026-11-13"
+data = { zh = "中英各半的图文广告，含专门写来骗模型的“陷阱”（看着像违规、其实合规）。答案在写题时定好；跑之前冻结题目、代码和打分脚本的哈希。", en = "Image and text ads, half Chinese and half English, including traps that look like violations but comply. Answers were fixed when the items were written; item, code and scorer hashes were frozen before the run." }
+items = { zh = "96 条广告，每组跑两遍，共 {heldout_oneshot:n} 次判断", en = "96 ads, two runs per arm, {heldout_oneshot:n} decisions per arm" }
+runs = { zh = "每组 2 遍；比例按两遍合并算，同一题两遍不独立，区间偏窄", en = "2 runs per arm; proportions pool both runs, which are not independent, so intervals are too narrow" }
+setup = { zh = "claude-haiku-5-5，普通接口", en = "claude-haiku-5-5, standard API" }
+frozen = { zh = "`eval/PREREGISTRATION.md`（计划、预期、文件哈希）", en = "`eval/PREREGISTRATION.md` (plan, expectations, file hashes)" }
+takeaway = { zh = "两组都接近满分，说明自己写的题已经到顶；差别在 Agent 多拒了陷阱。", en = "Both arms are near the ceiling on written items; the difference is that the agent rejected more traps." }
+
+  [[eval.metric]]
+  id = "heldout_oneshot"
+  label = { zh = "判对（单个提示词）", en = "Decisions right (single prompt)" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/test-2026-11-13.summary.json", arm = "oneshot", num = ["tp", "tn"], den = "items" }
+
+  [[eval.metric]]
+  id = "heldout_agent"
+  label = { zh = "判对（Agent）", en = "Decisions right (agent)" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/test-2026-11-13.summary.json", arm = "agent", num = ["tp", "tn"], den = "items" }
+
+  [[eval.metric]]
+  id = "heldout_caught_oneshot"
+  label = { zh = "违规拦下（单个提示词）", en = "Violations caught (single prompt)" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/test-2026-11-13.summary.json", arm = "oneshot", num = "tp", den = "items", minus_den = ["tn", "fp"] }
+
+  [[eval.metric]]
+  id = "heldout_caught_agent"
+  label = { zh = "违规拦下（Agent）", en = "Violations caught (agent)" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/test-2026-11-13.summary.json", arm = "agent", num = "tp", den = "items", minus_den = ["tn", "fp"] }
+
+  [[eval.metric]]
+  id = "heldout_traps_oneshot"
+  label = { zh = "陷阱正确放行（单个提示词）", en = "Traps correctly approved (single prompt)" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/test-2026-11-13.summary.json", arm = "oneshot", num = "traps_approved", den = "traps" }
+
+  [[eval.metric]]
+  id = "heldout_traps_agent"
+  label = { zh = "陷阱正确放行（Agent）", en = "Traps correctly approved (agent)" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/test-2026-11-13.summary.json", arm = "agent", num = "traps_approved", den = "traps" }
+
+  [[eval.metric]]
+  id = "heldout_clause_oneshot"
+  label = { zh = "条款引对（单个提示词）", en = "Clauses cited correctly (single prompt)" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/test-2026-11-13.summary.json", arm = "oneshot", num = "clause_right", den = "clause_checked" }
+
+  [[eval.metric]]
+  id = "heldout_clause_agent"
+  label = { zh = "条款引对（Agent）", en = "Clauses cited correctly (agent)" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/test-2026-11-13.summary.json", arm = "agent", num = "clause_right", den = "clause_checked" }
+
+  [[eval.metric]]
+  id = "heldout_policyq_oneshot"
+  label = { zh = "条款引文通过核对（单个提示词）", en = "Clause quotes passing the check (single prompt)" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/test-2026-11-13.summary.json", arm = "oneshot", num = "policy_quotes_ok", den = "policy_quotes" }
+
+  [[eval.metric]]
+  id = "heldout_policyq_agent"
+  label = { zh = "条款引文通过核对（Agent）", en = "Clause quotes passing the check (agent)" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/test-2026-11-13.summary.json", arm = "agent", num = "policy_quotes_ok", den = "policy_quotes" }
+
+  [[eval.metric]]
+  id = "heldout_cost_oneshot"
+  label = { zh = "每条广告的费用（单个提示词）", en = "Cost per ad (single prompt)" }
+  extractor = "json_value"
+  args = { path = "grounded-review-public/eval/results/test-2026-11-13.summary.json", keys = ["oneshot", "cost_per_item"], unit = "usd", decimals = 4 }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "heldout_cost_agent"
+  label = { zh = "每条广告的费用（Agent）", en = "Cost per ad (agent)" }
+  extractor = "json_value"
+  args = { path = "grounded-review-public/eval/results/test-2026-11-13.summary.json", keys = ["agent", "cost_per_item"], unit = "usd", decimals = 4 }
+  direction = "lower"
+
+[[eval]]
+id = "baselines"
+name = { zh = "留出集 v1 的图片广告：不用付费接口的做法", en = "Held-out set v1, image ads: methods without a paid API" }
+date = "2026-11-13"
+data = { zh = "留出集里的 57 条图片广告，只给图片；对比组都在本机跑一遍。SafeGuard-VL-RL 是冻结计划之后加的，没有写预期。", en = "The 57 image ads of the held-out set, image only; every baseline runs once locally. SafeGuard-VL-RL was added after the plan was frozen, without a written expectation." }
+items = { zh = "57 张图", en = "57 images" }
+runs = { zh = "每种做法 1 遍", en = "1 run per method" }
+setup = { zh = "本机 CPU，不花钱", en = "Local CPU, no cost" }
+takeaway = { zh = "这几种做法都不给条款和原话；只有 SafeGuard-VL-RL 比“全部拒绝”好。", en = "None of these methods gives a clause or quote; only SafeGuard-VL-RL beats rejecting everything." }
+
+  [[eval.metric]]
+  id = "img_reject_all"
+  label = { zh = "参照线：全部拒绝也能判对", en = "Reference: rejecting everything" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/test-2026-11-13.images.summary.json", arm = "safeguard-vl", num = "items", den = "items", minus_num = ["tn", "fp"] }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "img_safeguard"
+  label = { zh = "SafeGuard-VL-RL 判对", en = "SafeGuard-VL-RL decisions right" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/test-2026-11-13.images.summary.json", arm = "safeguard-vl", num = ["tp", "tn"], den = "items" }
+
+  [[eval.metric]]
+  id = "img_clip"
+  label = { zh = "CLIP 零样本判对", en = "CLIP zero-shot decisions right" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/test-2026-11-13.images.summary.json", arm = "clip", num = ["tp", "tn"], den = "items" }
+
+  [[eval.metric]]
+  id = "img_siglip2"
+  label = { zh = "SigLIP 2 零样本判对", en = "SigLIP 2 zero-shot decisions right" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/test-2026-11-13.images.summary.json", arm = "siglip2", num = ["tp", "tn"], den = "items" }
+
+  [[eval.metric]]
+  id = "img_wordlist"
+  label = { zh = "违禁词表判对", en = "Banned-word list decisions right" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/test-2026-11-13.images.summary.json", arm = "wordlist", num = ["tp", "tn"], den = "items" }
+
+  [[eval.metric]]
+  id = "img_safeguard_latency"
+  label = { zh = "SafeGuard-VL-RL 每张图耗时", en = "SafeGuard-VL-RL time per image" }
+  extractor = "json_value"
+  args = { path = "grounded-review-public/eval/results/test-2026-11-13.images.summary.json", keys = ["safeguard-vl", "latency_median"], unit = "s", decimals = 1 }
+  direction = "lower"
+  note = { zh = "中位数，CPU", en = "median, CPU" }
+
+[[eval]]
+id = "hard"
+name = { zh = "难题集（24 条）", en = "Harder set (24 ads)" }
+date = "2026-11-14"
+data = { zh = "长文案、短视频三格截图、暗示性说法；在留出集结果出来之后由同一作者写成，答案写题时定好，跑前冻结。", en = "Long captions, three-frame video screenshots and implied claims; written by the same author after the held-out results were known, answers fixed at writing, frozen before the run." }
+items = { zh = "24 条，每组 2 遍", en = "24 ads, 2 runs per arm" }
+runs = { zh = "每组 2 遍", en = "2 runs per arm" }
+setup = { zh = "claude-haiku-5-5，批量接口（半价）", en = "claude-haiku-5-5, Message Batches API (half price)" }
+frozen = { zh = "`eval/PREREGISTRATION.md` 难题集一节", en = "`eval/PREREGISTRATION.md`, harder-set section" }
+takeaway = { zh = "两组都全对：这套题只说明到顶了，分不出高低。", en = "Both arms are fully right: the set shows a ceiling, not a difference." }
+
+  [[eval.metric]]
+  id = "hard_oneshot"
+  label = { zh = "判对（单个提示词）", en = "Decisions right (single prompt)" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/hard-2026-11-14.summary.json", arm = "oneshot", num = ["tp", "tn"], den = "items" }
+
+  [[eval.metric]]
+  id = "hard_agent"
+  label = { zh = "判对（Agent）", en = "Decisions right (agent)" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/hard-2026-11-14.summary.json", arm = "agent", num = ["tp", "tn"], den = "items" }
+
+[[eval]]
+id = "real_en"
+name = { zh = "真实广告（英文）：英国广告标准局 30 份公开裁决", en = "Real ads (English): 30 published UK ASA rulings" }
+date = "2026-11-14"
+data = { zh = "答案由监管机构定：裁决“违规”或“不违规”。模型读的是裁决里对广告的文字描述，不是广告本身；监管规则和本项目的政策库不完全一样。", en = "Answers come from the regulator: upheld or not upheld. The arms read the ruling's description of the ad, not the ad, and the regulator's code differs from this project's policy library." }
+items = { zh = "30 份裁决（7 份判不违规），每组 2 遍", en = "30 rulings (7 not upheld), 2 runs per arm" }
+runs = { zh = "每组 2 遍", en = "2 runs per arm" }
+setup = { zh = "claude-haiku-5-5，批量接口（半价）", en = "claude-haiku-5-5, Message Batches API (half price)" }
+frozen = { zh = "`eval/PREREGISTRATION.md` 真实广告一节；题目原文不公开，只公开汇总", en = "`eval/PREREGISTRATION.md`, real-ads section; item text is not published, only the summary" }
+takeaway = { zh = "两组不再满分但仍接近；Agent 更严：违规抓得更全，也多拒了合法的。大部分错来自监管规则和政策库不同。", en = "Neither arm is perfect, and they stay close; the agent is stricter, catching more violations and rejecting more compliant ads. Most errors come from the regulator's rules differing from the policy library." }
+
+  [[eval.metric]]
+  id = "real_en_oneshot"
+  label = { zh = "判对（单个提示词）", en = "Decisions right (single prompt)" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/real-2026-11-14.summary.json", arm = "oneshot", num = ["tp", "tn"], den = "items" }
+
+  [[eval.metric]]
+  id = "real_en_agent"
+  label = { zh = "判对（Agent）", en = "Decisions right (agent)" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/real-2026-11-14.summary.json", arm = "agent", num = ["tp", "tn"], den = "items" }
+
+  [[eval.metric]]
+  id = "real_en_caught_oneshot"
+  label = { zh = "违规拦下（单个提示词）", en = "Violations caught (single prompt)" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/real-2026-11-14.summary.json", arm = "oneshot", num = "tp", den = "items", minus_den = ["traps"] }
+
+  [[eval.metric]]
+  id = "real_en_caught_agent"
+  label = { zh = "违规拦下（Agent）", en = "Violations caught (agent)" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/real-2026-11-14.summary.json", arm = "agent", num = "tp", den = "items", minus_den = ["traps"] }
+
+  [[eval.metric]]
+  id = "real_en_ok_oneshot"
+  label = { zh = "判“不违规”的广告正确放行（单个提示词）", en = "Not-upheld ads approved (single prompt)" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/real-2026-11-14.summary.json", arm = "oneshot", num = "traps_approved", den = "traps" }
+
+  [[eval.metric]]
+  id = "real_en_ok_agent"
+  label = { zh = "判“不违规”的广告正确放行（Agent）", en = "Not-upheld ads approved (agent)" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/real-2026-11-14.summary.json", arm = "agent", num = "traps_approved", den = "traps" }
+
+[[eval]]
+id = "real_zh"
+name = { zh = "真实广告（中文）：16 个公开案例", en = "Real ads (Chinese): 16 published cases" }
+date = "2026-11-14"
+data = { zh = "12 个被市场监管部门处罚的案例，4 个被监管部门或法院认定合法的个案。被处罚的只保留监管部门引用的广告原话。", en = "12 cases penalised by market regulators and 4 found lawful by a regulator or court. Penalised items keep only the words the regulator quoted." }
+items = { zh = "16 个案例，每组 2 遍", en = "16 cases, 2 runs per arm" }
+runs = { zh = "每组 2 遍", en = "2 runs per arm" }
+setup = { zh = "claude-haiku-5-5，批量接口（半价）", en = "claude-haiku-5-5, Message Batches API (half price)" }
+frozen = { zh = "`eval/PREREGISTRATION.md` 真实广告一节", en = "`eval/PREREGISTRATION.md`, real-ads section" }
+
+  [[eval.metric]]
+  id = "real_zh_oneshot"
+  label = { zh = "判对（单个提示词）", en = "Decisions right (single prompt)" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/real-zh-2026-11-14.summary.json", arm = "oneshot", num = ["tp", "tn"], den = "items" }
+
+  [[eval.metric]]
+  id = "real_zh_agent"
+  label = { zh = "判对（Agent）", en = "Decisions right (agent)" }
+  extractor = "json_counts"
+  args = { path = "grounded-review-public/eval/results/real-zh-2026-11-14.summary.json", arm = "agent", num = ["tp", "tn"], den = "items" }
+
+[[eval]]
+id = "mt2"
+name = { zh = "多轮改稿 mt2：v1 对 v1.1（12 条新广告）", en = "Multi-turn mt2: v1 vs v1.1 (12 new ads)" }
+date = "2026-11-13"
+data = { zh = "三轮对话：审核、给建议和改后版本、复审广告主自己改的版本。题目在改提示词之后新写，跑前冻结。", en = "Three turns: review, advice with a corrected version, re-review of the advertiser's own revision. Items were written after the prompt change and frozen before the run." }
+items = { zh = "12 条新广告，每个版本 2 遍，共 {mt2_v1_placeholder:n} 段对话", en = "12 new ads, 2 runs per version, {mt2_v1_placeholder:n} conversations" }
+runs = { zh = "每个版本 2 遍", en = "2 runs per version" }
+setup = { zh = "claude-haiku-5-5，普通接口", en = "claude-haiku-5-5, standard API" }
+frozen = { zh = "`eval/PREREGISTRATION.md` v1.1 一节", en = "`eval/PREREGISTRATION.md`, v1.1 section" }
+
+  [[eval.metric]]
+  id = "mt2_v1_placeholder"
+  label = { zh = "改后版本留了模板占位符（v1）", en = "Corrected version keeps template text (v1)" }
+  extractor = "gr_multiturn"
+  args = { path = "grounded-review-public/eval/results/multiturn-mt2-v1.jsonl", field = "fix_placeholders" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "mt2_v11_placeholder"
+  label = { zh = "改后版本留了模板占位符（v1.1）", en = "Corrected version keeps template text (v1.1)" }
+  extractor = "gr_multiturn"
+  args = { path = "grounded-review-public/eval/results/multiturn-mt2-v1.1.jsonl", field = "fix_placeholders" }
+  direction = "lower"
+
+[[eval]]
+id = "mt3"
+name = { zh = "多轮改稿 mt3：v1.1 对 v1.2（12 条新广告）", en = "Multi-turn mt3: v1.1 vs v1.2 (12 new ads)" }
+date = "2026-11-13"
+data = { zh = "检查“修改后的文案”字段有没有写错位置；v1.2 的做法是填错就退回重交一次。", en = "Checks whether the corrected-caption field is filled in the wrong place; v1.2 sends malformed advice back once." }
+items = { zh = "12 条新广告，每个版本 3 遍，共 {mt3_v11_field:n} 段对话", en = "12 new ads, 3 runs per version, {mt3_v11_field:n} conversations" }
+runs = { zh = "每个版本 3 遍", en = "3 runs per version" }
+setup = { zh = "claude-haiku-5-5，普通接口", en = "claude-haiku-5-5, standard API" }
+frozen = { zh = "`eval/PREREGISTRATION.md` v1.2 一节", en = "`eval/PREREGISTRATION.md`, v1.2 section" }
+takeaway = { zh = "退回重交没用：模型第二次照样写错，v1.2 不采用。", en = "Sending it back does not help: the model repeats the fault, so v1.2 is dropped." }
+
+  [[eval.metric]]
+  id = "mt3_v11_field"
+  label = { zh = "最后采用的建议里字段写错（v1.1）", en = "Fields filled wrongly in the accepted advice (v1.1)" }
+  extractor = "gr_multiturn"
+  args = { path = "grounded-review-public/eval/results/multiturn-mt3-v1.1.jsonl", field = "fix_field_problems" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "mt3_v12_field"
+  label = { zh = "最后采用的建议里字段写错（v1.2）", en = "Fields filled wrongly in the accepted advice (v1.2)" }
+  extractor = "gr_multiturn"
+  args = { path = "grounded-review-public/eval/results/multiturn-mt3-v1.2.jsonl", field = "fix_field_problems" }
+  direction = "lower"
+
+[[eval]]
+id = "mt4"
+name = { zh = "多轮改稿 mt4：v1.1 对 v1.3（12 条新广告）", en = "Multi-turn mt4: v1.1 vs v1.3 (12 new ads)" }
+date = "2026-11-14"
+data = { zh = "v1.3 让模型先填修改后的文案、再写说明；题目在 v1.3 写好之后新写，跑前冻结。中途因账户余额不足中断一次，用同样的命令接着跑，文件没变。", en = "v1.3 asks for the corrected caption before the explanation; items were written after v1.3 and frozen before the run. The run stopped once when the account ran out of credit and resumed with the same commands and unchanged files." }
+items = { zh = "12 条新广告，每个版本 3 遍，共 {mt4_v11_fault:n} 段对话", en = "12 new ads, 3 runs per version, {mt4_v11_fault:n} conversations" }
+runs = { zh = "每个版本 3 遍", en = "3 runs per version" }
+setup = { zh = "claude-haiku-5-5，普通接口", en = "claude-haiku-5-5, standard API" }
+frozen = { zh = "`eval/PREREGISTRATION.md` v1.3 一节", en = "`eval/PREREGISTRATION.md`, v1.3 section" }
+
+  [[eval.metric]]
+  id = "mt4_v11_fault"
+  label = { zh = "交上来的建议字段写错（v1.1）", en = "Advice as submitted, fields filled wrongly (v1.1)" }
+  extractor = "gr_multiturn"
+  args = { path = "grounded-review-public/eval/results/multiturn-mt4-v1.1.jsonl", field = "advice_raw_problems" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "mt4_v13_fault"
+  label = { zh = "交上来的建议字段写错（v1.3）", en = "Advice as submitted, fields filled wrongly (v1.3)" }
+  extractor = "gr_multiturn"
+  args = { path = "grounded-review-public/eval/results/multiturn-mt4-v1.3.jsonl", field = "advice_raw_problems" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "mt4_v11_facts"
+  label = { zh = "改后版本保住品牌和价格（v1.1）", en = "Brand and price kept (v1.1)" }
+  extractor = "gr_multiturn"
+  args = { path = "grounded-review-public/eval/results/multiturn-mt4-v1.1.jsonl", field = "fix_facts_kept", test = "true" }
+
+  [[eval.metric]]
+  id = "mt4_v13_facts"
+  label = { zh = "改后版本保住品牌和价格（v1.3）", en = "Brand and price kept (v1.3)" }
+  extractor = "gr_multiturn"
+  args = { path = "grounded-review-public/eval/results/multiturn-mt4-v1.3.jsonl", field = "fix_facts_kept", test = "true" }
+
+  [[eval.metric]]
+  id = "mt4_v11_cost"
+  label = { zh = "每段三轮对话的费用（v1.1）", en = "Cost per three-turn conversation (v1.1)" }
+  extractor = "gr_multiturn_cost"
+  args = { path = "grounded-review-public/eval/results/multiturn-mt4-v1.1.jsonl" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "mt4_v13_cost"
+  label = { zh = "每段三轮对话的费用（v1.3）", en = "Cost per three-turn conversation (v1.3)" }
+  extractor = "gr_multiturn_cost"
+  args = { path = "grounded-review-public/eval/results/multiturn-mt4-v1.3.jsonl" }
+  direction = "lower"
+
+[[limitation]]
+text = { zh = "自己写的题到顶了：留出集两组都接近满分，难题集两组都全对，分不出 Agent 和单个提示词谁更好。", en = "Written items hit the ceiling: both arms are near-perfect on the held-out set and fully right on the harder set, so they cannot separate the agent from the single prompt." }
+advice = { zh = "要分高低，用不是自己写的题：更多真实裁决、更长的视频，或模型没见过的规则。", en = "To separate them, use items the author did not write: more real rulings, longer videos, or rules the model has not seen." }
+
+[[limitation]]
+text = { zh = "Agent 比单个提示词更容易误拒陷阱：留出集陷阱放行 {heldout_traps_agent}，单个提示词 {heldout_traps_oneshot}；Agent 的费用也更高。", en = "The agent rejects more traps: traps approved {heldout_traps_agent} against {heldout_traps_oneshot} for the single prompt, and it costs more." }
+advice = { zh = "合规但像违规的广告（送达保证、文化遗产名录、定价）要给 Agent 补正面例子或条款说明。", en = "Add positive examples or clause notes for compliant ads that look like violations (delivery guarantees, heritage listings, set prices)." }
+
+[[limitation]]
+text = { zh = "真实广告上的错大多来自规则不同：英国判不违规的酒类广告，按 TikTok 政策要写酒精度，两组都拒了。", en = "Most errors on real ads come from different rules: alcohol ads the ASA cleared lack the alcohol-content line TikTok requires, and both arms rejected them." }
+advice = { zh = "上线时政策库要和执行规则的那一方一致；跨市场时按市场分库。", en = "Keep the policy library identical to the rules being enforced; split it by market." }
+
+[[limitation]]
+text = { zh = "多轮改稿的题只有 12 条短文字广告、一个模型；相差一两段对话属于噪声。", en = "Each multi-turn check uses 12 short text ads and one model; a difference of one or two conversations is noise." }
+advice = { zh = "下一版改稿提示词上线前，用图片广告和更长的文案再测一轮。", en = "Before the next advice prompt ships, test it on image ads and longer captions." }
+
+[[limitation]]
+text = { zh = "开源审核模型一张图要几分钟，不给条款和原话；SafeGuard-VL-RL 每张图约 {img_safeguard_latency}。", en = "The open-source moderation model takes minutes per image and gives no clause or quote; SafeGuard-VL-RL takes about {img_safeguard_latency} per image." }
+advice = { zh = "开源模型适合当便宜的第一道筛子，拿不准的再交给带依据的审核。", en = "Use open-source models as a cheap first filter and pass uncertain ads to the grounded review." }
+
+[[version]]
+id = "1.0"
+date = "2026-11-15"
+text = { zh = "第一张卡，照公开仓库 grounded-review 的内容写：公开版没有 Granite Guardian 在真实广告上的结果，这里也不放。两个文字审核模型的对比只有报告里的表格、没有汇总数据文件，所以没有收进卡片。", en = "First card, following the public grounded-review repository: the public release has no Granite Guardian results on real ads, so neither does this card. The two text guardrails are compared only in report tables with no summary data file, so they are not on the card." }
+
+[[version]]
+id = "1.1"
+date = "2026-11-15"
+text = { zh = "开头加了时间、团队、技术、链接和“问题 / 我做了什么 / 结果”，照作品集案例页的写法；评测部分不变。", en = "Added when, team, stack, links and \"problem / what I did / results\" at the top, the way portfolio case studies open; the evaluation sections are unchanged." }

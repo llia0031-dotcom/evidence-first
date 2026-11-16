@@ -1,0 +1,173 @@
+id = "text-on-product"
+order = 7
+layer = "generation"
+status = "public"
+card_version = "1.1"
+updated = "2026-11-15"
+period = "2026-11-12 – 2026-11-14"
+team = "Liang Liyuan"
+stack = { zh = "BytePlus 接口上的 Seedream 和 Seedance、RapidOCR、浏览器端 OCR", en = "Seedream and Seedance through the BytePlus API, RapidOCR, in-browser OCR" }
+did = { zh = "我定了 20 个固定任务、生成前冻结评分表，用 OCR 逐字核对画面里的字，并按评分表独立评三次；把结论写成给商家的创作指南，另做了一个在浏览器里查错字、不上传图片的上线前核对工具。", en = "I fixed 20 tasks and froze the rubric before generation, checked the text in every image character by character with OCR and rated each work three times against the rubric; turned the findings into a guide for merchants and built an in-browser pre-listing checker that never uploads the image." }
+name = { zh = "AI 生图创作指南：电商主图上的中文字", en = "Text on Product: Chinese copy on AI product images" }
+problem = { zh = "用 Seedream 做中文电商主图时，画面里的卖点文字能不能一字不差；怎么写提示词、怎么排版，字最稳；上架前怎么核对", en = "When Seedream makes Chinese product images, does the selling-point text come out exactly; how to write and lay it out so the text holds; how to check before listing" }
+primary_metric = { zh = "画面文字全对的图片比例（OCR 逐字核对）；按评分表的观感分", en = "Images whose text is exactly right (character-by-character OCR check); rubric rating" }
+headline = [
+  { zh = "图片文字全对：Seedream 4.5 {img_exact_45}，4.0 {img_exact_40}，5.0 lite {img_exact_50}", en = "Images with exactly right text: Seedream 4.5 {img_exact_45}, 4.0 {img_exact_40}, 5.0 lite {img_exact_50}" },
+  { zh = "图生视频里的字全对：{video_exact}", en = "Image-to-video clips with exactly right text: {video_exact}" },
+]
+links = [
+  { label = { zh = "创作指南", en = "Guide" }, url = "https://jason-d-e.github.io/text-on-product/" },
+  { label = { zh = "上线前核对工具", en = "Pre-listing checker" }, url = "https://jason-d-e.github.io/text-on-product/check/" },
+  { label = { zh = "代码", en = "Code" }, url = "https://github.com/Jason-d-e/text-on-product" },
+]
+summary = { zh = "用 20 个固定任务（16 张图、4 段视频）测 Seedream 4.0、4.5、5.0 lite 和 Seedance 1.0 pro 画中文卖点文字稳不稳。每张图的文字用 OCR 逐字核对，可疑处对照原图复看；每个作品按评分表独立打 3 次分。结果写成给商家的创作指南，另做了一个浏览器里的上线前核对工具：放进商品图和要求的文字，逐行查哪里不一样、哪里多了字，图片不上传。", en = "Twenty fixed tasks (16 images, 4 videos) test how reliably Seedream 4.0, 4.5 and 5.0 lite and Seedance 1.0 pro render Chinese selling-point text. Text in every image is checked character by character with OCR, with doubtful cases compared against the image; every work is rated three times, independently, against a rubric. The results became a guide for merchants plus an in-browser pre-listing checker: drop in a product image and the required text, and it lists line by line what differs or was added, without uploading the image." }
+core_link = { zh = "生成类场景：同样的“逐字核对”思路，用在画面里的字上。它有自己的 OCR 核对，没有调用 evidence-check 的脚本。", en = "The generation scenario: the same word-for-word idea applied to text inside images. It has its own OCR check and does not call the evidence-check script." }
+models = { zh = "生成用 BytePlus 接口上的 Seedream 4.0、4.5、5.0 lite 和 Seedance 1.0 pro（免费额度）；OCR 用 RapidOCR（PP-OCRv6）。", en = "Generation with Seedream 4.0, 4.5, 5.0 lite and Seedance 1.0 pro through the BytePlus API (free quota); OCR with RapidOCR (PP-OCRv6)." }
+
+judge = { zh = [
+  "文字对不对不靠打分：OCR 逐字比较。OCR 先在已知文字的样张上自检（字错 {ocr_self}），再往正确的图里植入错字检验能不能抓到（{ocr_inject}）。",
+  "观感按评分表独立打 3 次，作品顺序打乱、不显示是哪个版本；三次之间的一致性写在项目报告里。没有和人工评分对照，这是局限。",
+], en = [
+  "Text correctness is not rated: OCR compares character by character. OCR was first self-checked on known text ({ocr_self} characters wrong) and then on images with planted errors ({ocr_inject} caught).",
+  "Appearance is rated three times, independently, against a rubric, with works shuffled and versions hidden; agreement between the three is in the project report. There is no comparison with human ratings, which is a limit.",
+] }
+
+iteration = { zh = ["主评测之后做了提示词小实验：写明字的颜色有效，被采用；“大号标题、上方留白”不一定管用，改成“生成后看一眼标题有没有被裁”。", "视频里的字三种改法都保不住，指南统一写成“视频里的字后期再叠”。", "对外定位从“版本评测”改成给商家的创作指南，数据不变；另做了上线前核对工具。"], en = ["After the main evaluation, a prompt mini-experiment: stating the text colour worked and was adopted; asking for a large title with top margin did not reliably help, so the guide says to check whether the title was clipped.", "None of three changes kept video text stable, so the guide says to add video text in editing.", "The public framing moved from a version comparison to a guide for merchants, with the same data; a pre-listing checker was added."] }
+
+conclusion = { zh = "图片里的字基本都写对，视频里的字保不住；观感上 4.5 和 4.0 差不多，5.0 lite 明显低。", en = "Image text is almost always right and video text does not hold; in appearance 4.5 and 4.0 are close and 5.0 lite is clearly lower." }
+
+short_name = { zh = "AI 生图指南", en = "Text on Product" }
+card_title = { zh = "电商主图上的中文卖点，怎么写字最稳", en = "How to keep Chinese copy right on AI product images" }
+assumed = { zh = "以为写明“大号标题、上方留白”，标题就不会被裁掉", en = "Expected a large title with top margin to stop titles being clipped" }
+showed = { zh = "写了也不一定管用，标题反而变小；生成后要看一眼", en = "It did not reliably help and titles got smaller; check after generating" }
+result_line = { zh = "Seedream 4.5 生成的主图，中文字全写对的 {img_exact_45}；视频里只有 {video_exact}", en = "Seedream 4.5 got every Chinese character right in {img_exact_45} product images; only {video_exact} videos did" }
+key_numbers = [{ metric = "img_exact_45", label = { zh = "Seedream 4.5 主图里的字全对", en = "Seedream 4.5 images with every character right" } }, { metric = "video_exact", label = { zh = "图生视频里字全对的片段", en = "Videos with every character right" } }, { metric = "ocr_inject", label = { zh = "故意改错的字，核对时全部抓到", en = "Deliberately wrong characters, all caught" } }]
+timeline = [
+  { date = "2026-11-12", label = { zh = "主评测", en = "Main evaluation" }, text = { zh = "三个版本、图和视频，生成前冻结", en = "Three versions, rubric frozen first" } },
+  { date = "2026-11-14", label = { zh = "写明字色", en = "Text colour" }, text = { zh = "写明字的颜色，对比度明显提高", en = "Stating the colour raised contrast" }, adopted = true },
+  { date = "2026-11-14", label = { zh = "大号标题留白", en = "Large title, margin" }, text = { zh = "不一定管用，改成生成后检查", en = "Unreliable; check after generating" }, adopted = false },
+  { date = "2026-11-14", label = { zh = "视频里的字", en = "Video text" }, text = { zh = "三种改法都保不住，改为后期叠字", en = "Three tries failed; add text in editing" }, adopted = false },
+]
+
+[uses]
+zh = [
+  "商家写中文主图提示词时参考：哪些写法字最稳，哪些要生成后再看一眼。",
+  "上架前用核对工具查图上的字和要求的文字是否一字不差。",
+]
+en = [
+  "Guide merchants writing prompts for Chinese product images: which wording keeps text stable and what to recheck after generation.",
+  "Check before listing that the text in the image matches the required copy exactly.",
+]
+
+[out_of_scope]
+zh = [
+  "只测了 Seedream 三个版本，不代表别家模型；走的是接口，不是网页版。",
+  "每个任务只生成一次；只比较汉字、字母和数字，不比较符号；艺术字体的漏检率没有测。",
+  "只有简体中文；没有做买家调研。",
+]
+en = [
+  "Only three Seedream versions were tested, not other vendors' models, and through the API rather than the web app.",
+  "One generation per task; only Chinese characters, letters and digits are compared, not symbols; misses on artistic fonts were not measured.",
+  "Simplified Chinese only; no buyer research.",
+]
+
+
+[[eval]]
+id = "main"
+name = { zh = "主评测：16 个图片任务、4 个视频任务", en = "Main evaluation: 16 image tasks and 4 video tasks" }
+date = "2026-11-12"
+data = { zh = "任务分三档难度（短标题、多行带数字、长文案），任务和评分表在生成前冻结。每个版本每个任务生成一次。", en = "Tasks in three tiers (short title, several lines with numbers, long copy); tasks and rubric frozen before generation. One generation per version per task." }
+items = { zh = "每个图片版本 16 张，视频 4 段", en = "16 images per image version, 4 videos" }
+runs = { zh = "每个任务生成 1 次；观感评分 3 次", en = "1 generation per task; 3 ratings" }
+setup = { zh = "BytePlus 接口，免费额度", en = "BytePlus API, free quota" }
+frozen = { zh = "`data/freeze.json`（任务和评分表的哈希）", en = "`data/freeze.json` (task and rubric hashes)" }
+takeaway = { zh = "图片里的字基本都写对，4.0 错了一处数字；视频里的字保不住。观感上 4.5 和 4.0 差不多，5.0 lite 明显低。", en = "Image text is almost always right, with one wrong digit from 4.0; video text does not hold. In appearance 4.5 and 4.0 are close and 5.0 lite is clearly lower." }
+
+  [[eval.metric]]
+  id = "img_exact_45"
+  label = { zh = "文字全对的图片（Seedream 4.5）", en = "Images with exactly right text (Seedream 4.5)" }
+  extractor = "ai_tool"
+  args = { path = "aigc-scene-eval/report/results.json", section = "image", tool = "seedream45", what = "text_exact" }
+
+  [[eval.metric]]
+  id = "img_exact_40"
+  label = { zh = "文字全对的图片（Seedream 4.0）", en = "Images with exactly right text (Seedream 4.0)" }
+  extractor = "ai_tool"
+  args = { path = "aigc-scene-eval/report/results.json", section = "image", tool = "seedream40", what = "text_exact" }
+
+  [[eval.metric]]
+  id = "img_exact_50"
+  label = { zh = "文字全对的图片（Seedream 5.0 lite）", en = "Images with exactly right text (Seedream 5.0 lite)" }
+  extractor = "ai_tool"
+  args = { path = "aigc-scene-eval/report/results.json", section = "image", tool = "seedream50lite", what = "text_exact" }
+
+  [[eval.metric]]
+  id = "video_exact"
+  label = { zh = "文字全对的视频（Seedance 1.0 pro）", en = "Videos with exactly right text (Seedance 1.0 pro)" }
+  extractor = "ai_tool"
+  args = { path = "aigc-scene-eval/report/results.json", section = "video", tool = "seedance10pro", what = "text_exact" }
+
+  [[eval.metric]]
+  id = "rate_45"
+  label = { zh = "观感总分（Seedream 4.5，5 分制）", en = "Overall rating (Seedream 4.5, out of 5)" }
+  extractor = "ai_tool"
+  args = { path = "aigc-scene-eval/report/results.json", section = "image", tool = "seedream45", what = "overall" }
+
+  [[eval.metric]]
+  id = "rate_40"
+  label = { zh = "观感总分（Seedream 4.0）", en = "Overall rating (Seedream 4.0)" }
+  extractor = "ai_tool"
+  args = { path = "aigc-scene-eval/report/results.json", section = "image", tool = "seedream40", what = "overall" }
+
+  [[eval.metric]]
+  id = "rate_50"
+  label = { zh = "观感总分（Seedream 5.0 lite）", en = "Overall rating (Seedream 5.0 lite)" }
+  extractor = "ai_tool"
+  args = { path = "aigc-scene-eval/report/results.json", section = "image", tool = "seedream50lite", what = "overall" }
+
+  [[eval.metric]]
+  id = "usable_45"
+  label = { zh = "评为“能直接用”（Seedream 4.5）", en = "Rated usable as is (Seedream 4.5)" }
+  extractor = "ai_tool"
+  args = { path = "aigc-scene-eval/report/results.json", section = "image", tool = "seedream45", what = "usable" }
+
+  [[eval.metric]]
+  id = "usable_50"
+  label = { zh = "评为“能直接用”（Seedream 5.0 lite）", en = "Rated usable as is (Seedream 5.0 lite)" }
+  extractor = "ai_tool"
+  args = { path = "aigc-scene-eval/report/results.json", section = "image", tool = "seedream50lite", what = "usable" }
+
+  [[eval.metric]]
+  id = "ocr_self"
+  label = { zh = "OCR 自检：已知文字里认错的字", en = "OCR self-check: characters misread in known text" }
+  extractor = "json_counts"
+  args = { path = "aigc-scene-eval/report/results.json", at = ["ocr_selfcheck"], num = "distance", den = "length" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "ocr_inject"
+  label = { zh = "OCR 抓到植入的错字", en = "Planted text errors caught by OCR" }
+  extractor = "json_counts"
+  args = { path = "aigc-scene-eval/report/results.json", at = ["ocr_inject"], num = "caught", den = "n" }
+
+[[limitation]]
+text = { zh = "样本小：16 个图片任务、4 个视频任务，每个只生成一次；视频只有 {video_exact} 段字全对。", en = "Small sample: 16 image and 4 video tasks, one generation each; only {video_exact} videos have exactly right text." }
+advice = { zh = "视频里的字后期再叠，不靠模型生成。", en = "Add text to videos in editing rather than relying on generation." }
+
+[[limitation]]
+text = { zh = "观感评分没有和人工评分对照；三次评分来自同一种评分方式。", en = "Ratings were not compared with human ratings; all three come from the same rating method." }
+advice = { zh = "上线前请几位真实买家盲评一小组作品，看和评分表的结论是否一致。", en = "Before launch, have a few real buyers blind-rate a small set and compare with the rubric." }
+
+[[limitation]]
+text = { zh = "提示词小实验只有几张图：写明字色有效，“大号标题、上方留白”不一定管用。", en = "The prompt mini-experiment has only a few images: stating the text colour worked, asking for a large title with top margin did not reliably help." }
+advice = { zh = "生成后看一眼标题有没有被裁掉，被裁就重新生成。", en = "After generation, check whether the title was clipped and regenerate if so." }
+
+[[version]]
+id = "1.0"
+date = "2026-11-15"
+text = { zh = "第一张卡。公开的只有网站；报告和数据在项目内部。", en = "First card. Only the site is public; the report and data are internal." }
+
+[[version]]
+id = "1.1"
+date = "2026-11-15"
+text = { zh = "开头加了时间、团队、技术、链接和“问题 / 我做了什么 / 结果”，照作品集案例页的写法；评测部分不变。", en = "Added when, team, stack, links and \"problem / what I did / results\" at the top, the way portfolio case studies open; the evaluation sections are unchanged." }

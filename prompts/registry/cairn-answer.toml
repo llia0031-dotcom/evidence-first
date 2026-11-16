@@ -1,0 +1,35 @@
+asset = "cairn/answer"
+project = "cairn"
+order = 4
+name = { zh = "Cairn：按规定回答", en = "Cairn: answers from published rules" }
+what = { zh = "Cairn 回答问题时用的系统提示词：先结论，写截止时间和下一步，标明校区，不编日期、费用和联系方式。", en = "The system prompt Cairn answers with: conclusion first, deadlines and next steps, campus stated, no invented dates, fees or contacts." }
+where = "app/lib/prompt.js"
+model_lock = "claude-haiku-5-5"
+production_note = { zh = "线上演示用 cairn-monash-v2。", en = "The live demo uses cairn-monash-v2." }
+
+[[version]]
+id = "cairn-v1"
+date = "2026-11-09"
+decision = "retired"
+text = { zh = "公开仓库提交 442709d 的 `app/lib/prompt.js`", en = "`app/lib/prompt.js` at public commit 442709d" }
+change = { zh = "最早的版本，资料是无障碍规范（WCAG）。", en = "The first version, over accessibility guidelines (WCAG)." }
+why = { zh = "资料换成学生事务页面后停用。", en = "Retired when the corpus switched to student pages." }
+source = ""
+
+[[version]]
+id = "cairn-monash-v1"
+date = "2026-11-10"
+decision = "superseded"
+text = { zh = "公开仓库提交 5674011 的 `app/lib/prompt.js`", en = "`app/lib/prompt.js` at public commit 5674011" }
+change = { zh = "先结论、写截止时间和下一步、标明校区、不编日期费用联系方式。", en = "Conclusion first, deadlines and next steps, campus stated, no invented dates, fees or contacts." }
+why = { zh = "最后一轮可读性检查之后改出 v2。", en = "Replaced by v2 after the final readability review." }
+source = ""
+
+[[version]]
+id = "cairn-monash-v2"
+date = "2026-11-10"
+decision = "adopted"
+text = { zh = "公开仓库提交 33dbd17 的 `app/lib/prompt.js`（现行）", en = "`app/lib/prompt.js` at public commit 33dbd17 (current)" }
+change = { zh = "对读者只说“页面”、不说“段落”；规定各校区一样时不提校区；回答了的问题不再补充页面没写什么；校区直接告诉模型，不让它反问。", en = "The reader is told about \"the pages\", never \"the passages\"; no campus remark when a rule applies everywhere; no note on what the pages leave out once the question is answered; the campus is passed to the model, which never asks for it." }
+why = { zh = "来自可读性检查。两版都只做了冒烟测试，结果只打印在控制台、没有存成结果文件，所以这里不列分数；检索评测和提示词无关。", en = "From the readability review. Both versions were only smoke-tested, with results printed to the console and not stored, so no score is listed; the retrieval evaluation does not depend on the prompt." }
+source = "https://github.com/Jason-d-e/cairn/blob/main/app/lib/prompt.js"

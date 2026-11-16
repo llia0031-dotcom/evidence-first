@@ -1,0 +1,67 @@
+{
+  "evidence-check": {
+    "evidence-check-public/eval/v2/results/run-2026-11-12.summary.md": "b2d033d2f079b0e98195d4a0e43ba03e009cc284df3cd8a5e492ba89cad6881d",
+    "evidence-check-public/eval/v3/results/script-only.md": "02fcbf6a75ce48e4d4d4c13a109aa1d3785b091f6fb4dc2a683504e802a67d1e",
+    "evidence-check-public/eval/v4/results/script-only.md": "7ee7eed27b87a1fd77dabe3003c75beccc0fbb0e1a6278d8e4e8f1acbbc2bc21"
+  },
+  "cairn": {
+    "cairn-public/app/eval/results/retrieval-2026-11-10.json": "e1dc995797b72956f360c58c0997e82e6bedd34fe062bd75e02327e7fcd455d8",
+    "cairn-public/app/eval/results/student-retrieval-2026-11-11.json": "9059ec63251d181abd6b2e3ceae4a173e74b362d53d7dfd59d13031dcb04ca74"
+  },
+  "tracedesk": {
+    "launchpad-tracedesk/eval/results/check-2026-11-09.summary.md": "0e367661ea62132fce9ad936c2f031e7dfb70f694ce4d628c8ccadd6337b4750",
+    "launchpad-tracedesk/eval/results/check-v2.4-2026-11-09.summary.md": "2c7b94db45aa499a48c72bb37ec068cb0e34201e6cab93b01bf8e5523cfe1d6a"
+  },
+  "screening-audit": {
+    "screening-audit/eval/results/run-2026-11-13.summary.json": "fcb3d18395b843f5ac2af8f1ab456b16a315a9eab2e60aa39cef0ac28bbf7d44",
+    "screening-audit/eval/seeded/results/seeded-2026-11-14.json": "35d53023bc159e1f35c7aca3f94ba1f4d8d81dbf46323504ea277595e444458b",
+    "screening-audit/eval/v2/results/run-2026-11-13.summary.json": "b001c065af15abbf45010498aad247fe3af405af0c67b283db84c74e1e988cc0",
+    "screening-audit/eval/v3/results/run-2026-11-14.summary.json": "016bafa463111ca537fb520adc40ae6ce8b0f946aeace863864d4d7d827e543a",
+    "screening-audit/eval/verify/results/run-2026-11-14.summary.json": "12b9a7eb150c05d0b17a5c630df83ff158e348718bc225bc2e9984565d58fce4"
+  },
+  "sellpoint-check": {
+    "sellpoint-check/results/audit-run.json": "9d65224589b34b5bbd8a31fbbb594c8b1966ef8e45f60a68e54caa8a552e037b",
+    "sellpoint-check/results/audit-testset.json": "aac27f13c7028576f5fc7e47656a78cebf6568fff8e626d3b0923d56ae5a26e5",
+    "sellpoint-check/results/compare-run.json": "3da6af5c2f08c774538e857729b80941432401a1f6a4267a964afacfd2d4b77c",
+    "sellpoint-check/results/repeat-run.json": "3edf47099fa4cdab2217010e8ec55f56b3491662126d168cc2701b7d84f78c56",
+    "sellpoint-check/results/score-testset-mixed.json": "3ad651d91b5338467a05ab9f658650f998c5cfe94ed0182d4927349fcea1ce76",
+    "sellpoint-check/results/score-testset-mixed2.json": "5cb4982fb521d300be2c0fcac22a79b9b0d3bacfa61ab7cad30256ebf49bca59",
+    "sellpoint-check/results/score-testset-v2.json": "f03e6aedebf4e49745940d1470d93d5492780817a3a0e3e9e0c3abb24898d4ad",
+    "sellpoint-check/results/score-testset-voice.json": "17d285472d4be07dfe3500decac287f0b848dabc12318c072ef97fb55b004f6a",
+    "sellpoint-check/results/score-testset-voice2.json": "c0c09083f16878647f642c0670c57e8b7faa4e05b91a94c1822263e220076184",
+    "sellpoint-check/results/score-testset-zh.json": "e564550019642d81fbd1d3ce90498899fd6c33a69b8d4b03e074941d60ae66f3",
+    "sellpoint-check/results/score-testset.json": "8ab9a72707db65102e0fd82ca87c68a5b3c6ee677e4a78fbff1f8e6163812758",
+    "sellpoint-check/results/suggest-run-v3.json": "d83cb77f3ddaf3880e761a3069d65a90bec6c7ffac4a7d45ec1237db56fc275e",
+    "sellpoint-check/results/suggest-run-v5.json": "966a4e5a7d2a86de1bb65f77353d3d63dcc19e4c7abf85253ecc33415e1eff4d",
+    "sellpoint-check/results/suggest-run.json": "7d296bf128baed45f06acee6f4bae2804eac77a86d4887b925a8c4f789861c73",
+    "sellpoint-check/results/suggest-testset-mixed-v2.json": "24b94a953a791c1dbadedc70ccbdd4eb8f5f37bccf63b69c6f736d985a3e437b",
+    "sellpoint-check/results/suggest-testset-mixed-v3.json": "d9a63ca76ea0cfbbec4441098f95c1625db1ec26c74a93e821ab379cc51a9ca3",
+    "sellpoint-check/results/suggest-testset-mixed2-v3.json": "d1b39bb35a04ea760fb11e407b707e8a1814c838a8be31b78313eaad99e6170b",
+    "sellpoint-check/results/suggest-testset-mixed2-v4.json": "7f4763befb2c8e2f3ca2f2331b61e73f0be0d8d2881675e3844e4e10874fe699",
+    "sellpoint-check/results/suggest-testset-voice2-v5.json": "b36270b6aadfa2a410f3074317899824543629dd531b1c64906420abdf80bdd7",
+    "sellpoint-check/results/suggest-testset-voice2-v6.json": "bc544c69aff6a5d4d5f7afd858a27737924acac57b479c7de522f7a603e5d975",
+    "sellpoint-check/results/suggest-testset-zh-v2.json": "3d5a917315cc4e06fa383b92753f1694288cdd9db63a2c17c7886fdd60d97098",
+    "sellpoint-check/results/suggest-testset-zh.json": "d35b2d90475d7ab502ad082f0435c536d8f2dc0261cb0e53b3ed5d1b648dc079",
+    "sellpoint-check/results/suggest-testset.json": "a138e8a794e80cfc4e902b33b8cfb2127566a32fd01024910e700943774f801f"
+  },
+  "grounded-review": {
+    "grounded-review-public/eval/results/hard-2026-11-14.summary.json": "12d9c82e3ff2b8a56d31ce40f9653c325378545ad32641fbd8ffa02a43dfd789",
+    "grounded-review-public/eval/results/multiturn-mt2-v1.1.jsonl": "3e4b4fac22a859833b9d2c77c877b1599be66f95dee1b950c1c9e3b31668e5f0",
+    "grounded-review-public/eval/results/multiturn-mt2-v1.jsonl": "6b6dc58d09904930bcb5fadcf70d0d608039173db8217b77247b96727f7dd8ab",
+    "grounded-review-public/eval/results/multiturn-mt3-v1.1.jsonl": "903512b60adefd86e363014ea42a9de429c70740756ee43b916a2be816afd793",
+    "grounded-review-public/eval/results/multiturn-mt3-v1.2.jsonl": "547256bcdcb80fa6902532c42bd34416f7d4db615026b2b1b09844fc54440956",
+    "grounded-review-public/eval/results/multiturn-mt4-v1.1.jsonl": "bb262b3d8268c864183df7532d1457d29e04fd94851fa036120db4fb5f00d271",
+    "grounded-review-public/eval/results/multiturn-mt4-v1.3.jsonl": "ff1db0e0ca09b39a6a19f9ed4a2703a8f8ac671c375092e87551095abad959f2",
+    "grounded-review-public/eval/results/real-2026-11-14.summary.json": "5972506587150ff14c4d67c12bfb4a0e903dbf7d60033d04bdebb0f95f13fce3",
+    "grounded-review-public/eval/results/real-zh-2026-11-14.summary.json": "958959767bca0d221cc0fab2d8e4719ba8150406eff101a4c355051d74f59cbd",
+    "grounded-review-public/eval/results/test-2026-11-13.images.summary.json": "b9a93826d0e0fcea86e9b6674cc3c17fafb6225352bed143ffcd874cd4bc41c7",
+    "grounded-review-public/eval/results/test-2026-11-13.summary.json": "89b39152252bafdd8553e5924f48dcc6f9f052f93f2aee5ad975d564f5c75d40"
+  },
+  "text-on-product": {
+    "aigc-scene-eval/report/results.json": "f4a423e654e18ec2091ca00bb79a9a98b274b7ede6e02f9af6711f371191da6d"
+  },
+  "voice-agent-eval": {
+    "voice-agent-eval/eval/results/run1/scores.json": "30cd39981649a90b55749fa3566d67de25db0fa6bff0a312061c0b671bcea08d",
+    "voice-agent-eval/eval/results/run2/scores.json": "27ca415ab200fd2a18818289a34c6958cfc1634994123912d32fd508aba1fdab"
+  }
+}

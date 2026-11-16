@@ -1,0 +1,1616 @@
+[
+  {
+    "asset": "evidence-check/skill",
+    "project": "evidence-check",
+    "name": {
+      "zh": "evidence-check：Skill 说明（SKILL.md）",
+      "en": "evidence-check: skill instructions (SKILL.md)"
+    },
+    "what": {
+      "zh": "装进 Agent 的 Skill 说明：每句事实附逐字原文、跑核对脚本、逐条重读通过的说法。核对脚本另有版本号（0.2.0 → 0.4.0），见评测卡。",
+      "en": "The skill instructions loaded into an agent: a word-for-word quote for every fact, run the checker, reread every passing claim. The checker script has its own versions (0.2.0 → 0.4.0); see the evaluation card."
+    },
+    "where": "skills/evidence-check/SKILL.md",
+    "model_lock": "claude-haiku-5-5, effort medium（评测时）",
+    "labels": {
+      "production": "v0.2",
+      "staging": "v0.2",
+      "history": [
+        {
+          "date": "2026-11-12",
+          "label": "production",
+          "to": "v0.1",
+          "reason": "first version",
+          "source": "https://github.com/Jason-d-e/evidence-check/blob/main/eval/EVALUATION.md"
+        },
+        {
+          "date": "2026-11-12",
+          "label": "staging",
+          "to": "v0.2",
+          "reason": "frozen before the v2 held-out items were written",
+          "source": "https://github.com/Jason-d-e/evidence-check/blob/main/eval/EVALUATION.md"
+        },
+        {
+          "date": "2026-11-12",
+          "label": "production",
+          "from": "v0.1",
+          "to": "v0.2",
+          "reason": "held-out v2: no invented numbers, lower cost",
+          "source": "https://github.com/Jason-d-e/evidence-check/blob/main/eval/EVALUATION.md"
+        }
+      ]
+    },
+    "versions": [
+      {
+        "id": "v0.1",
+        "date": "2026-11-12",
+        "decision": "superseded",
+        "change": {
+          "zh": "第一版 Skill。",
+          "en": "First version of the skill."
+        },
+        "text": {
+          "zh": "`eval/v2/skill-versions/SKILL-v0.1.md`（指纹 9aec983a7522）",
+          "en": "`eval/v2/skill-versions/SKILL-v0.1.md` (fingerprint 9aec983a7522)"
+        },
+        "source": "https://github.com/Jason-d-e/evidence-check/blob/main/eval/EVALUATION.md",
+        "why": {
+          "zh": "开发评测 v1 暴露三个问题：两次误报都是把英文原文正确译成中文却被判错；唯一漏掉的错句是算错的时长；费用接近普通提示的两倍。",
+          "en": "Development run v1 showed three problems: both false alarms were correct Chinese translations of English sources; the one missed error was a miscalculated duration; and it cost almost twice the plain prompt."
+        },
+        "scores": [
+          {
+            "label": {
+              "zh": "回答里有编造的数字",
+              "en": "Answers with an invented number"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-check-public/eval/v2/results/run-2026-11-12.summary.md"
+                ],
+                "k": 2,
+                "n": 32,
+                "rate": 0.0625,
+                "ci95": [
+                  0.0173,
+                  0.2015
+                ]
+              }
+            ],
+            "direction": "lower"
+          },
+          {
+            "label": {
+              "zh": "正确事实被误标",
+              "en": "Correct facts wrongly flagged"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-check-public/eval/v2/results/run-2026-11-12.summary.md"
+                ],
+                "k": 2,
+                "n": 150,
+                "rate": 0.0133,
+                "ci95": [
+                  0.0037,
+                  0.0473
+                ]
+              }
+            ],
+            "direction": "lower"
+          }
+        ],
+        "compare_set": {
+          "zh": "留出评测 v2：16 个问题、8 篇草稿，每组 2 遍",
+          "en": "Held-out v2: 16 questions and 8 drafts, 2 runs per arm"
+        }
+      },
+      {
+        "id": "v0.2",
+        "date": "2026-11-12",
+        "decision": "adopted",
+        "change": {
+          "zh": "意思相同的改写、总结、翻译算有依据；只写资料给出的数字；整体缩短约三成。在写留出题之前冻结。",
+          "en": "Paraphrase, summary and translation count as supported; only numbers the documents give; about a third shorter. Frozen before the held-out items were written."
+        },
+        "text": {
+          "zh": "`skills/evidence-check/SKILL.md`（指纹 8dcadfc8cd45，现行）",
+          "en": "`skills/evidence-check/SKILL.md` (fingerprint 8dcadfc8cd45, current)"
+        },
+        "source": "https://github.com/Jason-d-e/evidence-check/blob/main/eval/EVALUATION.md",
+        "why": {
+          "zh": "留出评测里不再编数字，费用略低；误标多一条，属于噪声。",
+          "en": "No invented numbers on the held-out set and slightly lower cost; one more false alarm, within noise."
+        },
+        "scores": [
+          {
+            "label": {
+              "zh": "回答里有编造的数字（v0.1 → v0.2）",
+              "en": "Answers with an invented number (v0.1 → v0.2)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-check-public/eval/v2/results/run-2026-11-12.summary.md"
+                ],
+                "k": 2,
+                "n": 32,
+                "rate": 0.0625,
+                "ci95": [
+                  0.0173,
+                  0.2015
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-check-public/eval/v2/results/run-2026-11-12.summary.md"
+                ],
+                "k": 0,
+                "n": 32,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.1072
+                ]
+              }
+            ],
+            "direction": "lower"
+          },
+          {
+            "label": {
+              "zh": "正确事实被误标（v0.2）",
+              "en": "Correct facts wrongly flagged (v0.2)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "evidence-check-public/eval/v2/results/run-2026-11-12.summary.md"
+                ],
+                "k": 3,
+                "n": 150,
+                "rate": 0.02,
+                "ci95": [
+                  0.0068,
+                  0.0571
+                ]
+              }
+            ],
+            "direction": "lower"
+          },
+          {
+            "label": {
+              "zh": "48 次对话的费用（v0.2）",
+              "en": "Cost of 48 conversations (v0.2)"
+            },
+            "values": [
+              {
+                "kind": "value",
+                "sources": [
+                  "evidence-check-public/eval/v2/results/run-2026-11-12.summary.md"
+                ],
+                "value": 0.1603,
+                "unit": "usd",
+                "n": null
+              }
+            ],
+            "direction": "lower"
+          }
+        ],
+        "compare_set": {
+          "zh": "留出评测 v2：16 个问题、8 篇草稿，每组 2 遍",
+          "en": "Held-out v2: 16 questions and 8 drafts, 2 runs per arm"
+        }
+      }
+    ]
+  },
+  {
+    "asset": "grounded-review/advice",
+    "project": "grounded-review",
+    "name": {
+      "zh": "有据审核：改稿建议",
+      "en": "Grounded Review: revision advice"
+    },
+    "what": {
+      "zh": "广告主问“哪里违规、怎么改”时，Agent 给出解释和修改后版本的那一段提示词、规则和输出格式。审核本身的提示词在各版之间没有变。",
+      "en": "The prompt, rules and output format the agent uses when the advertiser asks what is wrong and how to fix it. The review prompt itself is the same in every version."
+    },
+    "where": "agent/review_agent.py",
+    "model_lock": "claude-haiku-5-5, effort medium",
+    "labels": {
+      "production": "v1.3",
+      "staging": "v1.3",
+      "history": [
+        {
+          "date": "2026-11-13",
+          "label": "production",
+          "to": "v1",
+          "reason": "first version",
+          "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+        },
+        {
+          "date": "2026-11-13",
+          "label": "staging",
+          "to": "v1.1",
+          "reason": "fix template placeholders in corrected versions",
+          "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+        },
+        {
+          "date": "2026-11-13",
+          "label": "production",
+          "from": "v1",
+          "to": "v1.1",
+          "reason": "mt2: placeholders gone",
+          "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+        },
+        {
+          "date": "2026-11-13",
+          "label": "staging",
+          "from": "v1.1",
+          "to": "v1.2",
+          "reason": "try sending malformed advice back once",
+          "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+        },
+        {
+          "date": "2026-11-13",
+          "label": "staging",
+          "from": "v1.2",
+          "to": "v1.3",
+          "reason": "v1.2 did not help and was dropped; try asking for the corrected caption first",
+          "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+        },
+        {
+          "date": "2026-11-14",
+          "label": "production",
+          "from": "v1.1",
+          "to": "v1.3",
+          "reason": "mt4: advice fields filled wrongly fell to zero, cost unchanged",
+          "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+        }
+      ]
+    },
+    "versions": [
+      {
+        "id": "v1",
+        "date": "2026-11-13",
+        "decision": "superseded",
+        "change": {
+          "zh": "第一版：审核、给建议和改后版本、复审广告主的版本。",
+          "en": "First version: review, advice with a corrected version, re-review of the advertiser's version."
+        },
+        "text": {
+          "zh": "`SYSTEM`、`ADVICE_SCHEMA` 和改稿提问（`agent/review_agent.py`）",
+          "en": "`SYSTEM`, `ADVICE_SCHEMA` and the advice question (`agent/review_agent.py`)"
+        },
+        "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md",
+        "why": {
+          "zh": "多轮任务里，改后版本偶尔留下要人填的模板占位符。",
+          "en": "In multi-turn runs the corrected version sometimes kept template placeholders for a person to fill in."
+        },
+        "scores": []
+      },
+      {
+        "id": "v1.1",
+        "date": "2026-11-13",
+        "decision": "superseded",
+        "change": {
+          "zh": "改后版本要能直接上线、不留空格子；缺的信息写进回答让广告主补；加一个检查改后版本的工具。",
+          "en": "The corrected version must be ready to publish with no blanks; missing information goes into the answer for the advertiser; a tool checks the corrected version."
+        },
+        "text": {
+          "zh": "v1 加 `ADVICE_RULES_V11` 和 `check_revision` 工具",
+          "en": "v1 plus `ADVICE_RULES_V11` and the `check_revision` tool"
+        },
+        "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md",
+        "why": {
+          "zh": "在为它新写的 12 条广告上，占位符从 3/24 降到 0/24；之后发现“修改后的文案”有时写错位置。",
+          "en": "On 12 ads written for it, placeholders fell from 3/24 to 0/24; later the corrected caption was found to land in the wrong field at times."
+        },
+        "scores": [
+          {
+            "label": {
+              "zh": "改后版本留了占位符（v1 → v1.1）",
+              "en": "Placeholders left (v1 → v1.1)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "grounded-review-public/eval/results/multiturn-mt2-v1.jsonl"
+                ],
+                "k": 3,
+                "n": 24,
+                "rate": 0.125,
+                "ci95": [
+                  0.0434,
+                  0.31
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "grounded-review-public/eval/results/multiturn-mt2-v1.1.jsonl"
+                ],
+                "k": 0,
+                "n": 24,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.138
+                ]
+              }
+            ],
+            "direction": "lower"
+          }
+        ],
+        "compare_set": {
+          "zh": "mt2：12 条新广告，每版 2 遍",
+          "en": "mt2: 12 new ads, 2 runs per version"
+        }
+      },
+      {
+        "id": "v1.2",
+        "date": "2026-11-13",
+        "decision": "not_adopted",
+        "change": {
+          "zh": "检查建议的各个字段，填错了退回给模型重交一次。",
+          "en": "Checks the advice fields and sends malformed advice back to the model once."
+        },
+        "text": {
+          "zh": "v1.1 加“字段填错就退回重交一次”",
+          "en": "v1.1 plus sending malformed advice back once"
+        },
+        "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md",
+        "why": {
+          "zh": "退回重交没用：模型第二次照样写错；字段写错 v1.1 4/36，v1.2 6/36，费用还更高。",
+          "en": "Sending it back does not help: the model repeats the fault; fields wrong 4/36 for v1.1 and 6/36 for v1.2, at a higher cost."
+        },
+        "scores": [
+          {
+            "label": {
+              "zh": "最后采用的建议里字段写错（v1.1 → v1.2）",
+              "en": "Fields wrong in the accepted advice (v1.1 → v1.2)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "grounded-review-public/eval/results/multiturn-mt3-v1.1.jsonl"
+                ],
+                "k": 4,
+                "n": 36,
+                "rate": 0.1111,
+                "ci95": [
+                  0.0441,
+                  0.2531
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "grounded-review-public/eval/results/multiturn-mt3-v1.2.jsonl"
+                ],
+                "k": 6,
+                "n": 36,
+                "rate": 0.1667,
+                "ci95": [
+                  0.0787,
+                  0.3189
+                ]
+              }
+            ],
+            "direction": "lower"
+          }
+        ],
+        "compare_set": {
+          "zh": "mt3：12 条新广告，每版 3 遍",
+          "en": "mt3: 12 new ads, 3 runs per version"
+        }
+      },
+      {
+        "id": "v1.3",
+        "date": "2026-11-14",
+        "decision": "adopted",
+        "change": {
+          "zh": "输出格式里先填修改后的文案、再写说明；混进来的格式标签在代码里清掉，不多调用模型。",
+          "en": "The output format asks for the corrected caption before the explanation; leaked markup is cleaned in code with no extra call."
+        },
+        "text": {
+          "zh": "`ADVICE_SCHEMA_V13`（先填修改后的文案，再写说明）和 `common.clean_advice`",
+          "en": "`ADVICE_SCHEMA_V13` (corrected caption before the explanation) and `common.clean_advice`"
+        },
+        "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md",
+        "why": {
+          "zh": "在又一组新写的 12 条广告上，交上来的建议字段写错从 6/36 降到 0/36；品牌和价格保住 36/36；费用没变。",
+          "en": "On another 12 newly written ads, advice fields filled wrongly fell from 6/36 to 0/36; brand and price kept 36/36; cost unchanged."
+        },
+        "scores": [
+          {
+            "label": {
+              "zh": "交上来的建议字段写错（v1.1 → v1.3）",
+              "en": "Advice fields filled wrongly (v1.1 → v1.3)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "grounded-review-public/eval/results/multiturn-mt4-v1.1.jsonl"
+                ],
+                "k": 6,
+                "n": 36,
+                "rate": 0.1667,
+                "ci95": [
+                  0.0787,
+                  0.3189
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "grounded-review-public/eval/results/multiturn-mt4-v1.3.jsonl"
+                ],
+                "k": 0,
+                "n": 36,
+                "rate": 0.0,
+                "ci95": [
+                  0.0,
+                  0.0964
+                ]
+              }
+            ],
+            "direction": "lower"
+          },
+          {
+            "label": {
+              "zh": "品牌和价格保住（v1.1 → v1.3）",
+              "en": "Brand and price kept (v1.1 → v1.3)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "grounded-review-public/eval/results/multiturn-mt4-v1.1.jsonl"
+                ],
+                "k": 34,
+                "n": 36,
+                "rate": 0.9444,
+                "ci95": [
+                  0.8186,
+                  0.9846
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "grounded-review-public/eval/results/multiturn-mt4-v1.3.jsonl"
+                ],
+                "k": 36,
+                "n": 36,
+                "rate": 1.0,
+                "ci95": [
+                  0.9036,
+                  1.0
+                ]
+              }
+            ],
+            "direction": "higher"
+          },
+          {
+            "label": {
+              "zh": "每段三轮对话的费用（v1.1 → v1.3）",
+              "en": "Cost per three-turn conversation (v1.1 → v1.3)"
+            },
+            "values": [
+              {
+                "kind": "value",
+                "sources": [
+                  "grounded-review-public/eval/results/multiturn-mt4-v1.1.jsonl"
+                ],
+                "value": 0.006850166666666667,
+                "unit": "usd",
+                "n": 36
+              },
+              {
+                "kind": "value",
+                "sources": [
+                  "grounded-review-public/eval/results/multiturn-mt4-v1.3.jsonl"
+                ],
+                "value": 0.006784638888888889,
+                "unit": "usd",
+                "n": 36
+              }
+            ],
+            "direction": "lower"
+          }
+        ],
+        "compare_set": {
+          "zh": "mt4：12 条新广告，每版 3 遍",
+          "en": "mt4: 12 new ads, 3 runs per version"
+        }
+      }
+    ]
+  },
+  {
+    "asset": "sellpoint-check/advice",
+    "project": "sellpoint-check",
+    "name": {
+      "zh": "卖点体检：给商家的修改建议",
+      "en": "Sellpoint Check: rewrite advice for merchants"
+    },
+    "what": {
+      "zh": "没被评价证实的卖点，在商家后台给出的修改建议和改写后的文案。每一版都先在为它新写、跑前冻结的测试集上和上一版比较，再看同一批真实数据。",
+      "en": "The suggested rewrite shown in the merchant's private view for claims reviews do not confirm. Each version is first compared with the previous one on a set written for it and frozen before the run, then checked on the same real data."
+    },
+    "where": "pipeline/lib/suggest_prompts.mjs, suggest_v2.mjs … suggest_v6.mjs",
+    "model_lock": "claude-haiku-5-5, effort medium",
+    "labels": {
+      "production": "v5",
+      "staging": "v5",
+      "history": [
+        {
+          "date": "2026-11-13",
+          "label": "production",
+          "to": "v1",
+          "reason": "first version",
+          "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-run.md"
+        },
+        {
+          "date": "2026-11-14",
+          "label": "production",
+          "from": "v1",
+          "to": "v2",
+          "reason": "refuted wording cleared",
+          "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-zh-v2.md"
+        },
+        {
+          "date": "2026-11-14",
+          "label": "production",
+          "from": "v2",
+          "to": "v3",
+          "reason": "Chinese merchants get Chinese advice",
+          "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed-v3.md"
+        },
+        {
+          "date": "2026-11-14",
+          "label": "staging",
+          "from": "v3",
+          "to": "v4",
+          "reason": "try a refuted-words field",
+          "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed2-v4.md"
+        },
+        {
+          "date": "2026-11-14",
+          "label": "staging",
+          "from": "v4",
+          "to": "v5",
+          "reason": "v4 removed too much and was dropped; try v3 plus a buyers-say check",
+          "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice-v5.md"
+        },
+        {
+          "date": "2026-11-14",
+          "label": "production",
+          "from": "v3",
+          "to": "v5",
+          "reason": "buyers-say phrasing gone, usable advice level",
+          "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice-v5.md"
+        },
+        {
+          "date": "2026-11-14",
+          "label": "staging",
+          "from": "v5",
+          "to": "v6",
+          "reason": "try a wider synonym list",
+          "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice2-v6.md"
+        },
+        {
+          "date": "2026-11-14",
+          "label": "staging",
+          "from": "v6",
+          "to": "v5",
+          "reason": "v6 scored lower and was dropped",
+          "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice-v5.md"
+        }
+      ]
+    },
+    "versions": [
+      {
+        "id": "v1",
+        "date": "2026-11-13",
+        "decision": "superseded",
+        "change": {
+          "zh": "第一版：对每条没被证实的卖点给出原因、买家原话和可以直接照着改的文案。",
+          "en": "First version: for each unconfirmed claim, the reason, the buyers' words and a rewrite the merchant can apply as is."
+        },
+        "text": {
+          "zh": "`pipeline/lib/suggest_prompts.mjs`（指纹 b5b2a58fdbde）",
+          "en": "`pipeline/lib/suggest_prompts.mjs` (fingerprint b5b2a58fdbde)"
+        },
+        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-run.md",
+        "why": {
+          "zh": "真实数据里有一部分改写还留着被评价反驳的说法。",
+          "en": "On real data some rewrites still kept wording the reviews refute."
+        },
+        "scores": [
+          {
+            "label": {
+              "zh": "测试集可以直接照着改（两次评分）",
+              "en": "Test set usable as is (two gradings)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-testset.json"
+                ],
+                "k": 35,
+                "n": 40,
+                "rate": 0.875,
+                "ci95": [
+                  0.7389,
+                  0.9454
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-testset.json"
+                ],
+                "k": 32,
+                "n": 40,
+                "rate": 0.8,
+                "ci95": [
+                  0.6524,
+                  0.895
+                ]
+              }
+            ],
+            "direction": "higher"
+          },
+          {
+            "label": {
+              "zh": "真实数据：没有残留被反驳的说法",
+              "en": "Real data: no refuted wording left"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-run.json"
+                ],
+                "k": 136,
+                "n": 151,
+                "rate": 0.9007,
+                "ci95": [
+                  0.8426,
+                  0.9389
+                ]
+              }
+            ],
+            "direction": "higher"
+          }
+        ],
+        "compare_set": {
+          "zh": "答案已知的 40 条；真实数据 151 条",
+          "en": "40 claims with known answers; 151 real claims"
+        }
+      },
+      {
+        "id": "v2",
+        "date": "2026-11-14",
+        "decision": "adopted",
+        "change": {
+          "zh": "加三条规则，并在代码里检查：改写里还留着被反驳的说法就退回重写。",
+          "en": "Three new rules plus a code check that sends back rewrites still containing refuted wording."
+        },
+        "text": {
+          "zh": "`pipeline/lib/suggest_v2.mjs`（指纹 279e9280f000）",
+          "en": "`pipeline/lib/suggest_v2.mjs` (fingerprint 279e9280f000)"
+        },
+        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-zh-v2.md",
+        "why": {
+          "zh": "残留问题清零，在新写的中文题上更好；但中文商品的建议大多还是英文。",
+          "en": "Refuted wording cleared and better on the new Chinese set, but most advice for Chinese listings was still in English."
+        },
+        "scores": [
+          {
+            "label": {
+              "zh": "中文测试集可以直接照着改，第一次评分（v1 → v2）",
+              "en": "Chinese set usable as is, first grading (v1 → v2)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-testset-zh.json"
+                ],
+                "k": 30,
+                "n": 34,
+                "rate": 0.8824,
+                "ci95": [
+                  0.7338,
+                  0.9533
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-testset-zh-v2.json"
+                ],
+                "k": 32,
+                "n": 34,
+                "rate": 0.9412,
+                "ci95": [
+                  0.8091,
+                  0.9837
+                ]
+              }
+            ],
+            "direction": "higher"
+          },
+          {
+            "label": {
+              "zh": "真实数据：没有残留被反驳的说法（v1 → v2）",
+              "en": "Real data: no refuted wording left (v1 → v2)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-run.json"
+                ],
+                "k": 136,
+                "n": 151,
+                "rate": 0.9007,
+                "ci95": [
+                  0.8426,
+                  0.9389
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-run-v2.json"
+                ],
+                "k": 151,
+                "n": 151,
+                "rate": 1.0,
+                "ci95": [
+                  0.9752,
+                  1.0
+                ]
+              }
+            ],
+            "direction": "higher"
+          },
+          {
+            "label": {
+              "zh": "中文商品的建议用中文（v2）",
+              "en": "Advice in Chinese for Chinese listings (v2)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-testset-zh-v2.json"
+                ],
+                "k": 10,
+                "n": 34,
+                "rate": 0.2941,
+                "ci95": [
+                  0.1683,
+                  0.4617
+                ]
+              }
+            ],
+            "direction": "higher"
+          }
+        ],
+        "compare_set": {
+          "zh": "中文测试集 34 条（v1 对 v2）；真实数据 151 条",
+          "en": "Chinese set, 34 claims (v1 vs v2); 151 real claims"
+        }
+      },
+      {
+        "id": "v3",
+        "date": "2026-11-14",
+        "decision": "adopted",
+        "change": {
+          "zh": "有争议的卖点保留每个被证实的部分和它的条件；商品的语言在代码里定好；退回重写的范围放宽。",
+          "en": "Mixed claims keep every confirmed part with its condition; the listing language is set in code; the send-back check is wider."
+        },
+        "text": {
+          "zh": "`pipeline/lib/suggest_v3.mjs`（指纹 c346201974cd）",
+          "en": "`pipeline/lib/suggest_v3.mjs` (fingerprint c346201974cd)"
+        },
+        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed-v3.md",
+        "why": {
+          "zh": "中文商家必须收到中文的建议：在新写的混合测试集上，用对语言的从 v2 的一半变成全部，可以直接照着改的条数基本持平。",
+          "en": "Chinese merchants must get Chinese advice: on the new mixed set, advice in the right language went from half under v2 to all of it, with usable advice about level."
+        },
+        "scores": [
+          {
+            "label": {
+              "zh": "用对语言（v2 → v3）",
+              "en": "Advice in the listing's language (v2 → v3)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-testset-mixed-v2.json"
+                ],
+                "k": 20,
+                "n": 40,
+                "rate": 0.5,
+                "ci95": [
+                  0.352,
+                  0.648
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-testset-mixed-v3.json"
+                ],
+                "k": 40,
+                "n": 40,
+                "rate": 1.0,
+                "ci95": [
+                  0.9124,
+                  1.0
+                ]
+              }
+            ],
+            "direction": "higher"
+          },
+          {
+            "label": {
+              "zh": "可以直接照着改，第一次评分（v2 → v3）",
+              "en": "Usable as is, first grading (v2 → v3)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-testset-mixed-v2.json"
+                ],
+                "k": 37,
+                "n": 40,
+                "rate": 0.925,
+                "ci95": [
+                  0.8014,
+                  0.9742
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-testset-mixed-v3.json"
+                ],
+                "k": 37,
+                "n": 40,
+                "rate": 0.925,
+                "ci95": [
+                  0.8014,
+                  0.9742
+                ]
+              }
+            ],
+            "direction": "higher"
+          },
+          {
+            "label": {
+              "zh": "真实数据可以直接照着改，第一次评分（v3）",
+              "en": "Real data usable as is, first grading (v3)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-run-v3.json"
+                ],
+                "k": 143,
+                "n": 151,
+                "rate": 0.947,
+                "ci95": [
+                  0.8989,
+                  0.9729
+                ]
+              }
+            ],
+            "direction": "higher"
+          }
+        ],
+        "compare_set": {
+          "zh": "混合测试集 40 条（v2 对 v3）；真实数据 151 条",
+          "en": "Mixed set, 40 claims (v2 vs v3); 151 real claims"
+        }
+      },
+      {
+        "id": "v4",
+        "date": "2026-11-14",
+        "decision": "not_adopted",
+        "change": {
+          "zh": "新加“被反驳的词”字段和四条规则，更多情况退回重写。",
+          "en": "A new field listing refuted words, four rules and more send-backs."
+        },
+        "text": {
+          "zh": "`pipeline/lib/suggest_v4.mjs`（指纹 7b0d5b8debfe）",
+          "en": "`pipeline/lib/suggest_v4.mjs` (fingerprint 7b0d5b8debfe)"
+        },
+        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed2-v4.md",
+        "why": {
+          "zh": "让模型先列出被反驳的词，它就倾向于把这些词整个删掉，删得太多，总分下降。",
+          "en": "Asked to list refuted words first, the model tends to delete them wholesale; it removes too much and the score drops."
+        },
+        "scores": [
+          {
+            "label": {
+              "zh": "可以直接照着改，第一次评分（v3 → v4）",
+              "en": "Usable as is, first grading (v3 → v4)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-testset-mixed2-v3.json"
+                ],
+                "k": 38,
+                "n": 39,
+                "rate": 0.9744,
+                "ci95": [
+                  0.8682,
+                  0.9955
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-testset-mixed2-v4.json"
+                ],
+                "k": 36,
+                "n": 39,
+                "rate": 0.9231,
+                "ci95": [
+                  0.7968,
+                  0.9735
+                ]
+              }
+            ],
+            "direction": "higher"
+          },
+          {
+            "label": {
+              "zh": "真实数据可以直接照着改，第一次评分（v4）",
+              "en": "Real data usable as is, first grading (v4)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-run-v4.json"
+                ],
+                "k": 136,
+                "n": 151,
+                "rate": 0.9007,
+                "ci95": [
+                  0.8426,
+                  0.9389
+                ]
+              }
+            ],
+            "direction": "higher"
+          }
+        ],
+        "compare_set": {
+          "zh": "混合测试集二 39 条（v3 对 v4）；真实数据 151 条",
+          "en": "Mixed set 2, 39 claims (v3 vs v4); 151 real claims"
+        }
+      },
+      {
+        "id": "v5",
+        "date": "2026-11-14",
+        "decision": "adopted",
+        "change": {
+          "zh": "第 3 版的提示词不变，加一条代码检查：新文案里出现“买家说”这类写法就退回重写。",
+          "en": "The v3 prompt unchanged, plus a code check that sends back new copy containing \"buyers say\" phrasing."
+        },
+        "text": {
+          "zh": "`pipeline/lib/suggest_v5.mjs`（指纹 4f50d20090bd）",
+          "en": "`pipeline/lib/suggest_v5.mjs` (fingerprint 4f50d20090bd)"
+        },
+        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice-v5.md",
+        "why": {
+          "zh": "真实数据上没有“买家说”写法的从 140/151 升到 151/151，可以直接照着改的条数持平。",
+          "en": "On real data, copy free of \"buyers say\" phrasing rose from 140/151 to 151/151, with usable advice level."
+        },
+        "scores": [
+          {
+            "label": {
+              "zh": "可以直接照着改，第一次评分（v3 → v5）",
+              "en": "Usable as is, first grading (v3 → v5)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-testset-voice-v3.json"
+                ],
+                "k": 31,
+                "n": 31,
+                "rate": 1.0,
+                "ci95": [
+                  0.8897,
+                  1.0
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-testset-voice-v5.json"
+                ],
+                "k": 29,
+                "n": 31,
+                "rate": 0.9355,
+                "ci95": [
+                  0.7928,
+                  0.9821
+                ]
+              }
+            ],
+            "direction": "higher"
+          },
+          {
+            "label": {
+              "zh": "真实数据：新文案里没有“买家说”（v3 → v5）",
+              "en": "Real data: no \"buyers say\" phrasing (v3 → v5)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-run-v3.json"
+                ],
+                "k": 140,
+                "n": 151,
+                "rate": 0.9272,
+                "ci95": [
+                  0.8743,
+                  0.9588
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-run-v5.json"
+                ],
+                "k": 151,
+                "n": 151,
+                "rate": 1.0,
+                "ci95": [
+                  0.9752,
+                  1.0
+                ]
+              }
+            ],
+            "direction": "higher"
+          },
+          {
+            "label": {
+              "zh": "真实数据可以直接照着改，第一次评分（v5）",
+              "en": "Real data usable as is, first grading (v5)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-run-v5.json"
+                ],
+                "k": 142,
+                "n": 151,
+                "rate": 0.9404,
+                "ci95": [
+                  0.8906,
+                  0.9683
+                ]
+              }
+            ],
+            "direction": "higher"
+          }
+        ],
+        "compare_set": {
+          "zh": "口语测试集 31 条（v3 对 v5）；真实数据 151 条",
+          "en": "Spoken set, 31 claims (v3 vs v5); 151 real claims"
+        }
+      },
+      {
+        "id": "v6",
+        "date": "2026-11-14",
+        "decision": "not_adopted",
+        "change": {
+          "zh": "放宽“买家说”的同义词表，退回重写时加一句“限定条件留着”。",
+          "en": "A wider synonym list for \"buyers say\" and a \"keep the limits\" note on retries."
+        },
+        "text": {
+          "zh": "`pipeline/lib/suggest_v6.mjs`（指纹 ce17fbc23ce9）",
+          "en": "`pipeline/lib/suggest_v6.mjs` (fingerprint ce17fbc23ce9)"
+        },
+        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice2-v6.md",
+        "why": {
+          "zh": "“限定条件留着”让模型把已被反驳的具体说法也当成限定条件留下了，总分下降；修改建议先停在第 5 版。",
+          "en": "\"Keep the limits\" made the model keep refuted specifics as if they were limits, and the score dropped; the advice stays at v5."
+        },
+        "scores": [
+          {
+            "label": {
+              "zh": "可以直接照着改，第一次评分（v5 → v6）",
+              "en": "Usable as is, first grading (v5 → v6)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-testset-voice2-v5.json"
+                ],
+                "k": 29,
+                "n": 32,
+                "rate": 0.9062,
+                "ci95": [
+                  0.7578,
+                  0.9676
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-testset-voice2-v6.json"
+                ],
+                "k": 26,
+                "n": 32,
+                "rate": 0.8125,
+                "ci95": [
+                  0.6469,
+                  0.9111
+                ]
+              }
+            ],
+            "direction": "higher"
+          },
+          {
+            "label": {
+              "zh": "真实数据可以直接照着改，第一次评分（v6）",
+              "en": "Real data usable as is, first grading (v6)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "sellpoint-check/results/suggest-run-v6.json"
+                ],
+                "k": 139,
+                "n": 151,
+                "rate": 0.9205,
+                "ci95": [
+                  0.8662,
+                  0.954
+                ]
+              }
+            ],
+            "direction": "higher"
+          }
+        ],
+        "compare_set": {
+          "zh": "口语测试集二 32 条（v5 对 v6）；真实数据 151 条",
+          "en": "Spoken set 2, 32 claims (v5 vs v6); 151 real claims"
+        }
+      }
+    ]
+  },
+  {
+    "asset": "tracedesk/answer",
+    "project": "tracedesk",
+    "name": {
+      "zh": "TraceDesk：带出处的回答",
+      "en": "TraceDesk: grounded answers"
+    },
+    "what": {
+      "zh": "常见问题助手回答时用的系统提示词：只按资料回答、先说结论、每条附逐字原文、截止时间要有出处。对照组是同一个模型的普通提示（baseline-v2）。",
+      "en": "The system prompt of the FAQ assistant: answer only from the documents, bottom line first, a word-for-word quote for each point, and a source for every deadline. The comparison is a plain prompt on the same model (baseline-v2)."
+    },
+    "where": "app/lib/prompts.js",
+    "model_lock": "claude-haiku-5-5, effort medium",
+    "labels": {
+      "production": "grounded-v2.4-access",
+      "staging": "grounded-v2.4-access",
+      "history": [
+        {
+          "date": "2026-11-09",
+          "label": "production",
+          "to": "grounded-v2-access",
+          "reason": "output format v2",
+          "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js"
+        },
+        {
+          "date": "2026-11-09",
+          "label": "production",
+          "from": "grounded-v2-access",
+          "to": "grounded-v2.1-access",
+          "reason": "dates in the reader's language",
+          "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js"
+        },
+        {
+          "date": "2026-11-09",
+          "label": "production",
+          "from": "grounded-v2.1-access",
+          "to": "grounded-v2.2-access",
+          "reason": "writing-style rules",
+          "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js"
+        },
+        {
+          "date": "2026-11-09",
+          "label": "production",
+          "from": "grounded-v2.2-access",
+          "to": "grounded-v2.3-access",
+          "reason": "deadlines attached to their step",
+          "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/EVALUATION.md"
+        },
+        {
+          "date": "2026-11-09",
+          "label": "production",
+          "from": "grounded-v2.3-access",
+          "to": "grounded-v2.4-access",
+          "reason": "deadlines in the reader's language",
+          "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/EVALUATION.md"
+        }
+      ]
+    },
+    "versions": [
+      {
+        "id": "grounded-v2-access",
+        "date": "2026-11-09",
+        "decision": "superseded",
+        "change": {
+          "zh": "输出格式升级为 v2：加一句话结论和行动清单。",
+          "en": "Output format v2: a one-line conclusion and a list of next steps."
+        },
+        "text": {
+          "zh": "原文没有存档",
+          "en": "Text not kept"
+        },
+        "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js",
+        "why": {
+          "zh": "只做过冒烟测试，没有存成评测结果。",
+          "en": "Only smoke-tested; no evaluation result was stored."
+        },
+        "scores": []
+      },
+      {
+        "id": "grounded-v2.1-access",
+        "date": "2026-11-09",
+        "decision": "superseded",
+        "change": {
+          "zh": "日期按读者的语言写。",
+          "en": "Dates written in the reader's language."
+        },
+        "text": {
+          "zh": "原文没有存档",
+          "en": "Text not kept"
+        },
+        "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js",
+        "why": {
+          "zh": "没有单独评测。",
+          "en": "Not evaluated on its own."
+        },
+        "scores": []
+      },
+      {
+        "id": "grounded-v2.2-access",
+        "date": "2026-11-09",
+        "decision": "superseded",
+        "change": {
+          "zh": "加入改编自 i-have-adhd 的写作风格规则。",
+          "en": "Writing-style rules adapted from i-have-adhd."
+        },
+        "text": {
+          "zh": "公开仓库提交 2eb9009 的 `app/lib/prompts.js`",
+          "en": "`app/lib/prompts.js` at public commit 2eb9009"
+        },
+        "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js",
+        "why": {
+          "zh": "开发组上通过自动检查的比普通提示多；之后发现截止时间有时没挂在对应的步骤上。",
+          "en": "More answers passed the automatic checks than with the plain prompt on the development set; later, deadlines were sometimes not attached to their step."
+        },
+        "scores": [
+          {
+            "label": {
+              "zh": "自动检查全部通过（普通提示 → v2.2）",
+              "en": "All automatic checks passed (plain → v2.2)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "launchpad-tracedesk/eval/results/dev-2026-11-09.summary.md"
+                ],
+                "k": 17,
+                "n": 20,
+                "rate": 0.85,
+                "ci95": [
+                  0.6396,
+                  0.9476
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "launchpad-tracedesk/eval/results/dev-2026-11-09.summary.md"
+                ],
+                "k": 19,
+                "n": 20,
+                "rate": 0.95,
+                "ci95": [
+                  0.7639,
+                  0.9911
+                ]
+              }
+            ],
+            "direction": "higher"
+          }
+        ],
+        "compare_set": {
+          "zh": "开发组 20 道题（普通提示对 v2.2）",
+          "en": "Development set, 20 cases (plain vs v2.2)"
+        }
+      },
+      {
+        "id": "grounded-v2.3-access",
+        "date": "2026-11-09",
+        "decision": "superseded",
+        "change": {
+          "zh": "每个步骤的截止时间必须挂在这个步骤上，引文里要写着这个时间。",
+          "en": "A step's deadline must be attached to that step and its quote must state it."
+        },
+        "text": {
+          "zh": "公开仓库提交 dc1ba2f 的 `app/lib/prompts.js`",
+          "en": "`app/lib/prompts.js` at public commit dc1ba2f"
+        },
+        "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/EVALUATION.md",
+        "why": {
+          "zh": "检查组第一轮通过自动检查的比普通提示多；中文问题的截止时间还会按英文写。",
+          "en": "Check run 1 passed more automatic checks than the plain prompt; deadlines in Chinese answers could still come out in English."
+        },
+        "scores": [
+          {
+            "label": {
+              "zh": "自动检查全部通过（普通提示 → v2.3）",
+              "en": "All automatic checks passed (plain → v2.3)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "launchpad-tracedesk/eval/results/check-2026-11-09.summary.md"
+                ],
+                "k": 15,
+                "n": 20,
+                "rate": 0.75,
+                "ci95": [
+                  0.5313,
+                  0.8881
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "launchpad-tracedesk/eval/results/check-2026-11-09.summary.md"
+                ],
+                "k": 19,
+                "n": 20,
+                "rate": 0.95,
+                "ci95": [
+                  0.7639,
+                  0.9911
+                ]
+              }
+            ],
+            "direction": "higher"
+          }
+        ],
+        "compare_set": {
+          "zh": "检查组 20 道题，第一轮",
+          "en": "Check set, 20 cases, run 1"
+        }
+      },
+      {
+        "id": "grounded-v2.4-access",
+        "date": "2026-11-09",
+        "decision": "adopted",
+        "change": {
+          "zh": "截止时间也按读者的语言写。",
+          "en": "Deadlines also written in the reader's language."
+        },
+        "text": {
+          "zh": "公开仓库提交 d626ef3 的 `app/lib/prompts.js`（现行默认）",
+          "en": "`app/lib/prompts.js` at public commit d626ef3 (current default)"
+        },
+        "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/EVALUATION.md",
+        "why": {
+          "zh": "检查组第二轮自动检查全部通过；但这一轮是在看过第一轮之后、用同一组题跑的，不算干净的留出结果。",
+          "en": "Check run 2 passed every automatic check, but it came after seeing run 1 on the same cases, so it is not a clean held-out result."
+        },
+        "scores": [
+          {
+            "label": {
+              "zh": "自动检查全部通过（普通提示 → v2.4）",
+              "en": "All automatic checks passed (plain → v2.4)"
+            },
+            "values": [
+              {
+                "kind": "proportion",
+                "sources": [
+                  "launchpad-tracedesk/eval/results/check-v2.4-2026-11-09.summary.md"
+                ],
+                "k": 17,
+                "n": 20,
+                "rate": 0.85,
+                "ci95": [
+                  0.6396,
+                  0.9476
+                ]
+              },
+              {
+                "kind": "proportion",
+                "sources": [
+                  "launchpad-tracedesk/eval/results/check-v2.4-2026-11-09.summary.md"
+                ],
+                "k": 20,
+                "n": 20,
+                "rate": 1.0,
+                "ci95": [
+                  0.8389,
+                  1.0
+                ]
+              }
+            ],
+            "direction": "higher"
+          },
+          {
+            "label": {
+              "zh": "20 道题的费用（普通提示 → v2.4）",
+              "en": "Cost of 20 cases (plain → v2.4)"
+            },
+            "values": [
+              {
+                "kind": "value",
+                "sources": [
+                  "launchpad-tracedesk/eval/results/check-v2.4-2026-11-09.summary.md"
+                ],
+                "value": 0.0093,
+                "unit": "usd",
+                "n": null
+              },
+              {
+                "kind": "value",
+                "sources": [
+                  "launchpad-tracedesk/eval/results/check-v2.4-2026-11-09.summary.md"
+                ],
+                "value": 0.0134,
+                "unit": "usd",
+                "n": null
+              }
+            ],
+            "direction": "lower"
+          }
+        ],
+        "compare_set": {
+          "zh": "检查组 20 道题，第二轮",
+          "en": "Check set, 20 cases, run 2"
+        }
+      }
+    ]
+  },
+  {
+    "asset": "cairn/answer",
+    "project": "cairn",
+    "name": {
+      "zh": "Cairn：按规定回答",
+      "en": "Cairn: answers from published rules"
+    },
+    "what": {
+      "zh": "Cairn 回答问题时用的系统提示词：先结论，写截止时间和下一步，标明校区，不编日期、费用和联系方式。",
+      "en": "The system prompt Cairn answers with: conclusion first, deadlines and next steps, campus stated, no invented dates, fees or contacts."
+    },
+    "where": "app/lib/prompt.js",
+    "model_lock": "claude-haiku-5-5",
+    "labels": {
+      "production": "cairn-monash-v2",
+      "staging": "cairn-monash-v2",
+      "history": [
+        {
+          "date": "2026-11-09",
+          "label": "production",
+          "to": "cairn-v1",
+          "reason": "first version (WCAG corpus)"
+        },
+        {
+          "date": "2026-11-10",
+          "label": "production",
+          "from": "cairn-v1",
+          "to": "cairn-monash-v1",
+          "reason": "corpus changed to student pages"
+        },
+        {
+          "date": "2026-11-10",
+          "label": "production",
+          "from": "cairn-monash-v1",
+          "to": "cairn-monash-v2",
+          "reason": "readability review",
+          "source": "https://github.com/Jason-d-e/cairn/blob/main/app/lib/prompt.js"
+        }
+      ]
+    },
+    "versions": [
+      {
+        "id": "cairn-v1",
+        "date": "2026-11-09",
+        "decision": "retired",
+        "change": {
+          "zh": "最早的版本，资料是无障碍规范（WCAG）。",
+          "en": "The first version, over accessibility guidelines (WCAG)."
+        },
+        "text": {
+          "zh": "公开仓库提交 442709d 的 `app/lib/prompt.js`",
+          "en": "`app/lib/prompt.js` at public commit 442709d"
+        },
+        "why": {
+          "zh": "资料换成学生事务页面后停用。",
+          "en": "Retired when the corpus switched to student pages."
+        },
+        "scores": []
+      },
+      {
+        "id": "cairn-monash-v1",
+        "date": "2026-11-10",
+        "decision": "superseded",
+        "change": {
+          "zh": "先结论、写截止时间和下一步、标明校区、不编日期费用联系方式。",
+          "en": "Conclusion first, deadlines and next steps, campus stated, no invented dates, fees or contacts."
+        },
+        "text": {
+          "zh": "公开仓库提交 5674011 的 `app/lib/prompt.js`",
+          "en": "`app/lib/prompt.js` at public commit 5674011"
+        },
+        "why": {
+          "zh": "最后一轮可读性检查之后改出 v2。",
+          "en": "Replaced by v2 after the final readability review."
+        },
+        "scores": []
+      },
+      {
+        "id": "cairn-monash-v2",
+        "date": "2026-11-10",
+        "decision": "adopted",
+        "change": {
+          "zh": "对读者只说“页面”、不说“段落”；规定各校区一样时不提校区；回答了的问题不再补充页面没写什么；校区直接告诉模型，不让它反问。",
+          "en": "The reader is told about \"the pages\", never \"the passages\"; no campus remark when a rule applies everywhere; no note on what the pages leave out once the question is answered; the campus is passed to the model, which never asks for it."
+        },
+        "text": {
+          "zh": "公开仓库提交 33dbd17 的 `app/lib/prompt.js`（现行）",
+          "en": "`app/lib/prompt.js` at public commit 33dbd17 (current)"
+        },
+        "source": "https://github.com/Jason-d-e/cairn/blob/main/app/lib/prompt.js",
+        "why": {
+          "zh": "来自可读性检查。两版都只做了冒烟测试，结果只打印在控制台、没有存成结果文件，所以这里不列分数；检索评测和提示词无关。",
+          "en": "From the readability review. Both versions were only smoke-tested, with results printed to the console and not stored, so no score is listed; the retrieval evaluation does not depend on the prompt."
+        },
+        "scores": []
+      }
+    ]
+  }
+]

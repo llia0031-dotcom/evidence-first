@@ -1,0 +1,224 @@
+{
+  "_about": "production / staging point at a version in prompts/registry. Moving production is a release; moving it back is a rollback. Labels start on 2026-11-15; earlier entries are back-filled from each project's records, with a link to its public evaluation report where one exists. None of these projects has live traffic.",
+  "evidence-check/skill": {
+    "production": "v0.2",
+    "staging": "v0.2",
+    "history": [
+      {
+        "date": "2026-11-12",
+        "label": "production",
+        "to": "v0.1",
+        "reason": "first version",
+        "source": "https://github.com/Jason-d-e/evidence-check/blob/main/eval/EVALUATION.md"
+      },
+      {
+        "date": "2026-11-12",
+        "label": "staging",
+        "to": "v0.2",
+        "reason": "frozen before the v2 held-out items were written",
+        "source": "https://github.com/Jason-d-e/evidence-check/blob/main/eval/EVALUATION.md"
+      },
+      {
+        "date": "2026-11-12",
+        "label": "production",
+        "from": "v0.1",
+        "to": "v0.2",
+        "reason": "held-out v2: no invented numbers, lower cost",
+        "source": "https://github.com/Jason-d-e/evidence-check/blob/main/eval/EVALUATION.md"
+      }
+    ]
+  },
+  "grounded-review/advice": {
+    "production": "v1.3",
+    "staging": "v1.3",
+    "history": [
+      {
+        "date": "2026-11-13",
+        "label": "production",
+        "to": "v1",
+        "reason": "first version",
+        "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+      },
+      {
+        "date": "2026-11-13",
+        "label": "staging",
+        "to": "v1.1",
+        "reason": "fix template placeholders in corrected versions",
+        "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+      },
+      {
+        "date": "2026-11-13",
+        "label": "production",
+        "from": "v1",
+        "to": "v1.1",
+        "reason": "mt2: placeholders gone",
+        "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+      },
+      {
+        "date": "2026-11-13",
+        "label": "staging",
+        "from": "v1.1",
+        "to": "v1.2",
+        "reason": "try sending malformed advice back once",
+        "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+      },
+      {
+        "date": "2026-11-13",
+        "label": "staging",
+        "from": "v1.2",
+        "to": "v1.3",
+        "reason": "v1.2 did not help and was dropped; try asking for the corrected caption first",
+        "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+      },
+      {
+        "date": "2026-11-14",
+        "label": "production",
+        "from": "v1.1",
+        "to": "v1.3",
+        "reason": "mt4: advice fields filled wrongly fell to zero, cost unchanged",
+        "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+      }
+    ]
+  },
+  "sellpoint-check/advice": {
+    "production": "v5",
+    "staging": "v5",
+    "history": [
+      {
+        "date": "2026-11-13",
+        "label": "production",
+        "to": "v1",
+        "reason": "first version",
+        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-run.md"
+      },
+      {
+        "date": "2026-11-14",
+        "label": "production",
+        "from": "v1",
+        "to": "v2",
+        "reason": "refuted wording cleared",
+        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-zh-v2.md"
+      },
+      {
+        "date": "2026-11-14",
+        "label": "production",
+        "from": "v2",
+        "to": "v3",
+        "reason": "Chinese merchants get Chinese advice",
+        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed-v3.md"
+      },
+      {
+        "date": "2026-11-14",
+        "label": "staging",
+        "from": "v3",
+        "to": "v4",
+        "reason": "try a refuted-words field",
+        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed2-v4.md"
+      },
+      {
+        "date": "2026-11-14",
+        "label": "staging",
+        "from": "v4",
+        "to": "v5",
+        "reason": "v4 removed too much and was dropped; try v3 plus a buyers-say check",
+        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice-v5.md"
+      },
+      {
+        "date": "2026-11-14",
+        "label": "production",
+        "from": "v3",
+        "to": "v5",
+        "reason": "buyers-say phrasing gone, usable advice level",
+        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice-v5.md"
+      },
+      {
+        "date": "2026-11-14",
+        "label": "staging",
+        "from": "v5",
+        "to": "v6",
+        "reason": "try a wider synonym list",
+        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice2-v6.md"
+      },
+      {
+        "date": "2026-11-14",
+        "label": "staging",
+        "from": "v6",
+        "to": "v5",
+        "reason": "v6 scored lower and was dropped",
+        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice-v5.md"
+      }
+    ]
+  },
+  "tracedesk/answer": {
+    "production": "grounded-v2.4-access",
+    "staging": "grounded-v2.4-access",
+    "history": [
+      {
+        "date": "2026-11-09",
+        "label": "production",
+        "to": "grounded-v2-access",
+        "reason": "output format v2",
+        "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js"
+      },
+      {
+        "date": "2026-11-09",
+        "label": "production",
+        "from": "grounded-v2-access",
+        "to": "grounded-v2.1-access",
+        "reason": "dates in the reader's language",
+        "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js"
+      },
+      {
+        "date": "2026-11-09",
+        "label": "production",
+        "from": "grounded-v2.1-access",
+        "to": "grounded-v2.2-access",
+        "reason": "writing-style rules",
+        "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js"
+      },
+      {
+        "date": "2026-11-09",
+        "label": "production",
+        "from": "grounded-v2.2-access",
+        "to": "grounded-v2.3-access",
+        "reason": "deadlines attached to their step",
+        "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/EVALUATION.md"
+      },
+      {
+        "date": "2026-11-09",
+        "label": "production",
+        "from": "grounded-v2.3-access",
+        "to": "grounded-v2.4-access",
+        "reason": "deadlines in the reader's language",
+        "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/EVALUATION.md"
+      }
+    ]
+  },
+  "cairn/answer": {
+    "production": "cairn-monash-v2",
+    "staging": "cairn-monash-v2",
+    "history": [
+      {
+        "date": "2026-11-09",
+        "label": "production",
+        "to": "cairn-v1",
+        "reason": "first version (WCAG corpus)"
+      },
+      {
+        "date": "2026-11-10",
+        "label": "production",
+        "from": "cairn-v1",
+        "to": "cairn-monash-v1",
+        "reason": "corpus changed to student pages"
+      },
+      {
+        "date": "2026-11-10",
+        "label": "production",
+        "from": "cairn-monash-v1",
+        "to": "cairn-monash-v2",
+        "reason": "readability review",
+        "source": "https://github.com/Jason-d-e/cairn/blob/main/app/lib/prompt.js"
+      }
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+asset = "tracedesk/answer"
+project = "tracedesk"
+order = 3
+name = { zh = "TraceDesk：带出处的回答", en = "TraceDesk: grounded answers" }
+what = { zh = "常见问题助手回答时用的系统提示词：只按资料回答、先说结论、每条附逐字原文、截止时间要有出处。对照组是同一个模型的普通提示（baseline-v2）。", en = "The system prompt of the FAQ assistant: answer only from the documents, bottom line first, a word-for-word quote for each point, and a source for every deadline. The comparison is a plain prompt on the same model (baseline-v2)." }
+where = "app/lib/prompts.js"
+model_lock = "claude-haiku-5-5, effort medium"
+production_note = { zh = "线上演示和公开仓库默认用 grounded-v2.4-access。", en = "The demo and the public repository default to grounded-v2.4-access." }
+
+[[version]]
+id = "grounded-v2-access"
+date = "2026-11-09"
+decision = "superseded"
+text = { zh = "原文没有存档", en = "Text not kept" }
+change = { zh = "输出格式升级为 v2：加一句话结论和行动清单。", en = "Output format v2: a one-line conclusion and a list of next steps." }
+why = { zh = "只做过冒烟测试，没有存成评测结果。", en = "Only smoke-tested; no evaluation result was stored." }
+source = "https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js"
+
+[[version]]
+id = "grounded-v2.1-access"
+date = "2026-11-09"
+decision = "superseded"
+text = { zh = "原文没有存档", en = "Text not kept" }
+change = { zh = "日期按读者的语言写。", en = "Dates written in the reader's language." }
+why = { zh = "没有单独评测。", en = "Not evaluated on its own." }
+source = "https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js"
+
+[[version]]
+id = "grounded-v2.2-access"
+date = "2026-11-09"
+decision = "superseded"
+text = { zh = "公开仓库提交 2eb9009 的 `app/lib/prompts.js`", en = "`app/lib/prompts.js` at public commit 2eb9009" }
+change = { zh = "加入改编自 i-have-adhd 的写作风格规则。", en = "Writing-style rules adapted from i-have-adhd." }
+why = { zh = "开发组上通过自动检查的比普通提示多；之后发现截止时间有时没挂在对应的步骤上。", en = "More answers passed the automatic checks than with the plain prompt on the development set; later, deadlines were sometimes not attached to their step." }
+source = "https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js"
+compare_set = { zh = "开发组 20 道题（普通提示对 v2.2）", en = "Development set, 20 cases (plain vs v2.2)" }
+scores = [
+  { label = { zh = "自动检查全部通过（普通提示 → v2.2）", en = "All automatic checks passed (plain → v2.2)" }, pair = [
+    { extractor = "md_cell", args = { path = "launchpad-tracedesk/eval/results/dev-2026-11-09.summary.md", row = "all automatic checks passed", col = "baseline-v2" } },
+    { extractor = "md_cell", args = { path = "launchpad-tracedesk/eval/results/dev-2026-11-09.summary.md", row = "all automatic checks passed", col = "grounded-v2.2-access" } },
+  ] },
+]
+
+[[version]]
+id = "grounded-v2.3-access"
+date = "2026-11-09"
+decision = "superseded"
+text = { zh = "公开仓库提交 dc1ba2f 的 `app/lib/prompts.js`", en = "`app/lib/prompts.js` at public commit dc1ba2f" }
+change = { zh = "每个步骤的截止时间必须挂在这个步骤上，引文里要写着这个时间。", en = "A step's deadline must be attached to that step and its quote must state it." }
+why = { zh = "检查组第一轮通过自动检查的比普通提示多；中文问题的截止时间还会按英文写。", en = "Check run 1 passed more automatic checks than the plain prompt; deadlines in Chinese answers could still come out in English." }
+source = "https://github.com/Jason-d-e/tracedesk-lite/blob/main/EVALUATION.md"
+compare_set = { zh = "检查组 20 道题，第一轮", en = "Check set, 20 cases, run 1" }
+scores = [
+  { label = { zh = "自动检查全部通过（普通提示 → v2.3）", en = "All automatic checks passed (plain → v2.3)" }, refs = ["tracedesk.check1_base", "tracedesk.check1_v23"] },
+]
+
+[[version]]
+id = "grounded-v2.4-access"
+date = "2026-11-09"
+decision = "adopted"
+text = { zh = "公开仓库提交 d626ef3 的 `app/lib/prompts.js`（现行默认）", en = "`app/lib/prompts.js` at public commit d626ef3 (current default)" }
+change = { zh = "截止时间也按读者的语言写。", en = "Deadlines also written in the reader's language." }
+why = { zh = "检查组第二轮自动检查全部通过；但这一轮是在看过第一轮之后、用同一组题跑的，不算干净的留出结果。", en = "Check run 2 passed every automatic check, but it came after seeing run 1 on the same cases, so it is not a clean held-out result." }
+source = "https://github.com/Jason-d-e/tracedesk-lite/blob/main/EVALUATION.md"
+compare_set = { zh = "检查组 20 道题，第二轮", en = "Check set, 20 cases, run 2" }
+scores = [
+  { label = { zh = "自动检查全部通过（普通提示 → v2.4）", en = "All automatic checks passed (plain → v2.4)" }, refs = ["tracedesk.check2_base", "tracedesk.check2_v24"] },
+  { label = { zh = "20 道题的费用（普通提示 → v2.4）", en = "Cost of 20 cases (plain → v2.4)" }, refs = ["tracedesk.check2_cost_base", "tracedesk.check2_cost_v24"], direction = "lower" },
+]

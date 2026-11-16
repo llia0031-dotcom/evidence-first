@@ -1,0 +1,26 @@
+# Result files that are also published: a local path prefix and the public repository it maps to.
+# Cards and data link a number's source file to the public copy when its prefix is listed here.
+[[map]]
+prefix = "grounded-review-public/"
+repo = "grounded-review"
+url = "https://github.com/Jason-d-e/grounded-review/blob/main/"
+
+[[map]]
+prefix = "evidence-check-public/"
+repo = "evidence-check"
+url = "https://github.com/Jason-d-e/evidence-check/blob/main/"
+
+[[map]]
+prefix = "cairn-public/"
+repo = "cairn"
+url = "https://github.com/Jason-d-e/cairn/blob/main/"
+
+[[map]]
+prefix = "sellpoint-check/"
+repo = "sellpoint-check"
+url = "https://github.com/Jason-d-e/sellpoint-check/blob/main/"
+
+[[map]]
+prefix = "screening-audit/"
+repo = "evidence-screening"
+url = "https://github.com/Jason-d-e/evidence-screening/blob/main/"

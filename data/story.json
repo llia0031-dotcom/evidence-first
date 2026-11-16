@@ -1,0 +1,223 @@
+{
+  "intro": {
+    "zh": "我是 Liang Liyuan，做会拿出证据的 AI 功能：AI 说的每句话能指到原文，每个能力上线前先拿出评测。",
+    "en": "I'm Liang Liyuan. I build AI features that show their evidence: every sentence points to its source, and every capability brings an evaluation before it ships."
+  },
+  "links": [
+    {
+      "label": {
+        "zh": "个人网站",
+        "en": "Website"
+      },
+      "url": "https://jason-d-e.github.io/"
+    },
+    {
+      "label": {
+        "zh": "GitHub",
+        "en": "GitHub"
+      },
+      "url": "https://github.com/Jason-d-e"
+    }
+  ],
+  "scenes": [
+    {
+      "title": {
+        "zh": "一句话有没有出处",
+        "en": "Does a sentence have a source?"
+      },
+      "projects": [
+        "tracedesk",
+        "cairn",
+        "evidence-check"
+      ],
+      "purpose": {
+        "zh": "按资料回答问题时，AI 会悄悄改掉截止时间、数字，或者多出资料里没有的话。",
+        "en": "Answering from documents, an AI quietly shifts deadlines and numbers or adds what no document says."
+      },
+      "did": {
+        "zh": "两次黑客松里先做了“回答附原文、服务器核对引文”的问答助手（TraceDesk、Cairn）；之后把核对规则抽出来，做成谁都能装的 evidence-check。",
+        "en": "Two hackathon assistants came first, each answer quoted and checked by the server (TraceDesk, Cairn); the checking rules were then extracted into evidence-check, which anyone can install."
+      },
+      "reuse": {
+        "zh": "evidence-check 的匹配和数字规则移植自 TraceDesk 的核对代码。",
+        "en": "evidence-check's matching and number rules were ported from TraceDesk's checker."
+      },
+      "result": [
+        {
+          "zh": "TraceDesk：自动检查全部通过 20/20，普通提示 17/20",
+          "en": "TraceDesk: all automatic checks passed 20/20, plain prompt 17/20"
+        },
+        {
+          "zh": "Cairn：正确页面进前 5 名 44/45",
+          "en": "Cairn: right page in the top five 44/45"
+        },
+        {
+          "zh": "evidence-check：编造数字的回答 4/32 → 0/32",
+          "en": "evidence-check: answers with an invented number 4/32 → 0/32"
+        }
+      ]
+    },
+    {
+      "title": {
+        "zh": "一条判断有没有依据",
+        "en": "Does a judgement have grounds?"
+      },
+      "projects": [
+        "screening-audit"
+      ],
+      "purpose": {
+        "zh": "模型初筛简历时，“符合 / 不符合”能不能都指到简历原文，换掉名字、性别、学校后结论变不变。",
+        "en": "When a model screens resumes, can every met / not-met verdict point to the resume, and does it change when name, gender or school change?"
+      },
+      "did": {
+        "zh": "虚构岗位和简历、事先定好答案；比较几种接法，把误伤正确判断的接法改了两版；再用陷阱、植入错误和第二次独立复核检验。",
+        "en": "Fictional jobs and resumes with answers fixed in advance; several wirings compared, the one that discarded correct verdicts rewired twice; then traps, planted errors and an independent second review."
+      },
+      "reuse": {
+        "zh": "用 evidence-check 0.2.0 脚本的冻结副本核对每条引文。",
+        "en": "Uses a frozen copy of the evidence-check 0.2.0 script for every quote."
+      },
+      "result": [
+        {
+          "zh": "换名字后去留变化：0/240",
+          "en": "Advance decisions changed by a name swap: 0/240"
+        },
+        {
+          "zh": "核对误伤正确的“符合”：70/424 → 0/424",
+          "en": "Correct \"met\" verdicts lost to the check: 70/424 → 0/424"
+        },
+        {
+          "zh": "第二次独立复核挑出植入的错读：80/80",
+          "en": "Second review catches planted misreadings: 80/80"
+        }
+      ]
+    },
+    {
+      "title": {
+        "zh": "很多条证据怎么汇总成一个结论",
+        "en": "How do many pieces of evidence add up to one conclusion?"
+      },
+      "projects": [
+        "sellpoint-check"
+      ],
+      "purpose": {
+        "zh": "商品页的一条卖点，要从上百条评价里找出支持或反驳它的原话，再下结论；结论只给能改的一方看。",
+        "en": "One listing claim needs supporting or refuting quotes found among hundreds of reviews before a conclusion; the conclusion goes only to the side that can act on it."
+      },
+      "did": {
+        "zh": "设计成平台和商家一起用：买家只看被证实的卖点，其余私下交给商家；比较三种找证据的做法；修改建议迭代六版，每版先在新写的冻结题上测。",
+        "en": "Designed for platform and merchants together: buyers see only confirmed claims, the rest go privately to the merchant; three evidence-finding methods compared; the advice iterated six times, each version tested on new frozen items."
+      },
+      "reuse": {
+        "zh": "直接调用 evidence-check 的核对脚本；“先检索”的做法用的是 Cairn 的检索模型和 Orama 混合检索。",
+        "en": "Calls the evidence-check script directly; the retrieval arms use Cairn's embedding models and Orama hybrid search."
+      },
+      "result": [
+        {
+          "zh": "答案已知的卖点：采用的做法 60/60，逐条判断 58/60",
+          "en": "Claims with known answers: adopted method 60/60, per-review judging 58/60"
+        },
+        {
+          "zh": "费用只有逐条判断的 17%",
+          "en": "Cost only 17% of per-review judging"
+        }
+      ]
+    },
+    {
+      "title": {
+        "zh": "Agent 在多轮、带工具的任务里怎么拿出证据",
+        "en": "How does an agent bring evidence through multi-turn, tool-using work?"
+      },
+      "projects": [
+        "grounded-review"
+      ],
+      "purpose": {
+        "zh": "广告审核不能只给“通过 / 拒绝”，要说出违反哪一条、是哪几个字，广告主改了以后还要复审。",
+        "en": "Ad review must name the clause and the exact words, not just approve or reject, and re-review the advertiser's revision."
+      },
+      "did": {
+        "zh": "做了查条款、引原文、多轮改稿和复审的 Agent，和单个提示词、违禁词表、开源审核模型比较；改稿建议从 v1 迭代到 v1.3；最后换成监管机构和法院定答案的真实广告。",
+        "en": "An agent that looks up clauses, quotes them, revises and re-reviews, compared with a single prompt, a banned-word list and open-source moderation models; the advice iterated from v1 to v1.3; then real ads judged by regulators and courts."
+      },
+      "reuse": {
+        "zh": "evidence-check 的脚本是 Agent 的一个工具；演示页复用了简历初筛的页面骨架。",
+        "en": "The evidence-check script is one of the agent's tools; the demo reuses the screening study's page skeleton."
+      },
+      "result": [
+        {
+          "zh": "留出集判对：单个提示词 191/192，Agent 187/192",
+          "en": "Held-out decisions right: single prompt 191/192, agent 187/192"
+        },
+        {
+          "zh": "真实广告（英国 ASA 裁决）：49/60、51/60",
+          "en": "Real ads (UK ASA rulings): 49/60, 51/60"
+        },
+        {
+          "zh": "改稿字段写错：6/36 → 0/36",
+          "en": "Advice fields filled wrongly: 6/36 → 0/36"
+        }
+      ]
+    },
+    {
+      "title": {
+        "zh": "生成的内容和交互体验怎么拿证据",
+        "en": "How do generated content and interaction get evidence?"
+      },
+      "projects": [
+        "text-on-product",
+        "voice-agent-eval"
+      ],
+      "purpose": {
+        "zh": "画面里的字写对没有，语音助手被打断、听到“嗯”、背景有人说话时还办不办得对，都要用数字说话。",
+        "en": "Whether the text in an image is right, and whether a voice assistant still gets things right when interrupted, hearing \"mm\" or over background speech, both need numbers."
+      },
+      "did": {
+        "zh": "AI 生图：OCR 逐字核对画面里的字，结论写成给商家的创作指南和上线前核对工具。语音：42 段事先定好答案的对话，一项一项试改进，把有效的合在一起。",
+        "en": "Images: OCR checks every character in the picture, and the findings became a merchant guide and a pre-listing checker. Voice: 42 conversations with fixed answers, fixes tried one at a time and the useful ones combined."
+      },
+      "reuse": {
+        "zh": "语音评测照 evidence-check v2 的做法预注册；AI 生图用同样的“逐字核对”思路，有自己的 OCR 核对。",
+        "en": "The voice study preregisters the way evidence-check v2 did; the image study applies the same word-for-word idea with its own OCR check."
+      },
+      "result": [
+        {
+          "zh": "图片文字全对：Seedream 4.5 16/16；视频只有 1/4",
+          "en": "Images with exactly right text: Seedream 4.5 16/16; videos only 1/4"
+        },
+        {
+          "zh": "背景人声时开口：20.4 秒 → 4.56 秒",
+          "en": "First audio over background speech: 20.4 s → 4.56 s"
+        }
+      ]
+    },
+    {
+      "title": {
+        "zh": "怎么变成团队能天天用的能力",
+        "en": "How does this become something a team uses every day?"
+      },
+      "projects": [],
+      "purpose": {
+        "zh": "一个个评测做完以后，要让每个能力都有同样格式的评测证据、每次改提示词都能看到新旧分数、上线和回滚有章可循。",
+        "en": "Once the studies exist, every capability needs evaluation evidence in one format, every prompt change needs old and new scores side by side, and releases and rollbacks need a routine."
+      },
+      "did": {
+        "zh": "这个仓库：统一评测卡、Prompt 资产库（版本、上线标签、灰度回放、上线清单、改提示词时自动贴分数）；有据标注流水线在建设中。",
+        "en": "This repository: evaluation cards in one format and a prompt registry (versions, release labels, canary replay, release checklist, scores posted on every prompt change); an evidence-backed labelling pipeline is in progress."
+      },
+      "reuse": {
+        "zh": "资产库收的是前面各幕已有的提示词版本；灰度回放用的是有据审核的真实对比数据。",
+        "en": "The registry holds the prompt versions from the earlier scenes; the canary replay uses Grounded Review's real comparison data."
+      },
+      "result": [
+        {
+          "zh": "8 张评测卡、154 个数字全部由脚本从结果文件算出，0 处和项目记录对照",
+          "en": "8 evaluation cards and 154 numbers, all computed from result files and checked against 0 project records"
+        },
+        {
+          "zh": "灰度回放：有据审核 v1.3 放到全量，v1.2 在放量中途触发回滚（回放，不是真实用户）",
+          "en": "Canary replay: Grounded Review v1.3 reaches full release, v1.2 rolls back partway (a replay, not real users)"
+        }
+      ]
+    }
+  ]
+}

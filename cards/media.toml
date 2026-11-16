@@ -1,0 +1,153 @@
+# Existing screenshots and videos for each project, for the portfolio template. Paths are relative
+# to the folder that holds all projects; build_content.py checks that every file exists.
+# public = true means the file is already published (a public repository or the personal site).
+
+[[media]]
+project = "evidence-check"
+path = "evidence-check-public/README.md"
+public = true
+caption = { zh = "没有现成截图；README 里“核对四条说法”的结果表可以截一张图", en = "No screenshot yet; the four-claim result table in the README can be captured" }
+
+[[media]]
+project = "cairn"
+path = "jason-d-e.github.io/assets/cairn/hero-zh.jpg"
+public = true
+caption = { zh = "首屏", en = "First screen" }
+
+[[media]]
+project = "cairn"
+path = "jason-d-e.github.io/assets/cairn/zh-answer.webp"
+public = true
+caption = { zh = "先给结论和截止时间，再列页面和校区", en = "The bottom line and deadline first, then the page and campus" }
+
+[[media]]
+project = "cairn"
+path = "jason-d-e.github.io/assets/cairn/zh-quotes.webp"
+public = true
+caption = { zh = "每个要点下面是逐字核对过的原句", en = "Each point over its verified sentence" }
+
+[[media]]
+project = "cairn"
+path = "jason-d-e.github.io/assets/cairn/zh-trace.webp"
+public = true
+caption = { zh = "这个回答是怎么来的：检索到的段落和分数", en = "How the answer was made: retrieved passages and scores" }
+
+[[media]]
+project = "tracedesk"
+path = "jason-d-e.github.io/assets/tracedesk/hero-zh.jpg"
+public = true
+caption = { zh = "首屏", en = "First screen" }
+
+[[media]]
+project = "tracedesk"
+path = "jason-d-e.github.io/assets/tracedesk/zh-answer.webp"
+public = true
+caption = { zh = "一句结论、一张清单、再是证据", en = "One sentence, a checklist, then the evidence" }
+
+[[media]]
+project = "tracedesk"
+path = "jason-d-e.github.io/assets/tracedesk/zh-focus.webp"
+public = true
+caption = { zh = "专注模式只留下回答", en = "Focus mode keeps only the answer" }
+
+[[media]]
+project = "tracedesk"
+path = "jason-d-e.github.io/assets/tracedesk/zh-dashboard.webp"
+public = true
+caption = { zh = "组织者后台：读者问了什么、资料缺什么", en = "Organiser dashboard: what readers asked, what the documents lack" }
+
+[[media]]
+project = "sellpoint-check"
+path = "sellpoint-check/design/review-shots/1_字体C_案例页首屏.jpg"
+public = false
+caption = { zh = "案例页首屏", en = "Case page first screen" }
+
+[[media]]
+project = "sellpoint-check"
+path = "sellpoint-check/design/review-shots/5_字体C_买家页状态.png"
+public = false
+caption = { zh = "买家页：只展示被评价证实的卖点", en = "Buyer page: only confirmed claims" }
+
+[[media]]
+project = "sellpoint-check"
+path = "sellpoint-check/design/review-shots/6_字体C_卖点体检状态.png"
+public = false
+caption = { zh = "商家后台的卖点体检", en = "The merchant's private claim check" }
+
+[[media]]
+project = "sellpoint-check"
+path = "sellpoint-check/design/review-shots/轻文字动效_中文案例页.mp4"
+public = false
+caption = { zh = "案例页录屏（轻文字动效）", en = "Case page recording (light text motion)" }
+
+[[media]]
+project = "grounded-review"
+path = "grounded-review-public/docs/images/first-screen.jpg"
+public = true
+caption = { zh = "演示页：每个结论都说出条款和原话", en = "Demo: every decision names the clause and the words" }
+
+[[media]]
+project = "grounded-review"
+path = "grounded-review-public/docs/images/review.jpg"
+public = true
+caption = { zh = "被拒的广告，附违规原话和条款", en = "A rejected ad with the offending words and clause" }
+
+[[media]]
+project = "grounded-review"
+path = "grounded-review-public/docs/images/fix-and-resubmit.jpg"
+public = true
+caption = { zh = "广告主问怎么改，再复审", en = "The advertiser asks how to fix it, then re-review" }
+
+[[media]]
+project = "grounded-review"
+path = "grounded-review-public/docs/images/results.jpg"
+public = true
+caption = { zh = "留出集上的结果", en = "Results on the held-out set" }
+
+[[media]]
+project = "text-on-product"
+path = "jason-d-e.github.io/assets/text-on-product/hero-zh.jpg"
+public = true
+caption = { zh = "创作指南首屏", en = "Guide first screen" }
+
+[[media]]
+project = "text-on-product"
+path = "text-on-product/media/hero.webp"
+public = true
+caption = { zh = "主图示例", en = "Example product image" }
+
+[[media]]
+project = "text-on-product"
+path = "text-on-product/media/V04.mp4"
+public = true
+caption = { zh = "图生视频示例", en = "Image-to-video example" }
+
+[[media]]
+project = "voice-agent-eval"
+path = "voice-agent-eval/showcase/screens/desktop-01-cover.png"
+public = false
+caption = { zh = "展示页首屏", en = "Showcase first screen" }
+
+[[media]]
+project = "voice-agent-eval"
+path = "voice-agent-eval/showcase/screens/desktop-04-moment-backchannel.png"
+public = false
+caption = { zh = "用户说“嗯”时的时间线", en = "Timeline when the user says \"mm\"" }
+
+[[media]]
+project = "voice-agent-eval"
+path = "voice-agent-eval/showcase/screens/desktop-08-latency.png"
+public = false
+caption = { zh = "开口时延对比", en = "First-audio latency comparison" }
+
+[[media]]
+project = "screening-audit"
+path = "evidence-screening-public/assets/demo-zh.jpg"
+public = true
+caption = { zh = "演示页（中文）：逐条要求的判断，每条附简历原文", en = "Demo (Chinese): verdict per requirement, each with the resume quote" }
+
+[[media]]
+project = "screening-audit"
+path = "evidence-screening-public/assets/demo-en.jpg"
+public = true
+caption = { zh = "演示页（英文）", en = "Demo (English)" }

@@ -1,0 +1,152 @@
+id = "tracedesk"
+order = 3
+layer = "retrieval"
+status = "public"
+card_version = "1.1"
+updated = "2026-11-15"
+period = "2026-11-03 – 2026-11-10（Ctrl+V Hackathon）"
+team = "Liang Liyuan、ZIzi821"
+stack = { zh = "Node.js、React、promptfoo、Claude Haiku 5.5", en = "Node.js, React, promptfoo, Claude Haiku 5.5" }
+did = { zh = "我们做了给读密集文字吃力的读者用的常见问题助手：先一句结论、再一张清单、最后是证据；服务器核对每段引文和每个截止时间；提示词从 grounded-v2 改到 v2.4，v2.2 到 v2.4 每版都和普通提示在同一组题上比较。", en = "We built an FAQ assistant for readers who find dense text hard: one sentence first, then a checklist, then the evidence; the server checks every quote and deadline; the prompt went from grounded-v2 to v2.4, with v2.2 to v2.4 each compared with a plain prompt on the same cases." }
+name = { zh = "TraceDesk Lite", en = "TraceDesk Lite" }
+problem = { zh = "常见问题助手只按给定资料回答，每个回答附逐字原文；截止时间这类关键信息要放在最前、写清出处", en = "An FAQ assistant that answers only from given documents with word-for-word quotes, putting key facts such as deadlines first with their source" }
+primary_metric = { zh = "自动检查全部通过的回答数（状态、引文、截止时间有出处、先说结论、抗注入）", en = "Answers passing every automatic check (reply type, quotes, sourced deadlines, bottom line first, injection resisted)" }
+headline = [
+  { zh = "20 道检查题：普通提示 {check2_base}，grounded-v2.4 {check2_v24}", en = "20 check cases: plain prompt {check2_base}, grounded-v2.4 {check2_v24}" },
+  { zh = "截止时间有出处：普通提示 {check2_deadline_base}，v2.4 {check2_deadline_v24}", en = "Deadlines with a source: plain prompt {check2_deadline_base}, v2.4 {check2_deadline_v24}" },
+]
+links = [
+  { label = { zh = "代码", en = "Code" }, url = "https://github.com/Jason-d-e/tracedesk-lite" },
+]
+summary = { zh = "一个只按给定资料回答的常见问题助手，为读密集文字吃力的读者设计：先说结论，再列步骤和截止时间，每条都附逐字原文。引文先核对，没通过的不显示。演示资料是虚构的活动 DemoClub。评测比较同一个模型的普通提示和带出处要求的提示（grounded 系列）。", en = "An FAQ assistant that answers only from the given documents, designed for readers who find dense text hard: bottom line first, then steps and deadlines, each with a word-for-word quote. Quotes are checked before display and failures are withheld. The demo documents describe a fictional event, DemoClub. The evaluation compares a plain prompt with the grounded prompt series on the same model." }
+core_link = { zh = "evidence-check 的匹配和数字规则就是从这里的核对代码移植出去的。", en = "evidence-check's matching and number rules were ported from this project's checker." }
+models = { zh = "claude-haiku-5-5（effort medium）。", en = "claude-haiku-5-5 (effort medium)." }
+
+judge = { zh = [
+  "自动检查是规则脚本（检查器 v2），没有用评分器。",
+], en = [
+  "Automatic checks are rule-based (checker v2); no grader is used.",
+] }
+
+iteration = { zh = ["输出格式改成 v2：加一句话结论和行动清单。", "v2.3：每个步骤的截止时间必须挂在这个步骤上、引文里要写着这个时间；检查组第一轮 {check1_v23}，普通提示 {check1_base}。", "v2.4：截止时间也按读者的语言写；第二轮 {check2_v24}，普通提示 {check2_base}（看过第一轮之后跑的，不算干净的留出）。"], en = ["Output format v2: a one-line conclusion and a list of next steps.", "v2.3: a step's deadline must sit on that step and its quote must state it; check run 1 {check1_v23}, plain prompt {check1_base}.", "v2.4: deadlines in the reader's language too; run 2 {check2_v24}, plain prompt {check2_base} (run after seeing run 1, so not a clean held-out result)."] }
+
+conclusion = { zh = "带出处要求的提示在自动检查上比普通提示好，代价是更贵；第二轮是看过第一轮之后跑的，不算干净的留出。", en = "The grounded prompt beats the plain prompt on the automatic checks at a higher cost; the second run came after seeing the first, so it is not a clean held-out result." }
+
+short_name = { zh = "TraceDesk", en = "TraceDesk Lite" }
+card_title = { zh = "常见问题助手只按资料回答，截止时间都有出处", en = "An FAQ assistant that answers only from its documents" }
+result_line = { zh = "每个截止时间都附原文出处的回答有 {check2_deadline_v24}，普通写法只有 {check2_deadline_base}", en = "Answers whose every deadline came with its source: {check2_deadline_v24}, against {check2_deadline_base} with a plain prompt" }
+key_numbers = [{ metric = "check2_v24", label = { zh = "自动检查全过的回答（普通写法 {check2_base}）", en = "Answers passing every check (plain prompt: {check2_base})" } }, { metric = "check2_deadline_v24", label = { zh = "截止时间都附原文的回答（普通写法 {check2_deadline_base}）", en = "Every deadline sourced (plain prompt: {check2_deadline_base})" } }, { metric = "check2_cost_v24", label = { zh = "同一批题的花费（普通写法 {check2_cost_base}）", en = "Cost for the same questions (plain prompt: {check2_cost_base})" } }]
+timeline = [
+  { date = "2026-11-09", label = { zh = "grounded-v2.2", en = "grounded-v2.2" }, text = { zh = "加入读者友好的写作规则", en = "Reader-friendly writing rules" }, adopted = true },
+  { date = "2026-11-09", label = { zh = "grounded-v2.3", en = "grounded-v2.3" }, text = { zh = "截止时间挂在对应步骤上", en = "Each deadline sits on its step" }, adopted = true },
+  { date = "2026-11-09", label = { zh = "grounded-v2.4", en = "grounded-v2.4" }, text = { zh = "截止时间也按读者的语言写", en = "Deadlines in the reader's language" }, before = "check1_v23", after = "check2_v24", adopted = true },
+]
+
+[uses]
+zh = [
+  "按活动、课程这类公开资料回答常见问题，关键时间放在最前并附原文。",
+]
+en = [
+  "Answer common questions from public material such as event or course documents, with key dates first and quoted.",
+]
+
+[out_of_scope]
+zh = [
+  "不是医疗工具，没有证明对注意力障碍读者有帮助（没有做过用户测试）。",
+  "不能替用户办事，只回答资料里写了的内容。",
+]
+en = [
+  "Not a medical tool; there is no evidence that it helps readers with attention difficulties (no user testing was done).",
+  "Cannot act for the user; it only answers what the documents state.",
+]
+
+
+[[eval]]
+id = "check1"
+name = { zh = "检查组第一轮：普通提示对 grounded-v2.3（20 道题）", en = "Check run 1: plain prompt vs grounded-v2.3 (20 cases)" }
+date = "2026-11-09"
+data = { zh = "40 道题分开发组和检查组各 20 道：能回答、资料里没有、要追问、新旧版本冲突、提示注入。配置定好后才跑检查组。没有跑前冻结的哈希。", en = "40 cases split into a development group and a check group of 20 each: answerable, not in the documents, needs clarification, conflicting versions and prompt injection. The check group was run only after the configuration was fixed. No hashes were frozen before the run." }
+items = { zh = "检查组 20 道", en = "20 check cases" }
+runs = { zh = "每组 1 遍", en = "1 run per arm" }
+setup = { zh = "claude-haiku-5-5，普通接口", en = "claude-haiku-5-5, standard API" }
+
+  [[eval.metric]]
+  id = "check1_base"
+  label = { zh = "自动检查全部通过（普通提示）", en = "All automatic checks passed (plain prompt)" }
+  extractor = "md_cell"
+  args = { path = "launchpad-tracedesk/eval/results/check-2026-11-09.summary.md", row = "all automatic checks passed", col = "baseline-v2" }
+
+  [[eval.metric]]
+  id = "check1_v23"
+  label = { zh = "自动检查全部通过（grounded-v2.3）", en = "All automatic checks passed (grounded-v2.3)" }
+  extractor = "md_cell"
+  args = { path = "launchpad-tracedesk/eval/results/check-2026-11-09.summary.md", row = "all automatic checks passed", col = "grounded-v2.3-access" }
+
+[[eval]]
+id = "check2"
+name = { zh = "检查组第二轮：普通提示对 grounded-v2.4（同样 20 道题）", en = "Check run 2: plain prompt vs grounded-v2.4 (same 20 cases)" }
+date = "2026-11-09"
+data = { zh = "v2.4 在看过第一轮结果之后改出来，又在同一组题上跑，所以不算干净的留出结果。", en = "v2.4 was written after seeing run 1 and run on the same cases, so this is not a clean held-out result." }
+items = { zh = "检查组 20 道", en = "20 check cases" }
+runs = { zh = "每组 1 遍", en = "1 run per arm" }
+setup = { zh = "claude-haiku-5-5，普通接口", en = "claude-haiku-5-5, standard API" }
+
+  [[eval.metric]]
+  id = "check2_base"
+  label = { zh = "自动检查全部通过（普通提示）", en = "All automatic checks passed (plain prompt)" }
+  extractor = "md_cell"
+  args = { path = "launchpad-tracedesk/eval/results/check-v2.4-2026-11-09.summary.md", row = "all automatic checks passed", col = "baseline-v2" }
+
+  [[eval.metric]]
+  id = "check2_v24"
+  label = { zh = "自动检查全部通过（grounded-v2.4）", en = "All automatic checks passed (grounded-v2.4)" }
+  extractor = "md_cell"
+  args = { path = "launchpad-tracedesk/eval/results/check-v2.4-2026-11-09.summary.md", row = "all automatic checks passed", col = "grounded-v2.4-access" }
+
+  [[eval.metric]]
+  id = "check2_deadline_base"
+  label = { zh = "截止时间有出处（普通提示）", en = "Deadlines with a source (plain prompt)" }
+  extractor = "md_cell"
+  args = { path = "launchpad-tracedesk/eval/results/check-v2.4-2026-11-09.summary.md", row = "deadlines_supported", col = "baseline-v2" }
+
+  [[eval.metric]]
+  id = "check2_deadline_v24"
+  label = { zh = "截止时间有出处（grounded-v2.4）", en = "Deadlines with a source (grounded-v2.4)" }
+  extractor = "md_cell"
+  args = { path = "launchpad-tracedesk/eval/results/check-v2.4-2026-11-09.summary.md", row = "deadlines_supported", col = "grounded-v2.4-access" }
+
+  [[eval.metric]]
+  id = "check2_cost_v24"
+  label = { zh = "20 道题的费用（grounded-v2.4）", en = "Cost of 20 cases (grounded-v2.4)" }
+  extractor = "md_value"
+  args = { path = "launchpad-tracedesk/eval/results/check-v2.4-2026-11-09.summary.md", row = "cost (US$)", col = "grounded-v2.4-access", unit = "usd", decimals = 4 }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "check2_cost_base"
+  label = { zh = "20 道题的费用（普通提示）", en = "Cost of 20 cases (plain prompt)" }
+  extractor = "md_value"
+  args = { path = "launchpad-tracedesk/eval/results/check-v2.4-2026-11-09.summary.md", row = "cost (US$)", col = "baseline-v2", unit = "usd", decimals = 4 }
+  direction = "lower"
+
+[[limitation]]
+text = { zh = "只有 40 道题、虚构资料；第二轮在看过第一轮之后改提示词，不是干净的留出结果。", en = "Only 40 cases on fictional documents; the second run changed the prompt after seeing the first, so it is not a clean held-out result." }
+advice = { zh = "下一版先冻结一组没看过的新题，再比较。", en = "For the next version, freeze a new unseen set before comparing." }
+
+[[limitation]]
+text = { zh = "引文核对只证明原文存在，不证明原文支持这句回答；自动检查也会误报，事实对不对要另外逐条核对。", en = "The quote check proves the quote exists, not that it supports the answer; automatic checks also raise false alarms, so factual correctness needs a separate item-by-item check." }
+advice = { zh = "加一层意思核对（evidence-check 的做法：通过的说法再逐条重读）。", en = "Add a meaning check, as evidence-check does by rereading every passing claim." }
+
+[[limitation]]
+text = { zh = "带出处的提示更贵：同样 20 道题，v2.4 {check2_cost_v24}，普通提示 {check2_cost_base}。", en = "The grounded prompt costs more: {check2_cost_v24} for v2.4 against {check2_cost_base} for the plain prompt on the same 20 cases." }
+advice = { zh = "量大时把资料切短再给模型，或缓存不变的部分。", en = "At volume, send shorter document excerpts or cache the unchanging part." }
+
+[[version]]
+id = "1.0"
+date = "2026-11-15"
+text = { zh = "第一张卡；线上用的提示词是 grounded-v2.4-access。结果文件在项目内部，公开仓库只有汇总报告。", en = "First card; the live prompt is grounded-v2.4-access. The result files are internal; the public repository has the summary report." }
+
+[[version]]
+id = "1.1"
+date = "2026-11-15"
+text = { zh = "开头加了时间、团队、技术、链接和“问题 / 我做了什么 / 结果”，照作品集案例页的写法；评测部分不变。", en = "Added when, team, stack, links and \"problem / what I did / results\" at the top, the way portfolio case studies open; the evaluation sections are unchanged." }
