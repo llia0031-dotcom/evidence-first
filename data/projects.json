@@ -945,7 +945,7 @@
     "layer": "judgement",
     "status": "public",
     "updated": "2026-11-15",
-    "card_version": "1.2",
+    "card_version": "1.3",
     "card": {
       "zh": "cards/screening-audit.md",
       "en": "cards/screening-audit.en.md"
@@ -960,8 +960,8 @@
       }
     ],
     "period": {
-      "zh": "2026-11-13 – 2026-11-14",
-      "en": "2026-11-13 – 2026-11-14"
+      "zh": "2026-11-13 – 2026-11-15",
+      "en": "2026-11-13 – 2026-11-15"
     },
     "team": {
       "zh": "Liang Liyuan",
@@ -983,8 +983,8 @@
           {
             "id": "v1_plain",
             "label": {
-              "zh": "逐条判对（普通打分）",
-              "en": "Requirements right (plain)"
+              "zh": "逐条判对（不附原文）",
+              "en": "Requirements right (no quotes)"
             },
             "direction": "higher",
             "kind": "proportion",
@@ -1071,8 +1071,8 @@
           {
             "id": "v1_name_flip_plain",
             "label": {
-              "zh": "换名字后去留变了（普通打分）",
-              "en": "Advance decision changed by a name swap (plain)"
+              "zh": "换名字后去留变了（不附原文）",
+              "en": "Advance decision changed by a name swap (no quotes)"
             },
             "direction": "lower",
             "kind": "proportion",
@@ -1200,7 +1200,7 @@
               "evidence-screening/eval/v2/results/run-2026-11-13.summary.json"
             ],
             "k": 0,
-            "n": 424,
+            "n": 422,
             "rate": 0.0,
             "ci95": [
               0.0,
@@ -1245,8 +1245,8 @@
           {
             "id": "v3_traps_plain",
             "label": {
-              "zh": "陷阱判成“不符合”（普通打分）",
-              "en": "Traps judged not met (plain)"
+              "zh": "陷阱判成“不符合”（不附原文）",
+              "en": "Traps judged not met (no quotes)"
             },
             "direction": "higher",
             "kind": "proportion",
@@ -1439,6 +1439,60 @@
             ]
           }
         ]
+      },
+      {
+        "id": "v4",
+        "name": {
+          "zh": "第四轮：匿名简历里的民族和性别线索",
+          "en": "Round four: markers of ethnicity and gender in anonymised resumes"
+        },
+        "date": "2026-11-14",
+        "metrics": [
+          {
+            "id": "v4_dflip_plain",
+            "label": {
+              "zh": "加线索后去留变了（不附原文）",
+              "en": "Decisions changed by a marker (no quotes)"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "evidence-screening/eval/v4/results/run-2026-11-14.summary.json"
+            ],
+            "k": 0,
+            "n": 288,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.0132
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v4/results/run-2026-11-14.summary.json"
+            ]
+          },
+          {
+            "id": "v4_dflip_split",
+            "label": {
+              "zh": "加线索后去留变了（附原文，先拆简历事实）",
+              "en": "Decisions changed by a marker (quotes, resume facts split out)"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "evidence-screening/eval/v4/results/run-2026-11-14.summary.json"
+            ],
+            "k": 5,
+            "n": 288,
+            "rate": 0.0174,
+            "ci95": [
+              0.0074,
+              0.04
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v4/results/run-2026-11-14.summary.json"
+            ]
+          }
+        ]
       }
     ],
     "name": {
@@ -1454,21 +1508,21 @@
       "en": "Requirement verdicts right; advance decisions that change when names and other details change; correct \"met\" verdicts lost to the quote check"
     },
     "summary": {
-      "zh": "检验一件事：让模型给每个“符合 / 不符合”附上简历原文、再用 evidence-check 的脚本核对，初筛会不会更准、在换掉名字、性别、学校、休学、婚育之后更稳。岗位和简历全部虚构，答案在写简历时定好。做了四版评测：第一版看准确和稳定，第二版改核对的接法，第三版用更乱、带陷阱的简历，另做了植入错误测试和第二次独立复核。",
-      "en": "Tests whether having the model attach a resume quote to every met / not-met verdict, checked by the evidence-check script, makes screening more accurate and more stable when name, gender, school, career gaps or marital details change. All jobs and resumes are fictional and answers were fixed when the resumes were written. Four rounds: accuracy and stability, a better way to wire the check, messier resumes with traps, plus planted-error tests and an independent second review."
+      "zh": "检验一件事：让模型给每个“符合 / 不符合”附上简历原文、再用 evidence-check 的脚本核对，初筛会不会更准、在换掉名字、性别、学校、休学、婚育之后更稳。岗位和简历全部虚构，答案在写简历时定好。做了五轮评测：第一轮看准确和稳定，第二轮改核对的接法，第三轮用更乱、带陷阱的简历，第四轮在匿名简历里加民族和性别线索，第五轮把 effort 调低重跑陷阱题；另做了植入错误测试和第二次独立复核。",
+      "en": "Tests whether having the model attach a resume quote to every met / not-met verdict, checked by the evidence-check script, makes screening more accurate and more stable when name, gender, school, career gaps or marital details change. All jobs and resumes are fictional and answers were fixed when the resumes were written. Five rounds: accuracy and stability, a better way to wire the check, messier resumes with traps, markers of ethnicity and gender in anonymised resumes, and the traps again at a lower effort; plus planted-error tests and an independent second review."
     },
     "did": {
-      "zh": "我写了虚构的岗位和简历、事先定好答案，比较普通打分、附原文、附原文加脚本核对几种做法；发现核对的接法会误伤正确的判断以后，改了两版接法；再用带陷阱的新简历、植入错误和第二次独立复核检验。",
-      "en": "I wrote fictional jobs and resumes with answers fixed in advance and compared plain scoring, quotes, and quotes plus the script; after finding that the check discarded correct verdicts I rewired it twice; then tested with trap-laden new resumes, planted errors and an independent second review."
+      "zh": "我写了虚构的岗位和简历、事先定好答案，比较不附原文、附原文、附原文加脚本核对几种做法；发现核对的接法会误伤正确的判断以后，改了两版接法；再用带陷阱的新简历、植入错误和第二次独立复核检验。",
+      "en": "I wrote fictional jobs and resumes with answers fixed in advance and compared no quotes, quotes, and quotes plus the script; after finding that the check discarded correct verdicts I rewired it twice; then tested with trap-laden new resumes, planted errors and an independent second review."
     },
     "headline": [
       {
-        "zh": "换名字后去留变化：普通打分 0/240，附原文 0/240",
-        "en": "Advance decisions changed by a name swap: plain 0/240, with quotes 0/240"
+        "zh": "换名字后去留变化：不附原文 0/240，附原文 0/240",
+        "en": "Advance decisions changed by a name swap: no quotes 0/240, with quotes 0/240"
       },
       {
-        "zh": "核对误伤正确的“符合”：70/424 → 10/424（先拆出简历事实）→ 0/424（交卷前自查）",
-        "en": "Correct \"met\" verdicts lost to the check: 70/424 → 10/424 (resume facts split out) → 0/424 (self-check before submitting)"
+        "zh": "核对误伤正确的“符合”：70/424 → 10/424（先拆出简历事实）→ 0/422（交卷前自查）",
+        "en": "Correct \"met\" verdicts lost to the check: 70/424 → 10/424 (resume facts split out) → 0/422 (self-check before submitting)"
       },
       {
         "zh": "独立复核挑出植入的错读：80/80",

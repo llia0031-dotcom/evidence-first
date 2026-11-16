@@ -17,6 +17,7 @@
     "screening-audit/eval/seeded/results/seeded-2026-11-14.json": "35d53023bc159e1f35c7aca3f94ba1f4d8d81dbf46323504ea277595e444458b",
     "screening-audit/eval/v2/results/run-2026-11-13.summary.json": "b001c065af15abbf45010498aad247fe3af405af0c67b283db84c74e1e988cc0",
     "screening-audit/eval/v3/results/run-2026-11-14.summary.json": "016bafa463111ca537fb520adc40ae6ce8b0f946aeace863864d4d7d827e543a",
+    "screening-audit/eval/v4/results/run-2026-11-14.summary.json": "740eb1cb7f15386887ddafd824301619e110824ec75fb32b6acbd318caa92d5d",
     "screening-audit/eval/verify/results/run-2026-11-14.summary.json": "12b9a7eb150c05d0b17a5c630df83ff158e348718bc225bc2e9984565d58fce4"
   },
   "sellpoint-check": {
@@ -51,9 +52,9 @@
     "grounded-review-public/eval/results/multiturn-mt2-v1.1.jsonl": "3e4b4fac22a859833b9d2c77c877b1599be66f95dee1b950c1c9e3b31668e5f0",
     "grounded-review-public/eval/results/multiturn-mt2-v1.jsonl": "6b6dc58d09904930bcb5fadcf70d0d608039173db8217b77247b96727f7dd8ab",
     "grounded-review-public/eval/results/multiturn-mt3-v1.1.jsonl": "903512b60adefd86e363014ea42a9de429c70740756ee43b916a2be816afd793",
-    "grounded-review-public/eval/results/multiturn-mt3-v1.2.jsonl": "547256bcdcb80fa6902532c42bd34416f7d4db615026b2b1b09844fc54440956",
+    "grounded-review-public/eval/results/multiturn-mt3-v1.2.jsonl": "977ce938f4a2823a75d81ff760f1af7b967926149148071e593632e40e9977f4",
     "grounded-review-public/eval/results/multiturn-mt4-v1.1.jsonl": "bb262b3d8268c864183df7532d1457d29e04fd94851fa036120db4fb5f00d271",
-    "grounded-review-public/eval/results/multiturn-mt4-v1.3.jsonl": "ff1db0e0ca09b39a6a19f9ed4a2703a8f8ac671c375092e87551095abad959f2",
+    "grounded-review-public/eval/results/multiturn-mt4-v1.3.jsonl": "efb0e80b4bfcdf6e5425aa10efac01f12b5bb284939691987071eaacfbd832e7",
     "grounded-review-public/eval/results/real-2026-11-14.summary.json": "5972506587150ff14c4d67c12bfb4a0e903dbf7d60033d04bdebb0f95f13fce3",
     "grounded-review-public/eval/results/real-zh-2026-11-14.summary.json": "958959767bca0d221cc0fab2d8e4719ba8150406eff101a4c355051d74f59cbd",
     "grounded-review-public/eval/results/test-2026-11-13.images.summary.json": "b9a93826d0e0fcea86e9b6674cc3c17fafb6225352bed143ffcd874cd4bc41c7",

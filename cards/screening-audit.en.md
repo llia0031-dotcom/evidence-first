@@ -1,26 +1,26 @@
 # Evidence-backed resume screening: evaluation card
 
-> Card version 1.2 · Data as of 2026-11-15 · public
+> Card version 1.3 · Data as of 2026-11-15 · public
 >
 > Numbers are computed by `scripts/build_cards.py` from the project's result files; proportions carry a Wilson 95% interval.
 
 | When | Team | Stack | Links |
 |---|---|---|---|
-| 2026-11-13 – 2026-11-14 | Liang Liyuan | Node.js, Python, evidence-check 0.2.0, Message Batches API | [Code and report](https://github.com/Jason-d-e/evidence-screening) |
+| 2026-11-13 – 2026-11-15 | Liang Liyuan | Node.js, Python, evidence-check 0.2.0, Message Batches API | [Code and report](https://github.com/Jason-d-e/evidence-screening) |
 
 **Problem**: When a model screens resumes, every met / not-met verdict should carry a resume quote; does that make it more accurate, and do verdicts change when name, gender or school change.
 
-**What I did**: I wrote fictional jobs and resumes with answers fixed in advance and compared plain scoring, quotes, and quotes plus the script; after finding that the check discarded correct verdicts I rewired it twice; then tested with trap-laden new resumes, planted errors and an independent second review.
+**What I did**: I wrote fictional jobs and resumes with answers fixed in advance and compared no quotes, quotes, and quotes plus the script; after finding that the check discarded correct verdicts I rewired it twice; then tested with trap-laden new resumes, planted errors and an independent second review.
 
 **Results**: 
 
-- Advance decisions changed by a name swap: plain 0/240, with quotes 0/240
-- Correct "met" verdicts lost to the check: 70/424 → 10/424 (resume facts split out) → 0/424 (self-check before submitting)
+- Advance decisions changed by a name swap: no quotes 0/240, with quotes 0/240
+- Correct "met" verdicts lost to the check: 70/424 → 10/424 (resume facts split out) → 0/422 (self-check before submitting)
 - Second review catches planted misreadings: 80/80
 
 ## Summary
 
-Tests whether having the model attach a resume quote to every met / not-met verdict, checked by the evidence-check script, makes screening more accurate and more stable when name, gender, school, career gaps or marital details change. All jobs and resumes are fictional and answers were fixed when the resumes were written. Four rounds: accuracy and stability, a better way to wire the check, messier resumes with traps, plus planted-error tests and an independent second review.
+Tests whether having the model attach a resume quote to every met / not-met verdict, checked by the evidence-check script, makes screening more accurate and more stable when name, gender, school, career gaps or marital details change. All jobs and resumes are fictional and answers were fixed when the resumes were written. Five rounds: accuracy and stability, a better way to wire the check, messier resumes with traps, markers of ethnicity and gender in anonymised resumes, and the traps again at a lower effort; plus planted-error tests and an independent second review.
 
 - **Place in the portfolio**: Scenario: judgement
 - **Link to the core component**: Uses a frozen copy of the evidence-check 0.2.0 script to check every quote.
@@ -41,7 +41,7 @@ Tests whether having the model attach a resume quote to every met / not-met verd
 
 ### Round 1: accuracy and stability (228 resume versions)
 
-4 jobs and 24 base resumes, each varied by name, gender, school, career gap, marital status and prompt injection: 228 versions. Compared keyword matching, plain scoring, with quotes, and with quotes plus the script check. Hashes of 11 files frozen before the run.
+4 jobs and 24 base resumes, each varied by name, gender, school, career gap, marital status and prompt injection: 228 versions. Compared keyword matching, no quotes, with quotes, and with quotes plus the script check. Hashes of 11 files frozen before the run.
 
 | Field | Value |
 |---|---|
@@ -99,6 +99,18 @@ Every "met" gets an independent second review: one arm sees the reason, one sees
 | Model and send mode | claude-haiku-5-5, Message Batches API (half price) |
 | Frozen before the run | `eval/verify/PREREGISTRATION.md` |
 
+### Round four: markers of ethnicity and gender in anonymised resumes
+
+The 24 round-three resumes, anonymised (an applicant number instead of name and gender), each in 7 versions: one with no markers and six that each add a section of activities, languages and hobbies carrying a marker of ethnicity or gender. Each is compared with its no-marker version.
+
+| Field | Value |
+|---|---|
+| Date | 2026-11-14 |
+| Items and answers | 288 pairs per arm (each against its no-marker version) |
+| Runs | 2 runs per version |
+| Model and send mode | claude-haiku-5-5, Message Batches API |
+| Frozen before the run | `eval/v4/PREREGISTRATION.md` |
+
 ## Metrics and results
 
 Each evaluation version has its own table. Scores are not compared across versions whose items or scoring rules differ.
@@ -107,11 +119,11 @@ Each evaluation version has its own table. Scores are not compared across versio
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Requirements right (plain) | 2728/2736 (99.7%, 95% CI 99.4–99.9%) | higher is better | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
+| Requirements right (no quotes) | 2728/2736 (99.7%, 95% CI 99.4–99.9%) | higher is better | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
 | Requirements right (with quotes) | 2735/2736 (100.0%, 95% CI 99.8–100.0%) | higher is better | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
 | Requirements right (quotes + script) | 2379/2736 (87.0%, 95% CI 85.6–88.2%) | higher is better | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
 | Requirements right (keyword matching) | 2510/2736 (91.7%, 95% CI 90.6–92.7%) | higher is better | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
-| Advance decision changed by a name swap (plain) | 0/240 (0.0%, 95% CI 0.0–1.6%) | lower is better | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
+| Advance decision changed by a name swap (no quotes) | 0/240 (0.0%, 95% CI 0.0–1.6%) | lower is better | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
 | Advance decision changed by a name swap (with quotes) | 0/240 (0.0%, 95% CI 0.0–1.6%) | lower is better | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
 | Advance decision changed by a school swap (with quotes) | 0/48 (0.0%, 95% CI 0.0–7.4%) | lower is better | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
 
@@ -123,14 +135,14 @@ Quotes alone cost no accuracy, but wiring the script straight onto "met" verdict
 |---|---|---|---|
 | Correct "met" lost to the check (quotes + script) | 70/424 (16.5%, 95% CI 13.3–20.3%) | lower is better | [`evidence-screening/eval/v2/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v2/results/run-2026-11-13.summary.json) |
 | Correct "met" lost to the check (resume facts split out + script) | 10/424 (2.4%, 95% CI 1.3–4.3%) | lower is better | [`evidence-screening/eval/v2/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v2/results/run-2026-11-13.summary.json) |
-| Correct "met" lost to the check (self-check + script) | 0/424 (0.0%, 95% CI 0.0–0.9%) | lower is better | [`evidence-screening/eval/v2/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v2/results/run-2026-11-13.summary.json) |
+| Correct "met" lost to the check (self-check + script) | 0/422 (0.0%, 95% CI 0.0–0.9%) | lower is better | [`evidence-screening/eval/v2/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v2/results/run-2026-11-13.summary.json) |
 
 ### Round 3: messier resumes with traps (24)
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
 | Traps judged not met (self-check arm) | 80/80 (100.0%, 95% CI 95.4–100.0%) | higher is better | [`evidence-screening/eval/v3/results/run-2026-11-14.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v3/results/run-2026-11-14.summary.json) |
-| Traps judged not met (plain) | 80/80 (100.0%, 95% CI 95.4–100.0%) | higher is better | [`evidence-screening/eval/v3/results/run-2026-11-14.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v3/results/run-2026-11-14.summary.json) |
+| Traps judged not met (no quotes) | 80/80 (100.0%, 95% CI 95.4–100.0%) | higher is better | [`evidence-screening/eval/v3/results/run-2026-11-14.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v3/results/run-2026-11-14.summary.json) |
 | Requirements right (self-check + script) | 286/288 (99.3%, 95% CI 97.5–99.8%) | higher is better | [`evidence-screening/eval/v3/results/run-2026-11-14.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v3/results/run-2026-11-14.summary.json) |
 
 ### Planted errors: what the script stops
@@ -151,6 +163,15 @@ Quote checking stops fabrication, not misreading; that is why a second review is
 | Misreadings caught (quote only) | 79/80 (98.8%, 95% CI 93.3–99.8%) | higher is better | [`evidence-screening/eval/verify/results/run-2026-11-14.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/verify/results/run-2026-11-14.summary.json) |
 | Right answers wrongly flagged (reason visible) | 0/206 (0.0%, 95% CI 0.0–1.8%) | lower is better | [`evidence-screening/eval/verify/results/run-2026-11-14.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/verify/results/run-2026-11-14.summary.json) |
 
+### Round four: markers of ethnicity and gender in anonymised resumes
+
+| Metric | Result | Direction | Source file |
+|---|---|---|---|
+| Decisions changed by a marker (no quotes) | 0/288 (0.0%, 95% CI 0.0–1.3%) | lower is better | [`evidence-screening/eval/v4/results/run-2026-11-14.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v4/results/run-2026-11-14.summary.json) |
+| Decisions changed by a marker (quotes, resume facts split out) | 5/288 (1.7%, 95% CI 0.7–4.0%) | lower is better | [`evidence-screening/eval/v4/results/run-2026-11-14.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v4/results/run-2026-11-14.summary.json) |
+
+In the no-quotes arm no decision moved with the markers; every change in the quoting arm is on one resume and one requirement already open to argument, a wavering answer rather than a response to the markers.
+
 ## Grader calibration
 
 - Requirement verdicts are scored by script against answers fixed when the resumes were written; no grader is used.
@@ -170,6 +191,7 @@ Quote checking stops fabrication, not misreading; that is why a second review is
 - **1.0** (2026-11-15) First card; the project is not public. A low-effort round still being scored is not included.
 - **1.1** (2026-11-15) Added when, team, stack, links and "problem / what I did / results" at the top, the way portfolio case studies open; the evaluation sections are unchanged.
 - **1.2** (2026-11-16) The project is public: link to the code and report added; the demo page is not online yet.
+- **1.3** (2026-11-17) Corrected: five rounds in all; round four's decision results (markers of ethnicity and gender) added and round five (lower effort) described in the summary; the loss denominator is now the arm's correct "met" verdicts, as in the report; "plain" renamed "no quotes"; the review result is stated for the arm that saw the reason, and the misreadings as planted.
 
 ## Provenance
 

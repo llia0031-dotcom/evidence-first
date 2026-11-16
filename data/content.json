@@ -1956,14 +1956,14 @@
     "name": "有据可查的简历初筛",
     "status": "public",
     "layer": "场景：判断类",
-    "period": "2026-11-13 – 2026-11-14",
+    "period": "2026-11-13 – 2026-11-15",
     "team": "Liang Liyuan",
     "stack": "Node.js、Python、evidence-check 0.2.0、批量接口",
     "one_line": "检验一件事：让模型给每个“符合 / 不符合”附上简历原文、再用 evidence-check 的脚本核对，初筛会不会更准、在换掉名字、性别、学校、休学、婚育之后更稳。",
     "facts": [
       {
         "label": "时间",
-        "value": "2026-11-13 – 2026-11-14"
+        "value": "2026-11-13 – 2026-11-15"
       },
       {
         "label": "团队",
@@ -1992,18 +1992,19 @@
       "用模型初筛简历时，每个“符合 / 不符合”都要附简历原文；看它会不会更准、换名字性别学校后结论会不会变。"
     ],
     "did": [
-      "我写了虚构的岗位和简历、事先定好答案，比较普通打分、附原文、附原文加脚本核对几种做法；发现核对的接法会误伤正确的判断以后，改了两版接法；再用带陷阱的新简历、植入错误和第二次独立复核检验。"
+      "我写了虚构的岗位和简历、事先定好答案，比较不附原文、附原文、附原文加脚本核对几种做法；发现核对的接法会误伤正确的判断以后，改了两版接法；再用带陷阱的新简历、植入错误和第二次独立复核检验。"
     ],
     "evaluation": [
       "**第一版：准确和稳定（228 个简历版本）**：228 个版本，每组 2 遍，共 1,368 次调用；claude-haiku-5-5，普通接口",
       "**第二版：改核对的接法（12 份新简历）**：48 个版本，4 组各 2 遍，共 384 次对话；claude-haiku-5-5，普通接口",
       "**第三版：更乱、带陷阱的简历（24 份）**：24 份简历、40 个陷阱，3 组各 2 遍；claude-haiku-5-5，批量接口（半价）",
       "**植入错误测试：脚本能拦住什么**：409 条基础回答；确定性脚本，跑 1 遍；不调用模型，不花钱",
-      "**第二次独立复核**：143 条，每组 2 遍；claude-haiku-5-5，批量接口（半价）"
+      "**第二次独立复核**：143 条，每组 2 遍；claude-haiku-5-5，批量接口（半价）",
+      "**第四轮：匿名简历里的民族和性别线索**：每组 288 对（和不加线索的版本配对）；每个版本 2 遍；claude-haiku-5-5，批量接口"
     ],
     "iteration": [
       "第一版：把脚本核对直接接在“符合”上，逐条判对只有 2379/2736，原因是“符合”里复述了岗位门槛的数字。",
-      "第二版：先拆出“简历事实”再核对，误伤 10/424；再让模型交卷前自己调用核对，误伤 0/424。",
+      "第二版：先拆出“简历事实”再核对，误伤 10/424；再让模型交卷前自己调用核对，误伤 0/422。",
       "植入错误：引文核对拦得住编造，拦不住看错意思（0/40），所以加第二次独立复核，挑出 80/80。"
     ],
     "result": [
@@ -2015,15 +2016,15 @@
       "答案里有一格有争议（第三版唯一的错格就出在这里）。建议：有争议的答案标出来，单独统计，不计入主指标。"
     ],
     "headline": [
-      "换名字后去留变化：普通打分 0/240，附原文 0/240",
-      "核对误伤正确的“符合”：70/424 → 10/424（先拆出简历事实）→ 0/424（交卷前自查）",
+      "换名字后去留变化：不附原文 0/240，附原文 0/240",
+      "核对误伤正确的“符合”：70/424 → 10/424（先拆出简历事实）→ 0/422（交卷前自查）",
       "独立复核挑出植入的错读：80/80"
     ],
     "numbers": [
       {
         "id": "N1",
         "metric": "v1_name_flip_plain",
-        "label": "换名字后去留变了（普通打分）",
+        "label": "换名字后去留变了（不附原文）",
         "value": "0/240",
         "full": "0/240（0.0%，95% 区间 0.0–1.6%）",
         "evaluation": "第一版：准确和稳定（228 个简历版本）",
@@ -2116,8 +2117,8 @@
         "id": "N5",
         "metric": "v2_loss_self",
         "label": "正确的“符合”被核对误伤（交卷前自查 + 脚本）",
-        "value": "0/424",
-        "full": "0/424（0.0%，95% 区间 0.0–0.9%）",
+        "value": "0/422",
+        "full": "0/422（0.0%，95% 区间 0.0–0.9%）",
         "evaluation": "第二版：改核对的接法（12 份新简历）",
         "sources": [
           "evidence-screening/eval/v2/results/run-2026-11-13.summary.json"
@@ -2127,13 +2128,13 @@
         ],
         "kind": "proportion",
         "k": 0,
-        "n": 424,
+        "n": 422,
         "rate": 0.0,
         "ci95": [
           0.0,
           0.009
         ],
-        "display": "0/424"
+        "display": "0/422"
       },
       {
         "id": "N6",
@@ -2244,7 +2245,7 @@
       },
       {
         "id": "N6",
-        "label": "看错简历的判断，复核时全部挑了出来"
+        "label": "植入的错读，看得到理由时复核全部挑出"
       }
     ],
     "timeline": [
@@ -2263,7 +2264,7 @@
         "text": "先拆简历事实，再交卷前自查",
         "before": "70/424",
         "before_id": "N3",
-        "after": "0/424",
+        "after": "0/422",
         "after_id": "N5",
         "adopted": true
       },
@@ -2291,14 +2292,14 @@
     "name": "Evidence-backed resume screening",
     "status": "public",
     "layer": "Scenario: judgement",
-    "period": "2026-11-13 – 2026-11-14",
+    "period": "2026-11-13 – 2026-11-15",
     "team": "Liang Liyuan",
     "stack": "Node.js, Python, evidence-check 0.2.0, Message Batches API",
     "one_line": "Tests whether having the model attach a resume quote to every met / not-met verdict, checked by the evidence-check script, makes screening more accurate and more stable when name, gender, school, career gaps or marital details change.",
     "facts": [
       {
         "label": "When",
-        "value": "2026-11-13 – 2026-11-14"
+        "value": "2026-11-13 – 2026-11-15"
       },
       {
         "label": "Team",
@@ -2327,18 +2328,19 @@
       "When a model screens resumes, every met / not-met verdict should carry a resume quote; does that make it more accurate, and do verdicts change when name, gender or school change."
     ],
     "did": [
-      "I wrote fictional jobs and resumes with answers fixed in advance and compared plain scoring, quotes, and quotes plus the script; after finding that the check discarded correct verdicts I rewired it twice; then tested with trap-laden new resumes, planted errors and an independent second review."
+      "I wrote fictional jobs and resumes with answers fixed in advance and compared no quotes, quotes, and quotes plus the script; after finding that the check discarded correct verdicts I rewired it twice; then tested with trap-laden new resumes, planted errors and an independent second review."
     ],
     "evaluation": [
       "**Round 1: accuracy and stability (228 resume versions)**: 228 versions, 2 runs per arm, 1,368 calls; claude-haiku-5-5, standard API",
       "**Round 2: a better way to wire the check (12 new resumes)**: 48 versions, 4 arms × 2 runs, 384 conversations; claude-haiku-5-5, standard API",
       "**Round 3: messier resumes with traps (24)**: 24 resumes, 40 traps, 3 arms × 2 runs; claude-haiku-5-5, Message Batches API (half price)",
       "**Planted errors: what the script stops**: 409 base answers; Deterministic script, 1 run; No model calls, no cost",
-      "**Independent second review**: 143 items, 2 runs per arm; claude-haiku-5-5, Message Batches API (half price)"
+      "**Independent second review**: 143 items, 2 runs per arm; claude-haiku-5-5, Message Batches API (half price)",
+      "**Round four: markers of ethnicity and gender in anonymised resumes**: 288 pairs per arm (each against its no-marker version); 2 runs per version; claude-haiku-5-5, Message Batches API"
     ],
     "iteration": [
       "Round 1: the script wired straight onto \"met\" verdicts got only 2379/2736 right, because verdicts restated the job's threshold numbers.",
-      "Round 2: resume facts split out before the check, 10/424 lost; the model calling the checker itself before submitting, 0/424 lost.",
+      "Round 2: resume facts split out before the check, 10/424 lost; the model calling the checker itself before submitting, 0/422 lost.",
       "Planted errors: quote checking stops fabrication but not misreading (0/40), so an independent second review was added, catching 80/80."
     ],
     "result": [
@@ -2350,15 +2352,15 @@
       "One cell of the answer key is disputed, and it is where round three's only wrong cell sits. Recommendation: Mark disputed answers and report them separately from the main metric."
     ],
     "headline": [
-      "Advance decisions changed by a name swap: plain 0/240, with quotes 0/240",
-      "Correct \"met\" verdicts lost to the check: 70/424 → 10/424 (resume facts split out) → 0/424 (self-check before submitting)",
+      "Advance decisions changed by a name swap: no quotes 0/240, with quotes 0/240",
+      "Correct \"met\" verdicts lost to the check: 70/424 → 10/424 (resume facts split out) → 0/422 (self-check before submitting)",
       "Second review catches planted misreadings: 80/80"
     ],
     "numbers": [
       {
         "id": "N1",
         "metric": "v1_name_flip_plain",
-        "label": "Advance decision changed by a name swap (plain)",
+        "label": "Advance decision changed by a name swap (no quotes)",
         "value": "0/240",
         "full": "0/240 (0.0%, 95% CI 0.0–1.6%)",
         "evaluation": "Round 1: accuracy and stability (228 resume versions)",
@@ -2451,8 +2453,8 @@
         "id": "N5",
         "metric": "v2_loss_self",
         "label": "Correct \"met\" lost to the check (self-check + script)",
-        "value": "0/424",
-        "full": "0/424 (0.0%, 95% CI 0.0–0.9%)",
+        "value": "0/422",
+        "full": "0/422 (0.0%, 95% CI 0.0–0.9%)",
         "evaluation": "Round 2: a better way to wire the check (12 new resumes)",
         "sources": [
           "evidence-screening/eval/v2/results/run-2026-11-13.summary.json"
@@ -2462,13 +2464,13 @@
         ],
         "kind": "proportion",
         "k": 0,
-        "n": 424,
+        "n": 422,
         "rate": 0.0,
         "ci95": [
           0.0,
           0.009
         ],
-        "display": "0/424"
+        "display": "0/422"
       },
       {
         "id": "N6",
@@ -2579,7 +2581,7 @@
       },
       {
         "id": "N6",
-        "label": "Misread resumes, all caught by the second review"
+        "label": "Planted misreadings caught when the reason was visible"
       }
     ],
     "timeline": [
@@ -2598,7 +2600,7 @@
         "text": "Facts split out, then self-check",
         "before": "70/424",
         "before_id": "N3",
-        "after": "0/424",
+        "after": "0/422",
         "after_id": "N5",
         "adopted": true
       },

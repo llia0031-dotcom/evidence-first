@@ -31,7 +31,7 @@ did = { zh = "虚构岗位和简历、事先定好答案；比较几种接法，
 result = [
   { zh = "换名字后去留变化：{screening-audit.v1_name_flip_evidence}", en = "Advance decisions changed by a name swap: {screening-audit.v1_name_flip_evidence}" },
   { zh = "核对误伤正确的“符合”：{screening-audit.v2_loss_evidence} → {screening-audit.v2_loss_self}", en = "Correct \"met\" verdicts lost to the check: {screening-audit.v2_loss_evidence} → {screening-audit.v2_loss_self}" },
-  { zh = "同一个模型再独立复核一次，挑出植入的错读：{screening-audit.verify_full}", en = "A second, independent pass by the same model catches planted misreadings: {screening-audit.verify_full}" },
+  { zh = "同一个模型再独立复核一次，看得到理由时挑出植入的错读：{screening-audit.verify_full}", en = "A second, independent pass by the same model, seeing the reason, catches planted misreadings: {screening-audit.verify_full}" },
 ]
 reuse = { zh = "用 evidence-check 0.2.0 脚本的冻结副本核对每条引文。", en = "Uses a frozen copy of the evidence-check 0.2.0 script for every quote." }
 

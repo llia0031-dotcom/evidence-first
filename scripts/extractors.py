@@ -86,7 +86,8 @@ def sa_script_loss(rd, path: str, arm: str, base: str):
     """Correct 'met' verdicts the quote script threw away: false_not_met(arm + script) - false_not_met(arm)."""
     acc = rd.json(path)["accuracy"]
     k = acc[arm]["false_not_met"] - acc[base]["false_not_met"]
-    return {"k": k, "n": acc[arm]["gold_met"]}
+    # Out of the correct "met" verdicts the base arm gave, which is what the check had to keep.
+    return {"k": k, "n": acc[base]["gold_met"] - acc[base]["false_not_met"]}
 
 
 @extractor
