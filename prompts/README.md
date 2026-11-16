@@ -13,6 +13,7 @@
 | `sellpoint-check/advice` | v5 | v5 | 项目现在采用第 5 版。没有线上流量。 |
 | `tracedesk/answer` | grounded-v2.4-access | grounded-v2.4-access | 线上演示和公开仓库默认用 grounded-v2.4-access。 |
 | `cairn/answer` | cairn-monash-v2 | cairn-monash-v2 | 线上演示用 cairn-monash-v2。 |
+| `evidence-pipeline/triage` | v2 | v2 | 没有线上流量；灰度用评测题回放演示。 |
 
 ## evidence-check：Skill 说明（SKILL.md）
 
@@ -94,6 +95,20 @@ Cairn 回答问题时用的系统提示词：先结论，写截止时间和下�
 
 标签记录：2026-11-09 production ·→cairn-v1；2026-11-10 production cairn-v1→cairn-monash-v1；2026-11-10 production cairn-monash-v1→cairn-monash-v2
 
+## 有据标注流水线：第一道判断
+
+广告进入流水线后的第一道判断：通过还是拒绝、违反哪一条、广告里是哪句话。v2 起还要说自己确定还是拿不准，拿不准的送人工复核。流水线自己的资产库里是同一个资产、同样的标签。
+
+- 代码位置：`pipeline/triage.py`（grounded-labelling-pipeline）
+- 模型锁定：claude-haiku-5-5, effort medium, max_tokens 8000
+
+| 版本 | 日期 | 改了什么 | 当时的分数 | 决定 | 为什么 |
+|---|---|---|---|---|---|
+| **v1** | 2026-11-15 | 第一版：整套政策库、图、文案和图上文字放进一次请求，按审核格式回答。<br>有据审核 Agent 的单次提示词，原样（`agent/oneshot.py`） | *有据审核的 166 条题各回放 2 遍*<br>判错又自动生效：17/332<br>判对：315/332 | 已被替换 | 回放请求里判错的全部自动生效（17/332）；引文核对只拦下判对了但引文有毛病的答案。<br>出处：[grounded-labelling-pipeline/reports/compare-v1-v2.md](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/reports/compare-v1-v2.md) |
+| **v2** | 2026-11-15 | 模型说自己确定还是拿不准；拿不准的送人工复核。<br>v1 加一条“拿不准”规则（`triage.CERTAINTY_RULE`），输出格式加 `certainty`、`unsure_reason` | *第一轮：有据审核的 166 条题各回放 2 遍；第二轮：新写 120 条文字广告各 2 遍*<br>判错又自动生效（v1 → v2）：17/332 → 9/332<br>送人工复核（v1 → v2）：6/332 → 72/332<br>判对（v1 → v2）：315/332 → 312/332<br>每个请求的费用（v1 → v2）：0.00062 美元 → 0.00063 美元<br>第二轮新广告：判对（v1 → v2）：239/240 → 240/240 | 采用 | 回归测试按预注册的四条采用标准全部通过，判错又自动生效 17/332 → 9/332。但按跑之前写好的回滚规则，灰度在 10% 时就回滚了；复盘发现两条规则写错。改好的规则在新写的广告上重新灰度，三步都没触发回滚，采用，production 挪到 v2。第二轮两版都接近全对，只说明放量流程走通了；v2 少漏错判的证据来自第一轮。<br>出处：[grounded-labelling-pipeline/docs/CANARY-POSTMORTEM.md](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/docs/CANARY-POSTMORTEM.md) |
+
+标签记录：2026-11-15 production ·→v1；2026-11-15 staging ·→v2；2026-11-15 staging v2→v1；2026-11-16 staging v1→v2；2026-11-16 production v1→v2
+
 ## 回归评测
 
-改 `prompts/` 下的文件并开 PR 时，GitHub Action 用 promptfoo 把 production 和 staging 两个标签指向的版本放在同一套冻结的题上跑，把两版的通过数贴到 PR 里。现在接上的是 evidence-check 的 Skill，题目是它的开发评测 v1（虚构活动资料、12 篇草稿）。配置在 [regression/](regression/)。
+改 `prompts/` 下的文件并开 PR 时，GitHub Action 用 promptfoo 把 production 和 staging 两个标签指向的版本放在同一套冻结的题上跑，把两版的通过数、版本、没通过的题和费用贴到 PR 里。现在接上的是 evidence-check 的 Skill，题目是它的开发评测 v1（虚构活动资料、12 篇草稿）；有请求没拿到回答、任一标签没通过的超过 2 篇，或 staging 比 production 少通过 2 篇以上时标红，规则在 [regression/report.mjs](regression/report.mjs)。配置在 [regression/](regression/)。

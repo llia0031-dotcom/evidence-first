@@ -1,0 +1,42 @@
+asset = "evidence-pipeline/triage"
+project = "grounded-labelling-pipeline"
+order = 5
+name = { zh = "有据标注流水线：第一道判断", en = "Grounded Labelling Pipeline: first-pass decision" }
+what = { zh = "广告进入流水线后的第一道判断：通过还是拒绝、违反哪一条、广告里是哪句话。v2 起还要说自己确定还是拿不准，拿不准的送人工复核。流水线自己的资产库里是同一个资产、同样的标签。", en = "The first decision on each ad in the pipeline: approve or reject, which clause, which words of the ad. From v2 it also says whether it is sure; unsure answers go to human review. The pipeline's own registry holds the same asset with the same labels." }
+where = "pipeline/triage.py"
+model_lock = "claude-haiku-5-5, effort medium, max_tokens 8000"
+production_note = { zh = "没有线上流量；灰度用评测题回放演示。", en = "No live traffic; the canary is a replay of test items." }
+
+[[version]]
+id = "v1"
+date = "2026-11-15"
+decision = "superseded"
+text = { zh = "有据审核 Agent 的单次提示词，原样（`agent/oneshot.py`）", en = "Grounded Review's one-prompt arm as it is (`agent/oneshot.py`)" }
+change = { zh = "第一版：整套政策库、图、文案和图上文字放进一次请求，按审核格式回答。", en = "First version: the whole policy library, the image, the caption and the image's text in one request, answered in the review format." }
+why = { zh = "回放请求里判错的全部自动生效（{grounded-labelling-pipeline.v1_escaped}）；引文核对只拦下判对了但引文有毛病的答案。", en = "Every wrong decision in the replay went live ({grounded-labelling-pipeline.v1_escaped}); the quote check only caught answers that were right but quoted badly." }
+source = "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/reports/compare-v1-v2.md"
+compare_set = { zh = "有据审核的 166 条题各回放 2 遍", en = "Grounded Review's 166 items, 2 replays each" }
+scores = [
+  { label = { zh = "判错又自动生效", en = "Wrong decisions that went live" }, refs = ["grounded-labelling-pipeline.v1_escaped"], direction = "lower" },
+  { label = { zh = "判对", en = "Decisions right" }, refs = ["grounded-labelling-pipeline.v1_right"], direction = "higher" },
+]
+
+[[version]]
+id = "v2"
+date = "2026-11-15"
+decision = "adopted"
+text = { zh = "v1 加一条“拿不准”规则（`triage.CERTAINTY_RULE`），输出格式加 `certainty`、`unsure_reason`", en = "v1 plus one rule on when to be unsure (`triage.CERTAINTY_RULE`) and two output fields, `certainty` and `unsure_reason`" }
+change = { zh = "模型说自己确定还是拿不准；拿不准的送人工复核。", en = "The model says whether it is sure; unsure answers go to human review." }
+why = { zh = "回归测试按预注册的四条采用标准全部通过，判错又自动生效 {grounded-labelling-pipeline.v1_escaped} → {grounded-labelling-pipeline.v2_escaped}。但按跑之前写好的回滚规则，灰度在 {grounded-labelling-pipeline.canary_rollback_share} 时就回滚了；复盘发现两条规则写错。改好的规则在新写的广告上重新灰度，三步都没触发回滚，采用，production 挪到 v2。第二轮两版都接近全对，只说明放量流程走通了；v2 少漏错判的证据来自第一轮。", en = "It passed all four preregistered adoption rules on the regression set: wrong decisions that went live {grounded-labelling-pipeline.v1_escaped} → {grounded-labelling-pipeline.v2_escaped}. The rollback rules written before the replay rolled it back at {grounded-labelling-pipeline.canary_rollback_share}; the post-mortem found two of those rules were wrong. With the fixed rules, a second canary on newly written ads fired no rule at any of its three steps, so v2 was adopted and production moved to it. Both versions were almost always right in round two, so that round shows the release process works; the evidence that v2 lets fewer errors through comes from round one." }
+source = "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/docs/CANARY-POSTMORTEM.md"
+compare_set = { zh = "第一轮：有据审核的 166 条题各回放 2 遍；第二轮：新写 120 条文字广告各 2 遍", en = "Round one: Grounded Review's 166 items, 2 replays each; round two: 120 newly written text ads, 2 runs each" }
+scores = [
+  { label = { zh = "判错又自动生效（v1 → v2）", en = "Wrong decisions that went live (v1 → v2)" }, refs = ["grounded-labelling-pipeline.v1_escaped", "grounded-labelling-pipeline.v2_escaped"], direction = "lower" },
+  { label = { zh = "送人工复核（v1 → v2）", en = "Sent to human review (v1 → v2)" }, refs = ["grounded-labelling-pipeline.v1_review", "grounded-labelling-pipeline.v2_review"], direction = "none" },
+  { label = { zh = "判对（v1 → v2）", en = "Decisions right (v1 → v2)" }, refs = ["grounded-labelling-pipeline.v1_right", "grounded-labelling-pipeline.v2_right"], direction = "higher" },
+  { label = { zh = "每个请求的费用（v1 → v2）", en = "Cost per request (v1 → v2)" }, pair = [
+    { id = "v1_cost", extractor = "json_value", args = { path = "evidence-pipeline-public/data/versions.json", keys = ["stats", "v1", "cost_per_request"], unit = "usd", decimals = 5 } },
+    { id = "v2_cost", extractor = "json_value", args = { path = "evidence-pipeline-public/data/versions.json", keys = ["stats", "v2", "cost_per_request"], unit = "usd", decimals = 5 } },
+  ], direction = "lower" },
+  { label = { zh = "第二轮新广告：判对（v1 → v2）", en = "Round two, new ads: decisions right (v1 → v2)" }, refs = ["grounded-labelling-pipeline.r2_v1_right", "grounded-labelling-pipeline.r2_v2_right"], direction = "higher" },
+]

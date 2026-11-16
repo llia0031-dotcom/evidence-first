@@ -13,6 +13,7 @@ Every version of every prompt asset records its id, what changed, its real score
 | `sellpoint-check/advice` | v5 | v5 | The project uses version 5. There is no live traffic. |
 | `tracedesk/answer` | grounded-v2.4-access | grounded-v2.4-access | The demo and the public repository default to grounded-v2.4-access. |
 | `cairn/answer` | cairn-monash-v2 | cairn-monash-v2 | The live demo uses cairn-monash-v2. |
+| `evidence-pipeline/triage` | v2 | v2 | No live traffic; the canary is a replay of test items. |
 
 ## evidence-check: skill instructions (SKILL.md)
 
@@ -94,6 +95,20 @@ The system prompt Cairn answers with: conclusion first, deadlines and next steps
 
 Label history: 2026-11-09 production ·→cairn-v1; 2026-11-10 production cairn-v1→cairn-monash-v1; 2026-11-10 production cairn-monash-v1→cairn-monash-v2
 
+## Grounded Labelling Pipeline: first-pass decision
+
+The first decision on each ad in the pipeline: approve or reject, which clause, which words of the ad. From v2 it also says whether it is sure; unsure answers go to human review. The pipeline's own registry holds the same asset with the same labels.
+
+- Location: `pipeline/triage.py` (grounded-labelling-pipeline)
+- Model lock: claude-haiku-5-5, effort medium, max_tokens 8000
+
+| Version | Date | Change | Score at the time | Decision | Why |
+|---|---|---|---|---|---|
+| **v1** | 2026-11-15 | First version: the whole policy library, the image, the caption and the image's text in one request, answered in the review format.<br>Grounded Review's one-prompt arm as it is (`agent/oneshot.py`) | *Grounded Review's 166 items, 2 replays each*<br>Wrong decisions that went live: 17/332<br>Decisions right: 315/332 | superseded | Every wrong decision in the replay went live (17/332); the quote check only caught answers that were right but quoted badly.<br>Source: [grounded-labelling-pipeline/reports/compare-v1-v2.md](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/reports/compare-v1-v2.md) |
+| **v2** | 2026-11-15 | The model says whether it is sure; unsure answers go to human review.<br>v1 plus one rule on when to be unsure (`triage.CERTAINTY_RULE`) and two output fields, `certainty` and `unsure_reason` | *Round one: Grounded Review's 166 items, 2 replays each; round two: 120 newly written text ads, 2 runs each*<br>Wrong decisions that went live (v1 → v2): 17/332 → 9/332<br>Sent to human review (v1 → v2): 6/332 → 72/332<br>Decisions right (v1 → v2): 315/332 → 312/332<br>Cost per request (v1 → v2): US$0.00062 → US$0.00063<br>Round two, new ads: decisions right (v1 → v2): 239/240 → 240/240 | adopted | It passed all four preregistered adoption rules on the regression set: wrong decisions that went live 17/332 → 9/332. The rollback rules written before the replay rolled it back at 10%; the post-mortem found two of those rules were wrong. With the fixed rules, a second canary on newly written ads fired no rule at any of its three steps, so v2 was adopted and production moved to it. Both versions were almost always right in round two, so that round shows the release process works; the evidence that v2 lets fewer errors through comes from round one.<br>Source: [grounded-labelling-pipeline/docs/CANARY-POSTMORTEM.md](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/docs/CANARY-POSTMORTEM.md) |
+
+Label history: 2026-11-15 production ·→v1; 2026-11-15 staging ·→v2; 2026-11-15 staging v2→v1; 2026-11-16 staging v1→v2; 2026-11-16 production v1→v2
+
 ## Regression check
 
-When a pull request changes files under `prompts/`, a GitHub Action runs promptfoo on the versions behind the production and staging labels over one frozen item set and posts both pass counts on the pull request. The evidence-check skill is wired in, on its development set v1 (fictional event documents, 12 drafts). Configuration: [regression/](regression/).
+When a pull request changes files under `prompts/`, a GitHub Action runs promptfoo on the versions behind the production and staging labels over one frozen item set and posts each label's pass count, version, failed items and cost on the pull request. The evidence-check skill is wired in, on its development set v1 (fictional event documents, 12 drafts); the check turns red when a request gets no answer, when either label fails more than 2 drafts, or when staging passes 2 or more fewer than production, as set in [regression/report.mjs](regression/report.mjs). Configuration: [regression/](regression/).

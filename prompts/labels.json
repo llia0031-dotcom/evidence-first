@@ -220,5 +220,49 @@
         "source": "https://github.com/Jason-d-e/cairn/blob/main/app/lib/prompt.js"
       }
     ]
+  },
+  "evidence-pipeline/triage": {
+    "production": "v2",
+    "staging": "v2",
+    "history": [
+      {
+        "date": "2026-11-15",
+        "label": "production",
+        "to": "v1",
+        "reason": "first version: Grounded Review's one-prompt arm as stored",
+        "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/docs/DESIGN.md"
+      },
+      {
+        "date": "2026-11-15",
+        "label": "staging",
+        "to": "v2",
+        "reason": "send answers the model is unsure of to the review queue; v1 let every wrong decision through",
+        "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/docs/PREREGISTRATION.md"
+      },
+      {
+        "date": "2026-11-15",
+        "label": "staging",
+        "from": "v2",
+        "to": "v1",
+        "reason": "v2 passed regression, but the canary rules written beforehand rolled it back at the first step",
+        "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/docs/CANARY-POSTMORTEM.md"
+      },
+      {
+        "date": "2026-11-16",
+        "label": "staging",
+        "from": "v1",
+        "to": "v2",
+        "reason": "second canary on newly written ads, rules preregistered",
+        "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/docs/PREREGISTRATION-ROUND2.md"
+      },
+      {
+        "date": "2026-11-16",
+        "label": "production",
+        "from": "v1",
+        "to": "v2",
+        "reason": "round-two canary reached full release with no rollback rule fired",
+        "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/reports/compare-v1-v2-round2.md"
+      }
+    ]
   }
 }

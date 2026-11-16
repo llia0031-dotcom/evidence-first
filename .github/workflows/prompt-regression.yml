@@ -1,6 +1,7 @@
 # When a pull request changes a prompt asset or its labels, run the regression check and post the
 # production and staging pass counts on the pull request. The API key comes from the repository secret
-# ANTHROPIC_API_KEY and is written to a temporary env file that only the provider reads.
+# ANTHROPIC_API_KEY and is written to a temporary env file that only the provider reads; the file is
+# removed before the comment is posted. The red / passed rules are in prompts/regression/report.mjs.
 name: Prompt regression
 
 on:
@@ -33,19 +34,32 @@ jobs:
           umask 077
           printf 'ANTHROPIC_API_KEY=%s\n' "$KEY" > "$RUNNER_TEMP/eval.env"
 
-      - name: Compare production and staging
-        uses: promptfoo/promptfoo-action@promptfoo-action-v1.3.4
+      - name: Run production and staging on the same items
+        id: eval
         env:
           EF_ENV_FILE: ${{ runner.temp }}/eval.env
           PROMPTFOO_DISABLE_TELEMETRY: "1"
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          config: prompts/regression/promptfooconfig.yaml
-          prompts: "prompts/**"
-          promptfoo-version: "0.125.1"
-          no-share: true
-          no-cache: true
+          PROMPTFOO_DISABLE_UPDATE: "1"
+        run: |
+          code=0
+          npx -y promptfoo@0.125.1 eval -c prompts/regression/promptfooconfig.yaml \
+            --no-cache --no-share --no-progress-bar --no-table \
+            -o "$RUNNER_TEMP/regression.json" || code=$?
+          echo "promptfoo exit code: $code (100 means some drafts failed; the next step decides)"
 
       - name: Remove the env file
         if: always()
         run: rm -f "$RUNNER_TEMP/eval.env"
+
+      - name: Post the scores on the pull request
+        if: ${{ !cancelled() && steps.eval.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          status=0
+          node prompts/regression/report.mjs "$RUNNER_TEMP/regression.json" "$RUNNER_TEMP/comment.md" || status=$?
+          cat "$RUNNER_TEMP/comment.md" >> "$GITHUB_STEP_SUMMARY"
+          gh pr comment "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --body-file "$RUNNER_TEMP/comment.md"
+          exit $status

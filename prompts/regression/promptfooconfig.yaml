@@ -7,7 +7,8 @@
 # DemoClub documents; MIT, copied from the evidence-check repository). Answers were fixed when the drafts
 # were written.
 #
-# Run from the repository root (the key is read only from the file named by EF_ENV_FILE):
+# Run from the repository root (the key is read only from the file named by EF_ENV_FILE); in CI the
+# output file goes to report.mjs, which posts the pass count of each label on the pull request:
 #   EF_ENV_FILE=path/to/.env PROMPTFOO_DISABLE_TELEMETRY=1 npx -y promptfoo@0.125.1 eval -c prompts/regression/promptfooconfig.yaml --no-cache
 description: evidence-check skill — production vs staging
 

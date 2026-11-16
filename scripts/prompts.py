@@ -154,8 +154,8 @@ def render(assets: list[dict], labels: dict, values: dict, lang: str) -> str:
     out.append(L("## 回归评测", "## Regression check"))
     out.append("")
     out.append(L(
-        "改 `prompts/` 下的文件并开 PR 时，GitHub Action 用 promptfoo 把 production 和 staging 两个标签指向的版本放在同一套冻结的题上跑，把两版的通过数贴到 PR 里。现在接上的是 evidence-check 的 Skill，题目是它的开发评测 v1（虚构活动资料、12 篇草稿）。配置在 [regression/](regression/)。",
-        "When a pull request changes files under `prompts/`, a GitHub Action runs promptfoo on the versions behind the production and staging labels over one frozen item set and posts both pass counts on the pull request. The evidence-check skill is wired in, on its development set v1 (fictional event documents, 12 drafts). Configuration: [regression/](regression/)."))
+        "改 `prompts/` 下的文件并开 PR 时，GitHub Action 用 promptfoo 把 production 和 staging 两个标签指向的版本放在同一套冻结的题上跑，把两版的通过数、版本、没通过的题和费用贴到 PR 里。现在接上的是 evidence-check 的 Skill，题目是它的开发评测 v1（虚构活动资料、12 篇草稿）；有请求没拿到回答、任一标签没通过的超过 2 篇，或 staging 比 production 少通过 2 篇以上时标红，规则在 [regression/report.mjs](regression/report.mjs)。配置在 [regression/](regression/)。",
+        "When a pull request changes files under `prompts/`, a GitHub Action runs promptfoo on the versions behind the production and staging labels over one frozen item set and posts each label's pass count, version, failed items and cost on the pull request. The evidence-check skill is wired in, on its development set v1 (fictional event documents, 12 drafts); the check turns red when a request gets no answer, when either label fails more than 2 drafts, or when staging passes 2 or more fewer than production, as set in [regression/report.mjs](regression/report.mjs). Configuration: [regression/](regression/)."))
     out.append("")
     return "\n".join(out)
 
