@@ -4195,5 +4195,332 @@
         "en": "Real barge-ins stopped 16/16, in 0.25 s"
       }
     ]
+  },
+  {
+    "id": "grounded-labelling-pipeline",
+    "order": 9,
+    "layer": "operations",
+    "status": "public",
+    "updated": "2026-11-16",
+    "card_version": "1.0",
+    "card": {
+      "zh": "cards/grounded-labelling-pipeline.md",
+      "en": "cards/grounded-labelling-pipeline.en.md"
+    },
+    "links": [
+      {
+        "label": {
+          "zh": "代码和报告",
+          "en": "Code and report"
+        },
+        "url": "https://github.com/Jason-d-e/grounded-labelling-pipeline"
+      }
+    ],
+    "period": "2026-11-15 – 2026-11-16",
+    "team": "Liang Liyuan",
+    "stack": {
+      "zh": "Python、Pandas、BM25、evidence-check、Lark 多维表格、批量接口",
+      "en": "Python, Pandas, BM25, evidence-check, Lark Base, Message Batches API"
+    },
+    "evals": [
+      {
+        "id": "regression",
+        "name": {
+          "zh": "回归测试：分流提示词 v1 对 v2（332 个回放请求）",
+          "en": "Regression test: triage prompt v1 vs v2 (332 replayed requests)"
+        },
+        "date": "2026-11-15",
+        "metrics": [
+          {
+            "id": "v1_escaped",
+            "label": {
+              "zh": "判错又自动生效（v1）",
+              "en": "Wrong decisions that went live (v1)"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/versions.json"
+            ],
+            "k": 17,
+            "n": 332,
+            "rate": 0.0512,
+            "ci95": [
+              0.0322,
+              0.0805
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json"
+            ]
+          },
+          {
+            "id": "v2_escaped",
+            "label": {
+              "zh": "判错又自动生效（v2）",
+              "en": "Wrong decisions that went live (v2)"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/versions.json"
+            ],
+            "k": 9,
+            "n": 332,
+            "rate": 0.0271,
+            "ci95": [
+              0.0143,
+              0.0507
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json"
+            ]
+          },
+          {
+            "id": "v1_review",
+            "label": {
+              "zh": "送人工复核（v1）",
+              "en": "Sent to human review (v1)"
+            },
+            "direction": "none",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/versions.json"
+            ],
+            "k": 6,
+            "n": 332,
+            "rate": 0.0181,
+            "ci95": [
+              0.0083,
+              0.0389
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json"
+            ]
+          },
+          {
+            "id": "v2_review",
+            "label": {
+              "zh": "送人工复核（v2）",
+              "en": "Sent to human review (v2)"
+            },
+            "direction": "none",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/versions.json"
+            ],
+            "k": 72,
+            "n": 332,
+            "rate": 0.2169,
+            "ci95": [
+              0.1759,
+              0.2643
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json"
+            ]
+          },
+          {
+            "id": "v1_right",
+            "label": {
+              "zh": "判对（v1）",
+              "en": "Decisions right (v1)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/versions.json"
+            ],
+            "k": 315,
+            "n": 332,
+            "rate": 0.9488,
+            "ci95": [
+              0.9195,
+              0.9678
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json"
+            ]
+          },
+          {
+            "id": "v2_right",
+            "label": {
+              "zh": "判对（v2）",
+              "en": "Decisions right (v2)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/versions.json"
+            ],
+            "k": 312,
+            "n": 332,
+            "rate": 0.9398,
+            "ci95": [
+              0.9088,
+              0.9607
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "canary",
+        "name": {
+          "zh": "灰度回放：按事先写好的回滚规则（回放，不是真实用户）",
+          "en": "Canary replay under the rules written beforehand (a replay, not real users)"
+        },
+        "date": "2026-11-15",
+        "metrics": [
+          {
+            "id": "canary_rollback_share",
+            "label": {
+              "zh": "触发回滚时的灰度比例",
+              "en": "Canary share when a rule fired"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "evidence-pipeline-public/data/canary.json"
+            ],
+            "value": 10.0,
+            "unit": "pct",
+            "n": null,
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/canary.json"
+            ]
+          },
+          {
+            "id": "canary_staging_escaped",
+            "label": {
+              "zh": "那一周灰度组判错又生效",
+              "en": "That week, canary: wrong decisions that went live"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/canary.json"
+            ],
+            "k": 1,
+            "n": 10,
+            "rate": 0.1,
+            "ci95": [
+              0.0179,
+              0.4042
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/canary.json"
+            ]
+          },
+          {
+            "id": "canary_prod_escaped",
+            "label": {
+              "zh": "那一周线上组判错又生效",
+              "en": "That week, production: wrong decisions that went live"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/canary.json"
+            ],
+            "k": 6,
+            "n": 80,
+            "rate": 0.075,
+            "ci95": [
+              0.0348,
+              0.1541
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/canary.json"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "retrieval",
+        "name": {
+          "zh": "政策库检索：正确条款进前三（124 条违规标注）",
+          "en": "Policy retrieval: right clause in the top three (124 labelled violations)"
+        },
+        "date": "2026-11-15",
+        "metrics": [
+          {
+            "id": "ret_ad_hit3",
+            "label": {
+              "zh": "用广告原文搜，正确条款进前三",
+              "en": "Searching with the ad text: right clause in the top three"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/retrieval.csv"
+            ],
+            "k": 66,
+            "n": 124,
+            "rate": 0.5323,
+            "ci95": [
+              0.4448,
+              0.6178
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval.csv"
+            ]
+          },
+          {
+            "id": "ret_answer_hit3",
+            "label": {
+              "zh": "用模型的答案搜，正确条款进前三",
+              "en": "Searching with the model's answer: right clause in the top three"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "evidence-pipeline-public/data/retrieval.csv"
+            ],
+            "k": 110,
+            "n": 124,
+            "rate": 0.8871,
+            "ci95": [
+              0.8194,
+              0.9315
+            ],
+            "source_urls": [
+              "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval.csv"
+            ]
+          }
+        ]
+      }
+    ],
+    "name": {
+      "zh": "有据标注流水线",
+      "en": "Grounded Labelling Pipeline"
+    },
+    "problem": {
+      "zh": "能核对的回答，怎么变成团队每天用的审核工作流：拿不准的交给人复核，提示词能灰度、能回滚",
+      "en": "How checkable answers become a review workflow a team runs daily: unsure cases go to people, and prompts ship with canary release and rollback"
+    },
+    "primary_metric": {
+      "zh": "漏网错判（判错又自动生效）；送人工复核的比例；判对率",
+      "en": "Wrong decisions that went live; share sent to human review; decisions right"
+    },
+    "summary": {
+      "zh": "一条围绕有据审核搭的审核和标注工作流。每条广告先由模型判断并引原文，再用 evidence-check 核对引文，核对没过、读不出或模型拿不准的进人工复核队列，复核结果和模型不同的变成新的回归题。提示词按版本管理，新版本先做回归测试，再按事先写好的规则灰度放量，触发就回滚。流量是有据审核评测题的回放，不是真实用户；回放里的复核结论就是题目定好的答案。",
+      "en": "A review and labelling workflow built around Grounded Review. Each ad is decided by the model with quotes, the quotes are checked by evidence-check, and ads that fail the check, cannot be read or that the model is unsure of go to a human review queue; reviewed ads that differ from the model become new regression items. Prompts are versioned; a new version passes a regression test, then a canary release under rules written beforehand, and rolls back when a rule fires. Traffic is a replay of Grounded Review's test items, not real users; reviewer decisions in the replay are the items' fixed answers."
+    },
+    "did": {
+      "zh": "我把有据审核做成一条四步审核工作流：模型判断，evidence-check 核对引文，核对没过或模型拿不准的进人工复核队列，复核结果回流成回归题；另加政策库检索评测、提示词版本、灰度和回滚规则、每周报告和上线检查清单，复核队列可以同步到 Lark 多维表格。",
+      "en": "I turned Grounded Review into a four-step review workflow: the model decides, evidence-check verifies the quotes, ads that fail the check or that the model is unsure of go to a human review queue, and reviewed ads come back as regression items; plus a policy retrieval evaluation, prompt versions, canary and rollback rules, weekly reports and a launch checklist, with the review queue syncable to Lark Base."
+    },
+    "headline": [
+      {
+        "zh": "判错又自动生效：v1 17/332 → v2 9/332；送人工复核 6/332 → 72/332",
+        "en": "Wrong decisions that went live: v1 17/332 → v2 9/332; sent to review 6/332 → 72/332"
+      },
+      {
+        "zh": "按事先写好的回滚规则，灰度放到 10% 就回滚了；规则写错两处，已复盘",
+        "en": "Under the rollback rules written beforehand, the canary rolled back at 10%; two rules were wrong, now reviewed"
+      }
+    ]
   }
 ]

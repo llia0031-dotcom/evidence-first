@@ -63,5 +63,10 @@
   "voice-agent-eval": {
     "voice-agent-eval/eval/results/run1/scores.json": "21e433fd24b69081da0226bd5eb64432ae6b7abc621a76beaa0bc3ae171db892",
     "voice-agent-eval/eval/results/run2/scores.json": "517b760ce67548b4b5b0c5050d553dafb31e1dca108cbdb9c032046812947dbd"
+  },
+  "grounded-labelling-pipeline": {
+    "evidence-pipeline-public/data/canary.json": "cc037ec4c012a232b49f05b10659192b968da327e4517f4d2bee8d583958cf52",
+    "evidence-pipeline-public/data/retrieval.csv": "864e758d1a9c6ce82b6daddafb374bf25c9e264729dda32cc80d0cc557e4d8b2",
+    "evidence-pipeline-public/data/versions.json": "8c7135c76f9e42c217df49130675cad0773ee406d6637214b529ea1b3f6d1ea0"
   }
 }

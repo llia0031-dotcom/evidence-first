@@ -29,3 +29,8 @@ url = "https://github.com/Jason-d-e/evidence-screening/blob/main/"
 prefix = "voice-agent-eval/"
 repo = "voice-agent-eval"
 url = "https://github.com/Jason-d-e/voice-agent-eval/blob/main/"
+
+[[map]]
+prefix = "evidence-pipeline-public/"
+repo = "grounded-labelling-pipeline"
+url = "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/"

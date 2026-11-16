@@ -307,3 +307,37 @@ def ai_tool(rd, path: str, section: str, tool: str, what: str):
     if what == "best":
         return {"k": r["best"]["won"], "n": r["best"]["chances"]}
     raise ValueError(what)
+
+
+# --------------------------------------------------------------------------- grounded-labelling-pipeline
+@extractor
+def pl_version(rd, path: str, version: str, field: str):
+    """Regression replay stats per prompt version: escaped / queued / decision_right out of requests."""
+    st = rd.json(path)["stats"][version]
+    return {"k": st[field], "n": st["requests"]}
+
+
+@extractor
+def pl_canary_rollback_share(rd, path: str):
+    """Canary share (percent of requests) at the first step where a rollback rule fired."""
+    d = rd.json(path)
+    fired = [s for s in d["steps"] if s["fired"]]
+    if not fired:
+        raise ValueError(f"{path}: no rollback")
+    return {"kind": "value", "value": fired[0]["share"], "unit": "pct", "decimals": 0}
+
+
+@extractor
+def pl_canary_step(rd, path: str, share: int, arm: str, field: str):
+    """One arm at one canary step: a count field out of the arm's requests."""
+    step = next(s for s in rd.json(path)["steps"] if s["share"] == share and s[arm]["n"])
+    return {"k": step[arm][field], "n": step[arm]["n"]}
+
+
+@extractor
+def pl_retrieval(rd, path: str, query: str, col: str = "hit@3"):
+    """Policy retrieval: share of labelled violations whose right clause is in the top results."""
+    import csv
+    import io
+    rows = [r for r in csv.DictReader(io.StringIO(rd.text(path))) if r["query"] == query]
+    return {"k": sum(1 for r in rows if r[col] == "True"), "n": len(rows)}

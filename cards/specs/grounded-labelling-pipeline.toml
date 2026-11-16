@@ -1,0 +1,184 @@
+id = "grounded-labelling-pipeline"
+order = 9
+layer = "operations"
+status = "public"
+links = [
+  { label = { zh = "代码和报告", en = "Code and report" }, url = "https://github.com/Jason-d-e/grounded-labelling-pipeline" },
+]
+card_version = "1.0"
+updated = "2026-11-16"
+period = "2026-11-15 – 2026-11-16"
+team = "Liang Liyuan"
+stack = { zh = "Python、Pandas、BM25、evidence-check、Lark 多维表格、批量接口", en = "Python, Pandas, BM25, evidence-check, Lark Base, Message Batches API" }
+did = { zh = "我把有据审核做成一条四步审核工作流：模型判断，evidence-check 核对引文，核对没过或模型拿不准的进人工复核队列，复核结果回流成回归题；另加政策库检索评测、提示词版本、灰度和回滚规则、每周报告和上线检查清单，复核队列可以同步到 Lark 多维表格。", en = "I turned Grounded Review into a four-step review workflow: the model decides, evidence-check verifies the quotes, ads that fail the check or that the model is unsure of go to a human review queue, and reviewed ads come back as regression items; plus a policy retrieval evaluation, prompt versions, canary and rollback rules, weekly reports and a launch checklist, with the review queue syncable to Lark Base." }
+name = { zh = "有据标注流水线", en = "Grounded Labelling Pipeline" }
+problem = { zh = "能核对的回答，怎么变成团队每天用的审核工作流：拿不准的交给人复核，提示词能灰度、能回滚", en = "How checkable answers become a review workflow a team runs daily: unsure cases go to people, and prompts ship with canary release and rollback" }
+primary_metric = { zh = "漏网错判（判错又自动生效）；送人工复核的比例；判对率", en = "Wrong decisions that went live; share sent to human review; decisions right" }
+headline = [
+  { zh = "判错又自动生效：v1 {v1_escaped} → v2 {v2_escaped}；送人工复核 {v1_review} → {v2_review}", en = "Wrong decisions that went live: v1 {v1_escaped} → v2 {v2_escaped}; sent to review {v1_review} → {v2_review}" },
+  { zh = "按事先写好的回滚规则，灰度放到 {canary_rollback_share} 就回滚了；规则写错两处，已复盘", en = "Under the rollback rules written beforehand, the canary rolled back at {canary_rollback_share}; two rules were wrong, now reviewed" },
+]
+summary = { zh = "一条围绕有据审核搭的审核和标注工作流。每条广告先由模型判断并引原文，再用 evidence-check 核对引文，核对没过、读不出或模型拿不准的进人工复核队列，复核结果和模型不同的变成新的回归题。提示词按版本管理，新版本先做回归测试，再按事先写好的规则灰度放量，触发就回滚。流量是有据审核评测题的回放，不是真实用户；回放里的复核结论就是题目定好的答案。", en = "A review and labelling workflow built around Grounded Review. Each ad is decided by the model with quotes, the quotes are checked by evidence-check, and ads that fail the check, cannot be read or that the model is unsure of go to a human review queue; reviewed ads that differ from the model become new regression items. Prompts are versioned; a new version passes a regression test, then a canary release under rules written beforehand, and rolls back when a rule fires. Traffic is a replay of Grounded Review's test items, not real users; reviewer decisions in the replay are the items' fixed answers." }
+core_link = { zh = "每段引文都过 evidence-check 的核对脚本；只读地引用有据审核的代码，回放它存下的答案。", en = "Every quote goes through the evidence-check script; it imports Grounded Review's code read-only and replays its stored answers." }
+models = { zh = "claude-haiku-5-5，批量接口；检索用政策库自带的 BM25。", en = "claude-haiku-5-5 through the Message Batches API; retrieval uses the policy library's BM25." }
+iteration = { zh = ["v1：四步工作流跑通，但判错的 {v1_escaped} 全部自动生效，引文核对拦不住看错的判断。", "v2：让模型说“拿不准”，拿不准的交人工；判错又自动生效的降到 {v2_escaped}，四条采用标准都满足。", "灰度：按事先写好的回滚规则，放到 {canary_rollback_share} 就回滚了；复盘发现两条规则写错（和改动目的矛盾、样本太小就比比例），改好了，但要在新流量上重新灰度才算数，线上仍是 v1。"], en = ["v1: the four-step workflow runs, but all {v1_escaped} wrong decisions went live; quote checks cannot stop a misread decision.", "v2: the model may say it is unsure, and unsure ads go to people; wrong decisions that went live fell to {v2_escaped}, meeting all four adoption criteria.", "Canary: under the rules written beforehand it rolled back at {canary_rollback_share}; the review found two wrong rules (at odds with the change's purpose, and comparing rates on too few requests); they are fixed, but only a canary on new traffic counts, so production stays at v1."] }
+conclusion = { zh = "让模型说“拿不准”能减少判错又生效，代价是多送人工；灰度按事先写好的规则回滚，暴露的是回滚规则本身写错，已复盘，线上留在 v1。", en = "Letting the model say it is unsure reduces wrong decisions that go live at the cost of more human review; the canary rolled back under the rules written beforehand, which exposed mistakes in the rules themselves; these are reviewed and production stays at v1." }
+short_name = { zh = "标注流水线", en = "Labelling pipeline" }
+card_title = { zh = "把广告审核做成能灰度、能回滚的工作流", en = "Ad review as a workflow with canary release and rollback" }
+assumed = { zh = "以为四条采用标准都满足，灰度就能顺利放量", en = "Expected a version meeting all four adoption criteria to roll out smoothly" }
+showed = { zh = "放到 {canary_rollback_share} 就按规则回滚了：毛病出在回滚规则本身，线上留在 v1", en = "It rolled back at {canary_rollback_share} under the rules; the fault was in the rules themselves, so production stays at v1" }
+result_line = { zh = "让模型说“拿不准”后，判错又自动生效的从 {v1_escaped} 降到 {v2_escaped}", en = "Letting the model say it is unsure cut wrong decisions that went live from {v1_escaped} to {v2_escaped}" }
+key_numbers = [{ metric = "v2_escaped", label = { zh = "判错又自动生效的（v1 是 {v1_escaped}）", en = "Wrong decisions that went live (v1: {v1_escaped})" } }, { metric = "v2_review", label = { zh = "送人工复核的请求（v1 是 {v1_review}）", en = "Requests sent to human review (v1: {v1_review})" } }, { metric = "canary_rollback_share", label = { zh = "按事先写好的规则，灰度放到这里就回滚了", en = "Canary share where the rules rolled it back" } }]
+timeline = [
+  { date = "2026-11-15", label = { zh = "v1", en = "v1" }, text = { zh = "四步工作流跑通，判错全部自动生效", en = "Workflow runs; every wrong decision went live" }, after = "v1_escaped", adopted = true },
+  { date = "2026-11-15", label = { zh = "v2", en = "v2" }, text = { zh = "让模型说“拿不准”，交人工复核", en = "Model may say unsure; people review" }, before = "v1_escaped", after = "v2_escaped", adopted = false },
+  { date = "2026-11-15", label = { zh = "灰度回放", en = "Canary replay" }, text = { zh = "按事先写好的规则，第一步就回滚", en = "Rolled back at the first step, by the rules" }, after = "canary_rollback_share", adopted = false },
+  { date = "2026-11-15", label = { zh = "复盘", en = "Post-mortem" }, text = { zh = "两条回滚规则写错，已改，待新流量验证", en = "Two rules were wrong; fixed, new traffic needed" } },
+]
+
+judge = { zh = [
+  "没有用评分器：判对按题目定好的答案算；回放里的复核结论就是题目的答案。",
+], en = [
+  "No grader is used: decisions are scored against the items' fixed answers, and reviewer decisions in the replay are those answers.",
+] }
+
+[uses]
+zh = [
+  "平台审核团队的日常流程：模型先判、核对引文，拿不准和核对没过的进复核队列，复核结果变成新的回归题。",
+  "提示词上线流程：回归测试、按规则灰度、触发就回滚，每周看漏网错判、复核率和费用。",
+]
+en = [
+  "A review team's daily flow: the model decides and quotes, quotes are checked, unsure or failed cases go to a review queue, and reviewed cases become regression items.",
+  "A prompt release flow: regression test, canary under written rules, rollback when one fires, and weekly metrics on wrong decisions that went live, review rate and cost.",
+]
+
+[out_of_scope]
+zh = [
+  "不是线上流量：请求是有据审核评测题的回放，复核结论是题目定好的答案。",
+  "不替代审核员：拿不准、核对没过、读不出的广告都交给人。",
+]
+en = [
+  "Not live traffic: requests replay Grounded Review's test items, and reviewer decisions are the items' fixed answers.",
+  "Does not replace reviewers: unsure, failed and unreadable ads all go to people.",
+]
+
+[[eval]]
+id = "regression"
+name = { zh = "回归测试：分流提示词 v1 对 v2（332 个回放请求）", en = "Regression test: triage prompt v1 vs v2 (332 replayed requests)" }
+date = "2026-11-15"
+data = { zh = "有据审核的留出集、难题集和真实广告存下的答案，按请求回放；每个请求的答案在写题时定好。v2 的采用标准跑前预注册。", en = "Stored answers to Grounded Review's held-out, harder and real-ad items, replayed request by request; each request's answer was fixed when the item was written. v2's adoption criteria were preregistered." }
+items = { zh = "332 个请求，每个版本 1 遍", en = "332 requests, 1 run per version" }
+runs = { zh = "每个版本 1 遍", en = "1 run per version" }
+setup = { zh = "claude-haiku-5-5，批量接口（半价）", en = "claude-haiku-5-5, Message Batches API (half price)" }
+frozen = { zh = "`docs/PREREGISTRATION.md`", en = "`docs/PREREGISTRATION.md`" }
+takeaway = { zh = "v2 少放过判错的广告，代价是送人工多得多；四条采用标准都满足。", en = "v2 lets fewer wrong decisions through at the cost of far more human review; all four adoption criteria are met." }
+
+  [[eval.metric]]
+  id = "v1_escaped"
+  label = { zh = "判错又自动生效（v1）", en = "Wrong decisions that went live (v1)" }
+  extractor = "pl_version"
+  args = { path = "evidence-pipeline-public/data/versions.json", version = "v1", field = "escaped" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "v2_escaped"
+  label = { zh = "判错又自动生效（v2）", en = "Wrong decisions that went live (v2)" }
+  extractor = "pl_version"
+  args = { path = "evidence-pipeline-public/data/versions.json", version = "v2", field = "escaped" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "v1_review"
+  label = { zh = "送人工复核（v1）", en = "Sent to human review (v1)" }
+  extractor = "pl_version"
+  args = { path = "evidence-pipeline-public/data/versions.json", version = "v1", field = "queued" }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "v2_review"
+  label = { zh = "送人工复核（v2）", en = "Sent to human review (v2)" }
+  extractor = "pl_version"
+  args = { path = "evidence-pipeline-public/data/versions.json", version = "v2", field = "queued" }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "v1_right"
+  label = { zh = "判对（v1）", en = "Decisions right (v1)" }
+  extractor = "pl_version"
+  args = { path = "evidence-pipeline-public/data/versions.json", version = "v1", field = "decision_right" }
+
+  [[eval.metric]]
+  id = "v2_right"
+  label = { zh = "判对（v2）", en = "Decisions right (v2)" }
+  extractor = "pl_version"
+  args = { path = "evidence-pipeline-public/data/versions.json", version = "v2", field = "decision_right" }
+
+[[eval]]
+id = "canary"
+name = { zh = "灰度回放：按事先写好的回滚规则（回放，不是真实用户）", en = "Canary replay under the rules written beforehand (a replay, not real users)" }
+date = "2026-11-15"
+data = { zh = "同一批请求按周回放，按请求编号的哈希分给 v1（线上）和 v2（灰度）；回滚规则跑前写好：灰度组漏网比例更高、复核率高出 15 个百分点以上、判对率低 5 个百分点以上、费用比线上组高出百分之十五以上，任一条触发就回滚。", en = "The same requests replayed week by week, split between v1 (production) and v2 (canary) by a hash of the request id; rollback rules written beforehand: a higher share of wrong decisions let through, a review rate more than 15 points higher, accuracy more than 5 points lower, or cost more than fifteen percent higher." }
+items = { zh = "四周，共 332 个请求", en = "Four weeks, 332 requests" }
+runs = { zh = "回放 1 遍", en = "1 replay" }
+setup = { zh = "不调用模型，回放存下的答案", en = "No model calls; stored answers replayed" }
+frozen = { zh = "`docs/PREREGISTRATION.md` 和 `docs/CANARY-POSTMORTEM.md`", en = "`docs/PREREGISTRATION.md` and `docs/CANARY-POSTMORTEM.md`" }
+takeaway = { zh = "第一步就触发了三条规则，回滚，线上留在 v1。复盘发现两条规则写错：复核率那一条和 v2 的目的矛盾，比例在灰度组只有 10 个请求时就比了。改好的规则是看过结果之后写的，在同一批请求上再回放能放到全量，但这证明不了什么，要在新流量上重新灰度。", en = "Three rules fired at the first step, it rolled back, and production stayed at v1. The review found two wrong rules: the review-rate rule contradicted v2's purpose, and rates were compared when the canary had only 10 requests. The fixed rules were written after seeing the results; replayed on the same requests they reach full release, which proves nothing; a canary on new traffic is needed." }
+
+  [[eval.metric]]
+  id = "canary_rollback_share"
+  label = { zh = "触发回滚时的灰度比例", en = "Canary share when a rule fired" }
+  extractor = "pl_canary_rollback_share"
+  args = { path = "evidence-pipeline-public/data/canary.json" }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "canary_staging_escaped"
+  label = { zh = "那一周灰度组判错又生效", en = "That week, canary: wrong decisions that went live" }
+  extractor = "pl_canary_step"
+  args = { path = "evidence-pipeline-public/data/canary.json", share = 10, arm = "staging", field = "escaped" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "canary_prod_escaped"
+  label = { zh = "那一周线上组判错又生效", en = "That week, production: wrong decisions that went live" }
+  extractor = "pl_canary_step"
+  args = { path = "evidence-pipeline-public/data/canary.json", share = 10, arm = "production", field = "escaped" }
+  direction = "lower"
+
+[[eval]]
+id = "retrieval"
+name = { zh = "政策库检索：正确条款进前三（124 条违规标注）", en = "Policy retrieval: right clause in the top three (124 labelled violations)" }
+date = "2026-11-15"
+data = { zh = "有据审核的 32 条政策条款，用它自带的 BM25 检索；每条违规标注一次查询，哪些条款算对写在标注里。比较用广告原文搜和用模型的答案搜。", en = "Grounded Review's 32 policy clauses searched with its BM25; one query per labelled violation, with the right clauses fixed in the labels. Searching with the ad text is compared with searching with the model's answer." }
+items = { zh = "124 条违规标注", en = "124 labelled violations" }
+runs = { zh = "确定性检索，1 遍", en = "Deterministic retrieval, 1 run" }
+setup = { zh = "不调用模型，用 v1 第一遍存下的答案", en = "No model calls; v1's stored first-run answers" }
+
+  [[eval.metric]]
+  id = "ret_ad_hit3"
+  label = { zh = "用广告原文搜，正确条款进前三", en = "Searching with the ad text: right clause in the top three" }
+  extractor = "pl_retrieval"
+  args = { path = "evidence-pipeline-public/data/retrieval.csv", query = "ad" }
+
+  [[eval.metric]]
+  id = "ret_answer_hit3"
+  label = { zh = "用模型的答案搜，正确条款进前三", en = "Searching with the model's answer: right clause in the top three" }
+  extractor = "pl_retrieval"
+  args = { path = "evidence-pipeline-public/data/retrieval.csv", query = "answer" }
+
+[[limitation]]
+text = { zh = "流量是评测题的回放，不是真实用户；复核结论用的是题目定好的答案，没有真的审核员。", en = "Traffic replays test items rather than real users, and reviewer decisions are the items' fixed answers, not real reviewers." }
+advice = { zh = "上线后按版本统计真实请求的漏网错判和复核量，抽检结果回流成回归题。", en = "After launch, track wrong decisions let through and review volume per version on real requests, and feed QA samples back as regression items." }
+
+[[limitation]]
+text = { zh = "v2 少放过判错，但送人工从 {v1_review} 涨到 {v2_review}，很多是清楚的广告也说“拿不准”。", en = "v2 lets fewer wrong decisions through, but human review rose from {v1_review} to {v2_review}, often on clear ads the model called unsure." }
+advice = { zh = "下一版试着减少清楚广告上的“拿不准”，同样先过回归测试再灰度。", en = "Next, reduce \"unsure\" on clear ads, again through a regression test before a canary." }
+
+[[limitation]]
+text = { zh = "回滚规则写错两处，改好的规则是看过结果之后写的，在同一批请求上回放放到全量不算证据。", en = "Two rollback rules were wrong; the fixed rules were written after seeing the results, so reaching full release on the same requests is not evidence." }
+advice = { zh = "回滚条件要和改动目的、采用标准对齐；样本小的一步只查硬条件；用改好的规则在新写的题上重新灰度。", en = "Align rollback rules with the change's purpose and adoption criteria, check only hard conditions on small steps, and rerun the canary on newly written items." }
+
+[[version]]
+id = "1.0"
+date = "2026-11-16"
+text = { zh = "第一张卡，照公开仓库 grounded-labelling-pipeline 的结果文件写。", en = "First card, from the result files in the public grounded-labelling-pipeline repository." }

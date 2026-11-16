@@ -523,6 +523,9 @@ def render_scenes(story: dict, projects: list[dict], flat: dict[str, Value], lan
         out.append("")
         if sc["projects"]:
             names = []
+            if sc.get("self"):
+                names.append("**本仓库**（[评测卡](cards/) · [Prompt 资产库](prompts/README.md)）" if zh
+                             else "**This repository** ([cards](cards/) · [prompt registry](prompts/README.en.md))")
             for pid in sc["projects"]:
                 spec = by_id[pid]
                 if pid in WITHHOLD:

@@ -37,8 +37,9 @@ def used_metrics(spec: dict) -> list[str]:
     for h in spec.get("headline", []):
         texts += [h["zh"], h["en"]]
     texts += spec.get("iteration", {}).get("zh", []) + spec.get("iteration", {}).get("en", [])
-    if "result_line" in spec:
-        texts += [spec["result_line"]["zh"], spec["result_line"]["en"]]
+    for key in ("result_line", "assumed", "showed"):
+        if key in spec:
+            texts += [spec[key]["zh"], spec[key]["en"]]
     for k in spec.get("key_numbers", []):
         texts += [k["label"]["zh"], k["label"]["en"]]
     for lim in spec.get("limitation", []):
@@ -73,7 +74,8 @@ def page_fields(s: dict, vals: dict, lang: str, nid: dict[str, str], problems: l
     pid = s["id"]
     tr = lambda x: bc.tr(x, lang)  # noqa: E731
     out = {"short_name": tr(s["short_name"]), "card_title": tr(s["card_title"]),
-           "assumed": tr(s["assumed"]) if "assumed" in s else "", "showed": tr(s["showed"]) if "showed" in s else ""}
+           "assumed": bc.fill(tr(s["assumed"]), vals, lang, f"{pid}.assumed") if "assumed" in s else "",
+           "showed": bc.fill(tr(s["showed"]), vals, lang, f"{pid}.showed") if "showed" in s else ""}
     check_len("short_name", out["short_name"], lang, pid, problems)
     check_len("card_title", out["card_title"], lang, pid, problems)
     if re.search(r"\d", out["card_title"]):
@@ -81,7 +83,6 @@ def page_fields(s: dict, vals: dict, lang: str, nid: dict[str, str], problems: l
     for kind in ("assumed", "showed"):
         if out[kind]:
             check_len(kind, out[kind], lang, pid, problems)
-            bc.lint_prose(out[kind], f"{pid}.{kind}")
     out["result_line"] = bc.fill(tr(s["result_line"]), vals, lang, f"{pid}.result_line") if "result_line" in s else ""
     if out["result_line"]:
         check_len("result_line", out["result_line"], lang, pid, problems)
@@ -242,9 +243,11 @@ def render(proj: dict, media: list[dict], lang: str, card_text: str) -> tuple[st
     def quotes(mids: list[str]) -> list[dict]:
         return [{"source": source, "quote": card_line(card_text, vals[m], lang, by_id[nid[m]]["label"])} for m in mids]
 
-    if data["result_line"]:
-        refs = [m.group(1) for m in PH.finditer(bc.tr(s["result_line"], lang))]
-        claims.append({"id": f"{pid}-{lang}-result", "text": data["result_line"], "evidence": quotes(refs)})
+    for key in ("result_line", "showed", "assumed"):
+        if data.get(key):
+            refs = [m.group(1) for m in PH.finditer(bc.tr(s[key], lang))]
+            if refs:
+                claims.append({"id": f"{pid}-{lang}-{key}", "text": data[key], "evidence": quotes(refs)})
     for i, (k, shown) in enumerate(zip(s.get("key_numbers", []), data["key_numbers"]), 1):
         refs = [k["metric"]] + [m.group(1) for m in PH.finditer(bc.tr(k["label"], lang))]
         text = f"{shown['label']}{L('，', ', ')}{vals[k['metric']].short(lang)}"

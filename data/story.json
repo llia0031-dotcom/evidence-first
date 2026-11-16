@@ -200,16 +200,10 @@
         "zh": "怎么变成团队能天天用的能力",
         "en": "How does this become something a team uses every day?"
       },
-      "projects": [],
-      "links": [
-        {
-          "label": {
-            "zh": "有据标注流水线",
-            "en": "Grounded Labelling Pipeline"
-          },
-          "url": "https://github.com/Jason-d-e/grounded-labelling-pipeline"
-        }
+      "projects": [
+        "grounded-labelling-pipeline"
       ],
+      "links": [],
       "purpose": {
         "zh": "一个个评测做完以后，要让每个能力都有同样格式的评测证据、每次改提示词都能看到新旧分数、上线和回滚有章可循。",
         "en": "Once the studies exist, every capability needs evaluation evidence in one format, every prompt change needs old and new scores side by side, and releases and rollbacks need a routine."
@@ -224,8 +218,12 @@
       },
       "result": [
         {
-          "zh": "8 张评测卡、154 个数字全部由脚本从结果文件算出，0 处和项目记录对照",
-          "en": "8 evaluation cards and 154 numbers, all computed from result files and checked against 0 project records"
+          "zh": "有据标注流水线：判错又自动生效的从 17/332 降到 9/332；按事先写好的规则，灰度在 10% 时回滚，复盘后线上留在 v1（回放，不是真实用户）",
+          "en": "Grounded Labelling Pipeline: wrong decisions that went live fell from 17/332 to 9/332; under the rules written beforehand the canary rolled back at 10%, and after the review production stays at v1 (a replay, not real users)"
+        },
+        {
+          "zh": "9 张评测卡、165 个数字全部由脚本从结果文件算出，0 处和项目记录对照",
+          "en": "9 evaluation cards and 165 numbers, all computed from result files and checked against 0 project records"
         },
         {
           "zh": "灰度回放：有据审核 v1.3 放到全量，v1.2 在放量中途触发回滚（回放，不是真实用户）",

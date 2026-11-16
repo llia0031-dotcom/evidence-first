@@ -6298,5 +6298,471 @@
         "public": false
       }
     ]
+  },
+  {
+    "id": "grounded-labelling-pipeline",
+    "lang": "zh",
+    "order": 9,
+    "name": "有据标注流水线",
+    "status": "public",
+    "layer": "运营层",
+    "period": "2026-11-15 – 2026-11-16",
+    "team": "Liang Liyuan",
+    "stack": "Python、Pandas、BM25、evidence-check、Lark 多维表格、批量接口",
+    "one_line": "一条围绕有据审核搭的审核和标注工作流。",
+    "facts": [
+      {
+        "label": "时间",
+        "value": "2026-11-15 – 2026-11-16"
+      },
+      {
+        "label": "团队",
+        "value": "Liang Liyuan"
+      },
+      {
+        "label": "技术",
+        "value": "Python、Pandas、BM25、evidence-check、Lark 多维表格、批量接口"
+      },
+      {
+        "label": "在作品集里的位置",
+        "value": "运营层"
+      },
+      {
+        "label": "状态",
+        "value": "已公开"
+      }
+    ],
+    "links": [
+      {
+        "label": "代码和报告",
+        "url": "https://github.com/Jason-d-e/grounded-labelling-pipeline"
+      }
+    ],
+    "problem": [
+      "能核对的回答，怎么变成团队每天用的审核工作流：拿不准的交给人复核，提示词能灰度、能回滚。"
+    ],
+    "did": [
+      "我把有据审核做成一条四步审核工作流：模型判断，evidence-check 核对引文，核对没过或模型拿不准的进人工复核队列，复核结果回流成回归题；另加政策库检索评测、提示词版本、灰度和回滚规则、每周报告和上线检查清单，复核队列可以同步到 Lark 多维表格。"
+    ],
+    "evaluation": [
+      "**回归测试：分流提示词 v1 对 v2（332 个回放请求）**：332 个请求，每个版本 1 遍；claude-haiku-5-5，批量接口（半价）",
+      "**灰度回放：按事先写好的回滚规则（回放，不是真实用户）**：四周，共 332 个请求；回放 1 遍；不调用模型，回放存下的答案",
+      "**政策库检索：正确条款进前三（124 条违规标注）**：124 条违规标注；确定性检索，1 遍；不调用模型，用 v1 第一遍存下的答案"
+    ],
+    "iteration": [
+      "v1：四步工作流跑通，但判错的 17/332 全部自动生效，引文核对拦不住看错的判断。",
+      "v2：让模型说“拿不准”，拿不准的交人工；判错又自动生效的降到 9/332，四条采用标准都满足。",
+      "灰度：按事先写好的回滚规则，放到 10% 就回滚了；复盘发现两条规则写错（和改动目的矛盾、样本太小就比比例），改好了，但要在新流量上重新灰度才算数，线上仍是 v1。"
+    ],
+    "result": [
+      "让模型说“拿不准”能减少判错又生效，代价是多送人工；灰度按事先写好的规则回滚，暴露的是回滚规则本身写错，已复盘，线上留在 v1。"
+    ],
+    "limitations": [
+      "流量是评测题的回放，不是真实用户；复核结论用的是题目定好的答案，没有真的审核员。建议：上线后按版本统计真实请求的漏网错判和复核量，抽检结果回流成回归题。",
+      "v2 少放过判错，但送人工从 6/332 涨到 72/332，很多是清楚的广告也说“拿不准”。建议：下一版试着减少清楚广告上的“拿不准”，同样先过回归测试再灰度。",
+      "回滚规则写错两处，改好的规则是看过结果之后写的，在同一批请求上回放放到全量不算证据。建议：回滚条件要和改动目的、采用标准对齐；样本小的一步只查硬条件；用改好的规则在新写的题上重新灰度。"
+    ],
+    "headline": [
+      "判错又自动生效：v1 17/332 → v2 9/332；送人工复核 6/332 → 72/332",
+      "按事先写好的回滚规则，灰度放到 10% 就回滚了；规则写错两处，已复盘"
+    ],
+    "numbers": [
+      {
+        "id": "N1",
+        "metric": "v1_escaped",
+        "label": "判错又自动生效（v1）",
+        "value": "17/332",
+        "full": "17/332（5.1%，95% 区间 3.2–8.0%）",
+        "evaluation": "回归测试：分流提示词 v1 对 v2（332 个回放请求）",
+        "sources": [
+          "evidence-pipeline-public/data/versions.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json"
+        ],
+        "kind": "proportion",
+        "k": 17,
+        "n": 332,
+        "rate": 0.0512,
+        "ci95": [
+          0.0322,
+          0.0805
+        ],
+        "display": "17/332"
+      },
+      {
+        "id": "N2",
+        "metric": "v2_escaped",
+        "label": "判错又自动生效（v2）",
+        "value": "9/332",
+        "full": "9/332（2.7%，95% 区间 1.4–5.1%）",
+        "evaluation": "回归测试：分流提示词 v1 对 v2（332 个回放请求）",
+        "sources": [
+          "evidence-pipeline-public/data/versions.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json"
+        ],
+        "kind": "proportion",
+        "k": 9,
+        "n": 332,
+        "rate": 0.0271,
+        "ci95": [
+          0.0143,
+          0.0507
+        ],
+        "display": "9/332"
+      },
+      {
+        "id": "N3",
+        "metric": "v1_review",
+        "label": "送人工复核（v1）",
+        "value": "6/332",
+        "full": "6/332（1.8%，95% 区间 0.8–3.9%）",
+        "evaluation": "回归测试：分流提示词 v1 对 v2（332 个回放请求）",
+        "sources": [
+          "evidence-pipeline-public/data/versions.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json"
+        ],
+        "kind": "proportion",
+        "k": 6,
+        "n": 332,
+        "rate": 0.0181,
+        "ci95": [
+          0.0083,
+          0.0389
+        ],
+        "display": "6/332"
+      },
+      {
+        "id": "N4",
+        "metric": "v2_review",
+        "label": "送人工复核（v2）",
+        "value": "72/332",
+        "full": "72/332（21.7%，95% 区间 17.6–26.4%）",
+        "evaluation": "回归测试：分流提示词 v1 对 v2（332 个回放请求）",
+        "sources": [
+          "evidence-pipeline-public/data/versions.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json"
+        ],
+        "kind": "proportion",
+        "k": 72,
+        "n": 332,
+        "rate": 0.2169,
+        "ci95": [
+          0.1759,
+          0.2643
+        ],
+        "display": "72/332"
+      },
+      {
+        "id": "N5",
+        "metric": "canary_rollback_share",
+        "label": "触发回滚时的灰度比例",
+        "value": 10.0,
+        "full": "10%",
+        "evaluation": "灰度回放：按事先写好的回滚规则（回放，不是真实用户）",
+        "sources": [
+          "evidence-pipeline-public/data/canary.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/canary.json"
+        ],
+        "kind": "value",
+        "unit": "pct",
+        "n": null,
+        "display": "10%"
+      }
+    ],
+    "short_name": "标注流水线",
+    "card_title": "把广告审核做成能灰度、能回滚的工作流",
+    "assumed": "以为四条采用标准都满足，灰度就能顺利放量",
+    "showed": "放到 10% 就按规则回滚了：毛病出在回滚规则本身，线上留在 v1",
+    "result_line": "让模型说“拿不准”后，判错又自动生效的从 17/332 降到 9/332",
+    "key_numbers": [
+      {
+        "id": "N2",
+        "label": "判错又自动生效的（v1 是 17/332）"
+      },
+      {
+        "id": "N4",
+        "label": "送人工复核的请求（v1 是 6/332）"
+      },
+      {
+        "id": "N5",
+        "label": "按事先写好的规则，灰度放到这里就回滚了"
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-11-15",
+        "label": "v1",
+        "text": "四步工作流跑通，判错全部自动生效",
+        "after": "17/332",
+        "after_id": "N1",
+        "adopted": true
+      },
+      {
+        "date": "2026-11-15",
+        "label": "v2",
+        "text": "让模型说“拿不准”，交人工复核",
+        "before": "17/332",
+        "before_id": "N1",
+        "after": "9/332",
+        "after_id": "N2",
+        "adopted": false
+      },
+      {
+        "date": "2026-11-15",
+        "label": "灰度回放",
+        "text": "按事先写好的规则，第一步就回滚",
+        "after": "10%",
+        "after_id": "N5",
+        "adopted": false
+      },
+      {
+        "date": "2026-11-15",
+        "label": "复盘",
+        "text": "两条回滚规则写错，已改，待新流量验证"
+      }
+    ],
+    "images": []
+  },
+  {
+    "id": "grounded-labelling-pipeline",
+    "lang": "en",
+    "order": 9,
+    "name": "Grounded Labelling Pipeline",
+    "status": "public",
+    "layer": "Operations",
+    "period": "2026-11-15 – 2026-11-16",
+    "team": "Liang Liyuan",
+    "stack": "Python, Pandas, BM25, evidence-check, Lark Base, Message Batches API",
+    "one_line": "A review and labelling workflow built around Grounded Review.",
+    "facts": [
+      {
+        "label": "When",
+        "value": "2026-11-15 – 2026-11-16"
+      },
+      {
+        "label": "Team",
+        "value": "Liang Liyuan"
+      },
+      {
+        "label": "Stack",
+        "value": "Python, Pandas, BM25, evidence-check, Lark Base, Message Batches API"
+      },
+      {
+        "label": "Place in the portfolio",
+        "value": "Operations"
+      },
+      {
+        "label": "Status",
+        "value": "Public"
+      }
+    ],
+    "links": [
+      {
+        "label": "Code and report",
+        "url": "https://github.com/Jason-d-e/grounded-labelling-pipeline"
+      }
+    ],
+    "problem": [
+      "How checkable answers become a review workflow a team runs daily: unsure cases go to people, and prompts ship with canary release and rollback."
+    ],
+    "did": [
+      "I turned Grounded Review into a four-step review workflow: the model decides, evidence-check verifies the quotes, ads that fail the check or that the model is unsure of go to a human review queue, and reviewed ads come back as regression items; plus a policy retrieval evaluation, prompt versions, canary and rollback rules, weekly reports and a launch checklist, with the review queue syncable to Lark Base."
+    ],
+    "evaluation": [
+      "**Regression test: triage prompt v1 vs v2 (332 replayed requests)**: 332 requests, 1 run per version; claude-haiku-5-5, Message Batches API (half price)",
+      "**Canary replay under the rules written beforehand (a replay, not real users)**: Four weeks, 332 requests; 1 replay; No model calls; stored answers replayed",
+      "**Policy retrieval: right clause in the top three (124 labelled violations)**: 124 labelled violations; Deterministic retrieval, 1 run; No model calls; v1's stored first-run answers"
+    ],
+    "iteration": [
+      "v1: the four-step workflow runs, but all 17/332 wrong decisions went live; quote checks cannot stop a misread decision.",
+      "v2: the model may say it is unsure, and unsure ads go to people; wrong decisions that went live fell to 9/332, meeting all four adoption criteria.",
+      "Canary: under the rules written beforehand it rolled back at 10%; the review found two wrong rules (at odds with the change's purpose, and comparing rates on too few requests); they are fixed, but only a canary on new traffic counts, so production stays at v1."
+    ],
+    "result": [
+      "Letting the model say it is unsure reduces wrong decisions that go live at the cost of more human review; the canary rolled back under the rules written beforehand, which exposed mistakes in the rules themselves; these are reviewed and production stays at v1."
+    ],
+    "limitations": [
+      "Traffic replays test items rather than real users, and reviewer decisions are the items' fixed answers, not real reviewers. Recommendation: After launch, track wrong decisions let through and review volume per version on real requests, and feed QA samples back as regression items.",
+      "v2 lets fewer wrong decisions through, but human review rose from 6/332 to 72/332, often on clear ads the model called unsure. Recommendation: Next, reduce \"unsure\" on clear ads, again through a regression test before a canary.",
+      "Two rollback rules were wrong; the fixed rules were written after seeing the results, so reaching full release on the same requests is not evidence. Recommendation: Align rollback rules with the change's purpose and adoption criteria, check only hard conditions on small steps, and rerun the canary on newly written items."
+    ],
+    "headline": [
+      "Wrong decisions that went live: v1 17/332 → v2 9/332; sent to review 6/332 → 72/332",
+      "Under the rollback rules written beforehand, the canary rolled back at 10%; two rules were wrong, now reviewed"
+    ],
+    "numbers": [
+      {
+        "id": "N1",
+        "metric": "v1_escaped",
+        "label": "Wrong decisions that went live (v1)",
+        "value": "17/332",
+        "full": "17/332 (5.1%, 95% CI 3.2–8.0%)",
+        "evaluation": "Regression test: triage prompt v1 vs v2 (332 replayed requests)",
+        "sources": [
+          "evidence-pipeline-public/data/versions.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json"
+        ],
+        "kind": "proportion",
+        "k": 17,
+        "n": 332,
+        "rate": 0.0512,
+        "ci95": [
+          0.0322,
+          0.0805
+        ],
+        "display": "17/332"
+      },
+      {
+        "id": "N2",
+        "metric": "v2_escaped",
+        "label": "Wrong decisions that went live (v2)",
+        "value": "9/332",
+        "full": "9/332 (2.7%, 95% CI 1.4–5.1%)",
+        "evaluation": "Regression test: triage prompt v1 vs v2 (332 replayed requests)",
+        "sources": [
+          "evidence-pipeline-public/data/versions.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json"
+        ],
+        "kind": "proportion",
+        "k": 9,
+        "n": 332,
+        "rate": 0.0271,
+        "ci95": [
+          0.0143,
+          0.0507
+        ],
+        "display": "9/332"
+      },
+      {
+        "id": "N3",
+        "metric": "v1_review",
+        "label": "Sent to human review (v1)",
+        "value": "6/332",
+        "full": "6/332 (1.8%, 95% CI 0.8–3.9%)",
+        "evaluation": "Regression test: triage prompt v1 vs v2 (332 replayed requests)",
+        "sources": [
+          "evidence-pipeline-public/data/versions.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json"
+        ],
+        "kind": "proportion",
+        "k": 6,
+        "n": 332,
+        "rate": 0.0181,
+        "ci95": [
+          0.0083,
+          0.0389
+        ],
+        "display": "6/332"
+      },
+      {
+        "id": "N4",
+        "metric": "v2_review",
+        "label": "Sent to human review (v2)",
+        "value": "72/332",
+        "full": "72/332 (21.7%, 95% CI 17.6–26.4%)",
+        "evaluation": "Regression test: triage prompt v1 vs v2 (332 replayed requests)",
+        "sources": [
+          "evidence-pipeline-public/data/versions.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json"
+        ],
+        "kind": "proportion",
+        "k": 72,
+        "n": 332,
+        "rate": 0.2169,
+        "ci95": [
+          0.1759,
+          0.2643
+        ],
+        "display": "72/332"
+      },
+      {
+        "id": "N5",
+        "metric": "canary_rollback_share",
+        "label": "Canary share when a rule fired",
+        "value": 10.0,
+        "full": "10%",
+        "evaluation": "Canary replay under the rules written beforehand (a replay, not real users)",
+        "sources": [
+          "evidence-pipeline-public/data/canary.json"
+        ],
+        "source_urls": [
+          "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/canary.json"
+        ],
+        "kind": "value",
+        "unit": "pct",
+        "n": null,
+        "display": "10%"
+      }
+    ],
+    "short_name": "Labelling pipeline",
+    "card_title": "Ad review as a workflow with canary release and rollback",
+    "assumed": "Expected a version meeting all four adoption criteria to roll out smoothly",
+    "showed": "It rolled back at 10% under the rules; the fault was in the rules themselves, so production stays at v1",
+    "result_line": "Letting the model say it is unsure cut wrong decisions that went live from 17/332 to 9/332",
+    "key_numbers": [
+      {
+        "id": "N2",
+        "label": "Wrong decisions that went live (v1: 17/332)"
+      },
+      {
+        "id": "N4",
+        "label": "Requests sent to human review (v1: 6/332)"
+      },
+      {
+        "id": "N5",
+        "label": "Canary share where the rules rolled it back"
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-11-15",
+        "label": "v1",
+        "text": "Workflow runs; every wrong decision went live",
+        "after": "17/332",
+        "after_id": "N1",
+        "adopted": true
+      },
+      {
+        "date": "2026-11-15",
+        "label": "v2",
+        "text": "Model may say unsure; people review",
+        "before": "17/332",
+        "before_id": "N1",
+        "after": "9/332",
+        "after_id": "N2",
+        "adopted": false
+      },
+      {
+        "date": "2026-11-15",
+        "label": "Canary replay",
+        "text": "Rolled back at the first step, by the rules",
+        "after": "10%",
+        "after_id": "N5",
+        "adopted": false
+      },
+      {
+        "date": "2026-11-15",
+        "label": "Post-mortem",
+        "text": "Two rules were wrong; fixed, new traffic needed"
+      }
+    ],
+    "images": []
   }
 ]
