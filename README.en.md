@@ -108,7 +108,7 @@ The operations layer is the [Grounded Labelling Pipeline](https://github.com/Jas
 
 | File | What it is |
 |---|---|
-| [docs/eval-protocol.md](docs/eval-protocol.md) | Evaluation protocol (Chinese): preregistration; rule checks on every change, calibrated model grading on every version, canary comparison last; how to report numbers |
+| [docs/eval-protocol.en.md](docs/eval-protocol.en.md) | Evaluation protocol: preregistration; rule checks on every change, calibrated model grading on every version, canary comparison last; how to report numbers |
 | [cards/](cards/) | One evaluation card per project: when, team, stack and "problem / what I did / results" first, then Hugging Face model card sections: uses, out of scope, evaluation data, metrics and results, grader calibration, limitations and failure cases, versions |
 | [prompts/](prompts/README.en.md) | Prompt registry: what each version changed, its score at the time, adopted or not and why; production / staging labels; canary replay; release checklist |
 | [data/](data/) | JSON versions of all of the above |
