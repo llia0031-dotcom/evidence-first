@@ -301,7 +301,7 @@ On the first pass line breaks in the clauses blocked the platform's exact-text s
 ## Versions
 
 - **1.0** (2026-11-16) First card, from the result files in the public grounded-labelling-pipeline repository.
-- **1.1** (2026-11-16) Added canary round two (new traffic, v2 live), the Lark workflow evaluation and screenshots.
+- **1.1** (2026-11-16) Added canary round two (new traffic, v2 became the production version in the replay), the Lark workflow evaluation and screenshots.
 - **1.2** (2026-11-17) Added prompt v3 (not adopted), the knowledge-base Q&A, English retrieval on a local embedding model and the two Lark workflows; Lark screenshots replaced with the new ones.
 - **1.3** (2026-11-17) Added prompt v4 (round four on newly written ads, not adopted); the Lark dashboard screenshot was replaced upstream.
 

@@ -547,7 +547,7 @@ text = { zh = "第一张卡，照公开仓库 grounded-labelling-pipeline 的结
 [[version]]
 id = "1.1"
 date = "2026-11-16"
-text = { zh = "加第二轮灰度（新流量，v2 转为正式版本）、Lark 里的工作流评测和截图。", en = "Added canary round two (new traffic, v2 live), the Lark workflow evaluation and screenshots." }
+text = { zh = "加第二轮灰度（新流量，v2 转为正式版本）、Lark 里的工作流评测和截图。", en = "Added canary round two (new traffic, v2 became the production version in the replay), the Lark workflow evaluation and screenshots." }
 
 [[version]]
 id = "1.2"
