@@ -957,6 +957,13 @@
           "en": "Code and report"
         },
         "url": "https://github.com/llia0031-dotcom/evidence-screening"
+      },
+      {
+        "label": {
+          "zh": "演示页",
+          "en": "Live demo"
+        },
+        "url": "https://llia0031-dotcom.github.io/evidence-screening/"
       }
     ],
     "period": {

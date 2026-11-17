@@ -6,7 +6,7 @@
 
 | 时间 | 团队 | 技术 | 链接 |
 |---|---|---|---|
-| 2026-11-13 – 2026-11-15 | Liang Liyuan | Node.js、Python、evidence-check 0.2.0、批量接口 | [代码和报告](https://github.com/llia0031-dotcom/evidence-screening) |
+| 2026-11-13 – 2026-11-15 | Liang Liyuan | Node.js、Python、evidence-check 0.2.0、批量接口 | [代码和报告](https://github.com/llia0031-dotcom/evidence-screening) · [演示页](https://llia0031-dotcom.github.io/evidence-screening/) |
 
 **问题**：用模型初筛简历时，每个“符合 / 不符合”都要附简历原文；看它会不会更准、换名字性别学校后结论会不会变。
 

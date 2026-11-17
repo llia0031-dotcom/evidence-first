@@ -6,7 +6,7 @@
 
 | When | Team | Stack | Links |
 |---|---|---|---|
-| 2026-11-13 – 2026-11-15 | Liang Liyuan | Node.js, Python, evidence-check 0.2.0, Message Batches API | [Code and report](https://github.com/llia0031-dotcom/evidence-screening) |
+| 2026-11-13 – 2026-11-15 | Liang Liyuan | Node.js, Python, evidence-check 0.2.0, Message Batches API | [Code and report](https://github.com/llia0031-dotcom/evidence-screening) · [Live demo](https://llia0031-dotcom.github.io/evidence-screening/) |
 
 **Problem**: When a model screens resumes, every met / not-met verdict should carry a resume quote; does that make it more accurate, and do verdicts change when name, gender or school change.
 

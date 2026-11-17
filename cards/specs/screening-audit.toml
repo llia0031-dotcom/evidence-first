@@ -4,6 +4,7 @@ layer = "judgement"
 status = "public"
 links = [
   { label = { zh = "代码和报告", en = "Code and report" }, url = "https://github.com/llia0031-dotcom/evidence-screening" },
+  { label = { zh = "演示页", en = "Live demo" }, url = "https://llia0031-dotcom.github.io/evidence-screening/" },
 ]
 card_version = "1.3"
 updated = "2026-11-15"
