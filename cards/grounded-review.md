@@ -6,7 +6,7 @@
 
 | 时间 | 团队 | 技术 | 链接 |
 |---|---|---|---|
-| 2026-11-13 – 2026-11-16 | Liang Liyuan | Python、RapidOCR、BM25、evidence-check、Transformers（对比组）、批量接口 | [代码和报告](https://github.com/Jason-d-e/grounded-review) · [演示页](https://jason-d-e.github.io/grounded-review/) · [产品方案](https://github.com/Jason-d-e/grounded-review/blob/main/product/PRD.zh-CN.md) |
+| 2026-11-13 – 2026-11-16 | Liang Liyuan | Python、RapidOCR、BM25、evidence-check、Transformers（对比组）、批量接口 | [代码和报告](https://github.com/llia0031-dotcom/grounded-review) · [演示页](https://llia0031-dotcom.github.io/grounded-review/) · [产品方案](https://github.com/llia0031-dotcom/grounded-review/blob/main/product/PRD.zh-CN.md) |
 
 **问题**：广告审核要说得出违反哪一条、是哪几个字违反的，而不只是给“通过 / 拒绝”。
 
@@ -155,18 +155,18 @@ v1.3 让模型先填修改后的文案、再写说明；题目在 v1.3 写好之
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 判对（单个提示词） | 191/192（99.5%，95% 区间 97.1–99.9%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
-| 判对（Agent） | 187/192（97.4%，95% 区间 94.0–98.9%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
-| 违规拦下（单个提示词） | 124/124（100.0%，95% 区间 97.0–100.0%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
-| 违规拦下（Agent） | 124/124（100.0%，95% 区间 97.0–100.0%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
-| 陷阱正确放行（单个提示词） | 59/60（98.3%，95% 区间 91.1–99.7%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
-| 陷阱正确放行（Agent） | 55/60（91.7%，95% 区间 81.9–96.4%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
-| 条款引对（单个提示词） | 129/129（100.0%，95% 区间 97.1–100.0%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
-| 条款引对（Agent） | 129/129（100.0%，95% 区间 97.1–100.0%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
-| 条款引文通过核对（单个提示词） | 224/225（99.6%，95% 区间 97.5–99.9%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
-| 条款引文通过核对（Agent） | 200/200（100.0%，95% 区间 98.1–100.0%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
-| 每条广告的费用（单个提示词） | 0.0010 美元 | 越低越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
-| 每条广告的费用（Agent） | 0.0023 美元 | 越低越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| 判对（单个提示词） | 191/192（99.5%，95% 区间 97.1–99.9%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| 判对（Agent） | 187/192（97.4%，95% 区间 94.0–98.9%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| 违规拦下（单个提示词） | 124/124（100.0%，95% 区间 97.0–100.0%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| 违规拦下（Agent） | 124/124（100.0%，95% 区间 97.0–100.0%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| 陷阱正确放行（单个提示词） | 59/60（98.3%，95% 区间 91.1–99.7%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| 陷阱正确放行（Agent） | 55/60（91.7%，95% 区间 81.9–96.4%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| 条款引对（单个提示词） | 129/129（100.0%，95% 区间 97.1–100.0%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| 条款引对（Agent） | 129/129（100.0%，95% 区间 97.1–100.0%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| 条款引文通过核对（单个提示词） | 224/225（99.6%，95% 区间 97.5–99.9%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| 条款引文通过核对（Agent） | 200/200（100.0%，95% 区间 98.1–100.0%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| 每条广告的费用（单个提示词） | 0.0010 美元 | 越低越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| 每条广告的费用（Agent） | 0.0023 美元 | 越低越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
 
 两组都接近满分，说明自己写的题已经到顶；差别在 Agent 多拒了陷阱。
 
@@ -174,12 +174,12 @@ v1.3 让模型先填修改后的文案、再写说明；题目在 v1.3 写好之
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 参照线：全部拒绝也能判对 | 37/57（64.9%，95% 区间 51.9–76.0%） | 只作说明 | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
-| SafeGuard-VL-RL 判对 | 49/57（86.0%，95% 区间 74.7–92.7%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
-| CLIP 零样本判对 | 36/57（63.2%，95% 区间 50.2–74.5%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
-| SigLIP 2 零样本判对 | 35/57（61.4%，95% 区间 48.4–72.9%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
-| 违禁词表判对 | 27/57（47.4%，95% 区间 35.0–60.1%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
-| SafeGuard-VL-RL 每张图耗时（中位数，CPU） | 178.3 秒 | 越低越好 | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
+| 参照线：全部拒绝也能判对 | 37/57（64.9%，95% 区间 51.9–76.0%） | 只作说明 | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
+| SafeGuard-VL-RL 判对 | 49/57（86.0%，95% 区间 74.7–92.7%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
+| CLIP 零样本判对 | 36/57（63.2%，95% 区间 50.2–74.5%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
+| SigLIP 2 零样本判对 | 35/57（61.4%，95% 区间 48.4–72.9%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
+| 违禁词表判对 | 27/57（47.4%，95% 区间 35.0–60.1%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
+| SafeGuard-VL-RL 每张图耗时（中位数，CPU） | 178.3 秒 | 越低越好 | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
 
 这几种做法都不给条款和原话；只有 SafeGuard-VL-RL 比“全部拒绝”好。
 
@@ -187,8 +187,8 @@ v1.3 让模型先填修改后的文案、再写说明；题目在 v1.3 写好之
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 判对（单个提示词） | 48/48（100.0%，95% 区间 92.6–100.0%） | 越高越好 | [`grounded-review/eval/results/hard-2026-11-14.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/hard-2026-11-14.summary.json) |
-| 判对（Agent） | 48/48（100.0%，95% 区间 92.6–100.0%） | 越高越好 | [`grounded-review/eval/results/hard-2026-11-14.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/hard-2026-11-14.summary.json) |
+| 判对（单个提示词） | 48/48（100.0%，95% 区间 92.6–100.0%） | 越高越好 | [`grounded-review/eval/results/hard-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/hard-2026-11-14.summary.json) |
+| 判对（Agent） | 48/48（100.0%，95% 区间 92.6–100.0%） | 越高越好 | [`grounded-review/eval/results/hard-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/hard-2026-11-14.summary.json) |
 
 两组都全对：这套题只说明到顶了，分不出高低。
 
@@ -196,12 +196,12 @@ v1.3 让模型先填修改后的文案、再写说明；题目在 v1.3 写好之
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 判对（单个提示词） | 49/60（81.7%，95% 区间 70.1–89.4%） | 越高越好 | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
-| 判对（Agent） | 51/60（85.0%，95% 区间 73.9–91.9%） | 越高越好 | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
-| 违规拦下（单个提示词） | 43/46（93.5%，95% 区间 82.5–97.8%） | 越高越好 | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
-| 违规拦下（Agent） | 46/46（100.0%，95% 区间 92.3–100.0%） | 越高越好 | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
-| 判“不违规”的广告正确放行（单个提示词） | 6/14（42.9%，95% 区间 21.4–67.4%） | 越高越好 | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
-| 判“不违规”的广告正确放行（Agent） | 5/14（35.7%，95% 区间 16.3–61.2%） | 越高越好 | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
+| 判对（单个提示词） | 49/60（81.7%，95% 区间 70.1–89.4%） | 越高越好 | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
+| 判对（Agent） | 51/60（85.0%，95% 区间 73.9–91.9%） | 越高越好 | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
+| 违规拦下（单个提示词） | 43/46（93.5%，95% 区间 82.5–97.8%） | 越高越好 | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
+| 违规拦下（Agent） | 46/46（100.0%，95% 区间 92.3–100.0%） | 越高越好 | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
+| 判“不违规”的广告正确放行（单个提示词） | 6/14（42.9%，95% 区间 21.4–67.4%） | 越高越好 | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
+| 判“不违规”的广告正确放行（Agent） | 5/14（35.7%，95% 区间 16.3–61.2%） | 越高越好 | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
 
 两组不再满分但仍接近；Agent 更严：违规抓得更全，也多拒了合法的。大部分错来自监管规则和政策库不同。
 
@@ -209,22 +209,22 @@ v1.3 让模型先填修改后的文案、再写说明；题目在 v1.3 写好之
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 判对（单个提示词） | 27/32（84.4%，95% 区间 68.2–93.1%） | 越高越好 | [`grounded-review/eval/results/real-zh-2026-11-14.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/real-zh-2026-11-14.summary.json) |
-| 判对（Agent） | 26/32（81.2%，95% 区间 64.7–91.1%） | 越高越好 | [`grounded-review/eval/results/real-zh-2026-11-14.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/real-zh-2026-11-14.summary.json) |
+| 判对（单个提示词） | 27/32（84.4%，95% 区间 68.2–93.1%） | 越高越好 | [`grounded-review/eval/results/real-zh-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-zh-2026-11-14.summary.json) |
+| 判对（Agent） | 26/32（81.2%，95% 区间 64.7–91.1%） | 越高越好 | [`grounded-review/eval/results/real-zh-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-zh-2026-11-14.summary.json) |
 
 ### 多轮改稿 mt2：v1 对 v1.1（12 条新广告）
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 改后版本留了模板占位符（v1） | 3/24（12.5%，95% 区间 4.3–31.0%） | 越低越好 | [`grounded-review/eval/results/multiturn-mt2-v1.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt2-v1.jsonl) |
-| 改后版本留了模板占位符（v1.1） | 0/24（0.0%，95% 区间 0.0–13.8%） | 越低越好 | [`grounded-review/eval/results/multiturn-mt2-v1.1.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt2-v1.1.jsonl) |
+| 改后版本留了模板占位符（v1） | 3/24（12.5%，95% 区间 4.3–31.0%） | 越低越好 | [`grounded-review/eval/results/multiturn-mt2-v1.jsonl`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/multiturn-mt2-v1.jsonl) |
+| 改后版本留了模板占位符（v1.1） | 0/24（0.0%，95% 区间 0.0–13.8%） | 越低越好 | [`grounded-review/eval/results/multiturn-mt2-v1.1.jsonl`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/multiturn-mt2-v1.1.jsonl) |
 
 ### 多轮改稿 mt3：v1.1 对 v1.2（12 条新广告）
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 最后采用的建议里字段写错（v1.1） | 4/36（11.1%，95% 区间 4.4–25.3%） | 越低越好 | [`grounded-review/eval/results/multiturn-mt3-v1.1.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt3-v1.1.jsonl) |
-| 最后采用的建议里字段写错（v1.2） | 6/36（16.7%，95% 区间 7.9–31.9%） | 越低越好 | [`grounded-review/eval/results/multiturn-mt3-v1.2.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt3-v1.2.jsonl) |
+| 最后采用的建议里字段写错（v1.1） | 4/36（11.1%，95% 区间 4.4–25.3%） | 越低越好 | [`grounded-review/eval/results/multiturn-mt3-v1.1.jsonl`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/multiturn-mt3-v1.1.jsonl) |
+| 最后采用的建议里字段写错（v1.2） | 6/36（16.7%，95% 区间 7.9–31.9%） | 越低越好 | [`grounded-review/eval/results/multiturn-mt3-v1.2.jsonl`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/multiturn-mt3-v1.2.jsonl) |
 
 退回重交没用：模型第二次照样写错，v1.2 不采用。
 
@@ -232,21 +232,21 @@ v1.3 让模型先填修改后的文案、再写说明；题目在 v1.3 写好之
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 交上来的建议字段写错（v1.1） | 6/36（16.7%，95% 区间 7.9–31.9%） | 越低越好 | [`grounded-review/eval/results/multiturn-mt4-v1.1.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt4-v1.1.jsonl) |
-| 交上来的建议字段写错（v1.3） | 0/36（0.0%，95% 区间 0.0–9.6%） | 越低越好 | [`grounded-review/eval/results/multiturn-mt4-v1.3.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt4-v1.3.jsonl) |
-| 改后版本保住品牌和价格（v1.1） | 34/36（94.4%，95% 区间 81.9–98.5%） | 越高越好 | [`grounded-review/eval/results/multiturn-mt4-v1.1.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt4-v1.1.jsonl) |
-| 改后版本保住品牌和价格（v1.3） | 36/36（100.0%，95% 区间 90.4–100.0%） | 越高越好 | [`grounded-review/eval/results/multiturn-mt4-v1.3.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt4-v1.3.jsonl) |
-| 每段三轮对话的费用（v1.1） | 0.0069 美元（n=36） | 越低越好 | [`grounded-review/eval/results/multiturn-mt4-v1.1.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt4-v1.1.jsonl) |
-| 每段三轮对话的费用（v1.3） | 0.0068 美元（n=36） | 越低越好 | [`grounded-review/eval/results/multiturn-mt4-v1.3.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt4-v1.3.jsonl) |
+| 交上来的建议字段写错（v1.1） | 6/36（16.7%，95% 区间 7.9–31.9%） | 越低越好 | [`grounded-review/eval/results/multiturn-mt4-v1.1.jsonl`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/multiturn-mt4-v1.1.jsonl) |
+| 交上来的建议字段写错（v1.3） | 0/36（0.0%，95% 区间 0.0–9.6%） | 越低越好 | [`grounded-review/eval/results/multiturn-mt4-v1.3.jsonl`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/multiturn-mt4-v1.3.jsonl) |
+| 改后版本保住品牌和价格（v1.1） | 34/36（94.4%，95% 区间 81.9–98.5%） | 越高越好 | [`grounded-review/eval/results/multiturn-mt4-v1.1.jsonl`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/multiturn-mt4-v1.1.jsonl) |
+| 改后版本保住品牌和价格（v1.3） | 36/36（100.0%，95% 区间 90.4–100.0%） | 越高越好 | [`grounded-review/eval/results/multiturn-mt4-v1.3.jsonl`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/multiturn-mt4-v1.3.jsonl) |
+| 每段三轮对话的费用（v1.1） | 0.0069 美元（n=36） | 越低越好 | [`grounded-review/eval/results/multiturn-mt4-v1.1.jsonl`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/multiturn-mt4-v1.1.jsonl) |
+| 每段三轮对话的费用（v1.3） | 0.0068 美元（n=36） | 越低越好 | [`grounded-review/eval/results/multiturn-mt4-v1.3.jsonl`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/multiturn-mt4-v1.3.jsonl) |
 
 ### 记忆评测：给 Agent 看过去确认过的判定（24 条新广告）
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 判对（不带记忆） | 69/72（95.8%，95% 区间 88.5–98.6%） | 越高越好 | [`grounded-review/eval/results/memory-2026-11-16.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json) |
-| 判对（带记忆） | 72/72（100.0%，95% 区间 94.9–100.0%） | 越高越好 | [`grounded-review/eval/results/memory-2026-11-16.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json) |
-| 旧判定不该套用时照搬了旧判定（带记忆） | 0/36（0.0%，95% 区间 0.0–9.6%） | 越低越好 | [`grounded-review/eval/results/memory-2026-11-16.report.md`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.report.md) |
-| 带记忆的一次审核费用，是不带记忆的 | 0.89 倍 | 越低越好 | [`grounded-review/eval/results/memory-2026-11-16.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json) |
+| 判对（不带记忆） | 69/72（95.8%，95% 区间 88.5–98.6%） | 越高越好 | [`grounded-review/eval/results/memory-2026-11-16.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json) |
+| 判对（带记忆） | 72/72（100.0%，95% 区间 94.9–100.0%） | 越高越好 | [`grounded-review/eval/results/memory-2026-11-16.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json) |
+| 旧判定不该套用时照搬了旧判定（带记忆） | 0/36（0.0%，95% 区间 0.0–9.6%） | 越低越好 | [`grounded-review/eval/results/memory-2026-11-16.report.md`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/memory-2026-11-16.report.md) |
+| 带记忆的一次审核费用，是不带记忆的 | 0.89 倍 | 越低越好 | [`grounded-review/eval/results/memory-2026-11-16.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json) |
 
 带记忆全对，不带记忆的错都出在同一条广告上，所以这是机制演示，不是比例；旧判定不该套用的广告上，没有一次照搬旧判定。
 

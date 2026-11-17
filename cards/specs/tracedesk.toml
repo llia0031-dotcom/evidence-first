@@ -16,7 +16,7 @@ headline = [
   { zh = "截止时间有出处：普通提示 {check2_deadline_base}，v2.4 {check2_deadline_v24}", en = "Deadlines with a source: plain prompt {check2_deadline_base}, v2.4 {check2_deadline_v24}" },
 ]
 links = [
-  { label = { zh = "代码", en = "Code" }, url = "https://github.com/Jason-d-e/tracedesk-lite" },
+  { label = { zh = "代码", en = "Code" }, url = "https://github.com/llia0031-dotcom/tracedesk-lite" },
   { label = { zh = "演示视频", en = "Demo video" }, url = "https://youtu.be/eEHcymuLP58" },
 ]
 summary = { zh = "一个只按给定资料回答的常见问题助手，为读密集文字吃力的读者设计：先说结论，再列步骤和截止时间，每条都附逐字原文。引文先核对，没通过的不显示。演示资料是虚构的活动 DemoClub。评测比较同一个模型的普通提示和带出处要求的提示（grounded 系列）。", en = "An FAQ assistant that answers only from the given documents, designed for readers who find dense text hard: bottom line first, then steps and deadlines, each with a word-for-word quote. Quotes are checked before display and failures are withheld. The demo documents describe a fictional event, DemoClub. The evaluation compares a plain prompt with the grounded prompt series on the same model." }

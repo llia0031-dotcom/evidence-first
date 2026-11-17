@@ -6,7 +6,7 @@
 
 | 时间 | 团队 | 技术 | 链接 |
 |---|---|---|---|
-| 2026-11-13 – 2026-11-14 | Liang Liyuan | Node.js、Python、evidence-check 0.2.0、批量接口 | [代码和报告](https://github.com/Jason-d-e/evidence-screening) |
+| 2026-11-13 – 2026-11-14 | Liang Liyuan | Node.js、Python、evidence-check 0.2.0、批量接口 | [代码和报告](https://github.com/llia0031-dotcom/evidence-screening) |
 
 **问题**：用模型初筛简历时，每个“符合 / 不符合”都要附简历原文；看它会不会更准、换名字性别学校后结论会不会变。
 
@@ -107,13 +107,13 @@
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 逐条判对（普通打分） | 2728/2736（99.7%，95% 区间 99.4–99.9%） | 越高越好 | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
-| 逐条判对（附原文） | 2735/2736（100.0%，95% 区间 99.8–100.0%） | 越高越好 | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
-| 逐条判对（附原文 + 脚本核对） | 2379/2736（87.0%，95% 区间 85.6–88.2%） | 越高越好 | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
-| 逐条判对（关键词匹配） | 2510/2736（91.7%，95% 区间 90.6–92.7%） | 越高越好 | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
-| 换名字后去留变了（普通打分） | 0/240（0.0%，95% 区间 0.0–1.6%） | 越低越好 | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
-| 换名字后去留变了（附原文） | 0/240（0.0%，95% 区间 0.0–1.6%） | 越低越好 | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
-| 换学校后去留变了（附原文） | 0/48（0.0%，95% 区间 0.0–7.4%） | 越低越好 | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
+| 逐条判对（普通打分） | 2728/2736（99.7%，95% 区间 99.4–99.9%） | 越高越好 | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
+| 逐条判对（附原文） | 2735/2736（100.0%，95% 区间 99.8–100.0%） | 越高越好 | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
+| 逐条判对（附原文 + 脚本核对） | 2379/2736（87.0%，95% 区间 85.6–88.2%） | 越高越好 | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
+| 逐条判对（关键词匹配） | 2510/2736（91.7%，95% 区间 90.6–92.7%） | 越高越好 | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
+| 换名字后去留变了（普通打分） | 0/240（0.0%，95% 区间 0.0–1.6%） | 越低越好 | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
+| 换名字后去留变了（附原文） | 0/240（0.0%，95% 区间 0.0–1.6%） | 越低越好 | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
+| 换学校后去留变了（附原文） | 0/48（0.0%，95% 区间 0.0–7.4%） | 越低越好 | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
 
 附原文本身不降准确率；但把脚本核对直接接在“符合”上会误伤：模型的“符合”里常复述岗位门槛的数字，简历原文里没有，被判没依据。
 
@@ -121,25 +121,25 @@
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 正确的“符合”被核对误伤（附原文 + 脚本） | 70/424（16.5%，95% 区间 13.3–20.3%） | 越低越好 | [`evidence-screening/eval/v2/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v2/results/run-2026-11-13.summary.json) |
-| 正确的“符合”被核对误伤（先拆简历事实 + 脚本） | 10/424（2.4%，95% 区间 1.3–4.3%） | 越低越好 | [`evidence-screening/eval/v2/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v2/results/run-2026-11-13.summary.json) |
-| 正确的“符合”被核对误伤（交卷前自查 + 脚本） | 0/424（0.0%，95% 区间 0.0–0.9%） | 越低越好 | [`evidence-screening/eval/v2/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v2/results/run-2026-11-13.summary.json) |
+| 正确的“符合”被核对误伤（附原文 + 脚本） | 70/424（16.5%，95% 区间 13.3–20.3%） | 越低越好 | [`evidence-screening/eval/v2/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/v2/results/run-2026-11-13.summary.json) |
+| 正确的“符合”被核对误伤（先拆简历事实 + 脚本） | 10/424（2.4%，95% 区间 1.3–4.3%） | 越低越好 | [`evidence-screening/eval/v2/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/v2/results/run-2026-11-13.summary.json) |
+| 正确的“符合”被核对误伤（交卷前自查 + 脚本） | 0/424（0.0%，95% 区间 0.0–0.9%） | 越低越好 | [`evidence-screening/eval/v2/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/v2/results/run-2026-11-13.summary.json) |
 
 ### 第三版：更乱、带陷阱的简历（24 份）
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 陷阱判成“不符合”（交卷前自查） | 80/80（100.0%，95% 区间 95.4–100.0%） | 越高越好 | [`evidence-screening/eval/v3/results/run-2026-11-14.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v3/results/run-2026-11-14.summary.json) |
-| 陷阱判成“不符合”（普通打分） | 80/80（100.0%，95% 区间 95.4–100.0%） | 越高越好 | [`evidence-screening/eval/v3/results/run-2026-11-14.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v3/results/run-2026-11-14.summary.json) |
-| 逐条判对（交卷前自查 + 脚本） | 286/288（99.3%，95% 区间 97.5–99.8%） | 越高越好 | [`evidence-screening/eval/v3/results/run-2026-11-14.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v3/results/run-2026-11-14.summary.json) |
+| 陷阱判成“不符合”（交卷前自查） | 80/80（100.0%，95% 区间 95.4–100.0%） | 越高越好 | [`evidence-screening/eval/v3/results/run-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/v3/results/run-2026-11-14.summary.json) |
+| 陷阱判成“不符合”（普通打分） | 80/80（100.0%，95% 区间 95.4–100.0%） | 越高越好 | [`evidence-screening/eval/v3/results/run-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/v3/results/run-2026-11-14.summary.json) |
+| 逐条判对（交卷前自查 + 脚本） | 286/288（99.3%，95% 区间 97.5–99.8%） | 越高越好 | [`evidence-screening/eval/v3/results/run-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/v3/results/run-2026-11-14.summary.json) |
 
 ### 植入错误测试：脚本能拦住什么
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 加进去的数字被拦下 | 409/409（100.0%，95% 区间 99.1–100.0%） | 越高越好 | [`evidence-screening/eval/seeded/results/seeded-2026-11-14.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/seeded/results/seeded-2026-11-14.json) |
-| 别人简历里的句子被拦下 | 409/409（100.0%，95% 区间 99.1–100.0%） | 越高越好 | [`evidence-screening/eval/seeded/results/seeded-2026-11-14.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/seeded/results/seeded-2026-11-14.json) |
-| 看错意思被拦下 | 0/40（0.0%，95% 区间 0.0–8.8%） | 越高越好 | [`evidence-screening/eval/seeded/results/seeded-2026-11-14.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/seeded/results/seeded-2026-11-14.json) |
+| 加进去的数字被拦下 | 409/409（100.0%，95% 区间 99.1–100.0%） | 越高越好 | [`evidence-screening/eval/seeded/results/seeded-2026-11-14.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/seeded/results/seeded-2026-11-14.json) |
+| 别人简历里的句子被拦下 | 409/409（100.0%，95% 区间 99.1–100.0%） | 越高越好 | [`evidence-screening/eval/seeded/results/seeded-2026-11-14.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/seeded/results/seeded-2026-11-14.json) |
+| 看错意思被拦下 | 0/40（0.0%，95% 区间 0.0–8.8%） | 越高越好 | [`evidence-screening/eval/seeded/results/seeded-2026-11-14.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/seeded/results/seeded-2026-11-14.json) |
 
 引文核对防编造，不防看错意思；所以还要第二次独立复核。
 
@@ -147,9 +147,9 @@
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 挑出植入的错读（看得到理由） | 80/80（100.0%，95% 区间 95.4–100.0%） | 越高越好 | [`evidence-screening/eval/verify/results/run-2026-11-14.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/verify/results/run-2026-11-14.summary.json) |
-| 挑出植入的错读（只看引文） | 79/80（98.8%，95% 区间 93.3–99.8%） | 越高越好 | [`evidence-screening/eval/verify/results/run-2026-11-14.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/verify/results/run-2026-11-14.summary.json) |
-| 正确答案被误报（看得到理由） | 0/206（0.0%，95% 区间 0.0–1.8%） | 越低越好 | [`evidence-screening/eval/verify/results/run-2026-11-14.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/verify/results/run-2026-11-14.summary.json) |
+| 挑出植入的错读（看得到理由） | 80/80（100.0%，95% 区间 95.4–100.0%） | 越高越好 | [`evidence-screening/eval/verify/results/run-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/verify/results/run-2026-11-14.summary.json) |
+| 挑出植入的错读（只看引文） | 79/80（98.8%，95% 区间 93.3–99.8%） | 越高越好 | [`evidence-screening/eval/verify/results/run-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/verify/results/run-2026-11-14.summary.json) |
+| 正确答案被误报（看得到理由） | 0/206（0.0%，95% 区间 0.0–1.8%） | 越低越好 | [`evidence-screening/eval/verify/results/run-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/verify/results/run-2026-11-14.summary.json) |
 
 ## 评分器校准
 

@@ -6,7 +6,7 @@
 
 | 时间 | 团队 | 技术 | 链接 |
 |---|---|---|---|
-| 2026-11-16 – 2026-11-17 | Liang Liyuan | Python、DuckDB（SQL）、Pandas、evidence-check 0.4.0、批量接口、Excel、Dify | [代码和报告](https://github.com/Jason-d-e/grounded-business-review) |
+| 2026-11-16 – 2026-11-17 | Liang Liyuan | Python、DuckDB（SQL）、Pandas、evidence-check 0.4.0、批量接口、Excel、Dify | [代码和报告](https://github.com/llia0031-dotcom/grounded-business-review) |
 
 **问题**：每周看经营数据的人要知道哪些指标异动、原因在哪；让模型找原因、写周报，原因找得准不准，周报里的数字能不能都对回查询结果。
 
@@ -70,25 +70,25 @@
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 埋好的原因全找对（脚本） | 31/36（86.1%，95% 区间 71.3–93.9%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| 埋好的原因全找对（一次提示词） | 28/36（77.8%，95% 区间 61.9–88.3%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| 埋好的原因全找对（Agent） | 34/36（94.4%，95% 区间 81.9–98.5%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| 两个维度交叉的原因找对（脚本） | 6/6（100.0%，95% 区间 61.0–100.0%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| 两个维度交叉的原因找对（一次提示词） | 0/6（0.0%，95% 区间 0.0–39.0%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| 两个维度交叉的原因找对（Agent） | 4/6（66.7%，95% 区间 30.0–90.3%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| 按题配对：只有 Agent 对、一次提示词错的题 | 6 | 只作说明 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| 按题配对：只有一次提示词对、Agent 错的题 | 0 | 只作说明 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| Agent 对一次提示词：精确检验的 p 值 | 0.031 | 只作说明 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| Agent 对脚本：精确检验的 p 值 | 0.45 | 只作说明 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| 周报放行（脚本） | 36/36（100.0%，95% 区间 90.4–100.0%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| 改一次以内放行（一次提示词） | 35/36（97.2%，95% 区间 85.8–99.5%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| 改一次以内放行（Agent） | 33/36（91.7%，95% 区间 78.2–97.1%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| 第一次交卷就放行（一次提示词）（预测在七成到八成五之间，这一条没成立） | 19/36（52.8%，95% 区间 37.0–68.0%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| 第一次交卷就放行（Agent） | 12/36（33.3%，95% 区间 20.2–49.7%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| Agent 第一稿：引了不在引用行里的数的段落（改一次以后是零） | 22 | 越低越好 | [`grounded-business-review/eval/EVALUATION.md`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/EVALUATION.md) |
-| 每题费用（一次提示词，批量价） | 0.0032 美元 | 越低越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| 每题费用（Agent，批量价） | 0.0057 美元 | 越低越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| Agent 每题费用是一次提示词的 | 1.8 倍 | 越低越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| 埋好的原因全找对（脚本） | 31/36（86.1%，95% 区间 71.3–93.9%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| 埋好的原因全找对（一次提示词） | 28/36（77.8%，95% 区间 61.9–88.3%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| 埋好的原因全找对（Agent） | 34/36（94.4%，95% 区间 81.9–98.5%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| 两个维度交叉的原因找对（脚本） | 6/6（100.0%，95% 区间 61.0–100.0%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| 两个维度交叉的原因找对（一次提示词） | 0/6（0.0%，95% 区间 0.0–39.0%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| 两个维度交叉的原因找对（Agent） | 4/6（66.7%，95% 区间 30.0–90.3%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| 按题配对：只有 Agent 对、一次提示词错的题 | 6 | 只作说明 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| 按题配对：只有一次提示词对、Agent 错的题 | 0 | 只作说明 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| Agent 对一次提示词：精确检验的 p 值 | 0.031 | 只作说明 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| Agent 对脚本：精确检验的 p 值 | 0.45 | 只作说明 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| 周报放行（脚本） | 36/36（100.0%，95% 区间 90.4–100.0%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| 改一次以内放行（一次提示词） | 35/36（97.2%，95% 区间 85.8–99.5%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| 改一次以内放行（Agent） | 33/36（91.7%，95% 区间 78.2–97.1%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| 第一次交卷就放行（一次提示词）（预测在七成到八成五之间，这一条没成立） | 19/36（52.8%，95% 区间 37.0–68.0%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| 第一次交卷就放行（Agent） | 12/36（33.3%，95% 区间 20.2–49.7%） | 越高越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| Agent 第一稿：引了不在引用行里的数的段落（改一次以后是零） | 22 | 越低越好 | [`grounded-business-review/eval/EVALUATION.md`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/EVALUATION.md) |
+| 每题费用（一次提示词，批量价） | 0.0032 美元 | 越低越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| 每题费用（Agent，批量价） | 0.0057 美元 | 越低越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| Agent 每题费用是一次提示词的 | 1.8 倍 | 越低越好 | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
 
 Agent 原因找得最准，按题配对明显好过一次提示词；和脚本只差几题，分不出高下。一次提示词拿到的固定材料只按单个维度拆，两个维度交叉的原因一道也没对。改一次以内，三种做法的周报大多放行；第一次交卷就放行的比例比预测低。
 
@@ -96,9 +96,9 @@ Agent 原因找得最准，按题配对明显好过一次提示词；和脚本�
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 开发集：原因全找对（脚本） | 12/16（75.0%，95% 区间 50.5–89.8%） | 越高越好 | [`grounded-business-review/eval/results/summary-dev.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-dev.json) |
-| 开发集：原因全找对（一次提示词） | 13/16（81.2%，95% 区间 57.0–93.4%） | 越高越好 | [`grounded-business-review/eval/results/summary-dev.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-dev.json) |
-| 开发集：原因全找对（Agent） | 16/16（100.0%，95% 区间 80.6–100.0%） | 越高越好 | [`grounded-business-review/eval/results/summary-dev.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-dev.json) |
+| 开发集：原因全找对（脚本） | 12/16（75.0%，95% 区间 50.5–89.8%） | 越高越好 | [`grounded-business-review/eval/results/summary-dev.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-dev.json) |
+| 开发集：原因全找对（一次提示词） | 13/16（81.2%，95% 区间 57.0–93.4%） | 越高越好 | [`grounded-business-review/eval/results/summary-dev.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-dev.json) |
+| 开发集：原因全找对（Agent） | 16/16（100.0%，95% 区间 80.6–100.0%） | 越高越好 | [`grounded-business-review/eval/results/summary-dev.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-dev.json) |
 
 开发集是改规则和提示词用的，数字偏乐观，不拿来和测试集比。
 

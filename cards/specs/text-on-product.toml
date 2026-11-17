@@ -16,9 +16,9 @@ headline = [
   { zh = "图生视频里的字全对：{video_exact}", en = "Image-to-video clips with exactly right text: {video_exact}" },
 ]
 links = [
-  { label = { zh = "创作指南", en = "Guide" }, url = "https://jason-d-e.github.io/text-on-product/" },
-  { label = { zh = "上线前核对工具", en = "Pre-listing checker" }, url = "https://jason-d-e.github.io/text-on-product/check/" },
-  { label = { zh = "代码", en = "Code" }, url = "https://github.com/Jason-d-e/text-on-product" },
+  { label = { zh = "创作指南", en = "Guide" }, url = "https://llia0031-dotcom.github.io/text-on-product/" },
+  { label = { zh = "上线前核对工具", en = "Pre-listing checker" }, url = "https://llia0031-dotcom.github.io/text-on-product/check/" },
+  { label = { zh = "代码", en = "Code" }, url = "https://github.com/llia0031-dotcom/text-on-product" },
 ]
 summary = { zh = "用 20 个固定任务（16 张图、4 段视频）测 Seedream 4.0、4.5、5.0 lite 和 Seedance 1.0 pro 画中文卖点文字稳不稳。每张图的文字用 OCR 逐字核对，可疑处对照原图复看；每个作品按评分表独立打 3 次分。结果写成给商家的创作指南，另做了一个浏览器里的上线前核对工具：放进商品图和要求的文字，逐行查哪里不一样、哪里多了字，图片不上传。", en = "Twenty fixed tasks (16 images, 4 videos) test how reliably Seedream 4.0, 4.5 and 5.0 lite and Seedance 1.0 pro render Chinese selling-point text. Text in every image is checked character by character with OCR, with doubtful cases compared against the image; every work is rated three times, independently, against a rubric. The results became a guide for merchants plus an in-browser pre-listing checker: drop in a product image and the required text, and it lists line by line what differs or was added, without uploading the image." }
 core_link = { zh = "生成类场景：同样的“逐字核对”思路，用在画面里的字上。它有自己的 OCR 核对，没有调用 evidence-check 的脚本。", en = "The generation scenario: the same word-for-word idea applied to text inside images. It has its own OCR check and does not call the evidence-check script." }

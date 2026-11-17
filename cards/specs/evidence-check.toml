@@ -17,7 +17,7 @@ headline = [
   { zh = "脚本 0.4.0：正确说法通过 {v4_ok_before} → {v4_ok_after}，改错的数字仍全部标出 {v4_wrong_after}", en = "Script 0.4.0: correct claims passing {v4_ok_before} → {v4_ok_after}, changed numbers still all flagged {v4_wrong_after}" },
 ]
 links = [
-  { label = { zh = "代码和报告", en = "Code and report" }, url = "https://github.com/Jason-d-e/evidence-check" },
+  { label = { zh = "代码和报告", en = "Code and report" }, url = "https://github.com/llia0031-dotcom/evidence-check" },
 ]
 summary = { zh = "一个 Agent Skill 加一个核对脚本。Skill 让 Agent 给每句事实附上资料里逐字的原文；脚本核对两件事：原文真的在所引的文件里（大小写、空格、弯引号和标点不计较），以及这句话里的日期、时间、金额和数量也都出现在原文里，中英文数字互认（例如“下午2点”和 14:00）。脚本判断不了意思，所以 Skill 还要求 Agent 逐条读一遍通过的说法。两种用法：按资料回答问题；核对一篇草稿。", en = "An Agent Skill plus a checker script. The skill has the agent attach a word-for-word quote from the documents to every factual sentence; the script checks that the quote is really in the cited file (case, spacing, curly quotes and punctuation forgiven) and that every date, time, amount and count in the sentence also appears in its quotes, across Chinese and English numerals (\"下午2点\" matches 14:00). The script cannot judge meaning, so the skill also has the agent reread every passing claim. Two modes: answer from documents, and check a draft." }
 core_link = { zh = "就是核心部件本身：卖点体检、有据审核、简历初筛都调用它的脚本；匹配和数字规则移植自 TraceDesk。", en = "This is the core component: Sellpoint Check, Grounded Review and the screening study call its script; the matching and number rules were ported from TraceDesk." }

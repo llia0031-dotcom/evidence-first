@@ -6,7 +6,7 @@
 
 | When | Team | Stack | Links |
 |---|---|---|---|
-| 2026-11-12 – 2026-11-14 | Liang Liyuan | Python (standard library only), Agent Skill, promptfoo | [Code and report](https://github.com/Jason-d-e/evidence-check) |
+| 2026-11-12 – 2026-11-14 | Liang Liyuan | Python (standard library only), Agent Skill, promptfoo | [Code and report](https://github.com/llia0031-dotcom/evidence-check) |
 
 **Problem**: Answers and drafts written from documents quietly shift dates and numbers or add facts no document states; every factual sentence should carry a word-for-word quote that a script checks.
 
@@ -84,14 +84,14 @@ Each evaluation version has its own table. Scores are not compared across versio
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Planted errors flagged (skill v0.2) | 60/60 (100.0%, 95% CI 94.0–100.0%) | higher is better | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
-| Correct facts wrongly flagged (plain + script) | 12/150 (8.0%, 95% CI 4.6–13.5%) | lower is better | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
-| Correct facts wrongly flagged (skill v0.2) | 3/150 (2.0%, 95% CI 0.7–5.7%) | lower is better | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
-| Answers with an invented number (plain prompt) | 4/32 (12.5%, 95% CI 5.0–28.1%) | lower is better | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
-| Answers with an invented number (skill v0.1) | 2/32 (6.2%, 95% CI 1.7–20.1%) | lower is better | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
-| Answers with an invented number (skill v0.2) | 0/32 (0.0%, 95% CI 0.0–10.7%) | lower is better | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
-| Cost of 48 conversations (plain prompt) | US$0.0520 | lower is better | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
-| Cost of 48 conversations (skill v0.2) | US$0.1603 | lower is better | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
+| Planted errors flagged (skill v0.2) | 60/60 (100.0%, 95% CI 94.0–100.0%) | higher is better | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
+| Correct facts wrongly flagged (plain + script) | 12/150 (8.0%, 95% CI 4.6–13.5%) | lower is better | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
+| Correct facts wrongly flagged (skill v0.2) | 3/150 (2.0%, 95% CI 0.7–5.7%) | lower is better | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
+| Answers with an invented number (plain prompt) | 4/32 (12.5%, 95% CI 5.0–28.1%) | lower is better | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
+| Answers with an invented number (skill v0.1) | 2/32 (6.2%, 95% CI 1.7–20.1%) | lower is better | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
+| Answers with an invented number (skill v0.2) | 0/32 (0.0%, 95% CI 0.0–10.7%) | lower is better | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
+| Cost of 48 conversations (plain prompt) | US$0.0520 | lower is better | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
+| Cost of 48 conversations (skill v0.2) | US$0.1603 | lower is better | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
 
 All three arms flag every planted error; the skill's effect shows in free answers, where it stops invented numbers.
 
@@ -99,17 +99,17 @@ All three arms flag every planted error; the skill's effect shows in free answer
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Correct claims passing (0.2.0) | 3/16 (18.8%, 95% CI 6.6–43.0%) | higher is better | [`evidence-check/eval/v3/results/script-only.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v3/results/script-only.md) |
-| Correct claims passing (after the change) | 16/16 (100.0%, 95% CI 80.6–100.0%) | higher is better | [`evidence-check/eval/v3/results/script-only.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v3/results/script-only.md) |
-| Changed numbers flagged (after the change) | 17/17 (100.0%, 95% CI 81.6–100.0%) | higher is better | [`evidence-check/eval/v3/results/script-only.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v3/results/script-only.md) |
+| Correct claims passing (0.2.0) | 3/16 (18.8%, 95% CI 6.6–43.0%) | higher is better | [`evidence-check/eval/v3/results/script-only.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v3/results/script-only.md) |
+| Correct claims passing (after the change) | 16/16 (100.0%, 95% CI 80.6–100.0%) | higher is better | [`evidence-check/eval/v3/results/script-only.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v3/results/script-only.md) |
+| Changed numbers flagged (after the change) | 17/17 (100.0%, 95% CI 81.6–100.0%) | higher is better | [`evidence-check/eval/v3/results/script-only.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v3/results/script-only.md) |
 
 ### Script 0.4.0: 28 new claims (script only)
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Correct claims passing (0.3.0) | 0/11 (0.0%, 95% CI 0.0–25.9%) | higher is better | [`evidence-check/eval/v4/results/script-only.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v4/results/script-only.md) |
-| Correct claims passing (0.4.0) | 11/11 (100.0%, 95% CI 74.1–100.0%) | higher is better | [`evidence-check/eval/v4/results/script-only.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v4/results/script-only.md) |
-| Changed numbers flagged (0.4.0) | 13/13 (100.0%, 95% CI 77.2–100.0%) | higher is better | [`evidence-check/eval/v4/results/script-only.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v4/results/script-only.md) |
+| Correct claims passing (0.3.0) | 0/11 (0.0%, 95% CI 0.0–25.9%) | higher is better | [`evidence-check/eval/v4/results/script-only.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v4/results/script-only.md) |
+| Correct claims passing (0.4.0) | 11/11 (100.0%, 95% CI 74.1–100.0%) | higher is better | [`evidence-check/eval/v4/results/script-only.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v4/results/script-only.md) |
+| Changed numbers flagged (0.4.0) | 13/13 (100.0%, 95% CI 77.2–100.0%) | higher is better | [`evidence-check/eval/v4/results/script-only.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v4/results/script-only.md) |
 
 ## Grader calibration
 

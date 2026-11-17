@@ -9,14 +9,14 @@
         "label": "production",
         "to": "v0.1",
         "reason": "first version",
-        "source": "https://github.com/Jason-d-e/evidence-check/blob/main/eval/EVALUATION.md"
+        "source": "https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/EVALUATION.md"
       },
       {
         "date": "2026-11-12",
         "label": "staging",
         "to": "v0.2",
         "reason": "frozen before the v2 held-out items were written",
-        "source": "https://github.com/Jason-d-e/evidence-check/blob/main/eval/EVALUATION.md"
+        "source": "https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/EVALUATION.md"
       },
       {
         "date": "2026-11-12",
@@ -24,7 +24,7 @@
         "from": "v0.1",
         "to": "v0.2",
         "reason": "held-out v2: no invented numbers, lower cost",
-        "source": "https://github.com/Jason-d-e/evidence-check/blob/main/eval/EVALUATION.md"
+        "source": "https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/EVALUATION.md"
       }
     ]
   },
@@ -37,14 +37,14 @@
         "label": "production",
         "to": "v1",
         "reason": "first version",
-        "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+        "source": "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/EVALUATION.md"
       },
       {
         "date": "2026-11-13",
         "label": "staging",
         "to": "v1.1",
         "reason": "fix template placeholders in corrected versions",
-        "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+        "source": "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/EVALUATION.md"
       },
       {
         "date": "2026-11-13",
@@ -52,7 +52,7 @@
         "from": "v1",
         "to": "v1.1",
         "reason": "mt2: placeholders gone",
-        "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+        "source": "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/EVALUATION.md"
       },
       {
         "date": "2026-11-13",
@@ -60,7 +60,7 @@
         "from": "v1.1",
         "to": "v1.2",
         "reason": "try sending malformed advice back once",
-        "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+        "source": "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/EVALUATION.md"
       },
       {
         "date": "2026-11-13",
@@ -68,7 +68,7 @@
         "from": "v1.2",
         "to": "v1.3",
         "reason": "v1.2 did not help and was dropped; try asking for the corrected caption first",
-        "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+        "source": "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/EVALUATION.md"
       },
       {
         "date": "2026-11-14",
@@ -76,7 +76,7 @@
         "from": "v1.1",
         "to": "v1.3",
         "reason": "mt4: advice fields filled wrongly fell to zero, cost unchanged",
-        "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+        "source": "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/EVALUATION.md"
       }
     ]
   },
@@ -89,7 +89,7 @@
         "label": "production",
         "to": "v1",
         "reason": "first version",
-        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-run.md"
+        "source": "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-run.md"
       },
       {
         "date": "2026-11-14",
@@ -97,7 +97,7 @@
         "from": "v1",
         "to": "v2",
         "reason": "refuted wording cleared",
-        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-zh-v2.md"
+        "source": "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-zh-v2.md"
       },
       {
         "date": "2026-11-14",
@@ -105,7 +105,7 @@
         "from": "v2",
         "to": "v3",
         "reason": "Chinese merchants get Chinese advice",
-        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed-v3.md"
+        "source": "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-mixed-v3.md"
       },
       {
         "date": "2026-11-14",
@@ -113,7 +113,7 @@
         "from": "v3",
         "to": "v4",
         "reason": "try a refuted-words field",
-        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed2-v4.md"
+        "source": "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-mixed2-v4.md"
       },
       {
         "date": "2026-11-14",
@@ -121,7 +121,7 @@
         "from": "v4",
         "to": "v5",
         "reason": "v4 removed too much and was dropped; try v3 plus a buyers-say check",
-        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice-v5.md"
+        "source": "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-voice-v5.md"
       },
       {
         "date": "2026-11-14",
@@ -129,7 +129,7 @@
         "from": "v3",
         "to": "v5",
         "reason": "buyers-say phrasing gone, usable advice level",
-        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice-v5.md"
+        "source": "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-voice-v5.md"
       },
       {
         "date": "2026-11-14",
@@ -137,7 +137,7 @@
         "from": "v5",
         "to": "v6",
         "reason": "try a wider synonym list",
-        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice2-v6.md"
+        "source": "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-voice2-v6.md"
       },
       {
         "date": "2026-11-14",
@@ -145,7 +145,7 @@
         "from": "v6",
         "to": "v5",
         "reason": "v6 scored lower and was dropped",
-        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice-v5.md"
+        "source": "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-voice-v5.md"
       }
     ]
   },
@@ -158,7 +158,7 @@
         "label": "production",
         "to": "grounded-v2-access",
         "reason": "output format v2",
-        "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js"
+        "source": "https://github.com/llia0031-dotcom/tracedesk-lite/blob/main/app/lib/prompts.js"
       },
       {
         "date": "2026-11-09",
@@ -166,7 +166,7 @@
         "from": "grounded-v2-access",
         "to": "grounded-v2.1-access",
         "reason": "dates in the reader's language",
-        "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js"
+        "source": "https://github.com/llia0031-dotcom/tracedesk-lite/blob/main/app/lib/prompts.js"
       },
       {
         "date": "2026-11-09",
@@ -174,7 +174,7 @@
         "from": "grounded-v2.1-access",
         "to": "grounded-v2.2-access",
         "reason": "writing-style rules",
-        "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js"
+        "source": "https://github.com/llia0031-dotcom/tracedesk-lite/blob/main/app/lib/prompts.js"
       },
       {
         "date": "2026-11-09",
@@ -182,7 +182,7 @@
         "from": "grounded-v2.2-access",
         "to": "grounded-v2.3-access",
         "reason": "deadlines attached to their step",
-        "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/EVALUATION.md"
+        "source": "https://github.com/llia0031-dotcom/tracedesk-lite/blob/main/EVALUATION.md"
       },
       {
         "date": "2026-11-09",
@@ -190,7 +190,7 @@
         "from": "grounded-v2.3-access",
         "to": "grounded-v2.4-access",
         "reason": "deadlines in the reader's language",
-        "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/EVALUATION.md"
+        "source": "https://github.com/llia0031-dotcom/tracedesk-lite/blob/main/EVALUATION.md"
       }
     ]
   },
@@ -217,7 +217,7 @@
         "from": "cairn-monash-v1",
         "to": "cairn-monash-v2",
         "reason": "readability review",
-        "source": "https://github.com/Jason-d-e/cairn/blob/main/app/lib/prompt.js"
+        "source": "https://github.com/llia0031-dotcom/cairn/blob/main/app/lib/prompt.js"
       }
     ]
   },
@@ -230,14 +230,14 @@
         "label": "production",
         "to": "v1",
         "reason": "first version: Grounded Review's one-prompt arm as stored",
-        "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/docs/DESIGN.md"
+        "source": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/docs/DESIGN.md"
       },
       {
         "date": "2026-11-15",
         "label": "staging",
         "to": "v2",
         "reason": "send answers the model is unsure of to the review queue; v1 let every wrong decision through",
-        "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/docs/PREREGISTRATION.md"
+        "source": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/docs/PREREGISTRATION.md"
       },
       {
         "date": "2026-11-15",
@@ -245,7 +245,7 @@
         "from": "v2",
         "to": "v1",
         "reason": "v2 passed regression, but the canary rules written beforehand rolled it back at the first step",
-        "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/docs/CANARY-POSTMORTEM.md"
+        "source": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/docs/CANARY-POSTMORTEM.md"
       },
       {
         "date": "2026-11-16",
@@ -253,7 +253,7 @@
         "from": "v1",
         "to": "v2",
         "reason": "second canary on newly written ads, rules preregistered",
-        "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/docs/PREREGISTRATION-ROUND2.md"
+        "source": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/docs/PREREGISTRATION-ROUND2.md"
       },
       {
         "date": "2026-11-16",
@@ -261,7 +261,7 @@
         "from": "v1",
         "to": "v2",
         "reason": "round-two canary reached full release with no rollback rule fired",
-        "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/reports/compare-v1-v2-round2.md"
+        "source": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/reports/compare-v1-v2-round2.md"
       }
     ]
   },
@@ -274,7 +274,7 @@
         "label": "production",
         "to": "v1",
         "reason": "first version of the knowledge-base Q&A; evaluated on a question set written beforehand",
-        "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/docs/KBQA-PLAN.md"
+        "source": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/docs/KBQA-PLAN.md"
       }
     ]
   }

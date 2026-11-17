@@ -6,7 +6,7 @@
 
 | 时间 | 团队 | 技术 | 链接 |
 |---|---|---|---|
-| 2026-11-03 – 2026-11-10（Ctrl+V Hackathon） | Liang Liyuan、ZIzi821 | Node.js、React、promptfoo、Claude Haiku 5.5 | [代码](https://github.com/Jason-d-e/tracedesk-lite) · [演示视频](https://youtu.be/eEHcymuLP58) |
+| 2026-11-03 – 2026-11-10（Ctrl+V Hackathon） | Liang Liyuan、ZIzi821 | Node.js、React、promptfoo、Claude Haiku 5.5 | [代码](https://github.com/llia0031-dotcom/tracedesk-lite) · [演示视频](https://youtu.be/eEHcymuLP58) |
 
 **问题**：常见问题助手只按给定资料回答，每个回答附逐字原文；截止时间这类关键信息要放在最前、写清出处。
 

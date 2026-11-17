@@ -31,7 +31,7 @@ flowchart TB
   judge --> ops["Operations<br>Grounded Labelling Pipeline"]
 ```
 
-The operations layer is the [Grounded Labelling Pipeline](https://github.com/Jason-d-e/grounded-labelling-pipeline): it turns Grounded Review into a review workflow with quote checks, a review queue for uncertain ads, prompt versions, canary and rollback, and weekly metrics; its traffic is a replay of test items, not real users.
+The operations layer is the [Grounded Labelling Pipeline](https://github.com/llia0031-dotcom/grounded-labelling-pipeline): it turns Grounded Review into a review workflow with quote checks, a review queue for uncertain ads, prompt versions, canary and rollback, and weekly metrics; its traffic is a replay of test items, not real users.
 
 ## All projects
 
@@ -50,7 +50,7 @@ The operations layer is the [Grounded Labelling Pipeline](https://github.com/Jas
 
 ## Scores on every prompt change
 
-`.github/workflows/prompt-regression.yml`: when a pull request changes files under `prompts/`, a GitHub Action runs promptfoo on the versions behind the production and staging labels over one item set (evidence-check development set v1, 12 drafts, model claude-haiku-5-5) and posts both pass counts on the pull request. Every prompt change is re-tested this way; see [the first run on GitHub](https://github.com/Jason-d-e/evidence-first/pull/1).
+`.github/workflows/prompt-regression.yml`: when a pull request changes files under `prompts/`, a GitHub Action runs promptfoo on the versions behind the production and staging labels over one item set (evidence-check development set v1, 12 drafts, model claude-haiku-5-5) and posts both pass counts on the pull request. Every prompt change is re-tested this way; see [the first run on GitHub](https://github.com/llia0031-dotcom/evidence-first/pull/1).
 
 The Action needs an API key stored in the repository:
 

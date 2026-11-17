@@ -16,7 +16,7 @@ text = { zh = "`eval/v2/skill-versions/SKILL-v0.1.md`（指纹 9aec983a7522）",
 file = "prompts/texts/evidence-check/skill/v0.1.md"
 change = { zh = "第一版 Skill。", en = "First version of the skill." }
 why = { zh = "开发评测 v1 暴露三个问题：两次误报都是把英文原文正确译成中文却被判错；唯一漏掉的错句是算错的时长；费用接近普通提示的两倍。", en = "Development run v1 showed three problems: both false alarms were correct Chinese translations of English sources; the one missed error was a miscalculated duration; and it cost almost twice the plain prompt." }
-source = "https://github.com/Jason-d-e/evidence-check/blob/main/eval/EVALUATION.md"
+source = "https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/EVALUATION.md"
 compare_set = { zh = "留出评测 v2：16 个问题、8 篇草稿，每组 2 遍", en = "Held-out v2: 16 questions and 8 drafts, 2 runs per arm" }
 scores = [
   { label = { zh = "回答里有编造的数字", en = "Answers with an invented number" }, refs = ["evidence-check.v2_inv_v01"], direction = "lower" },
@@ -31,7 +31,7 @@ text = { zh = "`skills/evidence-check/SKILL.md`（指纹 8dcadfc8cd45，现行�
 file = "prompts/texts/evidence-check/skill/v0.2.md"
 change = { zh = "意思相同的改写、总结、翻译算有依据；只写资料给出的数字；整体缩短约三成。在写留出题之前冻结。", en = "Paraphrase, summary and translation count as supported; only numbers the documents give; about a third shorter. Frozen before the held-out items were written." }
 why = { zh = "留出评测里不再编数字，费用略低；误标多一条，属于噪声。", en = "No invented numbers on the held-out set and slightly lower cost; one more false alarm, within noise." }
-source = "https://github.com/Jason-d-e/evidence-check/blob/main/eval/EVALUATION.md"
+source = "https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/EVALUATION.md"
 compare_set = { zh = "留出评测 v2：16 个问题、8 篇草稿，每组 2 遍", en = "Held-out v2: 16 questions and 8 drafts, 2 runs per arm" }
 scores = [
   { label = { zh = "回答里有编造的数字（v0.1 → v0.2）", en = "Answers with an invented number (v0.1 → v0.2)" }, refs = ["evidence-check.v2_inv_v01", "evidence-check.v2_inv_v02"], direction = "lower" },

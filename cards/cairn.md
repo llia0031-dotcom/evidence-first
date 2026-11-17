@@ -6,7 +6,7 @@
 
 | 时间 | 团队 | 技术 | 链接 |
 |---|---|---|---|
-| 2026-11-09 – 2026-11-11（LaunchPad Hacks） | Liang Liyuan、ZIzi821 | Node.js、React、本机向量检索和重排、Claude Haiku 5.5 | [代码](https://github.com/Jason-d-e/cairn) · [在线演示](https://jason-d-e.github.io/cairn/) · [演示视频](https://youtu.be/0OJ8MqxsqYE) |
+| 2026-11-09 – 2026-11-11（LaunchPad Hacks） | Liang Liyuan、ZIzi821 | Node.js、React、本机向量检索和重排、Claude Haiku 5.5 | [代码](https://github.com/llia0031-dotcom/cairn) · [在线演示](https://llia0031-dotcom.github.io/cairn/) · [演示视频](https://youtu.be/0OJ8MqxsqYE) |
 
 **问题**：按一个机构自己公开的规定回答问题，每句话逐字引原文；先要把对的那一页找出来。
 
@@ -68,20 +68,20 @@
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 正确页面排第 1（采用的做法） | 34/45（75.6%，95% 区间 61.3–85.8%） | 越高越好 | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/Jason-d-e/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
-| 正确页面进前 5（采用的做法） | 44/45（97.8%，95% 区间 88.4–99.6%） | 越高越好 | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/Jason-d-e/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
-| MRR@10（采用的做法） | 0.839（n=45） | 越高越好 | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/Jason-d-e/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
-| MRR@10（只用向量检索） | 0.709（n=45） | 越高越好 | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/Jason-d-e/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
-| MRR@10（只用关键词） | 0.375（n=45） | 越高越好 | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/Jason-d-e/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
-| 中文题进前 5：不翻译 | 18/20（90.0%，95% 区间 69.9–97.2%） | 越高越好 | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/Jason-d-e/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
-| 中文题进前 5：先翻译 | 19/20（95.0%，95% 区间 76.4–99.1%） | 越高越好 | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/Jason-d-e/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
+| 正确页面排第 1（采用的做法） | 34/45（75.6%，95% 区间 61.3–85.8%） | 越高越好 | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/llia0031-dotcom/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
+| 正确页面进前 5（采用的做法） | 44/45（97.8%，95% 区间 88.4–99.6%） | 越高越好 | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/llia0031-dotcom/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
+| MRR@10（采用的做法） | 0.839（n=45） | 越高越好 | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/llia0031-dotcom/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
+| MRR@10（只用向量检索） | 0.709（n=45） | 越高越好 | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/llia0031-dotcom/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
+| MRR@10（只用关键词） | 0.375（n=45） | 越高越好 | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/llia0031-dotcom/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
+| 中文题进前 5：不翻译 | 18/20（90.0%，95% 区间 69.9–97.2%） | 越高越好 | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/llia0031-dotcom/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
+| 中文题进前 5：先翻译 | 19/20（95.0%，95% 区间 76.4–99.1%） | 越高越好 | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/llia0031-dotcom/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
 
 ### 学生提的真实问题（另算一套）
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 正确页面进前 5 | 14/15（93.3%，95% 区间 70.2–98.8%） | 越高越好 | [`cairn/app/eval/results/student-retrieval-2026-11-11.json`](https://github.com/Jason-d-e/cairn/blob/main/app/eval/results/student-retrieval-2026-11-11.json) |
-| MRR@10 | 0.724（n=15） | 越高越好 | [`cairn/app/eval/results/student-retrieval-2026-11-11.json`](https://github.com/Jason-d-e/cairn/blob/main/app/eval/results/student-retrieval-2026-11-11.json) |
+| 正确页面进前 5 | 14/15（93.3%，95% 区间 70.2–98.8%） | 越高越好 | [`cairn/app/eval/results/student-retrieval-2026-11-11.json`](https://github.com/llia0031-dotcom/cairn/blob/main/app/eval/results/student-retrieval-2026-11-11.json) |
+| MRR@10 | 0.724（n=15） | 越高越好 | [`cairn/app/eval/results/student-retrieval-2026-11-11.json`](https://github.com/llia0031-dotcom/cairn/blob/main/app/eval/results/student-retrieval-2026-11-11.json) |
 
 ## 评分器校准
 

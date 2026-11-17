@@ -6,7 +6,7 @@
 
 | When | Team | Stack | Links |
 |---|---|---|---|
-| 2026-11-12 – 2026-11-14 | Liang Liyuan | Node.js, DuckDB, Orama, evidence-check, Message Batches API | [Code](https://github.com/Jason-d-e/sellpoint-check) · [Design case study](https://jason-d-e.github.io/sellpoint-check/design/case/en/) · [Clickable prototype](https://jason-d-e.github.io/sellpoint-check/design/prototype/product-en.html) |
+| 2026-11-12 – 2026-11-14 | Liang Liyuan | Node.js, DuckDB, Orama, evidence-check, Message Batches API | [Code](https://github.com/llia0031-dotcom/sellpoint-check) · [Design case study](https://llia0031-dotcom.github.io/sellpoint-check/design/case/en/) · [Clickable prototype](https://llia0031-dotcom.github.io/sellpoint-check/design/prototype/product-en.html) |
 
 **Problem**: Which listing claims do buyer reviews confirm: buyers see only confirmed claims with quotes, and the rest go privately to the merchant with suggested rewrites.
 
@@ -119,46 +119,46 @@ Each evaluation version has its own table. Scores are not compared across versio
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Correct: all reviews in one call (C, adopted) | 60/60 (100.0%, 95% CI 94.0–100.0%) | higher is better | [`sellpoint-check/results/score-testset.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset.json) |
-| Correct: per-review judging (B) | 58/60 (96.7%, 95% CI 88.6–99.1%) | higher is better | [`sellpoint-check/results/score-testset.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset.json) |
-| Correct: retrieve then judge (A) | 52/60 (86.7%, 95% CI 75.8–93.1%) | higher is better | [`sellpoint-check/results/score-testset.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset.json) |
-| Trap reviews cited as evidence (C) | 0/11 (0.0%, 95% CI 0.0–25.9%) | lower is better | [`sellpoint-check/results/score-testset.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset.json) |
+| Correct: all reviews in one call (C, adopted) | 60/60 (100.0%, 95% CI 94.0–100.0%) | higher is better | [`sellpoint-check/results/score-testset.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset.json) |
+| Correct: per-review judging (B) | 58/60 (96.7%, 95% CI 88.6–99.1%) | higher is better | [`sellpoint-check/results/score-testset.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset.json) |
+| Correct: retrieve then judge (A) | 52/60 (86.7%, 95% CI 75.8–93.1%) | higher is better | [`sellpoint-check/results/score-testset.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset.json) |
+| Trap reviews cited as evidence (C) | 0/11 (0.0%, 95% CI 0.0–25.9%) | lower is better | [`sellpoint-check/results/score-testset.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset.json) |
 
 ### Real data (30 products, no answer key)
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Calls: C as a share of B | 2.8% | lower is better | [`sellpoint-check/results/compare-run.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/compare-run.json) |
-| Cost: C as a share of B | 17% | lower is better | [`sellpoint-check/results/compare-run.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/compare-run.json) |
-| Second judgement agrees: C's supporting evidence | 184/208 (88.5%, 95% CI 83.4–92.1%) | higher is better | [`sellpoint-check/results/audit-run.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/audit-run.json) |
-| Second judgement agrees: C's refuting evidence | 86/94 (91.5%, 95% CI 84.1–95.6%) | higher is better | [`sellpoint-check/results/audit-run.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/audit-run.json) |
-| Second judgement agrees: A's supporting evidence | 143/173 (82.7%, 95% CI 76.3–87.6%) | higher is better | [`sellpoint-check/results/audit-run.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/audit-run.json) |
-| C labels identical across two runs | 92.9% (n=210) | higher is better | [`sellpoint-check/results/repeat-run.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/repeat-run.json) |
-| Reference: the second judgement against known answers | 95.8% (n=72) | higher is better | [`sellpoint-check/results/audit-testset.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/audit-testset.json) |
+| Calls: C as a share of B | 2.8% | lower is better | [`sellpoint-check/results/compare-run.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/compare-run.json) |
+| Cost: C as a share of B | 17% | lower is better | [`sellpoint-check/results/compare-run.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/compare-run.json) |
+| Second judgement agrees: C's supporting evidence | 184/208 (88.5%, 95% CI 83.4–92.1%) | higher is better | [`sellpoint-check/results/audit-run.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/audit-run.json) |
+| Second judgement agrees: C's refuting evidence | 86/94 (91.5%, 95% CI 84.1–95.6%) | higher is better | [`sellpoint-check/results/audit-run.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/audit-run.json) |
+| Second judgement agrees: A's supporting evidence | 143/173 (82.7%, 95% CI 76.3–87.6%) | higher is better | [`sellpoint-check/results/audit-run.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/audit-run.json) |
+| C labels identical across two runs | 92.9% (n=210) | higher is better | [`sellpoint-check/results/repeat-run.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/repeat-run.json) |
+| Reference: the second judgement against known answers | 95.8% (n=72) | higher is better | [`sellpoint-check/results/audit-testset.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/audit-testset.json) |
 
 ### Chinese set (50 claims, slang and sarcasm)
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Correct (C) | 50/50 (100.0%, 95% CI 92.9–100.0%) | higher is better | [`sellpoint-check/results/score-testset-zh.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-zh.json) |
-| Correct (B) | 47/50 (94.0%, 95% CI 83.8–97.9%) | higher is better | [`sellpoint-check/results/score-testset-zh.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-zh.json) |
-| Correct (A) | 44/50 (88.0%, 95% CI 76.2–94.4%) | higher is better | [`sellpoint-check/results/score-testset-zh.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-zh.json) |
+| Correct (C) | 50/50 (100.0%, 95% CI 92.9–100.0%) | higher is better | [`sellpoint-check/results/score-testset-zh.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-zh.json) |
+| Correct (B) | 47/50 (94.0%, 95% CI 83.8–97.9%) | higher is better | [`sellpoint-check/results/score-testset-zh.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-zh.json) |
+| Correct (A) | 44/50 (88.0%, 95% CI 76.2–94.4%) | higher is better | [`sellpoint-check/results/score-testset-zh.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-zh.json) |
 
 ### English set v2 (50 claims, long reviews, typos, sarcasm)
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Correct (C) | 50/50 (100.0%, 95% CI 92.9–100.0%) | higher is better | [`sellpoint-check/results/score-testset-v2.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-v2.json) |
-| Correct (B) | 48/50 (96.0%, 95% CI 86.5–98.9%) | higher is better | [`sellpoint-check/results/score-testset-v2.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-v2.json) |
-| Correct (A) | 46/50 (92.0%, 95% CI 81.2–96.8%) | higher is better | [`sellpoint-check/results/score-testset-v2.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-v2.json) |
+| Correct (C) | 50/50 (100.0%, 95% CI 92.9–100.0%) | higher is better | [`sellpoint-check/results/score-testset-v2.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-v2.json) |
+| Correct (B) | 48/50 (96.0%, 95% CI 86.5–98.9%) | higher is better | [`sellpoint-check/results/score-testset-v2.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-v2.json) |
+| Correct (A) | 46/50 (92.0%, 95% CI 81.2–96.8%) | higher is better | [`sellpoint-check/results/score-testset-v2.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-v2.json) |
 
 ### Retrieval upgrade A2: 180 claims A had not seen
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Correct (A) | 167/180 (92.8%, 95% CI 88.0–95.7%) | higher is better | [`sellpoint-check/results/score-testset-mixed.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-mixed.json)<br>[`sellpoint-check/results/score-testset-mixed2.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-mixed2.json)<br>[`sellpoint-check/results/score-testset-voice.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-voice.json)<br>[`sellpoint-check/results/score-testset-voice2.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-voice2.json) |
-| Correct (A2) | 173/180 (96.1%, 95% CI 92.2–98.1%) | higher is better | [`sellpoint-check/results/score-testset-mixed.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-mixed.json)<br>[`sellpoint-check/results/score-testset-mixed2.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-mixed2.json)<br>[`sellpoint-check/results/score-testset-voice.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-voice.json)<br>[`sellpoint-check/results/score-testset-voice2.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-voice2.json) |
-| Correct (C) | 177/180 (98.3%, 95% CI 95.2–99.4%) | higher is better | [`sellpoint-check/results/score-testset-mixed.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-mixed.json)<br>[`sellpoint-check/results/score-testset-mixed2.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-mixed2.json)<br>[`sellpoint-check/results/score-testset-voice.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-voice.json)<br>[`sellpoint-check/results/score-testset-voice2.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-voice2.json) |
+| Correct (A) | 167/180 (92.8%, 95% CI 88.0–95.7%) | higher is better | [`sellpoint-check/results/score-testset-mixed.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-mixed.json)<br>[`sellpoint-check/results/score-testset-mixed2.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-mixed2.json)<br>[`sellpoint-check/results/score-testset-voice.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-voice.json)<br>[`sellpoint-check/results/score-testset-voice2.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-voice2.json) |
+| Correct (A2) | 173/180 (96.1%, 95% CI 92.2–98.1%) | higher is better | [`sellpoint-check/results/score-testset-mixed.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-mixed.json)<br>[`sellpoint-check/results/score-testset-mixed2.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-mixed2.json)<br>[`sellpoint-check/results/score-testset-voice.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-voice.json)<br>[`sellpoint-check/results/score-testset-voice2.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-voice2.json) |
+| Correct (C) | 177/180 (98.3%, 95% CI 95.2–99.4%) | higher is better | [`sellpoint-check/results/score-testset-mixed.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-mixed.json)<br>[`sellpoint-check/results/score-testset-mixed2.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-mixed2.json)<br>[`sellpoint-check/results/score-testset-voice.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-voice.json)<br>[`sellpoint-check/results/score-testset-voice2.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-voice2.json) |
 
 A2 beats A, but C stays adopted; A2 is the fallback when there are too many reviews for one call.
 
@@ -166,23 +166,23 @@ A2 beats A, but C stays adopted; A2 is the fallback when there are too many revi
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| v1, test set, first grading: usable as is | 35/40 (87.5%, 95% CI 73.9–94.5%) | higher is better | [`sellpoint-check/results/suggest-testset.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset.json) |
-| v1, test set, second grading | 32/40 (80.0%, 95% CI 65.2–89.5%) | higher is better | [`sellpoint-check/results/suggest-testset.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset.json) |
-| v1, real data, first grading | 140/151 (92.7%, 95% CI 87.4–95.9%) | higher is better | [`sellpoint-check/results/suggest-run.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-run.json) |
-| v5, real data, first grading | 142/151 (94.0%, 95% CI 89.1–96.8%) | higher is better | [`sellpoint-check/results/suggest-run-v5.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-run-v5.json) |
-| v5, real data, second grading | 143/151 (94.7%, 95% CI 89.9–97.3%) | higher is better | [`sellpoint-check/results/suggest-run-v5.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-run-v5.json) |
-| v3: new copy free of "buyers say" phrasing | 140/151 (92.7%, 95% CI 87.4–95.9%) | higher is better | [`sellpoint-check/results/suggest-run-v3.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-run-v3.json) |
-| v5: new copy free of "buyers say" phrasing | 151/151 (100.0%, 95% CI 97.5–100.0%) | higher is better | [`sellpoint-check/results/suggest-run-v5.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-run-v5.json) |
-| Grader calibration: first pass on advice of known quality | 31/32 (96.9%, 95% CI 84.3–99.4%) | higher is better | [`sellpoint-check/results/suggest-testset.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset.json) |
-| Grader calibration: second pass | 30/32 (93.8%, 95% CI 79.9–98.3%) | higher is better | [`sellpoint-check/results/suggest-testset.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset.json) |
-| Chinese set (v2 comparison): v1 usable as is | 30/34 (88.2%, 95% CI 73.4–95.3%) | higher is better | [`sellpoint-check/results/suggest-testset-zh.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-zh.json) |
-| Chinese set (v2 comparison): v2 usable as is | 32/34 (94.1%, 95% CI 80.9–98.4%) | higher is better | [`sellpoint-check/results/suggest-testset-zh-v2.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-zh-v2.json) |
-| Mixed set (v3 comparison): v2 in the right language | 20/40 (50.0%, 95% CI 35.2–64.8%) | higher is better | [`sellpoint-check/results/suggest-testset-mixed-v2.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed-v2.json) |
-| Mixed set (v3 comparison): v3 in the right language | 40/40 (100.0%, 95% CI 91.2–100.0%) | higher is better | [`sellpoint-check/results/suggest-testset-mixed-v3.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed-v3.json) |
-| Mixed set 2 (v4 comparison): v3 usable as is | 38/39 (97.4%, 95% CI 86.8–99.5%) | higher is better | [`sellpoint-check/results/suggest-testset-mixed2-v3.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed2-v3.json) |
-| Mixed set 2 (v4 comparison): v4 usable as is | 36/39 (92.3%, 95% CI 79.7–97.3%) | higher is better | [`sellpoint-check/results/suggest-testset-mixed2-v4.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed2-v4.json) |
-| Spoken set 2 (v6 comparison): v5 usable as is | 29/32 (90.6%, 95% CI 75.8–96.8%) | higher is better | [`sellpoint-check/results/suggest-testset-voice2-v5.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice2-v5.json) |
-| Spoken set 2 (v6 comparison): v6 usable as is | 26/32 (81.2%, 95% CI 64.7–91.1%) | higher is better | [`sellpoint-check/results/suggest-testset-voice2-v6.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice2-v6.json) |
+| v1, test set, first grading: usable as is | 35/40 (87.5%, 95% CI 73.9–94.5%) | higher is better | [`sellpoint-check/results/suggest-testset.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset.json) |
+| v1, test set, second grading | 32/40 (80.0%, 95% CI 65.2–89.5%) | higher is better | [`sellpoint-check/results/suggest-testset.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset.json) |
+| v1, real data, first grading | 140/151 (92.7%, 95% CI 87.4–95.9%) | higher is better | [`sellpoint-check/results/suggest-run.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-run.json) |
+| v5, real data, first grading | 142/151 (94.0%, 95% CI 89.1–96.8%) | higher is better | [`sellpoint-check/results/suggest-run-v5.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-run-v5.json) |
+| v5, real data, second grading | 143/151 (94.7%, 95% CI 89.9–97.3%) | higher is better | [`sellpoint-check/results/suggest-run-v5.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-run-v5.json) |
+| v3: new copy free of "buyers say" phrasing | 140/151 (92.7%, 95% CI 87.4–95.9%) | higher is better | [`sellpoint-check/results/suggest-run-v3.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-run-v3.json) |
+| v5: new copy free of "buyers say" phrasing | 151/151 (100.0%, 95% CI 97.5–100.0%) | higher is better | [`sellpoint-check/results/suggest-run-v5.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-run-v5.json) |
+| Grader calibration: first pass on advice of known quality | 31/32 (96.9%, 95% CI 84.3–99.4%) | higher is better | [`sellpoint-check/results/suggest-testset.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset.json) |
+| Grader calibration: second pass | 30/32 (93.8%, 95% CI 79.9–98.3%) | higher is better | [`sellpoint-check/results/suggest-testset.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset.json) |
+| Chinese set (v2 comparison): v1 usable as is | 30/34 (88.2%, 95% CI 73.4–95.3%) | higher is better | [`sellpoint-check/results/suggest-testset-zh.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-zh.json) |
+| Chinese set (v2 comparison): v2 usable as is | 32/34 (94.1%, 95% CI 80.9–98.4%) | higher is better | [`sellpoint-check/results/suggest-testset-zh-v2.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-zh-v2.json) |
+| Mixed set (v3 comparison): v2 in the right language | 20/40 (50.0%, 95% CI 35.2–64.8%) | higher is better | [`sellpoint-check/results/suggest-testset-mixed-v2.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-mixed-v2.json) |
+| Mixed set (v3 comparison): v3 in the right language | 40/40 (100.0%, 95% CI 91.2–100.0%) | higher is better | [`sellpoint-check/results/suggest-testset-mixed-v3.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-mixed-v3.json) |
+| Mixed set 2 (v4 comparison): v3 usable as is | 38/39 (97.4%, 95% CI 86.8–99.5%) | higher is better | [`sellpoint-check/results/suggest-testset-mixed2-v3.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-mixed2-v3.json) |
+| Mixed set 2 (v4 comparison): v4 usable as is | 36/39 (92.3%, 95% CI 79.7–97.3%) | higher is better | [`sellpoint-check/results/suggest-testset-mixed2-v4.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-mixed2-v4.json) |
+| Spoken set 2 (v6 comparison): v5 usable as is | 29/32 (90.6%, 95% CI 75.8–96.8%) | higher is better | [`sellpoint-check/results/suggest-testset-voice2-v5.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-voice2-v5.json) |
+| Spoken set 2 (v6 comparison): v6 usable as is | 26/32 (81.2%, 95% CI 64.7–91.1%) | higher is better | [`sellpoint-check/results/suggest-testset-voice2-v6.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-voice2-v6.json) |
 
 ## Grader calibration
 

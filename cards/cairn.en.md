@@ -6,7 +6,7 @@
 
 | When | Team | Stack | Links |
 |---|---|---|---|
-| 2026-11-09 – 2026-11-11 (LaunchPad Hacks) | Liang Liyuan, ZIzi821 | Node.js, React, local embedding and reranking, Claude Haiku 5.5 | [Code](https://github.com/Jason-d-e/cairn) · [Live demo](https://jason-d-e.github.io/cairn/) · [Demo video](https://youtu.be/0OJ8MqxsqYE) |
+| 2026-11-09 – 2026-11-11 (LaunchPad Hacks) | Liang Liyuan, ZIzi821 | Node.js, React, local embedding and reranking, Claude Haiku 5.5 | [Code](https://github.com/llia0031-dotcom/cairn) · [Live demo](https://llia0031-dotcom.github.io/cairn/) · [Demo video](https://youtu.be/0OJ8MqxsqYE) |
 
 **Problem**: Answer questions from an organisation's own published rules with word-for-word quotes, which first needs the right page to be found.
 
@@ -68,20 +68,20 @@ Each evaluation version has its own table. Scores are not compared across versio
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Right page first (method in use) | 34/45 (75.6%, 95% CI 61.3–85.8%) | higher is better | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/Jason-d-e/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
-| Right page in the top five (method in use) | 44/45 (97.8%, 95% CI 88.4–99.6%) | higher is better | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/Jason-d-e/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
-| MRR@10 (method in use) | 0.839 (n=45) | higher is better | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/Jason-d-e/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
-| MRR@10 (vector only) | 0.709 (n=45) | higher is better | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/Jason-d-e/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
-| MRR@10 (keyword only) | 0.375 (n=45) | higher is better | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/Jason-d-e/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
-| Chinese questions in the top five: no translation | 18/20 (90.0%, 95% CI 69.9–97.2%) | higher is better | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/Jason-d-e/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
-| Chinese questions in the top five: translated first | 19/20 (95.0%, 95% CI 76.4–99.1%) | higher is better | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/Jason-d-e/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
+| Right page first (method in use) | 34/45 (75.6%, 95% CI 61.3–85.8%) | higher is better | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/llia0031-dotcom/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
+| Right page in the top five (method in use) | 44/45 (97.8%, 95% CI 88.4–99.6%) | higher is better | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/llia0031-dotcom/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
+| MRR@10 (method in use) | 0.839 (n=45) | higher is better | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/llia0031-dotcom/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
+| MRR@10 (vector only) | 0.709 (n=45) | higher is better | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/llia0031-dotcom/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
+| MRR@10 (keyword only) | 0.375 (n=45) | higher is better | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/llia0031-dotcom/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
+| Chinese questions in the top five: no translation | 18/20 (90.0%, 95% CI 69.9–97.2%) | higher is better | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/llia0031-dotcom/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
+| Chinese questions in the top five: translated first | 19/20 (95.0%, 95% CI 76.4–99.1%) | higher is better | [`cairn/app/eval/results/retrieval-2026-11-10.json`](https://github.com/llia0031-dotcom/cairn/blob/main/app/eval/results/retrieval-2026-11-10.json) |
 
 ### Real questions from students (scored separately)
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Right page in the top five | 14/15 (93.3%, 95% CI 70.2–98.8%) | higher is better | [`cairn/app/eval/results/student-retrieval-2026-11-11.json`](https://github.com/Jason-d-e/cairn/blob/main/app/eval/results/student-retrieval-2026-11-11.json) |
-| MRR@10 | 0.724 (n=15) | higher is better | [`cairn/app/eval/results/student-retrieval-2026-11-11.json`](https://github.com/Jason-d-e/cairn/blob/main/app/eval/results/student-retrieval-2026-11-11.json) |
+| Right page in the top five | 14/15 (93.3%, 95% CI 70.2–98.8%) | higher is better | [`cairn/app/eval/results/student-retrieval-2026-11-11.json`](https://github.com/llia0031-dotcom/cairn/blob/main/app/eval/results/student-retrieval-2026-11-11.json) |
+| MRR@10 | 0.724 (n=15) | higher is better | [`cairn/app/eval/results/student-retrieval-2026-11-11.json`](https://github.com/llia0031-dotcom/cairn/blob/main/app/eval/results/student-retrieval-2026-11-11.json) |
 
 ## Grader calibration
 

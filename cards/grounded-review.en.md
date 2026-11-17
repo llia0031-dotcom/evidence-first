@@ -6,7 +6,7 @@
 
 | When | Team | Stack | Links |
 |---|---|---|---|
-| 2026-11-13 – 2026-11-16 | Liang Liyuan | Python, RapidOCR, BM25, evidence-check, Transformers (baselines), Message Batches API | [Code and report](https://github.com/Jason-d-e/grounded-review) · [Demo](https://jason-d-e.github.io/grounded-review/en.html) · [Product plan](https://github.com/Jason-d-e/grounded-review/blob/main/product/PRD.md) |
+| 2026-11-13 – 2026-11-16 | Liang Liyuan | Python, RapidOCR, BM25, evidence-check, Transformers (baselines), Message Batches API | [Code and report](https://github.com/llia0031-dotcom/grounded-review) · [Demo](https://llia0031-dotcom.github.io/grounded-review/en.html) · [Product plan](https://github.com/llia0031-dotcom/grounded-review/blob/main/product/PRD.md) |
 
 **Problem**: An ad decision should name the rule and the exact words that break it, not just approve or reject.
 
@@ -155,18 +155,18 @@ Each evaluation version has its own table. Scores are not compared across versio
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Decisions right (single prompt) | 191/192 (99.5%, 95% CI 97.1–99.9%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
-| Decisions right (agent) | 187/192 (97.4%, 95% CI 94.0–98.9%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
-| Violations caught (single prompt) | 124/124 (100.0%, 95% CI 97.0–100.0%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
-| Violations caught (agent) | 124/124 (100.0%, 95% CI 97.0–100.0%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
-| Traps correctly approved (single prompt) | 59/60 (98.3%, 95% CI 91.1–99.7%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
-| Traps correctly approved (agent) | 55/60 (91.7%, 95% CI 81.9–96.4%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
-| Clauses cited correctly (single prompt) | 129/129 (100.0%, 95% CI 97.1–100.0%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
-| Clauses cited correctly (agent) | 129/129 (100.0%, 95% CI 97.1–100.0%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
-| Clause quotes passing the check (single prompt) | 224/225 (99.6%, 95% CI 97.5–99.9%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
-| Clause quotes passing the check (agent) | 200/200 (100.0%, 95% CI 98.1–100.0%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
-| Cost per ad (single prompt) | US$0.0010 | lower is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
-| Cost per ad (agent) | US$0.0023 | lower is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| Decisions right (single prompt) | 191/192 (99.5%, 95% CI 97.1–99.9%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| Decisions right (agent) | 187/192 (97.4%, 95% CI 94.0–98.9%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| Violations caught (single prompt) | 124/124 (100.0%, 95% CI 97.0–100.0%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| Violations caught (agent) | 124/124 (100.0%, 95% CI 97.0–100.0%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| Traps correctly approved (single prompt) | 59/60 (98.3%, 95% CI 91.1–99.7%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| Traps correctly approved (agent) | 55/60 (91.7%, 95% CI 81.9–96.4%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| Clauses cited correctly (single prompt) | 129/129 (100.0%, 95% CI 97.1–100.0%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| Clauses cited correctly (agent) | 129/129 (100.0%, 95% CI 97.1–100.0%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| Clause quotes passing the check (single prompt) | 224/225 (99.6%, 95% CI 97.5–99.9%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| Clause quotes passing the check (agent) | 200/200 (100.0%, 95% CI 98.1–100.0%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| Cost per ad (single prompt) | US$0.0010 | lower is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| Cost per ad (agent) | US$0.0023 | lower is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
 
 Both arms are near the ceiling on written items; the difference is that the agent rejected more traps.
 
@@ -174,12 +174,12 @@ Both arms are near the ceiling on written items; the difference is that the agen
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Reference: rejecting everything | 37/57 (64.9%, 95% CI 51.9–76.0%) | context only | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
-| SafeGuard-VL-RL decisions right | 49/57 (86.0%, 95% CI 74.7–92.7%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
-| CLIP zero-shot decisions right | 36/57 (63.2%, 95% CI 50.2–74.5%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
-| SigLIP 2 zero-shot decisions right | 35/57 (61.4%, 95% CI 48.4–72.9%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
-| Banned-word list decisions right | 27/57 (47.4%, 95% CI 35.0–60.1%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
-| SafeGuard-VL-RL time per image (median, CPU) | 178.3 s | lower is better | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
+| Reference: rejecting everything | 37/57 (64.9%, 95% CI 51.9–76.0%) | context only | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
+| SafeGuard-VL-RL decisions right | 49/57 (86.0%, 95% CI 74.7–92.7%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
+| CLIP zero-shot decisions right | 36/57 (63.2%, 95% CI 50.2–74.5%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
+| SigLIP 2 zero-shot decisions right | 35/57 (61.4%, 95% CI 48.4–72.9%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
+| Banned-word list decisions right | 27/57 (47.4%, 95% CI 35.0–60.1%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
+| SafeGuard-VL-RL time per image (median, CPU) | 178.3 s | lower is better | [`grounded-review/eval/results/test-2026-11-13.images.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.images.summary.json) |
 
 None of these methods gives a clause or quote; only SafeGuard-VL-RL beats rejecting everything.
 
@@ -187,8 +187,8 @@ None of these methods gives a clause or quote; only SafeGuard-VL-RL beats reject
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Decisions right (single prompt) | 48/48 (100.0%, 95% CI 92.6–100.0%) | higher is better | [`grounded-review/eval/results/hard-2026-11-14.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/hard-2026-11-14.summary.json) |
-| Decisions right (agent) | 48/48 (100.0%, 95% CI 92.6–100.0%) | higher is better | [`grounded-review/eval/results/hard-2026-11-14.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/hard-2026-11-14.summary.json) |
+| Decisions right (single prompt) | 48/48 (100.0%, 95% CI 92.6–100.0%) | higher is better | [`grounded-review/eval/results/hard-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/hard-2026-11-14.summary.json) |
+| Decisions right (agent) | 48/48 (100.0%, 95% CI 92.6–100.0%) | higher is better | [`grounded-review/eval/results/hard-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/hard-2026-11-14.summary.json) |
 
 Both arms are fully right: the set shows a ceiling, not a difference.
 
@@ -196,12 +196,12 @@ Both arms are fully right: the set shows a ceiling, not a difference.
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Decisions right (single prompt) | 49/60 (81.7%, 95% CI 70.1–89.4%) | higher is better | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
-| Decisions right (agent) | 51/60 (85.0%, 95% CI 73.9–91.9%) | higher is better | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
-| Violations caught (single prompt) | 43/46 (93.5%, 95% CI 82.5–97.8%) | higher is better | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
-| Violations caught (agent) | 46/46 (100.0%, 95% CI 92.3–100.0%) | higher is better | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
-| Not-upheld ads approved (single prompt) | 6/14 (42.9%, 95% CI 21.4–67.4%) | higher is better | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
-| Not-upheld ads approved (agent) | 5/14 (35.7%, 95% CI 16.3–61.2%) | higher is better | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
+| Decisions right (single prompt) | 49/60 (81.7%, 95% CI 70.1–89.4%) | higher is better | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
+| Decisions right (agent) | 51/60 (85.0%, 95% CI 73.9–91.9%) | higher is better | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
+| Violations caught (single prompt) | 43/46 (93.5%, 95% CI 82.5–97.8%) | higher is better | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
+| Violations caught (agent) | 46/46 (100.0%, 95% CI 92.3–100.0%) | higher is better | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
+| Not-upheld ads approved (single prompt) | 6/14 (42.9%, 95% CI 21.4–67.4%) | higher is better | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
+| Not-upheld ads approved (agent) | 5/14 (35.7%, 95% CI 16.3–61.2%) | higher is better | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
 
 Neither arm is perfect, and they stay close; the agent is stricter, catching more violations and rejecting more compliant ads. Most errors come from the regulator's rules differing from the policy library.
 
@@ -209,22 +209,22 @@ Neither arm is perfect, and they stay close; the agent is stricter, catching mor
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Decisions right (single prompt) | 27/32 (84.4%, 95% CI 68.2–93.1%) | higher is better | [`grounded-review/eval/results/real-zh-2026-11-14.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/real-zh-2026-11-14.summary.json) |
-| Decisions right (agent) | 26/32 (81.2%, 95% CI 64.7–91.1%) | higher is better | [`grounded-review/eval/results/real-zh-2026-11-14.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/real-zh-2026-11-14.summary.json) |
+| Decisions right (single prompt) | 27/32 (84.4%, 95% CI 68.2–93.1%) | higher is better | [`grounded-review/eval/results/real-zh-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-zh-2026-11-14.summary.json) |
+| Decisions right (agent) | 26/32 (81.2%, 95% CI 64.7–91.1%) | higher is better | [`grounded-review/eval/results/real-zh-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-zh-2026-11-14.summary.json) |
 
 ### Multi-turn mt2: v1 vs v1.1 (12 new ads)
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Corrected version keeps template text (v1) | 3/24 (12.5%, 95% CI 4.3–31.0%) | lower is better | [`grounded-review/eval/results/multiturn-mt2-v1.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt2-v1.jsonl) |
-| Corrected version keeps template text (v1.1) | 0/24 (0.0%, 95% CI 0.0–13.8%) | lower is better | [`grounded-review/eval/results/multiturn-mt2-v1.1.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt2-v1.1.jsonl) |
+| Corrected version keeps template text (v1) | 3/24 (12.5%, 95% CI 4.3–31.0%) | lower is better | [`grounded-review/eval/results/multiturn-mt2-v1.jsonl`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/multiturn-mt2-v1.jsonl) |
+| Corrected version keeps template text (v1.1) | 0/24 (0.0%, 95% CI 0.0–13.8%) | lower is better | [`grounded-review/eval/results/multiturn-mt2-v1.1.jsonl`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/multiturn-mt2-v1.1.jsonl) |
 
 ### Multi-turn mt3: v1.1 vs v1.2 (12 new ads)
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Fields filled wrongly in the accepted advice (v1.1) | 4/36 (11.1%, 95% CI 4.4–25.3%) | lower is better | [`grounded-review/eval/results/multiturn-mt3-v1.1.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt3-v1.1.jsonl) |
-| Fields filled wrongly in the accepted advice (v1.2) | 6/36 (16.7%, 95% CI 7.9–31.9%) | lower is better | [`grounded-review/eval/results/multiturn-mt3-v1.2.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt3-v1.2.jsonl) |
+| Fields filled wrongly in the accepted advice (v1.1) | 4/36 (11.1%, 95% CI 4.4–25.3%) | lower is better | [`grounded-review/eval/results/multiturn-mt3-v1.1.jsonl`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/multiturn-mt3-v1.1.jsonl) |
+| Fields filled wrongly in the accepted advice (v1.2) | 6/36 (16.7%, 95% CI 7.9–31.9%) | lower is better | [`grounded-review/eval/results/multiturn-mt3-v1.2.jsonl`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/multiturn-mt3-v1.2.jsonl) |
 
 Sending it back does not help: the model repeats the fault, so v1.2 is dropped.
 
@@ -232,21 +232,21 @@ Sending it back does not help: the model repeats the fault, so v1.2 is dropped.
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Advice as submitted, fields filled wrongly (v1.1) | 6/36 (16.7%, 95% CI 7.9–31.9%) | lower is better | [`grounded-review/eval/results/multiturn-mt4-v1.1.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt4-v1.1.jsonl) |
-| Advice as submitted, fields filled wrongly (v1.3) | 0/36 (0.0%, 95% CI 0.0–9.6%) | lower is better | [`grounded-review/eval/results/multiturn-mt4-v1.3.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt4-v1.3.jsonl) |
-| Brand and price kept (v1.1) | 34/36 (94.4%, 95% CI 81.9–98.5%) | higher is better | [`grounded-review/eval/results/multiturn-mt4-v1.1.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt4-v1.1.jsonl) |
-| Brand and price kept (v1.3) | 36/36 (100.0%, 95% CI 90.4–100.0%) | higher is better | [`grounded-review/eval/results/multiturn-mt4-v1.3.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt4-v1.3.jsonl) |
-| Cost per three-turn conversation (v1.1) | US$0.0069 (n=36) | lower is better | [`grounded-review/eval/results/multiturn-mt4-v1.1.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt4-v1.1.jsonl) |
-| Cost per three-turn conversation (v1.3) | US$0.0068 (n=36) | lower is better | [`grounded-review/eval/results/multiturn-mt4-v1.3.jsonl`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/multiturn-mt4-v1.3.jsonl) |
+| Advice as submitted, fields filled wrongly (v1.1) | 6/36 (16.7%, 95% CI 7.9–31.9%) | lower is better | [`grounded-review/eval/results/multiturn-mt4-v1.1.jsonl`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/multiturn-mt4-v1.1.jsonl) |
+| Advice as submitted, fields filled wrongly (v1.3) | 0/36 (0.0%, 95% CI 0.0–9.6%) | lower is better | [`grounded-review/eval/results/multiturn-mt4-v1.3.jsonl`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/multiturn-mt4-v1.3.jsonl) |
+| Brand and price kept (v1.1) | 34/36 (94.4%, 95% CI 81.9–98.5%) | higher is better | [`grounded-review/eval/results/multiturn-mt4-v1.1.jsonl`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/multiturn-mt4-v1.1.jsonl) |
+| Brand and price kept (v1.3) | 36/36 (100.0%, 95% CI 90.4–100.0%) | higher is better | [`grounded-review/eval/results/multiturn-mt4-v1.3.jsonl`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/multiturn-mt4-v1.3.jsonl) |
+| Cost per three-turn conversation (v1.1) | US$0.0069 (n=36) | lower is better | [`grounded-review/eval/results/multiturn-mt4-v1.1.jsonl`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/multiturn-mt4-v1.1.jsonl) |
+| Cost per three-turn conversation (v1.3) | US$0.0068 (n=36) | lower is better | [`grounded-review/eval/results/multiturn-mt4-v1.3.jsonl`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/multiturn-mt4-v1.3.jsonl) |
 
 ### Memory test: earlier confirmed decisions shown to the agent (24 new ads)
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Decisions right (no memory) | 69/72 (95.8%, 95% CI 88.5–98.6%) | higher is better | [`grounded-review/eval/results/memory-2026-11-16.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json) |
-| Decisions right (with memory) | 72/72 (100.0%, 95% CI 94.9–100.0%) | higher is better | [`grounded-review/eval/results/memory-2026-11-16.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json) |
-| Earlier decision copied where it should not apply (with memory) | 0/36 (0.0%, 95% CI 0.0–9.6%) | lower is better | [`grounded-review/eval/results/memory-2026-11-16.report.md`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.report.md) |
-| Cost per review with memory, relative to without | 0.89× | lower is better | [`grounded-review/eval/results/memory-2026-11-16.summary.json`](https://github.com/Jason-d-e/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json) |
+| Decisions right (no memory) | 69/72 (95.8%, 95% CI 88.5–98.6%) | higher is better | [`grounded-review/eval/results/memory-2026-11-16.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json) |
+| Decisions right (with memory) | 72/72 (100.0%, 95% CI 94.9–100.0%) | higher is better | [`grounded-review/eval/results/memory-2026-11-16.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json) |
+| Earlier decision copied where it should not apply (with memory) | 0/36 (0.0%, 95% CI 0.0–9.6%) | lower is better | [`grounded-review/eval/results/memory-2026-11-16.report.md`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/memory-2026-11-16.report.md) |
+| Cost per review with memory, relative to without | 0.89× | lower is better | [`grounded-review/eval/results/memory-2026-11-16.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/memory-2026-11-16.summary.json) |
 
 With memory every decision is right; the errors without memory all come from one ad, so this demonstrates the mechanism rather than a rate. On ads where the earlier decision should not apply, it was never copied.
 

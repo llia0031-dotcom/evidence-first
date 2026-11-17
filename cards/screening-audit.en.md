@@ -6,7 +6,7 @@
 
 | When | Team | Stack | Links |
 |---|---|---|---|
-| 2026-11-13 – 2026-11-14 | Liang Liyuan | Node.js, Python, evidence-check 0.2.0, Message Batches API | [Code and report](https://github.com/Jason-d-e/evidence-screening) |
+| 2026-11-13 – 2026-11-14 | Liang Liyuan | Node.js, Python, evidence-check 0.2.0, Message Batches API | [Code and report](https://github.com/llia0031-dotcom/evidence-screening) |
 
 **Problem**: When a model screens resumes, every met / not-met verdict should carry a resume quote; does that make it more accurate, and do verdicts change when name, gender or school change.
 
@@ -107,13 +107,13 @@ Each evaluation version has its own table. Scores are not compared across versio
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Requirements right (plain) | 2728/2736 (99.7%, 95% CI 99.4–99.9%) | higher is better | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
-| Requirements right (with quotes) | 2735/2736 (100.0%, 95% CI 99.8–100.0%) | higher is better | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
-| Requirements right (quotes + script) | 2379/2736 (87.0%, 95% CI 85.6–88.2%) | higher is better | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
-| Requirements right (keyword matching) | 2510/2736 (91.7%, 95% CI 90.6–92.7%) | higher is better | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
-| Advance decision changed by a name swap (plain) | 0/240 (0.0%, 95% CI 0.0–1.6%) | lower is better | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
-| Advance decision changed by a name swap (with quotes) | 0/240 (0.0%, 95% CI 0.0–1.6%) | lower is better | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
-| Advance decision changed by a school swap (with quotes) | 0/48 (0.0%, 95% CI 0.0–7.4%) | lower is better | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
+| Requirements right (plain) | 2728/2736 (99.7%, 95% CI 99.4–99.9%) | higher is better | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
+| Requirements right (with quotes) | 2735/2736 (100.0%, 95% CI 99.8–100.0%) | higher is better | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
+| Requirements right (quotes + script) | 2379/2736 (87.0%, 95% CI 85.6–88.2%) | higher is better | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
+| Requirements right (keyword matching) | 2510/2736 (91.7%, 95% CI 90.6–92.7%) | higher is better | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
+| Advance decision changed by a name swap (plain) | 0/240 (0.0%, 95% CI 0.0–1.6%) | lower is better | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
+| Advance decision changed by a name swap (with quotes) | 0/240 (0.0%, 95% CI 0.0–1.6%) | lower is better | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
+| Advance decision changed by a school swap (with quotes) | 0/48 (0.0%, 95% CI 0.0–7.4%) | lower is better | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
 
 Quotes alone cost no accuracy, but wiring the script straight onto "met" verdicts discards correct ones: the model's verdict often restates the job's threshold number, which the resume quote does not contain.
 
@@ -121,25 +121,25 @@ Quotes alone cost no accuracy, but wiring the script straight onto "met" verdict
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Correct "met" lost to the check (quotes + script) | 70/424 (16.5%, 95% CI 13.3–20.3%) | lower is better | [`evidence-screening/eval/v2/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v2/results/run-2026-11-13.summary.json) |
-| Correct "met" lost to the check (resume facts split out + script) | 10/424 (2.4%, 95% CI 1.3–4.3%) | lower is better | [`evidence-screening/eval/v2/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v2/results/run-2026-11-13.summary.json) |
-| Correct "met" lost to the check (self-check + script) | 0/424 (0.0%, 95% CI 0.0–0.9%) | lower is better | [`evidence-screening/eval/v2/results/run-2026-11-13.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v2/results/run-2026-11-13.summary.json) |
+| Correct "met" lost to the check (quotes + script) | 70/424 (16.5%, 95% CI 13.3–20.3%) | lower is better | [`evidence-screening/eval/v2/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/v2/results/run-2026-11-13.summary.json) |
+| Correct "met" lost to the check (resume facts split out + script) | 10/424 (2.4%, 95% CI 1.3–4.3%) | lower is better | [`evidence-screening/eval/v2/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/v2/results/run-2026-11-13.summary.json) |
+| Correct "met" lost to the check (self-check + script) | 0/424 (0.0%, 95% CI 0.0–0.9%) | lower is better | [`evidence-screening/eval/v2/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/v2/results/run-2026-11-13.summary.json) |
 
 ### Round 3: messier resumes with traps (24)
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Traps judged not met (self-check arm) | 80/80 (100.0%, 95% CI 95.4–100.0%) | higher is better | [`evidence-screening/eval/v3/results/run-2026-11-14.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v3/results/run-2026-11-14.summary.json) |
-| Traps judged not met (plain) | 80/80 (100.0%, 95% CI 95.4–100.0%) | higher is better | [`evidence-screening/eval/v3/results/run-2026-11-14.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v3/results/run-2026-11-14.summary.json) |
-| Requirements right (self-check + script) | 286/288 (99.3%, 95% CI 97.5–99.8%) | higher is better | [`evidence-screening/eval/v3/results/run-2026-11-14.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/v3/results/run-2026-11-14.summary.json) |
+| Traps judged not met (self-check arm) | 80/80 (100.0%, 95% CI 95.4–100.0%) | higher is better | [`evidence-screening/eval/v3/results/run-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/v3/results/run-2026-11-14.summary.json) |
+| Traps judged not met (plain) | 80/80 (100.0%, 95% CI 95.4–100.0%) | higher is better | [`evidence-screening/eval/v3/results/run-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/v3/results/run-2026-11-14.summary.json) |
+| Requirements right (self-check + script) | 286/288 (99.3%, 95% CI 97.5–99.8%) | higher is better | [`evidence-screening/eval/v3/results/run-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/v3/results/run-2026-11-14.summary.json) |
 
 ### Planted errors: what the script stops
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Added numbers stopped | 409/409 (100.0%, 95% CI 99.1–100.0%) | higher is better | [`evidence-screening/eval/seeded/results/seeded-2026-11-14.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/seeded/results/seeded-2026-11-14.json) |
-| Lines from another resume stopped | 409/409 (100.0%, 95% CI 99.1–100.0%) | higher is better | [`evidence-screening/eval/seeded/results/seeded-2026-11-14.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/seeded/results/seeded-2026-11-14.json) |
-| Misreadings stopped | 0/40 (0.0%, 95% CI 0.0–8.8%) | higher is better | [`evidence-screening/eval/seeded/results/seeded-2026-11-14.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/seeded/results/seeded-2026-11-14.json) |
+| Added numbers stopped | 409/409 (100.0%, 95% CI 99.1–100.0%) | higher is better | [`evidence-screening/eval/seeded/results/seeded-2026-11-14.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/seeded/results/seeded-2026-11-14.json) |
+| Lines from another resume stopped | 409/409 (100.0%, 95% CI 99.1–100.0%) | higher is better | [`evidence-screening/eval/seeded/results/seeded-2026-11-14.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/seeded/results/seeded-2026-11-14.json) |
+| Misreadings stopped | 0/40 (0.0%, 95% CI 0.0–8.8%) | higher is better | [`evidence-screening/eval/seeded/results/seeded-2026-11-14.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/seeded/results/seeded-2026-11-14.json) |
 
 Quote checking stops fabrication, not misreading; that is why a second review is needed.
 
@@ -147,9 +147,9 @@ Quote checking stops fabrication, not misreading; that is why a second review is
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Misreadings caught (reason visible) | 80/80 (100.0%, 95% CI 95.4–100.0%) | higher is better | [`evidence-screening/eval/verify/results/run-2026-11-14.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/verify/results/run-2026-11-14.summary.json) |
-| Misreadings caught (quote only) | 79/80 (98.8%, 95% CI 93.3–99.8%) | higher is better | [`evidence-screening/eval/verify/results/run-2026-11-14.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/verify/results/run-2026-11-14.summary.json) |
-| Right answers wrongly flagged (reason visible) | 0/206 (0.0%, 95% CI 0.0–1.8%) | lower is better | [`evidence-screening/eval/verify/results/run-2026-11-14.summary.json`](https://github.com/Jason-d-e/evidence-screening/blob/main/eval/verify/results/run-2026-11-14.summary.json) |
+| Misreadings caught (reason visible) | 80/80 (100.0%, 95% CI 95.4–100.0%) | higher is better | [`evidence-screening/eval/verify/results/run-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/verify/results/run-2026-11-14.summary.json) |
+| Misreadings caught (quote only) | 79/80 (98.8%, 95% CI 93.3–99.8%) | higher is better | [`evidence-screening/eval/verify/results/run-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/verify/results/run-2026-11-14.summary.json) |
+| Right answers wrongly flagged (reason visible) | 0/206 (0.0%, 95% CI 0.0–1.8%) | lower is better | [`evidence-screening/eval/verify/results/run-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/verify/results/run-2026-11-14.summary.json) |
 
 ## Grader calibration
 
