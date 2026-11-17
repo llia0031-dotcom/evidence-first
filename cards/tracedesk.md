@@ -6,7 +6,7 @@
 
 | 时间 | 团队 | 技术 | 链接 |
 |---|---|---|---|
-| 2026-11-03 – 2026-11-10（Ctrl+V Hackathon） | Liang Liyuan、ZIzi821 | Node.js、React、promptfoo、Claude Haiku 5.5 | [代码](https://github.com/Jason-d-e/tracedesk-lite) · [演示视频](https://youtu.be/eEHcymuLP58) |
+| 2026-11-03 – 2026-11-10（Ctrl+V Hackathon） | Liang Liyuan、ZIzi821 | Node.js、React、promptfoo、Claude Haiku 5.5 | [代码](https://github.com/llia0031-dotcom/tracedesk-lite) · [演示视频](https://youtu.be/eEHcymuLP58) |
 
 **问题**：常见问题助手只按给定资料回答，每个回答附逐字原文；截止时间这类关键信息要放在最前、写清出处。
 
@@ -102,4 +102,4 @@ v2.4 在看过第一轮结果之后改出来，又在同一组题上跑，所以
 
 模板照 Hugging Face 模型卡（Apache-2.0）的章节；每个数字的来源文件和指纹见 `cards/sources.lock.json`。
 
-第三方数据、模型和代码的来源与许可，见[项目仓库](https://github.com/Jason-d-e/tracedesk-lite)里的说明。
+第三方数据、模型和代码的来源与许可，见[项目仓库](https://github.com/llia0031-dotcom/tracedesk-lite)里的说明。

@@ -6,7 +6,7 @@
 
 | When | Team | Stack | Links |
 |---|---|---|---|
-| 2026-11-12 – 2026-11-14 | Liang Liyuan | Seedream and Seedance through the BytePlus API, RapidOCR, in-browser OCR | [Guide](https://jason-d-e.github.io/text-on-product/) · [Pre-listing checker](https://jason-d-e.github.io/text-on-product/check/) · [Code](https://github.com/Jason-d-e/text-on-product) |
+| 2026-11-12 – 2026-11-14 | Liang Liyuan | Seedream and Seedance through the BytePlus API, RapidOCR, in-browser OCR | [Guide](https://llia0031-dotcom.github.io/text-on-product/) · [Pre-listing checker](https://llia0031-dotcom.github.io/text-on-product/check/) · [Code](https://github.com/llia0031-dotcom/text-on-product) |
 
 **Problem**: When Seedream makes Chinese product images, does the selling-point text come out exactly; how to write and lay it out so the text holds; how to check before listing.
 
@@ -96,4 +96,4 @@ Image text is almost always right, with one wrong digit from 4.0; video text doe
 
 Sections follow the Hugging Face model card template (Apache-2.0); the source file and fingerprint of every number are in `cards/sources.lock.json`.
 
-Sources and licences of third-party data, models and code are listed in the [project repository](https://github.com/Jason-d-e/text-on-product).
+Sources and licences of third-party data, models and code are listed in the [project repository](https://github.com/llia0031-dotcom/text-on-product).

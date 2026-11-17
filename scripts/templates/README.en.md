@@ -31,7 +31,7 @@ flowchart TB
   judge --> ops["Operations<br>Grounded Labelling Pipeline"]
 ```
 
-The operations layer is the [Grounded Labelling Pipeline](https://github.com/Jason-d-e/grounded-labelling-pipeline): it turns Grounded Review into a review workflow with quote checks, a review queue for uncertain ads, prompt versions, canary and rollback, and weekly metrics; its traffic is a replay of test items, not real users.
+The operations layer is the [Grounded Labelling Pipeline](https://github.com/llia0031-dotcom/grounded-labelling-pipeline): it turns Grounded Review into a review workflow with quote checks, a review queue for uncertain ads, prompt versions, canary and rollback, and weekly metrics; its traffic is a replay of test items, not real users.
 
 ## All projects
 
@@ -50,7 +50,7 @@ The operations layer is the [Grounded Labelling Pipeline](https://github.com/Jas
 
 ## Scores on every prompt change
 
-`.github/workflows/prompt-regression.yml`: when a pull request changes files under `prompts/`, a GitHub Action runs promptfoo on the versions behind the production and staging labels over one item set (evidence-check development set v1, 12 drafts, model claude-haiku-5-5) and posts both pass counts on the pull request. Every prompt change is re-tested this way; see [the first run on GitHub](https://github.com/Jason-d-e/evidence-first/pull/1) (both labels then pointed at the same version, so it only shows the flow works).
+`.github/workflows/prompt-regression.yml`: when a pull request changes files under `prompts/`, a GitHub Action runs promptfoo on the versions behind the production and staging labels over one item set (evidence-check development set v1, 12 drafts, model claude-haiku-5-5) and posts both pass counts on the pull request. Every prompt change is re-tested this way; see [the first run on GitHub](https://github.com/llia0031-dotcom/evidence-first/pull/1) (both labels then pointed at the same version, so it only shows the flow works).
 
 The Action needs an API key stored in the repository:
 
@@ -65,14 +65,14 @@ Python 3.11+, standard library only. The project folders must sit next to this r
 
 | Folder | Public repository |
 |---|---|
-| `evidence-check-public/` | [evidence-check](https://github.com/Jason-d-e/evidence-check) |
-| `cairn-public/` | [cairn](https://github.com/Jason-d-e/cairn) |
-| `grounded-review-public/` | [grounded-review](https://github.com/Jason-d-e/grounded-review) |
-| `sellpoint-check/` | [sellpoint-check](https://github.com/Jason-d-e/sellpoint-check) |
-| `screening-audit/` | [evidence-screening](https://github.com/Jason-d-e/evidence-screening) |
-| `voice-agent-eval/` | [voice-agent-eval](https://github.com/Jason-d-e/voice-agent-eval) |
-| `evidence-pipeline-public/` | [grounded-labelling-pipeline](https://github.com/Jason-d-e/grounded-labelling-pipeline) |
-| `grounded-business-review-public/` | [grounded-business-review](https://github.com/Jason-d-e/grounded-business-review) |
+| `evidence-check-public/` | [evidence-check](https://github.com/llia0031-dotcom/evidence-check) |
+| `cairn-public/` | [cairn](https://github.com/llia0031-dotcom/cairn) |
+| `grounded-review-public/` | [grounded-review](https://github.com/llia0031-dotcom/grounded-review) |
+| `sellpoint-check/` | [sellpoint-check](https://github.com/llia0031-dotcom/sellpoint-check) |
+| `screening-audit/` | [evidence-screening](https://github.com/llia0031-dotcom/evidence-screening) |
+| `voice-agent-eval/` | [voice-agent-eval](https://github.com/llia0031-dotcom/voice-agent-eval) |
+| `evidence-pipeline-public/` | [grounded-labelling-pipeline](https://github.com/llia0031-dotcom/grounded-labelling-pipeline) |
+| `grounded-business-review-public/` | [grounded-business-review](https://github.com/llia0031-dotcom/grounded-business-review) |
 | `launchpad-tracedesk/` | not public (source of the TraceDesk card) |
 | `aigc-scene-eval/` | not public (source of the text-on-product card) |
 

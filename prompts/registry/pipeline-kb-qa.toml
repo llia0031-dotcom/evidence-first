@@ -14,7 +14,7 @@ decision = "adopted"
 text = { zh = "`kb_qa.INSTRUCTIONS`：四种结论（违规、可以、要看条件、库里没有），只能引检索到的条款，引文逐字抄", en = "`kb_qa.INSTRUCTIONS`: four verdicts (violation, allowed, depends, not in the library), only retrieved clauses may be cited, quotes copied word for word" }
 change = { zh = "第一版。", en = "First version." }
 why = { zh = "计划和预测跑前写好。答对 {grounded-labelling-pipeline.kb_right}；库里没有的题说了“没有” {grounded-labelling-pipeline.kb_none}；没核对上的引文 {grounded-labelling-pipeline.kb_quotes_failed}。没成立的预测是中文问题的检索：算对的条款进前 5 只有 {grounded-labelling-pipeline.kb_zh_hit5}，库里有答案却说“没有”的都出在这里。", en = "The plan and predictions were written before the run. Answered right {grounded-labelling-pipeline.kb_right}; said \"not in the library\" when it was not {grounded-labelling-pipeline.kb_none}; quotes that failed the check {grounded-labelling-pipeline.kb_quotes_failed}. The prediction that failed is retrieval for Chinese questions: the right clause was in the top five for only {grounded-labelling-pipeline.kb_zh_hit5}, and every \"not in the library\" on an answerable question came from there." }
-source = "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/reports/kb-qa.md"
+source = "https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/reports/kb-qa.md"
 compare_set = { zh = "题库回放：80 道题（中英各一半，一部分库里没有答案），每道 2 遍", en = "Replay of a question set: 80 questions (half Chinese, half English, some not answerable from the library), 2 runs each" }
 scores = [
   { label = { zh = "答对", en = "Answered right" }, refs = ["grounded-labelling-pipeline.kb_right"], direction = "higher" },

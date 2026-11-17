@@ -6,7 +6,7 @@
 
 | 时间 | 团队 | 技术 | 链接 |
 |---|---|---|---|
-| 2026-11-12 – 2026-11-14 | Liang Liyuan | Python（只用标准库）、Agent Skill、promptfoo | [代码和报告](https://github.com/Jason-d-e/evidence-check) |
+| 2026-11-12 – 2026-11-14 | Liang Liyuan | Python（只用标准库）、Agent Skill、promptfoo | [代码和报告](https://github.com/llia0031-dotcom/evidence-check) |
 
 **问题**：AI 按资料写的回答和草稿，会悄悄改掉日期、数字，或者多出资料里没有的话；要让每句事实都附逐字原文，再用脚本核对。
 
@@ -84,14 +84,14 @@
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 埋的错误被标出（Skill v0.2） | 60/60（100.0%，95% 区间 94.0–100.0%） | 越高越好 | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
-| 正确事实被误标（普通提示 + 脚本） | 12/150（8.0%，95% 区间 4.6–13.5%） | 越低越好 | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
-| 正确事实被误标（Skill v0.2） | 3/150（2.0%，95% 区间 0.7–5.7%） | 越低越好 | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
-| 回答里有编造的数字（普通提示） | 4/32（12.5%，95% 区间 5.0–28.1%） | 越低越好 | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
-| 回答里有编造的数字（Skill v0.1） | 2/32（6.2%，95% 区间 1.7–20.1%） | 越低越好 | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
-| 回答里有编造的数字（Skill v0.2） | 0/32（0.0%，95% 区间 0.0–10.7%） | 越低越好 | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
-| 48 次对话的费用（普通提示） | 0.0520 美元 | 越低越好 | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
-| 48 次对话的费用（Skill v0.2） | 0.1603 美元 | 越低越好 | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
+| 埋的错误被标出（Skill v0.2） | 60/60（100.0%，95% 区间 94.0–100.0%） | 越高越好 | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
+| 正确事实被误标（普通提示 + 脚本） | 12/150（8.0%，95% 区间 4.6–13.5%） | 越低越好 | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
+| 正确事实被误标（Skill v0.2） | 3/150（2.0%，95% 区间 0.7–5.7%） | 越低越好 | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
+| 回答里有编造的数字（普通提示） | 4/32（12.5%，95% 区间 5.0–28.1%） | 越低越好 | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
+| 回答里有编造的数字（Skill v0.1） | 2/32（6.2%，95% 区间 1.7–20.1%） | 越低越好 | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
+| 回答里有编造的数字（Skill v0.2） | 0/32（0.0%，95% 区间 0.0–10.7%） | 越低越好 | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
+| 48 次对话的费用（普通提示） | 0.0520 美元 | 越低越好 | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
+| 48 次对话的费用（Skill v0.2） | 0.1603 美元 | 越低越好 | [`evidence-check/eval/v2/results/run-2026-11-12.summary.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v2/results/run-2026-11-12.summary.md) |
 
 三组都标出了全部埋的错误；Skill 的作用在回答问题时：不再编数字。
 
@@ -99,17 +99,17 @@
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 正确说法通过（0.2.0） | 3/16（18.8%，95% 区间 6.6–43.0%） | 越高越好 | [`evidence-check/eval/v3/results/script-only.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v3/results/script-only.md) |
-| 正确说法通过（改后） | 16/16（100.0%，95% 区间 80.6–100.0%） | 越高越好 | [`evidence-check/eval/v3/results/script-only.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v3/results/script-only.md) |
-| 改错的数字被标出（改后） | 17/17（100.0%，95% 区间 81.6–100.0%） | 越高越好 | [`evidence-check/eval/v3/results/script-only.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v3/results/script-only.md) |
+| 正确说法通过（0.2.0） | 3/16（18.8%，95% 区间 6.6–43.0%） | 越高越好 | [`evidence-check/eval/v3/results/script-only.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v3/results/script-only.md) |
+| 正确说法通过（改后） | 16/16（100.0%，95% 区间 80.6–100.0%） | 越高越好 | [`evidence-check/eval/v3/results/script-only.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v3/results/script-only.md) |
+| 改错的数字被标出（改后） | 17/17（100.0%，95% 区间 81.6–100.0%） | 越高越好 | [`evidence-check/eval/v3/results/script-only.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v3/results/script-only.md) |
 
 ### 脚本 0.4.0：28 条新说法（只跑脚本）
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 正确说法通过（0.3.0） | 0/11（0.0%，95% 区间 0.0–25.9%） | 越高越好 | [`evidence-check/eval/v4/results/script-only.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v4/results/script-only.md) |
-| 正确说法通过（0.4.0） | 11/11（100.0%，95% 区间 74.1–100.0%） | 越高越好 | [`evidence-check/eval/v4/results/script-only.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v4/results/script-only.md) |
-| 改错的数字被标出（0.4.0） | 13/13（100.0%，95% 区间 77.2–100.0%） | 越高越好 | [`evidence-check/eval/v4/results/script-only.md`](https://github.com/Jason-d-e/evidence-check/blob/main/eval/v4/results/script-only.md) |
+| 正确说法通过（0.3.0） | 0/11（0.0%，95% 区间 0.0–25.9%） | 越高越好 | [`evidence-check/eval/v4/results/script-only.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v4/results/script-only.md) |
+| 正确说法通过（0.4.0） | 11/11（100.0%，95% 区间 74.1–100.0%） | 越高越好 | [`evidence-check/eval/v4/results/script-only.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v4/results/script-only.md) |
+| 改错的数字被标出（0.4.0） | 13/13（100.0%，95% 区间 77.2–100.0%） | 越高越好 | [`evidence-check/eval/v4/results/script-only.md`](https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/v4/results/script-only.md) |
 
 ## 评分器校准
 
@@ -133,4 +133,4 @@
 
 模板照 Hugging Face 模型卡（Apache-2.0）的章节；每个数字的来源文件和指纹见 `cards/sources.lock.json`。
 
-第三方数据、模型和代码的来源与许可，见[项目仓库](https://github.com/Jason-d-e/evidence-check)里的说明。
+第三方数据、模型和代码的来源与许可，见[项目仓库](https://github.com/llia0031-dotcom/evidence-check)里的说明。

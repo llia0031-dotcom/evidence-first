@@ -6,7 +6,7 @@
 
 | When | Team | Stack | Links |
 |---|---|---|---|
-| 2026-11-03 – 2026-11-10 (Ctrl+V Hackathon) | Liang Liyuan, ZIzi821 | Node.js, React, promptfoo, Claude Haiku 5.5 | [Code](https://github.com/Jason-d-e/tracedesk-lite) · [Demo video](https://youtu.be/eEHcymuLP58) |
+| 2026-11-03 – 2026-11-10 (Ctrl+V Hackathon) | Liang Liyuan, ZIzi821 | Node.js, React, promptfoo, Claude Haiku 5.5 | [Code](https://github.com/llia0031-dotcom/tracedesk-lite) · [Demo video](https://youtu.be/eEHcymuLP58) |
 
 **Problem**: An FAQ assistant that answers only from given documents with word-for-word quotes, putting key facts such as deadlines first with their source.
 
@@ -102,4 +102,4 @@ Each evaluation version has its own table. Scores are not compared across versio
 
 Sections follow the Hugging Face model card template (Apache-2.0); the source file and fingerprint of every number are in `cards/sources.lock.json`.
 
-Sources and licences of third-party data, models and code are listed in the [project repository](https://github.com/Jason-d-e/tracedesk-lite).
+Sources and licences of third-party data, models and code are listed in the [project repository](https://github.com/llia0031-dotcom/tracedesk-lite).

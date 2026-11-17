@@ -6,7 +6,7 @@
 
 | 时间 | 团队 | 技术 | 链接 |
 |---|---|---|---|
-| 2026-11-12 – 2026-11-14 | Liang Liyuan | BytePlus 接口上的 Seedream 和 Seedance、RapidOCR、浏览器端 OCR | [创作指南](https://jason-d-e.github.io/text-on-product/) · [上线前核对工具](https://jason-d-e.github.io/text-on-product/check/) · [代码](https://github.com/Jason-d-e/text-on-product) |
+| 2026-11-12 – 2026-11-14 | Liang Liyuan | BytePlus 接口上的 Seedream 和 Seedance、RapidOCR、浏览器端 OCR | [创作指南](https://llia0031-dotcom.github.io/text-on-product/) · [上线前核对工具](https://llia0031-dotcom.github.io/text-on-product/check/) · [代码](https://github.com/llia0031-dotcom/text-on-product) |
 
 **问题**：用 Seedream 做中文电商主图时，画面里的卖点文字能不能一字不差；怎么写提示词、怎么排版，字最稳；上架前怎么核对。
 
@@ -96,4 +96,4 @@
 
 模板照 Hugging Face 模型卡（Apache-2.0）的章节；每个数字的来源文件和指纹见 `cards/sources.lock.json`。
 
-第三方数据、模型和代码的来源与许可，见[项目仓库](https://github.com/Jason-d-e/text-on-product)里的说明。
+第三方数据、模型和代码的来源与许可，见[项目仓库](https://github.com/llia0031-dotcom/text-on-product)里的说明。

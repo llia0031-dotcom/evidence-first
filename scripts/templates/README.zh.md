@@ -31,7 +31,7 @@ flowchart TB
   judge --> ops["运营<br>有据标注流水线"]
 ```
 
-运营层是[有据标注流水线](https://github.com/Jason-d-e/grounded-labelling-pipeline)：把有据审核接成一条审核工作流，核对引文、拿不准的进复核队列、提示词版本、灰度和回滚、每周指标；流量是评测题回放，不是真实用户。
+运营层是[有据标注流水线](https://github.com/llia0031-dotcom/grounded-labelling-pipeline)：把有据审核接成一条审核工作流，核对引文、拿不准的进复核队列、提示词版本、灰度和回滚、每周指标；流量是评测题回放，不是真实用户。
 
 ## 全部项目
 
@@ -50,7 +50,7 @@ flowchart TB
 
 ## 改提示词时自动对比分数
 
-`.github/workflows/prompt-regression.yml`：有人开 PR 改了 `prompts/` 下的文件，GitHub Action 就用 promptfoo 把 production 和 staging 两个标签指向的版本放在同一套题上跑（evidence-check 的开发评测 v1，12 篇草稿，模型 claude-haiku-5-5），把两版的通过数贴到 PR 里。每次改提示词都会自动重测，例如[第一次在 GitHub 上跑的结果](https://github.com/Jason-d-e/evidence-first/pull/1)（当时两个标签指向同一版，只说明流程跑通了）。
+`.github/workflows/prompt-regression.yml`：有人开 PR 改了 `prompts/` 下的文件，GitHub Action 就用 promptfoo 把 production 和 staging 两个标签指向的版本放在同一套题上跑（evidence-check 的开发评测 v1，12 篇草稿，模型 claude-haiku-5-5），把两版的通过数贴到 PR 里。每次改提示词都会自动重测，例如[第一次在 GitHub 上跑的结果](https://github.com/llia0031-dotcom/evidence-first/pull/1)（当时两个标签指向同一版，只说明流程跑通了）。
 
 要先在仓库里加一个密钥，Action 才能调用模型：
 
@@ -65,14 +65,14 @@ Action 运行时把密钥写进一个临时文件，只由评测脚本读取，�
 
 | 文件夹 | 公开仓库 |
 |---|---|
-| `evidence-check-public/` | [evidence-check](https://github.com/Jason-d-e/evidence-check) |
-| `cairn-public/` | [cairn](https://github.com/Jason-d-e/cairn) |
-| `grounded-review-public/` | [grounded-review](https://github.com/Jason-d-e/grounded-review) |
-| `sellpoint-check/` | [sellpoint-check](https://github.com/Jason-d-e/sellpoint-check) |
-| `screening-audit/` | [evidence-screening](https://github.com/Jason-d-e/evidence-screening) |
-| `voice-agent-eval/` | [voice-agent-eval](https://github.com/Jason-d-e/voice-agent-eval) |
-| `evidence-pipeline-public/` | [grounded-labelling-pipeline](https://github.com/Jason-d-e/grounded-labelling-pipeline) |
-| `grounded-business-review-public/` | [grounded-business-review](https://github.com/Jason-d-e/grounded-business-review) |
+| `evidence-check-public/` | [evidence-check](https://github.com/llia0031-dotcom/evidence-check) |
+| `cairn-public/` | [cairn](https://github.com/llia0031-dotcom/cairn) |
+| `grounded-review-public/` | [grounded-review](https://github.com/llia0031-dotcom/grounded-review) |
+| `sellpoint-check/` | [sellpoint-check](https://github.com/llia0031-dotcom/sellpoint-check) |
+| `screening-audit/` | [evidence-screening](https://github.com/llia0031-dotcom/evidence-screening) |
+| `voice-agent-eval/` | [voice-agent-eval](https://github.com/llia0031-dotcom/voice-agent-eval) |
+| `evidence-pipeline-public/` | [grounded-labelling-pipeline](https://github.com/llia0031-dotcom/grounded-labelling-pipeline) |
+| `grounded-business-review-public/` | [grounded-business-review](https://github.com/llia0031-dotcom/grounded-business-review) |
 | `launchpad-tracedesk/` | 没有公开（TraceDesk 卡的来源） |
 | `aigc-scene-eval/` | 没有公开（AI 生图卡的来源） |
 

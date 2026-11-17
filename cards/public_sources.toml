@@ -3,39 +3,39 @@
 [[map]]
 prefix = "grounded-review-public/"
 repo = "grounded-review"
-url = "https://github.com/Jason-d-e/grounded-review/blob/main/"
+url = "https://github.com/llia0031-dotcom/grounded-review/blob/main/"
 
 [[map]]
 prefix = "evidence-check-public/"
 repo = "evidence-check"
-url = "https://github.com/Jason-d-e/evidence-check/blob/main/"
+url = "https://github.com/llia0031-dotcom/evidence-check/blob/main/"
 
 [[map]]
 prefix = "cairn-public/"
 repo = "cairn"
-url = "https://github.com/Jason-d-e/cairn/blob/main/"
+url = "https://github.com/llia0031-dotcom/cairn/blob/main/"
 
 [[map]]
 prefix = "sellpoint-check/"
 repo = "sellpoint-check"
-url = "https://github.com/Jason-d-e/sellpoint-check/blob/main/"
+url = "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/"
 
 [[map]]
 prefix = "screening-audit/"
 repo = "evidence-screening"
-url = "https://github.com/Jason-d-e/evidence-screening/blob/main/"
+url = "https://github.com/llia0031-dotcom/evidence-screening/blob/main/"
 
 [[map]]
 prefix = "voice-agent-eval/"
 repo = "voice-agent-eval"
-url = "https://github.com/Jason-d-e/voice-agent-eval/blob/main/"
+url = "https://github.com/llia0031-dotcom/voice-agent-eval/blob/main/"
 
 [[map]]
 prefix = "evidence-pipeline-public/"
 repo = "grounded-labelling-pipeline"
-url = "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/"
+url = "https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/"
 
 [[map]]
 prefix = "grounded-business-review-public/"
 repo = "grounded-business-review"
-url = "https://github.com/Jason-d-e/grounded-business-review/blob/main/"
+url = "https://github.com/llia0031-dotcom/grounded-business-review/blob/main/"

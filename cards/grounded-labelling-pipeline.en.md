@@ -6,7 +6,7 @@
 
 | When | Team | Stack | Links |
 |---|---|---|---|
-| 2026-11-15 – 2026-11-17 | Liang Liyuan | Python, Pandas, DuckDB (SQL), BM25 and local embedding retrieval (Qwen3-Embedding-0.6B), evidence-check, Lark Base (workflows and the AI Agent step), Message Batches API | [Code and report](https://github.com/Jason-d-e/grounded-labelling-pipeline) |
+| 2026-11-15 – 2026-11-17 | Liang Liyuan | Python, Pandas, DuckDB (SQL), BM25 and local embedding retrieval (Qwen3-Embedding-0.6B), evidence-check, Lark Base (workflows and the AI Agent step), Message Batches API | [Code and report](https://github.com/llia0031-dotcom/grounded-labelling-pipeline) |
 
 **Problem**: How checkable answers become a review workflow a team runs daily: unsure cases go to people, and prompts ship with canary release and rollback.
 
@@ -167,12 +167,12 @@ Each evaluation version has its own table. Scores are not compared across versio
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Wrong decisions that went live (v1) | 17/332 (5.1%, 95% CI 3.2–8.0%) | lower is better | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json) |
-| Wrong decisions that went live (v2) | 9/332 (2.7%, 95% CI 1.4–5.1%) | lower is better | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json) |
-| Sent to human review (v1) | 6/332 (1.8%, 95% CI 0.8–3.9%) | context only | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json) |
-| Sent to human review (v2) | 72/332 (21.7%, 95% CI 17.6–26.4%) | context only | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json) |
-| Decisions right (v1) | 315/332 (94.9%, 95% CI 92.0–96.8%) | higher is better | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json) |
-| Decisions right (v2) | 312/332 (94.0%, 95% CI 90.9–96.1%) | higher is better | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json) |
+| Wrong decisions that went live (v1) | 17/332 (5.1%, 95% CI 3.2–8.0%) | lower is better | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions.json) |
+| Wrong decisions that went live (v2) | 9/332 (2.7%, 95% CI 1.4–5.1%) | lower is better | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions.json) |
+| Sent to human review (v1) | 6/332 (1.8%, 95% CI 0.8–3.9%) | context only | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions.json) |
+| Sent to human review (v2) | 72/332 (21.7%, 95% CI 17.6–26.4%) | context only | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions.json) |
+| Decisions right (v1) | 315/332 (94.9%, 95% CI 92.0–96.8%) | higher is better | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions.json) |
+| Decisions right (v2) | 312/332 (94.0%, 95% CI 90.9–96.1%) | higher is better | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions.json) |
 
 v2 lets fewer wrong decisions through at the cost of far more human review; all four adoption criteria are met.
 
@@ -180,9 +180,9 @@ v2 lets fewer wrong decisions through at the cost of far more human review; all 
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Canary share when a rule fired | 10% | context only | [`grounded-labelling-pipeline/data/canary.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/canary.json) |
-| That week, canary: wrong decisions that went live | 1/10 (10.0%, 95% CI 1.8–40.4%) | lower is better | [`grounded-labelling-pipeline/data/canary.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/canary.json) |
-| That week, production: wrong decisions that went live | 6/80 (7.5%, 95% CI 3.5–15.4%) | lower is better | [`grounded-labelling-pipeline/data/canary.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/canary.json) |
+| Canary share when a rule fired | 10% | context only | [`grounded-labelling-pipeline/data/canary.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/canary.json) |
+| That week, canary: wrong decisions that went live | 1/10 (10.0%, 95% CI 1.8–40.4%) | lower is better | [`grounded-labelling-pipeline/data/canary.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/canary.json) |
+| That week, production: wrong decisions that went live | 6/80 (7.5%, 95% CI 3.5–15.4%) | lower is better | [`grounded-labelling-pipeline/data/canary.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/canary.json) |
 
 Three rules fired at the first step, it rolled back, and production stayed at v1. The review found two wrong rules: the review-rate rule contradicted v2's purpose, and rates were compared when the canary had only 10 requests. The fixed rules were written after seeing the results; replayed on the same requests they reach full release, which proves nothing; a canary on new traffic is needed.
 
@@ -190,13 +190,13 @@ Three rules fired at the first step, it rolled back, and production stayed at v1
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Canary share reached without a rollback | 100% | context only | [`grounded-labelling-pipeline/data/canary-round2.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/canary-round2.json) |
-| Decisions right (v1) | 239/240 (99.6%, 95% CI 97.7–99.9%) | higher is better | [`grounded-labelling-pipeline/data/versions-round2.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-round2.json) |
-| Decisions right (v2) | 240/240 (100.0%, 95% CI 98.4–100.0%) | higher is better | [`grounded-labelling-pipeline/data/versions-round2.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-round2.json) |
-| Sent to human review (v2) | 36/240 (15.0%, 95% CI 11.0–20.1%) | context only | [`grounded-labelling-pipeline/data/versions-round2.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-round2.json) |
-| At full release, canary: wrong decisions that went live (cumulative) | 0/101 (0.0%, 95% CI 0.0–3.7%) | lower is better | [`grounded-labelling-pipeline/data/canary-round2.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/canary-round2.json) |
-| At full release, production: wrong decisions that went live (cumulative) | 1/150 (0.7%, 95% CI 0.1–3.7%) | lower is better | [`grounded-labelling-pipeline/data/canary-round2.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/canary-round2.json) |
-| v2 cost per request, relative to v1 (predicted at most 1.05×; this prediction did not hold) | 1.0503× | lower is better | [`grounded-labelling-pipeline/data/versions-round2.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-round2.json) |
+| Canary share reached without a rollback | 100% | context only | [`grounded-labelling-pipeline/data/canary-round2.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/canary-round2.json) |
+| Decisions right (v1) | 239/240 (99.6%, 95% CI 97.7–99.9%) | higher is better | [`grounded-labelling-pipeline/data/versions-round2.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-round2.json) |
+| Decisions right (v2) | 240/240 (100.0%, 95% CI 98.4–100.0%) | higher is better | [`grounded-labelling-pipeline/data/versions-round2.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-round2.json) |
+| Sent to human review (v2) | 36/240 (15.0%, 95% CI 11.0–20.1%) | context only | [`grounded-labelling-pipeline/data/versions-round2.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-round2.json) |
+| At full release, canary: wrong decisions that went live (cumulative) | 0/101 (0.0%, 95% CI 0.0–3.7%) | lower is better | [`grounded-labelling-pipeline/data/canary-round2.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/canary-round2.json) |
+| At full release, production: wrong decisions that went live (cumulative) | 1/150 (0.7%, 95% CI 0.1–3.7%) | lower is better | [`grounded-labelling-pipeline/data/canary-round2.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/canary-round2.json) |
+| v2 cost per request, relative to v1 (predicted at most 1.05×; this prediction did not hold) | 1.0503× | lower is better | [`grounded-labelling-pipeline/data/versions-round2.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-round2.json) |
 
 No rule fired at any step and v2 was promoted to production. Both versions were almost always right on these ads, so this round shows the release process works; the evidence that v2 lets fewer errors through still comes from round one.
 
@@ -204,11 +204,11 @@ No rule fired at any step and v2 was promoted to production. Both versions were 
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Written back to the table | 25/25 (100.0%, 95% CI 86.7–100.0%) | higher is better | [`grounded-labelling-pipeline/data/lark-agent-eval1.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json) |
-| Decisions right | 25/25 (100.0%, 95% CI 86.7–100.0%) | higher is better | [`grounded-labelling-pipeline/data/lark-agent-eval1.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json) |
-| Quote check failed, sent to review | 2/25 (8.0%, 95% CI 2.2–25.0%) | context only | [`grounded-labelling-pipeline/data/lark-agent-eval1.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json) |
-| Platform model said it was unsure | 0/25 (0.0%, 95% CI 0.0–13.3%) | context only | [`grounded-labelling-pipeline/data/lark-agent-eval1.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json) |
-| Reference: triage model's stored answers saying unsure | 13/50 (26.0%, 95% CI 15.9–39.6%) | context only | [`grounded-labelling-pipeline/data/lark-agent-eval1.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json) |
+| Written back to the table | 25/25 (100.0%, 95% CI 86.7–100.0%) | higher is better | [`grounded-labelling-pipeline/data/lark-agent-eval1.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json) |
+| Decisions right | 25/25 (100.0%, 95% CI 86.7–100.0%) | higher is better | [`grounded-labelling-pipeline/data/lark-agent-eval1.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json) |
+| Quote check failed, sent to review | 2/25 (8.0%, 95% CI 2.2–25.0%) | context only | [`grounded-labelling-pipeline/data/lark-agent-eval1.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json) |
+| Platform model said it was unsure | 0/25 (0.0%, 95% CI 0.0–13.3%) | context only | [`grounded-labelling-pipeline/data/lark-agent-eval1.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json) |
+| Reference: triage model's stored answers saying unsure | 13/50 (26.0%, 95% CI 15.9–39.6%) | context only | [`grounded-labelling-pipeline/data/lark-agent-eval1.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json) |
 
 The workflow runs in Lark: every ad was written back and decided right; two answers stitched non-adjacent clause sentences into one quote and the script sent them to review. The platform model never said it was unsure, while the triage model often did in its stored answers, so the review rate must be measured again after a model change.
 
@@ -216,19 +216,19 @@ The workflow runs in Lark: every ad was written back and decided right; two answ
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Searching with the ad text: right clause in the top three | 66/124 (53.2%, 95% CI 44.5–61.8%) | higher is better | [`grounded-labelling-pipeline/data/retrieval.csv`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval.csv) |
-| Searching with the model's answer: right clause in the top three | 110/124 (88.7%, 95% CI 81.9–93.2%) | higher is better | [`grounded-labelling-pipeline/data/retrieval.csv`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval.csv) |
+| Searching with the ad text: right clause in the top three | 66/124 (53.2%, 95% CI 44.5–61.8%) | higher is better | [`grounded-labelling-pipeline/data/retrieval.csv`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/retrieval.csv) |
+| Searching with the model's answer: right clause in the top three | 110/124 (88.7%, 95% CI 81.9–93.2%) | higher is better | [`grounded-labelling-pipeline/data/retrieval.csv`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/retrieval.csv) |
 
 ### Prompt v3 on newly written ads: not adopted
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Clear ads sent to human review (v2) | 44/176 (25.0%, 95% CI 19.2–31.9%) | lower is better | [`grounded-labelling-pipeline/data/versions-v3-round3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json) |
-| Clear ads sent to human review (v3) | 4/176 (2.3%, 95% CI 0.9–5.7%) | lower is better | [`grounded-labelling-pipeline/data/versions-v3-round3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json) |
-| Ads that need a human, sent to people (v2) | 44/64 (68.8%, 95% CI 56.6–78.8%) | higher is better | [`grounded-labelling-pipeline/data/versions-v3-round3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json) |
-| Ads that need a human, sent to people (v3) | 19/64 (29.7%, 95% CI 19.9–41.8%) | higher is better | [`grounded-labelling-pipeline/data/versions-v3-round3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json) |
-| Regression (round one): wrong decisions that went live (v2) | 9/332 (2.7%, 95% CI 1.4–5.1%) | lower is better | [`grounded-labelling-pipeline/data/versions-v3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3.json) |
-| Regression (round one): wrong decisions that went live (v3) | 9/332 (2.7%, 95% CI 1.4–5.1%) | lower is better | [`grounded-labelling-pipeline/data/versions-v3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3.json) |
+| Clear ads sent to human review (v2) | 44/176 (25.0%, 95% CI 19.2–31.9%) | lower is better | [`grounded-labelling-pipeline/data/versions-v3-round3.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json) |
+| Clear ads sent to human review (v3) | 4/176 (2.3%, 95% CI 0.9–5.7%) | lower is better | [`grounded-labelling-pipeline/data/versions-v3-round3.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json) |
+| Ads that need a human, sent to people (v2) | 44/64 (68.8%, 95% CI 56.6–78.8%) | higher is better | [`grounded-labelling-pipeline/data/versions-v3-round3.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json) |
+| Ads that need a human, sent to people (v3) | 19/64 (29.7%, 95% CI 19.9–41.8%) | higher is better | [`grounded-labelling-pipeline/data/versions-v3-round3.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json) |
+| Regression (round one): wrong decisions that went live (v2) | 9/332 (2.7%, 95% CI 1.4–5.1%) | lower is better | [`grounded-labelling-pipeline/data/versions-v3.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v3.json) |
+| Regression (round one): wrong decisions that went live (v3) | 9/332 (2.7%, 95% CI 1.4–5.1%) | lower is better | [`grounded-labelling-pipeline/data/versions-v3.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v3.json) |
 
 Clear ads got far fewer needless reviews, but ads written as needing a human were also sent to people less often, a drop past the ten-point limit set beforehand, so v3 was not adopted and production stays on v2. Had it been rolled out, no canary rollback rule would have fired: what stopped it was the ads written as needing a human and the adoption standard written beforehand.
 
@@ -236,14 +236,14 @@ Clear ads got far fewer needless reviews, but ads written as needing a human wer
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Clear ads sent to human review (v2) | 43/176 (24.4%, 95% CI 18.7–31.3%) | lower is better | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
-| Clear ads sent to human review (v4) | 11/176 (6.2%, 95% CI 3.5–10.8%) | lower is better | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
-| Ads that need a human, sent to people (v2) | 42/64 (65.6%, 95% CI 53.4–76.1%) | higher is better | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
-| Ads that need a human, sent to people (v4) | 47/64 (73.4%, 95% CI 61.5–82.7%) | higher is better | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
-| Clear ads decided wrongly and gone live (v2) | 0/176 (0.0%, 95% CI 0.0–2.1%) | lower is better | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
-| Clear ads decided wrongly and gone live (v4) (both runs of the same trap item) | 2/176 (1.1%, 95% CI 0.3–4.0%) | lower is better | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
-| Regression (round one): wrong decisions that went live (v2) | 9/332 (2.7%, 95% CI 1.4–5.1%) | lower is better | [`grounded-labelling-pipeline/data/versions-v4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4.json) |
-| Regression (round one): wrong decisions that went live (v4) | 13/332 (3.9%, 95% CI 2.3–6.6%) | lower is better | [`grounded-labelling-pipeline/data/versions-v4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4.json) |
+| Clear ads sent to human review (v2) | 43/176 (24.4%, 95% CI 18.7–31.3%) | lower is better | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| Clear ads sent to human review (v4) | 11/176 (6.2%, 95% CI 3.5–10.8%) | lower is better | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| Ads that need a human, sent to people (v2) | 42/64 (65.6%, 95% CI 53.4–76.1%) | higher is better | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| Ads that need a human, sent to people (v4) | 47/64 (73.4%, 95% CI 61.5–82.7%) | higher is better | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| Clear ads decided wrongly and gone live (v2) | 0/176 (0.0%, 95% CI 0.0–2.1%) | lower is better | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| Clear ads decided wrongly and gone live (v4) (both runs of the same trap item) | 2/176 (1.1%, 95% CI 0.3–4.0%) | lower is better | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| Regression (round one): wrong decisions that went live (v2) | 9/332 (2.7%, 95% CI 1.4–5.1%) | lower is better | [`grounded-labelling-pipeline/data/versions-v4.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v4.json) |
+| Regression (round one): wrong decisions that went live (v4) | 13/332 (3.9%, 95% CI 2.3–6.6%) | lower is better | [`grounded-labelling-pipeline/data/versions-v4.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v4.json) |
 
 Better than v2 at both ends: fewer needless reviews of clear ads and more of the ads that need a human sent to people. But it is more often sure when wrong: one trap item was decided wrongly and went live in both runs (v2 decided it the same way but said it was unsure and sent it to people), and more wrong decisions got through in the round-one regression, so under the standard written beforehand it was not adopted and production stays on v2. That trap item's answer is debatable; as preregistered, it was not changed.
 
@@ -251,10 +251,10 @@ Better than v2 at both ends: fewer needless reviews of clear ads and more of the
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Answered right | 134/160 (83.8%, 95% CI 77.3–88.7%) | higher is better | [`grounded-labelling-pipeline/data/kbqa-eval.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/kbqa-eval.json) |
-| Said "not in the library" when it was not | 44/48 (91.7%, 95% CI 80.4–96.7%) | higher is better | [`grounded-labelling-pipeline/data/kbqa-eval.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/kbqa-eval.json) |
-| Quotes that failed the check | 1/160 (0.6%, 95% CI 0.1–3.5%) | lower is better | [`grounded-labelling-pipeline/data/kbqa-eval.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/kbqa-eval.json) |
-| Chinese questions: right clause in the top five (BM25) (predicted ninety percent or more; this prediction did not hold; counted per question, since retrieval is the same on both runs) | 23/28 (82.1%, 95% CI 64.4–92.1%) | higher is better | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
+| Answered right | 134/160 (83.8%, 95% CI 77.3–88.7%) | higher is better | [`grounded-labelling-pipeline/data/kbqa-eval.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/kbqa-eval.json) |
+| Said "not in the library" when it was not | 44/48 (91.7%, 95% CI 80.4–96.7%) | higher is better | [`grounded-labelling-pipeline/data/kbqa-eval.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/kbqa-eval.json) |
+| Quotes that failed the check | 1/160 (0.6%, 95% CI 0.1–3.5%) | lower is better | [`grounded-labelling-pipeline/data/kbqa-eval.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/kbqa-eval.json) |
+| Chinese questions: right clause in the top five (BM25) (predicted ninety percent or more; this prediction did not hold; counted per question, since retrieval is the same on both runs) | 23/28 (82.1%, 95% CI 64.4–92.1%) | higher is better | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
 
 Most questions were answered right, most questions the library cannot answer got "not in the library", and almost every quote passed the check. Of the predictions written beforehand only the one on Chinese retrieval failed; every "not in the library" on an answerable question came from retrieval missing the clause, not from an invented answer.
 
@@ -262,10 +262,10 @@ Most questions were answered right, most questions the library cannot answer got
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Round two, English: right clause in the top three (BM25) | 38/40 (95.0%, 95% CI 83.5–98.6%) | higher is better | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
-| Round two, English: right clause in the top three (embedding) | 39/40 (97.5%, 95% CI 87.1–99.6%) | higher is better | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
-| Round three, English: right clause in the top three (BM25) | 21/23 (91.3%, 95% CI 73.2–97.6%) | higher is better | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
-| Round three, English: right clause in the top three (embedding) | 23/23 (100.0%, 95% CI 85.7–100.0%) | higher is better | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
+| Round two, English: right clause in the top three (BM25) | 38/40 (95.0%, 95% CI 83.5–98.6%) | higher is better | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
+| Round two, English: right clause in the top three (embedding) | 39/40 (97.5%, 95% CI 87.1–99.6%) | higher is better | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
+| Round three, English: right clause in the top three (BM25) | 21/23 (91.3%, 95% CI 73.2–97.6%) | higher is better | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
+| Round three, English: right clause in the top three (embedding) | 23/23 (100.0%, 95% CI 85.7–100.0%) | higher is better | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
 
 On both sets of unused labels the right English clause reached the top three more often; round one was used to choose the method, so its numbers are optimistic and not reported.
 
@@ -273,11 +273,11 @@ On both sets of unused labels the right English clause reached the top three mor
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| First pass: the two quote checks agree | 49/60 (81.7%, 95% CI 70.1–89.4%) | higher is better | [`grounded-labelling-pipeline/data/lark-agent-eval2.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval2.json) |
-| First pass: wrong decisions not sent to people | 0/60 (0.0%, 95% CI 0.0–6.0%) | lower is better | [`grounded-labelling-pipeline/data/lark-agent-eval2.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval2.json) |
-| Second pass: the two quote checks agree | 60/60 (100.0%, 95% CI 94.0–100.0%) | higher is better | [`grounded-labelling-pipeline/data/lark-agent-eval3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval3.json) |
-| Second pass: the platform's route matches the rules | 60/60 (100.0%, 95% CI 94.0–100.0%) | higher is better | [`grounded-labelling-pipeline/data/lark-agent-eval3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval3.json) |
-| Second pass: reviews written back to the ad | 8/8 (100.0%, 95% CI 67.6–100.0%) | higher is better | [`grounded-labelling-pipeline/data/lark-agent-eval3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval3.json) |
+| First pass: the two quote checks agree | 49/60 (81.7%, 95% CI 70.1–89.4%) | higher is better | [`grounded-labelling-pipeline/data/lark-agent-eval2.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/lark-agent-eval2.json) |
+| First pass: wrong decisions not sent to people | 0/60 (0.0%, 95% CI 0.0–6.0%) | lower is better | [`grounded-labelling-pipeline/data/lark-agent-eval2.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/lark-agent-eval2.json) |
+| Second pass: the two quote checks agree | 60/60 (100.0%, 95% CI 94.0–100.0%) | higher is better | [`grounded-labelling-pipeline/data/lark-agent-eval3.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/lark-agent-eval3.json) |
+| Second pass: the platform's route matches the rules | 60/60 (100.0%, 95% CI 94.0–100.0%) | higher is better | [`grounded-labelling-pipeline/data/lark-agent-eval3.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/lark-agent-eval3.json) |
+| Second pass: reviews written back to the ad | 8/8 (100.0%, 95% CI 67.6–100.0%) | higher is better | [`grounded-labelling-pipeline/data/lark-agent-eval3.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/lark-agent-eval3.json) |
 
 On the first pass line breaks in the clauses blocked the platform's exact-text search, so the two checks disagreed on some ads, each time sending an extra ad to people and never letting one through; with line breaks handled, the second pass agreed on every check and route, and every review was written back. The second pass came after seeing the first, so it shows the fix works rather than testing a prediction.
 
@@ -309,4 +309,4 @@ On the first pass line breaks in the clauses blocked the platform's exact-text s
 
 Sections follow the Hugging Face model card template (Apache-2.0); the source file and fingerprint of every number are in `cards/sources.lock.json`.
 
-Sources and licences of third-party data, models and code are listed in the [project repository](https://github.com/Jason-d-e/grounded-labelling-pipeline).
+Sources and licences of third-party data, models and code are listed in the [project repository](https://github.com/llia0031-dotcom/grounded-labelling-pipeline).

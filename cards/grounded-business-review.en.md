@@ -6,7 +6,7 @@
 
 | When | Team | Stack | Links |
 |---|---|---|---|
-| 2026-11-16 – 2026-11-17 | Liang Liyuan | Python, DuckDB (SQL), Pandas, evidence-check 0.4.0, Message Batches API, Excel, Dify | [Code and report](https://github.com/Jason-d-e/grounded-business-review) |
+| 2026-11-16 – 2026-11-17 | Liang Liyuan | Python, DuckDB (SQL), Pandas, evidence-check 0.4.0, Message Batches API, Excel, Dify | [Code and report](https://github.com/llia0031-dotcom/grounded-business-review) |
 
 **Problem**: Whoever reads the weekly numbers needs to know which metrics moved and why; when a model finds the cause and writes the review, is the cause right, and does every number trace back to a query result? (tested on synthetic data).
 
@@ -70,25 +70,25 @@ Each evaluation version has its own table. Scores are not compared across versio
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| All planted causes right (script) | 31/36 (86.1%, 95% CI 71.3–93.9%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| All planted causes right (one prompt) | 28/36 (77.8%, 95% CI 61.9–88.3%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| All planted causes right (agent) | 34/36 (94.4%, 95% CI 81.9–98.5%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| Two-dimension causes right (script) | 6/6 (100.0%, 95% CI 61.0–100.0%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| Two-dimension causes right (one prompt) | 0/6 (0.0%, 95% CI 0.0–39.0%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| Two-dimension causes right (agent) | 4/6 (66.7%, 95% CI 30.0–90.3%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| Case by case: agent right, one prompt wrong | 6 | context only | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| Case by case: one prompt right, agent wrong | 0 | context only | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| Agent vs one prompt: exact test p value | 0.031 | context only | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| Agent vs script: exact test p value | 0.45 | context only | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| Reviews released (script) | 36/36 (100.0%, 95% CI 90.4–100.0%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| Released after at most one revision (one prompt) | 35/36 (97.2%, 95% CI 85.8–99.5%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| Released after at most one revision (agent) | 33/36 (91.7%, 95% CI 78.2–97.1%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| Released on the first draft (one prompt) (predicted between seventy and eighty-five percent; this prediction did not hold) | 19/36 (52.8%, 95% CI 37.0–68.0%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| Released on the first draft (agent) | 12/36 (33.3%, 95% CI 20.2–49.7%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| Agent first drafts: paragraphs quoting a number not in the cited row (zero after one revision) | 19 | lower is better | [`grounded-business-review/eval/EVALUATION.md`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/EVALUATION.md) |
-| Cost per case (one prompt, batch price) | US$0.0032 | lower is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| Cost per case (agent, batch price) | US$0.0057 | lower is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| Agent cost per case relative to the one prompt | 1.8× | lower is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| All planted causes right (script) | 31/36 (86.1%, 95% CI 71.3–93.9%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| All planted causes right (one prompt) | 28/36 (77.8%, 95% CI 61.9–88.3%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| All planted causes right (agent) | 34/36 (94.4%, 95% CI 81.9–98.5%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| Two-dimension causes right (script) | 6/6 (100.0%, 95% CI 61.0–100.0%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| Two-dimension causes right (one prompt) | 0/6 (0.0%, 95% CI 0.0–39.0%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| Two-dimension causes right (agent) | 4/6 (66.7%, 95% CI 30.0–90.3%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| Case by case: agent right, one prompt wrong | 6 | context only | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| Case by case: one prompt right, agent wrong | 0 | context only | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| Agent vs one prompt: exact test p value | 0.031 | context only | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| Agent vs script: exact test p value | 0.45 | context only | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| Reviews released (script) | 36/36 (100.0%, 95% CI 90.4–100.0%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| Released after at most one revision (one prompt) | 35/36 (97.2%, 95% CI 85.8–99.5%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| Released after at most one revision (agent) | 33/36 (91.7%, 95% CI 78.2–97.1%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| Released on the first draft (one prompt) (predicted between seventy and eighty-five percent; this prediction did not hold) | 19/36 (52.8%, 95% CI 37.0–68.0%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| Released on the first draft (agent) | 12/36 (33.3%, 95% CI 20.2–49.7%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| Agent first drafts: paragraphs quoting a number not in the cited row (zero after one revision) | 19 | lower is better | [`grounded-business-review/eval/EVALUATION.md`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/EVALUATION.md) |
+| Cost per case (one prompt, batch price) | US$0.0032 | lower is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| Cost per case (agent, batch price) | US$0.0057 | lower is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
+| Agent cost per case relative to the one prompt | 1.8× | lower is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
 
 The agent finds causes best and clearly beats the one prompt case by case; against the script it differs by a few cases, too close to call. The one prompt's fixed pack breaks metrics down one dimension at a time, so it got none of the two-dimension causes. After at most one revision most reviews were released; first drafts passed less often than predicted.
 
@@ -96,9 +96,9 @@ The agent finds causes best and clearly beats the one prompt case by case; again
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Development set: all causes right (script) | 12/16 (75.0%, 95% CI 50.5–89.8%) | higher is better | [`grounded-business-review/eval/results/summary-dev.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-dev.json) |
-| Development set: all causes right (one prompt) | 13/16 (81.2%, 95% CI 57.0–93.4%) | higher is better | [`grounded-business-review/eval/results/summary-dev.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-dev.json) |
-| Development set: all causes right (agent) | 16/16 (100.0%, 95% CI 80.6–100.0%) | higher is better | [`grounded-business-review/eval/results/summary-dev.json`](https://github.com/Jason-d-e/grounded-business-review/blob/main/eval/results/summary-dev.json) |
+| Development set: all causes right (script) | 12/16 (75.0%, 95% CI 50.5–89.8%) | higher is better | [`grounded-business-review/eval/results/summary-dev.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-dev.json) |
+| Development set: all causes right (one prompt) | 13/16 (81.2%, 95% CI 57.0–93.4%) | higher is better | [`grounded-business-review/eval/results/summary-dev.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-dev.json) |
+| Development set: all causes right (agent) | 16/16 (100.0%, 95% CI 80.6–100.0%) | higher is better | [`grounded-business-review/eval/results/summary-dev.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-dev.json) |
 
 The development set was used for revisions, so its numbers are optimistic and are not compared with the test set.
 
@@ -127,4 +127,4 @@ The development set was used for revisions, so its numbers are optimistic and ar
 
 Sections follow the Hugging Face model card template (Apache-2.0); the source file and fingerprint of every number are in `cards/sources.lock.json`.
 
-Sources and licences of third-party data, models and code are listed in the [project repository](https://github.com/Jason-d-e/grounded-business-review).
+Sources and licences of third-party data, models and code are listed in the [project repository](https://github.com/llia0031-dotcom/grounded-business-review).

@@ -6,56 +6,56 @@
 
 [[media]]
 project = "cairn"
-path = "jason-d-e.github.io/assets/cairn/hero-zh.jpg"
+path = "llia0031-dotcom.github.io/assets/cairn/hero-zh.jpg"
 lang = "zh"
 public = true
 caption = { zh = "首屏", en = "First screen" }
 
 [[media]]
 project = "cairn"
-path = "jason-d-e.github.io/assets/cairn/zh-answer.webp"
+path = "llia0031-dotcom.github.io/assets/cairn/zh-answer.webp"
 lang = "zh"
 public = true
 caption = { zh = "先给结论和截止时间，再列页面和校区", en = "The bottom line and deadline first, then the page and campus" }
 
 [[media]]
 project = "cairn"
-path = "jason-d-e.github.io/assets/cairn/zh-quotes.webp"
+path = "llia0031-dotcom.github.io/assets/cairn/zh-quotes.webp"
 lang = "zh"
 public = true
 caption = { zh = "每个要点下面是逐字核对过的原句", en = "Each point over its verified sentence" }
 
 [[media]]
 project = "cairn"
-path = "jason-d-e.github.io/assets/cairn/zh-trace.webp"
+path = "llia0031-dotcom.github.io/assets/cairn/zh-trace.webp"
 lang = "zh"
 public = true
 caption = { zh = "这个回答是怎么来的：检索到的段落和分数", en = "How the answer was made: retrieved passages and scores" }
 
 [[media]]
 project = "tracedesk"
-path = "jason-d-e.github.io/assets/tracedesk/hero-zh.jpg"
+path = "llia0031-dotcom.github.io/assets/tracedesk/hero-zh.jpg"
 lang = "zh"
 public = true
 caption = { zh = "首屏", en = "First screen" }
 
 [[media]]
 project = "tracedesk"
-path = "jason-d-e.github.io/assets/tracedesk/zh-answer.webp"
+path = "llia0031-dotcom.github.io/assets/tracedesk/zh-answer.webp"
 lang = "zh"
 public = true
 caption = { zh = "一句结论、一张清单、再是证据", en = "One sentence, a checklist, then the evidence" }
 
 [[media]]
 project = "tracedesk"
-path = "jason-d-e.github.io/assets/tracedesk/zh-focus.webp"
+path = "llia0031-dotcom.github.io/assets/tracedesk/zh-focus.webp"
 lang = "zh"
 public = true
 caption = { zh = "专注模式只留下回答", en = "Focus mode keeps only the answer" }
 
 [[media]]
 project = "tracedesk"
-path = "jason-d-e.github.io/assets/tracedesk/zh-dashboard.webp"
+path = "llia0031-dotcom.github.io/assets/tracedesk/zh-dashboard.webp"
 lang = "zh"
 public = true
 caption = { zh = "组织者后台：读者问了什么、资料缺什么", en = "Organiser dashboard: what readers asked, what the documents lack" }
@@ -118,14 +118,14 @@ caption = { zh = "留出集上的结果", en = "Results on the held-out set" }
 
 [[media]]
 project = "text-on-product"
-path = "jason-d-e.github.io/assets/text-on-product/hero-zh.jpg"
+path = "llia0031-dotcom.github.io/assets/text-on-product/hero-zh.jpg"
 lang = "zh"
 public = true
 caption = { zh = "创作指南首屏", en = "Guide first screen" }
 
 [[media]]
 project = "text-on-product"
-path = "jason-d-e.github.io/assets/text-on-product/hero-en.jpg"
+path = "llia0031-dotcom.github.io/assets/text-on-product/hero-en.jpg"
 lang = "en"
 public = true
 caption = { zh = "创作指南首屏", en = "Guide first screen" }
@@ -176,56 +176,56 @@ caption = { zh = "演示页（英文）", en = "Demo (English)" }
 
 [[media]]
 project = "cairn"
-path = "jason-d-e.github.io/assets/cairn/hero-en.jpg"
+path = "llia0031-dotcom.github.io/assets/cairn/hero-en.jpg"
 lang = "en"
 public = true
 caption = { zh = "首屏", en = "First screen" }
 
 [[media]]
 project = "cairn"
-path = "jason-d-e.github.io/assets/cairn/en-answer.webp"
+path = "llia0031-dotcom.github.io/assets/cairn/en-answer.webp"
 lang = "en"
 public = true
 caption = { zh = "先给结论和截止时间，再列页面和校区", en = "The bottom line and deadline first, then the page and campus" }
 
 [[media]]
 project = "cairn"
-path = "jason-d-e.github.io/assets/cairn/en-quotes.webp"
+path = "llia0031-dotcom.github.io/assets/cairn/en-quotes.webp"
 lang = "en"
 public = true
 caption = { zh = "每个要点下面是逐字核对过的原句", en = "Each point over its verified sentence" }
 
 [[media]]
 project = "cairn"
-path = "jason-d-e.github.io/assets/cairn/en-trace.webp"
+path = "llia0031-dotcom.github.io/assets/cairn/en-trace.webp"
 lang = "en"
 public = true
 caption = { zh = "这个回答是怎么来的：检索到的段落和分数", en = "How the answer was made: retrieved passages and scores" }
 
 [[media]]
 project = "tracedesk"
-path = "jason-d-e.github.io/assets/tracedesk/hero-en.jpg"
+path = "llia0031-dotcom.github.io/assets/tracedesk/hero-en.jpg"
 lang = "en"
 public = true
 caption = { zh = "首屏", en = "First screen" }
 
 [[media]]
 project = "tracedesk"
-path = "jason-d-e.github.io/assets/tracedesk/en-answer.webp"
+path = "llia0031-dotcom.github.io/assets/tracedesk/en-answer.webp"
 lang = "en"
 public = true
 caption = { zh = "一句结论、一张清单、再是证据", en = "One sentence, a checklist, then the evidence" }
 
 [[media]]
 project = "tracedesk"
-path = "jason-d-e.github.io/assets/tracedesk/en-focus.webp"
+path = "llia0031-dotcom.github.io/assets/tracedesk/en-focus.webp"
 lang = "en"
 public = true
 caption = { zh = "专注模式只留下回答", en = "Focus mode keeps only the answer" }
 
 [[media]]
 project = "tracedesk"
-path = "jason-d-e.github.io/assets/tracedesk/en-dashboard.webp"
+path = "llia0031-dotcom.github.io/assets/tracedesk/en-dashboard.webp"
 lang = "en"
 public = true
 caption = { zh = "组织者后台：读者问了什么、资料缺什么", en = "Organiser dashboard: what readers asked, what the documents lack" }
@@ -261,83 +261,83 @@ caption = { zh = "测试结果", en = "Test results" }
 [[media]]
 project = "grounded-labelling-pipeline"
 path = "evidence-pipeline-public/lark/recording/workflow-run.gif"
-url = "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/recording/workflow-run.gif"
+url = "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/recording/workflow-run.gif"
 public = true
 caption = { zh = "工作流跑一遍：加广告、写回、送人工、发消息、复核写回（8 张画面拼成，不是连续录像）", en = "One run of the workflow: add an ad, write back, send to review, notify, write the review back (8 browser captures, not a continuous recording)." }
 
 [[media]]
 project = "grounded-labelling-pipeline"
 path = "evidence-pipeline-public/lark/screenshots/workflow-1-judge-check.png"
-url = "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/workflow-1-judge-check.png"
+url = "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/workflow-1-judge-check.png"
 public = true
 caption = { zh = "判断和逐段核对引文", en = "Judging and checking every quote." }
 
 [[media]]
 project = "grounded-labelling-pipeline"
 path = "evidence-pipeline-public/lark/screenshots/workflow-2-route.png"
-url = "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/workflow-2-route.png"
+url = "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/workflow-2-route.png"
 public = true
 caption = { zh = "分流并写明原因", en = "Routing, with the reason recorded." }
 
 [[media]]
 project = "grounded-labelling-pipeline"
 path = "evidence-pipeline-public/lark/screenshots/workflow-review.png"
-url = "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/workflow-review.png"
+url = "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/workflow-review.png"
 public = true
 caption = { zh = "复核结论写回，分歧记进回归题", en = "The review is written back; disagreements become regression items." }
 
 [[media]]
 project = "grounded-labelling-pipeline"
 path = "evidence-pipeline-public/lark/screenshots/results-eval3.png"
-url = "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/results-eval3.png"
+url = "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/results-eval3.png"
 public = true
 caption = { zh = "第二遍的结果表：脚本的引文核对和平台的引文核对并排", en = "Second-pass results: the script's quote check next to the platform's." }
 
 [[media]]
 project = "grounded-labelling-pipeline"
 path = "evidence-pipeline-public/lark/screenshots/review-queue-eval3.png"
-url = "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/review-queue-eval3.png"
+url = "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/review-queue-eval3.png"
 public = true
 caption = { zh = "第二遍里工作流送进复核队列的广告", en = "The ads the workflow sent to the review queue in the second pass." }
 
 [[media]]
 project = "grounded-labelling-pipeline"
 path = "evidence-pipeline-public/lark/screenshots/qa-card.png"
-url = "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/qa-card.png"
+url = "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/qa-card.png"
 public = true
 caption = { zh = "机器人的政策问答：只按政策库回答，引文逐段核对", en = "The bot's policy Q&A: answers only from the policy library, with every quote checked." }
 
 [[media]]
 project = "grounded-labelling-pipeline"
 path = "evidence-pipeline-public/lark/screenshots/dashboard.png"
-url = "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/dashboard.png"
+url = "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/dashboard.png"
 public = true
 caption = { zh = "多维表格里的指标看板", en = "The metrics dashboard in the Lark Base." }
 
 [[media]]
 project = "grounded-labelling-pipeline"
 path = "evidence-pipeline-public/lark/screenshots/agent-step.png"
-url = "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/agent-step.png"
+url = "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/agent-step.png"
 public = true
 caption = { zh = "AI Agent 步骤的设置：提问里引用表里的广告文字，输出格式固定", en = "The AI Agent step: the prompt refers to the ad text in the table, and the output format is fixed." }
 
 [[media]]
 project = "grounded-labelling-pipeline"
 path = "evidence-pipeline-public/lark/screenshots/bot-card.png"
-url = "https://raw.githubusercontent.com/Jason-d-e/grounded-labelling-pipeline/main/lark/screenshots/bot-card.png"
+url = "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/bot-card.png"
 public = true
 caption = { zh = "聊天机器人回的卡片：判断通过，模型拿不准，送人工复核", en = "The card the chat bot replied with: approve, unsure, sent to a human." }
 
 [[media]]
 project = "grounded-business-review"
 path = "grounded-business-review-public/reports/contribution_visits_channel.png"
-url = "https://raw.githubusercontent.com/Jason-d-e/grounded-business-review/main/reports/contribution_visits_channel.png"
+url = "https://raw.githubusercontent.com/llia0031-dotcom/grounded-business-review/main/reports/contribution_visits_channel.png"
 public = true
 caption = { zh = "访问次数的变化按渠道拆开：下降主要来自直播（合成数据）", en = "Where the change in visits came from, by channel: the drop comes mostly from live streaming (synthetic data)." }
 
 [[media]]
 project = "grounded-business-review"
 path = "grounded-business-review-public/dify/screenshots/workflow.png"
-url = "https://raw.githubusercontent.com/Jason-d-e/grounded-business-review/main/dify/screenshots/workflow.png"
+url = "https://raw.githubusercontent.com/llia0031-dotcom/grounded-business-review/main/dify/screenshots/workflow.png"
 public = true
 caption = { zh = "Dify 里的同一条流程：监控和拆解、写周报、数字核对，没放行就改一次再核对", en = "The same flow in Dify: monitor and break down, write the review, check the numbers, and revise once if it is held back." }

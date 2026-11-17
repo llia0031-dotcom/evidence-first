@@ -6,7 +6,7 @@
 
 | 时间 | 团队 | 技术 | 链接 |
 |---|---|---|---|
-| 2026-11-15 – 2026-11-17 | Liang Liyuan | Python、Pandas、DuckDB（SQL）、BM25 和本机向量检索（Qwen3-Embedding-0.6B）、evidence-check、Lark 多维表格（工作流和 AI Agent 步骤）、批量接口 | [代码和报告](https://github.com/Jason-d-e/grounded-labelling-pipeline) |
+| 2026-11-15 – 2026-11-17 | Liang Liyuan | Python、Pandas、DuckDB（SQL）、BM25 和本机向量检索（Qwen3-Embedding-0.6B）、evidence-check、Lark 多维表格（工作流和 AI Agent 步骤）、批量接口 | [代码和报告](https://github.com/llia0031-dotcom/grounded-labelling-pipeline) |
 
 **问题**：能核对的回答，怎么变成团队每天用的审核工作流：拿不准的交给人复核，提示词能灰度、能回滚。
 
@@ -167,12 +167,12 @@
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 判错又自动生效（v1） | 17/332（5.1%，95% 区间 3.2–8.0%） | 越低越好 | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json) |
-| 判错又自动生效（v2） | 9/332（2.7%，95% 区间 1.4–5.1%） | 越低越好 | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json) |
-| 送人工复核（v1） | 6/332（1.8%，95% 区间 0.8–3.9%） | 只作说明 | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json) |
-| 送人工复核（v2） | 72/332（21.7%，95% 区间 17.6–26.4%） | 只作说明 | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json) |
-| 判对（v1） | 315/332（94.9%，95% 区间 92.0–96.8%） | 越高越好 | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json) |
-| 判对（v2） | 312/332（94.0%，95% 区间 90.9–96.1%） | 越高越好 | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions.json) |
+| 判错又自动生效（v1） | 17/332（5.1%，95% 区间 3.2–8.0%） | 越低越好 | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions.json) |
+| 判错又自动生效（v2） | 9/332（2.7%，95% 区间 1.4–5.1%） | 越低越好 | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions.json) |
+| 送人工复核（v1） | 6/332（1.8%，95% 区间 0.8–3.9%） | 只作说明 | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions.json) |
+| 送人工复核（v2） | 72/332（21.7%，95% 区间 17.6–26.4%） | 只作说明 | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions.json) |
+| 判对（v1） | 315/332（94.9%，95% 区间 92.0–96.8%） | 越高越好 | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions.json) |
+| 判对（v2） | 312/332（94.0%，95% 区间 90.9–96.1%） | 越高越好 | [`grounded-labelling-pipeline/data/versions.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions.json) |
 
 v2 少放过判错的广告，代价是送人工多得多；四条采用标准都满足。
 
@@ -180,9 +180,9 @@ v2 少放过判错的广告，代价是送人工多得多；四条采用标准�
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 触发回滚时的灰度比例 | 10% | 只作说明 | [`grounded-labelling-pipeline/data/canary.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/canary.json) |
-| 那一周灰度组判错又生效 | 1/10（10.0%，95% 区间 1.8–40.4%） | 越低越好 | [`grounded-labelling-pipeline/data/canary.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/canary.json) |
-| 那一周线上组判错又生效 | 6/80（7.5%，95% 区间 3.5–15.4%） | 越低越好 | [`grounded-labelling-pipeline/data/canary.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/canary.json) |
+| 触发回滚时的灰度比例 | 10% | 只作说明 | [`grounded-labelling-pipeline/data/canary.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/canary.json) |
+| 那一周灰度组判错又生效 | 1/10（10.0%，95% 区间 1.8–40.4%） | 越低越好 | [`grounded-labelling-pipeline/data/canary.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/canary.json) |
+| 那一周线上组判错又生效 | 6/80（7.5%，95% 区间 3.5–15.4%） | 越低越好 | [`grounded-labelling-pipeline/data/canary.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/canary.json) |
 
 第一步就触发了三条规则，回滚，线上留在 v1。复盘发现两条规则写错：复核率那一条和 v2 的目的矛盾，比例在灰度组只有 10 个请求时就比了。改好的规则是看过结果之后写的，在同一批请求上再回放能放到全量，但这证明不了什么，要在新流量上重新灰度。
 
@@ -190,13 +190,13 @@ v2 少放过判错的广告，代价是送人工多得多；四条采用标准�
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 没有回滚、最后放到的灰度比例 | 100% | 只作说明 | [`grounded-labelling-pipeline/data/canary-round2.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/canary-round2.json) |
-| 判对（v1） | 239/240（99.6%，95% 区间 97.7–99.9%） | 越高越好 | [`grounded-labelling-pipeline/data/versions-round2.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-round2.json) |
-| 判对（v2） | 240/240（100.0%，95% 区间 98.4–100.0%） | 越高越好 | [`grounded-labelling-pipeline/data/versions-round2.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-round2.json) |
-| 送人工复核（v2） | 36/240（15.0%，95% 区间 11.0–20.1%） | 只作说明 | [`grounded-labelling-pipeline/data/versions-round2.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-round2.json) |
-| 放到全量时，灰度组累计判错又生效 | 0/101（0.0%，95% 区间 0.0–3.7%） | 越低越好 | [`grounded-labelling-pipeline/data/canary-round2.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/canary-round2.json) |
-| 放到全量时，线上组累计判错又生效 | 1/150（0.7%，95% 区间 0.1–3.7%） | 越低越好 | [`grounded-labelling-pipeline/data/canary-round2.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/canary-round2.json) |
-| v2 每个请求的费用，是 v1 的（预测是不超过 1.05 倍，这一条没成立） | 1.0503 倍 | 越低越好 | [`grounded-labelling-pipeline/data/versions-round2.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-round2.json) |
+| 没有回滚、最后放到的灰度比例 | 100% | 只作说明 | [`grounded-labelling-pipeline/data/canary-round2.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/canary-round2.json) |
+| 判对（v1） | 239/240（99.6%，95% 区间 97.7–99.9%） | 越高越好 | [`grounded-labelling-pipeline/data/versions-round2.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-round2.json) |
+| 判对（v2） | 240/240（100.0%，95% 区间 98.4–100.0%） | 越高越好 | [`grounded-labelling-pipeline/data/versions-round2.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-round2.json) |
+| 送人工复核（v2） | 36/240（15.0%，95% 区间 11.0–20.1%） | 只作说明 | [`grounded-labelling-pipeline/data/versions-round2.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-round2.json) |
+| 放到全量时，灰度组累计判错又生效 | 0/101（0.0%，95% 区间 0.0–3.7%） | 越低越好 | [`grounded-labelling-pipeline/data/canary-round2.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/canary-round2.json) |
+| 放到全量时，线上组累计判错又生效 | 1/150（0.7%，95% 区间 0.1–3.7%） | 越低越好 | [`grounded-labelling-pipeline/data/canary-round2.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/canary-round2.json) |
+| v2 每个请求的费用，是 v1 的（预测是不超过 1.05 倍，这一条没成立） | 1.0503 倍 | 越低越好 | [`grounded-labelling-pipeline/data/versions-round2.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-round2.json) |
 
 三步都没触发回滚，v2 转为正式版本。两版在这批广告上都接近全对，所以这一轮只说明放量流程走通了；v2 少漏错判的证据仍来自第一轮。
 
@@ -204,11 +204,11 @@ v2 少放过判错的广告，代价是送人工多得多；四条采用标准�
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 写回表格 | 25/25（100.0%，95% 区间 86.7–100.0%） | 越高越好 | [`grounded-labelling-pipeline/data/lark-agent-eval1.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json) |
-| 判对 | 25/25（100.0%，95% 区间 86.7–100.0%） | 越高越好 | [`grounded-labelling-pipeline/data/lark-agent-eval1.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json) |
-| 引文核对没过、送了人工 | 2/25（8.0%，95% 区间 2.2–25.0%） | 只作说明 | [`grounded-labelling-pipeline/data/lark-agent-eval1.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json) |
-| 平台模型说“拿不准” | 0/25（0.0%，95% 区间 0.0–13.3%） | 只作说明 | [`grounded-labelling-pipeline/data/lark-agent-eval1.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json) |
-| 参照：分流模型存档答案里说“拿不准” | 13/50（26.0%，95% 区间 15.9–39.6%） | 只作说明 | [`grounded-labelling-pipeline/data/lark-agent-eval1.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json) |
+| 写回表格 | 25/25（100.0%，95% 区间 86.7–100.0%） | 越高越好 | [`grounded-labelling-pipeline/data/lark-agent-eval1.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json) |
+| 判对 | 25/25（100.0%，95% 区间 86.7–100.0%） | 越高越好 | [`grounded-labelling-pipeline/data/lark-agent-eval1.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json) |
+| 引文核对没过、送了人工 | 2/25（8.0%，95% 区间 2.2–25.0%） | 只作说明 | [`grounded-labelling-pipeline/data/lark-agent-eval1.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json) |
+| 平台模型说“拿不准” | 0/25（0.0%，95% 区间 0.0–13.3%） | 只作说明 | [`grounded-labelling-pipeline/data/lark-agent-eval1.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json) |
+| 参照：分流模型存档答案里说“拿不准” | 13/50（26.0%，95% 区间 15.9–39.6%） | 只作说明 | [`grounded-labelling-pipeline/data/lark-agent-eval1.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/lark-agent-eval1.json) |
 
 工作流在 Lark 里跑通：每条都写回、都判对；两条把条款里不相邻的几句拼成一句当引文，被脚本拦下送了人工。平台模型一次也没说拿不准，而分流用的模型在存档答案里常说，所以换模型后复核率要重新量。
 
@@ -216,19 +216,19 @@ v2 少放过判错的广告，代价是送人工多得多；四条采用标准�
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 用广告原文搜，正确条款进前三 | 66/124（53.2%，95% 区间 44.5–61.8%） | 越高越好 | [`grounded-labelling-pipeline/data/retrieval.csv`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval.csv) |
-| 用模型的答案搜，正确条款进前三 | 110/124（88.7%，95% 区间 81.9–93.2%） | 越高越好 | [`grounded-labelling-pipeline/data/retrieval.csv`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval.csv) |
+| 用广告原文搜，正确条款进前三 | 66/124（53.2%，95% 区间 44.5–61.8%） | 越高越好 | [`grounded-labelling-pipeline/data/retrieval.csv`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/retrieval.csv) |
+| 用模型的答案搜，正确条款进前三 | 110/124（88.7%，95% 区间 81.9–93.2%） | 越高越好 | [`grounded-labelling-pipeline/data/retrieval.csv`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/retrieval.csv) |
 
 ### 提示词第 3 版：新写的广告上不采用
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 答案清楚的广告送了人工（v2） | 44/176（25.0%，95% 区间 19.2–31.9%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v3-round3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json) |
-| 答案清楚的广告送了人工（v3） | 4/176（2.3%，95% 区间 0.9–5.7%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v3-round3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json) |
-| 要人来定的广告送了人工（v2） | 44/64（68.8%，95% 区间 56.6–78.8%） | 越高越好 | [`grounded-labelling-pipeline/data/versions-v3-round3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json) |
-| 要人来定的广告送了人工（v3） | 19/64（29.7%，95% 区间 19.9–41.8%） | 越高越好 | [`grounded-labelling-pipeline/data/versions-v3-round3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json) |
-| 回归（第一轮）：判错又自动生效（v2） | 9/332（2.7%，95% 区间 1.4–5.1%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3.json) |
-| 回归（第一轮）：判错又自动生效（v3） | 9/332（2.7%，95% 区间 1.4–5.1%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v3.json) |
+| 答案清楚的广告送了人工（v2） | 44/176（25.0%，95% 区间 19.2–31.9%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v3-round3.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json) |
+| 答案清楚的广告送了人工（v3） | 4/176（2.3%，95% 区间 0.9–5.7%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v3-round3.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json) |
+| 要人来定的广告送了人工（v2） | 44/64（68.8%，95% 区间 56.6–78.8%） | 越高越好 | [`grounded-labelling-pipeline/data/versions-v3-round3.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json) |
+| 要人来定的广告送了人工（v3） | 19/64（29.7%，95% 区间 19.9–41.8%） | 越高越好 | [`grounded-labelling-pipeline/data/versions-v3-round3.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v3-round3.json) |
+| 回归（第一轮）：判错又自动生效（v2） | 9/332（2.7%，95% 区间 1.4–5.1%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v3.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v3.json) |
+| 回归（第一轮）：判错又自动生效（v3） | 9/332（2.7%，95% 区间 1.4–5.1%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v3.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v3.json) |
 
 答案清楚的广告少了多余的复核，但写题时定为“要人来定”的广告送人工也少了，降幅超过事先写好的十个百分点上限，不采用，production 留在 v2。假如照样放量，灰度的回滚规则一条也不会触发：拦下它的是题目里那批要人来定的广告和事先写好的采用标准。
 
@@ -236,14 +236,14 @@ v2 少放过判错的广告，代价是送人工多得多；四条采用标准�
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 答案清楚的广告送了人工（v2） | 43/176（24.4%，95% 区间 18.7–31.3%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
-| 答案清楚的广告送了人工（v4） | 11/176（6.2%，95% 区间 3.5–10.8%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
-| 要人来定的广告送了人工（v2） | 42/64（65.6%，95% 区间 53.4–76.1%） | 越高越好 | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
-| 要人来定的广告送了人工（v4） | 47/64（73.4%，95% 区间 61.5–82.7%） | 越高越好 | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
-| 答案清楚的广告判错又自动生效（v2） | 0/176（0.0%，95% 区间 0.0–2.1%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
-| 答案清楚的广告判错又自动生效（v4）（同一条陷阱题的两遍） | 2/176（1.1%，95% 区间 0.3–4.0%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
-| 回归（第一轮）：判错又自动生效（v2） | 9/332（2.7%，95% 区间 1.4–5.1%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4.json) |
-| 回归（第一轮）：判错又自动生效（v4） | 13/332（3.9%，95% 区间 2.3–6.6%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v4.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/versions-v4.json) |
+| 答案清楚的广告送了人工（v2） | 43/176（24.4%，95% 区间 18.7–31.3%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| 答案清楚的广告送了人工（v4） | 11/176（6.2%，95% 区间 3.5–10.8%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| 要人来定的广告送了人工（v2） | 42/64（65.6%，95% 区间 53.4–76.1%） | 越高越好 | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| 要人来定的广告送了人工（v4） | 47/64（73.4%，95% 区间 61.5–82.7%） | 越高越好 | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| 答案清楚的广告判错又自动生效（v2） | 0/176（0.0%，95% 区间 0.0–2.1%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| 答案清楚的广告判错又自动生效（v4）（同一条陷阱题的两遍） | 2/176（1.1%，95% 区间 0.3–4.0%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v4-round4.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v4-round4.json) |
+| 回归（第一轮）：判错又自动生效（v2） | 9/332（2.7%，95% 区间 1.4–5.1%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v4.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v4.json) |
+| 回归（第一轮）：判错又自动生效（v4） | 13/332（3.9%，95% 区间 2.3–6.6%） | 越低越好 | [`grounded-labelling-pipeline/data/versions-v4.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/versions-v4.json) |
 
 两头都比 v2 好：答案清楚的广告少了多余的复核，要人来定的广告送人工也多了。但它判错时更常说“确定”：新题上一条陷阱题两遍都判错又自动生效（v2 判得一样，但说了拿不准、送了人工），第一轮回归里漏网的错判也变多，按事先写好的标准不采用，production 留在 v2。那条陷阱题的答案有争议，按预注册没有改。
 
@@ -251,10 +251,10 @@ v2 少放过判错的广告，代价是送人工多得多；四条采用标准�
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 答对 | 134/160（83.8%，95% 区间 77.3–88.7%） | 越高越好 | [`grounded-labelling-pipeline/data/kbqa-eval.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/kbqa-eval.json) |
-| 库里没有的题说了“没有” | 44/48（91.7%，95% 区间 80.4–96.7%） | 越高越好 | [`grounded-labelling-pipeline/data/kbqa-eval.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/kbqa-eval.json) |
-| 没核对上的引文 | 1/160（0.6%，95% 区间 0.1–3.5%） | 越低越好 | [`grounded-labelling-pipeline/data/kbqa-eval.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/kbqa-eval.json) |
-| 中文问题：算对的条款进前 5（BM25）（预测是百分之九十以上，这一条没成立；按题数算，每道题两遍的检索结果相同） | 23/28（82.1%，95% 区间 64.4–92.1%） | 越高越好 | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
+| 答对 | 134/160（83.8%，95% 区间 77.3–88.7%） | 越高越好 | [`grounded-labelling-pipeline/data/kbqa-eval.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/kbqa-eval.json) |
+| 库里没有的题说了“没有” | 44/48（91.7%，95% 区间 80.4–96.7%） | 越高越好 | [`grounded-labelling-pipeline/data/kbqa-eval.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/kbqa-eval.json) |
+| 没核对上的引文 | 1/160（0.6%，95% 区间 0.1–3.5%） | 越低越好 | [`grounded-labelling-pipeline/data/kbqa-eval.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/kbqa-eval.json) |
+| 中文问题：算对的条款进前 5（BM25）（预测是百分之九十以上，这一条没成立；按题数算，每道题两遍的检索结果相同） | 23/28（82.1%，95% 区间 64.4–92.1%） | 越高越好 | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
 
 多数题答对，库里没有的题大多说了“没有”，引文几乎全部核对通过。事先写好的预测里只有中文检索那一条没成立；库里有答案却说“没有”的，都是检索没找到条款，不是模型编造。
 
@@ -262,10 +262,10 @@ v2 少放过判错的广告，代价是送人工多得多；四条采用标准�
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 第二轮英文：正确条款进前三（BM25） | 38/40（95.0%，95% 区间 83.5–98.6%） | 越高越好 | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
-| 第二轮英文：正确条款进前三（向量） | 39/40（97.5%，95% 区间 87.1–99.6%） | 越高越好 | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
-| 第三轮英文：正确条款进前三（BM25） | 21/23（91.3%，95% 区间 73.2–97.6%） | 越高越好 | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
-| 第三轮英文：正确条款进前三（向量） | 23/23（100.0%，95% 区间 85.7–100.0%） | 越高越好 | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
+| 第二轮英文：正确条款进前三（BM25） | 38/40（95.0%，95% 区间 83.5–98.6%） | 越高越好 | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
+| 第二轮英文：正确条款进前三（向量） | 39/40（97.5%，95% 区间 87.1–99.6%） | 越高越好 | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
+| 第三轮英文：正确条款进前三（BM25） | 21/23（91.3%，95% 区间 73.2–97.6%） | 越高越好 | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
+| 第三轮英文：正确条款进前三（向量） | 23/23（100.0%，95% 区间 85.7–100.0%） | 越高越好 | [`grounded-labelling-pipeline/data/retrieval-methods.csv`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/retrieval-methods.csv) |
 
 两批没用过的标注上，英文正确条款进前三都提高了；第一轮是选方法用的，数字偏乐观，不拿来报告。
 
@@ -273,11 +273,11 @@ v2 少放过判错的广告，代价是送人工多得多；四条采用标准�
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 第一遍：两种引文核对一致 | 49/60（81.7%，95% 区间 70.1–89.4%） | 越高越好 | [`grounded-labelling-pipeline/data/lark-agent-eval2.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval2.json) |
-| 第一遍：判错又没送人工 | 0/60（0.0%，95% 区间 0.0–6.0%） | 越低越好 | [`grounded-labelling-pipeline/data/lark-agent-eval2.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval2.json) |
-| 第二遍：两种引文核对一致 | 60/60（100.0%，95% 区间 94.0–100.0%） | 越高越好 | [`grounded-labelling-pipeline/data/lark-agent-eval3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval3.json) |
-| 第二遍：平台的去向和规则一致 | 60/60（100.0%，95% 区间 94.0–100.0%） | 越高越好 | [`grounded-labelling-pipeline/data/lark-agent-eval3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval3.json) |
-| 第二遍：复核结论写回广告 | 8/8（100.0%，95% 区间 67.6–100.0%） | 越高越好 | [`grounded-labelling-pipeline/data/lark-agent-eval3.json`](https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/data/lark-agent-eval3.json) |
+| 第一遍：两种引文核对一致 | 49/60（81.7%，95% 区间 70.1–89.4%） | 越高越好 | [`grounded-labelling-pipeline/data/lark-agent-eval2.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/lark-agent-eval2.json) |
+| 第一遍：判错又没送人工 | 0/60（0.0%，95% 区间 0.0–6.0%） | 越低越好 | [`grounded-labelling-pipeline/data/lark-agent-eval2.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/lark-agent-eval2.json) |
+| 第二遍：两种引文核对一致 | 60/60（100.0%，95% 区间 94.0–100.0%） | 越高越好 | [`grounded-labelling-pipeline/data/lark-agent-eval3.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/lark-agent-eval3.json) |
+| 第二遍：平台的去向和规则一致 | 60/60（100.0%，95% 区间 94.0–100.0%） | 越高越好 | [`grounded-labelling-pipeline/data/lark-agent-eval3.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/lark-agent-eval3.json) |
+| 第二遍：复核结论写回广告 | 8/8（100.0%，95% 区间 67.6–100.0%） | 越高越好 | [`grounded-labelling-pipeline/data/lark-agent-eval3.json`](https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/data/lark-agent-eval3.json) |
 
 第一遍平台的逐字查找被条款里的换行挡住，两种核对有不一致的，不一致的都是多送了人工，没有漏送；把换行处理好以后，第二遍两种核对和去向全部一致，复核结论都写回了。第二遍是看过第一遍才改的，只说明改法有效，不算事先的预测。
 
@@ -309,4 +309,4 @@ v2 少放过判错的广告，代价是送人工多得多；四条采用标准�
 
 模板照 Hugging Face 模型卡（Apache-2.0）的章节；每个数字的来源文件和指纹见 `cards/sources.lock.json`。
 
-第三方数据、模型和代码的来源与许可，见[项目仓库](https://github.com/Jason-d-e/grounded-labelling-pipeline)里的说明。
+第三方数据、模型和代码的来源与许可，见[项目仓库](https://github.com/llia0031-dotcom/grounded-labelling-pipeline)里的说明。

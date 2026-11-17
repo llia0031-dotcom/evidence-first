@@ -17,9 +17,9 @@ headline = [
   { zh = "改稿字段写错：{mt4_v11_fault} → {mt4_v13_fault}（v1.3）", en = "Advice fields filled wrongly: {mt4_v11_fault} → {mt4_v13_fault} (v1.3)" },
 ]
 links = [
-  { label = { zh = "代码和报告", en = "Code and report" }, url = "https://github.com/Jason-d-e/grounded-review" },
-  { label = { zh = "演示页", en = "Demo" }, url = { zh = "https://jason-d-e.github.io/grounded-review/", en = "https://jason-d-e.github.io/grounded-review/en.html" } },
-  { label = { zh = "产品方案", en = "Product plan" }, url = { zh = "https://github.com/Jason-d-e/grounded-review/blob/main/product/PRD.zh-CN.md", en = "https://github.com/Jason-d-e/grounded-review/blob/main/product/PRD.md" } },
+  { label = { zh = "代码和报告", en = "Code and report" }, url = "https://github.com/llia0031-dotcom/grounded-review" },
+  { label = { zh = "演示页", en = "Demo" }, url = { zh = "https://llia0031-dotcom.github.io/grounded-review/", en = "https://llia0031-dotcom.github.io/grounded-review/en.html" } },
+  { label = { zh = "产品方案", en = "Product plan" }, url = { zh = "https://github.com/llia0031-dotcom/grounded-review/blob/main/product/PRD.zh-CN.md", en = "https://github.com/llia0031-dotcom/grounded-review/blob/main/product/PRD.md" } },
 ]
 summary = { zh = "审核广告的 Agent：读文案和图片里的字，在 32 条政策条款里查依据，给出放行或拒绝；每处违规附类别、条款、违规原话和条款原文，引文先过 evidence-check 的核对脚本才算数。广告主追问时，它写修改后的版本，再复审广告主自己改的版本。评测对比两组：把材料一次交给模型的单个提示词，和带工具的 Agent。", en = "An agent that reviews ads: it reads the caption and the words in the image, looks up 32 policy clauses, and approves or rejects. Every violation carries a category, the clause, the offending words and the clause text, and every quote must pass the evidence-check script before it counts. When the advertiser asks, it writes a corrected version and re-reviews the advertiser's own revision. The evaluation compares two arms: a single prompt with all material, and a tool-using agent." }
 core_link = { zh = "每段广告引文和条款引文都交给 evidence-check 的核对脚本；不是逐字出自原文的引文在回答给出之前就被拦下。", en = "Every ad quote and clause quote goes through the evidence-check script; a quote that is not word for word in its source is stopped before the answer is shown." }

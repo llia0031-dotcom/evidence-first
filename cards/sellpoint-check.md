@@ -6,7 +6,7 @@
 
 | 时间 | 团队 | 技术 | 链接 |
 |---|---|---|---|
-| 2026-11-12 – 2026-11-14 | Liang Liyuan | Node.js、DuckDB、Orama、evidence-check、批量接口 | [代码](https://github.com/Jason-d-e/sellpoint-check) · [设计案例](https://jason-d-e.github.io/sellpoint-check/design/case/) · [可点击原型](https://jason-d-e.github.io/sellpoint-check/design/prototype/product.html) |
+| 2026-11-12 – 2026-11-14 | Liang Liyuan | Node.js、DuckDB、Orama、evidence-check、批量接口 | [代码](https://github.com/llia0031-dotcom/sellpoint-check) · [设计案例](https://llia0031-dotcom.github.io/sellpoint-check/design/case/) · [可点击原型](https://llia0031-dotcom.github.io/sellpoint-check/design/prototype/product.html) |
 
 **问题**：商品页的卖点有没有被买家评价证实：买家只看到被证实的卖点和原话，其余卖点私下交给商家，附修改建议。
 
@@ -119,46 +119,46 @@ A2 换用 Orama 混合检索和句子窗口。在四套新写的测试集（混�
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 判对：全部评价一次给（C，采用） | 60/60（100.0%，95% 区间 94.0–100.0%） | 越高越好 | [`sellpoint-check/results/score-testset.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset.json) |
-| 判对：逐条判断再汇总（B） | 58/60（96.7%，95% 区间 88.6–99.1%） | 越高越好 | [`sellpoint-check/results/score-testset.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset.json) |
-| 判对：先检索再判断（A） | 52/60（86.7%，95% 区间 75.8–93.1%） | 越高越好 | [`sellpoint-check/results/score-testset.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset.json) |
-| 陷阱评价被当成证据（C） | 0/11（0.0%，95% 区间 0.0–25.9%） | 越低越好 | [`sellpoint-check/results/score-testset.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset.json) |
+| 判对：全部评价一次给（C，采用） | 60/60（100.0%，95% 区间 94.0–100.0%） | 越高越好 | [`sellpoint-check/results/score-testset.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset.json) |
+| 判对：逐条判断再汇总（B） | 58/60（96.7%，95% 区间 88.6–99.1%） | 越高越好 | [`sellpoint-check/results/score-testset.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset.json) |
+| 判对：先检索再判断（A） | 52/60（86.7%，95% 区间 75.8–93.1%） | 越高越好 | [`sellpoint-check/results/score-testset.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset.json) |
+| 陷阱评价被当成证据（C） | 0/11（0.0%，95% 区间 0.0–25.9%） | 越低越好 | [`sellpoint-check/results/score-testset.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset.json) |
 
 ### 真实数据（30 个商品，没有标准答案）
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 调用次数：C 占 B 的比例 | 2.8% | 越低越好 | [`sellpoint-check/results/compare-run.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/compare-run.json) |
-| 费用：C 占 B 的比例 | 17% | 越低越好 | [`sellpoint-check/results/compare-run.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/compare-run.json) |
-| 第二次独立判断同意：C 的支持证据 | 184/208（88.5%，95% 区间 83.4–92.1%） | 越高越好 | [`sellpoint-check/results/audit-run.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/audit-run.json) |
-| 第二次独立判断同意：C 的反驳证据 | 86/94（91.5%，95% 区间 84.1–95.6%） | 越高越好 | [`sellpoint-check/results/audit-run.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/audit-run.json) |
-| 第二次独立判断同意：A 的支持证据 | 143/173（82.7%，95% 区间 76.3–87.6%） | 越高越好 | [`sellpoint-check/results/audit-run.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/audit-run.json) |
-| C 跑两遍标签一致 | 92.9%（n=210） | 越高越好 | [`sellpoint-check/results/repeat-run.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/repeat-run.json) |
-| 参照：第二次判断在答案已知的题上和答案一致 | 95.8%（n=72） | 越高越好 | [`sellpoint-check/results/audit-testset.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/audit-testset.json) |
+| 调用次数：C 占 B 的比例 | 2.8% | 越低越好 | [`sellpoint-check/results/compare-run.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/compare-run.json) |
+| 费用：C 占 B 的比例 | 17% | 越低越好 | [`sellpoint-check/results/compare-run.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/compare-run.json) |
+| 第二次独立判断同意：C 的支持证据 | 184/208（88.5%，95% 区间 83.4–92.1%） | 越高越好 | [`sellpoint-check/results/audit-run.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/audit-run.json) |
+| 第二次独立判断同意：C 的反驳证据 | 86/94（91.5%，95% 区间 84.1–95.6%） | 越高越好 | [`sellpoint-check/results/audit-run.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/audit-run.json) |
+| 第二次独立判断同意：A 的支持证据 | 143/173（82.7%，95% 区间 76.3–87.6%） | 越高越好 | [`sellpoint-check/results/audit-run.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/audit-run.json) |
+| C 跑两遍标签一致 | 92.9%（n=210） | 越高越好 | [`sellpoint-check/results/repeat-run.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/repeat-run.json) |
+| 参照：第二次判断在答案已知的题上和答案一致 | 95.8%（n=72） | 越高越好 | [`sellpoint-check/results/audit-testset.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/audit-testset.json) |
 
 ### 中文测试集（50 条卖点，网络用语和反话）
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 判对（C） | 50/50（100.0%，95% 区间 92.9–100.0%） | 越高越好 | [`sellpoint-check/results/score-testset-zh.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-zh.json) |
-| 判对（B） | 47/50（94.0%，95% 区间 83.8–97.9%） | 越高越好 | [`sellpoint-check/results/score-testset-zh.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-zh.json) |
-| 判对（A） | 44/50（88.0%，95% 区间 76.2–94.4%） | 越高越好 | [`sellpoint-check/results/score-testset-zh.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-zh.json) |
+| 判对（C） | 50/50（100.0%，95% 区间 92.9–100.0%） | 越高越好 | [`sellpoint-check/results/score-testset-zh.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-zh.json) |
+| 判对（B） | 47/50（94.0%，95% 区间 83.8–97.9%） | 越高越好 | [`sellpoint-check/results/score-testset-zh.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-zh.json) |
+| 判对（A） | 44/50（88.0%，95% 区间 76.2–94.4%） | 越高越好 | [`sellpoint-check/results/score-testset-zh.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-zh.json) |
 
 ### 英文测试集 v2（50 条卖点，长评价、错别字、反话）
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 判对（C） | 50/50（100.0%，95% 区间 92.9–100.0%） | 越高越好 | [`sellpoint-check/results/score-testset-v2.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-v2.json) |
-| 判对（B） | 48/50（96.0%，95% 区间 86.5–98.9%） | 越高越好 | [`sellpoint-check/results/score-testset-v2.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-v2.json) |
-| 判对（A） | 46/50（92.0%，95% 区间 81.2–96.8%） | 越高越好 | [`sellpoint-check/results/score-testset-v2.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-v2.json) |
+| 判对（C） | 50/50（100.0%，95% 区间 92.9–100.0%） | 越高越好 | [`sellpoint-check/results/score-testset-v2.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-v2.json) |
+| 判对（B） | 48/50（96.0%，95% 区间 86.5–98.9%） | 越高越好 | [`sellpoint-check/results/score-testset-v2.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-v2.json) |
+| 判对（A） | 46/50（92.0%，95% 区间 81.2–96.8%） | 越高越好 | [`sellpoint-check/results/score-testset-v2.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-v2.json) |
 
 ### 检索改进 A2：A 没跑过的 180 条卖点
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 判对（A） | 167/180（92.8%，95% 区间 88.0–95.7%） | 越高越好 | [`sellpoint-check/results/score-testset-mixed.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-mixed.json)<br>[`sellpoint-check/results/score-testset-mixed2.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-mixed2.json)<br>[`sellpoint-check/results/score-testset-voice.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-voice.json)<br>[`sellpoint-check/results/score-testset-voice2.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-voice2.json) |
-| 判对（A2） | 173/180（96.1%，95% 区间 92.2–98.1%） | 越高越好 | [`sellpoint-check/results/score-testset-mixed.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-mixed.json)<br>[`sellpoint-check/results/score-testset-mixed2.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-mixed2.json)<br>[`sellpoint-check/results/score-testset-voice.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-voice.json)<br>[`sellpoint-check/results/score-testset-voice2.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-voice2.json) |
-| 判对（C） | 177/180（98.3%，95% 区间 95.2–99.4%） | 越高越好 | [`sellpoint-check/results/score-testset-mixed.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-mixed.json)<br>[`sellpoint-check/results/score-testset-mixed2.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-mixed2.json)<br>[`sellpoint-check/results/score-testset-voice.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-voice.json)<br>[`sellpoint-check/results/score-testset-voice2.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/score-testset-voice2.json) |
+| 判对（A） | 167/180（92.8%，95% 区间 88.0–95.7%） | 越高越好 | [`sellpoint-check/results/score-testset-mixed.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-mixed.json)<br>[`sellpoint-check/results/score-testset-mixed2.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-mixed2.json)<br>[`sellpoint-check/results/score-testset-voice.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-voice.json)<br>[`sellpoint-check/results/score-testset-voice2.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-voice2.json) |
+| 判对（A2） | 173/180（96.1%，95% 区间 92.2–98.1%） | 越高越好 | [`sellpoint-check/results/score-testset-mixed.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-mixed.json)<br>[`sellpoint-check/results/score-testset-mixed2.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-mixed2.json)<br>[`sellpoint-check/results/score-testset-voice.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-voice.json)<br>[`sellpoint-check/results/score-testset-voice2.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-voice2.json) |
+| 判对（C） | 177/180（98.3%，95% 区间 95.2–99.4%） | 越高越好 | [`sellpoint-check/results/score-testset-mixed.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-mixed.json)<br>[`sellpoint-check/results/score-testset-mixed2.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-mixed2.json)<br>[`sellpoint-check/results/score-testset-voice.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-voice.json)<br>[`sellpoint-check/results/score-testset-voice2.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/score-testset-voice2.json) |
 
 A2 比 A 好，但采用的仍是 C；A2 留作评价太多、一次放不下时的备选。
 
@@ -166,23 +166,23 @@ A2 比 A 好，但采用的仍是 C；A2 留作评价太多、一次放不下时
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 第 1 版，测试集，第一次评分可以直接照着改 | 35/40（87.5%，95% 区间 73.9–94.5%） | 越高越好 | [`sellpoint-check/results/suggest-testset.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset.json) |
-| 第 1 版，测试集，第二次评分 | 32/40（80.0%，95% 区间 65.2–89.5%） | 越高越好 | [`sellpoint-check/results/suggest-testset.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset.json) |
-| 第 1 版，真实数据，第一次评分 | 140/151（92.7%，95% 区间 87.4–95.9%） | 越高越好 | [`sellpoint-check/results/suggest-run.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-run.json) |
-| 第 5 版，真实数据，第一次评分 | 142/151（94.0%，95% 区间 89.1–96.8%） | 越高越好 | [`sellpoint-check/results/suggest-run-v5.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-run-v5.json) |
-| 第 5 版，真实数据，第二次评分 | 143/151（94.7%，95% 区间 89.9–97.3%） | 越高越好 | [`sellpoint-check/results/suggest-run-v5.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-run-v5.json) |
-| 第 3 版：新文案里没有“买家说”这类写法 | 140/151（92.7%，95% 区间 87.4–95.9%） | 越高越好 | [`sellpoint-check/results/suggest-run-v3.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-run-v3.json) |
-| 第 5 版：新文案里没有“买家说”这类写法 | 151/151（100.0%，95% 区间 97.5–100.0%） | 越高越好 | [`sellpoint-check/results/suggest-run-v5.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-run-v5.json) |
-| 评分器校准：第一次判对已知好坏的建议 | 31/32（96.9%，95% 区间 84.3–99.4%） | 越高越好 | [`sellpoint-check/results/suggest-testset.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset.json) |
-| 评分器校准：第二次 | 30/32（93.8%，95% 区间 79.9–98.3%） | 越高越好 | [`sellpoint-check/results/suggest-testset.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset.json) |
-| 中文测试集（第 2 版的对比）：第 1 版可以直接照着改 | 30/34（88.2%，95% 区间 73.4–95.3%） | 越高越好 | [`sellpoint-check/results/suggest-testset-zh.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-zh.json) |
-| 中文测试集（第 2 版的对比）：第 2 版可以直接照着改 | 32/34（94.1%，95% 区间 80.9–98.4%） | 越高越好 | [`sellpoint-check/results/suggest-testset-zh-v2.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-zh-v2.json) |
-| 混合测试集（第 3 版的对比）：第 2 版用对语言 | 20/40（50.0%，95% 区间 35.2–64.8%） | 越高越好 | [`sellpoint-check/results/suggest-testset-mixed-v2.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed-v2.json) |
-| 混合测试集（第 3 版的对比）：第 3 版用对语言 | 40/40（100.0%，95% 区间 91.2–100.0%） | 越高越好 | [`sellpoint-check/results/suggest-testset-mixed-v3.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed-v3.json) |
-| 混合测试集二（第 4 版的对比）：第 3 版可以直接照着改 | 38/39（97.4%，95% 区间 86.8–99.5%） | 越高越好 | [`sellpoint-check/results/suggest-testset-mixed2-v3.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed2-v3.json) |
-| 混合测试集二（第 4 版的对比）：第 4 版可以直接照着改 | 36/39（92.3%，95% 区间 79.7–97.3%） | 越高越好 | [`sellpoint-check/results/suggest-testset-mixed2-v4.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed2-v4.json) |
-| 口语测试集二（第 6 版的对比）：第 5 版可以直接照着改 | 29/32（90.6%，95% 区间 75.8–96.8%） | 越高越好 | [`sellpoint-check/results/suggest-testset-voice2-v5.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice2-v5.json) |
-| 口语测试集二（第 6 版的对比）：第 6 版可以直接照着改 | 26/32（81.2%，95% 区间 64.7–91.1%） | 越高越好 | [`sellpoint-check/results/suggest-testset-voice2-v6.json`](https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice2-v6.json) |
+| 第 1 版，测试集，第一次评分可以直接照着改 | 35/40（87.5%，95% 区间 73.9–94.5%） | 越高越好 | [`sellpoint-check/results/suggest-testset.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset.json) |
+| 第 1 版，测试集，第二次评分 | 32/40（80.0%，95% 区间 65.2–89.5%） | 越高越好 | [`sellpoint-check/results/suggest-testset.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset.json) |
+| 第 1 版，真实数据，第一次评分 | 140/151（92.7%，95% 区间 87.4–95.9%） | 越高越好 | [`sellpoint-check/results/suggest-run.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-run.json) |
+| 第 5 版，真实数据，第一次评分 | 142/151（94.0%，95% 区间 89.1–96.8%） | 越高越好 | [`sellpoint-check/results/suggest-run-v5.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-run-v5.json) |
+| 第 5 版，真实数据，第二次评分 | 143/151（94.7%，95% 区间 89.9–97.3%） | 越高越好 | [`sellpoint-check/results/suggest-run-v5.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-run-v5.json) |
+| 第 3 版：新文案里没有“买家说”这类写法 | 140/151（92.7%，95% 区间 87.4–95.9%） | 越高越好 | [`sellpoint-check/results/suggest-run-v3.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-run-v3.json) |
+| 第 5 版：新文案里没有“买家说”这类写法 | 151/151（100.0%，95% 区间 97.5–100.0%） | 越高越好 | [`sellpoint-check/results/suggest-run-v5.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-run-v5.json) |
+| 评分器校准：第一次判对已知好坏的建议 | 31/32（96.9%，95% 区间 84.3–99.4%） | 越高越好 | [`sellpoint-check/results/suggest-testset.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset.json) |
+| 评分器校准：第二次 | 30/32（93.8%，95% 区间 79.9–98.3%） | 越高越好 | [`sellpoint-check/results/suggest-testset.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset.json) |
+| 中文测试集（第 2 版的对比）：第 1 版可以直接照着改 | 30/34（88.2%，95% 区间 73.4–95.3%） | 越高越好 | [`sellpoint-check/results/suggest-testset-zh.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-zh.json) |
+| 中文测试集（第 2 版的对比）：第 2 版可以直接照着改 | 32/34（94.1%，95% 区间 80.9–98.4%） | 越高越好 | [`sellpoint-check/results/suggest-testset-zh-v2.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-zh-v2.json) |
+| 混合测试集（第 3 版的对比）：第 2 版用对语言 | 20/40（50.0%，95% 区间 35.2–64.8%） | 越高越好 | [`sellpoint-check/results/suggest-testset-mixed-v2.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-mixed-v2.json) |
+| 混合测试集（第 3 版的对比）：第 3 版用对语言 | 40/40（100.0%，95% 区间 91.2–100.0%） | 越高越好 | [`sellpoint-check/results/suggest-testset-mixed-v3.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-mixed-v3.json) |
+| 混合测试集二（第 4 版的对比）：第 3 版可以直接照着改 | 38/39（97.4%，95% 区间 86.8–99.5%） | 越高越好 | [`sellpoint-check/results/suggest-testset-mixed2-v3.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-mixed2-v3.json) |
+| 混合测试集二（第 4 版的对比）：第 4 版可以直接照着改 | 36/39（92.3%，95% 区间 79.7–97.3%） | 越高越好 | [`sellpoint-check/results/suggest-testset-mixed2-v4.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-mixed2-v4.json) |
+| 口语测试集二（第 6 版的对比）：第 5 版可以直接照着改 | 29/32（90.6%，95% 区间 75.8–96.8%） | 越高越好 | [`sellpoint-check/results/suggest-testset-voice2-v5.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-voice2-v5.json) |
+| 口语测试集二（第 6 版的对比）：第 6 版可以直接照着改 | 26/32（81.2%，95% 区间 64.7–91.1%） | 越高越好 | [`sellpoint-check/results/suggest-testset-voice2-v6.json`](https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-voice2-v6.json) |
 
 ## 评分器校准
 
@@ -211,4 +211,4 @@ A2 比 A 好，但采用的仍是 C；A2 留作评价太多、一次放不下时
 
 模板照 Hugging Face 模型卡（Apache-2.0）的章节；每个数字的来源文件和指纹见 `cards/sources.lock.json`。
 
-第三方数据、模型和代码的来源与许可，见[项目仓库](https://github.com/Jason-d-e/sellpoint-check)里的说明。
+第三方数据、模型和代码的来源与许可，见[项目仓库](https://github.com/llia0031-dotcom/sellpoint-check)里的说明。

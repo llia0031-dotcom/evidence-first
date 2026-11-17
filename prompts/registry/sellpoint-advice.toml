@@ -14,7 +14,7 @@ decision = "superseded"
 text = { zh = "`pipeline/lib/suggest_prompts.mjs`（指纹 b5b2a58fdbde）", en = "`pipeline/lib/suggest_prompts.mjs` (fingerprint b5b2a58fdbde)" }
 change = { zh = "第一版：对每条没被证实的卖点给出原因、买家原话和可以直接照着改的文案。", en = "First version: for each unconfirmed claim, the reason, the buyers' words and a rewrite the merchant can apply as is." }
 why = { zh = "真实数据里有一部分改写还留着被评价反驳的说法。", en = "On real data some rewrites still kept wording the reviews refute." }
-source = "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-run.md"
+source = "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-run.md"
 compare_set = { zh = "答案已知的 40 条；真实数据 151 条", en = "40 claims with known answers; 151 real claims" }
 scores = [
   { label = { zh = "测试集可以直接照着改（两次评分）", en = "Test set usable as is (two gradings)" }, refs = ["sellpoint-check.adv_v1_test_g1", "sellpoint-check.adv_v1_test_g2"], sep = "and" },
@@ -29,7 +29,7 @@ superseded_by = "v3"
 text = { zh = "`pipeline/lib/suggest_v2.mjs`（指纹 279e9280f000）", en = "`pipeline/lib/suggest_v2.mjs` (fingerprint 279e9280f000)" }
 change = { zh = "加三条规则，并在代码里检查：改写里还留着被反驳的说法就退回重写。", en = "Three new rules plus a code check that sends back rewrites still containing refuted wording." }
 why = { zh = "残留问题清零，在新写的中文题上更好；但中文商品的建议大多还是英文。", en = "Refuted wording cleared and better on the new Chinese set, but most advice for Chinese listings was still in English." }
-source = "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-zh-v2.md"
+source = "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-zh-v2.md"
 compare_set = { zh = "中文测试集 34 条（v1 对 v2）；真实数据 151 条", en = "Chinese set, 34 claims (v1 vs v2); 151 real claims" }
 scores = [
   { label = { zh = "中文测试集可以直接照着改，第一次评分（v1 → v2）", en = "Chinese set usable as is, first grading (v1 → v2)" }, pair = [
@@ -51,7 +51,7 @@ superseded_by = "v5"
 text = { zh = "`pipeline/lib/suggest_v3.mjs`（指纹 c346201974cd）", en = "`pipeline/lib/suggest_v3.mjs` (fingerprint c346201974cd)" }
 change = { zh = "有争议的卖点保留每个被证实的部分和它的条件；商品的语言在代码里定好；退回重写的范围放宽。", en = "Mixed claims keep every confirmed part with its condition; the listing language is set in code; the send-back check is wider." }
 why = { zh = "中文商家必须收到中文的建议：在新写的混合测试集上，用对语言的从 v2 的一半变成全部，可以直接照着改的条数基本持平。", en = "Chinese merchants must get Chinese advice: on the new mixed set, advice in the right language went from half under v2 to all of it, with usable advice about level." }
-source = "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed-v3.md"
+source = "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-mixed-v3.md"
 compare_set = { zh = "混合测试集 40 条（v2 对 v3）；真实数据 151 条", en = "Mixed set, 40 claims (v2 vs v3); 151 real claims" }
 scores = [
   { label = { zh = "用对语言（v2 → v3）", en = "Advice in the listing's language (v2 → v3)" }, pair = [
@@ -72,7 +72,7 @@ decision = "not_adopted"
 text = { zh = "`pipeline/lib/suggest_v4.mjs`（指纹 7b0d5b8debfe）", en = "`pipeline/lib/suggest_v4.mjs` (fingerprint 7b0d5b8debfe)" }
 change = { zh = "新加“被反驳的词”字段和四条规则，更多情况退回重写。", en = "A new field listing refuted words, four rules and more send-backs." }
 why = { zh = "让模型先列出被反驳的词，它就倾向于把这些词整个删掉，删得太多，总分下降。", en = "Asked to list refuted words first, the model tends to delete them wholesale; it removes too much and the score drops." }
-source = "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed2-v4.md"
+source = "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-mixed2-v4.md"
 compare_set = { zh = "混合测试集二 39 条（v3 对 v4）；真实数据 151 条", en = "Mixed set 2, 39 claims (v3 vs v4); 151 real claims" }
 scores = [
   { label = { zh = "可以直接照着改，第一次评分（v3 → v4）", en = "Usable as is, first grading (v3 → v4)" }, pair = [
@@ -89,7 +89,7 @@ decision = "adopted"
 text = { zh = "`pipeline/lib/suggest_v5.mjs`（指纹 4f50d20090bd）", en = "`pipeline/lib/suggest_v5.mjs` (fingerprint 4f50d20090bd)" }
 change = { zh = "第 3 版的提示词不变，加一条代码检查：新文案里出现“买家说”这类写法就退回重写。", en = "The v3 prompt unchanged, plus a code check that sends back new copy containing \"buyers say\" phrasing." }
 why = { zh = "真实数据上没有“买家说”写法的从 {sellpoint-check.adv_v3_review_talk} 升到 {sellpoint-check.adv_v5_review_talk}，可以直接照着改的条数持平。", en = "On real data, copy free of \"buyers say\" phrasing rose from {sellpoint-check.adv_v3_review_talk} to {sellpoint-check.adv_v5_review_talk}, with usable advice level." }
-source = "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice-v5.md"
+source = "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-voice-v5.md"
 compare_set = { zh = "口语测试集 31 条（v3 对 v5）；真实数据 151 条", en = "Spoken set, 31 claims (v3 vs v5); 151 real claims" }
 scores = [
   { label = { zh = "可以直接照着改，第一次评分（v3 → v5）", en = "Usable as is, first grading (v3 → v5)" }, pair = [
@@ -107,7 +107,7 @@ decision = "not_adopted"
 text = { zh = "`pipeline/lib/suggest_v6.mjs`（指纹 ce17fbc23ce9）", en = "`pipeline/lib/suggest_v6.mjs` (fingerprint ce17fbc23ce9)" }
 change = { zh = "放宽“买家说”的同义词表，退回重写时加一句“限定条件留着”。", en = "A wider synonym list for \"buyers say\" and a \"keep the limits\" note on retries." }
 why = { zh = "“限定条件留着”让模型把已被反驳的具体说法也当成限定条件留下了，总分下降；修改建议先停在第 5 版。", en = "\"Keep the limits\" made the model keep refuted specifics as if they were limits, and the score dropped; the advice stays at v5." }
-source = "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice2-v6.md"
+source = "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-voice2-v6.md"
 compare_set = { zh = "口语测试集二 32 条（v5 对 v6）；真实数据 151 条", en = "Spoken set 2, 32 claims (v5 vs v6); 151 real claims" }
 scores = [
   { label = { zh = "可以直接照着改，第一次评分（v5 → v6）", en = "Usable as is, first grading (v5 → v6)" }, pair = [

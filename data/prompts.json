@@ -24,14 +24,14 @@
           "label": "production",
           "to": "v0.1",
           "reason": "first version",
-          "source": "https://github.com/Jason-d-e/evidence-check/blob/main/eval/EVALUATION.md"
+          "source": "https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/EVALUATION.md"
         },
         {
           "date": "2026-11-12",
           "label": "staging",
           "to": "v0.2",
           "reason": "frozen before the v2 held-out items were written",
-          "source": "https://github.com/Jason-d-e/evidence-check/blob/main/eval/EVALUATION.md"
+          "source": "https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/EVALUATION.md"
         },
         {
           "date": "2026-11-12",
@@ -39,7 +39,7 @@
           "from": "v0.1",
           "to": "v0.2",
           "reason": "held-out v2: no invented numbers, lower cost",
-          "source": "https://github.com/Jason-d-e/evidence-check/blob/main/eval/EVALUATION.md"
+          "source": "https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/EVALUATION.md"
         }
       ]
     },
@@ -56,7 +56,7 @@
           "zh": "`eval/v2/skill-versions/SKILL-v0.1.md`（指纹 9aec983a7522）",
           "en": "`eval/v2/skill-versions/SKILL-v0.1.md` (fingerprint 9aec983a7522)"
         },
-        "source": "https://github.com/Jason-d-e/evidence-check/blob/main/eval/EVALUATION.md",
+        "source": "https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/EVALUATION.md",
         "why": {
           "zh": "开发评测 v1 暴露三个问题：两次误报都是把英文原文正确译成中文却被判错；唯一漏掉的错句是算错的时长；费用接近普通提示的两倍。",
           "en": "Development run v1 showed three problems: both false alarms were correct Chinese translations of English sources; the one missed error was a miscalculated duration; and it cost almost twice the plain prompt."
@@ -124,7 +124,7 @@
           "zh": "`skills/evidence-check/SKILL.md`（指纹 8dcadfc8cd45，现行）",
           "en": "`skills/evidence-check/SKILL.md` (fingerprint 8dcadfc8cd45, current)"
         },
-        "source": "https://github.com/Jason-d-e/evidence-check/blob/main/eval/EVALUATION.md",
+        "source": "https://github.com/llia0031-dotcom/evidence-check/blob/main/eval/EVALUATION.md",
         "why": {
           "zh": "留出评测里不再编数字，费用略低；误标多一条，属于噪声。",
           "en": "No invented numbers on the held-out set and slightly lower cost; one more false alarm, within noise."
@@ -235,14 +235,14 @@
           "label": "production",
           "to": "v1",
           "reason": "first version",
-          "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+          "source": "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/EVALUATION.md"
         },
         {
           "date": "2026-11-13",
           "label": "staging",
           "to": "v1.1",
           "reason": "fix template placeholders in corrected versions",
-          "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+          "source": "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/EVALUATION.md"
         },
         {
           "date": "2026-11-13",
@@ -250,7 +250,7 @@
           "from": "v1",
           "to": "v1.1",
           "reason": "mt2: placeholders gone",
-          "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+          "source": "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/EVALUATION.md"
         },
         {
           "date": "2026-11-13",
@@ -258,7 +258,7 @@
           "from": "v1.1",
           "to": "v1.2",
           "reason": "try sending malformed advice back once",
-          "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+          "source": "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/EVALUATION.md"
         },
         {
           "date": "2026-11-13",
@@ -266,7 +266,7 @@
           "from": "v1.2",
           "to": "v1.3",
           "reason": "v1.2 did not help and was dropped; try asking for the corrected caption first",
-          "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+          "source": "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/EVALUATION.md"
         },
         {
           "date": "2026-11-14",
@@ -274,7 +274,7 @@
           "from": "v1.1",
           "to": "v1.3",
           "reason": "mt4: advice fields filled wrongly fell to zero, cost unchanged",
-          "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md"
+          "source": "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/EVALUATION.md"
         }
       ]
     },
@@ -291,7 +291,7 @@
           "zh": "`SYSTEM`、`ADVICE_SCHEMA` 和改稿提问（`agent/review_agent.py`）",
           "en": "`SYSTEM`, `ADVICE_SCHEMA` and the advice question (`agent/review_agent.py`)"
         },
-        "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md",
+        "source": "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/EVALUATION.md",
         "why": {
           "zh": "多轮任务里，改后版本偶尔留下要人填的模板占位符。",
           "en": "In multi-turn runs the corrected version sometimes kept template placeholders for a person to fill in."
@@ -310,7 +310,7 @@
           "zh": "v1 加 `ADVICE_RULES_V11` 和 `check_revision` 工具",
           "en": "v1 plus `ADVICE_RULES_V11` and the `check_revision` tool"
         },
-        "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md",
+        "source": "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/EVALUATION.md",
         "why": {
           "zh": "在为它新写的 12 条广告上，占位符从 3/24 降到 0/24；之后发现“修改后的文案”有时写错位置。",
           "en": "On 12 ads written for it, placeholders fell from 3/24 to 0/24; later the corrected caption was found to land in the wrong field at times."
@@ -369,7 +369,7 @@
           "zh": "v1.1 加“字段填错就退回重交一次”",
           "en": "v1.1 plus sending malformed advice back once"
         },
-        "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md",
+        "source": "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/EVALUATION.md",
         "why": {
           "zh": "退回重交没用：模型第二次照样写错；字段写错 v1.1 4/36，v1.2 6/36，费用还更高。",
           "en": "Sending it back does not help: the model repeats the fault; fields wrong 4/36 for v1.1 and 6/36 for v1.2, at a higher cost."
@@ -428,7 +428,7 @@
           "zh": "`ADVICE_SCHEMA_V13`（先填修改后的文案，再写说明）和 `common.clean_advice`",
           "en": "`ADVICE_SCHEMA_V13` (corrected caption before the explanation) and `common.clean_advice`"
         },
-        "source": "https://github.com/Jason-d-e/grounded-review/blob/main/eval/EVALUATION.md",
+        "source": "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/EVALUATION.md",
         "why": {
           "zh": "在又一组新写的 12 条广告上，交上来的建议字段写错从 6/36 降到 0/36；品牌和价格保住 36/36；费用没变。",
           "en": "On another 12 newly written ads, advice fields filled wrongly fell from 6/36 to 0/36; brand and price kept 36/36; cost unchanged."
@@ -561,7 +561,7 @@
           "label": "production",
           "to": "v1",
           "reason": "first version",
-          "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-run.md"
+          "source": "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-run.md"
         },
         {
           "date": "2026-11-14",
@@ -569,7 +569,7 @@
           "from": "v1",
           "to": "v2",
           "reason": "refuted wording cleared",
-          "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-zh-v2.md"
+          "source": "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-zh-v2.md"
         },
         {
           "date": "2026-11-14",
@@ -577,7 +577,7 @@
           "from": "v2",
           "to": "v3",
           "reason": "Chinese merchants get Chinese advice",
-          "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed-v3.md"
+          "source": "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-mixed-v3.md"
         },
         {
           "date": "2026-11-14",
@@ -585,7 +585,7 @@
           "from": "v3",
           "to": "v4",
           "reason": "try a refuted-words field",
-          "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed2-v4.md"
+          "source": "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-mixed2-v4.md"
         },
         {
           "date": "2026-11-14",
@@ -593,7 +593,7 @@
           "from": "v4",
           "to": "v5",
           "reason": "v4 removed too much and was dropped; try v3 plus a buyers-say check",
-          "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice-v5.md"
+          "source": "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-voice-v5.md"
         },
         {
           "date": "2026-11-14",
@@ -601,7 +601,7 @@
           "from": "v3",
           "to": "v5",
           "reason": "buyers-say phrasing gone, usable advice level",
-          "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice-v5.md"
+          "source": "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-voice-v5.md"
         },
         {
           "date": "2026-11-14",
@@ -609,7 +609,7 @@
           "from": "v5",
           "to": "v6",
           "reason": "try a wider synonym list",
-          "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice2-v6.md"
+          "source": "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-voice2-v6.md"
         },
         {
           "date": "2026-11-14",
@@ -617,7 +617,7 @@
           "from": "v6",
           "to": "v5",
           "reason": "v6 scored lower and was dropped",
-          "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice-v5.md"
+          "source": "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-voice-v5.md"
         }
       ]
     },
@@ -634,7 +634,7 @@
           "zh": "`pipeline/lib/suggest_prompts.mjs`（指纹 b5b2a58fdbde）",
           "en": "`pipeline/lib/suggest_prompts.mjs` (fingerprint b5b2a58fdbde)"
         },
-        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-run.md",
+        "source": "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-run.md",
         "why": {
           "zh": "真实数据里有一部分改写还留着被评价反驳的说法。",
           "en": "On real data some rewrites still kept wording the reviews refute."
@@ -715,7 +715,7 @@
           "zh": "`pipeline/lib/suggest_v2.mjs`（指纹 279e9280f000）",
           "en": "`pipeline/lib/suggest_v2.mjs` (fingerprint 279e9280f000)"
         },
-        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-zh-v2.md",
+        "source": "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-zh-v2.md",
         "why": {
           "zh": "残留问题清零，在新写的中文题上更好；但中文商品的建议大多还是英文。",
           "en": "Refuted wording cleared and better on the new Chinese set, but most advice for Chinese listings was still in English."
@@ -831,7 +831,7 @@
           "zh": "`pipeline/lib/suggest_v3.mjs`（指纹 c346201974cd）",
           "en": "`pipeline/lib/suggest_v3.mjs` (fingerprint c346201974cd)"
         },
-        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed-v3.md",
+        "source": "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-mixed-v3.md",
         "why": {
           "zh": "中文商家必须收到中文的建议：在新写的混合测试集上，用对语言的从 v2 的一半变成全部，可以直接照着改的条数基本持平。",
           "en": "Chinese merchants must get Chinese advice: on the new mixed set, advice in the right language went from half under v2 to all of it, with usable advice about level."
@@ -947,7 +947,7 @@
           "zh": "`pipeline/lib/suggest_v4.mjs`（指纹 7b0d5b8debfe）",
           "en": "`pipeline/lib/suggest_v4.mjs` (fingerprint 7b0d5b8debfe)"
         },
-        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-mixed2-v4.md",
+        "source": "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-mixed2-v4.md",
         "why": {
           "zh": "让模型先列出被反驳的词，它就倾向于把这些词整个删掉，删得太多，总分下降。",
           "en": "Asked to list refuted words first, the model tends to delete them wholesale; it removes too much and the score drops."
@@ -1028,7 +1028,7 @@
           "zh": "`pipeline/lib/suggest_v5.mjs`（指纹 4f50d20090bd）",
           "en": "`pipeline/lib/suggest_v5.mjs` (fingerprint 4f50d20090bd)"
         },
-        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice-v5.md",
+        "source": "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-voice-v5.md",
         "why": {
           "zh": "真实数据上没有“买家说”写法的从 140/151 升到 151/151，可以直接照着改的条数持平。",
           "en": "On real data, copy free of \"buyers say\" phrasing rose from 140/151 to 151/151, with usable advice level."
@@ -1144,7 +1144,7 @@
           "zh": "`pipeline/lib/suggest_v6.mjs`（指纹 ce17fbc23ce9）",
           "en": "`pipeline/lib/suggest_v6.mjs` (fingerprint ce17fbc23ce9)"
         },
-        "source": "https://github.com/Jason-d-e/sellpoint-check/blob/main/results/suggest-testset-voice2-v6.md",
+        "source": "https://github.com/llia0031-dotcom/sellpoint-check/blob/main/results/suggest-testset-voice2-v6.md",
         "why": {
           "zh": "“限定条件留着”让模型把已被反驳的具体说法也当成限定条件留下了，总分下降；修改建议先停在第 5 版。",
           "en": "\"Keep the limits\" made the model keep refuted specifics as if they were limits, and the score dropped; the advice stays at v5."
@@ -1237,7 +1237,7 @@
           "label": "production",
           "to": "grounded-v2-access",
           "reason": "output format v2",
-          "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js"
+          "source": "https://github.com/llia0031-dotcom/tracedesk-lite/blob/main/app/lib/prompts.js"
         },
         {
           "date": "2026-11-09",
@@ -1245,7 +1245,7 @@
           "from": "grounded-v2-access",
           "to": "grounded-v2.1-access",
           "reason": "dates in the reader's language",
-          "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js"
+          "source": "https://github.com/llia0031-dotcom/tracedesk-lite/blob/main/app/lib/prompts.js"
         },
         {
           "date": "2026-11-09",
@@ -1253,7 +1253,7 @@
           "from": "grounded-v2.1-access",
           "to": "grounded-v2.2-access",
           "reason": "writing-style rules",
-          "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js"
+          "source": "https://github.com/llia0031-dotcom/tracedesk-lite/blob/main/app/lib/prompts.js"
         },
         {
           "date": "2026-11-09",
@@ -1261,7 +1261,7 @@
           "from": "grounded-v2.2-access",
           "to": "grounded-v2.3-access",
           "reason": "deadlines attached to their step",
-          "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/EVALUATION.md"
+          "source": "https://github.com/llia0031-dotcom/tracedesk-lite/blob/main/EVALUATION.md"
         },
         {
           "date": "2026-11-09",
@@ -1269,7 +1269,7 @@
           "from": "grounded-v2.3-access",
           "to": "grounded-v2.4-access",
           "reason": "deadlines in the reader's language",
-          "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/EVALUATION.md"
+          "source": "https://github.com/llia0031-dotcom/tracedesk-lite/blob/main/EVALUATION.md"
         }
       ]
     },
@@ -1286,7 +1286,7 @@
           "zh": "原文没有存档",
           "en": "Text not kept"
         },
-        "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js",
+        "source": "https://github.com/llia0031-dotcom/tracedesk-lite/blob/main/app/lib/prompts.js",
         "why": {
           "zh": "只做过冒烟测试，没有存成评测结果。",
           "en": "Only smoke-tested; no evaluation result was stored."
@@ -1305,7 +1305,7 @@
           "zh": "原文没有存档",
           "en": "Text not kept"
         },
-        "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js",
+        "source": "https://github.com/llia0031-dotcom/tracedesk-lite/blob/main/app/lib/prompts.js",
         "why": {
           "zh": "没有单独评测。",
           "en": "Not evaluated on its own."
@@ -1324,7 +1324,7 @@
           "zh": "公开仓库提交 d78874c 的 `app/lib/prompts.js`",
           "en": "`app/lib/prompts.js` at public commit d78874c"
         },
-        "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/app/lib/prompts.js",
+        "source": "https://github.com/llia0031-dotcom/tracedesk-lite/blob/main/app/lib/prompts.js",
         "why": {
           "zh": "开发组上通过自动检查的比普通提示多；之后发现截止时间有时没挂在对应的步骤上。",
           "en": "More answers passed the automatic checks than with the plain prompt on the development set; later, deadlines were sometimes not attached to their step."
@@ -1383,7 +1383,7 @@
           "zh": "公开仓库提交 8064b58 的 `app/lib/prompts.js`",
           "en": "`app/lib/prompts.js` at public commit 8064b58"
         },
-        "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/EVALUATION.md",
+        "source": "https://github.com/llia0031-dotcom/tracedesk-lite/blob/main/EVALUATION.md",
         "why": {
           "zh": "检查组第一轮通过自动检查的比普通提示多；中文问题的截止时间还会按英文写。",
           "en": "Check run 1 passed more automatic checks than the plain prompt; deadlines in Chinese answers could still come out in English."
@@ -1442,7 +1442,7 @@
           "zh": "公开仓库提交 2951bef 的 `app/lib/prompts.js`（现行默认）",
           "en": "`app/lib/prompts.js` at public commit 2951bef (current default)"
         },
-        "source": "https://github.com/Jason-d-e/tracedesk-lite/blob/main/EVALUATION.md",
+        "source": "https://github.com/llia0031-dotcom/tracedesk-lite/blob/main/EVALUATION.md",
         "why": {
           "zh": "检查组第二轮自动检查全部通过；但这一轮是在看过第一轮之后、用同一组题跑的，不算干净的留出结果。",
           "en": "Check run 2 passed every automatic check, but it came after seeing run 1 on the same cases, so it is not a clean held-out result."
@@ -1554,7 +1554,7 @@
           "from": "cairn-monash-v1",
           "to": "cairn-monash-v2",
           "reason": "readability review",
-          "source": "https://github.com/Jason-d-e/cairn/blob/main/app/lib/prompt.js"
+          "source": "https://github.com/llia0031-dotcom/cairn/blob/main/app/lib/prompt.js"
         }
       ]
     },
@@ -1607,7 +1607,7 @@
           "zh": "公开仓库提交 45f0b13 的 `app/lib/prompt.js`（现行）",
           "en": "`app/lib/prompt.js` at public commit 45f0b13 (current)"
         },
-        "source": "https://github.com/Jason-d-e/cairn/blob/main/app/lib/prompt.js",
+        "source": "https://github.com/llia0031-dotcom/cairn/blob/main/app/lib/prompt.js",
         "why": {
           "zh": "来自可读性检查。两版都只做了冒烟测试，结果只打印在控制台、没有存成结果文件，所以这里不列分数；检索评测和提示词无关。",
           "en": "From the readability review. Both versions were only smoke-tested, with results printed to the console and not stored, so no score is listed; the retrieval evaluation does not depend on the prompt."
@@ -1638,14 +1638,14 @@
           "label": "production",
           "to": "v1",
           "reason": "first version: Grounded Review's one-prompt arm as stored",
-          "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/docs/DESIGN.md"
+          "source": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/docs/DESIGN.md"
         },
         {
           "date": "2026-11-15",
           "label": "staging",
           "to": "v2",
           "reason": "send answers the model is unsure of to the review queue; v1 let every wrong decision through",
-          "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/docs/PREREGISTRATION.md"
+          "source": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/docs/PREREGISTRATION.md"
         },
         {
           "date": "2026-11-15",
@@ -1653,7 +1653,7 @@
           "from": "v2",
           "to": "v1",
           "reason": "v2 passed regression, but the canary rules written beforehand rolled it back at the first step",
-          "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/docs/CANARY-POSTMORTEM.md"
+          "source": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/docs/CANARY-POSTMORTEM.md"
         },
         {
           "date": "2026-11-16",
@@ -1661,7 +1661,7 @@
           "from": "v1",
           "to": "v2",
           "reason": "second canary on newly written ads, rules preregistered",
-          "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/docs/PREREGISTRATION-ROUND2.md"
+          "source": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/docs/PREREGISTRATION-ROUND2.md"
         },
         {
           "date": "2026-11-16",
@@ -1669,7 +1669,7 @@
           "from": "v1",
           "to": "v2",
           "reason": "round-two canary reached full release with no rollback rule fired",
-          "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/reports/compare-v1-v2-round2.md"
+          "source": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/reports/compare-v1-v2-round2.md"
         }
       ]
     },
@@ -1686,7 +1686,7 @@
           "zh": "有据审核 Agent 的单次提示词，原样（`agent/oneshot.py`）",
           "en": "Grounded Review's one-prompt arm as it is (`agent/oneshot.py`)"
         },
-        "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/reports/compare-v1-v2.md",
+        "source": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/reports/compare-v1-v2.md",
         "why": {
           "zh": "回放请求里判错的全部自动生效（17/332）；引文核对只拦下判对了但引文有毛病的答案。",
           "en": "Every wrong decision in the replay went live (17/332); the quote check only caught answers that were right but quoted badly."
@@ -1754,7 +1754,7 @@
           "zh": "v1 加一条“拿不准”规则（`triage.CERTAINTY_RULE`），输出格式加 `certainty`、`unsure_reason`",
           "en": "v1 plus one rule on when to be unsure (`triage.CERTAINTY_RULE`) and two output fields, `certainty` and `unsure_reason`"
         },
-        "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/docs/CANARY-POSTMORTEM.md",
+        "source": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/docs/CANARY-POSTMORTEM.md",
         "why": {
           "zh": "回归测试按预注册的四条采用标准全部通过，判错又自动生效 17/332 → 9/332。但按跑之前写好的回滚规则，灰度在 10% 时就回滚了；复盘发现两条规则写错。改好的规则在新写的广告上重新灰度，三步都没触发回滚，采用，production 挪到 v2。第二轮两版都接近全对，只说明放量流程走通了；v2 少漏错判的证据来自第一轮。",
           "en": "It passed all four preregistered adoption rules on the regression set: wrong decisions that went live 17/332 → 9/332. The rollback rules written before the replay rolled it back at 10%; the post-mortem found two of those rules were wrong. With the fixed rules, a second canary on newly written ads fired no rule at any of its three steps, so v2 was adopted and production moved to it. Both versions were almost always right in round two, so that round shows the release process works; the evidence that v2 lets fewer errors through comes from round one."
@@ -1945,7 +1945,7 @@
           "zh": "v2 的“拿不准”规则重写（`triage.CERTAINTY_RULE_V3`）：写明几种情况算拿不准、几种不算；输出格式不变",
           "en": "v2's rule on when to be unsure, rewritten (`triage.CERTAINTY_RULE_V3`): which cases count as unsure and which do not; the output format is unchanged"
         },
-        "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/reports/compare-v2-v3-round3.md",
+        "source": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/reports/compare-v2-v3-round3.md",
         "why": {
           "zh": "在另外新写的广告上（采用标准和预测跑前预注册），答案清楚的广告送人工从 44/176 降到 4/176；但写题时定为“要人来定”的广告，送人工也从 44/64 降到 19/64，超过事先写好的上限，不采用，production 留在 v2。第一轮回归里判错又自动生效 9/332 对 9/332。假如照样放量，灰度的回滚规则一条也不会触发，是采用标准拦下的。",
           "en": "On another set of newly written ads (adoption rules and predictions preregistered), clear ads sent to people fell from 44/176 to 4/176; but ads written as needing a human were also sent to people less often, 44/64 to 19/64, past the limit set beforehand, so it was not adopted and production stays on v2. In the round-one regression, wrong decisions that went live were 9/332 against 9/332. Had it been rolled out, no canary rollback rule would have fired; the adoption standard stopped it."
@@ -2109,7 +2109,7 @@
           "zh": "v3 的“拿不准”规则加一类：结论取决于把一句话放进还是放出某条规则、而这句话正好在边界上（`triage.CERTAINTY_RULE_V4`）；输出格式不变",
           "en": "v3's rule on when to be unsure plus one case: the decision turns on placing the ad's words inside or outside a rule and the words sit on the boundary (`triage.CERTAINTY_RULE_V4`); the output format is unchanged"
         },
-        "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/reports/compare-v2-v4-round4.md",
+        "source": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/reports/compare-v2-v4-round4.md",
         "why": {
           "zh": "在又一批新写的广告上（采用标准和第三轮一字不改，预测跑前冻结），两头都比 v2 好：答案清楚的广告送人工 43/176 → 11/176，要人来定的送人工 42/64 → 47/64。但它判错时更常说“确定”：答案清楚的广告判错又自动生效 0/176 → 2/176（同一条陷阱题两遍，答案有争议，按预注册没改），第一轮回归漏网 9/332 → 13/332。不采用，production 留在 v2；假如照样放量，灰度的回滚规则一条也不会触发。",
           "en": "On another set of newly written ads (adoption rules word for word those of round three, predictions frozen before the run), it beat v2 at both ends: clear ads sent to people 43/176 → 11/176, ads that need a human sent to people 42/64 → 47/64. But it was more often sure when wrong: clear ads decided wrongly and gone live 0/176 → 2/176 (both runs of one trap item whose answer is debatable and, as preregistered, unchanged), and round-one regression escapes 9/332 → 13/332. Not adopted; production stays on v2. Had it been rolled out, no canary rollback rule would have fired."
@@ -2288,7 +2288,7 @@
           "label": "production",
           "to": "v1",
           "reason": "first version of the knowledge-base Q&A; evaluated on a question set written beforehand",
-          "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/docs/KBQA-PLAN.md"
+          "source": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/docs/KBQA-PLAN.md"
         }
       ]
     },
@@ -2305,7 +2305,7 @@
           "zh": "`kb_qa.INSTRUCTIONS`：四种结论（违规、可以、要看条件、库里没有），只能引检索到的条款，引文逐字抄",
           "en": "`kb_qa.INSTRUCTIONS`: four verdicts (violation, allowed, depends, not in the library), only retrieved clauses may be cited, quotes copied word for word"
         },
-        "source": "https://github.com/Jason-d-e/grounded-labelling-pipeline/blob/main/reports/kb-qa.md",
+        "source": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/reports/kb-qa.md",
         "why": {
           "zh": "计划和预测跑前写好。答对 134/160；库里没有的题说了“没有” 44/48；没核对上的引文 1/160。没成立的预测是中文问题的检索：算对的条款进前 5 只有 23/28，库里有答案却说“没有”的都出在这里。",
           "en": "The plan and predictions were written before the run. Answered right 134/160; said \"not in the library\" when it was not 44/48; quotes that failed the check 1/160. The prediction that failed is retrieval for Chinese questions: the right clause was in the top five for only 23/28, and every \"not in the library\" on an answerable question came from there."
