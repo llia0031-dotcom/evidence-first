@@ -50,7 +50,7 @@ The operations layer is the [Grounded Labelling Pipeline](https://github.com/lli
 
 ## Scores on every prompt change
 
-`.github/workflows/prompt-regression.yml`: when a pull request changes files under `prompts/`, a GitHub Action runs promptfoo on the versions behind the production and staging labels over one item set (evidence-check development set v1, 12 drafts, model claude-haiku-5-5) and posts both pass counts on the pull request. Every prompt change is re-tested this way; see [the first run on GitHub](https://github.com/llia0031-dotcom/evidence-first/pull/1) (both labels then pointed at the same version, so it only shows the flow works).
+`.github/workflows/prompt-regression.yml`: when a pull request changes files under `prompts/`, a GitHub Action runs promptfoo on the versions behind the production and staging labels over one item set (evidence-check development set v1, 12 drafts, model claude-haiku-5-5) and posts both pass counts on the pull request. When GitHub cannot run it, the same configuration runs locally and the result is posted on the pull request, as in [PR 1](https://github.com/llia0031-dotcom/evidence-first/pull/1) (both labels pointed at the same version, so it only shows the flow works).
 
 The Action needs an API key stored in the repository:
 
