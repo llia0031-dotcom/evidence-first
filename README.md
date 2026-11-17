@@ -46,11 +46,11 @@
 
 ### 第四幕：Agent 在多轮、带工具的任务里怎么拿出证据
 
-**有据审核（广告审核 Agent）**（[评测卡](cards/grounded-review.md) · [代码和报告](https://github.com/llia0031-dotcom/grounded-review) · [演示页](https://llia0031-dotcom.github.io/grounded-review/) · [产品方案](https://github.com/llia0031-dotcom/grounded-review/blob/main/product/PRD.zh-CN.md)）；**有据经营分析**（[评测卡](cards/grounded-business-review.md) · [代码和报告](https://github.com/llia0031-dotcom/grounded-business-review)）
+**有据审核（广告审核 Agent）**（[评测卡](cards/grounded-review.md) · [代码和报告](https://github.com/llia0031-dotcom/grounded-review) · [演示页](https://llia0031-dotcom.github.io/grounded-review/) · [产品方案](https://github.com/llia0031-dotcom/grounded-review/blob/main/product/PRD.zh-CN.md)）；**有据经营分析**（[评测卡](cards/grounded-business-review.md) · [代码和报告](https://github.com/llia0031-dotcom/grounded-business-review)）；**审核模型实验**（[评测卡](cards/policy-model-lab.md) · [代码和报告](https://github.com/llia0031-dotcom/policy-model-lab)）
 
 - **问题**：广告审核不能只给“通过 / 拒绝”，要说出违反哪一条、是哪几个字，广告主改了以后还要复审；经营周报要从指标异动找到原因，每个数字都要对回查询结果。
-- **我做了什么**：做了查条款、引原文、多轮改稿和复审的 Agent，和单个提示词、违禁词表、开源审核模型比较；改稿建议从 v1 迭代到 v1.3；最后换成监管机构和法院定答案的真实广告。经营分析在合成的经营数据上比较固定脚本、一次提示词和自己查数的 Agent，周报放行前逐段核对数字。
-- **结果**：留出集判对：单个提示词 191/192，Agent 187/192；真实广告（英国 ASA 裁决）：49/60、51/60；改稿字段写错：6/36 → 0/36；经营分析，埋好的原因全找对：一次提示词 28/36，Agent 34/36
+- **我做了什么**：做了查条款、引原文、多轮改稿和复审的 Agent，和单个提示词、违禁词表、开源审核模型比较；改稿建议从 v1 迭代到 v1.3；最后换成监管机构和法院定答案的真实广告。经营分析在合成的经营数据上比较固定脚本、一次提示词和自己查数的 Agent，周报放行前逐段核对数字。审核模型实验比较给模型看文案、抽帧还是帧上的字，以及合成数据微调的小模型。
+- **结果**：留出集判对：单个提示词 191/192，Agent 187/192；真实广告（英国 ASA 裁决）：49/60、51/60；改稿字段写错：6/36 → 0/36；经营分析，埋好的原因全找对：一次提示词 28/36，Agent 34/36；审核模型实验，视频广告的违规：只看文案抓到 25/64，看 16 帧 64/64
 - **和其他项目的连接**：evidence-check 的脚本是 Agent 的一个工具；演示页复用了简历初筛的页面骨架；经营周报的数字核对也直接调用这个脚本。
 
 ### 第五幕：生成的内容和交互体验怎么拿证据
@@ -68,7 +68,7 @@
 
 - **问题**：一个个评测做完以后，要让每个能力都有同样格式的评测证据、每次改提示词都能看到新旧分数、上线和回滚有章可循。
 - **我做了什么**：这个仓库：统一评测卡、Prompt 资产库（版本、上线标签、灰度回放、上线清单、改提示词时自动贴分数）；有据标注流水线把有据审核接成一条审核工作流：核对引文、复核队列、版本、灰度和回滚、每周指标。
-- **结果**：有据标注流水线：判错又自动生效的从 17/332 降到 9/332；第一轮灰度按事先写好的规则在 10% 回滚，改好规则后第二轮放到全量，v2 转为正式版本；第 3、4 版都没达到事先写好的采用标准，没上线（回放，不是真实用户）；11 张评测卡、255 个数字全部由脚本从结果文件算出；灰度回放：有据审核 v1.3 放到全量，v1.2 在放量中途触发回滚
+- **结果**：有据标注流水线：判错又自动生效的从 17/332 降到 9/332；第一轮灰度按事先写好的规则在 10% 回滚，改好规则后第二轮放到全量，v2 转为正式版本；第 3、4 版都没达到事先写好的采用标准，没上线（回放，不是真实用户）；12 张评测卡、277 个数字全部由脚本从结果文件算出；灰度回放：有据审核 v1.3 放到全量，v1.2 在放量中途触发回滚
 - **和其他项目的连接**：资产库收的是前面各幕已有的提示词版本；灰度回放用的是有据审核的真实对比数据。
 
 ## 结构
@@ -104,6 +104,7 @@ flowchart TB
 | **有据标注流水线**<br>2026-11-15 – 2026-11-17 | 运营层 | 能核对的回答，怎么变成团队每天用的审核工作流：拿不准的交给人复核，提示词能灰度、能回滚 | 漏网错判（判错又自动生效）；送人工复核的比例；判对率 | 判错又自动生效：v1 17/332 → v2 9/332；送人工复核 6/332 → 72/332<br>第一轮按事先写好的规则，灰度放到 10% 就回滚了；规则写错两处，已复盘<br>第二轮用改好的规则，在新写的广告上放到 100%，没有回滚，回放里 v2 转为正式版本 | [代码和报告](https://github.com/llia0031-dotcom/grounded-labelling-pipeline)<br>[评测卡](cards/grounded-labelling-pipeline.md) |
 | **有据经营分析**<br>2026-11-16 – 2026-11-17 | 场景：判断类 | 每周看经营数据的人要知道哪些指标异动、原因在哪；让模型找原因、写周报，原因找得准不准，周报里的数字能不能都对回查询结果（在合成数据上测） | 埋好的原因全找对（不多报、不答粗）；改一次以内放行的周报；每题费用 | 埋好的原因全找对：脚本 31/36，一次提示词 28/36，Agent 34/36<br>按题配对，Agent 比一次提示词多对 6 题、少对 0 题（p = 0.031）；和脚本比分不出高下（p = 0.45）<br>改一次以内放行：一次提示词 35/36，Agent 33/36；没放行的都卡在中文数字上，没有一个错数 | [代码和报告](https://github.com/llia0031-dotcom/grounded-business-review)<br>[评测卡](cards/grounded-business-review.md) |
 | **创作者 Skill 合集**<br>2026-11-17 | 场景：生成类 | 创作者每周都要对字幕、排分镜、追热点；交给 AI 助手做时，字幕会不会被改错、分镜里的口播念不念得完、热点选题卡上的事实站不站得住 | 字幕：改好的文件完全正确；分镜：四项检查全过；热点：有伤亡的事件处理得当 | 改好的字幕文件完全正确：装 Skill 20/20，不装 2/20<br>请求里不写语速时，分镜四项全过：装 Skill 20/20，不装 0/20；写明语速时不装也有 19/20<br>有伤亡的热点事件不出营销选题卡：装 Skill 4/4，不装 0/4 | [代码和报告](https://github.com/llia0031-dotcom/creator-skills)<br>[评测卡](cards/creator-skills.md) |
+| **审核模型实验**<br>2026-11-17 – 2026-11-18 | 场景：判断类 | 按广告政策审核短视频广告，模型要看到什么才够；用合成广告训练的小模型能不能胜任 | 判断正确率；违规抓到的比例；合规广告被错拒的比例 | 视频广告：claude-haiku-5-5 看 16 帧判对 86/96，违规全抓到（64/64）；只给文案时违规只抓到 25/64<br>本机 Qwen3.5-4B 只看 16 帧上识别出的文字判对 80/96，和看整段视频（80/96）一样，每条只要 2.4 秒，看视频要 19.2 秒<br>用合成广告微调的 Qwen3-1.7B 在有据审核的测试题上判对 133/168，和 claude-haiku-5-5（138/168）分不出高下（配对差 -3.0 个百分点） | [代码和报告](https://github.com/llia0031-dotcom/policy-model-lab)<br>[评测卡](cards/policy-model-lab.md) |
 
 ## 方法
 
@@ -139,6 +140,8 @@ Action 运行时把密钥写进一个临时文件，只由评测脚本读取，�
 | `voice-agent-eval/` | [voice-agent-eval](https://github.com/llia0031-dotcom/voice-agent-eval) |
 | `evidence-pipeline-public/` | [grounded-labelling-pipeline](https://github.com/llia0031-dotcom/grounded-labelling-pipeline) |
 | `grounded-business-review-public/` | [grounded-business-review](https://github.com/llia0031-dotcom/grounded-business-review) |
+| `creator-skills-public/` | [creator-skills](https://github.com/llia0031-dotcom/creator-skills) |
+| `policy-model-lab-public/` | [policy-model-lab](https://github.com/llia0031-dotcom/policy-model-lab) |
 | `launchpad-tracedesk/` | 没有公开（TraceDesk 卡的来源） |
 | `aigc-scene-eval/` | 没有公开（AI 生图卡的来源） |
 

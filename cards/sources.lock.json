@@ -94,5 +94,12 @@
     "creator-skills-public/eval/shotlist-check/v2/results/summary.md": "5319eb5029e05bf9352059b49390524112def98019d777bd9ef542a7777fc1f7",
     "creator-skills-public/eval/subtitle-check/results/run-2026-11-17.summary.md": "e2339423ff9e0190f5111431ee761b51870d9133bf6cb687d31f07e32e9b1b36",
     "creator-skills-public/eval/trend-topic-check/results/scores.json": "e45ede790185b48bb31f52119e79b9c483d41d6351be66cd86b0cb21d7ad88bd"
+  },
+  "policy-model-lab": {
+    "policy-model-lab-public/results/kuaimod_summary.md": "8c9066666798549e953de9ed525090aab3da67394afa1af3ff9a72229bfb316d",
+    "policy-model-lab-public/results/text_paired.md": "2e4d11138f33de6f2d64b02d06e55b3b897708a34b245e5d69a22537debb274b",
+    "policy-model-lab-public/results/text_summary.md": "29c6524a5aa576ddba2e5f34b66cfd2c264645eb0e34584e085fc56088977650",
+    "policy-model-lab-public/results/train/qwen3-1.7b-lora.json": "47fdc99cc1965e8c7c889954b9b908471dc8768c1ad70f66b2e57bde42c6294a",
+    "policy-model-lab-public/results/video_summary.md": "47094292abad87a2988660bc4cde07ef3ae422901ff00e5257d8ebeec14fe481"
   }
 }

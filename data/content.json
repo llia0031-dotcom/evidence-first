@@ -9691,5 +9691,961 @@
       }
     ],
     "images": []
+  },
+  {
+    "id": "policy-model-lab",
+    "lang": "zh",
+    "order": 12,
+    "name": "审核模型实验",
+    "status": "public",
+    "layer": "场景：判断类",
+    "period": "2026-11-17 – 2026-11-18",
+    "team": "Liang Liyuan",
+    "stack": "Python、PyTorch、LoRA 微调（Qwen3）、本机视觉语言模型（Qwen3.5、Qwen3-VL）、SigLIP 2、mmBERT、OCR、批量接口",
+    "one_line": "按广告政策审核短视频广告的三组实验，都在一台笔记本显卡上跑，方案和预测跑前预注册。",
+    "facts": [
+      {
+        "label": "时间",
+        "value": "2026-11-17 – 2026-11-18"
+      },
+      {
+        "label": "团队",
+        "value": "Liang Liyuan"
+      },
+      {
+        "label": "技术",
+        "value": "Python、PyTorch、LoRA 微调（Qwen3）、本机视觉语言模型（Qwen3.5、Qwen3-VL）、SigLIP 2、mmBERT、OCR、批量接口"
+      },
+      {
+        "label": "在作品集里的位置",
+        "value": "场景：判断类"
+      },
+      {
+        "label": "状态",
+        "value": "已公开"
+      }
+    ],
+    "links": [
+      {
+        "label": "代码和报告",
+        "url": "https://github.com/llia0031-dotcom/policy-model-lab"
+      }
+    ],
+    "problem": [
+      "按广告政策审核短视频广告，模型要看到什么才够；用合成广告训练的小模型能不能胜任。"
+    ],
+    "did": [
+      "我在一台笔记本显卡上按预注册的方案做了三组实验：一条短视频广告要让模型看到什么（文案、封面、抽帧、整段视频、帧上识别的文字）才审得准；用合成广告微调的小模型能不能比得上大模型；再拿 300 条另一平台的真实短视频核对。最后对照近一年的研究写了一份调研报告。"
+    ],
+    "evaluation": [
+      "**视频广告：给模型看什么（96 段）**：96 段视频；每种看法 1 遍；claude-haiku-5-5 走批量接口；本机模型在一台笔记本显卡上跑",
+      "**合成广告微调小模型**：有据审核的测试题 168 个判断；真实案例 46 个；每个模型 1 遍；Qwen3-1.7B 加 LoRA，在一台笔记本显卡上训练；claude-haiku-5-5 走批量接口",
+      "**另一平台的真实短视频：违不违规（300 条，只公开汇总）**：300 条视频；每个模型 1 遍；claude-haiku-5-5 走批量接口；Qwen3.5-4B 在本机"
+    ],
+    "iteration": [
+      "看什么：只给文案时违规大多漏掉；抽帧越多抓得越全；claude-haiku-5-5 看 16 帧时违规全抓到。",
+      "本机的 Qwen3.5-4B 只读帧上识别出的文字，和看整段视频一样准，快得多；Qwen3-VL-2B 看 8 帧时把大多数合规广告错拒（28/32）。",
+      "微调：Qwen3-1.7B 加 LoRA 比不微调高 11.3 个百分点（有据审核的测试题），和 claude-haiku-5-5 分不出高下；mmBERT 在合成验证集上 173/191，到真实案例只剩 25/46。",
+      "真实短视频：Qwen3.5-4B 看画面加文字判对 225/300，claude-haiku-5-5 214/300；后者把更多正常视频标成违规。"
+    ],
+    "result": [
+      "审视频广告，关键是让模型看到画面里的字，不一定要看整段视频：帧上识别出的文字就够，而且快得多。用合成广告微调的小模型在相近的题上能追上大模型，但离合成数据越远掉得越多；真实视频上的结论只能算参考，因为题目和标准都来自另一个平台。"
+    ],
+    "limitations": [
+      "视频广告和训练数据都是合成的；离合成数据越远，微调模型掉得越多（mmBERT 在真实案例上 25/46）。建议：上线前用平台自己的历史审核结果做一批题再测，按需要补真实数据再训练。",
+      "真实短视频来自另一个平台，标准和本项目的政策库不同；两组模型收到的画面大小也不同。建议：换到目标平台的数据和标准上，用同样大小的输入重测。",
+      "每个模型每题只跑一遍；有些差别落在区间里，分不出高下。建议：差别小的那几组加题、多跑几遍再定。"
+    ],
+    "headline": [
+      "视频广告：claude-haiku-5-5 看 16 帧判对 86/96，违规全抓到（64/64）；只给文案时违规只抓到 25/64",
+      "本机 Qwen3.5-4B 只看 16 帧上识别出的文字判对 80/96，和看整段视频（80/96）一样，每条只要 2.4 秒，看视频要 19.2 秒",
+      "用合成广告微调的 Qwen3-1.7B 在有据审核的测试题上判对 133/168，和 claude-haiku-5-5（138/168）分不出高下（配对差 -3.0 个百分点）"
+    ],
+    "numbers": [
+      {
+        "id": "N1",
+        "metric": "vid_haiku_f16",
+        "label": "看 16 帧：判对（claude-haiku-5-5）",
+        "value": "86/96",
+        "full": "86/96（89.6%，95% 区间 81.9–94.2%）",
+        "evaluation": "视频广告：给模型看什么（96 段）",
+        "sources": [
+          "policy-model-lab/results/video_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/video_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 86,
+        "n": 96,
+        "rate": 0.8958,
+        "ci95": [
+          0.8188,
+          0.9424
+        ],
+        "display": "86/96"
+      },
+      {
+        "id": "N2",
+        "metric": "vid_haiku_f16_caught",
+        "label": "看 16 帧：违规抓到（claude-haiku-5-5）",
+        "value": "64/64",
+        "full": "64/64（100.0%，95% 区间 94.3–100.0%）",
+        "evaluation": "视频广告：给模型看什么（96 段）",
+        "sources": [
+          "policy-model-lab/results/video_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/video_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 64,
+        "n": 64,
+        "rate": 1.0,
+        "ci95": [
+          0.9434,
+          1.0
+        ],
+        "display": "64/64"
+      },
+      {
+        "id": "N3",
+        "metric": "vid_haiku_text_caught",
+        "label": "只给文案：违规抓到（claude-haiku-5-5）",
+        "value": "25/64",
+        "full": "25/64（39.1%，95% 区间 28.1–51.3%）",
+        "evaluation": "视频广告：给模型看什么（96 段）",
+        "sources": [
+          "policy-model-lab/results/video_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/video_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 25,
+        "n": 64,
+        "rate": 0.3906,
+        "ci95": [
+          0.2806,
+          0.5131
+        ],
+        "display": "25/64"
+      },
+      {
+        "id": "N4",
+        "metric": "vid_qwen_ocr16",
+        "label": "只读 16 帧上的文字：判对（Qwen3.5-4B，本机）",
+        "value": "80/96",
+        "full": "80/96（83.3%，95% 区间 74.6–89.5%）",
+        "evaluation": "视频广告：给模型看什么（96 段）",
+        "sources": [
+          "policy-model-lab/results/video_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/video_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 80,
+        "n": 96,
+        "rate": 0.8333,
+        "ci95": [
+          0.7463,
+          0.8947
+        ],
+        "display": "80/96"
+      },
+      {
+        "id": "N5",
+        "metric": "vid_qwen_video",
+        "label": "看整段视频：判对（Qwen3.5-4B，本机）",
+        "value": "80/96",
+        "full": "80/96（83.3%，95% 区间 74.6–89.5%）",
+        "evaluation": "视频广告：给模型看什么（96 段）",
+        "sources": [
+          "policy-model-lab/results/video_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/video_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 80,
+        "n": 96,
+        "rate": 0.8333,
+        "ci95": [
+          0.7463,
+          0.8947
+        ],
+        "display": "80/96"
+      },
+      {
+        "id": "N6",
+        "metric": "vid_qwen_ocr16_s",
+        "label": "只读帧上的文字：每条用时中位数（Qwen3.5-4B）",
+        "value": 2.39,
+        "full": "2.4 秒",
+        "evaluation": "视频广告：给模型看什么（96 段）",
+        "sources": [
+          "policy-model-lab/results/video_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/video_summary.md"
+        ],
+        "kind": "value",
+        "unit": "s",
+        "n": null,
+        "display": "2.4 秒"
+      },
+      {
+        "id": "N7",
+        "metric": "vid_qwen_video_s",
+        "label": "看整段视频：每条用时中位数（Qwen3.5-4B）",
+        "value": 19.22,
+        "full": "19.2 秒",
+        "evaluation": "视频广告：给模型看什么（96 段）",
+        "sources": [
+          "policy-model-lab/results/video_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/video_summary.md"
+        ],
+        "kind": "value",
+        "unit": "s",
+        "n": null,
+        "display": "19.2 秒"
+      },
+      {
+        "id": "N8",
+        "metric": "ft_lora_gr",
+        "label": "有据审核的测试题：判对（Qwen3-1.7B + LoRA）",
+        "value": "133/168",
+        "full": "133/168（79.2%，95% 区间 72.4–84.6%）",
+        "evaluation": "合成广告微调小模型",
+        "sources": [
+          "policy-model-lab/results/text_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/text_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 133,
+        "n": 168,
+        "rate": 0.7917,
+        "ci95": [
+          0.7241,
+          0.8462
+        ],
+        "display": "133/168"
+      },
+      {
+        "id": "N9",
+        "metric": "ft_haiku_gr",
+        "label": "有据审核的测试题：判对（claude-haiku-5-5）",
+        "value": "138/168",
+        "full": "138/168（82.1%，95% 区间 75.7–87.2%）",
+        "evaluation": "合成广告微调小模型",
+        "sources": [
+          "policy-model-lab/results/text_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/text_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 138,
+        "n": 168,
+        "rate": 0.8214,
+        "ci95": [
+          0.7565,
+          0.872
+        ],
+        "display": "138/168"
+      },
+      {
+        "id": "N10",
+        "metric": "ft_diff_haiku",
+        "label": "配对差：1.7B + LoRA 减 claude-haiku-5-5（百分点）",
+        "value": -3.0,
+        "full": "-3.0",
+        "evaluation": "合成广告微调小模型",
+        "sources": [
+          "policy-model-lab/results/text_paired.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/text_paired.md"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "-3.0"
+      },
+      {
+        "id": "N11",
+        "metric": "vid_2b_f8_fp",
+        "label": "看 8 帧：合规广告被错拒（Qwen3-VL-2B）",
+        "value": "28/32",
+        "full": "28/32（87.5%，95% 区间 71.9–95.0%）",
+        "evaluation": "视频广告：给模型看什么（96 段）",
+        "sources": [
+          "policy-model-lab/results/video_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/video_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 28,
+        "n": 32,
+        "rate": 0.875,
+        "ci95": [
+          0.7193,
+          0.9503
+        ],
+        "display": "28/32"
+      },
+      {
+        "id": "N12",
+        "metric": "ft_diff_zs_gr",
+        "label": "配对差：微调减不微调（百分点）",
+        "value": 11.3,
+        "full": "11.3",
+        "evaluation": "合成广告微调小模型",
+        "sources": [
+          "policy-model-lab/results/text_paired.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/text_paired.md"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "11.3"
+      },
+      {
+        "id": "N13",
+        "metric": "ft_mmbert_val",
+        "label": "合成验证集：判对（mmBERT）",
+        "value": "173/191",
+        "full": "173/191（90.6%，95% 区间 85.6–94.0%）",
+        "evaluation": "合成广告微调小模型",
+        "sources": [
+          "policy-model-lab/results/text_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/text_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 173,
+        "n": 191,
+        "rate": 0.9058,
+        "ci95": [
+          0.856,
+          0.9396
+        ],
+        "display": "173/191"
+      },
+      {
+        "id": "N14",
+        "metric": "ft_mmbert_real",
+        "label": "真实案例：判对（mmBERT）",
+        "value": "25/46",
+        "full": "25/46（54.3%，95% 区间 40.2–67.8%）",
+        "evaluation": "合成广告微调小模型",
+        "sources": [
+          "policy-model-lab/results/text_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/text_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 25,
+        "n": 46,
+        "rate": 0.5435,
+        "ci95": [
+          0.4018,
+          0.6785
+        ],
+        "display": "25/46"
+      },
+      {
+        "id": "N15",
+        "metric": "km_qwen",
+        "label": "看画面加文字：判对（Qwen3.5-4B，本机）",
+        "value": "225/300",
+        "full": "225/300（75.0%，95% 区间 69.8–79.6%）",
+        "evaluation": "另一平台的真实短视频：违不违规（300 条，只公开汇总）",
+        "sources": [
+          "policy-model-lab/results/kuaimod_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/kuaimod_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 225,
+        "n": 300,
+        "rate": 0.75,
+        "ci95": [
+          0.698,
+          0.7956
+        ],
+        "display": "225/300"
+      },
+      {
+        "id": "N16",
+        "metric": "km_haiku",
+        "label": "看画面加文字：判对（claude-haiku-5-5）",
+        "value": "214/300",
+        "full": "214/300（71.3%，95% 区间 66.0–76.2%）",
+        "evaluation": "另一平台的真实短视频：违不违规（300 条，只公开汇总）",
+        "sources": [
+          "policy-model-lab/results/kuaimod_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/kuaimod_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 214,
+        "n": 300,
+        "rate": 0.7133,
+        "ci95": [
+          0.6597,
+          0.7616
+        ],
+        "display": "214/300"
+      }
+    ],
+    "short_name": "审核模型实验",
+    "card_title": "审视频广告，模型要看什么、小模型够不够",
+    "assumed": "以为看整段视频才审得最准，帧上的字不够用",
+    "showed": "本机 4B 只读帧上的字判对 80/96，和看视频一样，快得多",
+    "result_line": "看 16 帧时违规全抓到（64/64），只给文案只抓到 25/64",
+    "key_numbers": [
+      {
+        "id": "N2",
+        "label": "看 16 帧时违规全抓到（只看文案 25/64）"
+      },
+      {
+        "id": "N4",
+        "label": "本机小模型只读帧上的字，判对"
+      },
+      {
+        "id": "N8",
+        "label": "合成数据微调的小模型（大模型 138/168）"
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-11-17",
+        "label": "看什么",
+        "text": "只给文案时违规大多漏掉",
+        "before": "25/64",
+        "before_id": "N3",
+        "after": "64/64",
+        "after_id": "N2",
+        "adopted": true
+      },
+      {
+        "date": "2026-11-17",
+        "label": "本机模型",
+        "text": "读帧上的字和看视频一样准",
+        "before": "80/96",
+        "before_id": "N5",
+        "after": "80/96",
+        "after_id": "N4",
+        "adopted": true
+      },
+      {
+        "date": "2026-11-17",
+        "label": "微调",
+        "text": "小模型追上大模型，离合成数据越远越差",
+        "before": "138/168",
+        "before_id": "N9",
+        "after": "133/168",
+        "after_id": "N8"
+      },
+      {
+        "date": "2026-11-17",
+        "label": "真实视频",
+        "text": "另一平台的真实短视频上核对",
+        "after": "225/300",
+        "after_id": "N15"
+      }
+    ],
+    "images": []
+  },
+  {
+    "id": "policy-model-lab",
+    "lang": "en",
+    "order": 12,
+    "name": "Policy Model Lab",
+    "status": "public",
+    "layer": "Scenario: judgement",
+    "period": "2026-11-17 – 2026-11-18",
+    "team": "Liang Liyuan",
+    "stack": "Python, PyTorch, LoRA fine-tuning (Qwen3), local vision-language models (Qwen3.5, Qwen3-VL), SigLIP 2, mmBERT, OCR, Message Batches API",
+    "one_line": "Three experiments on reviewing short video ads against policy, all on one laptop GPU, with plans and predictions preregistered.",
+    "facts": [
+      {
+        "label": "When",
+        "value": "2026-11-17 – 2026-11-18"
+      },
+      {
+        "label": "Team",
+        "value": "Liang Liyuan"
+      },
+      {
+        "label": "Stack",
+        "value": "Python, PyTorch, LoRA fine-tuning (Qwen3), local vision-language models (Qwen3.5, Qwen3-VL), SigLIP 2, mmBERT, OCR, Message Batches API"
+      },
+      {
+        "label": "Place in the portfolio",
+        "value": "Scenario: judgement"
+      },
+      {
+        "label": "Status",
+        "value": "Public"
+      }
+    ],
+    "links": [
+      {
+        "label": "Code and report",
+        "url": "https://github.com/llia0031-dotcom/policy-model-lab"
+      }
+    ],
+    "problem": [
+      "To review a short video ad against policy, what must a model see, and can a small model trained on synthetic ads do the job?"
+    ],
+    "did": [
+      "On a laptop GPU I ran three preregistered experiments: what a model needs to see of a short video ad (caption, cover, sampled frames, the whole video, text read off the frames) to review it well; whether small models fine-tuned on synthetic ads match a large model; and a check on 300 real short videos from another platform. A survey of the past year's research closes it."
+    ],
+    "evaluation": [
+      "**Video ads: what the model is shown (96 videos)**: 96 videos; 1 run per input; claude-haiku-5-5 through the Message Batches API; local models on one laptop GPU",
+      "**Small models fine-tuned on synthetic ads**: 168 decisions on Grounded Review's items; 46 real cases; 1 run per model; Qwen3-1.7B with LoRA trained on one laptop GPU; claude-haiku-5-5 through the Message Batches API",
+      "**Real short videos from another platform: violating or not (300, totals only)**: 300 videos; 1 run per model; claude-haiku-5-5 through the Message Batches API; Qwen3.5-4B locally"
+    ],
+    "iteration": [
+      "What to show: with the caption only most violations are missed; more frames catch more; claude-haiku-5-5 with 16 frames caught every violation.",
+      "Locally, Qwen3.5-4B reading only the text off the frames is as accurate as watching the video and much faster; Qwen3-VL-2B with 8 frames rejected most compliant ads (28/32).",
+      "Fine-tuning: Qwen3-1.7B with LoRA gains 11.3 points over the untuned model on Grounded Review's items and is too close to call against claude-haiku-5-5; mmBERT scores 173/191 on the synthetic validation set but 25/46 on real cases.",
+      "Real short videos: Qwen3.5-4B with frames and text was right on 225/300, claude-haiku-5-5 on 214/300; the latter flagged more fine videos."
+    ],
+    "result": [
+      "For video ads the key is letting the model see the words in the picture, not necessarily the whole video: the text read off the frames is enough and much faster. Small models fine-tuned on synthetic ads catch up with the large model on similar items but fall further behind the further they are from the synthetic data; the real-video results are indicative only, since the items and the standard come from another platform."
+    ],
+    "limitations": [
+      "The video ads and training data are synthetic; the further from them, the more the tuned models drop (mmBERT on real cases: 25/46). Recommendation: Before release, build items from the platform's own past decisions and test again; retrain with real data where needed.",
+      "The real short videos come from another platform with a different standard, and the two models received frames of different sizes. Recommendation: Re-test on the target platform's data and standard, with the same input size for every model.",
+      "One run per model per item; some differences fall within the intervals and cannot be separated. Recommendation: Add items and runs for the close comparisons before deciding."
+    ],
+    "headline": [
+      "Video ads: claude-haiku-5-5 with 16 frames was right on 86/96 and caught every violation (64/64); with the caption only it caught 25/64",
+      "Locally, Qwen3.5-4B reading only the text from 16 frames was right on 80/96, the same as watching the whole video (80/96), in 2.4 s per item against 19.2 s",
+      "Qwen3-1.7B fine-tuned on synthetic ads was right on 133/168 of Grounded Review's test items, too close to call against claude-haiku-5-5 (138/168; paired difference -3.0 points)"
+    ],
+    "numbers": [
+      {
+        "id": "N1",
+        "metric": "vid_haiku_f16",
+        "label": "16 frames: decisions right (claude-haiku-5-5)",
+        "value": "86/96",
+        "full": "86/96 (89.6%, 95% CI 81.9–94.2%)",
+        "evaluation": "Video ads: what the model is shown (96 videos)",
+        "sources": [
+          "policy-model-lab/results/video_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/video_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 86,
+        "n": 96,
+        "rate": 0.8958,
+        "ci95": [
+          0.8188,
+          0.9424
+        ],
+        "display": "86/96"
+      },
+      {
+        "id": "N2",
+        "metric": "vid_haiku_f16_caught",
+        "label": "16 frames: violations caught (claude-haiku-5-5)",
+        "value": "64/64",
+        "full": "64/64 (100.0%, 95% CI 94.3–100.0%)",
+        "evaluation": "Video ads: what the model is shown (96 videos)",
+        "sources": [
+          "policy-model-lab/results/video_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/video_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 64,
+        "n": 64,
+        "rate": 1.0,
+        "ci95": [
+          0.9434,
+          1.0
+        ],
+        "display": "64/64"
+      },
+      {
+        "id": "N3",
+        "metric": "vid_haiku_text_caught",
+        "label": "Caption only: violations caught (claude-haiku-5-5)",
+        "value": "25/64",
+        "full": "25/64 (39.1%, 95% CI 28.1–51.3%)",
+        "evaluation": "Video ads: what the model is shown (96 videos)",
+        "sources": [
+          "policy-model-lab/results/video_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/video_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 25,
+        "n": 64,
+        "rate": 0.3906,
+        "ci95": [
+          0.2806,
+          0.5131
+        ],
+        "display": "25/64"
+      },
+      {
+        "id": "N4",
+        "metric": "vid_qwen_ocr16",
+        "label": "Text from 16 frames only: decisions right (Qwen3.5-4B, local)",
+        "value": "80/96",
+        "full": "80/96 (83.3%, 95% CI 74.6–89.5%)",
+        "evaluation": "Video ads: what the model is shown (96 videos)",
+        "sources": [
+          "policy-model-lab/results/video_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/video_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 80,
+        "n": 96,
+        "rate": 0.8333,
+        "ci95": [
+          0.7463,
+          0.8947
+        ],
+        "display": "80/96"
+      },
+      {
+        "id": "N5",
+        "metric": "vid_qwen_video",
+        "label": "Whole video: decisions right (Qwen3.5-4B, local)",
+        "value": "80/96",
+        "full": "80/96 (83.3%, 95% CI 74.6–89.5%)",
+        "evaluation": "Video ads: what the model is shown (96 videos)",
+        "sources": [
+          "policy-model-lab/results/video_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/video_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 80,
+        "n": 96,
+        "rate": 0.8333,
+        "ci95": [
+          0.7463,
+          0.8947
+        ],
+        "display": "80/96"
+      },
+      {
+        "id": "N6",
+        "metric": "vid_qwen_ocr16_s",
+        "label": "Frame text only: median seconds per item (Qwen3.5-4B)",
+        "value": 2.39,
+        "full": "2.4 s",
+        "evaluation": "Video ads: what the model is shown (96 videos)",
+        "sources": [
+          "policy-model-lab/results/video_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/video_summary.md"
+        ],
+        "kind": "value",
+        "unit": "s",
+        "n": null,
+        "display": "2.4 s"
+      },
+      {
+        "id": "N7",
+        "metric": "vid_qwen_video_s",
+        "label": "Whole video: median seconds per item (Qwen3.5-4B)",
+        "value": 19.22,
+        "full": "19.2 s",
+        "evaluation": "Video ads: what the model is shown (96 videos)",
+        "sources": [
+          "policy-model-lab/results/video_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/video_summary.md"
+        ],
+        "kind": "value",
+        "unit": "s",
+        "n": null,
+        "display": "19.2 s"
+      },
+      {
+        "id": "N8",
+        "metric": "ft_lora_gr",
+        "label": "Grounded Review's items: right (Qwen3-1.7B + LoRA)",
+        "value": "133/168",
+        "full": "133/168 (79.2%, 95% CI 72.4–84.6%)",
+        "evaluation": "Small models fine-tuned on synthetic ads",
+        "sources": [
+          "policy-model-lab/results/text_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/text_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 133,
+        "n": 168,
+        "rate": 0.7917,
+        "ci95": [
+          0.7241,
+          0.8462
+        ],
+        "display": "133/168"
+      },
+      {
+        "id": "N9",
+        "metric": "ft_haiku_gr",
+        "label": "Grounded Review's items: right (claude-haiku-5-5)",
+        "value": "138/168",
+        "full": "138/168 (82.1%, 95% CI 75.7–87.2%)",
+        "evaluation": "Small models fine-tuned on synthetic ads",
+        "sources": [
+          "policy-model-lab/results/text_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/text_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 138,
+        "n": 168,
+        "rate": 0.8214,
+        "ci95": [
+          0.7565,
+          0.872
+        ],
+        "display": "138/168"
+      },
+      {
+        "id": "N10",
+        "metric": "ft_diff_haiku",
+        "label": "Paired difference: 1.7B + LoRA minus claude-haiku-5-5 (points)",
+        "value": -3.0,
+        "full": "-3.0",
+        "evaluation": "Small models fine-tuned on synthetic ads",
+        "sources": [
+          "policy-model-lab/results/text_paired.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/text_paired.md"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "-3.0"
+      },
+      {
+        "id": "N11",
+        "metric": "vid_2b_f8_fp",
+        "label": "8 frames: compliant ads wrongly rejected (Qwen3-VL-2B)",
+        "value": "28/32",
+        "full": "28/32 (87.5%, 95% CI 71.9–95.0%)",
+        "evaluation": "Video ads: what the model is shown (96 videos)",
+        "sources": [
+          "policy-model-lab/results/video_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/video_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 28,
+        "n": 32,
+        "rate": 0.875,
+        "ci95": [
+          0.7193,
+          0.9503
+        ],
+        "display": "28/32"
+      },
+      {
+        "id": "N12",
+        "metric": "ft_diff_zs_gr",
+        "label": "Paired difference: tuned minus untuned (points)",
+        "value": 11.3,
+        "full": "11.3",
+        "evaluation": "Small models fine-tuned on synthetic ads",
+        "sources": [
+          "policy-model-lab/results/text_paired.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/text_paired.md"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "11.3"
+      },
+      {
+        "id": "N13",
+        "metric": "ft_mmbert_val",
+        "label": "Synthetic validation: right (mmBERT)",
+        "value": "173/191",
+        "full": "173/191 (90.6%, 95% CI 85.6–94.0%)",
+        "evaluation": "Small models fine-tuned on synthetic ads",
+        "sources": [
+          "policy-model-lab/results/text_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/text_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 173,
+        "n": 191,
+        "rate": 0.9058,
+        "ci95": [
+          0.856,
+          0.9396
+        ],
+        "display": "173/191"
+      },
+      {
+        "id": "N14",
+        "metric": "ft_mmbert_real",
+        "label": "Real cases: right (mmBERT)",
+        "value": "25/46",
+        "full": "25/46 (54.3%, 95% CI 40.2–67.8%)",
+        "evaluation": "Small models fine-tuned on synthetic ads",
+        "sources": [
+          "policy-model-lab/results/text_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/text_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 25,
+        "n": 46,
+        "rate": 0.5435,
+        "ci95": [
+          0.4018,
+          0.6785
+        ],
+        "display": "25/46"
+      },
+      {
+        "id": "N15",
+        "metric": "km_qwen",
+        "label": "Frames and text: right (Qwen3.5-4B, local)",
+        "value": "225/300",
+        "full": "225/300 (75.0%, 95% CI 69.8–79.6%)",
+        "evaluation": "Real short videos from another platform: violating or not (300, totals only)",
+        "sources": [
+          "policy-model-lab/results/kuaimod_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/kuaimod_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 225,
+        "n": 300,
+        "rate": 0.75,
+        "ci95": [
+          0.698,
+          0.7956
+        ],
+        "display": "225/300"
+      },
+      {
+        "id": "N16",
+        "metric": "km_haiku",
+        "label": "Frames and text: right (claude-haiku-5-5)",
+        "value": "214/300",
+        "full": "214/300 (71.3%, 95% CI 66.0–76.2%)",
+        "evaluation": "Real short videos from another platform: violating or not (300, totals only)",
+        "sources": [
+          "policy-model-lab/results/kuaimod_summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/results/kuaimod_summary.md"
+        ],
+        "kind": "proportion",
+        "k": 214,
+        "n": 300,
+        "rate": 0.7133,
+        "ci95": [
+          0.6597,
+          0.7616
+        ],
+        "display": "214/300"
+      }
+    ],
+    "short_name": "Policy Model Lab",
+    "card_title": "What a model must see to review a video ad",
+    "assumed": "Expected watching the whole video to be needed; text from frames to fall short",
+    "showed": "The local 4B model reading only frame text was right on 80/96, as good as watching the video and much faster",
+    "result_line": "With 16 frames every violation was caught (64/64); with the caption only, 25/64",
+    "key_numbers": [
+      {
+        "id": "N2",
+        "label": "Violations caught with 16 frames (caption only: 25/64)"
+      },
+      {
+        "id": "N4",
+        "label": "Local model reading frame text only: right"
+      },
+      {
+        "id": "N8",
+        "label": "Small model tuned on synthetic ads (large model: 138/168)"
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-11-17",
+        "label": "What to show",
+        "text": "Caption only misses most violations",
+        "before": "25/64",
+        "before_id": "N3",
+        "after": "64/64",
+        "after_id": "N2",
+        "adopted": true
+      },
+      {
+        "date": "2026-11-17",
+        "label": "Local models",
+        "text": "Frame text as good as the video",
+        "before": "80/96",
+        "before_id": "N5",
+        "after": "80/96",
+        "after_id": "N4",
+        "adopted": true
+      },
+      {
+        "date": "2026-11-17",
+        "label": "Fine-tuning",
+        "text": "Catches up, weaker far from the synthetic data",
+        "before": "138/168",
+        "before_id": "N9",
+        "after": "133/168",
+        "after_id": "N8"
+      },
+      {
+        "date": "2026-11-17",
+        "label": "Real videos",
+        "text": "Checked on another platform's videos",
+        "after": "225/300",
+        "after_id": "N15"
+      }
+    ],
+    "images": []
   }
 ]

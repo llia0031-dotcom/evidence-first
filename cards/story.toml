@@ -48,14 +48,15 @@ reuse = { zh = "直接调用 evidence-check 的核对脚本；“先检索”的
 
 [[scene]]
 title = { zh = "Agent 在多轮、带工具的任务里怎么拿出证据", en = "How does an agent bring evidence through multi-turn, tool-using work?" }
-projects = ["grounded-review", "grounded-business-review"]
+projects = ["grounded-review", "grounded-business-review", "policy-model-lab"]
 purpose = { zh = "广告审核不能只给“通过 / 拒绝”，要说出违反哪一条、是哪几个字，广告主改了以后还要复审；经营周报要从指标异动找到原因，每个数字都要对回查询结果。", en = "Ad review must name the clause and the exact words, not just approve or reject, and re-review the advertiser's revision; a weekly business review must trace a metric change to its cause, with every number traced to a query result." }
-did = { zh = "做了查条款、引原文、多轮改稿和复审的 Agent，和单个提示词、违禁词表、开源审核模型比较；改稿建议从 v1 迭代到 v1.3；最后换成监管机构和法院定答案的真实广告。经营分析在合成的经营数据上比较固定脚本、一次提示词和自己查数的 Agent，周报放行前逐段核对数字。", en = "An agent that looks up clauses, quotes them, revises and re-reviews, compared with a single prompt, a banned-word list and open-source moderation models; the advice iterated from v1 to v1.3; then real ads judged by regulators and courts. For business reviews, on synthetic business data, a fixed script, a single prompt and an agent that queries for itself were compared, with every paragraph's numbers checked before release." }
+did = { zh = "做了查条款、引原文、多轮改稿和复审的 Agent，和单个提示词、违禁词表、开源审核模型比较；改稿建议从 v1 迭代到 v1.3；最后换成监管机构和法院定答案的真实广告。经营分析在合成的经营数据上比较固定脚本、一次提示词和自己查数的 Agent，周报放行前逐段核对数字。审核模型实验比较给模型看文案、抽帧还是帧上的字，以及合成数据微调的小模型。", en = "An agent that looks up clauses, quotes them, revises and re-reviews, compared with a single prompt, a banned-word list and open-source moderation models; the advice iterated from v1 to v1.3; then real ads judged by regulators and courts. For business reviews, on synthetic business data, a fixed script, a single prompt and an agent that queries for itself were compared, with every paragraph's numbers checked before release. Policy Model Lab compares showing a model the caption, frames or the text on the frames, and small models tuned on synthetic data." }
 result = [
   { zh = "留出集判对：单个提示词 {grounded-review.heldout_oneshot}，Agent {grounded-review.heldout_agent}", en = "Held-out decisions right: single prompt {grounded-review.heldout_oneshot}, agent {grounded-review.heldout_agent}" },
   { zh = "真实广告（英国 ASA 裁决）：{grounded-review.real_en_oneshot}、{grounded-review.real_en_agent}", en = "Real ads (UK ASA rulings): {grounded-review.real_en_oneshot}, {grounded-review.real_en_agent}" },
   { zh = "改稿字段写错：{grounded-review.mt4_v11_fault} → {grounded-review.mt4_v13_fault}", en = "Advice fields filled wrongly: {grounded-review.mt4_v11_fault} → {grounded-review.mt4_v13_fault}" },
   { zh = "经营分析，埋好的原因全找对：一次提示词 {grounded-business-review.oneshot_all}，Agent {grounded-business-review.agent_all}", en = "Business review, all planted causes right: single prompt {grounded-business-review.oneshot_all}, agent {grounded-business-review.agent_all}" },
+  { zh = "审核模型实验，视频广告的违规：只看文案抓到 {policy-model-lab.vid_haiku_text_caught}，看 16 帧 {policy-model-lab.vid_haiku_f16_caught}", en = "Policy Model Lab, violations in video ads caught: caption only {policy-model-lab.vid_haiku_text_caught}, 16 frames {policy-model-lab.vid_haiku_f16_caught}" },
 ]
 reuse = { zh = "evidence-check 的脚本是 Agent 的一个工具；演示页复用了简历初筛的页面骨架；经营周报的数字核对也直接调用这个脚本。", en = "The evidence-check script is one of the agent's tools, and the demo reuses the screening study's page skeleton; the business review's number check calls the same script." }
 

@@ -1,0 +1,256 @@
+id = "policy-model-lab"
+order = 12
+layer = "judgement"
+status = "public"
+links = [
+  { label = { zh = "代码和报告", en = "Code and report" }, url = "https://github.com/llia0031-dotcom/policy-model-lab" },
+]
+card_version = "1.0"
+updated = "2026-11-18"
+period = "2026-11-17 – 2026-11-18"
+team = "Liang Liyuan"
+stack = { zh = "Python、PyTorch、LoRA 微调（Qwen3）、本机视觉语言模型（Qwen3.5、Qwen3-VL）、SigLIP 2、mmBERT、OCR、批量接口", en = "Python, PyTorch, LoRA fine-tuning (Qwen3), local vision-language models (Qwen3.5, Qwen3-VL), SigLIP 2, mmBERT, OCR, Message Batches API" }
+did = { zh = "我在一台笔记本显卡上按预注册的方案做了三组实验：一条短视频广告要让模型看到什么（文案、封面、抽帧、整段视频、帧上识别的文字）才审得准；用合成广告微调的小模型能不能比得上大模型；再拿 300 条另一平台的真实短视频核对。最后对照近一年的研究写了一份调研报告。", en = "On a laptop GPU I ran three preregistered experiments: what a model needs to see of a short video ad (caption, cover, sampled frames, the whole video, text read off the frames) to review it well; whether small models fine-tuned on synthetic ads match a large model; and a check on 300 real short videos from another platform. A survey of the past year's research closes it." }
+name = { zh = "审核模型实验", en = "Policy Model Lab" }
+problem = { zh = "按广告政策审核短视频广告，模型要看到什么才够；用合成广告训练的小模型能不能胜任", en = "To review a short video ad against policy, what must a model see, and can a small model trained on synthetic ads do the job?" }
+primary_metric = { zh = "判断正确率；违规抓到的比例；合规广告被错拒的比例", en = "Decision accuracy; violations caught; compliant ads wrongly rejected" }
+headline = [
+  { zh = "视频广告：claude-haiku-5-5 看 16 帧判对 {vid_haiku_f16}，违规全抓到（{vid_haiku_f16_caught}）；只给文案时违规只抓到 {vid_haiku_text_caught}", en = "Video ads: claude-haiku-5-5 with 16 frames was right on {vid_haiku_f16} and caught every violation ({vid_haiku_f16_caught}); with the caption only it caught {vid_haiku_text_caught}" },
+  { zh = "本机 Qwen3.5-4B 只看 16 帧上识别出的文字判对 {vid_qwen_ocr16}，和看整段视频（{vid_qwen_video}）一样，每条只要 {vid_qwen_ocr16_s}，看视频要 {vid_qwen_video_s}", en = "Locally, Qwen3.5-4B reading only the text from 16 frames was right on {vid_qwen_ocr16}, the same as watching the whole video ({vid_qwen_video}), in {vid_qwen_ocr16_s} per item against {vid_qwen_video_s}" },
+  { zh = "用合成广告微调的 Qwen3-1.7B 在有据审核的测试题上判对 {ft_lora_gr}，和 claude-haiku-5-5（{ft_haiku_gr}）分不出高下（配对差 {ft_diff_haiku} 个百分点）", en = "Qwen3-1.7B fine-tuned on synthetic ads was right on {ft_lora_gr} of Grounded Review's test items, too close to call against claude-haiku-5-5 ({ft_haiku_gr}; paired difference {ft_diff_haiku} points)" },
+]
+summary = { zh = "按广告政策审核短视频广告的三组实验，都在一台笔记本显卡上跑，方案和预测跑前预注册。第一组比较同一段广告给模型看文案、封面、抽帧、整段视频或帧上识别出的文字时审得准不准；第二组用合成广告微调小模型，在有据审核的测试题、视频文字和真实案例上和大模型比；第三组拿另一平台 300 条真实短视频核对“违不违规”。真实视频和真实案例只公开汇总数字。", en = "Three experiments on reviewing short video ads against policy, all on one laptop GPU, with plans and predictions preregistered. The first compares what a model is shown of the same ad: caption, cover, sampled frames, the whole video, or text read off the frames. The second fine-tunes small models on synthetic ads and compares them with a large model on Grounded Review's test items, video text and real cases. The third checks 300 real short videos from another platform for a yes/no violation call. For the real videos and real cases only totals are published." }
+core_link = { zh = "第二组用有据审核的测试题和政策类别做测试集；结论接到有据标注流水线的分流环节上。", en = "The second experiment tests on Grounded Review's items and policy categories; its findings feed the triage step of the Grounded Labelling Pipeline." }
+models = { zh = "大模型用 claude-haiku-5-5（批量接口）；本机跑 Qwen3.5-4B、Qwen3-VL-2B、SigLIP 2、mmBERT 和 LoRA 微调的 Qwen3-0.6B、Qwen3-1.7B。", en = "The large model is claude-haiku-5-5 (Message Batches API); locally Qwen3.5-4B, Qwen3-VL-2B, SigLIP 2, mmBERT and LoRA-tuned Qwen3-0.6B and Qwen3-1.7B." }
+iteration = { zh = ["看什么：只给文案时违规大多漏掉；抽帧越多抓得越全；claude-haiku-5-5 看 16 帧时违规全抓到。", "本机的 Qwen3.5-4B 只读帧上识别出的文字，和看整段视频一样准，快得多；Qwen3-VL-2B 看 8 帧时把大多数合规广告错拒（{vid_2b_f8_fp}）。", "微调：Qwen3-1.7B 加 LoRA 比不微调高 {ft_diff_zs_gr} 个百分点（有据审核的测试题），和 claude-haiku-5-5 分不出高下；mmBERT 在合成验证集上 {ft_mmbert_val}，到真实案例只剩 {ft_mmbert_real}。", "真实短视频：Qwen3.5-4B 看画面加文字判对 {km_qwen}，claude-haiku-5-5 {km_haiku}；后者把更多正常视频标成违规。"], en = ["What to show: with the caption only most violations are missed; more frames catch more; claude-haiku-5-5 with 16 frames caught every violation.", "Locally, Qwen3.5-4B reading only the text off the frames is as accurate as watching the video and much faster; Qwen3-VL-2B with 8 frames rejected most compliant ads ({vid_2b_f8_fp}).", "Fine-tuning: Qwen3-1.7B with LoRA gains {ft_diff_zs_gr} points over the untuned model on Grounded Review's items and is too close to call against claude-haiku-5-5; mmBERT scores {ft_mmbert_val} on the synthetic validation set but {ft_mmbert_real} on real cases.", "Real short videos: Qwen3.5-4B with frames and text was right on {km_qwen}, claude-haiku-5-5 on {km_haiku}; the latter flagged more fine videos."] }
+conclusion = { zh = "审视频广告，关键是让模型看到画面里的字，不一定要看整段视频：帧上识别出的文字就够，而且快得多。用合成广告微调的小模型在相近的题上能追上大模型，但离合成数据越远掉得越多；真实视频上的结论只能算参考，因为题目和标准都来自另一个平台。", en = "For video ads the key is letting the model see the words in the picture, not necessarily the whole video: the text read off the frames is enough and much faster. Small models fine-tuned on synthetic ads catch up with the large model on similar items but fall further behind the further they are from the synthetic data; the real-video results are indicative only, since the items and the standard come from another platform." }
+short_name = { zh = "审核模型实验", en = "Policy Model Lab" }
+card_title = { zh = "审视频广告，模型要看什么、小模型够不够", en = "What a model must see to review a video ad" }
+assumed = { zh = "以为看整段视频才审得最准，帧上的字不够用", en = "Expected watching the whole video to be needed; text from frames to fall short" }
+showed = { zh = "本机 4B 只读帧上的字判对 {vid_qwen_ocr16}，和看视频一样，快得多", en = "The local 4B model reading only frame text was right on {vid_qwen_ocr16}, as good as watching the video and much faster" }
+result_line = { zh = "看 16 帧时违规全抓到（{vid_haiku_f16_caught}），只给文案只抓到 {vid_haiku_text_caught}", en = "With 16 frames every violation was caught ({vid_haiku_f16_caught}); with the caption only, {vid_haiku_text_caught}" }
+key_numbers = [{ metric = "vid_haiku_f16_caught", label = { zh = "看 16 帧时违规全抓到（只看文案 {vid_haiku_text_caught}）", en = "Violations caught with 16 frames (caption only: {vid_haiku_text_caught})" } }, { metric = "vid_qwen_ocr16", label = { zh = "本机小模型只读帧上的字，判对", en = "Local model reading frame text only: right" } }, { metric = "ft_lora_gr", label = { zh = "合成数据微调的小模型（大模型 {ft_haiku_gr}）", en = "Small model tuned on synthetic ads (large model: {ft_haiku_gr})" } }]
+timeline = [
+  { date = "2026-11-17", label = { zh = "看什么", en = "What to show" }, text = { zh = "只给文案时违规大多漏掉", en = "Caption only misses most violations" }, before = "vid_haiku_text_caught", after = "vid_haiku_f16_caught", adopted = true },
+  { date = "2026-11-17", label = { zh = "本机模型", en = "Local models" }, text = { zh = "读帧上的字和看视频一样准", en = "Frame text as good as the video" }, before = "vid_qwen_video", after = "vid_qwen_ocr16", adopted = true },
+  { date = "2026-11-17", label = { zh = "微调", en = "Fine-tuning" }, text = { zh = "小模型追上大模型，离合成数据越远越差", en = "Catches up, weaker far from the synthetic data" }, before = "ft_haiku_gr", after = "ft_lora_gr" },
+  { date = "2026-11-17", label = { zh = "真实视频", en = "Real videos" }, text = { zh = "另一平台的真实短视频上核对", en = "Checked on another platform's videos" }, after = "km_qwen" },
+]
+
+judge = { zh = [
+  "没有用评分器：判对按写题时定好的答案（真实视频和真实案例按原来的标注）用脚本算。",
+], en = [
+  "No grader is used: decisions are scored by script against answers fixed when the items were written (for real videos and cases, their original labels).",
+] }
+
+[uses]
+zh = [
+  "审核团队选输入和模型：视频广告先读帧上的字，再决定要不要送更贵的模型看画面。",
+  "上线前的检查方法：同一套题上比较给模型看的东西、比较大小模型，按事先写好的预测逐条对照。",
+]
+en = [
+  "Choosing inputs and models for a review team: read the text off the frames first, then decide whether a costlier model should see the picture.",
+  "A pre-launch method: compare inputs and model sizes on one item set and check each prediction written beforehand.",
+]
+
+[out_of_scope]
+zh = [
+  "视频广告是合成的，答案写题时定好；真实视频来自另一个平台，标准和本项目的政策库不同。",
+  "真实视频和真实案例只公开汇总数字，不放原文和画面。",
+  "Qwen3-VL-2B 跑的时候显卡上还有别的程序，它的用时不拿来比较。",
+]
+en = [
+  "The video ads are synthetic with answers fixed when written; the real videos come from another platform whose standard differs from this project's policy library.",
+  "For the real videos and real cases only totals are published, no text or frames.",
+  "Other programs were using the GPU while Qwen3-VL-2B ran, so its timings are not compared.",
+]
+
+[[eval]]
+id = "video"
+name = { zh = "视频广告：给模型看什么（96 段）", en = "Video ads: what the model is shown (96 videos)" }
+date = "2026-11-17"
+data = { zh = "96 段合成视频广告（中英各一半），64 段违规、32 段合规（其中一部分是看起来像违规的陷阱）；答案写题时定好。同一段广告分别给文案、封面、抽 8 帧或 16 帧、整段视频、帧上识别出的文字。", en = "96 synthetic video ads (half Chinese, half English), 64 violating and 32 compliant (some of them look-alike traps); answers fixed when written. Each ad is shown as caption, cover, 8 or 16 sampled frames, the whole video, or the text read off the frames." }
+items = { zh = "96 段视频", en = "96 videos" }
+runs = { zh = "每种看法 1 遍", en = "1 run per input" }
+setup = { zh = "claude-haiku-5-5 走批量接口；本机模型在一台笔记本显卡上跑", en = "claude-haiku-5-5 through the Message Batches API; local models on one laptop GPU" }
+frozen = { zh = "`eval/PREREGISTRATION.md`", en = "`eval/PREREGISTRATION.md`" }
+takeaway = { zh = "只给文案时违规大多漏掉；看的帧越多抓得越全。本机的 Qwen3.5-4B 只读帧上识别出的文字，和看整段视频一样准，快得多，显存也少。", en = "With the caption only most violations are missed; more frames catch more. Locally, Qwen3.5-4B reading only the text off the frames is as accurate as watching the whole video, much faster and with less GPU memory." }
+
+  [[eval.metric]]
+  id = "vid_haiku_text_caught"
+  label = { zh = "只给文案：违规抓到（claude-haiku-5-5）", en = "Caption only: violations caught (claude-haiku-5-5)" }
+  extractor = "md_match_cell"
+  args = { path = "policy-model-lab-public/results/video_summary.md", match = { model = "haiku", input = "text" }, col = "violating caught" }
+
+  [[eval.metric]]
+  id = "vid_haiku_f16"
+  label = { zh = "看 16 帧：判对（claude-haiku-5-5）", en = "16 frames: decisions right (claude-haiku-5-5)" }
+  extractor = "md_match_cell"
+  args = { path = "policy-model-lab-public/results/video_summary.md", match = { model = "haiku", input = "frames16" }, col = "decision accuracy" }
+
+  [[eval.metric]]
+  id = "vid_haiku_f16_caught"
+  label = { zh = "看 16 帧：违规抓到（claude-haiku-5-5）", en = "16 frames: violations caught (claude-haiku-5-5)" }
+  extractor = "md_match_cell"
+  args = { path = "policy-model-lab-public/results/video_summary.md", match = { model = "haiku", input = "frames16" }, col = "violating caught" }
+
+  [[eval.metric]]
+  id = "vid_qwen_video"
+  label = { zh = "看整段视频：判对（Qwen3.5-4B，本机）", en = "Whole video: decisions right (Qwen3.5-4B, local)" }
+  extractor = "md_match_cell"
+  args = { path = "policy-model-lab-public/results/video_summary.md", match = { model = "qwen35-4b", input = "video" }, col = "decision accuracy" }
+
+  [[eval.metric]]
+  id = "vid_qwen_ocr16"
+  label = { zh = "只读 16 帧上的文字：判对（Qwen3.5-4B，本机）", en = "Text from 16 frames only: decisions right (Qwen3.5-4B, local)" }
+  extractor = "md_match_cell"
+  args = { path = "policy-model-lab-public/results/video_summary.md", match = { model = "qwen35-4b", input = "ocr16" }, col = "decision accuracy" }
+
+  [[eval.metric]]
+  id = "vid_qwen_video_s"
+  label = { zh = "看整段视频：每条用时中位数（Qwen3.5-4B）", en = "Whole video: median seconds per item (Qwen3.5-4B)" }
+  extractor = "md_match_value"
+  args = { path = "policy-model-lab-public/results/video_summary.md", match = { model = "qwen35-4b", input = "video" }, col = "median s", unit = "s", decimals = 1 }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "vid_qwen_ocr16_s"
+  label = { zh = "只读帧上的文字：每条用时中位数（Qwen3.5-4B）", en = "Frame text only: median seconds per item (Qwen3.5-4B)" }
+  extractor = "md_match_value"
+  args = { path = "policy-model-lab-public/results/video_summary.md", match = { model = "qwen35-4b", input = "ocr16" }, col = "median s", unit = "s", decimals = 1 }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "vid_2b_f8_fp"
+  label = { zh = "看 8 帧：合规广告被错拒（Qwen3-VL-2B）", en = "8 frames: compliant ads wrongly rejected (Qwen3-VL-2B)" }
+  extractor = "md_match_cell"
+  args = { path = "policy-model-lab-public/results/video_summary.md", match = { model = "qwen3vl-2b", input = "frames8" }, col = "compliant wrongly rejected" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "vid_siglip_f16"
+  label = { zh = "看 16 帧：判对（SigLIP 2）", en = "16 frames: decisions right (SigLIP 2)" }
+  extractor = "md_match_cell"
+  args = { path = "policy-model-lab-public/results/video_summary.md", match = { model = "siglip2", input = "siglip-frames16" }, col = "decision accuracy" }
+
+[[eval]]
+id = "finetune"
+name = { zh = "合成广告微调小模型", en = "Small models fine-tuned on synthetic ads" }
+date = "2026-11-17"
+data = { zh = "用合成广告训练，测试集没训练过：有据审核的测试题（168 个判断）、视频广告的文字、46 个真实案例（只公开汇总）和合成验证集。和不微调的同一模型、claude-haiku-5-5、mmBERT 比较；配对差按 4,000 次自助重抽样给区间。", en = "Trained on synthetic ads and tested on unseen sets: Grounded Review's test items (168 decisions), the video ads' text, 46 real cases (totals only) and a synthetic validation set. Compared with the same model untuned, claude-haiku-5-5 and mmBERT; paired differences carry intervals from 4,000 bootstrap resamples." }
+items = { zh = "有据审核的测试题 168 个判断；真实案例 46 个", en = "168 decisions on Grounded Review's items; 46 real cases" }
+runs = { zh = "每个模型 1 遍", en = "1 run per model" }
+setup = { zh = "Qwen3-1.7B 加 LoRA，在一台笔记本显卡上训练；claude-haiku-5-5 走批量接口", en = "Qwen3-1.7B with LoRA trained on one laptop GPU; claude-haiku-5-5 through the Message Batches API" }
+frozen = { zh = "`eval/PREREGISTRATION.md`", en = "`eval/PREREGISTRATION.md`" }
+takeaway = { zh = "微调后的 1.7B 在有据审核的测试题上和 claude-haiku-5-5 分不出高下，比不微调高一截；离合成数据越远掉得越多，mmBERT 在真实案例上只剩一半左右。", en = "The tuned 1.7B model is too close to call against claude-haiku-5-5 on Grounded Review's items and well above the untuned model; the further from the synthetic data the more it drops, and mmBERT is near half on real cases." }
+
+  [[eval.metric]]
+  id = "ft_lora_gr"
+  label = { zh = "有据审核的测试题：判对（Qwen3-1.7B + LoRA）", en = "Grounded Review's items: right (Qwen3-1.7B + LoRA)" }
+  extractor = "md_match_cell"
+  args = { path = "policy-model-lab-public/results/text_summary.md", match = { "test set" = "grounded-review", method = "qwen3-1.7b-lora" }, col = "decision accuracy" }
+
+  [[eval.metric]]
+  id = "ft_haiku_gr"
+  label = { zh = "有据审核的测试题：判对（claude-haiku-5-5）", en = "Grounded Review's items: right (claude-haiku-5-5)" }
+  extractor = "md_match_cell"
+  args = { path = "policy-model-lab-public/results/text_summary.md", match = { "test set" = "grounded-review", method = "haiku" }, col = "decision accuracy" }
+
+  [[eval.metric]]
+  id = "ft_diff_haiku"
+  label = { zh = "配对差：1.7B + LoRA 减 claude-haiku-5-5（百分点）", en = "Paired difference: 1.7B + LoRA minus claude-haiku-5-5 (points)" }
+  extractor = "md_match_value"
+  args = { path = "policy-model-lab-public/results/text_paired.md", match = { "test set" = "grounded-review", "second method" = "qwen3-1.7b-lora", "first method" = "haiku" }, col = "difference", decimals = 1 }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "ft_diff_zs_gr"
+  label = { zh = "配对差：微调减不微调（百分点）", en = "Paired difference: tuned minus untuned (points)" }
+  extractor = "md_match_value"
+  args = { path = "policy-model-lab-public/results/text_paired.md", match = { "test set" = "grounded-review", "second method" = "qwen3-1.7b-lora", "first method" = "qwen3-1.7b-zs" }, col = "difference", decimals = 1 }
+  direction = "higher"
+
+  [[eval.metric]]
+  id = "ft_lora_real"
+  label = { zh = "真实案例：判对（Qwen3-1.7B + LoRA）", en = "Real cases: right (Qwen3-1.7B + LoRA)" }
+  extractor = "md_match_cell"
+  args = { path = "policy-model-lab-public/results/text_summary.md", match = { "test set" = "real", method = "qwen3-1.7b-lora" }, col = "decision accuracy" }
+
+  [[eval.metric]]
+  id = "ft_haiku_real"
+  label = { zh = "真实案例：判对（claude-haiku-5-5）", en = "Real cases: right (claude-haiku-5-5)" }
+  extractor = "md_match_cell"
+  args = { path = "policy-model-lab-public/results/text_summary.md", match = { "test set" = "real", method = "haiku" }, col = "decision accuracy" }
+
+  [[eval.metric]]
+  id = "ft_mmbert_val"
+  label = { zh = "合成验证集：判对（mmBERT）", en = "Synthetic validation: right (mmBERT)" }
+  extractor = "md_match_cell"
+  args = { path = "policy-model-lab-public/results/text_summary.md", match = { "test set" = "synth-val", method = "mmbert" }, col = "decision accuracy" }
+
+  [[eval.metric]]
+  id = "ft_mmbert_real"
+  label = { zh = "真实案例：判对（mmBERT）", en = "Real cases: right (mmBERT)" }
+  extractor = "md_match_cell"
+  args = { path = "policy-model-lab-public/results/text_summary.md", match = { "test set" = "real", method = "mmbert" }, col = "decision accuracy" }
+
+  [[eval.metric]]
+  id = "ft_minutes"
+  label = { zh = "训练用时（分钟，Qwen3-1.7B + LoRA）", en = "Training time (minutes, Qwen3-1.7B + LoRA)" }
+  extractor = "json_value"
+  args = { path = "policy-model-lab-public/results/train/qwen3-1.7b-lora.json", keys = ["minutes"], decimals = 1 }
+  direction = "none"
+
+[[eval]]
+id = "kuaimod"
+name = { zh = "另一平台的真实短视频：违不违规（300 条，只公开汇总）", en = "Real short videos from another platform: violating or not (300, totals only)" }
+date = "2026-11-17"
+data = { zh = "KuaiMod 测试集 1,000 条里按固定种子抽 300 条（173 条正常、127 条违规），问“这条视频违不违反平台的社区规范”。本机模型看的是缩小的帧，claude-haiku-5-5 收到的是原图。不放画面、标题和原文。", en = "300 of the 1,000 KuaiMod test videos drawn with a fixed seed (173 fine, 127 violating), asking whether the video breaks the platform's community rules. Local models saw downscaled frames; claude-haiku-5-5 received the originals. No frame, title or text is shown." }
+items = { zh = "300 条视频", en = "300 videos" }
+runs = { zh = "每个模型 1 遍", en = "1 run per model" }
+setup = { zh = "claude-haiku-5-5 走批量接口；Qwen3.5-4B 在本机", en = "claude-haiku-5-5 through the Message Batches API; Qwen3.5-4B locally" }
+frozen = { zh = "`eval/PREREGISTRATION.md`", en = "`eval/PREREGISTRATION.md`" }
+takeaway = { zh = "看画面加文字时，本机 Qwen3.5-4B 判对稍多，claude-haiku-5-5 把更多正常视频标成违规；两者收到的画面大小不同，标准也来自另一个平台，只作参考。", en = "With frames and text the local Qwen3.5-4B was right slightly more often and claude-haiku-5-5 flagged more fine videos; the two received frames of different sizes and the standard comes from another platform, so this is indicative only." }
+
+  [[eval.metric]]
+  id = "km_qwen"
+  label = { zh = "看画面加文字：判对（Qwen3.5-4B，本机）", en = "Frames and text: right (Qwen3.5-4B, local)" }
+  extractor = "md_match_cell"
+  args = { path = "policy-model-lab-public/results/kuaimod_summary.md", match = { model = "qwen35-4b", input = "frames+text" }, col = "accuracy" }
+
+  [[eval.metric]]
+  id = "km_haiku"
+  label = { zh = "看画面加文字：判对（claude-haiku-5-5）", en = "Frames and text: right (claude-haiku-5-5)" }
+  extractor = "md_match_cell"
+  args = { path = "policy-model-lab-public/results/kuaimod_summary.md", match = { model = "haiku", input = "frames+text" }, col = "accuracy" }
+
+  [[eval.metric]]
+  id = "km_qwen_fp"
+  label = { zh = "正常视频被标成违规（Qwen3.5-4B）", en = "Fine videos flagged (Qwen3.5-4B)" }
+  extractor = "md_match_cell"
+  args = { path = "policy-model-lab-public/results/kuaimod_summary.md", match = { model = "qwen35-4b", input = "frames+text" }, col = "fine wrongly flagged" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "km_haiku_fp"
+  label = { zh = "正常视频被标成违规（claude-haiku-5-5）", en = "Fine videos flagged (claude-haiku-5-5)" }
+  extractor = "md_match_cell"
+  args = { path = "policy-model-lab-public/results/kuaimod_summary.md", match = { model = "haiku", input = "frames+text" }, col = "fine wrongly flagged" }
+  direction = "lower"
+
+[[limitation]]
+text = { zh = "视频广告和训练数据都是合成的；离合成数据越远，微调模型掉得越多（mmBERT 在真实案例上 {ft_mmbert_real}）。", en = "The video ads and training data are synthetic; the further from them, the more the tuned models drop (mmBERT on real cases: {ft_mmbert_real})." }
+advice = { zh = "上线前用平台自己的历史审核结果做一批题再测，按需要补真实数据再训练。", en = "Before release, build items from the platform's own past decisions and test again; retrain with real data where needed." }
+
+[[limitation]]
+text = { zh = "真实短视频来自另一个平台，标准和本项目的政策库不同；两组模型收到的画面大小也不同。", en = "The real short videos come from another platform with a different standard, and the two models received frames of different sizes." }
+advice = { zh = "换到目标平台的数据和标准上，用同样大小的输入重测。", en = "Re-test on the target platform's data and standard, with the same input size for every model." }
+
+[[limitation]]
+text = { zh = "每个模型每题只跑一遍；有些差别落在区间里，分不出高下。", en = "One run per model per item; some differences fall within the intervals and cannot be separated." }
+advice = { zh = "差别小的那几组加题、多跑几遍再定。", en = "Add items and runs for the close comparisons before deciding." }
+
+[[version]]
+id = "1.0"
+date = "2026-11-18"
+text = { zh = "第一张卡，照公开仓库 policy-model-lab 的结果文件写。", en = "First card, from the result files in the public policy-model-lab repository." }

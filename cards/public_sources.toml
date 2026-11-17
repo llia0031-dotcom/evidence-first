@@ -49,3 +49,8 @@ url = "https://llia0031-dotcom.github.io/"
 prefix = "creator-skills-public/"
 repo = "creator-skills"
 url = "https://github.com/llia0031-dotcom/creator-skills/blob/main/"
+
+[[map]]
+prefix = "policy-model-lab-public/"
+repo = "policy-model-lab"
+url = "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/"

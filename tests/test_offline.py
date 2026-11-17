@@ -160,6 +160,7 @@ class Labels(unittest.TestCase):
 
 PROJECT_FOLDERS = ["evidence-check-public", "cairn-public", "grounded-review-public", "sellpoint-check", "screening-audit",
                    "voice-agent-eval", "evidence-pipeline-public", "grounded-business-review-public",
+                   "creator-skills-public", "policy-model-lab-public",
                    "launchpad-tracedesk", "aigc-scene-eval"]
 
 
