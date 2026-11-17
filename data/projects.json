@@ -6813,14 +6813,14 @@
     },
     "problem": {
       "zh": "创作者每周都要对字幕、排分镜、追热点；交给 AI 助手做时，字幕会不会被改错、分镜里的口播念不念得完、热点选题卡上的事实站不站得住",
-      "en": "Creators fix subtitles, plan shot lists and chase trends every week; when an assistant does it, are the subtitles changed wrongly, can each shot's voiceover be spoken in time, and do the facts on a trend card hold up?"
+      "en": "Creators fix subtitles, plan shot lists and chase trends weekly. When an assistant does it, do subtitles stay right, can every shot be spoken in time, and do trend facts hold?"
     },
     "primary_metric": {
       "zh": "字幕：改好的文件完全正确；分镜：四项检查全过；热点：有伤亡的事件处理得当",
       "en": "Subtitles: corrected files fully right; shot lists: all four checks pass; trends: events with casualties handled correctly"
     },
     "summary": {
-      "zh": "三个给短视频创作者用的 Agent Skill，各带一个只用 Python 标准库的核对脚本：字幕对稿把自动字幕逐条和口播稿比、按阅读速度和时间轴标准查；分镜核对查每个镜头的口播念不念得完、稿子一句不少、总时长对得上；热点选题查每张选题卡上的事实，链接打得开、标题对得上、引文在页面里、数字在引文里、文章够新。每个都和不装 Skill 的同一个模型比较，题目和答案在写题时定好，都是虚构的创作场景。",
+      "zh": "三个给短视频创作者用的 Agent Skill，各带一个核对脚本，结果交出去之前先查一遍。脚本只用 Python 标准库：字幕对稿把自动字幕逐条和口播稿比、按阅读速度和时间轴标准查；分镜核对查每个镜头的口播念不念得完、稿子一句不少、总时长对得上；热点选题查每张选题卡上的事实，链接打得开、标题对得上、引文在页面里、数字在引文里、文章够新。每个都和不装 Skill 的同一个模型比较，题目和答案在写题时定好，都是虚构的创作场景。",
       "en": "Three Agent Skills for short-video creators, each with a checking script that uses only the Python standard library. Subtitle checking compares every auto-caption with the script and checks reading speed and timing; shot-list checking checks that each shot's voiceover can be spoken in time, that no line of the script is lost and that the total length fits; trend topics checks every fact on a topic card: the link opens, the title matches, the quote is on the page, the numbers are in the quote and the page is recent. Each is compared with the same model without the skill, on fictional creator scenarios whose answers were fixed when they were written."
     },
     "did": {

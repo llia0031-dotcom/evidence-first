@@ -9064,7 +9064,7 @@
     "period": "2026-11-17",
     "team": "Liang Liyuan",
     "stack": "Agent Skills（SKILL.md 加 Python 脚本，只用标准库）、Claude Code 插件、批量接口",
-    "one_line": "三个给短视频创作者用的 Agent Skill，各带一个只用 Python 标准库的核对脚本：字幕对稿把自动字幕逐条和口播稿比、按阅读速度和时间轴标准查；分镜核对查每个镜头的口播念不念得完、稿子一句不少、总时长对得上；热点选题查每张选题卡上的事实，链接打得开、标题对得上、引文在页面里、数字在引文里、文章够新。",
+    "one_line": "三个给短视频创作者用的 Agent Skill，各带一个核对脚本，结果交出去之前先查一遍。",
     "facts": [
       {
         "label": "时间",
@@ -9413,7 +9413,7 @@
       }
     ],
     "problem": [
-      "Creators fix subtitles, plan shot lists and chase trends every week; when an assistant does it, are the subtitles changed wrongly, can each shot's voiceover be spoken in time, and do the facts on a trend card hold up?"
+      "Creators fix subtitles, plan shot lists and chase trends weekly. When an assistant does it, do subtitles stay right, can every shot be spoken in time, and do trend facts hold?"
     ],
     "did": [
       "I built three Agent Skills for short-video creators: subtitle checking, shot-list checking and trend topics. Each carries a checking script that runs before anything is handed back. Each was compared with the same model without the skill on items whose answers were fixed in advance, with plans and predictions frozen before the runs."

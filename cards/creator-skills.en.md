@@ -8,7 +8,7 @@
 |---|---|---|---|
 | 2026-11-17 | Liang Liyuan | Agent Skills (SKILL.md plus standard-library Python scripts), Claude Code plugin, Message Batches API | [Code and report](https://github.com/llia0031-dotcom/creator-skills) |
 
-**Problem**: Creators fix subtitles, plan shot lists and chase trends every week; when an assistant does it, are the subtitles changed wrongly, can each shot's voiceover be spoken in time, and do the facts on a trend card hold up?
+**Problem**: Creators fix subtitles, plan shot lists and chase trends weekly. When an assistant does it, do subtitles stay right, can every shot be spoken in time, and do trend facts hold?
 
 **What I did**: I built three Agent Skills for short-video creators: subtitle checking, shot-list checking and trend topics. Each carries a checking script that runs before anything is handed back. Each was compared with the same model without the skill on items whose answers were fixed in advance, with plans and predictions frozen before the runs.
 
