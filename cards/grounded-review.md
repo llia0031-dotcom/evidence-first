@@ -1,6 +1,6 @@
 # 有据审核（广告审核 Agent）：评测卡
 
-> 卡片版本 1.3 · 数据截至 2026-11-16 · 已公开
+> 卡片版本 1.4 · 数据截至 2026-11-16 · 已公开
 >
 > 数字由 `scripts/build_cards.py` 从项目的结果文件算出；比例附 Wilson 95% 区间。
 
@@ -202,8 +202,11 @@ v1.3 让模型先填修改后的文案、再写说明；题目在 v1.3 写好之
 | 违规拦下（Agent） | 46/46（100.0%，95% 区间 92.3–100.0%） | 越高越好 | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
 | 判“不违规”的广告正确放行（单个提示词） | 6/14（42.9%，95% 区间 21.4–67.4%） | 越高越好 | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
 | 判“不违规”的广告正确放行（Agent） | 5/14（35.7%，95% 区间 16.3–61.2%） | 越高越好 | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
+| 判对（违禁词表，本机运行，每条一遍） | 13/30（43.3%，95% 区间 27.4–60.8%） | 越高越好 | [`grounded-review/eval/results/real-local-arms-2026-11-15.md`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-local-arms-2026-11-15.md) |
+| 判对（Qwen3Guard-Gen-4B，本机运行，每条一遍） | 18/30（60.0%，95% 区间 42.3–75.4%） | 越高越好 | [`grounded-review/eval/results/real-local-arms-2026-11-15.md`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-local-arms-2026-11-15.md) |
+| 判对（Granite Guardian 3.3 8B，本机运行，每条一遍） | 14/30（46.7%，95% 区间 30.2–63.9%） | 越高越好 | [`grounded-review/eval/results/real-local-arms-2026-11-15.md`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-local-arms-2026-11-15.md) |
 
-两组不再满分但仍接近；Agent 更严：违规抓得更全，也多拒了合法的。大部分错来自监管规则和政策库不同。
+两组不再满分但仍接近；Agent 更严：违规抓得更全，也多拒了合法的。大部分错来自监管规则和政策库不同。本机运行的违禁词表和两个开源护栏模型每条只跑一遍，判对 13/30、18/30、14/30，都少于两个模型组。
 
 ### 真实广告（中文）：16 个公开案例
 
@@ -211,6 +214,9 @@ v1.3 让模型先填修改后的文案、再写说明；题目在 v1.3 写好之
 |---|---|---|---|
 | 判对（单个提示词） | 27/32（84.4%，95% 区间 68.2–93.1%） | 越高越好 | [`grounded-review/eval/results/real-zh-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-zh-2026-11-14.summary.json) |
 | 判对（Agent） | 26/32（81.2%，95% 区间 64.7–91.1%） | 越高越好 | [`grounded-review/eval/results/real-zh-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-zh-2026-11-14.summary.json) |
+| 判对（违禁词表，本机运行，每条一遍） | 11/16（68.8%，95% 区间 44.4–85.8%） | 越高越好 | [`grounded-review/eval/results/real-local-arms-2026-11-15.md`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-local-arms-2026-11-15.md) |
+| 判对（Qwen3Guard-Gen-4B，本机运行，每条一遍） | 11/16（68.8%，95% 区间 44.4–85.8%） | 越高越好 | [`grounded-review/eval/results/real-local-arms-2026-11-15.md`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-local-arms-2026-11-15.md) |
+| 判对（Granite Guardian 3.3 8B，本机运行，每条一遍） | 13/16（81.2%，95% 区间 57.0–93.4%） | 越高越好 | [`grounded-review/eval/results/real-local-arms-2026-11-15.md`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-local-arms-2026-11-15.md) |
 
 ### 多轮改稿 mt2：v1 对 v1.1（12 条新广告）
 
@@ -276,6 +282,7 @@ v1.3 让模型先填修改后的文案、再写说明；题目在 v1.3 写好之
 - **1.1**（2026-11-15）开头加了时间、团队、技术、链接和“问题 / 我做了什么 / 结果”，照作品集案例页的写法；评测部分不变。
 - **1.2**（2026-11-16）加了演示页和产品方案的链接，加了记忆评测。
 - **1.3**（2026-11-17）改正说法：真实广告和留出集的数字按判断次数说（每条广告跑两遍），不说成广告条数；数据日期改成收进记忆评测的 2026-11-16；对比组补上 Qwen3Guard 和 Granite Guardian。两个文字审核模型在真实广告上的结果现在写在报告里，但没有汇总数据文件，所以仍不收进卡片。数字不变。
+- **1.4**（2026-11-17）真实广告上本机运行的三个对比组（违禁词表、Qwen3Guard、Granite Guardian）现在有公开的计数表，收进卡片。
 
 ## 出处
 

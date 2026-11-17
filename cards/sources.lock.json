@@ -56,6 +56,7 @@
     "grounded-review-public/eval/results/multiturn-mt4-v1.1.jsonl": "bb262b3d8268c864183df7532d1457d29e04fd94851fa036120db4fb5f00d271",
     "grounded-review-public/eval/results/multiturn-mt4-v1.3.jsonl": "efb0e80b4bfcdf6e5425aa10efac01f12b5bb284939691987071eaacfbd832e7",
     "grounded-review-public/eval/results/real-2026-11-14.summary.json": "5972506587150ff14c4d67c12bfb4a0e903dbf7d60033d04bdebb0f95f13fce3",
+    "grounded-review-public/eval/results/real-local-arms-2026-11-15.md": "af2068d4b32bfa6d4e5f424aa213d067b36fc57fda60905d5d216415144d2835",
     "grounded-review-public/eval/results/real-zh-2026-11-14.summary.json": "958959767bca0d221cc0fab2d8e4719ba8150406eff101a4c355051d74f59cbd",
     "grounded-review-public/eval/results/test-2026-11-13.images.summary.json": "b9a93826d0e0fcea86e9b6674cc3c17fafb6225352bed143ffcd874cd4bc41c7",
     "grounded-review-public/eval/results/test-2026-11-13.summary.json": "89b39152252bafdd8553e5924f48dcc6f9f052f93f2aee5ad975d564f5c75d40"

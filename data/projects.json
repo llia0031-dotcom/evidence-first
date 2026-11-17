@@ -2508,7 +2508,7 @@
     "layer": "judgement",
     "status": "public",
     "updated": "2026-11-16",
-    "card_version": "1.3",
+    "card_version": "1.4",
     "card": {
       "zh": "cards/grounded-review.md",
       "en": "cards/grounded-review.en.md"
@@ -3152,6 +3152,72 @@
             "source_urls": [
               "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json"
             ]
+          },
+          {
+            "id": "real_en_wordlist",
+            "label": {
+              "zh": "判对（违禁词表，本机运行，每条一遍）",
+              "en": "Decisions right (word list, run locally, one run per item)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "grounded-review/eval/results/real-local-arms-2026-11-15.md"
+            ],
+            "k": 13,
+            "n": 30,
+            "rate": 0.4333,
+            "ci95": [
+              0.2738,
+              0.608
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-local-arms-2026-11-15.md"
+            ]
+          },
+          {
+            "id": "real_en_qwen",
+            "label": {
+              "zh": "判对（Qwen3Guard-Gen-4B，本机运行，每条一遍）",
+              "en": "Decisions right (Qwen3Guard-Gen-4B, run locally, one run per item)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "grounded-review/eval/results/real-local-arms-2026-11-15.md"
+            ],
+            "k": 18,
+            "n": 30,
+            "rate": 0.6,
+            "ci95": [
+              0.4232,
+              0.7541
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-local-arms-2026-11-15.md"
+            ]
+          },
+          {
+            "id": "real_en_granite",
+            "label": {
+              "zh": "判对（Granite Guardian 3.3 8B，本机运行，每条一遍）",
+              "en": "Decisions right (Granite Guardian 3.3 8B, run locally, one run per item)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "grounded-review/eval/results/real-local-arms-2026-11-15.md"
+            ],
+            "k": 14,
+            "n": 30,
+            "rate": 0.4667,
+            "ci95": [
+              0.3023,
+              0.6386
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-local-arms-2026-11-15.md"
+            ]
           }
         ]
       },
@@ -3205,6 +3271,72 @@
             ],
             "source_urls": [
               "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-zh-2026-11-14.summary.json"
+            ]
+          },
+          {
+            "id": "real_zh_wordlist",
+            "label": {
+              "zh": "判对（违禁词表，本机运行，每条一遍）",
+              "en": "Decisions right (word list, run locally, one run per item)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "grounded-review/eval/results/real-local-arms-2026-11-15.md"
+            ],
+            "k": 11,
+            "n": 16,
+            "rate": 0.6875,
+            "ci95": [
+              0.444,
+              0.8584
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-local-arms-2026-11-15.md"
+            ]
+          },
+          {
+            "id": "real_zh_qwen",
+            "label": {
+              "zh": "判对（Qwen3Guard-Gen-4B，本机运行，每条一遍）",
+              "en": "Decisions right (Qwen3Guard-Gen-4B, run locally, one run per item)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "grounded-review/eval/results/real-local-arms-2026-11-15.md"
+            ],
+            "k": 11,
+            "n": 16,
+            "rate": 0.6875,
+            "ci95": [
+              0.444,
+              0.8584
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-local-arms-2026-11-15.md"
+            ]
+          },
+          {
+            "id": "real_zh_granite",
+            "label": {
+              "zh": "判对（Granite Guardian 3.3 8B，本机运行，每条一遍）",
+              "en": "Decisions right (Granite Guardian 3.3 8B, run locally, one run per item)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "grounded-review/eval/results/real-local-arms-2026-11-15.md"
+            ],
+            "k": 13,
+            "n": 16,
+            "rate": 0.8125,
+            "ci95": [
+              0.5699,
+              0.9341
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-local-arms-2026-11-15.md"
             ]
           }
         ]

@@ -2,7 +2,7 @@ id = "grounded-review"
 order = 6
 layer = "judgement"
 status = "public"
-card_version = "1.3"
+card_version = "1.4"
 updated = "2026-11-16"
 period = "2026-11-13 – 2026-11-16"
 team = "Liang Liyuan"
@@ -243,7 +243,7 @@ items = { zh = "30 份裁决（7 份判不违规），每组 2 遍", en = "30 ru
 runs = { zh = "每组 2 遍", en = "2 runs per arm" }
 setup = { zh = "claude-haiku-5-5，批量接口（半价）", en = "claude-haiku-5-5, Message Batches API (half price)" }
 frozen = { zh = "`eval/PREREGISTRATION.md` 真实广告一节；题目原文不公开，只公开汇总", en = "`eval/PREREGISTRATION.md`, real-ads section; item text is not published, only the summary" }
-takeaway = { zh = "两组不再满分但仍接近；Agent 更严：违规抓得更全，也多拒了合法的。大部分错来自监管规则和政策库不同。", en = "Neither arm is perfect, and they stay close; the agent is stricter, catching more violations and rejecting more compliant ads. Most errors come from the regulator's rules differing from the policy library." }
+takeaway = { zh = "两组不再满分但仍接近；Agent 更严：违规抓得更全，也多拒了合法的。大部分错来自监管规则和政策库不同。本机运行的违禁词表和两个开源护栏模型每条只跑一遍，判对 {real_en_wordlist}、{real_en_qwen}、{real_en_granite}，都少于两个模型组。", en = "Neither arm is perfect, and they stay close; the agent is stricter, catching more violations and rejecting more compliant ads. Most errors come from the regulator's rules differing from the policy library. The locally run word list and two open guardrail models, one run per item, got {real_en_wordlist}, {real_en_qwen} and {real_en_granite} right, fewer than either model arm." }
 
   [[eval.metric]]
   id = "real_en_oneshot"
@@ -281,6 +281,24 @@ takeaway = { zh = "两组不再满分但仍接近；Agent 更严：违规抓得�
   extractor = "json_counts"
   args = { path = "grounded-review-public/eval/results/real-2026-11-14.summary.json", arm = "agent", num = "traps_approved", den = "traps" }
 
+  [[eval.metric]]
+  id = "real_en_wordlist"
+  label = { zh = "判对（违禁词表，本机运行，每条一遍）", en = "Decisions right (word list, run locally, one run per item)" }
+  extractor = "md_match_cell"
+  args = { path = "grounded-review-public/eval/results/real-local-arms-2026-11-15.md", match = { Arm = "Word list", Language = "English, 30 ASA rulings" }, col = "Decision right" }
+
+  [[eval.metric]]
+  id = "real_en_qwen"
+  label = { zh = "判对（Qwen3Guard-Gen-4B，本机运行，每条一遍）", en = "Decisions right (Qwen3Guard-Gen-4B, run locally, one run per item)" }
+  extractor = "md_match_cell"
+  args = { path = "grounded-review-public/eval/results/real-local-arms-2026-11-15.md", match = { Arm = "Qwen3Guard-Gen-4B", Language = "English, 30 ASA rulings" }, col = "Decision right" }
+
+  [[eval.metric]]
+  id = "real_en_granite"
+  label = { zh = "判对（Granite Guardian 3.3 8B，本机运行，每条一遍）", en = "Decisions right (Granite Guardian 3.3 8B, run locally, one run per item)" }
+  extractor = "md_match_cell"
+  args = { path = "grounded-review-public/eval/results/real-local-arms-2026-11-15.md", match = { Arm = "Granite Guardian 3.3 8B", Language = "English, 30 ASA rulings" }, col = "Decision right" }
+
 [[eval]]
 id = "real_zh"
 name = { zh = "真实广告（中文）：16 个公开案例", en = "Real ads (Chinese): 16 published cases" }
@@ -302,6 +320,24 @@ frozen = { zh = "`eval/PREREGISTRATION.md` 真实广告一节", en = "`eval/PRER
   label = { zh = "判对（Agent）", en = "Decisions right (agent)" }
   extractor = "json_counts"
   args = { path = "grounded-review-public/eval/results/real-zh-2026-11-14.summary.json", arm = "agent", num = ["tp", "tn"], den = "items" }
+
+  [[eval.metric]]
+  id = "real_zh_wordlist"
+  label = { zh = "判对（违禁词表，本机运行，每条一遍）", en = "Decisions right (word list, run locally, one run per item)" }
+  extractor = "md_match_cell"
+  args = { path = "grounded-review-public/eval/results/real-local-arms-2026-11-15.md", match = { Arm = "Word list", Language = "Chinese, 16 published cases" }, col = "Decision right" }
+
+  [[eval.metric]]
+  id = "real_zh_qwen"
+  label = { zh = "判对（Qwen3Guard-Gen-4B，本机运行，每条一遍）", en = "Decisions right (Qwen3Guard-Gen-4B, run locally, one run per item)" }
+  extractor = "md_match_cell"
+  args = { path = "grounded-review-public/eval/results/real-local-arms-2026-11-15.md", match = { Arm = "Qwen3Guard-Gen-4B", Language = "Chinese, 16 published cases" }, col = "Decision right" }
+
+  [[eval.metric]]
+  id = "real_zh_granite"
+  label = { zh = "判对（Granite Guardian 3.3 8B，本机运行，每条一遍）", en = "Decisions right (Granite Guardian 3.3 8B, run locally, one run per item)" }
+  extractor = "md_match_cell"
+  args = { path = "grounded-review-public/eval/results/real-local-arms-2026-11-15.md", match = { Arm = "Granite Guardian 3.3 8B", Language = "Chinese, 16 published cases" }, col = "Decision right" }
 
 [[eval]]
 id = "mt2"
@@ -484,3 +520,8 @@ text = { zh = "加了演示页和产品方案的链接，加了记忆评测。",
 id = "1.3"
 date = "2026-11-17"
 text = { zh = "改正说法：真实广告和留出集的数字按判断次数说（每条广告跑两遍），不说成广告条数；数据日期改成收进记忆评测的 2026-11-16；对比组补上 Qwen3Guard 和 Granite Guardian。两个文字审核模型在真实广告上的结果现在写在报告里，但没有汇总数据文件，所以仍不收进卡片。数字不变。", en = "Wording corrected: the real-ad and held-out numbers are stated as decisions (two runs per ad), not as ad counts; the data date is now 2026-11-16, when the memory evaluation was added; Qwen3Guard and Granite Guardian added to the baselines. The two text guardrails' real-ad results are now in the report but have no summary data file, so they are still not on the card. Numbers unchanged." }
+
+[[version]]
+id = "1.4"
+date = "2026-11-17"
+text = { zh = "真实广告上本机运行的三个对比组（违禁词表、Qwen3Guard、Granite Guardian）现在有公开的计数表，收进卡片。", en = "The three locally run arms on real ads (word list, Qwen3Guard, Granite Guardian) now have a published counts table and are on the card." }
