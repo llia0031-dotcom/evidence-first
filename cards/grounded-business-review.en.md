@@ -8,7 +8,7 @@
 |---|---|---|---|
 | 2026-11-16 – 2026-11-17 | Liang Liyuan | Python, DuckDB (SQL), Pandas, evidence-check 0.4.0, Message Batches API, Excel, Dify | [Code and report](https://github.com/llia0031-dotcom/grounded-business-review) |
 
-**Problem**: Whoever reads the weekly numbers needs to know which metrics moved and why; when a model finds the cause and writes the review, is the cause right, and does every number trace back to a query result?
+**Problem**: Whoever reads the weekly numbers needs to know which metrics moved and why; when a model finds the cause and writes the review, is the cause right, and does every number trace back to a query result? (tested on synthetic data).
 
 **What I did**: On synthetic local-services group-buying data I built a metric dictionary, a one-query weekly monitor, contribution and rate-mix breakdowns and number-checked weekly reviews, and compared three ways of finding the cause: a fixed-rule script, a one-prompt approach and an agent; the known-answer test cases and the evaluation plan were frozen before the run; the same flow was also built as a Dify workflow.
 
@@ -85,7 +85,7 @@ Each evaluation version has its own table. Scores are not compared across versio
 | Released after at most one revision (agent) | 33/36 (91.7%, 95% CI 78.2–97.1%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
 | Released on the first draft (one prompt) (predicted between seventy and eighty-five percent; this prediction did not hold) | 19/36 (52.8%, 95% CI 37.0–68.0%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
 | Released on the first draft (agent) | 12/36 (33.3%, 95% CI 20.2–49.7%) | higher is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
-| Agent first drafts: paragraphs quoting a number not in the cited row (zero after one revision) | 22 | lower is better | [`grounded-business-review/eval/EVALUATION.md`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/EVALUATION.md) |
+| Agent first drafts: paragraphs quoting a number not in the cited row (zero after one revision) | 19 | lower is better | [`grounded-business-review/eval/EVALUATION.md`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/EVALUATION.md) |
 | Cost per case (one prompt, batch price) | US$0.0032 | lower is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
 | Cost per case (agent, batch price) | US$0.0057 | lower is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
 | Agent cost per case relative to the one prompt | 1.8× | lower is better | [`grounded-business-review/eval/results/summary-test.json`](https://github.com/llia0031-dotcom/grounded-business-review/blob/main/eval/results/summary-test.json) |
@@ -114,7 +114,7 @@ The development set was used for revisions, so its numbers are optimistic and ar
   - Recommendation: Separating them needs more cases, especially two-cause and two-dimension ones.
 - The number check is too strict on Chinese number words: the reviews held back in the end had no wrong number, and their failing paragraphs failed on words like 这两项 ("these two") or 前一天 ("the day before").
   - Recommendation: Treat counting words apart from quantities, or give them their own rule; how strict to be is a product decision to make with the people who use it.
-- The agent's first drafts had 22 paragraphs quoting a number not in the cited row, all fixed only by the one revision; without the check they would have gone out.
+- The agent's first drafts had 19 paragraphs quoting a number not in the cited row, all fixed only by the one revision; without the check they would have gone out.
   - Recommendation: Keep the check before anything goes out.
 - Recommended actions are not scored.
   - Recommendation: Write scoring rules for the actions and test them on the same cases.
@@ -126,3 +126,5 @@ The development set was used for revisions, so its numbers are optimistic and ar
 ## Provenance
 
 Sections follow the Hugging Face model card template (Apache-2.0); the source file and fingerprint of every number are in `cards/sources.lock.json`.
+
+Sources and licences of third-party data, models and code are listed in the [project repository](https://github.com/llia0031-dotcom/grounded-business-review).

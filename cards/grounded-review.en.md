@@ -1,6 +1,6 @@
 # Grounded Review (ad-review agent): evaluation card
 
-> Card version 1.2 · Data as of 2026-11-15 · public
+> Card version 1.4 · Data as of 2026-11-16 · public
 >
 > Numbers are computed by `scripts/build_cards.py` from the project's result files; proportions carry a Wilson 95% interval.
 
@@ -24,7 +24,7 @@ An agent that reviews ads: it reads the caption and the words in the image, look
 
 - **Place in the portfolio**: Scenario: judgement
 - **Link to the core component**: Every ad quote and clause quote goes through the evidence-check script; a quote that is not word for word in its source is stopped before the answer is shown.
-- **Models used**: Both arms use claude-haiku-5-5 (effort medium) with one output format. Baselines: a banned-word list, CLIP, SigLIP 2 and SafeGuard-VL-RL (run locally).
+- **Models used**: Both arms use claude-haiku-5-5 (effort medium) with one output format. Baselines: a banned-word list, CLIP, SigLIP 2, SafeGuard-VL-RL, Qwen3Guard-Gen-4B and Granite Guardian 3.3 8B (all run locally).
 
 ## Uses
 
@@ -202,8 +202,11 @@ Both arms are fully right: the set shows a ceiling, not a difference.
 | Violations caught (agent) | 46/46 (100.0%, 95% CI 92.3–100.0%) | higher is better | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
 | Not-upheld ads approved (single prompt) | 6/14 (42.9%, 95% CI 21.4–67.4%) | higher is better | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
 | Not-upheld ads approved (agent) | 5/14 (35.7%, 95% CI 16.3–61.2%) | higher is better | [`grounded-review/eval/results/real-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-2026-11-14.summary.json) |
+| Decisions right (word list, run locally, one run per item) | 13/30 (43.3%, 95% CI 27.4–60.8%) | higher is better | [`grounded-review/eval/results/real-local-arms-2026-11-15.md`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-local-arms-2026-11-15.md) |
+| Decisions right (Qwen3Guard-Gen-4B, run locally, one run per item) | 18/30 (60.0%, 95% CI 42.3–75.4%) | higher is better | [`grounded-review/eval/results/real-local-arms-2026-11-15.md`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-local-arms-2026-11-15.md) |
+| Decisions right (Granite Guardian 3.3 8B, run locally, one run per item) | 14/30 (46.7%, 95% CI 30.2–63.9%) | higher is better | [`grounded-review/eval/results/real-local-arms-2026-11-15.md`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-local-arms-2026-11-15.md) |
 
-Neither arm is perfect, and they stay close; the agent is stricter, catching more violations and rejecting more compliant ads. Most errors come from the regulator's rules differing from the policy library.
+Neither arm is perfect, and they stay close; the agent is stricter, catching more violations and rejecting more compliant ads. Most errors come from the regulator's rules differing from the policy library. The locally run word list and two open guardrail models, one run per item, got 13/30, 18/30 and 14/30 right, fewer than either model arm.
 
 ### Real ads (Chinese): 16 published cases
 
@@ -211,6 +214,9 @@ Neither arm is perfect, and they stay close; the agent is stricter, catching mor
 |---|---|---|---|
 | Decisions right (single prompt) | 27/32 (84.4%, 95% CI 68.2–93.1%) | higher is better | [`grounded-review/eval/results/real-zh-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-zh-2026-11-14.summary.json) |
 | Decisions right (agent) | 26/32 (81.2%, 95% CI 64.7–91.1%) | higher is better | [`grounded-review/eval/results/real-zh-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-zh-2026-11-14.summary.json) |
+| Decisions right (word list, run locally, one run per item) | 11/16 (68.8%, 95% CI 44.4–85.8%) | higher is better | [`grounded-review/eval/results/real-local-arms-2026-11-15.md`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-local-arms-2026-11-15.md) |
+| Decisions right (Qwen3Guard-Gen-4B, run locally, one run per item) | 11/16 (68.8%, 95% CI 44.4–85.8%) | higher is better | [`grounded-review/eval/results/real-local-arms-2026-11-15.md`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-local-arms-2026-11-15.md) |
+| Decisions right (Granite Guardian 3.3 8B, run locally, one run per item) | 13/16 (81.2%, 95% CI 57.0–93.4%) | higher is better | [`grounded-review/eval/results/real-local-arms-2026-11-15.md`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/real-local-arms-2026-11-15.md) |
 
 ### Multi-turn mt2: v1 vs v1.1 (12 new ads)
 
@@ -275,7 +281,11 @@ With memory every decision is right; the errors without memory all come from one
 - **1.0** (2026-11-15) First card, following the public grounded-review repository: the public release has no Granite Guardian results on real ads, so neither does this card. The two text guardrails are compared only in report tables with no summary data file, so they are not on the card.
 - **1.1** (2026-11-15) Added when, team, stack, links and "problem / what I did / results" at the top, the way portfolio case studies open; the evaluation sections are unchanged.
 - **1.2** (2026-11-16) Added links to the demo and the product plan, and the memory test.
+- **1.3** (2026-11-17) Wording corrected: the real-ad and held-out numbers are stated as decisions (two runs per ad), not as ad counts; the data date is now 2026-11-16, when the memory evaluation was added; Qwen3Guard and Granite Guardian added to the baselines. The two text guardrails' real-ad results are now in the report but have no summary data file, so they are still not on the card. Numbers unchanged.
+- **1.4** (2026-11-17) The three locally run arms on real ads (word list, Qwen3Guard, Granite Guardian) now have a published counts table and are on the card.
 
 ## Provenance
 
 Sections follow the Hugging Face model card template (Apache-2.0); the source file and fingerprint of every number are in `cards/sources.lock.json`.
+
+Sources and licences of third-party data, models and code are listed in the [project repository](https://github.com/llia0031-dotcom/grounded-review).

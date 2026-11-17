@@ -1,6 +1,6 @@
 # Real-time voice agent evaluation: evaluation card
 
-> Card version 1.2 · Data as of 2026-11-15 · public
+> Card version 1.3 · Data as of 2026-11-15 · public
 >
 > Numbers are computed by `scripts/build_cards.py` from the project's result files; proportions carry a Wilson 95% interval.
 
@@ -8,7 +8,7 @@
 |---|---|---|---|
 | 2026-11-13 – 2026-11-15 | Liang Liyuan | Python, SenseVoice, local MCP tools, FireRedChat pVAD, Claude Haiku 5.5 | [Code and report](https://github.com/llia0031-dotcom/voice-agent-eval) |
 
-**Problem**: Whether a voice assistant still gets the task right when the user pauses, interrupts, says "mm" or talks over background speech, with experience measured as latency, barge-in and false-stop numbers.
+**Problem**: Whether a voice assistant still gets the task right when the user pauses, interrupts, says "mm" or talks over background speech, with experience measured as latency, barge-in and false-stop numbers (the user's speech is synthesised).
 
 **What I did**: I wrote 42 conversations with pauses, barge-ins, backchannels and noise, answers fixed in advance, and built a local cascaded voice agent as the baseline; then tried fixes one at a time, each with its own preregistration addendum, and combined the ones that worked.
 
@@ -60,7 +60,7 @@ Items, audio and scorer unchanged; each fix has its own preregistration addendum
 | Items and answers | 42 conversations, 2 runs per setting |
 | Runs | 2 runs per setting, pooled |
 | Model and send mode | claude-haiku-5-5, standard streaming API |
-| Frozen before the run | `eval/PREREGISTRATION.md`, addenda 1–11 |
+| Frozen before the run | `eval/PREREGISTRATION.md`, addenda 1–11 (later follow-ups up to addendum 14 are in sections 6.16–6.22 of the report and not on this card) |
 
 ## Metrics and results
 
@@ -94,7 +94,7 @@ Each evaluation version has its own table. Scores are not compared across versio
 | Backchannel rule: kept talking through a backchannel | 4/8 (50.0%, 95% CI 21.5–78.5%) | higher is better | [`voice-agent-eval/eval/results/run1/scores.json`](https://github.com/llia0031-dotcom/voice-agent-eval/blob/main/eval/results/run1/scores.json)<br>[`voice-agent-eval/eval/results/run2/scores.json`](https://github.com/llia0031-dotcom/voice-agent-eval/blob/main/eval/results/run2/scores.json) |
 | Plus fixed language: kept talking through a backchannel | 4/8 (50.0%, 95% CI 21.5–78.5%) | higher is better | [`voice-agent-eval/eval/results/run1/scores.json`](https://github.com/llia0031-dotcom/voice-agent-eval/blob/main/eval/results/run1/scores.json)<br>[`voice-agent-eval/eval/results/run2/scores.json`](https://github.com/llia0031-dotcom/voice-agent-eval/blob/main/eval/results/run2/scores.json) |
 
-The four fixes together are the best setting tested; the remaining backchannel problem cannot be solved from transcribed text alone and needs the audio itself.
+Together the four fixes are the best setting tested on the problems they target; on the strict pass written beforehand they are level with the baseline, because that score counts a pause as a stop.
 
 ## Grader calibration
 
@@ -105,7 +105,7 @@ The four fixes together are the best setting tested; the remaining backchannel p
 
 - User speech is synthesised and time is simulated; with 42 conversations and two runs per setting, a difference of one or two is noise.
   - Recommendation: Before launch, rerun with recorded human speech (for example a public dialogue speech set) and measure latency on a real network.
-- Backchannels such as "mm-mm" still interrupt: the recogniser hears other words, and text alone cannot tell a backchannel from a short barge-in.
+- Backchannels such as "mm-mm" are still heard as other words: with single fixes they interrupt, and with all four they avoid it only because their voiced time falls just under 0.5 s, a thin margin; text alone cannot tell a backchannel from a short barge-in.
   - Recommendation: Use detection on the audio itself; an off-the-shelf acoustic backchannel model was tried offline and missed the preset bar, so it was not added.
 - No end-to-end real-time speech model was compared.
   - Recommendation: Add an end-to-end model with a free tier and compare it on the same items and scorer.
@@ -115,7 +115,10 @@ The four fixes together are the best setting tested; the remaining backchannel p
 - **1.0** (2026-11-15) First card; the project is not public.
 - **1.1** (2026-11-15) Added when, team, stack, links and "problem / what I did / results" at the top, the way portfolio case studies open; the evaluation sections are unchanged.
 - **1.2** (2026-11-16) The project is public: link to the code and report added; source files link to the identical copies in the public repository.
+- **1.3** (2026-11-17) Wording corrected: the combined fixes are best only on the problems they target and level with the baseline on the strict pass; "mm-mm" no longer interrupts with all four, by a thin margin; the self-check note follows the code; later follow-ups (addenda 12–14) are noted as not on the card. Numbers unchanged.
 
 ## Provenance
 
 Sections follow the Hugging Face model card template (Apache-2.0); the source file and fingerprint of every number are in `cards/sources.lock.json`.
+
+Sources and licences of third-party data, models and code are listed in the [project repository](https://github.com/llia0031-dotcom/voice-agent-eval).

@@ -1,26 +1,26 @@
 # 有据可查的简历初筛：评测卡
 
-> 卡片版本 1.2 · 数据截至 2026-11-15 · 已公开
+> 卡片版本 1.3 · 数据截至 2026-11-15 · 已公开
 >
 > 数字由 `scripts/build_cards.py` 从项目的结果文件算出；比例附 Wilson 95% 区间。
 
 | 时间 | 团队 | 技术 | 链接 |
 |---|---|---|---|
-| 2026-11-13 – 2026-11-14 | Liang Liyuan | Node.js、Python、evidence-check 0.2.0、批量接口 | [代码和报告](https://github.com/llia0031-dotcom/evidence-screening) |
+| 2026-11-13 – 2026-11-15 | Liang Liyuan | Node.js、Python、evidence-check 0.2.0、批量接口 | [代码和报告](https://github.com/llia0031-dotcom/evidence-screening) · [演示页](https://llia0031-dotcom.github.io/evidence-screening/) |
 
 **问题**：用模型初筛简历时，每个“符合 / 不符合”都要附简历原文；看它会不会更准、换名字性别学校后结论会不会变。
 
-**我做了什么**：我写了虚构的岗位和简历、事先定好答案，比较普通打分、附原文、附原文加脚本核对几种做法；发现核对的接法会误伤正确的判断以后，改了两版接法；再用带陷阱的新简历、植入错误和第二次独立复核检验。
+**我做了什么**：我写了虚构的岗位和简历、事先定好答案，比较不附原文、附原文、附原文加脚本核对几种做法；发现核对的接法会误伤正确的判断以后，改了两版接法；再用带陷阱的新简历、植入错误和第二次独立复核检验。
 
 **结果**：
 
-- 换名字后去留变化：普通打分 0/240，附原文 0/240
-- 核对误伤正确的“符合”：70/424 → 10/424（先拆出简历事实）→ 0/424（交卷前自查）
+- 换名字后去留变化：不附原文 0/240，附原文 0/240
+- 核对误伤正确的“符合”：70/424 → 10/424（先拆出简历事实）→ 0/422（交卷前自查）
 - 独立复核挑出植入的错读：80/80
 
 ## 概况
 
-检验一件事：让模型给每个“符合 / 不符合”附上简历原文、再用 evidence-check 的脚本核对，初筛会不会更准、在换掉名字、性别、学校、休学、婚育之后更稳。岗位和简历全部虚构，答案在写简历时定好。做了四版评测：第一版看准确和稳定，第二版改核对的接法，第三版用更乱、带陷阱的简历，另做了植入错误测试和第二次独立复核。
+检验一件事：让模型给每个“符合 / 不符合”附上简历原文、再用 evidence-check 的脚本核对，初筛会不会更准、在换掉名字、性别、学校、休学、婚育之后更稳。岗位和简历全部虚构，答案在写简历时定好。做了五轮评测：第一轮看准确和稳定，第二轮改核对的接法，第三轮用更乱、带陷阱的简历，第四轮在匿名简历里加民族和性别线索，第五轮把 effort 调低重跑陷阱题；另做了植入错误测试和第二次独立复核。
 
 - **在作品集里的位置**：场景：判断类
 - **和核心部件的关系**：用 evidence-check 0.2.0 脚本的冻结副本核对每条引文。
@@ -41,7 +41,7 @@
 
 ### 第一版：准确和稳定（228 个简历版本）
 
-4 个岗位、24 份基础简历，每份改出换名字、性别、学校、休学、婚育、提示注入等版本，共 228 个。比较关键词匹配、普通打分、附原文、附原文加脚本核对。跑前冻结 11 个文件的哈希。
+4 个岗位、24 份基础简历，每份改出换名字、性别、学校、休学、婚育、提示注入等版本，共 228 个。比较关键词匹配、不附原文、附原文、附原文加脚本核对。跑前冻结 11 个文件的哈希。
 
 | 项目 | 内容 |
 |---|---|
@@ -99,6 +99,18 @@
 | 模型和发送方式 | claude-haiku-5-5，批量接口（半价） |
 | 跑前冻结 | `eval/verify/PREREGISTRATION.md` |
 
+### 第四轮：匿名简历里的民族和性别线索
+
+第三轮的 24 份简历去掉名字和性别，换成申请编号，每份做 7 个版本：一个不加线索，六个各加一段带民族或性别线索的课外活动、语言和爱好。和不加线索的版本比，看去留变不变。
+
+| 项目 | 内容 |
+|---|---|
+| 日期 | 2026-11-14 |
+| 题目和答案 | 每组 288 对（和不加线索的版本配对） |
+| 跑了几次 | 每个版本 2 遍 |
+| 模型和发送方式 | claude-haiku-5-5，批量接口 |
+| 跑前冻结 | `eval/v4/PREREGISTRATION.md` |
+
 ## 指标和结果
 
 每个评测版本单独列表。题目或评分规则改过的版本之间不直接比较分数。
@@ -107,11 +119,11 @@
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 逐条判对（普通打分） | 2728/2736（99.7%，95% 区间 99.4–99.9%） | 越高越好 | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
+| 逐条判对（不附原文） | 2728/2736（99.7%，95% 区间 99.4–99.9%） | 越高越好 | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
 | 逐条判对（附原文） | 2735/2736（100.0%，95% 区间 99.8–100.0%） | 越高越好 | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
 | 逐条判对（附原文 + 脚本核对） | 2379/2736（87.0%，95% 区间 85.6–88.2%） | 越高越好 | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
 | 逐条判对（关键词匹配） | 2510/2736（91.7%，95% 区间 90.6–92.7%） | 越高越好 | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
-| 换名字后去留变了（普通打分） | 0/240（0.0%，95% 区间 0.0–1.6%） | 越低越好 | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
+| 换名字后去留变了（不附原文） | 0/240（0.0%，95% 区间 0.0–1.6%） | 越低越好 | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
 | 换名字后去留变了（附原文） | 0/240（0.0%，95% 区间 0.0–1.6%） | 越低越好 | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
 | 换学校后去留变了（附原文） | 0/48（0.0%，95% 区间 0.0–7.4%） | 越低越好 | [`evidence-screening/eval/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/results/run-2026-11-13.summary.json) |
 
@@ -123,14 +135,14 @@
 |---|---|---|---|
 | 正确的“符合”被核对误伤（附原文 + 脚本） | 70/424（16.5%，95% 区间 13.3–20.3%） | 越低越好 | [`evidence-screening/eval/v2/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/v2/results/run-2026-11-13.summary.json) |
 | 正确的“符合”被核对误伤（先拆简历事实 + 脚本） | 10/424（2.4%，95% 区间 1.3–4.3%） | 越低越好 | [`evidence-screening/eval/v2/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/v2/results/run-2026-11-13.summary.json) |
-| 正确的“符合”被核对误伤（交卷前自查 + 脚本） | 0/424（0.0%，95% 区间 0.0–0.9%） | 越低越好 | [`evidence-screening/eval/v2/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/v2/results/run-2026-11-13.summary.json) |
+| 正确的“符合”被核对误伤（交卷前自查 + 脚本） | 0/422（0.0%，95% 区间 0.0–0.9%） | 越低越好 | [`evidence-screening/eval/v2/results/run-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/v2/results/run-2026-11-13.summary.json) |
 
 ### 第三版：更乱、带陷阱的简历（24 份）
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
 | 陷阱判成“不符合”（交卷前自查） | 80/80（100.0%，95% 区间 95.4–100.0%） | 越高越好 | [`evidence-screening/eval/v3/results/run-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/v3/results/run-2026-11-14.summary.json) |
-| 陷阱判成“不符合”（普通打分） | 80/80（100.0%，95% 区间 95.4–100.0%） | 越高越好 | [`evidence-screening/eval/v3/results/run-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/v3/results/run-2026-11-14.summary.json) |
+| 陷阱判成“不符合”（不附原文） | 80/80（100.0%，95% 区间 95.4–100.0%） | 越高越好 | [`evidence-screening/eval/v3/results/run-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/v3/results/run-2026-11-14.summary.json) |
 | 逐条判对（交卷前自查 + 脚本） | 286/288（99.3%，95% 区间 97.5–99.8%） | 越高越好 | [`evidence-screening/eval/v3/results/run-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/v3/results/run-2026-11-14.summary.json) |
 
 ### 植入错误测试：脚本能拦住什么
@@ -151,6 +163,15 @@
 | 挑出植入的错读（只看引文） | 79/80（98.8%，95% 区间 93.3–99.8%） | 越高越好 | [`evidence-screening/eval/verify/results/run-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/verify/results/run-2026-11-14.summary.json) |
 | 正确答案被误报（看得到理由） | 0/206（0.0%，95% 区间 0.0–1.8%） | 越低越好 | [`evidence-screening/eval/verify/results/run-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/verify/results/run-2026-11-14.summary.json) |
 
+### 第四轮：匿名简历里的民族和性别线索
+
+| 指标 | 结果 | 方向 | 来源文件 |
+|---|---|---|---|
+| 加线索后去留变了（不附原文） | 0/288（0.0%，95% 区间 0.0–1.3%） | 越低越好 | [`evidence-screening/eval/v4/results/run-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/v4/results/run-2026-11-14.summary.json) |
+| 加线索后去留变了（附原文，先拆简历事实） | 5/288（1.7%，95% 区间 0.7–4.0%） | 越低越好 | [`evidence-screening/eval/v4/results/run-2026-11-14.summary.json`](https://github.com/llia0031-dotcom/evidence-screening/blob/main/eval/v4/results/run-2026-11-14.summary.json) |
+
+不附原文那组的去留一次也没随线索变；附原文那组的变化都出在同一份简历、同一个本来就有争议的要求上，是那一题答案摇摆，不是跟着线索走。
+
 ## 评分器校准
 
 - 逐条要求按写简历时定好的答案用脚本算，没有用评分器。
@@ -170,7 +191,10 @@
 - **1.0**（2026-11-15）第一张卡，项目未公开。正在跑的低 effort 一轮还没打分，不收。
 - **1.1**（2026-11-15）开头加了时间、团队、技术、链接和“问题 / 我做了什么 / 结果”，照作品集案例页的写法；评测部分不变。
 - **1.2**（2026-11-16）项目已公开：加上代码和报告的链接；演示页还没上线。
+- **1.3**（2026-11-17）改正：一共五轮，补上第四轮（民族和性别线索）的去留结果，第五轮（低 effort）只在概况里说明；“误伤”的分母改成该组判对的“符合”，和报告一致；“普通打分”改叫“不附原文”；复核的结果写明是看得到理由的那一组、错读是植入的。
 
 ## 出处
 
 模板照 Hugging Face 模型卡（Apache-2.0）的章节；每个数字的来源文件和指纹见 `cards/sources.lock.json`。
+
+第三方数据、模型和代码的来源与许可，见[项目仓库](https://github.com/llia0031-dotcom/evidence-screening)里的说明。

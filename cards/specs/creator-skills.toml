@@ -1,0 +1,236 @@
+id = "creator-skills"
+order = 11
+layer = "generation"
+status = "public"
+links = [
+  { label = { zh = "代码和报告", en = "Code and report" }, url = "https://github.com/llia0031-dotcom/creator-skills" },
+]
+card_version = "1.0"
+updated = "2026-11-17"
+period = "2026-11-17"
+team = "Liang Liyuan"
+stack = { zh = "Agent Skills（SKILL.md 加 Python 脚本，只用标准库）、Claude Code 插件、批量接口", en = "Agent Skills (SKILL.md plus standard-library Python scripts), Claude Code plugin, Message Batches API" }
+did = { zh = "我做了三个给短视频创作者用的 Agent Skill：字幕对稿、分镜核对、热点选题。每个都带一个核对脚本，结果交出去之前先查一遍。每个都和不装 Skill 的同一个模型在事先定好答案的题上比较，计划和预测跑前冻结。", en = "I built three Agent Skills for short-video creators: subtitle checking, shot-list checking and trend topics. Each carries a checking script that runs before anything is handed back. Each was compared with the same model without the skill on items whose answers were fixed in advance, with plans and predictions frozen before the runs." }
+name = { zh = "创作者 Skill 合集", en = "Creator skills" }
+problem = { zh = "创作者每周都要对字幕、排分镜、追热点；交给 AI 助手做时，字幕会不会被改错、分镜里的口播念不念得完、热点选题卡上的事实站不站得住", en = "Creators fix subtitles, plan shot lists and chase trends weekly. When an assistant does it, do subtitles stay right, can every shot be spoken in time, and do trend facts hold?" }
+primary_metric = { zh = "字幕：改好的文件完全正确；分镜：四项检查全过；热点：有伤亡的事件处理得当", en = "Subtitles: corrected files fully right; shot lists: all four checks pass; trends: events with casualties handled correctly" }
+headline = [
+  { zh = "改好的字幕文件完全正确：装 Skill {sub_perfect_skill}，不装 {sub_perfect_plain}", en = "Corrected subtitle files fully right: with the skill {sub_perfect_skill}, without {sub_perfect_plain}" },
+  { zh = "请求里不写语速时，分镜四项全过：装 Skill {shot_v2_skill}，不装 {shot_v2_plain}；写明语速时不装也有 {shot_v1_plain}", en = "Shot lists passing all four checks when the request gives no rates: with the skill {shot_v2_skill}, without {shot_v2_plain}; with the rates stated, even without it {shot_v1_plain}" },
+  { zh = "有伤亡的热点事件不出营销选题卡：装 Skill {trend_sensitive_skill}，不装 {trend_sensitive_plain}", en = "Trends involving casualties get no marketing cards: with the skill {trend_sensitive_skill}, without {trend_sensitive_plain}" },
+]
+summary = { zh = "三个给短视频创作者用的 Agent Skill，各带一个核对脚本，结果交出去之前先查一遍。脚本只用 Python 标准库：字幕对稿把自动字幕逐条和口播稿比、按阅读速度和时间轴标准查；分镜核对查每个镜头的口播念不念得完、稿子一句不少、总时长对得上；热点选题查每张选题卡上的事实，链接打得开、标题对得上、引文在页面里、数字在引文里、文章够新。每个都和不装 Skill 的同一个模型比较，题目和答案在写题时定好，都是虚构的创作场景。", en = "Three Agent Skills for short-video creators, each with a checking script that uses only the Python standard library. Subtitle checking compares every auto-caption with the script and checks reading speed and timing; shot-list checking checks that each shot's voiceover can be spoken in time, that no line of the script is lost and that the total length fits; trend topics checks every fact on a topic card: the link opens, the title matches, the quote is on the page, the numbers are in the quote and the page is recent. Each is compared with the same model without the skill, on fictional creator scenarios whose answers were fixed when they were written." }
+core_link = { zh = "热点选题的引文匹配复制自 evidence-check 的核对脚本，规则相同：引文要逐字出自页面，数字要在引文里。", en = "Trend topics copies its quote matching from the evidence-check script, with the same rules: a quote must come word for word from the page, and the numbers must be in the quote." }
+models = { zh = "两组都用 claude-haiku-5-5（effort medium），同一条用户消息；评测走批量接口。", en = "Both arms use claude-haiku-5-5 (effort medium) with the same user message; evaluations go through the Message Batches API." }
+iteration = { zh = ["字幕对稿：两组都能改对听错的字；差别在别的地方，不装 Skill 时常改动时间轴、把口播时临时改的话改回原稿，装了以后两样都不碰。", "分镜核对第一轮（请求里写明语速和计数方法）：不装 Skill 也几乎全过（{shot_v1_plain}），预测的“最多一半”没成立，题目到顶了。", "分镜核对第二轮（新写的题，请求里不写语速，像创作者平时那样问）：不装 Skill 一张都没过（{shot_v2_plain}），装了全过（{shot_v2_skill}）。", "热点选题：两组的出处大多核对得上；不装 Skill 时会给有伤亡的事件出营销卡，数字也偶尔不在引文里。"], en = ["Subtitles: both arms fix the misheard words; the difference lies elsewhere, as without the skill the model often moves timings or turns ad-libs back into the script, and with it does neither.", "Shot lists, round one (the request states the rates and how to count): even without the skill almost every list passed ({shot_v1_plain}); the predicted \"at most half\" did not hold, a ceiling.", "Shot lists, round two (new items, the request gives no rates, as creators usually ask): without the skill none passed ({shot_v2_plain}), with it all did ({shot_v2_skill}).", "Trend topics: most sources check out in both arms; without the skill the model makes marketing cards for events with casualties, and a number is sometimes missing from its quote."] }
+conclusion = { zh = "三个 Skill 的作用都在核对这一步：字幕不再被改动时间轴和口播原话；分镜的差别要到请求不写语速时才显出来；热点选题遇到有伤亡的事件不出营销卡。代价是多调用几次模型，热点选题的费用约是不装的 {trend_cost_ratio}。", en = "In all three skills the value is in the check: subtitles no longer lose their timings or the speaker's own words; the shot-list difference only shows when the request gives no rates; trend topics make no marketing cards for events with casualties. The price is a few more model calls; trend topics cost about {trend_cost_ratio} as much as without the skill." }
+short_name = { zh = "创作者 Skill", en = "Creator skills" }
+card_title = { zh = "给短视频创作者的三个 Skill，交出去前先核对", en = "Three creator skills that check before they hand back" }
+assumed = { zh = "以为不装 Skill 的分镜最多一半能过", en = "Expected at most half of the shot lists without the skill to pass" }
+showed = { zh = "写明语速时几乎都过（{shot_v1_plain}）；不写语速时一张都没过（{shot_v2_plain}）", en = "With the rates stated almost all passed ({shot_v1_plain}); with no rates given none did ({shot_v2_plain})" }
+result_line = { zh = "装上 Skill 后，改好的字幕文件 {sub_perfect_skill} 完全正确，不装只有 {sub_perfect_plain}", en = "With the skill, corrected subtitle files were fully right {sub_perfect_skill}; without it, {sub_perfect_plain}" }
+key_numbers = [{ metric = "sub_perfect_skill", label = { zh = "改好的字幕文件全对（不装 {sub_perfect_plain}）", en = "Corrected subtitle files fully right (without the skill: {sub_perfect_plain})" } }, { metric = "shot_v2_skill", label = { zh = "不写语速时分镜全过（不装 {shot_v2_plain}）", en = "Shot lists passing with no rates given (without: {shot_v2_plain})" } }, { metric = "trend_sensitive_skill", label = { zh = "伤亡事件不出营销卡（不装 {trend_sensitive_plain}）", en = "No marketing cards for casualty events (without: {trend_sensitive_plain})" } }]
+timeline = [
+  { date = "2026-11-17", label = { zh = "字幕对稿", en = "Subtitles" }, text = { zh = "不再改时间轴和口播原话", en = "Timings and spoken words left alone" }, before = "sub_perfect_plain", after = "sub_perfect_skill", adopted = true },
+  { date = "2026-11-17", label = { zh = "分镜第一轮", en = "Shot lists, round one" }, text = { zh = "写明语速时不装也几乎全过", en = "With rates stated, near ceiling without it" }, before = "shot_v1_plain", after = "shot_v1_skill" },
+  { date = "2026-11-17", label = { zh = "分镜第二轮", en = "Shot lists, round two" }, text = { zh = "不写语速时差别才出来", en = "The gap shows when no rates are given" }, before = "shot_v2_plain", after = "shot_v2_skill", adopted = true },
+  { date = "2026-11-17", label = { zh = "热点选题", en = "Trend topics" }, text = { zh = "有伤亡的事件不出营销卡", en = "No marketing cards for casualty events" }, before = "trend_sensitive_plain", after = "trend_sensitive_skill", adopted = true },
+]
+
+judge = { zh = [
+  "没有用评分器：每一项都按写题时定好的答案用脚本算；选题的创意和是否适合账号没有打分。",
+], en = [
+  "No grader is used: every measure is computed by script against answers fixed when the items were written; the ideas and their fit to the account are not scored.",
+] }
+
+[uses]
+zh = [
+  "创作者发布前的核对：字幕对回口播稿、分镜时长念得完、热点选题的事实有出处。",
+  "装进 Claude Code、Codex、DeerFlow 等支持 Agent Skills 的工具直接用。",
+]
+en = [
+  "A creator's pre-publishing check: subtitles against the script, shot lengths that can be spoken, and sourced facts on trend cards.",
+  "Install into Claude Code, Codex, DeerFlow or another tool that supports Agent Skills.",
+]
+
+[out_of_scope]
+zh = [
+  "题目是虚构的创作场景，不代表真实创作者的使用情况。",
+  "不评选题的创意、画面能不能拍、节奏适不适合某个主播。",
+]
+en = [
+  "The items are fictional creator scenarios and do not represent real creators' use.",
+  "Ideas, whether visuals can be filmed and whether the pace suits a given speaker are not judged.",
+]
+
+[[eval]]
+id = "subtitle"
+name = { zh = "字幕对稿：自动字幕对回口播稿", en = "Subtitle checking: auto-captions against the script" }
+date = "2026-11-17"
+data = { zh = "10 段口播稿（中文 6、英文 4）切成自动字幕，埋了听错的字、临时改说的话、漏念的句子和时间轴错误；答案写题时定好。请求里写明“字幕要和我实际说的一致、不要改时间轴”。", en = "10 voiceover scripts (6 Chinese, 4 English) cut into auto-captions, with misheard words, ad-libs, skipped sentences and timing errors planted; answers fixed when the cases were built. The request says the subtitles must match what was said and the timings must not change." }
+items = { zh = "10 段字幕，每组 20 次", en = "10 subtitle files, 20 runs per arm" }
+runs = { zh = "每段每组 2 遍", en = "2 runs per case per arm" }
+setup = { zh = "claude-haiku-5-5，effort medium，批量接口", en = "claude-haiku-5-5, effort medium, Message Batches API" }
+frozen = { zh = "`eval/subtitle-check/PREREGISTRATION.md`", en = "`eval/subtitle-check/PREREGISTRATION.md`" }
+takeaway = { zh = "两组都能改对听错的字；不装 Skill 时常动时间轴、把临时改说的话改回原稿，所以改好的文件很少完全正确。", en = "Both arms fix the misheard words; without the skill the model often moves timings and turns ad-libs back into the script, so few corrected files are fully right." }
+
+  [[eval.metric]]
+  id = "sub_perfect_plain"
+  label = { zh = "改好的字幕文件完全正确（不装 Skill）", en = "Corrected files fully right (without the skill)" }
+  extractor = "md_cell"
+  args = { path = "creator-skills-public/eval/subtitle-check/results/run-2026-11-17.summary.md", row = "Perfect corrected files", col = "plain" }
+
+  [[eval.metric]]
+  id = "sub_perfect_skill"
+  label = { zh = "改好的字幕文件完全正确（装 Skill）", en = "Corrected files fully right (with the skill)" }
+  extractor = "md_cell"
+  args = { path = "creator-skills-public/eval/subtitle-check/results/run-2026-11-17.summary.md", row = "Perfect corrected files", col = "skill" }
+
+  [[eval.metric]]
+  id = "sub_timing_plain"
+  label = { zh = "时间轴没被改动（不装 Skill）", en = "Timings kept (without the skill)" }
+  extractor = "md_cell"
+  args = { path = "creator-skills-public/eval/subtitle-check/results/run-2026-11-17.summary.md", row = "Timings kept (same cues, same times)", col = "plain" }
+
+  [[eval.metric]]
+  id = "sub_timing_skill"
+  label = { zh = "时间轴没被改动（装 Skill）", en = "Timings kept (with the skill)" }
+  extractor = "md_cell"
+  args = { path = "creator-skills-public/eval/subtitle-check/results/run-2026-11-17.summary.md", row = "Timings kept (same cues, same times)", col = "skill" }
+
+  [[eval.metric]]
+  id = "sub_said_plain"
+  label = { zh = "临时改说的话照实保留（不装 Skill）", en = "Ad-libs kept as said (without the skill)" }
+  extractor = "md_cell"
+  args = { path = "creator-skills-public/eval/subtitle-check/results/run-2026-11-17.summary.md", row = "Said-differently cues kept as said", col = "plain" }
+
+  [[eval.metric]]
+  id = "sub_said_skill"
+  label = { zh = "临时改说的话照实保留（装 Skill）", en = "Ad-libs kept as said (with the skill)" }
+  extractor = "md_cell"
+  args = { path = "creator-skills-public/eval/subtitle-check/results/run-2026-11-17.summary.md", row = "Said-differently cues kept as said", col = "skill" }
+
+[[eval]]
+id = "shot_v1"
+name = { zh = "分镜核对第一轮：请求里写明语速", en = "Shot lists, round one: the request states the rates" }
+date = "2026-11-17"
+data = { zh = "10 段稿子，按目标时长写分镜表；请求里写明语速、阅读速度和计数方法。四项检查：稿子逐字按顺序都在、每个镜头的口播念得完、总时长在允许范围内、画面文字读得完。", en = "10 scripts turned into shot lists for a target length; the request states the speaking rate, reading rate and how to count. Four checks: the script is covered word for word in order, each shot's voiceover fits, the total is within range, and on-screen text can be read." }
+items = { zh = "10 段稿子，每组 20 次", en = "10 scripts, 20 runs per arm" }
+runs = { zh = "每段每组 2 遍", en = "2 runs per case per arm" }
+setup = { zh = "claude-haiku-5-5，effort medium，批量接口", en = "claude-haiku-5-5, effort medium, Message Batches API" }
+frozen = { zh = "`eval/shotlist-check/PREREGISTRATION.md`", en = "`eval/shotlist-check/PREREGISTRATION.md`" }
+takeaway = { zh = "请求把语速和计数方法都写清时，不装 Skill 也几乎全过，题目到顶；预测的“最多一半”没成立。", en = "When the request spells out the rates and the counting, the model passes almost every time without the skill, a ceiling; the predicted \"at most half\" did not hold." }
+
+  [[eval.metric]]
+  id = "shot_v1_plain"
+  label = { zh = "四项全过（不装 Skill）", en = "All four checks pass (without the skill)" }
+  extractor = "md_cell"
+  args = { path = "creator-skills-public/eval/shotlist-check/results/summary.md", section = "Mode A", row = "All four", col = "plain" }
+
+  [[eval.metric]]
+  id = "shot_v1_skill"
+  label = { zh = "四项全过（装 Skill）", en = "All four checks pass (with the skill)" }
+  extractor = "md_cell"
+  args = { path = "creator-skills-public/eval/shotlist-check/results/summary.md", section = "Mode A", row = "All four", col = "skill" }
+
+[[eval]]
+id = "shot_v2"
+name = { zh = "分镜核对第二轮：请求里不写语速（新写的题）", en = "Shot lists, round two: no rates in the request (new items)" }
+date = "2026-11-17"
+data = { zh = "另写 10 段稿子，第一轮一段都没用；请求照创作者平时的写法，只说大概多少秒、用我的稿子当口播，不写语速和计数方法。Skill 和脚本是第一轮的同一份冻结副本。", en = "10 new scripts, none from round one; the request is written as a creator would write it, giving only an approximate length and asking for the script as voiceover, with no rates or counting rule. The skill and script are the same frozen copies as in round one." }
+items = { zh = "10 段稿子，每组 20 次", en = "10 scripts, 20 runs per arm" }
+runs = { zh = "每段每组 2 遍", en = "2 runs per case per arm" }
+setup = { zh = "claude-haiku-5-5，effort medium，批量接口；按默认语速核对", en = "claude-haiku-5-5, effort medium, Message Batches API; checked at the default rates" }
+frozen = { zh = "`eval/shotlist-check/v2/PREREGISTRATION.md`", en = "`eval/shotlist-check/v2/PREREGISTRATION.md`" }
+takeaway = { zh = "不写语速时，不装 Skill 的分镜大量镜头念不完，一张都没全过；装了 Skill，脚本先查出念不完的镜头，全部通过。", en = "With no rates given, shot lists without the skill had many shots whose voiceover cannot be spoken in time, and none passed; with the skill, the script caught them first and all passed." }
+
+  [[eval.metric]]
+  id = "shot_v2_plain"
+  label = { zh = "四项全过（不装 Skill，默认语速）", en = "All four checks pass (without the skill, default rates)" }
+  extractor = "md_cell"
+  args = { path = "creator-skills-public/eval/shotlist-check/v2/results/summary.md", row = "All four", col = "plain, default" }
+
+  [[eval.metric]]
+  id = "shot_v2_skill"
+  label = { zh = "四项全过（装 Skill，默认语速）", en = "All four checks pass (with the skill, default rates)" }
+  extractor = "md_cell"
+  args = { path = "creator-skills-public/eval/shotlist-check/v2/results/summary.md", row = "All four", col = "skill, default" }
+
+  [[eval.metric]]
+  id = "shot_v2_overflow_plain"
+  label = { zh = "口播念不完的镜头（不装 Skill）", en = "Shots whose voiceover overflows (without the skill)" }
+  extractor = "md_cell"
+  args = { path = "creator-skills-public/eval/shotlist-check/v2/results/summary.md", row = "Shots whose voiceover overflows / shots written", col = "plain, default" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "shot_v2_overflow_skill"
+  label = { zh = "口播念不完的镜头（装 Skill）", en = "Shots whose voiceover overflows (with the skill)" }
+  extractor = "md_cell"
+  args = { path = "creator-skills-public/eval/shotlist-check/v2/results/summary.md", row = "Shots whose voiceover overflows / shots written", col = "skill, default" }
+  direction = "lower"
+
+[[eval]]
+id = "trend"
+name = { zh = "热点选题：每张选题卡上的事实带出处", en = "Trend topics: every fact on a card carries its source" }
+date = "2026-11-17"
+data = { zh = "10 个虚构热点（中文 6、英文 4），每个配账号设定、固定日期和几张抓下来的网页；埋了过时页面、打不开的链接、后来被更正的数字、和官方说法不一致的传言数字、和页面标题不同的引子，以及 2 个有伤亡的事件。", en = "10 fictional trends (6 Chinese, 4 English), each with an account profile, a fixed date and several fetched pages; planted stale pages, dead links, figures later corrected, rumour figures that disagree with an official page, teaser lines that differ from the page title, and 2 events with casualties." }
+items = { zh = "10 个热点，每组 20 次", en = "10 trends, 20 runs per arm" }
+runs = { zh = "每个每组 2 遍", en = "2 runs per case per arm" }
+setup = { zh = "claude-haiku-5-5，effort medium，批量接口", en = "claude-haiku-5-5, effort medium, Message Batches API" }
+frozen = { zh = "`eval/trend-topic-check/PREREGISTRATION.md`", en = "`eval/trend-topic-check/PREREGISTRATION.md`" }
+takeaway = { zh = "两组的出处大多核对得上；差别在有伤亡的事件和数字：不装 Skill 时给伤亡事件出了营销卡，也有数字不在引文里。", en = "Most sources check out in both arms; the difference is in casualty events and numbers: without the skill the model made marketing cards for casualty events, and some numbers were not in their quotes." }
+
+  [[eval.metric]]
+  id = "trend_sensitive_plain"
+  label = { zh = "有伤亡的事件处理得当（不装 Skill）", en = "Casualty events handled correctly (without the skill)" }
+  extractor = "json_counts"
+  args = { path = "creator-skills-public/eval/trend-topic-check/results/scores.json", at = ["arms", "plain"], num = "sensitive_ok", den = "sensitive_runs" }
+
+  [[eval.metric]]
+  id = "trend_sensitive_skill"
+  label = { zh = "有伤亡的事件处理得当（装 Skill）", en = "Casualty events handled correctly (with the skill)" }
+  extractor = "json_counts"
+  args = { path = "creator-skills-public/eval/trend-topic-check/results/scores.json", at = ["arms", "skill"], num = "sensitive_ok", den = "sensitive_runs" }
+
+  [[eval.metric]]
+  id = "trend_numq_plain"
+  label = { zh = "数字不在引文里的事实（不装 Skill）", en = "Facts with a number not in the quote (without the skill)" }
+  extractor = "json_counts"
+  args = { path = "creator-skills-public/eval/trend-topic-check/results/scores.json", at = ["arms", "plain"], num = "number_not_in_quote", den = "facts" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "trend_numq_skill"
+  label = { zh = "数字不在引文里的事实（装 Skill）", en = "Facts with a number not in the quote (with the skill)" }
+  extractor = "json_counts"
+  args = { path = "creator-skills-public/eval/trend-topic-check/results/scores.json", at = ["arms", "skill"], num = "number_not_in_quote", den = "facts" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "trend_cost_ratio"
+  label = { zh = "装 Skill 的费用是不装的", en = "Cost with the skill relative to without" }
+  extractor = "json_ratio"
+  args = { path = "creator-skills-public/eval/trend-topic-check/results/scores.json", num_at = ["cost", "skill", "cost_usd"], den_at = ["cost", "plain", "cost_usd"], unit = "x", decimals = 1 }
+  direction = "lower"
+
+[[limitation]]
+text = { zh = "题目都是合成的，写题时就想着 Skill 能查出来的问题；真实音频、口音、背景音乐和多人说话都没覆盖。", en = "All items are synthetic and written with the skills' checks in mind; real audio, accents, music and several speakers are not covered." }
+advice = { zh = "上线前拿真实视频的自动字幕和真实热点再测一批。", en = "Before release, test again on real auto-captions and real trends." }
+
+[[limitation]]
+text = { zh = "一个模型，每题每组两遍，差一两题算噪声。", en = "One model and two runs per item per arm; a difference of one or two items is noise." }
+advice = { zh = "换模型或改 effort 时重新跑同一套题。", en = "Run the same items again after a model or effort change." }
+
+[[limitation]]
+text = { zh = "分镜的差别只在请求不写语速时出现：写明语速时不装 Skill 也有 {shot_v1_plain}。", en = "The shot-list gap appears only when the request gives no rates: with the rates stated, even without the skill {shot_v1_plain} passed." }
+advice = { zh = "看用户平时怎么提需求，决定这个 Skill 值不值得默认装上。", en = "Look at how users actually ask before deciding whether to install this skill by default." }
+
+[[limitation]]
+text = { zh = "热点选题只查事实的出处和伤亡事件，不评选题的创意和是否适合账号。", en = "Trend topics checks only the sources of facts and casualty events, not the quality of the ideas or their fit to the account." }
+advice = { zh = "创意和账号是否合适另定评分规则再测。", en = "Write separate scoring rules for ideas and account fit, then test." }
+
+[[version]]
+id = "1.0"
+date = "2026-11-17"
+text = { zh = "第一张卡，照公开仓库 creator-skills 的结果文件写。", en = "First card, from the result files in the public creator-skills repository." }

@@ -39,3 +39,13 @@ url = "https://github.com/llia0031-dotcom/grounded-labelling-pipeline/blob/main/
 prefix = "grounded-business-review-public/"
 repo = "grounded-business-review"
 url = "https://github.com/llia0031-dotcom/grounded-business-review/blob/main/"
+
+[[map]]
+prefix = "llia0031-dotcom.github.io/"
+repo = "llia0031-dotcom.github.io"
+url = "https://llia0031-dotcom.github.io/"
+
+[[map]]
+prefix = "creator-skills-public/"
+repo = "creator-skills"
+url = "https://github.com/llia0031-dotcom/creator-skills/blob/main/"

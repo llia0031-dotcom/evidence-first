@@ -5,14 +5,14 @@ status = "public"
 links = [
   { label = { zh = "代码和报告", en = "Code and report" }, url = "https://github.com/llia0031-dotcom/voice-agent-eval" },
 ]
-card_version = "1.2"
+card_version = "1.3"
 updated = "2026-11-15"
 period = "2026-11-13 – 2026-11-15"
 team = "Liang Liyuan"
 stack = { zh = "Python、SenseVoice、本机 MCP 工具、FireRedChat pVAD、Claude Haiku 5.5", en = "Python, SenseVoice, local MCP tools, FireRedChat pVAD, Claude Haiku 5.5" }
 did = { zh = "我写了 42 段带停顿、插话、附和和噪声的对话、事先定好答案，搭了一条本机串联的语音 Agent 做基线；然后一项一项试改进，每项先写补充预注册再跑，最后把有效的合在一起。", en = "I wrote 42 conversations with pauses, barge-ins, backchannels and noise, answers fixed in advance, and built a local cascaded voice agent as the baseline; then tried fixes one at a time, each with its own preregistration addendum, and combined the ones that worked." }
 name = { zh = "实时语音 Agent 体验评测", en = "Real-time voice agent evaluation" }
-problem = { zh = "语音助手在用户停顿、插话、说“嗯”、背景有人说话时还能不能把事办对，体验用时延、打断、误停的数字来衡量", en = "Whether a voice assistant still gets the task right when the user pauses, interrupts, says \"mm\" or talks over background speech, with experience measured as latency, barge-in and false-stop numbers" }
+problem = { zh = "语音助手在用户停顿、插话、说“嗯”、背景有人说话时还能不能把事办对，体验用时延、打断、误停的数字来衡量（用户语音是合成的）", en = "Whether a voice assistant still gets the task right when the user pauses, interrupts, says \"mm\" or talks over background speech, with experience measured as latency, barge-in and false-stop numbers (the user's speech is synthesised)" }
 primary_metric = { zh = "严格通过率（事办对且交互对）；开口时延中位数；插话停下率；附和后继续说的比例", en = "Strict pass (task and interaction right); median time to first audio; barge-ins stopped; backchannels talked through" }
 headline = [
   { zh = "严格通过：基线（开思考）{base_strict}，四项改进合在一起 {combo_strict}；纯文字对照 {text_strict}", en = "Strict pass: baseline (thinking on) {base_strict}, four fixes combined {combo_strict}; text-only control {text_strict}" },
@@ -24,21 +24,21 @@ core_link = { zh = "借用 evidence-check 的预注册做法；离线另查了�
 models = { zh = "claude-haiku-5-5（effort low，普通流式接口：调用都在实时回路里，不适用批量接口）；语音识别 SenseVoice；只听主说话人用 FireRedChat pVAD。", en = "claude-haiku-5-5 (effort low, standard streaming API: every call is in the real-time loop, so batch does not apply); SenseVoice for recognition; FireRedChat pVAD for primary-speaker detection." }
 
 judge = { zh = [
-  "没有用评分器：打分是冻结的规则脚本，脚本带 6 条答案已知的自检对话，每次运行先过自检。",
+  "没有用评分器：打分是冻结的规则脚本；脚本自带 5 条答案已知的构造记录和 1 项函数检查，用 `score.py --check` 和离线测试跑。",
   "推理有没有被说出口，用固定的规则匹配。",
 ], en = [
   "No grader is used: scoring is a frozen rule-based script that ships six known-answer traces and must pass them first.",
   "Reasoning said aloud is detected with a fixed pattern.",
 ] }
 
-iteration = { zh = ["附和不算打断、声音至少 0.5 秒才算插话、先暂停再确认是不是真插话：一项一项试下来，“嗯”“好的”“Okay”不再让它停下或只停一下就接着说，“嗯嗯”仍会打断。", "只听主说话人（pVAD）：背景人声时开口 {babble_base} → {babble_pvad}，三项改进里效果最大。", "四项合在一起：严格通过 {combo_strict}，真插话仍然 {combo_stopped} 停下。"], en = ["Backchannels not counted as barge-ins, a 0.5 s minimum before a barge-in counts, pause before cancelling: tried one at a time, \"mm\", \"okay\" and \"好的\" no longer stop it or only pause it briefly, though \"mm-mm\" still interrupts.", "Primary-speaker VAD: first audio over background speech {babble_base} → {babble_pvad}, the largest effect of the three fixes.", "All four together: strict pass {combo_strict}, real barge-ins still stopped {combo_stopped}."] }
+iteration = { zh = ["附和不算打断、声音至少 0.5 秒才算插话、先暂停再确认是不是真插话：一项一项试下来，“嗯”“好的”“Okay”不再让它停下或只停一下就接着说，单项改进时“嗯嗯”仍会打断。", "只听主说话人（pVAD）：背景人声时开口 {babble_base} → {babble_pvad}，三项改进里效果最大。", "四项合在一起：严格通过 {combo_strict}，真插话仍然 {combo_stopped} 停下。"], en = ["Backchannels not counted as barge-ins, a 0.5 s minimum before a barge-in counts, pause before cancelling: tried one at a time, \"mm\", \"okay\" and \"好的\" no longer stop it or only pause it briefly, though with any single fix \"mm-mm\" still interrupts.", "Primary-speaker VAD: first audio over background speech {babble_base} → {babble_pvad}, the largest effect of the three fixes.", "All four together: strict pass {combo_strict}, real barge-ins still stopped {combo_stopped}."] }
 
-conclusion = { zh = "四项改进合在一起是测过最好的设置；剩下的附和问题光看识别出的文字分不出来，得看声音本身。", en = "The four fixes together are the best setting tested; the remaining backchannel problem cannot be solved from transcribed text and needs the audio itself." }
+conclusion = { zh = "四项改进合在一起，在这几项改动针对的问题上是测过最好的设置：背景人声不再占住对话、真插话一停就停、每次附和后回答都保住了；按事先写好的严格通过和基线持平。“嗯嗯”仍被识别成别的字，合在一起时只因为发声时间刚好不到 0.5 秒才没打断，余量很小，光看文字分不出附和。", en = "Together the four fixes are the best setting tested on the problems they target: background talk no longer holds the turn, a real barge-in stops at once and every reply survives its backchannel; on the strict pass written beforehand they are level with the baseline. \"Mm-mm\" is still transcribed as other words and only avoids an interruption because its voiced time falls just under 0.5 s, a thin margin; text alone cannot tell a backchannel." }
 
 short_name = { zh = "语音评测", en = "Voice agent eval" }
 card_title = { zh = "语音助手被打断、听到“嗯”时，还能办对事吗", en = "Can a voice agent stay right when interrupted?" }
 assumed = { zh = "以为固定识别语言，就能把“嗯”和真插话分开", en = "Expected a fixed recognition language to tell \"mm\" from a barge-in" }
-showed = { zh = "“嗯”照样被认成别的字，光看文字分不出附和，得看声音本身", en = "\"Mm\" was still heard as other words; text alone cannot tell, the audio must" }
+showed = { zh = "“嗯嗯”仍被认成别的字，四项合在一起时只因发声不到半秒才没打断", en = "\"Mm-mm\" was still heard as other words; with all four fixes it only avoided interrupting by staying under half a second" }
 result_line = { zh = "背景有人说话时，助手从等 {babble_base}才开口，缩短到 {babble_pvad}", en = "With someone talking in the background, the assistant's wait before replying fell from {babble_base} to {babble_pvad}" }
 key_numbers = [{ metric = "babble_pvad", label = { zh = "背景有人说话时，开口要等（原来 {babble_base}）", en = "Wait before replying over background talk (was {babble_base})" } }, { metric = "combo_stop_latency", label = { zh = "用户插话后，助手多快停下来", en = "How fast it stops when the user cuts in" } }, { metric = "combo_stopped", label = { zh = "用户真的插话时，助手每次都停下", en = "Stopped every time the user really cut in" } }]
 timeline = [
@@ -47,7 +47,7 @@ timeline = [
   { date = "2026-11-14", label = { zh = "先暂停再确认", en = "Pause, then confirm" }, text = { zh = "真插话照样快停，附和后接着说", en = "Fast stops kept; resumes after \"mm\"" }, adopted = true },
   { date = "2026-11-14", label = { zh = "删除前先确认", en = "Confirm before delete" }, text = { zh = "只给不能撤销的操作加确认", en = "Confirm only irreversible actions" }, adopted = true },
   { date = "2026-11-14", label = { zh = "只听主说话人", en = "Primary speaker only" }, text = { zh = "背景有人说话也能及时开口", en = "Answers on time over background speech" }, before = "babble_base", after = "babble_pvad", adopted = true },
-  { date = "2026-11-14", label = { zh = "四项合在一起", en = "Fixes combined" }, text = { zh = "测过最好的设置", en = "Best setting tested" }, after = "combo_strict", adopted = true },
+  { date = "2026-11-14", label = { zh = "四项合在一起", en = "Fixes combined" }, text = { zh = "针对的问题上最好，严格分和基线持平", en = "Best on the targeted problems; strict score level" }, after = "combo_strict", adopted = true },
 ]
 
 [uses]
@@ -151,8 +151,8 @@ data = { zh = "题目、音频和打分脚本不变；每项改进跑前写一�
 items = { zh = "42 段对话，每种设置 2 遍", en = "42 conversations, 2 runs per setting" }
 runs = { zh = "每种设置 2 遍，合并计算", en = "2 runs per setting, pooled" }
 setup = { zh = "claude-haiku-5-5，普通流式接口", en = "claude-haiku-5-5, standard streaming API" }
-frozen = { zh = "`eval/PREREGISTRATION.md` 的补充一到补充十一", en = "`eval/PREREGISTRATION.md`, addenda 1–11" }
-takeaway = { zh = "四项合在一起是测过最好的设置；剩下的附和问题光看识别出的文字分不出来，得看声音本身。", en = "The four fixes together are the best setting tested; the remaining backchannel problem cannot be solved from transcribed text alone and needs the audio itself." }
+frozen = { zh = "`eval/PREREGISTRATION.md` 的补充一到补充十一（之后到补充十四的跟进在报告第 6.16 到 6.22 节，卡片没收）", en = "`eval/PREREGISTRATION.md`, addenda 1–11 (later follow-ups up to addendum 14 are in sections 6.16–6.22 of the report and not on this card)" }
+takeaway = { zh = "四项合在一起，在这几项改动针对的问题上是测过最好的设置；按事先写好的严格通过和基线持平，因为严格分把暂停算作停下。", en = "Together the four fixes are the best setting tested on the problems they target; on the strict pass written beforehand they are level with the baseline, because that score counts a pause as a stop." }
 
   [[eval.metric]]
   id = "pvad_strict"
@@ -219,7 +219,7 @@ text = { zh = "用户语音是合成的，时间是模拟的；42 段对话每�
 advice = { zh = "上线前用真人录音（例如公开的对话语音数据）重跑，并在真实网络下测时延。", en = "Before launch, rerun with recorded human speech (for example a public dialogue speech set) and measure latency on a real network." }
 
 [[limitation]]
-text = { zh = "“嗯嗯”这类附和仍会打断：识别器把它听成别的字，光看识别出的文字分不出附和和短插话。", en = "Backchannels such as \"mm-mm\" still interrupt: the recogniser hears other words, and text alone cannot tell a backchannel from a short barge-in." }
+text = { zh = "“嗯嗯”这类附和仍被识别器听成别的字：单项改进时它会打断，四项合在一起时只因为发声时间刚好不到 0.5 秒才没打断，余量很小；光看识别出的文字分不出附和和短插话。", en = "Backchannels such as \"mm-mm\" are still heard as other words: with single fixes they interrupt, and with all four they avoid it only because their voiced time falls just under 0.5 s, a thin margin; text alone cannot tell a backchannel from a short barge-in." }
 advice = { zh = "用看声音本身的附和检测；现成的声学附和模型离线试过，没达到事先定的标准，所以没接进来。", en = "Use detection on the audio itself; an off-the-shelf acoustic backchannel model was tried offline and missed the preset bar, so it was not added." }
 
 [[limitation]]
@@ -240,3 +240,8 @@ text = { zh = "开头加了时间、团队、技术、链接和“问题 / 我�
 id = "1.2"
 date = "2026-11-16"
 text = { zh = "项目已公开：加上代码和报告的链接；数字的来源文件链到公开仓库里的同一份。", en = "The project is public: link to the code and report added; source files link to the identical copies in the public repository." }
+
+[[version]]
+id = "1.3"
+date = "2026-11-17"
+text = { zh = "改正说法：四项合在一起只在针对的问题上最好，按严格通过和基线持平；“嗯嗯”合在一起时没打断、但余量很小；自检的说明照代码改；注明补充十二到十四的跟进没收进卡片。数字不变。", en = "Wording corrected: the combined fixes are best only on the problems they target and level with the baseline on the strict pass; \"mm-mm\" no longer interrupts with all four, by a thin margin; the self-check note follows the code; later follow-ups (addenda 12–14) are noted as not on the card. Numbers unchanged." }

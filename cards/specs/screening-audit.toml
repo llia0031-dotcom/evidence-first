@@ -4,22 +4,23 @@ layer = "judgement"
 status = "public"
 links = [
   { label = { zh = "代码和报告", en = "Code and report" }, url = "https://github.com/llia0031-dotcom/evidence-screening" },
+  { label = { zh = "演示页", en = "Live demo" }, url = "https://llia0031-dotcom.github.io/evidence-screening/" },
 ]
-card_version = "1.2"
+card_version = "1.3"
 updated = "2026-11-15"
-period = "2026-11-13 – 2026-11-14"
+period = "2026-11-13 – 2026-11-15"
 team = "Liang Liyuan"
 stack = { zh = "Node.js、Python、evidence-check 0.2.0、批量接口", en = "Node.js, Python, evidence-check 0.2.0, Message Batches API" }
-did = { zh = "我写了虚构的岗位和简历、事先定好答案，比较普通打分、附原文、附原文加脚本核对几种做法；发现核对的接法会误伤正确的判断以后，改了两版接法；再用带陷阱的新简历、植入错误和第二次独立复核检验。", en = "I wrote fictional jobs and resumes with answers fixed in advance and compared plain scoring, quotes, and quotes plus the script; after finding that the check discarded correct verdicts I rewired it twice; then tested with trap-laden new resumes, planted errors and an independent second review." }
+did = { zh = "我写了虚构的岗位和简历、事先定好答案，比较不附原文、附原文、附原文加脚本核对几种做法；发现核对的接法会误伤正确的判断以后，改了两版接法；再用带陷阱的新简历、植入错误和第二次独立复核检验。", en = "I wrote fictional jobs and resumes with answers fixed in advance and compared no quotes, quotes, and quotes plus the script; after finding that the check discarded correct verdicts I rewired it twice; then tested with trap-laden new resumes, planted errors and an independent second review." }
 name = { zh = "有据可查的简历初筛", en = "Evidence-backed resume screening" }
 problem = { zh = "用模型初筛简历时，每个“符合 / 不符合”都要附简历原文；看它会不会更准、换名字性别学校后结论会不会变", en = "When a model screens resumes, every met / not-met verdict should carry a resume quote; does that make it more accurate, and do verdicts change when name, gender or school change" }
 primary_metric = { zh = "逐条要求判对率；换名字等之后去留有没有变；正确的“符合”被核对误伤的比例", en = "Requirement verdicts right; advance decisions that change when names and other details change; correct \"met\" verdicts lost to the quote check" }
 headline = [
-  { zh = "换名字后去留变化：普通打分 {v1_name_flip_plain}，附原文 {v1_name_flip_evidence}", en = "Advance decisions changed by a name swap: plain {v1_name_flip_plain}, with quotes {v1_name_flip_evidence}" },
+  { zh = "换名字后去留变化：不附原文 {v1_name_flip_plain}，附原文 {v1_name_flip_evidence}", en = "Advance decisions changed by a name swap: no quotes {v1_name_flip_plain}, with quotes {v1_name_flip_evidence}" },
   { zh = "核对误伤正确的“符合”：{v2_loss_evidence} → {v2_loss_split}（先拆出简历事实）→ {v2_loss_self}（交卷前自查）", en = "Correct \"met\" verdicts lost to the check: {v2_loss_evidence} → {v2_loss_split} (resume facts split out) → {v2_loss_self} (self-check before submitting)" },
   { zh = "独立复核挑出植入的错读：{verify_full}", en = "Second review catches planted misreadings: {verify_full}" },
 ]
-summary = { zh = "检验一件事：让模型给每个“符合 / 不符合”附上简历原文、再用 evidence-check 的脚本核对，初筛会不会更准、在换掉名字、性别、学校、休学、婚育之后更稳。岗位和简历全部虚构，答案在写简历时定好。做了四版评测：第一版看准确和稳定，第二版改核对的接法，第三版用更乱、带陷阱的简历，另做了植入错误测试和第二次独立复核。", en = "Tests whether having the model attach a resume quote to every met / not-met verdict, checked by the evidence-check script, makes screening more accurate and more stable when name, gender, school, career gaps or marital details change. All jobs and resumes are fictional and answers were fixed when the resumes were written. Four rounds: accuracy and stability, a better way to wire the check, messier resumes with traps, plus planted-error tests and an independent second review." }
+summary = { zh = "检验一件事：让模型给每个“符合 / 不符合”附上简历原文、再用 evidence-check 的脚本核对，初筛会不会更准、在换掉名字、性别、学校、休学、婚育之后更稳。岗位和简历全部虚构，答案在写简历时定好。做了五轮评测：第一轮看准确和稳定，第二轮改核对的接法，第三轮用更乱、带陷阱的简历，第四轮在匿名简历里加民族和性别线索，第五轮把 effort 调低重跑陷阱题；另做了植入错误测试和第二次独立复核。", en = "Tests whether having the model attach a resume quote to every met / not-met verdict, checked by the evidence-check script, makes screening more accurate and more stable when name, gender, school, career gaps or marital details change. All jobs and resumes are fictional and answers were fixed when the resumes were written. Five rounds: accuracy and stability, a better way to wire the check, messier resumes with traps, markers of ethnicity and gender in anonymised resumes, and the traps again at a lower effort; plus planted-error tests and an independent second review." }
 core_link = { zh = "用 evidence-check 0.2.0 脚本的冻结副本核对每条引文。", en = "Uses a frozen copy of the evidence-check 0.2.0 script to check every quote." }
 models = { zh = "claude-haiku-5-5；第三版之后走批量接口。", en = "claude-haiku-5-5; from round three on, the Message Batches API." }
 
@@ -40,7 +41,7 @@ card_title = { zh = "初筛简历时，每个“符合”都附简历原文", en
 assumed = { zh = "以为把脚本核对接上去，准确率最多只掉一点", en = "Expected the script check to cost little accuracy" }
 showed = { zh = "掉得远比预想多：复述岗位门槛的正确判断被当成没依据", en = "It cost far more: verdicts restating job thresholds were thrown out" }
 result_line = { zh = "附上简历原文后，判断几乎不出错（{v1_evidence}），只换名字也不改变去留（{v1_name_flip_evidence}）", en = "With resume quotes, verdicts were right {v1_evidence} times; swapping names changed {v1_name_flip_evidence} decisions" }
-key_numbers = [{ metric = "v1_name_flip_evidence", label = { zh = "只换候选人名字，去留结论改变的次数", en = "Decisions changed when only the name changed" } }, { metric = "v2_loss_self", label = { zh = "对的判断被核对误删（改进前 {v2_loss_evidence}）", en = "Correct verdicts wrongly removed (before the fix: {v2_loss_evidence})" } }, { metric = "verify_full", label = { zh = "看错简历的判断，复核时全部挑了出来", en = "Misread resumes, all caught by the second review" } }]
+key_numbers = [{ metric = "v1_name_flip_evidence", label = { zh = "只换候选人名字，去留结论改变的次数", en = "Decisions changed when only the name changed" } }, { metric = "v2_loss_self", label = { zh = "对的判断被核对误删（改进前 {v2_loss_evidence}）", en = "Correct verdicts wrongly removed (before the fix: {v2_loss_evidence})" } }, { metric = "verify_full", label = { zh = "植入的错读，看得到理由时复核全部挑出", en = "Planted misreadings caught when the reason was visible" } }]
 timeline = [
   { date = "2026-11-13", label = { zh = "第一版", en = "Round 1" }, text = { zh = "附原文不降准确率，接脚本会误伤", en = "Quotes cost nothing; the script misfires" }, before = "v1_evidence", after = "v1_evidence_script" },
   { date = "2026-11-13", label = { zh = "第二版", en = "Round 2" }, text = { zh = "先拆简历事实，再交卷前自查", en = "Facts split out, then self-check" }, before = "v2_loss_evidence", after = "v2_loss_self", adopted = true },
@@ -74,7 +75,7 @@ en = [
 id = "v1"
 name = { zh = "第一版：准确和稳定（228 个简历版本）", en = "Round 1: accuracy and stability (228 resume versions)" }
 date = "2026-11-13"
-data = { zh = "4 个岗位、24 份基础简历，每份改出换名字、性别、学校、休学、婚育、提示注入等版本，共 228 个。比较关键词匹配、普通打分、附原文、附原文加脚本核对。跑前冻结 11 个文件的哈希。", en = "4 jobs and 24 base resumes, each varied by name, gender, school, career gap, marital status and prompt injection: 228 versions. Compared keyword matching, plain scoring, with quotes, and with quotes plus the script check. Hashes of 11 files frozen before the run." }
+data = { zh = "4 个岗位、24 份基础简历，每份改出换名字、性别、学校、休学、婚育、提示注入等版本，共 228 个。比较关键词匹配、不附原文、附原文、附原文加脚本核对。跑前冻结 11 个文件的哈希。", en = "4 jobs and 24 base resumes, each varied by name, gender, school, career gap, marital status and prompt injection: 228 versions. Compared keyword matching, no quotes, with quotes, and with quotes plus the script check. Hashes of 11 files frozen before the run." }
 items = { zh = "228 个版本，每组 2 遍，共 1,368 次调用", en = "228 versions, 2 runs per arm, 1,368 calls" }
 runs = { zh = "每组 2 遍，合并计算", en = "2 runs per arm, pooled" }
 setup = { zh = "claude-haiku-5-5，普通接口", en = "claude-haiku-5-5, standard API" }
@@ -83,7 +84,7 @@ takeaway = { zh = "附原文本身不降准确率；但把脚本核对直接接�
 
   [[eval.metric]]
   id = "v1_plain"
-  label = { zh = "逐条判对（普通打分）", en = "Requirements right (plain)" }
+  label = { zh = "逐条判对（不附原文）", en = "Requirements right (no quotes)" }
   extractor = "json_counts"
   args = { path = "screening-audit/eval/results/run-2026-11-13.summary.json", at = ["accuracy", "plain"], num = "correct", den = "cells" }
 
@@ -107,7 +108,7 @@ takeaway = { zh = "附原文本身不降准确率；但把脚本核对直接接�
 
   [[eval.metric]]
   id = "v1_name_flip_plain"
-  label = { zh = "换名字后去留变了（普通打分）", en = "Advance decision changed by a name swap (plain)" }
+  label = { zh = "换名字后去留变了（不附原文）", en = "Advance decision changed by a name swap (no quotes)" }
   extractor = "json_counts"
   args = { path = "screening-audit/eval/results/run-2026-11-13.summary.json", at = ["stability", "plain", "by_kind", "name"], num = "decision_flips", den = "decisions" }
   direction = "lower"
@@ -175,7 +176,7 @@ frozen = { zh = "`eval/v3/PREREGISTRATION.md`", en = "`eval/v3/PREREGISTRATION.m
 
   [[eval.metric]]
   id = "v3_traps_plain"
-  label = { zh = "陷阱判成“不符合”（普通打分）", en = "Traps judged not met (plain)" }
+  label = { zh = "陷阱判成“不符合”（不附原文）", en = "Traps judged not met (no quotes)" }
   extractor = "sa_traps_right"
   args = { path = "screening-audit/eval/v3/results/run-2026-11-14.summary.json", arm = "plain" }
 
@@ -243,6 +244,31 @@ frozen = { zh = "`eval/verify/PREREGISTRATION.md`", en = "`eval/verify/PREREGIST
   args = { path = "screening-audit/eval/verify/results/run-2026-11-14.summary.json", arm = "verify-full", field = "false_alarms", total = "right" }
   direction = "lower"
 
+[[eval]]
+id = "v4"
+name = { zh = "第四轮：匿名简历里的民族和性别线索", en = "Round four: markers of ethnicity and gender in anonymised resumes" }
+date = "2026-11-14"
+data = { zh = "第三轮的 24 份简历去掉名字和性别，换成申请编号，每份做 7 个版本：一个不加线索，六个各加一段带民族或性别线索的课外活动、语言和爱好。和不加线索的版本比，看去留变不变。", en = "The 24 round-three resumes, anonymised (an applicant number instead of name and gender), each in 7 versions: one with no markers and six that each add a section of activities, languages and hobbies carrying a marker of ethnicity or gender. Each is compared with its no-marker version." }
+items = { zh = "每组 288 对（和不加线索的版本配对）", en = "288 pairs per arm (each against its no-marker version)" }
+runs = { zh = "每个版本 2 遍", en = "2 runs per version" }
+setup = { zh = "claude-haiku-5-5，批量接口", en = "claude-haiku-5-5, Message Batches API" }
+frozen = { zh = "`eval/v4/PREREGISTRATION.md`", en = "`eval/v4/PREREGISTRATION.md`" }
+takeaway = { zh = "不附原文那组的去留一次也没随线索变；附原文那组的变化都出在同一份简历、同一个本来就有争议的要求上，是那一题答案摇摆，不是跟着线索走。", en = "In the no-quotes arm no decision moved with the markers; every change in the quoting arm is on one resume and one requirement already open to argument, a wavering answer rather than a response to the markers." }
+
+  [[eval.metric]]
+  id = "v4_dflip_plain"
+  label = { zh = "加线索后去留变了（不附原文）", en = "Decisions changed by a marker (no quotes)" }
+  extractor = "json_counts"
+  args = { path = "screening-audit/eval/v4/results/run-2026-11-14.summary.json", at = ["pairs", "plain"], num = "decision_flips", den = "pairs" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "v4_dflip_split"
+  label = { zh = "加线索后去留变了（附原文，先拆简历事实）", en = "Decisions changed by a marker (quotes, resume facts split out)" }
+  extractor = "json_counts"
+  args = { path = "screening-audit/eval/v4/results/run-2026-11-14.summary.json", at = ["pairs", "split"], num = "decision_flips", den = "pairs" }
+  direction = "lower"
+
 [[limitation]]
 text = { zh = "简历是虚构的、短的，和答案出自同一作者；一个模型、一个设置。", en = "Resumes are fictional and short and come from the same author as the answers; one model, one setting." }
 advice = { zh = "上线前用脱敏的真实简历和招聘团队自己的岗位重测。", en = "Before launch, re-test on anonymised real resumes and the team's own jobs." }
@@ -269,3 +295,8 @@ text = { zh = "开头加了时间、团队、技术、链接和“问题 / 我�
 id = "1.2"
 date = "2026-11-16"
 text = { zh = "项目已公开：加上代码和报告的链接；演示页还没上线。", en = "The project is public: link to the code and report added; the demo page is not online yet." }
+
+[[version]]
+id = "1.3"
+date = "2026-11-17"
+text = { zh = "改正：一共五轮，补上第四轮（民族和性别线索）的去留结果，第五轮（低 effort）只在概况里说明；“误伤”的分母改成该组判对的“符合”，和报告一致；“普通打分”改叫“不附原文”；复核的结果写明是看得到理由的那一组、错读是植入的。", en = "Corrected: five rounds in all; round four's decision results (markers of ethnicity and gender) added and round five (lower effort) described in the summary; the loss denominator is now the arm's correct \"met\" verdicts, as in the report; \"plain\" renamed \"no quotes\"; the review result is stated for the arm that saw the reason, and the misreadings as planted." }

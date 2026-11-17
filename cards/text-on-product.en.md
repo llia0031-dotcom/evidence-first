@@ -1,6 +1,6 @@
 # Text on Product: Chinese copy on AI product images: evaluation card
 
-> Card version 1.1 · Data as of 2026-11-15 · public
+> Card version 1.2 · Data as of 2026-11-15 · public
 >
 > Numbers are computed by `scripts/build_cards.py` from the project's result files; proportions carry a Wilson 95% interval.
 
@@ -40,7 +40,7 @@ Twenty fixed tasks (16 images, 4 videos) test how reliably Seedream 4.0, 4.5 and
 
 ### Main evaluation: 16 image tasks and 4 video tasks
 
-Tasks in three tiers (short title, several lines with numbers, long copy); tasks and rubric frozen before generation. One generation per version per task.
+Tasks in four tiers of text difficulty (short title, title with numbers, several lines of selling points, mixed scripts with vertical text and small packaging print); tasks and rubric frozen before generation. One generation per version per task.
 
 | Field | Value |
 |---|---|
@@ -75,13 +75,13 @@ Image text is almost always right, with one wrong digit from 4.0; video text doe
 ## Grader calibration
 
 - Text correctness is not rated: OCR compares character by character. OCR was first self-checked on known text (2/1332 characters wrong) and then on images with planted errors (80/80 caught).
-- Appearance is rated three times, independently, against a rubric, with works shuffled and versions hidden; agreement between the three is in the project report. There is no comparison with human ratings, which is a limit.
+- Appearance is rated three times, independently, against a rubric, with works shuffled and versions hidden; agreement between the three is in the project report. There is no comparison with blind ratings by buyers, which is a limit.
 
 ## Limitations and failure cases
 
 - Small sample: 16 image and 4 video tasks, one generation each; only 1/4 videos have exactly right text.
   - Recommendation: Add text to videos in editing rather than relying on generation.
-- Ratings were not compared with human ratings; all three come from the same rating method.
+- Ratings were not compared with blind ratings by buyers; all three come from the same rating method.
   - Recommendation: Before launch, have a few real buyers blind-rate a small set and compare with the rubric.
 - The prompt mini-experiment has only a few images: stating the text colour worked, asking for a large title with top margin did not reliably help.
   - Recommendation: After generation, check whether the title was clipped and regenerate if so.
@@ -90,7 +90,10 @@ Image text is almost always right, with one wrong digit from 4.0; video text doe
 
 - **1.0** (2026-11-15) First card. Only the site is public; the report and data are internal.
 - **1.1** (2026-11-15) Added when, team, stack, links and "problem / what I did / results" at the top, the way portfolio case studies open; the evaluation sections are unchanged.
+- **1.2** (2026-11-17) Corrected: the tasks have four difficulty tiers, not three; the limit now says ratings were not compared with blind ratings by buyers. Numbers unchanged.
 
 ## Provenance
 
 Sections follow the Hugging Face model card template (Apache-2.0); the source file and fingerprint of every number are in `cards/sources.lock.json`.
+
+Sources and licences of third-party data, models and code are listed in the [project repository](https://github.com/llia0031-dotcom/text-on-product).

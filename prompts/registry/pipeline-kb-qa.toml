@@ -4,7 +4,7 @@ order = 6
 name = { zh = "有据标注流水线：政策知识库问答", en = "Grounded Labelling Pipeline: policy knowledge-base Q&A" }
 what = { zh = "标注员问“这样写算不算违规”，只按检索到的条款回答：结论、说明、每条依据的编号和原文；库里没有管这件事的条款就说“没有”。每段引文都用 evidence-check 核对。流水线自己的资产库里是同一个资产、同样的标签。", en = "A labeller asks whether some wording breaks a rule; the answer uses only the retrieved clauses: a verdict, a short explanation, and the id and exact words of each clause it rests on. If no clause covers the question it says so. Every quote is checked with evidence-check. The pipeline's own registry holds the same asset with the same labels." }
 where = "pipeline/kb_qa.py"
-model_lock = "claude-haiku-5-5, effort medium, top 5 clauses, max_tokens 1500 in the evaluation and 4000 in the bot"
+model_lock = { zh = "claude-haiku-5-5，effort medium，取前 5 条条款，max_tokens 评测时 1500、机器人里 4000", en = "claude-haiku-5-5, effort medium, top 5 clauses, max_tokens 1500 in the evaluation and 4000 in the bot" }
 production_note = { zh = "没有真实使用量；评测是题库回放，机器人只在测试时问过几次。", en = "No real usage; the evaluation is a replay of a question set, and the bot has only been asked a few test questions." }
 
 [[version]]

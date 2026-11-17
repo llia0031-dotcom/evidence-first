@@ -79,7 +79,7 @@ What each project does:
 | Sellpoint Check | A second, independent judgement of each piece of evidence | Compared with the answers on items with known answers first |
 | Resume screening | Whether a "met" verdict was misread | 40 planted misreadings mixed with right answers; how many were caught and how many false alarms |
 | Grounded Review | Whether a revised version passes | Re-reviewed with the single-prompt arm; no separate calibration, which is listed as a limitation |
-| Text on product images | Visual quality | Scored three times independently with agreement reported; not compared with human scores, which is listed as a limitation |
+| Text on product images | Visual quality | Scored three times independently with agreement reported; not compared with blind ratings by buyers, which is listed as a limitation |
 
 **Run on every version:**
 
@@ -103,7 +103,7 @@ Demonstration: [`prompts/rollout/canary-replay.en.md`](../prompts/rollout/canary
 
 ## 4. How numbers are reported
 
-1. **Numbers are never copied by hand.** Every number in the evaluation cards and the prompt registry is computed by script from the projects' result files and checked against the projects' records (`python scripts/build_cards.py --check`).
+1. **Numbers are never copied by hand.** Every number in the evaluation cards and the prompt registry is computed by script from the projects' result files; each source file's fingerprint is kept in `cards/sources.lock.json`, and `python scripts/build_cards.py --check` fails when a file changes.
 2. **Proportions carry a 95% interval and the number of runs.** Wilson intervals; where two runs of the same item are pooled, the card says "the two runs are not independent, so the interval is too narrow".
 3. **Define the metric before giving the number; give its direction and date.** Every metric says "higher is better" or "lower is better", and every card says how recent its data is.
 4. **A change to the items or the scoring rules is a new evaluation version.** It gets its own table; old and new scores are not subtracted.

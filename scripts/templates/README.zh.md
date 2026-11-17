@@ -50,7 +50,7 @@ flowchart TB
 
 ## 改提示词时自动对比分数
 
-`.github/workflows/prompt-regression.yml`：有人开 PR 改了 `prompts/` 下的文件，GitHub Action 就用 promptfoo 把 production 和 staging 两个标签指向的版本放在同一套题上跑（evidence-check 的开发评测 v1，12 篇草稿，模型 claude-haiku-5-5），把两版的通过数贴到 PR 里。每次改提示词都会自动重测，例如[第一次在 GitHub 上跑的结果](https://github.com/llia0031-dotcom/evidence-first/pull/1)。
+`.github/workflows/prompt-regression.yml`：有人开 PR 改了 `prompts/` 下的文件，GitHub Action 就用 promptfoo 把 production 和 staging 两个标签指向的版本放在同一套题上跑（evidence-check 的开发评测 v1，12 篇草稿，模型 claude-haiku-5-5），把两版的通过数贴到 PR 里。每次改提示词都会自动重测，例如[第一次在 GitHub 上跑的结果](https://github.com/llia0031-dotcom/evidence-first/pull/1)（当时两个标签指向同一版，只说明流程跑通了）。
 
 要先在仓库里加一个密钥，Action 才能调用模型：
 
@@ -61,11 +61,26 @@ Action 运行时把密钥写进一个临时文件，只由评测脚本读取，�
 
 ## 重新生成
 
-需要 Python 3.11 以上，只用标准库。各项目的文件夹要和本仓库放在同一层。
+需要 Python 3.11 以上，只用标准库。各项目的文件夹要和本仓库放在同一层，文件夹名和 GitHub 仓库名不完全一样：
+
+| 文件夹 | 公开仓库 |
+|---|---|
+| `evidence-check-public/` | [evidence-check](https://github.com/llia0031-dotcom/evidence-check) |
+| `cairn-public/` | [cairn](https://github.com/llia0031-dotcom/cairn) |
+| `grounded-review-public/` | [grounded-review](https://github.com/llia0031-dotcom/grounded-review) |
+| `sellpoint-check/` | [sellpoint-check](https://github.com/llia0031-dotcom/sellpoint-check) |
+| `screening-audit/` | [evidence-screening](https://github.com/llia0031-dotcom/evidence-screening) |
+| `voice-agent-eval/` | [voice-agent-eval](https://github.com/llia0031-dotcom/voice-agent-eval) |
+| `evidence-pipeline-public/` | [grounded-labelling-pipeline](https://github.com/llia0031-dotcom/grounded-labelling-pipeline) |
+| `grounded-business-review-public/` | [grounded-business-review](https://github.com/llia0031-dotcom/grounded-business-review) |
+| `launchpad-tracedesk/` | 没有公开（TraceDesk 卡的来源） |
+| `aigc-scene-eval/` | 没有公开（AI 生图卡的来源） |
+
+TraceDesk 和 AI 生图两张卡的结果文件没有公开，所以只用公开仓库重建会报缺文件；离线自检里依赖各项目文件夹的三项会跳过。
 
 ```
 python scripts/build_cards.py          # 评测卡、总表、data/projects.json、data/story.json
-python scripts/build_cards.py --check  # 只检查：数字和项目记录对不上、来源文件变了，都会报错
+python scripts/build_cards.py --check  # 只检查：来源结果文件变了、生成的文件过时，都会报错
 python scripts/prompts.py build        # Prompt 资产库的版本表和 data/prompts.json
 python scripts/replay_canary.py        # 灰度回放演示
 python -m unittest discover -s tests   # 离线自检，不调用模型

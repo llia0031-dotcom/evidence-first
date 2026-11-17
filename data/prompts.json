@@ -11,7 +11,10 @@
       "en": "The skill instructions loaded into an agent: a word-for-word quote for every fact, run the checker, reread every passing claim. The checker script has its own versions (0.2.0 → 0.4.0); see the evaluation card."
     },
     "where": "skills/evidence-check/SKILL.md",
-    "model_lock": "claude-haiku-5-5, effort medium（评测时）",
+    "model_lock": {
+      "zh": "claude-haiku-5-5，评测时 effort medium",
+      "en": "claude-haiku-5-5, effort medium in the evaluations"
+    },
     "labels": {
       "production": "v0.2",
       "staging": "v0.2",
@@ -68,7 +71,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-check-public/eval/v2/results/run-2026-11-12.summary.md"
+                  "evidence-check/eval/v2/results/run-2026-11-12.summary.md"
                 ],
                 "k": 2,
                 "n": 32,
@@ -90,7 +93,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-check-public/eval/v2/results/run-2026-11-12.summary.md"
+                  "evidence-check/eval/v2/results/run-2026-11-12.summary.md"
                 ],
                 "k": 2,
                 "n": 150,
@@ -136,7 +139,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-check-public/eval/v2/results/run-2026-11-12.summary.md"
+                  "evidence-check/eval/v2/results/run-2026-11-12.summary.md"
                 ],
                 "k": 2,
                 "n": 32,
@@ -149,7 +152,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-check-public/eval/v2/results/run-2026-11-12.summary.md"
+                  "evidence-check/eval/v2/results/run-2026-11-12.summary.md"
                 ],
                 "k": 0,
                 "n": 32,
@@ -171,7 +174,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-check-public/eval/v2/results/run-2026-11-12.summary.md"
+                  "evidence-check/eval/v2/results/run-2026-11-12.summary.md"
                 ],
                 "k": 3,
                 "n": 150,
@@ -193,7 +196,7 @@
               {
                 "kind": "value",
                 "sources": [
-                  "evidence-check-public/eval/v2/results/run-2026-11-12.summary.md"
+                  "evidence-check/eval/v2/results/run-2026-11-12.summary.md"
                 ],
                 "value": 0.1603,
                 "unit": "usd",
@@ -322,7 +325,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "grounded-review-public/eval/results/multiturn-mt2-v1.jsonl"
+                  "grounded-review/eval/results/multiturn-mt2-v1.jsonl"
                 ],
                 "k": 3,
                 "n": 24,
@@ -335,7 +338,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "grounded-review-public/eval/results/multiturn-mt2-v1.1.jsonl"
+                  "grounded-review/eval/results/multiturn-mt2-v1.1.jsonl"
                 ],
                 "k": 0,
                 "n": 24,
@@ -381,7 +384,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "grounded-review-public/eval/results/multiturn-mt3-v1.1.jsonl"
+                  "grounded-review/eval/results/multiturn-mt3-v1.1.jsonl"
                 ],
                 "k": 4,
                 "n": 36,
@@ -394,7 +397,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "grounded-review-public/eval/results/multiturn-mt3-v1.2.jsonl"
+                  "grounded-review/eval/results/multiturn-mt3-v1.2.jsonl"
                 ],
                 "k": 6,
                 "n": 36,
@@ -440,7 +443,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "grounded-review-public/eval/results/multiturn-mt4-v1.1.jsonl"
+                  "grounded-review/eval/results/multiturn-mt4-v1.1.jsonl"
                 ],
                 "k": 6,
                 "n": 36,
@@ -453,7 +456,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "grounded-review-public/eval/results/multiturn-mt4-v1.3.jsonl"
+                  "grounded-review/eval/results/multiturn-mt4-v1.3.jsonl"
                 ],
                 "k": 0,
                 "n": 36,
@@ -475,7 +478,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "grounded-review-public/eval/results/multiturn-mt4-v1.1.jsonl"
+                  "grounded-review/eval/results/multiturn-mt4-v1.1.jsonl"
                 ],
                 "k": 34,
                 "n": 36,
@@ -488,7 +491,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "grounded-review-public/eval/results/multiturn-mt4-v1.3.jsonl"
+                  "grounded-review/eval/results/multiturn-mt4-v1.3.jsonl"
                 ],
                 "k": 36,
                 "n": 36,
@@ -510,7 +513,7 @@
               {
                 "kind": "value",
                 "sources": [
-                  "grounded-review-public/eval/results/multiturn-mt4-v1.1.jsonl"
+                  "grounded-review/eval/results/multiturn-mt4-v1.1.jsonl"
                 ],
                 "value": 0.006850166666666667,
                 "unit": "usd",
@@ -519,7 +522,7 @@
               {
                 "kind": "value",
                 "sources": [
-                  "grounded-review-public/eval/results/multiturn-mt4-v1.3.jsonl"
+                  "grounded-review/eval/results/multiturn-mt4-v1.3.jsonl"
                 ],
                 "value": 0.006784638888888889,
                 "unit": "usd",
@@ -1318,8 +1321,8 @@
           "en": "Writing-style rules adapted from i-have-adhd."
         },
         "text": {
-          "zh": "公开仓库提交 2eb9009 的 `app/lib/prompts.js`",
-          "en": "`app/lib/prompts.js` at public commit 2eb9009"
+          "zh": "公开仓库提交 d78874c 的 `app/lib/prompts.js`",
+          "en": "`app/lib/prompts.js` at public commit d78874c"
         },
         "source": "https://github.com/llia0031-dotcom/tracedesk-lite/blob/main/app/lib/prompts.js",
         "why": {
@@ -1377,8 +1380,8 @@
           "en": "A step's deadline must be attached to that step and its quote must state it."
         },
         "text": {
-          "zh": "公开仓库提交 dc1ba2f 的 `app/lib/prompts.js`",
-          "en": "`app/lib/prompts.js` at public commit dc1ba2f"
+          "zh": "公开仓库提交 8064b58 的 `app/lib/prompts.js`",
+          "en": "`app/lib/prompts.js` at public commit 8064b58"
         },
         "source": "https://github.com/llia0031-dotcom/tracedesk-lite/blob/main/EVALUATION.md",
         "why": {
@@ -1436,8 +1439,8 @@
           "en": "Deadlines also written in the reader's language."
         },
         "text": {
-          "zh": "公开仓库提交 d626ef3 的 `app/lib/prompts.js`（现行默认）",
-          "en": "`app/lib/prompts.js` at public commit d626ef3 (current default)"
+          "zh": "公开仓库提交 2951bef 的 `app/lib/prompts.js`（现行默认）",
+          "en": "`app/lib/prompts.js` at public commit 2951bef (current default)"
         },
         "source": "https://github.com/llia0031-dotcom/tracedesk-lite/blob/main/EVALUATION.md",
         "why": {
@@ -1565,8 +1568,8 @@
           "en": "The first version, over accessibility guidelines (WCAG)."
         },
         "text": {
-          "zh": "公开仓库提交 442709d 的 `app/lib/prompt.js`",
-          "en": "`app/lib/prompt.js` at public commit 442709d"
+          "zh": "公开仓库提交 f63aafa 的 `app/lib/prompt.js`",
+          "en": "`app/lib/prompt.js` at public commit f63aafa"
         },
         "why": {
           "zh": "资料换成学生事务页面后停用。",
@@ -1583,8 +1586,8 @@
           "en": "Conclusion first, deadlines and next steps, campus stated, no invented dates, fees or contacts."
         },
         "text": {
-          "zh": "公开仓库提交 5674011 的 `app/lib/prompt.js`",
-          "en": "`app/lib/prompt.js` at public commit 5674011"
+          "zh": "公开仓库提交 921e557 的 `app/lib/prompt.js`",
+          "en": "`app/lib/prompt.js` at public commit 921e557"
         },
         "why": {
           "zh": "最后一轮可读性检查之后改出 v2。",
@@ -1601,8 +1604,8 @@
           "en": "The reader is told about \"the pages\", never \"the passages\"; no campus remark when a rule applies everywhere; no note on what the pages leave out once the question is answered; the campus is passed to the model, which never asks for it."
         },
         "text": {
-          "zh": "公开仓库提交 33dbd17 的 `app/lib/prompt.js`（现行）",
-          "en": "`app/lib/prompt.js` at public commit 33dbd17 (current)"
+          "zh": "公开仓库提交 45f0b13 的 `app/lib/prompt.js`（现行）",
+          "en": "`app/lib/prompt.js` at public commit 45f0b13 (current)"
         },
         "source": "https://github.com/llia0031-dotcom/cairn/blob/main/app/lib/prompt.js",
         "why": {
@@ -1698,7 +1701,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions.json"
+                  "grounded-labelling-pipeline/data/versions.json"
                 ],
                 "k": 17,
                 "n": 332,
@@ -1720,7 +1723,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions.json"
+                  "grounded-labelling-pipeline/data/versions.json"
                 ],
                 "k": 315,
                 "n": 332,
@@ -1766,7 +1769,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions.json"
+                  "grounded-labelling-pipeline/data/versions.json"
                 ],
                 "k": 17,
                 "n": 332,
@@ -1779,7 +1782,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions.json"
+                  "grounded-labelling-pipeline/data/versions.json"
                 ],
                 "k": 9,
                 "n": 332,
@@ -1801,7 +1804,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions.json"
+                  "grounded-labelling-pipeline/data/versions.json"
                 ],
                 "k": 6,
                 "n": 332,
@@ -1814,7 +1817,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions.json"
+                  "grounded-labelling-pipeline/data/versions.json"
                 ],
                 "k": 72,
                 "n": 332,
@@ -1836,7 +1839,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions.json"
+                  "grounded-labelling-pipeline/data/versions.json"
                 ],
                 "k": 315,
                 "n": 332,
@@ -1849,7 +1852,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions.json"
+                  "grounded-labelling-pipeline/data/versions.json"
                 ],
                 "k": 312,
                 "n": 332,
@@ -1871,7 +1874,7 @@
               {
                 "kind": "value",
                 "sources": [
-                  "evidence-pipeline-public/data/versions.json"
+                  "grounded-labelling-pipeline/data/versions.json"
                 ],
                 "value": 0.0006231460843373495,
                 "unit": "usd",
@@ -1880,7 +1883,7 @@
               {
                 "kind": "value",
                 "sources": [
-                  "evidence-pipeline-public/data/versions.json"
+                  "grounded-labelling-pipeline/data/versions.json"
                 ],
                 "value": 0.000631396234939759,
                 "unit": "usd",
@@ -1898,7 +1901,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions-round2.json"
+                  "grounded-labelling-pipeline/data/versions-round2.json"
                 ],
                 "k": 239,
                 "n": 240,
@@ -1911,7 +1914,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions-round2.json"
+                  "grounded-labelling-pipeline/data/versions-round2.json"
                 ],
                 "k": 240,
                 "n": 240,
@@ -1957,7 +1960,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions-v3-round3.json"
+                  "grounded-labelling-pipeline/data/versions-v3-round3.json"
                 ],
                 "k": 44,
                 "n": 176,
@@ -1970,7 +1973,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions-v3-round3.json"
+                  "grounded-labelling-pipeline/data/versions-v3-round3.json"
                 ],
                 "k": 4,
                 "n": 176,
@@ -1992,7 +1995,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions-v3-round3.json"
+                  "grounded-labelling-pipeline/data/versions-v3-round3.json"
                 ],
                 "k": 44,
                 "n": 64,
@@ -2005,7 +2008,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions-v3-round3.json"
+                  "grounded-labelling-pipeline/data/versions-v3-round3.json"
                 ],
                 "k": 19,
                 "n": 64,
@@ -2027,7 +2030,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions-v3.json"
+                  "grounded-labelling-pipeline/data/versions-v3.json"
                 ],
                 "k": 9,
                 "n": 332,
@@ -2040,7 +2043,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions-v3.json"
+                  "grounded-labelling-pipeline/data/versions-v3.json"
                 ],
                 "k": 9,
                 "n": 332,
@@ -2062,7 +2065,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions-v3.json"
+                  "grounded-labelling-pipeline/data/versions-v3.json"
                 ],
                 "k": 72,
                 "n": 332,
@@ -2075,7 +2078,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions-v3.json"
+                  "grounded-labelling-pipeline/data/versions-v3.json"
                 ],
                 "k": 30,
                 "n": 332,
@@ -2121,7 +2124,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions-v4-round4.json"
+                  "grounded-labelling-pipeline/data/versions-v4-round4.json"
                 ],
                 "k": 43,
                 "n": 176,
@@ -2134,7 +2137,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions-v4-round4.json"
+                  "grounded-labelling-pipeline/data/versions-v4-round4.json"
                 ],
                 "k": 11,
                 "n": 176,
@@ -2156,7 +2159,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions-v4-round4.json"
+                  "grounded-labelling-pipeline/data/versions-v4-round4.json"
                 ],
                 "k": 42,
                 "n": 64,
@@ -2169,7 +2172,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions-v4-round4.json"
+                  "grounded-labelling-pipeline/data/versions-v4-round4.json"
                 ],
                 "k": 47,
                 "n": 64,
@@ -2191,7 +2194,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions-v4-round4.json"
+                  "grounded-labelling-pipeline/data/versions-v4-round4.json"
                 ],
                 "k": 0,
                 "n": 176,
@@ -2204,7 +2207,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions-v4-round4.json"
+                  "grounded-labelling-pipeline/data/versions-v4-round4.json"
                 ],
                 "k": 2,
                 "n": 176,
@@ -2226,7 +2229,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions-v4.json"
+                  "grounded-labelling-pipeline/data/versions-v4.json"
                 ],
                 "k": 9,
                 "n": 332,
@@ -2239,7 +2242,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/versions-v4.json"
+                  "grounded-labelling-pipeline/data/versions-v4.json"
                 ],
                 "k": 13,
                 "n": 332,
@@ -2272,7 +2275,10 @@
       "en": "A labeller asks whether some wording breaks a rule; the answer uses only the retrieved clauses: a verdict, a short explanation, and the id and exact words of each clause it rests on. If no clause covers the question it says so. Every quote is checked with evidence-check. The pipeline's own registry holds the same asset with the same labels."
     },
     "where": "pipeline/kb_qa.py",
-    "model_lock": "claude-haiku-5-5, effort medium, top 5 clauses, max_tokens 1500 in the evaluation and 4000 in the bot",
+    "model_lock": {
+      "zh": "claude-haiku-5-5，effort medium，取前 5 条条款，max_tokens 评测时 1500、机器人里 4000",
+      "en": "claude-haiku-5-5, effort medium, top 5 clauses, max_tokens 1500 in the evaluation and 4000 in the bot"
+    },
     "labels": {
       "production": "v1",
       "staging": "v1",
@@ -2314,7 +2320,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/kbqa-eval.json"
+                  "grounded-labelling-pipeline/data/kbqa-eval.json"
                 ],
                 "k": 134,
                 "n": 160,
@@ -2336,7 +2342,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/kbqa-eval.json"
+                  "grounded-labelling-pipeline/data/kbqa-eval.json"
                 ],
                 "k": 44,
                 "n": 48,
@@ -2358,7 +2364,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/kbqa-eval.json"
+                  "grounded-labelling-pipeline/data/kbqa-eval.json"
                 ],
                 "k": 1,
                 "n": 160,
@@ -2380,7 +2386,7 @@
               {
                 "kind": "proportion",
                 "sources": [
-                  "evidence-pipeline-public/data/retrieval-methods.csv"
+                  "grounded-labelling-pipeline/data/retrieval-methods.csv"
                 ],
                 "k": 23,
                 "n": 28,

@@ -224,7 +224,7 @@ def render(proj: dict, media: list[dict], lang: str, card_text: str) -> tuple[st
         src = "<br>".join(f"`{p}`" for p in v.sources)
         out.append(f"| N{i} | {v.full(lang)} | {label} | {bc.tr(ev['name'], lang)} | {L('评测卡', 'card')} + {src} |")
         numbers.append({"id": f"N{i}", "metric": mid, "label": label, "value": v.short(lang), "full": v.full(lang),
-                        "evaluation": bc.tr(ev["name"], lang), "sources": v.sources,
+                        "evaluation": bc.tr(ev["name"], lang), "sources": bc.shown_sources(v.sources),
                         "source_urls": [bc.public_source(x)[1] for x in v.sources], **v.as_json(),
                         "display": v.short(lang)})  # as shown on the card, with the card's precision and unit
         claims.append({"id": f"{pid}-{lang}-N{i}", "text": f"{label}{L('，结果 ', ', result ')}{v.short(lang)}",
@@ -266,8 +266,13 @@ def render(proj: dict, media: list[dict], lang: str, card_text: str) -> tuple[st
     else:
         out.append(L("暂无。", "None yet."))
     out.append("")
-    data["images"] = [{"path": m["path"], "caption": bc.tr(m["caption"], lang), "public": m["public"],
-                       **({"url": m["url"]} if "url" in m else {})} for m in mine]
+    def image(m: dict) -> dict:
+        path, url = m["path"], m.get("url")
+        if bc.PUBLIC_BUILD:  # name the public copy instead of a local folder
+            shown, public_url = bc.public_source(path)
+            path, url = shown, url or public_url
+        return {"path": path, "caption": bc.tr(m["caption"], lang), "public": m["public"], **({"url": url} if url else {})}
+    data["images"] = [image(m) for m in mine if m["public"] or not bc.PUBLIC_BUILD]
     return "\n".join(out), claims, data
 
 
@@ -279,7 +284,8 @@ def main(argv: list[str] | None = None) -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
     with MEDIA.open("rb") as fh:
         media = tomllib.load(fh)["media"]
-    missing = [m["path"] for m in media if not (bc.PORTFOLIO / m["path"]).is_file()]
+    # The public copy cannot hold the image files; their presence is checked where they live.
+    missing = [] if bc.PUBLIC_BUILD else [m["path"] for m in media if not (bc.PORTFOLIO / m["path"]).is_file()]
     if missing:
         print("Missing media files:", missing)
         return 1

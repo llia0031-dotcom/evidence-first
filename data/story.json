@@ -76,8 +76,8 @@
         "en": "When a model screens resumes, can every met / not-met verdict point to the resume, and does it change when name, gender or school change?"
       },
       "did": {
-        "zh": "虚构岗位和简历、事先定好答案；比较几种接法，把误伤正确判断的接法改了两版；再用陷阱、植入错误和第二次独立复核检验。",
-        "en": "Fictional jobs and resumes with answers fixed in advance; several wirings compared, the one that discarded correct verdicts rewired twice; then traps, planted errors and an independent second review."
+        "zh": "虚构岗位和简历、事先定好答案；比较几种接法，把误伤正确判断的接法改了两版；再用陷阱、植入错误和同一个模型的第二次独立复核检验。",
+        "en": "Fictional jobs and resumes with answers fixed in advance; several wirings compared, the one that discarded correct verdicts rewired twice; then traps, planted errors and an independent second pass by the same model."
       },
       "reuse": {
         "zh": "用 evidence-check 0.2.0 脚本的冻结副本核对每条引文。",
@@ -89,12 +89,12 @@
           "en": "Advance decisions changed by a name swap: 0/240"
         },
         {
-          "zh": "核对误伤正确的“符合”：70/424 → 0/424",
-          "en": "Correct \"met\" verdicts lost to the check: 70/424 → 0/424"
+          "zh": "核对误伤正确的“符合”：70/424 → 0/422",
+          "en": "Correct \"met\" verdicts lost to the check: 70/424 → 0/422"
         },
         {
-          "zh": "第二次独立复核挑出植入的错读：80/80",
-          "en": "Second review catches planted misreadings: 80/80"
+          "zh": "同一个模型再独立复核一次，看得到理由时挑出植入的错读：80/80",
+          "en": "A second, independent pass by the same model, seeing the reason, catches planted misreadings: 80/80"
         }
       ]
     },
@@ -145,8 +145,8 @@
         "en": "Ad review must name the clause and the exact words, not just approve or reject, and re-review the advertiser's revision; a weekly business review must trace a metric change to its cause, with every number traced to a query result."
       },
       "did": {
-        "zh": "做了查条款、引原文、多轮改稿和复审的 Agent，和单个提示词、违禁词表、开源审核模型比较；改稿建议从 v1 迭代到 v1.3；最后换成监管机构和法院定答案的真实广告。经营分析里比较固定脚本、一次提示词和自己查数的 Agent，周报放行前逐段核对数字。",
-        "en": "An agent that looks up clauses, quotes them, revises and re-reviews, compared with a single prompt, a banned-word list and open-source moderation models; the advice iterated from v1 to v1.3; then real ads judged by regulators and courts. For business reviews a fixed script, a single prompt and an agent that queries for itself were compared, with every paragraph's numbers checked before release."
+        "zh": "做了查条款、引原文、多轮改稿和复审的 Agent，和单个提示词、违禁词表、开源审核模型比较；改稿建议从 v1 迭代到 v1.3；最后换成监管机构和法院定答案的真实广告。经营分析在合成的经营数据上比较固定脚本、一次提示词和自己查数的 Agent，周报放行前逐段核对数字。",
+        "en": "An agent that looks up clauses, quotes them, revises and re-reviews, compared with a single prompt, a banned-word list and open-source moderation models; the advice iterated from v1 to v1.3; then real ads judged by regulators and courts. For business reviews, on synthetic business data, a fixed script, a single prompt and an agent that queries for itself were compared, with every paragraph's numbers checked before release."
       },
       "reuse": {
         "zh": "evidence-check 的脚本是 Agent 的一个工具；演示页复用了简历初筛的页面骨架；经营周报的数字核对也直接调用这个脚本。",
@@ -178,20 +178,21 @@
       },
       "projects": [
         "text-on-product",
-        "voice-agent-eval"
+        "voice-agent-eval",
+        "creator-skills"
       ],
       "links": [],
       "purpose": {
-        "zh": "画面里的字写对没有，语音助手被打断、听到“嗯”、背景有人说话时还办不办得对，都要用数字说话。",
-        "en": "Whether the text in an image is right, and whether a voice assistant still gets things right when interrupted, hearing \"mm\" or over background speech, both need numbers."
+        "zh": "画面里的字写对没有，语音助手被打断、听到“嗯”、背景有人说话时还办不办得对，都要用数字说话；创作者交给 AI 助手的字幕、分镜和热点选题，交出去之前也要先核对。",
+        "en": "Whether the text in an image is right, and whether a voice assistant still gets things right when interrupted, hearing \"mm\" or over background speech, both need numbers; so do the subtitles, shot lists and trend cards a creator hands to an assistant, checked before they go out."
       },
       "did": {
-        "zh": "AI 生图：OCR 逐字核对画面里的字，结论写成给商家的创作指南和上线前核对工具。语音：42 段事先定好答案的对话，一项一项试改进，把有效的合在一起。",
-        "en": "Images: OCR checks every character in the picture, and the findings became a merchant guide and a pre-listing checker. Voice: 42 conversations with fixed answers, fixes tried one at a time and the useful ones combined."
+        "zh": "AI 生图：OCR 逐字核对画面里的字，结论写成给商家的创作指南和上线前核对工具。语音：42 段事先定好答案的对话（用户语音是合成的），一项一项试改进，把有效的合在一起。创作者 Skill：三个各带核对脚本的 Agent Skill，和不装 Skill 的同一个模型比。",
+        "en": "Images: OCR checks every character in the picture, and the findings became a merchant guide and a pre-listing checker. Voice: 42 conversations with fixed answers (the user's speech is synthesised), fixes tried one at a time and the useful ones combined. Creator skills: three Agent Skills, each with a checking script, compared with the same model without them."
       },
       "reuse": {
-        "zh": "语音评测照 evidence-check v2 的做法预注册；AI 生图用同样的“逐字核对”思路，有自己的 OCR 核对。",
-        "en": "The voice study preregisters the way evidence-check v2 did; the image study applies the same word-for-word idea with its own OCR check."
+        "zh": "语音评测照 evidence-check v2 的做法预注册；AI 生图用同样的“逐字核对”思路，有自己的 OCR 核对；创作者 Skill 的热点选题复制了 evidence-check 的引文匹配。",
+        "en": "The voice study preregisters the way evidence-check v2 did; the image study applies the same word-for-word idea with its own OCR check.; the creator skills' trend check copies evidence-check's quote matching"
       },
       "result": [
         {
@@ -201,6 +202,10 @@
         {
           "zh": "背景人声时开口：20.4 秒 → 4.56 秒",
           "en": "First audio over background speech: 20.4 s → 4.56 s"
+        },
+        {
+          "zh": "创作者 Skill：改好的字幕文件完全正确，不装 2/20，装上 20/20",
+          "en": "Creator skills: corrected subtitle files fully right, without the skill 2/20, with it 20/20"
         }
       ]
     },
@@ -219,7 +224,7 @@
       },
       "did": {
         "zh": "这个仓库：统一评测卡、Prompt 资产库（版本、上线标签、灰度回放、上线清单、改提示词时自动贴分数）；有据标注流水线把有据审核接成一条审核工作流：核对引文、复核队列、版本、灰度和回滚、每周指标。",
-        "en": "This repository: evaluation cards in one format and a prompt registry (versions, release labels, canary replay, release checklist, scores posted on every prompt change); the Grounded Labelling Pipeline turns Grounded Review into a review workflow: quote checks, a review queue, versions, canary and rollback, weekly metrics."
+        "en": "This repository: evaluation cards in one format and a prompt registry (versions, release labels, canary replay, a release checklist in Chinese, scores posted on every prompt change); the Grounded Labelling Pipeline turns Grounded Review into a review workflow: quote checks, a review queue, versions, canary and rollback, weekly metrics."
       },
       "reuse": {
         "zh": "资产库收的是前面各幕已有的提示词版本；灰度回放用的是有据审核的真实对比数据。",
@@ -227,16 +232,16 @@
       },
       "result": [
         {
-          "zh": "有据标注流水线：判错又自动生效的从 17/332 降到 9/332；第一轮灰度按事先写好的规则在 10% 回滚，改好规则后第二轮放到全量，v2 上线；第 3、4 版都没达到事先写好的采用标准，没上线（回放，不是真实用户）",
-          "en": "Grounded Labelling Pipeline: wrong decisions that went live fell from 17/332 to 9/332; the first canary rolled back at 10% under the rules written beforehand, the second, with fixed rules, reached full release and v2 went live; versions 3 and 4 missed the adoption standard written beforehand and were not released (a replay, not real users)"
+          "zh": "有据标注流水线：判错又自动生效的从 17/332 降到 9/332；第一轮灰度按事先写好的规则在 10% 回滚，改好规则后第二轮放到全量，v2 转为正式版本；第 3、4 版都没达到事先写好的采用标准，没上线（回放，不是真实用户）",
+          "en": "Grounded Labelling Pipeline: wrong decisions that went live fell from 17/332 to 9/332; the first canary rolled back at 10% under the rules written beforehand, the second, with fixed rules, reached full release and v2 was promoted to production; versions 3 and 4 missed the adoption standard written beforehand and were not released (a replay, not real users)"
         },
         {
-          "zh": "10 张评测卡、230 个数字全部由脚本从结果文件算出，0 处和项目记录对照",
-          "en": "10 evaluation cards and 230 numbers, all computed from result files and checked against 0 project records"
+          "zh": "11 张评测卡、255 个数字全部由脚本从结果文件算出",
+          "en": "11 evaluation cards and 255 numbers, all computed by script from the result files"
         },
         {
-          "zh": "灰度回放：有据审核 v1.3 放到全量，v1.2 在放量中途触发回滚（回放，不是真实用户）",
-          "en": "Canary replay: Grounded Review v1.3 reaches full release, v1.2 rolls back partway (a replay, not real users)"
+          "zh": "灰度回放：有据审核 v1.3 放到全量，v1.2 在放量中途触发回滚",
+          "en": "Canary replay: Grounded Review v1.3 reaches full release, v1.2 rolls back partway"
         }
       ]
     }

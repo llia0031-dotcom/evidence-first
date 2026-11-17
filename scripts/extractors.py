@@ -86,7 +86,8 @@ def sa_script_loss(rd, path: str, arm: str, base: str):
     """Correct 'met' verdicts the quote script threw away: false_not_met(arm + script) - false_not_met(arm)."""
     acc = rd.json(path)["accuracy"]
     k = acc[arm]["false_not_met"] - acc[base]["false_not_met"]
-    return {"k": k, "n": acc[arm]["gold_met"]}
+    # Out of the correct "met" verdicts the base arm gave, which is what the check had to keep.
+    return {"k": k, "n": acc[base]["gold_met"] - acc[base]["false_not_met"]}
 
 
 @extractor
@@ -264,6 +265,23 @@ def md_cell(rd, path: str, row: str, col: str, section: str | None = None, part:
         m = FRACTION.search(cell)
         return {"k": int(m.group(1)), "n": int(m.group(2))}
     raise KeyError(f"{path}: row {row!r} not found")
+
+
+@extractor
+def md_match_cell(rd, path: str, match: dict, col: str):
+    """A k/n cell from the one markdown table row whose named columns hold the given values."""
+    hits = []
+    for header, cells in _md_tables(rd.text(path), None):
+        names = [_clean(h) for h in header]
+        if col not in names or not all(k in names for k in match):
+            continue
+        for row in cells if isinstance(cells[0], list) else [cells]:
+            if all(_clean(row[names.index(k)]) == v for k, v in match.items()):
+                hits.append(_clean(row[names.index(col)]))
+    if len(hits) != 1:
+        raise ValueError(f"{path}: {len(hits)} rows match {match}")
+    k, n = hits[0].split("/")
+    return {"k": int(k), "n": int(n)}
 
 
 @extractor
