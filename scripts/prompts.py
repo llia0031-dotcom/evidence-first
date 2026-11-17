@@ -143,7 +143,7 @@ def render(assets: list[dict], labels: dict, values: dict, lang: str) -> str:
             why = fill(bc.tr(ver["why"], lang), values, lang, where)
             if ver.get("source"):
                 src = ver["source"]
-                text = src.split("github.com/llia0031-dotcom/")[-1].replace("/blob/main/", "/") if src.startswith("http") else src
+                text = src.split("github.com/")[-1].split("/", 1)[-1].replace("/blob/main/", "/") if src.startswith("http") else src
                 why += f"<br>{L('出处', 'Source')}{L('：', ': ')}" + (f"[{text}]({src})" if src.startswith("http") else src)
             out.append(f"| **{ver['id']}** | {ver['date']} | {change} | {score_cell} | {dec} | {why} |")
         out.append("")

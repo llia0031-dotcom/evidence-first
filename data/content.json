@@ -1019,22 +1019,26 @@
       {
         "path": "llia0031-dotcom.github.io/assets/cairn/hero-zh.jpg",
         "caption": "首屏",
-        "public": true
+        "public": true,
+        "url": "https://llia0031-dotcom.github.io/assets/cairn/hero-zh.jpg"
       },
       {
         "path": "llia0031-dotcom.github.io/assets/cairn/zh-answer.webp",
         "caption": "先给结论和截止时间，再列页面和校区",
-        "public": true
+        "public": true,
+        "url": "https://llia0031-dotcom.github.io/assets/cairn/zh-answer.webp"
       },
       {
         "path": "llia0031-dotcom.github.io/assets/cairn/zh-quotes.webp",
         "caption": "每个要点下面是逐字核对过的原句",
-        "public": true
+        "public": true,
+        "url": "https://llia0031-dotcom.github.io/assets/cairn/zh-quotes.webp"
       },
       {
         "path": "llia0031-dotcom.github.io/assets/cairn/zh-trace.webp",
         "caption": "这个回答是怎么来的：检索到的段落和分数",
-        "public": true
+        "public": true,
+        "url": "https://llia0031-dotcom.github.io/assets/cairn/zh-trace.webp"
       }
     ]
   },
@@ -1306,22 +1310,26 @@
       {
         "path": "llia0031-dotcom.github.io/assets/cairn/hero-en.jpg",
         "caption": "First screen",
-        "public": true
+        "public": true,
+        "url": "https://llia0031-dotcom.github.io/assets/cairn/hero-en.jpg"
       },
       {
         "path": "llia0031-dotcom.github.io/assets/cairn/en-answer.webp",
         "caption": "The bottom line and deadline first, then the page and campus",
-        "public": true
+        "public": true,
+        "url": "https://llia0031-dotcom.github.io/assets/cairn/en-answer.webp"
       },
       {
         "path": "llia0031-dotcom.github.io/assets/cairn/en-quotes.webp",
         "caption": "Each point over its verified sentence",
-        "public": true
+        "public": true,
+        "url": "https://llia0031-dotcom.github.io/assets/cairn/en-quotes.webp"
       },
       {
         "path": "llia0031-dotcom.github.io/assets/cairn/en-trace.webp",
         "caption": "How the answer was made: retrieved passages and scores",
-        "public": true
+        "public": true,
+        "url": "https://llia0031-dotcom.github.io/assets/cairn/en-trace.webp"
       }
     ]
   },
@@ -1618,22 +1626,26 @@
       {
         "path": "llia0031-dotcom.github.io/assets/tracedesk/hero-zh.jpg",
         "caption": "首屏",
-        "public": true
+        "public": true,
+        "url": "https://llia0031-dotcom.github.io/assets/tracedesk/hero-zh.jpg"
       },
       {
         "path": "llia0031-dotcom.github.io/assets/tracedesk/zh-answer.webp",
         "caption": "一句结论、一张清单、再是证据",
-        "public": true
+        "public": true,
+        "url": "https://llia0031-dotcom.github.io/assets/tracedesk/zh-answer.webp"
       },
       {
         "path": "llia0031-dotcom.github.io/assets/tracedesk/zh-focus.webp",
         "caption": "专注模式只留下回答",
-        "public": true
+        "public": true,
+        "url": "https://llia0031-dotcom.github.io/assets/tracedesk/zh-focus.webp"
       },
       {
         "path": "llia0031-dotcom.github.io/assets/tracedesk/zh-dashboard.webp",
         "caption": "组织者后台：读者问了什么、资料缺什么",
-        "public": true
+        "public": true,
+        "url": "https://llia0031-dotcom.github.io/assets/tracedesk/zh-dashboard.webp"
       }
     ]
   },
@@ -1930,22 +1942,26 @@
       {
         "path": "llia0031-dotcom.github.io/assets/tracedesk/hero-en.jpg",
         "caption": "First screen",
-        "public": true
+        "public": true,
+        "url": "https://llia0031-dotcom.github.io/assets/tracedesk/hero-en.jpg"
       },
       {
         "path": "llia0031-dotcom.github.io/assets/tracedesk/en-answer.webp",
         "caption": "One sentence, a checklist, then the evidence",
-        "public": true
+        "public": true,
+        "url": "https://llia0031-dotcom.github.io/assets/tracedesk/en-answer.webp"
       },
       {
         "path": "llia0031-dotcom.github.io/assets/tracedesk/en-focus.webp",
         "caption": "Focus mode keeps only the answer",
-        "public": true
+        "public": true,
+        "url": "https://llia0031-dotcom.github.io/assets/tracedesk/en-focus.webp"
       },
       {
         "path": "llia0031-dotcom.github.io/assets/tracedesk/en-dashboard.webp",
         "caption": "Organiser dashboard: what readers asked, what the documents lack",
-        "public": true
+        "public": true,
+        "url": "https://llia0031-dotcom.github.io/assets/tracedesk/en-dashboard.webp"
       }
     ]
   },
@@ -5027,24 +5043,28 @@
     ],
     "images": [
       {
-        "path": "grounded-review-public/docs/images/first-screen.jpg",
+        "path": "grounded-review/docs/images/first-screen.jpg",
         "caption": "Demo: every decision names the clause and the words",
-        "public": true
+        "public": true,
+        "url": "https://github.com/llia0031-dotcom/grounded-review/blob/main/docs/images/first-screen.jpg"
       },
       {
-        "path": "grounded-review-public/docs/images/review.jpg",
+        "path": "grounded-review/docs/images/review.jpg",
         "caption": "A rejected ad with the offending words and clause",
-        "public": true
+        "public": true,
+        "url": "https://github.com/llia0031-dotcom/grounded-review/blob/main/docs/images/review.jpg"
       },
       {
-        "path": "grounded-review-public/docs/images/fix-and-resubmit.jpg",
+        "path": "grounded-review/docs/images/fix-and-resubmit.jpg",
         "caption": "The advertiser asks how to fix it, then re-review",
-        "public": true
+        "public": true,
+        "url": "https://github.com/llia0031-dotcom/grounded-review/blob/main/docs/images/fix-and-resubmit.jpg"
       },
       {
-        "path": "grounded-review-public/docs/images/results.jpg",
+        "path": "grounded-review/docs/images/results.jpg",
         "caption": "Results on the held-out set",
-        "public": true
+        "public": true,
+        "url": "https://github.com/llia0031-dotcom/grounded-review/blob/main/docs/images/results.jpg"
       }
     ]
   },
@@ -5286,7 +5306,8 @@
       {
         "path": "llia0031-dotcom.github.io/assets/text-on-product/hero-zh.jpg",
         "caption": "创作指南首屏",
-        "public": true
+        "public": true,
+        "url": "https://llia0031-dotcom.github.io/assets/text-on-product/hero-zh.jpg"
       },
       {
         "path": "text-on-product/media/hero.webp",
@@ -5538,7 +5559,8 @@
       {
         "path": "llia0031-dotcom.github.io/assets/text-on-product/hero-en.jpg",
         "caption": "Guide first screen",
-        "public": true
+        "public": true,
+        "url": "https://llia0031-dotcom.github.io/assets/text-on-product/hero-en.jpg"
       },
       {
         "path": "text-on-product/media/hero.webp",
@@ -7157,61 +7179,61 @@
     ],
     "images": [
       {
-        "path": "evidence-pipeline-public/lark/recording/workflow-run.gif",
+        "path": "grounded-labelling-pipeline/lark/recording/workflow-run.gif",
         "caption": "工作流跑一遍：加广告、写回、送人工、发消息、复核写回（8 张画面拼成，不是连续录像）",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/recording/workflow-run.gif"
       },
       {
-        "path": "evidence-pipeline-public/lark/screenshots/workflow-1-judge-check.png",
+        "path": "grounded-labelling-pipeline/lark/screenshots/workflow-1-judge-check.png",
         "caption": "判断和逐段核对引文",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/workflow-1-judge-check.png"
       },
       {
-        "path": "evidence-pipeline-public/lark/screenshots/workflow-2-route.png",
+        "path": "grounded-labelling-pipeline/lark/screenshots/workflow-2-route.png",
         "caption": "分流并写明原因",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/workflow-2-route.png"
       },
       {
-        "path": "evidence-pipeline-public/lark/screenshots/workflow-review.png",
+        "path": "grounded-labelling-pipeline/lark/screenshots/workflow-review.png",
         "caption": "复核结论写回，分歧记进回归题",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/workflow-review.png"
       },
       {
-        "path": "evidence-pipeline-public/lark/screenshots/results-eval3.png",
+        "path": "grounded-labelling-pipeline/lark/screenshots/results-eval3.png",
         "caption": "第二遍的结果表：脚本的引文核对和平台的引文核对并排",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/results-eval3.png"
       },
       {
-        "path": "evidence-pipeline-public/lark/screenshots/review-queue-eval3.png",
+        "path": "grounded-labelling-pipeline/lark/screenshots/review-queue-eval3.png",
         "caption": "第二遍里工作流送进复核队列的广告",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/review-queue-eval3.png"
       },
       {
-        "path": "evidence-pipeline-public/lark/screenshots/qa-card.png",
+        "path": "grounded-labelling-pipeline/lark/screenshots/qa-card.png",
         "caption": "机器人的政策问答：只按政策库回答，引文逐段核对",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/qa-card.png"
       },
       {
-        "path": "evidence-pipeline-public/lark/screenshots/dashboard.png",
+        "path": "grounded-labelling-pipeline/lark/screenshots/dashboard.png",
         "caption": "多维表格里的指标看板",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/dashboard.png"
       },
       {
-        "path": "evidence-pipeline-public/lark/screenshots/agent-step.png",
+        "path": "grounded-labelling-pipeline/lark/screenshots/agent-step.png",
         "caption": "AI Agent 步骤的设置：提问里引用表里的广告文字，输出格式固定",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/agent-step.png"
       },
       {
-        "path": "evidence-pipeline-public/lark/screenshots/bot-card.png",
+        "path": "grounded-labelling-pipeline/lark/screenshots/bot-card.png",
         "caption": "聊天机器人回的卡片：判断通过，模型拿不准，送人工复核",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/bot-card.png"
@@ -8045,61 +8067,61 @@
     ],
     "images": [
       {
-        "path": "evidence-pipeline-public/lark/recording/workflow-run.gif",
+        "path": "grounded-labelling-pipeline/lark/recording/workflow-run.gif",
         "caption": "One run of the workflow: add an ad, write back, send to review, notify, write the review back (8 browser captures, not a continuous recording).",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/recording/workflow-run.gif"
       },
       {
-        "path": "evidence-pipeline-public/lark/screenshots/workflow-1-judge-check.png",
+        "path": "grounded-labelling-pipeline/lark/screenshots/workflow-1-judge-check.png",
         "caption": "Judging and checking every quote.",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/workflow-1-judge-check.png"
       },
       {
-        "path": "evidence-pipeline-public/lark/screenshots/workflow-2-route.png",
+        "path": "grounded-labelling-pipeline/lark/screenshots/workflow-2-route.png",
         "caption": "Routing, with the reason recorded.",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/workflow-2-route.png"
       },
       {
-        "path": "evidence-pipeline-public/lark/screenshots/workflow-review.png",
+        "path": "grounded-labelling-pipeline/lark/screenshots/workflow-review.png",
         "caption": "The review is written back; disagreements become regression items.",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/workflow-review.png"
       },
       {
-        "path": "evidence-pipeline-public/lark/screenshots/results-eval3.png",
+        "path": "grounded-labelling-pipeline/lark/screenshots/results-eval3.png",
         "caption": "Second-pass results: the script's quote check next to the platform's.",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/results-eval3.png"
       },
       {
-        "path": "evidence-pipeline-public/lark/screenshots/review-queue-eval3.png",
+        "path": "grounded-labelling-pipeline/lark/screenshots/review-queue-eval3.png",
         "caption": "The ads the workflow sent to the review queue in the second pass.",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/review-queue-eval3.png"
       },
       {
-        "path": "evidence-pipeline-public/lark/screenshots/qa-card.png",
+        "path": "grounded-labelling-pipeline/lark/screenshots/qa-card.png",
         "caption": "The bot's policy Q&A: answers only from the policy library, with every quote checked.",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/qa-card.png"
       },
       {
-        "path": "evidence-pipeline-public/lark/screenshots/dashboard.png",
+        "path": "grounded-labelling-pipeline/lark/screenshots/dashboard.png",
         "caption": "The metrics dashboard in the Lark Base.",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/dashboard.png"
       },
       {
-        "path": "evidence-pipeline-public/lark/screenshots/agent-step.png",
+        "path": "grounded-labelling-pipeline/lark/screenshots/agent-step.png",
         "caption": "The AI Agent step: the prompt refers to the ad text in the table, and the output format is fixed.",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/agent-step.png"
       },
       {
-        "path": "evidence-pipeline-public/lark/screenshots/bot-card.png",
+        "path": "grounded-labelling-pipeline/lark/screenshots/bot-card.png",
         "caption": "The card the chat bot replied with: approve, unsure, sent to a human.",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-labelling-pipeline/main/lark/screenshots/bot-card.png"
@@ -8552,13 +8574,13 @@
     ],
     "images": [
       {
-        "path": "grounded-business-review-public/reports/contribution_visits_channel.png",
+        "path": "grounded-business-review/reports/contribution_visits_channel.png",
         "caption": "访问次数的变化按渠道拆开：下降主要来自直播（合成数据）",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-business-review/main/reports/contribution_visits_channel.png"
       },
       {
-        "path": "grounded-business-review-public/dify/screenshots/workflow.png",
+        "path": "grounded-business-review/dify/screenshots/workflow.png",
         "caption": "Dify 里的同一条流程：监控和拆解、写周报、数字核对，没放行就改一次再核对",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-business-review/main/dify/screenshots/workflow.png"
@@ -9011,13 +9033,13 @@
     ],
     "images": [
       {
-        "path": "grounded-business-review-public/reports/contribution_visits_channel.png",
+        "path": "grounded-business-review/reports/contribution_visits_channel.png",
         "caption": "Where the change in visits came from, by channel: the drop comes mostly from live streaming (synthetic data).",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-business-review/main/reports/contribution_visits_channel.png"
       },
       {
-        "path": "grounded-business-review-public/dify/screenshots/workflow.png",
+        "path": "grounded-business-review/dify/screenshots/workflow.png",
         "caption": "The same flow in Dify: monitor and break down, write the review, check the numbers, and revise once if it is held back.",
         "public": true,
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-business-review/main/dify/screenshots/workflow.png"
