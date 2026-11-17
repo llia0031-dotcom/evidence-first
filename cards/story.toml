@@ -61,14 +61,15 @@ reuse = { zh = "evidence-check 的脚本是 Agent 的一个工具；演示页复
 
 [[scene]]
 title = { zh = "生成的内容和交互体验怎么拿证据", en = "How do generated content and interaction get evidence?" }
-projects = ["text-on-product", "voice-agent-eval"]
-purpose = { zh = "画面里的字写对没有，语音助手被打断、听到“嗯”、背景有人说话时还办不办得对，都要用数字说话。", en = "Whether the text in an image is right, and whether a voice assistant still gets things right when interrupted, hearing \"mm\" or over background speech, both need numbers." }
-did = { zh = "AI 生图：OCR 逐字核对画面里的字，结论写成给商家的创作指南和上线前核对工具。语音：42 段事先定好答案的对话（用户语音是合成的），一项一项试改进，把有效的合在一起。", en = "Images: OCR checks every character in the picture, and the findings became a merchant guide and a pre-listing checker. Voice: 42 conversations with fixed answers (the user's speech is synthesised), fixes tried one at a time and the useful ones combined." }
+projects = ["text-on-product", "voice-agent-eval", "creator-skills"]
+purpose = { zh = "画面里的字写对没有，语音助手被打断、听到“嗯”、背景有人说话时还办不办得对，都要用数字说话；创作者交给 AI 助手的字幕、分镜和热点选题，交出去之前也要先核对。", en = "Whether the text in an image is right, and whether a voice assistant still gets things right when interrupted, hearing \"mm\" or over background speech, both need numbers; so do the subtitles, shot lists and trend cards a creator hands to an assistant, checked before they go out." }
+did = { zh = "AI 生图：OCR 逐字核对画面里的字，结论写成给商家的创作指南和上线前核对工具。语音：42 段事先定好答案的对话（用户语音是合成的），一项一项试改进，把有效的合在一起。创作者 Skill：三个各带核对脚本的 Agent Skill，和不装 Skill 的同一个模型比。", en = "Images: OCR checks every character in the picture, and the findings became a merchant guide and a pre-listing checker. Voice: 42 conversations with fixed answers (the user's speech is synthesised), fixes tried one at a time and the useful ones combined. Creator skills: three Agent Skills, each with a checking script, compared with the same model without them." }
 result = [
   { zh = "图片文字全对：Seedream 4.5 {text-on-product.img_exact_45}；视频只有 {text-on-product.video_exact}", en = "Images with exactly right text: Seedream 4.5 {text-on-product.img_exact_45}; videos only {text-on-product.video_exact}" },
   { zh = "背景人声时开口：{voice-agent-eval.babble_base} → {voice-agent-eval.babble_pvad}", en = "First audio over background speech: {voice-agent-eval.babble_base} → {voice-agent-eval.babble_pvad}" },
+  { zh = "创作者 Skill：改好的字幕文件完全正确，不装 {creator-skills.sub_perfect_plain}，装上 {creator-skills.sub_perfect_skill}", en = "Creator skills: corrected subtitle files fully right, without the skill {creator-skills.sub_perfect_plain}, with it {creator-skills.sub_perfect_skill}" },
 ]
-reuse = { zh = "语音评测照 evidence-check v2 的做法预注册；AI 生图用同样的“逐字核对”思路，有自己的 OCR 核对。", en = "The voice study preregisters the way evidence-check v2 did; the image study applies the same word-for-word idea with its own OCR check." }
+reuse = { zh = "语音评测照 evidence-check v2 的做法预注册；AI 生图用同样的“逐字核对”思路，有自己的 OCR 核对；创作者 Skill 的热点选题复制了 evidence-check 的引文匹配。", en = "The voice study preregisters the way evidence-check v2 did; the image study applies the same word-for-word idea with its own OCR check.; the creator skills' trend check copies evidence-check's quote matching" }
 
 [[scene]]
 title = { zh = "怎么变成团队能天天用的能力", en = "How does this become something a team uses every day?" }

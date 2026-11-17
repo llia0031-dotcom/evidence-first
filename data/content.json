@@ -9053,5 +9053,643 @@
         "url": "https://raw.githubusercontent.com/llia0031-dotcom/grounded-business-review/main/dify/screenshots/workflow.png"
       }
     ]
+  },
+  {
+    "id": "creator-skills",
+    "lang": "zh",
+    "order": 11,
+    "name": "创作者 Skill 合集",
+    "status": "public",
+    "layer": "场景：生成类",
+    "period": "2026-11-17",
+    "team": "Liang Liyuan",
+    "stack": "Agent Skills（SKILL.md 加 Python 脚本，只用标准库）、Claude Code 插件、批量接口",
+    "one_line": "三个给短视频创作者用的 Agent Skill，各带一个只用 Python 标准库的核对脚本：字幕对稿把自动字幕逐条和口播稿比、按阅读速度和时间轴标准查；分镜核对查每个镜头的口播念不念得完、稿子一句不少、总时长对得上；热点选题查每张选题卡上的事实，链接打得开、标题对得上、引文在页面里、数字在引文里、文章够新。",
+    "facts": [
+      {
+        "label": "时间",
+        "value": "2026-11-17"
+      },
+      {
+        "label": "团队",
+        "value": "Liang Liyuan"
+      },
+      {
+        "label": "技术",
+        "value": "Agent Skills（SKILL.md 加 Python 脚本，只用标准库）、Claude Code 插件、批量接口"
+      },
+      {
+        "label": "在作品集里的位置",
+        "value": "场景：生成类"
+      },
+      {
+        "label": "状态",
+        "value": "已公开"
+      }
+    ],
+    "links": [
+      {
+        "label": "代码和报告",
+        "url": "https://github.com/llia0031-dotcom/creator-skills"
+      }
+    ],
+    "problem": [
+      "创作者每周都要对字幕、排分镜、追热点；交给 AI 助手做时，字幕会不会被改错、分镜里的口播念不念得完、热点选题卡上的事实站不站得住。"
+    ],
+    "did": [
+      "我做了三个给短视频创作者用的 Agent Skill：字幕对稿、分镜核对、热点选题。每个都带一个核对脚本，结果交出去之前先查一遍。每个都和不装 Skill 的同一个模型在事先定好答案的题上比较，计划和预测跑前冻结。"
+    ],
+    "evaluation": [
+      "**字幕对稿：自动字幕对回口播稿**：10 段字幕，每组 20 次；每段每组 2 遍；claude-haiku-5-5，effort medium，批量接口",
+      "**分镜核对第一轮：请求里写明语速**：10 段稿子，每组 20 次；每段每组 2 遍；claude-haiku-5-5，effort medium，批量接口",
+      "**分镜核对第二轮：请求里不写语速（新写的题）**：10 段稿子，每组 20 次；每段每组 2 遍；claude-haiku-5-5，effort medium，批量接口；按默认语速核对",
+      "**热点选题：每张选题卡上的事实带出处**：10 个热点，每组 20 次；每个每组 2 遍；claude-haiku-5-5，effort medium，批量接口"
+    ],
+    "iteration": [
+      "字幕对稿：两组都能改对听错的字；差别在别的地方，不装 Skill 时常改动时间轴、把口播时临时改的话改回原稿，装了以后两样都不碰。",
+      "分镜核对第一轮（请求里写明语速和计数方法）：不装 Skill 也几乎全过（19/20），预测的“最多一半”没成立，题目到顶了。",
+      "分镜核对第二轮（新写的题，请求里不写语速，像创作者平时那样问）：不装 Skill 一张都没过（0/20），装了全过（20/20）。",
+      "热点选题：两组的出处大多核对得上；不装 Skill 时会给有伤亡的事件出营销卡，数字也偶尔不在引文里。"
+    ],
+    "result": [
+      "三个 Skill 的作用都在核对这一步：字幕不再被改动时间轴和口播原话；分镜的差别要到请求不写语速时才显出来；热点选题遇到有伤亡的事件不出营销卡。代价是多调用几次模型，热点选题的费用约是不装的 2.9 倍。"
+    ],
+    "limitations": [
+      "题目都是合成的，写题时就想着 Skill 能查出来的问题；真实音频、口音、背景音乐和多人说话都没覆盖。建议：上线前拿真实视频的自动字幕和真实热点再测一批。",
+      "一个模型，每题每组两遍，差一两题算噪声。建议：换模型或改 effort 时重新跑同一套题。",
+      "分镜的差别只在请求不写语速时出现：写明语速时不装 Skill 也有 19/20。建议：看用户平时怎么提需求，决定这个 Skill 值不值得默认装上。",
+      "热点选题只查事实的出处和伤亡事件，不评选题的创意和是否适合账号。建议：创意和账号是否合适另定评分规则再测。"
+    ],
+    "headline": [
+      "改好的字幕文件完全正确：装 Skill 20/20，不装 2/20",
+      "请求里不写语速时，分镜四项全过：装 Skill 20/20，不装 0/20；写明语速时不装也有 19/20",
+      "有伤亡的热点事件不出营销选题卡：装 Skill 4/4，不装 0/4"
+    ],
+    "numbers": [
+      {
+        "id": "N1",
+        "metric": "sub_perfect_skill",
+        "label": "改好的字幕文件完全正确（装 Skill）",
+        "value": "20/20",
+        "full": "20/20（100.0%，95% 区间 83.9–100.0%）",
+        "evaluation": "字幕对稿：自动字幕对回口播稿",
+        "sources": [
+          "creator-skills/eval/subtitle-check/results/run-2026-11-17.summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/creator-skills/blob/main/eval/subtitle-check/results/run-2026-11-17.summary.md"
+        ],
+        "kind": "proportion",
+        "k": 20,
+        "n": 20,
+        "rate": 1.0,
+        "ci95": [
+          0.8389,
+          1.0
+        ],
+        "display": "20/20"
+      },
+      {
+        "id": "N2",
+        "metric": "sub_perfect_plain",
+        "label": "改好的字幕文件完全正确（不装 Skill）",
+        "value": "2/20",
+        "full": "2/20（10.0%，95% 区间 2.8–30.1%）",
+        "evaluation": "字幕对稿：自动字幕对回口播稿",
+        "sources": [
+          "creator-skills/eval/subtitle-check/results/run-2026-11-17.summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/creator-skills/blob/main/eval/subtitle-check/results/run-2026-11-17.summary.md"
+        ],
+        "kind": "proportion",
+        "k": 2,
+        "n": 20,
+        "rate": 0.1,
+        "ci95": [
+          0.0279,
+          0.301
+        ],
+        "display": "2/20"
+      },
+      {
+        "id": "N3",
+        "metric": "shot_v2_skill",
+        "label": "四项全过（装 Skill，默认语速）",
+        "value": "20/20",
+        "full": "20/20（100.0%，95% 区间 83.9–100.0%）",
+        "evaluation": "分镜核对第二轮：请求里不写语速（新写的题）",
+        "sources": [
+          "creator-skills/eval/shotlist-check/v2/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/creator-skills/blob/main/eval/shotlist-check/v2/results/summary.md"
+        ],
+        "kind": "proportion",
+        "k": 20,
+        "n": 20,
+        "rate": 1.0,
+        "ci95": [
+          0.8389,
+          1.0
+        ],
+        "display": "20/20"
+      },
+      {
+        "id": "N4",
+        "metric": "shot_v2_plain",
+        "label": "四项全过（不装 Skill，默认语速）",
+        "value": "0/20",
+        "full": "0/20（0.0%，95% 区间 0.0–16.1%）",
+        "evaluation": "分镜核对第二轮：请求里不写语速（新写的题）",
+        "sources": [
+          "creator-skills/eval/shotlist-check/v2/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/creator-skills/blob/main/eval/shotlist-check/v2/results/summary.md"
+        ],
+        "kind": "proportion",
+        "k": 0,
+        "n": 20,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.1611
+        ],
+        "display": "0/20"
+      },
+      {
+        "id": "N5",
+        "metric": "shot_v1_plain",
+        "label": "四项全过（不装 Skill）",
+        "value": "19/20",
+        "full": "19/20（95.0%，95% 区间 76.4–99.1%）",
+        "evaluation": "分镜核对第一轮：请求里写明语速",
+        "sources": [
+          "creator-skills/eval/shotlist-check/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/creator-skills/blob/main/eval/shotlist-check/results/summary.md"
+        ],
+        "kind": "proportion",
+        "k": 19,
+        "n": 20,
+        "rate": 0.95,
+        "ci95": [
+          0.7639,
+          0.9911
+        ],
+        "display": "19/20"
+      },
+      {
+        "id": "N6",
+        "metric": "trend_sensitive_skill",
+        "label": "有伤亡的事件处理得当（装 Skill）",
+        "value": "4/4",
+        "full": "4/4（100.0%，95% 区间 51.0–100.0%）",
+        "evaluation": "热点选题：每张选题卡上的事实带出处",
+        "sources": [
+          "creator-skills/eval/trend-topic-check/results/scores.json"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/creator-skills/blob/main/eval/trend-topic-check/results/scores.json"
+        ],
+        "kind": "proportion",
+        "k": 4,
+        "n": 4,
+        "rate": 1.0,
+        "ci95": [
+          0.5101,
+          1.0
+        ],
+        "display": "4/4"
+      },
+      {
+        "id": "N7",
+        "metric": "trend_sensitive_plain",
+        "label": "有伤亡的事件处理得当（不装 Skill）",
+        "value": "0/4",
+        "full": "0/4（0.0%，95% 区间 0.0–49.0%）",
+        "evaluation": "热点选题：每张选题卡上的事实带出处",
+        "sources": [
+          "creator-skills/eval/trend-topic-check/results/scores.json"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/creator-skills/blob/main/eval/trend-topic-check/results/scores.json"
+        ],
+        "kind": "proportion",
+        "k": 0,
+        "n": 4,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.4899
+        ],
+        "display": "0/4"
+      },
+      {
+        "id": "N8",
+        "metric": "shot_v1_skill",
+        "label": "四项全过（装 Skill）",
+        "value": "20/20",
+        "full": "20/20（100.0%，95% 区间 83.9–100.0%）",
+        "evaluation": "分镜核对第一轮：请求里写明语速",
+        "sources": [
+          "creator-skills/eval/shotlist-check/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/creator-skills/blob/main/eval/shotlist-check/results/summary.md"
+        ],
+        "kind": "proportion",
+        "k": 20,
+        "n": 20,
+        "rate": 1.0,
+        "ci95": [
+          0.8389,
+          1.0
+        ],
+        "display": "20/20"
+      }
+    ],
+    "short_name": "创作者 Skill",
+    "card_title": "给短视频创作者的三个 Skill，交出去前先核对",
+    "assumed": "以为不装 Skill 的分镜最多一半能过",
+    "showed": "写明语速时几乎都过（19/20）；不写语速时一张都没过（0/20）",
+    "result_line": "装上 Skill 后，改好的字幕文件 20/20 完全正确，不装只有 2/20",
+    "key_numbers": [
+      {
+        "id": "N1",
+        "label": "改好的字幕文件全对（不装 2/20）"
+      },
+      {
+        "id": "N3",
+        "label": "不写语速时分镜全过（不装 0/20）"
+      },
+      {
+        "id": "N6",
+        "label": "伤亡事件不出营销卡（不装 0/4）"
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-11-17",
+        "label": "字幕对稿",
+        "text": "不再改时间轴和口播原话",
+        "before": "2/20",
+        "before_id": "N2",
+        "after": "20/20",
+        "after_id": "N1",
+        "adopted": true
+      },
+      {
+        "date": "2026-11-17",
+        "label": "分镜第一轮",
+        "text": "写明语速时不装也几乎全过",
+        "before": "19/20",
+        "before_id": "N5",
+        "after": "20/20",
+        "after_id": "N8"
+      },
+      {
+        "date": "2026-11-17",
+        "label": "分镜第二轮",
+        "text": "不写语速时差别才出来",
+        "before": "0/20",
+        "before_id": "N4",
+        "after": "20/20",
+        "after_id": "N3",
+        "adopted": true
+      },
+      {
+        "date": "2026-11-17",
+        "label": "热点选题",
+        "text": "有伤亡的事件不出营销卡",
+        "before": "0/4",
+        "before_id": "N7",
+        "after": "4/4",
+        "after_id": "N6",
+        "adopted": true
+      }
+    ],
+    "images": []
+  },
+  {
+    "id": "creator-skills",
+    "lang": "en",
+    "order": 11,
+    "name": "Creator skills",
+    "status": "public",
+    "layer": "Scenario: generation",
+    "period": "2026-11-17",
+    "team": "Liang Liyuan",
+    "stack": "Agent Skills (SKILL.md plus standard-library Python scripts), Claude Code plugin, Message Batches API",
+    "one_line": "Three Agent Skills for short-video creators, each with a checking script that uses only the Python standard library.",
+    "facts": [
+      {
+        "label": "When",
+        "value": "2026-11-17"
+      },
+      {
+        "label": "Team",
+        "value": "Liang Liyuan"
+      },
+      {
+        "label": "Stack",
+        "value": "Agent Skills (SKILL.md plus standard-library Python scripts), Claude Code plugin, Message Batches API"
+      },
+      {
+        "label": "Place in the portfolio",
+        "value": "Scenario: generation"
+      },
+      {
+        "label": "Status",
+        "value": "Public"
+      }
+    ],
+    "links": [
+      {
+        "label": "Code and report",
+        "url": "https://github.com/llia0031-dotcom/creator-skills"
+      }
+    ],
+    "problem": [
+      "Creators fix subtitles, plan shot lists and chase trends every week; when an assistant does it, are the subtitles changed wrongly, can each shot's voiceover be spoken in time, and do the facts on a trend card hold up?"
+    ],
+    "did": [
+      "I built three Agent Skills for short-video creators: subtitle checking, shot-list checking and trend topics. Each carries a checking script that runs before anything is handed back. Each was compared with the same model without the skill on items whose answers were fixed in advance, with plans and predictions frozen before the runs."
+    ],
+    "evaluation": [
+      "**Subtitle checking: auto-captions against the script**: 10 subtitle files, 20 runs per arm; claude-haiku-5-5, effort medium, Message Batches API",
+      "**Shot lists, round one: the request states the rates**: 10 scripts, 20 runs per arm; claude-haiku-5-5, effort medium, Message Batches API",
+      "**Shot lists, round two: no rates in the request (new items)**: 10 scripts, 20 runs per arm; claude-haiku-5-5, effort medium, Message Batches API; checked at the default rates",
+      "**Trend topics: every fact on a card carries its source**: 10 trends, 20 runs per arm; claude-haiku-5-5, effort medium, Message Batches API"
+    ],
+    "iteration": [
+      "Subtitles: both arms fix the misheard words; the difference lies elsewhere, as without the skill the model often moves timings or turns ad-libs back into the script, and with it does neither.",
+      "Shot lists, round one (the request states the rates and how to count): even without the skill almost every list passed (19/20); the predicted \"at most half\" did not hold, a ceiling.",
+      "Shot lists, round two (new items, the request gives no rates, as creators usually ask): without the skill none passed (0/20), with it all did (20/20).",
+      "Trend topics: most sources check out in both arms; without the skill the model makes marketing cards for events with casualties, and a number is sometimes missing from its quote."
+    ],
+    "result": [
+      "In all three skills the value is in the check: subtitles no longer lose their timings or the speaker's own words; the shot-list difference only shows when the request gives no rates; trend topics make no marketing cards for events with casualties. The price is a few more model calls; trend topics cost about 2.9× as much as without the skill."
+    ],
+    "limitations": [
+      "All items are synthetic and written with the skills' checks in mind; real audio, accents, music and several speakers are not covered. Recommendation: Before release, test again on real auto-captions and real trends.",
+      "One model and two runs per item per arm; a difference of one or two items is noise. Recommendation: Run the same items again after a model or effort change.",
+      "The shot-list gap appears only when the request gives no rates: with the rates stated, even without the skill 19/20 passed. Recommendation: Look at how users actually ask before deciding whether to install this skill by default.",
+      "Trend topics checks only the sources of facts and casualty events, not the quality of the ideas or their fit to the account. Recommendation: Write separate scoring rules for ideas and account fit, then test."
+    ],
+    "headline": [
+      "Corrected subtitle files fully right: with the skill 20/20, without 2/20",
+      "Shot lists passing all four checks when the request gives no rates: with the skill 20/20, without 0/20; with the rates stated, even without it 19/20",
+      "Trends involving casualties get no marketing cards: with the skill 4/4, without 0/4"
+    ],
+    "numbers": [
+      {
+        "id": "N1",
+        "metric": "sub_perfect_skill",
+        "label": "Corrected files fully right (with the skill)",
+        "value": "20/20",
+        "full": "20/20 (100.0%, 95% CI 83.9–100.0%)",
+        "evaluation": "Subtitle checking: auto-captions against the script",
+        "sources": [
+          "creator-skills/eval/subtitle-check/results/run-2026-11-17.summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/creator-skills/blob/main/eval/subtitle-check/results/run-2026-11-17.summary.md"
+        ],
+        "kind": "proportion",
+        "k": 20,
+        "n": 20,
+        "rate": 1.0,
+        "ci95": [
+          0.8389,
+          1.0
+        ],
+        "display": "20/20"
+      },
+      {
+        "id": "N2",
+        "metric": "sub_perfect_plain",
+        "label": "Corrected files fully right (without the skill)",
+        "value": "2/20",
+        "full": "2/20 (10.0%, 95% CI 2.8–30.1%)",
+        "evaluation": "Subtitle checking: auto-captions against the script",
+        "sources": [
+          "creator-skills/eval/subtitle-check/results/run-2026-11-17.summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/creator-skills/blob/main/eval/subtitle-check/results/run-2026-11-17.summary.md"
+        ],
+        "kind": "proportion",
+        "k": 2,
+        "n": 20,
+        "rate": 0.1,
+        "ci95": [
+          0.0279,
+          0.301
+        ],
+        "display": "2/20"
+      },
+      {
+        "id": "N3",
+        "metric": "shot_v2_skill",
+        "label": "All four checks pass (with the skill, default rates)",
+        "value": "20/20",
+        "full": "20/20 (100.0%, 95% CI 83.9–100.0%)",
+        "evaluation": "Shot lists, round two: no rates in the request (new items)",
+        "sources": [
+          "creator-skills/eval/shotlist-check/v2/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/creator-skills/blob/main/eval/shotlist-check/v2/results/summary.md"
+        ],
+        "kind": "proportion",
+        "k": 20,
+        "n": 20,
+        "rate": 1.0,
+        "ci95": [
+          0.8389,
+          1.0
+        ],
+        "display": "20/20"
+      },
+      {
+        "id": "N4",
+        "metric": "shot_v2_plain",
+        "label": "All four checks pass (without the skill, default rates)",
+        "value": "0/20",
+        "full": "0/20 (0.0%, 95% CI 0.0–16.1%)",
+        "evaluation": "Shot lists, round two: no rates in the request (new items)",
+        "sources": [
+          "creator-skills/eval/shotlist-check/v2/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/creator-skills/blob/main/eval/shotlist-check/v2/results/summary.md"
+        ],
+        "kind": "proportion",
+        "k": 0,
+        "n": 20,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.1611
+        ],
+        "display": "0/20"
+      },
+      {
+        "id": "N5",
+        "metric": "shot_v1_plain",
+        "label": "All four checks pass (without the skill)",
+        "value": "19/20",
+        "full": "19/20 (95.0%, 95% CI 76.4–99.1%)",
+        "evaluation": "Shot lists, round one: the request states the rates",
+        "sources": [
+          "creator-skills/eval/shotlist-check/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/creator-skills/blob/main/eval/shotlist-check/results/summary.md"
+        ],
+        "kind": "proportion",
+        "k": 19,
+        "n": 20,
+        "rate": 0.95,
+        "ci95": [
+          0.7639,
+          0.9911
+        ],
+        "display": "19/20"
+      },
+      {
+        "id": "N6",
+        "metric": "trend_sensitive_skill",
+        "label": "Casualty events handled correctly (with the skill)",
+        "value": "4/4",
+        "full": "4/4 (100.0%, 95% CI 51.0–100.0%)",
+        "evaluation": "Trend topics: every fact on a card carries its source",
+        "sources": [
+          "creator-skills/eval/trend-topic-check/results/scores.json"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/creator-skills/blob/main/eval/trend-topic-check/results/scores.json"
+        ],
+        "kind": "proportion",
+        "k": 4,
+        "n": 4,
+        "rate": 1.0,
+        "ci95": [
+          0.5101,
+          1.0
+        ],
+        "display": "4/4"
+      },
+      {
+        "id": "N7",
+        "metric": "trend_sensitive_plain",
+        "label": "Casualty events handled correctly (without the skill)",
+        "value": "0/4",
+        "full": "0/4 (0.0%, 95% CI 0.0–49.0%)",
+        "evaluation": "Trend topics: every fact on a card carries its source",
+        "sources": [
+          "creator-skills/eval/trend-topic-check/results/scores.json"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/creator-skills/blob/main/eval/trend-topic-check/results/scores.json"
+        ],
+        "kind": "proportion",
+        "k": 0,
+        "n": 4,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.4899
+        ],
+        "display": "0/4"
+      },
+      {
+        "id": "N8",
+        "metric": "shot_v1_skill",
+        "label": "All four checks pass (with the skill)",
+        "value": "20/20",
+        "full": "20/20 (100.0%, 95% CI 83.9–100.0%)",
+        "evaluation": "Shot lists, round one: the request states the rates",
+        "sources": [
+          "creator-skills/eval/shotlist-check/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/creator-skills/blob/main/eval/shotlist-check/results/summary.md"
+        ],
+        "kind": "proportion",
+        "k": 20,
+        "n": 20,
+        "rate": 1.0,
+        "ci95": [
+          0.8389,
+          1.0
+        ],
+        "display": "20/20"
+      }
+    ],
+    "short_name": "Creator skills",
+    "card_title": "Three creator skills that check before they hand back",
+    "assumed": "Expected at most half of the shot lists without the skill to pass",
+    "showed": "With the rates stated almost all passed (19/20); with no rates given none did (0/20)",
+    "result_line": "With the skill, corrected subtitle files were fully right 20/20; without it, 2/20",
+    "key_numbers": [
+      {
+        "id": "N1",
+        "label": "Corrected subtitle files fully right (without the skill: 2/20)"
+      },
+      {
+        "id": "N3",
+        "label": "Shot lists passing with no rates given (without: 0/20)"
+      },
+      {
+        "id": "N6",
+        "label": "No marketing cards for casualty events (without: 0/4)"
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-11-17",
+        "label": "Subtitles",
+        "text": "Timings and spoken words left alone",
+        "before": "2/20",
+        "before_id": "N2",
+        "after": "20/20",
+        "after_id": "N1",
+        "adopted": true
+      },
+      {
+        "date": "2026-11-17",
+        "label": "Shot lists, round one",
+        "text": "With rates stated, near ceiling without it",
+        "before": "19/20",
+        "before_id": "N5",
+        "after": "20/20",
+        "after_id": "N8"
+      },
+      {
+        "date": "2026-11-17",
+        "label": "Shot lists, round two",
+        "text": "The gap shows when no rates are given",
+        "before": "0/20",
+        "before_id": "N4",
+        "after": "20/20",
+        "after_id": "N3",
+        "adopted": true
+      },
+      {
+        "date": "2026-11-17",
+        "label": "Trend topics",
+        "text": "No marketing cards for casualty events",
+        "before": "0/4",
+        "before_id": "N7",
+        "after": "4/4",
+        "after_id": "N6",
+        "adopted": true
+      }
+    ],
+    "images": []
   }
 ]
