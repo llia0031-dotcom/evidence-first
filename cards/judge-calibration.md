@@ -1,6 +1,6 @@
 # 模型裁判校准：评测卡
 
-> 卡片版本 1.1 · 数据截至 2026-11-18 · 已公开
+> 卡片版本 1.2 · 数据截至 2026-11-18 · 已公开
 >
 > 数字由 `scripts/build_cards.py` 从项目的结果文件算出；比例附 Wilson 95% 区间。
 
@@ -143,7 +143,7 @@ v2 最好，采用；v3 和 v2 打平但更贵，v4 更严、把对的也判错�
 | 植入的错误抓到 | 385/390（98.7%，95% 区间 97.0–99.5%） | 越高越好 | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
 | Cohen's kappa | 0.974 | 越高越好 | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
 
-答案清楚的判断题上，裁判几乎全对，植入的错误大多抓到。9 处不一致里 2 处是答案要再斟酌；另有 3 处是题目当初少给了商品页，补上后重跑已全部判对（更正 1）。
+答案清楚的判断题上，裁判几乎全对，植入的错误大多抓到。剩下的 9 处不一致都是裁判判错；原来 12 处里，3 处是题目当初少给了商品页，2 处是出题时漏标了必须写的提示语，两处都已更正重跑（更正 1、2）。
 
 ### 监管和法院的结论（46 条真实广告）
 
@@ -195,13 +195,13 @@ v2 最好，采用；v3 和 v2 打平但更贵，v4 更严、把对的也判错�
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
 | 质检 Agent：错误记录查出 | 119/119（100.0%，95% 区间 96.9–100.0%） | 越高越好 | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
-| 质检 Agent：正确记录被误报 | 6/120（5.0%，95% 区间 2.3–10.5%） | 越低越好 | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
-| 错误率百分之二的批次被放行 | 91.5% | 越高越好 | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
-| 错误率百分之十的批次被放行（目标是不超过一成） | 13.6% | 越低越好 | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
+| 质检 Agent：正确记录被误报 | 7/120（5.8%，95% 区间 2.9–11.6%） | 越低越好 | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
+| 错误率百分之二的批次被放行（目标是至少九成） | 86.6% | 越高越好 | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
+| 错误率百分之十的批次被放行（目标是不超过一成） | 9.4% | 越低越好 | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
 | 事先写好的预测成立 | 8/12（66.7%，95% 区间 39.1–86.2%） | 只作说明 | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
-| 整个项目的接口费用（批量价） | 2.61 美元 | 越低越好 | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
+| 整个项目的接口费用（批量价） | 2.63 美元 | 越低越好 | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
 
-质检 Agent 查出全部错误记录，误报少；验收标准放行了错误率低的批次，但错误率百分之十的批次也有一部分被放行，没达到事先定的目标。
+质检 Agent 查出全部错误记录，误报少；但查漏标不行：答案补标之前，有六条“正确”记录其实缺了必须写的提示语，它只标出一条，它的说明里也没要求查是否标全。验收标准只达到一个目标：错误率百分之二的批次放行得不够（目标至少九成），错误率百分之十的批次达标（目标至多一成）；多一条误报就能让结果翻过来，离两个目标都很近。
 
 ## 评分器校准
 
@@ -213,13 +213,14 @@ v2 最好，采用；v3 和 v2 打平但更贵，v4 更严、把对的也判错�
   - 建议：上线前用真实业务里已经有结论的记录再校准一次，错误样本换不同来源。
 - 监管和法院的结论只有 46 条，要靠外部证据的只有 11 条；区间很宽。
   - 建议：这类结论直接留给人，或者先补齐外部证据再交裁判。
-- 验收标准在错误率百分之十的批次上放行了 13.6%，没达到事先定的目标。
-  - 建议：加大每批抽检量或收紧放行门槛，再在模拟批次上重测。
+- 验收标准在错误率百分之二的批次上只放行了 86.6%，没达到事先定的至少九成；百分之十的批次放行 9.4%，达标。质检 Agent 的误报让标记率变模糊，事后看，单靠调标记率门槛两个目标同时达不到。
+  - 建议：只把复核确认过的标记算进放行门槛（还没测过），再在模拟批次上重测。
 
 ## 版本
 
 - **1.0**（2026-11-18）第一张卡，照公开仓库 judge-calibration 的结果文件写。
 - **1.1**（2026-11-18）跟随项目的更正 1：修改建议题当初少给了商品页，补上后整组重跑；卡上相关的数字按更正后的结果文件重新算出，不一致的说法照实改。提示词版本的选择不变。
+- **1.2**（2026-11-18）跟随项目的更正 2：出题时有几条答案漏标了必须写的提示语，补标后重算；质检 Agent 的误报、验收标准两档批次的放行比例和总费用按新的结果文件重新算出，不一致的说法和验收标准的结论照实改。和定好的答案一致的比例不变。
 
 ## 出处
 

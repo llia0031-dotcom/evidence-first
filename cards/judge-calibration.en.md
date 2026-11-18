@@ -1,6 +1,6 @@
 # Judge Calibration: evaluation card
 
-> Card version 1.1 · Data as of 2026-11-18 · public
+> Card version 1.2 · Data as of 2026-11-18 · public
 >
 > Numbers are computed by `scripts/build_cards.py` from the project's result files; proportions carry a Wilson 95% interval.
 
@@ -143,7 +143,7 @@ v2 was best and adopted; v3 tied at a higher cost and v4 was stricter, failing s
 | Planted errors caught | 385/390 (98.7%, 95% CI 97.0–99.5%) | higher is better | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
 | Cohen's kappa | 0.974 | higher is better | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
 
-On items with clear answers the judge is almost always right and catches most planted errors. Of the 9 disagreements, 2 point at answers worth revisiting; 3 more came from items first built without the product listing, and after it was added and the family judged again they were all right (correction 1).
+On items with clear answers the judge is almost always right and catches most planted errors. The 9 disagreements left are all the judge's errors; of the original 12, 3 came from items first built without the product listing and 2 from required statements left out of the answer key when the items were built, and both were corrected and run again (corrections 1 and 2).
 
 ### Regulator and court decisions (46 real ads)
 
@@ -195,13 +195,13 @@ Padding changed no verdict; assurances changed 2/368, all borderline good answer
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
 | QC agent: wrong records caught | 119/119 (100.0%, 95% CI 96.9–100.0%) | higher is better | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
-| QC agent: correct records flagged | 6/120 (5.0%, 95% CI 2.3–10.5%) | lower is better | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
-| Batches with a two-percent error rate accepted | 91.5% | higher is better | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
-| Batches with a ten-percent error rate accepted (target: at most one in ten) | 13.6% | lower is better | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
+| QC agent: correct records flagged | 7/120 (5.8%, 95% CI 2.9–11.6%) | lower is better | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
+| Batches with a two-percent error rate accepted (target: at least nine in ten) | 86.6% | higher is better | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
+| Batches with a ten-percent error rate accepted (target: at most one in ten) | 9.4% | lower is better | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
 | Predictions written beforehand that held | 8/12 (66.7%, 95% CI 39.1–86.2%) | context only | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
-| Total API cost (batch prices) | US$2.61 | lower is better | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
+| Total API cost (batch prices) | US$2.63 | lower is better | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
 
-The agent caught every wrong record with few false flags; the acceptance standard passed low-error batches, but some ten-percent batches also passed, missing the target set beforehand.
+The agent caught every wrong record with few false flags, but is weak on missing labels: before the answer keys were corrected, six "correct" records in fact lacked a required statement and it flagged one, and its instructions do not ask whether a record is complete. The acceptance standard meets one target of two: too few two-percent batches pass (target: at least nine in ten), while ten-percent batches meet theirs (at most one in ten); one more false flag flips the outcome, so it sits close to both.
 
 ## Grader calibration
 
@@ -213,13 +213,14 @@ The agent caught every wrong record with few false flags; the acceptance standar
   - Recommendation: Before use, calibrate again on real records with settled outcomes, with error samples from other sources.
 - Only 46 regulator and court decisions, 11 of them turning on outside evidence; the intervals are wide.
   - Recommendation: Leave such decisions to people, or gather the outside evidence before handing them to a judge.
-- The acceptance standard passed 13.6% of ten-percent batches, missing the target set beforehand.
-  - Recommendation: Sample more per batch or tighten the pass threshold, then test again on simulated batches.
+- The acceptance standard passed only 86.6% of two-percent batches, short of the at-least-nine-in-ten target set beforehand; ten-percent batches passed 9.4%, meeting theirs. The agent's false flags blur the flag rate, and looking back, no flag-rate threshold alone meets both targets.
+  - Recommendation: Count only flags confirmed on review towards the threshold (not yet tested), then test again on simulated batches.
 
 ## Versions
 
 - **1.0** (2026-11-18) First card, from the result files in the public judge-calibration repository.
 - **1.1** (2026-11-18) Follows the project's correction 1: the revision-advice items were first built without the product listing; with it added the family was judged again, and the affected numbers are recomputed from the corrected result files, with the account of the disagreements rewritten. The prompt-version choice is unchanged.
+- **1.2** (2026-11-18) Follows the project's correction 2: a few answer keys had left out a required statement, and with it added the results were recomputed; the agent's false flags, the acceptance rates for both batch levels and the total cost come from the new result files, and the account of the disagreements and the acceptance verdict are rewritten. Agreement with the fixed answers is unchanged.
 
 ## Provenance
 

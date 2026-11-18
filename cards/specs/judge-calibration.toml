@@ -5,7 +5,7 @@ status = "public"
 links = [
   { label = { zh = "代码和报告", en = "Code and report" }, url = "https://github.com/llia0031-dotcom/judge-calibration" },
 ]
-card_version = "1.1"
+card_version = "1.2"
 updated = "2026-11-18"
 period = "2026-11-18"
 team = "Liang Liyuan"
@@ -22,7 +22,7 @@ headline = [
 summary = { zh = "检验一个模型裁判能信到什么程度。三种标准分开比：出题时定好答案的判断题（审核意见、简历判断、修改建议）、监管机构和法院对真实广告的结论、公开数据集自带的人工评分（Judge's Verdict、SummEval、WMT MQM 中译英）。再按结果把检查分成三类：能用脚本查的、能交给裁判的、必须留给人的，比较“只用裁判”和“先规则、再裁判、拿不准的送人工”两种接法；最后做了一个用两个工具的质检 Agent，并按模拟批次给它定验收标准。没有为这个项目另做人工评分。", en = "Measures how far one model judge can be trusted, against three standards kept apart: items with answers fixed when they were built (review opinions, resume verdicts, revision advice), regulator and court decisions on real ads, and the human ratings that ship with public datasets (Judge's Verdict, SummEval, WMT MQM Chinese to English). The results sort checks into three kinds: for a script, for the judge, and for people; the judge alone is compared with rules first, then the judge, with unsure items sent to people. Last, a quality-check agent with two tools gets an acceptance standard tested on simulated batches. No human ratings were collected for this project." }
 core_link = { zh = "判断题来自有据审核、简历初筛和卖点体检的存档答案；能用规则查的部分照 evidence-check 的做法交给脚本。", en = "The items come from the stored answers of Grounded Review, resume screening and Sellpoint Check; the rule-checkable part goes to a script, the way evidence-check does it." }
 models = { zh = "裁判用 claude-haiku-5-5（effort medium，批量接口）；在 120 道题上用 claude-sonnet-5-5 做第二裁判对照。", en = "The judge is claude-haiku-5-5 (effort medium, Message Batches API); claude-sonnet-5-5 serves as a second judge on 120 items." }
-iteration = { zh = ["裁判提示词 v1 到 v4：v2 在开发集上 {jc_dev_v2}（v1 {jc_dev_v1}），采用；v3 打平、v4 更严，都不采用。", "对定好的答案几乎全对；对监管和法院的结论，要靠外部证据的那一半明显差。", "对公开数据集的人工评分：和每位标注员的一致率 {jc_jv_judge}，落在标注员彼此之间的范围里；流畅度这类主观项和专家相关最低（{jc_se_fluency}）。", "规则、裁判、人工分工：先规则再裁判、拿不准的送人工，比只用裁判漏得少，也更便宜。", "质检 Agent 查出全部错误记录（{jc_qc_caught}），正确记录误报 {jc_qc_false}；验收标准在错误率百分之二的批次上达标，在百分之十的批次上没达到目标。"], en = ["Judge prompt v1 to v4: v2 scored {jc_dev_v2} on the development split (v1 {jc_dev_v1}) and was adopted; v3 tied and v4 was stricter, neither adopted.", "Against fixed answers the judge is almost always right; against regulator and court decisions it is clearly weaker where outside evidence decides.", "Against published human ratings: agreement with each annotator {jc_jv_judge}, within the range annotators reach with one another; subjective dimensions such as fluency correlate least with experts ({jc_se_fluency}).", "Splitting the work: rules first, then the judge, with unsure items to people, misses less than the judge alone and costs less.", "The quality-check agent caught every wrong record ({jc_qc_caught}) and flagged {jc_qc_false} correct ones; the acceptance standard met its target on batches with a two-percent error rate but not on ten-percent batches."] }
+iteration = { zh = ["裁判提示词 v1 到 v4：v2 在开发集上 {jc_dev_v2}（v1 {jc_dev_v1}），采用；v3 打平、v4 更严，都不采用。", "对定好的答案几乎全对；对监管和法院的结论，要靠外部证据的那一半明显差。", "对公开数据集的人工评分：和每位标注员的一致率 {jc_jv_judge}，落在标注员彼此之间的范围里；流畅度这类主观项和专家相关最低（{jc_se_fluency}）。", "规则、裁判、人工分工：先规则再裁判、拿不准的送人工，比只用裁判漏得少，也更便宜。", "质检 Agent 查出全部错误记录（{jc_qc_caught}），正确记录误报 {jc_qc_false}；验收标准在错误率百分之二的批次上没达到目标，在百分之十的批次上达标，两个目标只达到一个。"], en = ["Judge prompt v1 to v4: v2 scored {jc_dev_v2} on the development split (v1 {jc_dev_v1}) and was adopted; v3 tied and v4 was stricter, neither adopted.", "Against fixed answers the judge is almost always right; against regulator and court decisions it is clearly weaker where outside evidence decides.", "Against published human ratings: agreement with each annotator {jc_jv_judge}, within the range annotators reach with one another; subjective dimensions such as fluency correlate least with experts ({jc_se_fluency}).", "Splitting the work: rules first, then the judge, with unsure items to people, misses less than the judge alone and costs less.", "The quality-check agent caught every wrong record ({jc_qc_caught}) and flagged {jc_qc_false} correct ones; the acceptance standard missed its target on batches with a two-percent error rate and met it on ten-percent batches, one target out of two."] }
 conclusion = { zh = "模型裁判在答案清楚、能对回原文的检查上可以放心用，能用规则查的交给脚本更稳；要靠外部证据的结论和主观质量评分，裁判和人差得多，应该留给人。裁判自己说“拿不准”的那部分错得多，正好可以拿来决定送人工。", en = "A model judge can be trusted on checks with clear answers that trace back to the text, and rule-checkable parts are safer with a script; decisions that turn on outside evidence and subjective quality ratings stay far from people and should stay with them. The judge's own \"unsure\" marks the items it gets wrong most often, which makes it a good signal for sending items to people." }
 short_name = { zh = "裁判校准", en = "Judge calibration" }
 card_title = { zh = "模型裁判能信到什么程度，哪些该交给人", en = "How far a model judge can be trusted" }
@@ -96,7 +96,7 @@ items = { zh = "711 道", en = "711 items" }
 runs = { zh = "每题判三次，取多数", en = "Three judgments per item, majority taken" }
 setup = { zh = "claude-haiku-5-5，effort medium，批量接口；提示词 v2", en = "claude-haiku-5-5, effort medium, Message Batches API; prompt v2" }
 frozen = { zh = "`eval/PREREGISTRATION.md`", en = "`eval/PREREGISTRATION.md`" }
-takeaway = { zh = "答案清楚的判断题上，裁判几乎全对，植入的错误大多抓到。9 处不一致里 2 处是答案要再斟酌；另有 3 处是题目当初少给了商品页，补上后重跑已全部判对（更正 1）。", en = "On items with clear answers the judge is almost always right and catches most planted errors. Of the 9 disagreements, 2 point at answers worth revisiting; 3 more came from items first built without the product listing, and after it was added and the family judged again they were all right (correction 1)." }
+takeaway = { zh = "答案清楚的判断题上，裁判几乎全对，植入的错误大多抓到。剩下的 9 处不一致都是裁判判错；原来 12 处里，3 处是题目当初少给了商品页，2 处是出题时漏标了必须写的提示语，两处都已更正重跑（更正 1、2）。", en = "On items with clear answers the judge is almost always right and catches most planted errors. The 9 disagreements left are all the judge's errors; of the original 12, 3 came from items first built without the product listing and 2 from required statements left out of the answer key when the items were built, and both were corrected and run again (corrections 1 and 2)." }
 
   [[eval.metric]]
   id = "jc_constructed"
@@ -282,7 +282,7 @@ items = { zh = "239 条记录；模拟批次", en = "239 records; simulated batc
 runs = { zh = "每条 1 遍", en = "1 run per record" }
 setup = { zh = "claude-haiku-5-5，effort medium，批量接口", en = "claude-haiku-5-5, effort medium, Message Batches API" }
 frozen = { zh = "`eval/PREREGISTRATION.md`", en = "`eval/PREREGISTRATION.md`" }
-takeaway = { zh = "质检 Agent 查出全部错误记录，误报少；验收标准放行了错误率低的批次，但错误率百分之十的批次也有一部分被放行，没达到事先定的目标。", en = "The agent caught every wrong record with few false flags; the acceptance standard passed low-error batches, but some ten-percent batches also passed, missing the target set beforehand." }
+takeaway = { zh = "质检 Agent 查出全部错误记录，误报少；但查漏标不行：答案补标之前，有六条“正确”记录其实缺了必须写的提示语，它只标出一条，它的说明里也没要求查是否标全。验收标准只达到一个目标：错误率百分之二的批次放行得不够（目标至少九成），错误率百分之十的批次达标（目标至多一成）；多一条误报就能让结果翻过来，离两个目标都很近。", en = "The agent caught every wrong record with few false flags, but is weak on missing labels: before the answer keys were corrected, six \"correct\" records in fact lacked a required statement and it flagged one, and its instructions do not ask whether a record is complete. The acceptance standard meets one target of two: too few two-percent batches pass (target: at least nine in ten), while ten-percent batches meet theirs (at most one in ten); one more false flag flips the outcome, so it sits close to both." }
 
   [[eval.metric]]
   id = "jc_qc_caught"
@@ -299,7 +299,7 @@ takeaway = { zh = "质检 Agent 查出全部错误记录，误报少；验收标
 
   [[eval.metric]]
   id = "jc_accept_2"
-  label = { zh = "错误率百分之二的批次被放行", en = "Batches with a two-percent error rate accepted" }
+  label = { zh = "错误率百分之二的批次被放行（目标是至少九成）", en = "Batches with a two-percent error rate accepted (target: at least nine in ten)" }
   extractor = "md_value"
   args = { path = "judge-calibration-public/eval/results/RESULTS.md", section = "Acceptance standard", row = "2%", col = "Accepted", unit = "pct", decimals = 1 }
   direction = "higher"
@@ -334,8 +334,8 @@ text = { zh = "监管和法院的结论只有 46 条，要靠外部证据的只�
 advice = { zh = "这类结论直接留给人，或者先补齐外部证据再交裁判。", en = "Leave such decisions to people, or gather the outside evidence before handing them to a judge." }
 
 [[limitation]]
-text = { zh = "验收标准在错误率百分之十的批次上放行了 {jc_accept_10}，没达到事先定的目标。", en = "The acceptance standard passed {jc_accept_10} of ten-percent batches, missing the target set beforehand." }
-advice = { zh = "加大每批抽检量或收紧放行门槛，再在模拟批次上重测。", en = "Sample more per batch or tighten the pass threshold, then test again on simulated batches." }
+text = { zh = "验收标准在错误率百分之二的批次上只放行了 {jc_accept_2}，没达到事先定的至少九成；百分之十的批次放行 {jc_accept_10}，达标。质检 Agent 的误报让标记率变模糊，事后看，单靠调标记率门槛两个目标同时达不到。", en = "The acceptance standard passed only {jc_accept_2} of two-percent batches, short of the at-least-nine-in-ten target set beforehand; ten-percent batches passed {jc_accept_10}, meeting theirs. The agent's false flags blur the flag rate, and looking back, no flag-rate threshold alone meets both targets." }
+advice = { zh = "只把复核确认过的标记算进放行门槛（还没测过），再在模拟批次上重测。", en = "Count only flags confirmed on review towards the threshold (not yet tested), then test again on simulated batches." }
 
 [[version]]
 id = "1.0"
@@ -346,3 +346,8 @@ text = { zh = "第一张卡，照公开仓库 judge-calibration 的结果文件�
 id = "1.1"
 date = "2026-11-18"
 text = { zh = "跟随项目的更正 1：修改建议题当初少给了商品页，补上后整组重跑；卡上相关的数字按更正后的结果文件重新算出，不一致的说法照实改。提示词版本的选择不变。", en = "Follows the project's correction 1: the revision-advice items were first built without the product listing; with it added the family was judged again, and the affected numbers are recomputed from the corrected result files, with the account of the disagreements rewritten. The prompt-version choice is unchanged." }
+
+[[version]]
+id = "1.2"
+date = "2026-11-18"
+text = { zh = "跟随项目的更正 2：出题时有几条答案漏标了必须写的提示语，补标后重算；质检 Agent 的误报、验收标准两档批次的放行比例和总费用按新的结果文件重新算出，不一致的说法和验收标准的结论照实改。和定好的答案一致的比例不变。", en = "Follows the project's correction 2: a few answer keys had left out a required statement, and with it added the results were recomputed; the agent's false flags, the acceptance rates for both batch levels and the total cost come from the new result files, and the account of the disagreements and the acceptance verdict are rewritten. Agreement with the fixed answers is unchanged." }
