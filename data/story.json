@@ -9,12 +9,12 @@
   },
   "about_stats": [
     {
-      "zh": "14 个项目 / 评测和局限全部公开",
-      "en": "14 projects / evaluations and limits all public"
+      "zh": "15 个项目 / 评测和局限全部公开",
+      "en": "15 projects / evaluations and limits all public"
     },
     {
-      "zh": "68 条改版记录 / 没采用的版本也留着",
-      "en": "68 logged changes / dropped versions included"
+      "zh": "73 条改版记录 / 没采用的版本也留着",
+      "en": "73 logged changes / dropped versions included"
     }
   ],
   "links": [
@@ -232,7 +232,8 @@
       "projects": [
         "grounded-labelling-pipeline",
         "judge-calibration",
-        "labelling-agent-kit"
+        "labelling-agent-kit",
+        "agent-trace-eval"
       ],
       "links": [],
       "purpose": {
@@ -253,8 +254,8 @@
           "en": "Grounded Labelling Pipeline: wrong decisions that went live fell from 17/332 to 9/332; the first canary rolled back at 10% under the rules written beforehand, the second, with fixed rules, reached full release and v2 was promoted to production; versions 3 and 4 missed the adoption standard written beforehand and were not released (a replay, not real users)"
         },
         {
-          "zh": "14 张评测卡、358 个数字全部由脚本从结果文件算出",
-          "en": "14 evaluation cards and 358 numbers, all computed by script from the result files"
+          "zh": "15 张评测卡、387 个数字全部由脚本从结果文件算出",
+          "en": "15 evaluation cards and 387 numbers, all computed by script from the result files"
         },
         {
           "zh": "灰度回放：有据审核 v1.3 放到全量，v1.2 在放量中途触发回滚",
@@ -267,6 +268,10 @@
         {
           "zh": "标注 Agent 工具箱：测试集 A 微平均 F1，短提示词 → 完整 Agent，广告 0.768 → 0.971；按根因改的第二版在没用过的点评上 +0.018，采用，广告区间碰到 0，不采用",
           "en": "Labelling Agent Kit: test A micro F1, short prompt → full agent, ads 0.768 → 0.971; the revision built from root causes gains +0.018 on unseen reviews and is adopted, while on ads the interval reaches 0 and it is not"
+        },
+        {
+          "zh": "Agent 评测台：三个会调工具的 Agent 按步骤评，基线失败 17 次、上线前的关卡只拦下 {agent-trace-eval.ate_gate_caught:k} 次；不装 Skill 时创作流程成功 21/24 → 8/24",
+          "en": "Agent Trace Eval: three tool-using agents scored step by step; of 17 failed base trials the release gates caught {agent-trace-eval.ate_gate_caught:k}; without skills, creator workflow success 21/24 → 8/24"
         }
       ]
     }

@@ -9315,5 +9315,727 @@
         "en": "The revision built from root causes, on unseen test B: reviews +0.018 [+0.005, +0.031], adopted; ads +0.021 [+0.000, +0.048], the interval reaches 0, not adopted"
       }
     ]
+  },
+  {
+    "id": "agent-trace-eval",
+    "order": 15,
+    "layer": "operations",
+    "status": "public",
+    "updated": "2026-11-18",
+    "card_version": "1.0",
+    "card": {
+      "zh": "cards/agent-trace-eval.md",
+      "en": "cards/agent-trace-eval.en.md"
+    },
+    "links": [
+      {
+        "label": {
+          "zh": "代码和报告",
+          "en": "Code and report"
+        },
+        "url": "https://github.com/llia0031-dotcom/agent-trace-eval"
+      }
+    ],
+    "period": {
+      "zh": "2026-11-18",
+      "en": "2026-11-18"
+    },
+    "team": {
+      "zh": "Liang Liyuan",
+      "en": "Liang Liyuan"
+    },
+    "stack": {
+      "zh": "Python、批量接口、过程记录和逐步规则检查、evidence-check、agentevals、Inspect AI 日志",
+      "en": "Python, Message Batches API, step traces with rule checks, evidence-check, agentevals, Inspect AI logs"
+    },
+    "evals": [
+      {
+        "id": "base",
+        "name": {
+          "zh": "基线：三个 Agent 照原样运行",
+          "en": "Base: three agents run unchanged"
+        },
+        "date": "2026-11-18",
+        "metrics": [
+          {
+            "id": "ate_ad_success",
+            "label": {
+              "zh": "广告审核：任务成功",
+              "en": "Ad review: task success"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "agent-trace-eval/eval/results/summary.md"
+            ],
+            "k": 53,
+            "n": 60,
+            "rate": 0.8833,
+            "ci95": [
+              0.7782,
+              0.9423
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+            ]
+          },
+          {
+            "id": "ate_biz_success",
+            "label": {
+              "zh": "经营分析：任务成功",
+              "en": "Business review: task success"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "agent-trace-eval/eval/results/summary.md"
+            ],
+            "k": 47,
+            "n": 54,
+            "rate": 0.8704,
+            "ci95": [
+              0.7558,
+              0.9358
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+            ]
+          },
+          {
+            "id": "ate_cr_success",
+            "label": {
+              "zh": "创作流程：任务成功",
+              "en": "Creator workflow: task success"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "agent-trace-eval/eval/results/summary.md"
+            ],
+            "k": 21,
+            "n": 24,
+            "rate": 0.875,
+            "ci95": [
+              0.69,
+              0.9566
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+            ]
+          },
+          {
+            "id": "ate_ad_pass3",
+            "label": {
+              "zh": "广告审核：三次都成功（pass^3）",
+              "en": "Ad review: all three trials succeed (pass^3)"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "agent-trace-eval/eval/results/summary.md"
+            ],
+            "value": 80.0,
+            "unit": "pct",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+            ]
+          },
+          {
+            "id": "ate_biz_pass3",
+            "label": {
+              "zh": "经营分析：三次都成功（pass^3）",
+              "en": "Business review: all three trials succeed (pass^3)"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "agent-trace-eval/eval/results/summary.md"
+            ],
+            "value": 72.0,
+            "unit": "pct",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+            ]
+          },
+          {
+            "id": "ate_cr_pass3",
+            "label": {
+              "zh": "创作流程：三次都成功（pass^3）",
+              "en": "Creator workflow: all three trials succeed (pass^3)"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "agent-trace-eval/eval/results/summary.md"
+            ],
+            "value": 88.0,
+            "unit": "pct",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+            ]
+          },
+          {
+            "id": "ate_ad_tools",
+            "label": {
+              "zh": "广告审核：工具调用正确",
+              "en": "Ad review: tool calls correct"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "agent-trace-eval/eval/results/summary.md"
+            ],
+            "k": 351,
+            "n": 387,
+            "rate": 0.907,
+            "ci95": [
+              0.8739,
+              0.932
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+            ]
+          },
+          {
+            "id": "ate_ad_refused",
+            "label": {
+              "zh": "广告审核：审核那一轮还调了建议工具",
+              "en": "Ad review: advice tool called in a review turn"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "agent-trace-eval/eval/results/facts.md"
+            ],
+            "k": 36,
+            "n": 60,
+            "rate": 0.6,
+            "ci95": [
+              0.4737,
+              0.7143
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+            ]
+          },
+          {
+            "id": "ate_biz_held",
+            "label": {
+              "zh": "经营分析：被数字核对拦下、要人确认",
+              "en": "Business review: held by the number check for a person"
+            },
+            "direction": "none",
+            "kind": "proportion",
+            "sources": [
+              "agent-trace-eval/eval/results/summary.md"
+            ],
+            "k": 9,
+            "n": 54,
+            "rate": 0.1667,
+            "ci95": [
+              0.0902,
+              0.2874
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "gates",
+        "name": {
+          "zh": "上线前的自动关卡和失败归因（基线）",
+          "en": "Release gates and failure attribution (base)"
+        },
+        "date": "2026-11-18",
+        "metrics": [
+          {
+            "id": "ate_failed",
+            "label": {
+              "zh": "基线失败的试验",
+              "en": "Failed base trials"
+            },
+            "direction": "lower",
+            "kind": "value",
+            "sources": [
+              "agent-trace-eval/eval/results/facts.md"
+            ],
+            "value": 17.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+            ]
+          },
+          {
+            "id": "ate_gate_caught",
+            "label": {
+              "zh": "失败里被关卡拦下的",
+              "en": "Failures the gates caught"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "agent-trace-eval/eval/results/facts.md"
+            ],
+            "k": 1,
+            "n": 17,
+            "rate": 0.0588,
+            "ci95": [
+              0.0105,
+              0.2698
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+            ]
+          },
+          {
+            "id": "ate_gate_through",
+            "label": {
+              "zh": "失败里关卡放过去的",
+              "en": "Failures the gates let through"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "agent-trace-eval/eval/results/facts.md"
+            ],
+            "k": 16,
+            "n": 17,
+            "rate": 0.9412,
+            "ci95": [
+              0.7302,
+              0.9895
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+            ]
+          },
+          {
+            "id": "ate_cause_task",
+            "label": {
+              "zh": "失败里属于题目或答案本身的问题",
+              "en": "Failures caused by the task or its answer key"
+            },
+            "direction": "none",
+            "kind": "proportion",
+            "sources": [
+              "agent-trace-eval/eval/results/facts.md"
+            ],
+            "k": 5,
+            "n": 17,
+            "rate": 0.2941,
+            "ci95": [
+              0.1328,
+              0.5313
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "skills",
+        "name": {
+          "zh": "装 Skill 和不装（创作流程）",
+          "en": "Skills against no skills (creator workflow)"
+        },
+        "date": "2026-11-18",
+        "metrics": [
+          {
+            "id": "ate_cr_noskills",
+            "label": {
+              "zh": "不装 Skill：任务成功",
+              "en": "Without skills: task success"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "agent-trace-eval/eval/results/summary.md"
+            ],
+            "k": 8,
+            "n": 24,
+            "rate": 0.3333,
+            "ci95": [
+              0.1797,
+              0.5329
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+            ]
+          },
+          {
+            "id": "ate_sign_p",
+            "label": {
+              "zh": "按题配对的精确符号检验 p 值",
+              "en": "Exact sign test over tasks, p"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "agent-trace-eval/eval/results/summary.md"
+            ],
+            "value": 0.031,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+            ]
+          },
+          {
+            "id": "ate_cost_ratio",
+            "label": {
+              "zh": "装 Skill 每次试验的费用（按标准价）是不装的几倍",
+              "en": "Cost per trial with the skills, at the standard price, relative to without"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "agent-trace-eval/eval/results/facts.md"
+            ],
+            "value": 2.8,
+            "unit": "x",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "fixes",
+        "name": {
+          "zh": "预注册的两个修复和回归重测",
+          "en": "Two registered fixes and the regression run"
+        },
+        "date": "2026-11-18",
+        "metrics": [
+          {
+            "id": "ate_fixad_refused",
+            "label": {
+              "zh": "修复后：审核那一轮还调了建议工具",
+              "en": "After the fix: advice tool called in a review turn"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "agent-trace-eval/eval/results/facts.md"
+            ],
+            "k": 0,
+            "n": 60,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.0602
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+            ]
+          },
+          {
+            "id": "ate_fixad_tokens",
+            "label": {
+              "zh": "修复后：每次试验的输出 token 变化",
+              "en": "After the fix: change in output tokens per trial"
+            },
+            "direction": "lower",
+            "kind": "value",
+            "sources": [
+              "agent-trace-eval/eval/results/facts.md"
+            ],
+            "value": -15.0,
+            "unit": "pct",
+            "n": null,
+            "signed": true,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+            ]
+          },
+          {
+            "id": "ate_fixad_success",
+            "label": {
+              "zh": "广告审核修复后：任务成功",
+              "en": "Ad review after the fix: task success"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "agent-trace-eval/eval/results/summary.md"
+            ],
+            "k": 54,
+            "n": 60,
+            "rate": 0.9,
+            "ci95": [
+              0.7985,
+              0.9534
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+            ]
+          },
+          {
+            "id": "ate_fixad_tools",
+            "label": {
+              "zh": "广告审核修复后：工具调用正确",
+              "en": "Ad review after the fix: tool calls correct"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "agent-trace-eval/eval/results/summary.md"
+            ],
+            "k": 345,
+            "n": 345,
+            "rate": 1.0,
+            "ci95": [
+              0.989,
+              1.0
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+            ]
+          },
+          {
+            "id": "ate_closure_base",
+            "label": {
+              "zh": "修复前：门店下线定位到商家",
+              "en": "Before the fix: store closures located at the merchant"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "agent-trace-eval/eval/results/facts.md"
+            ],
+            "k": 3,
+            "n": 6,
+            "rate": 0.5,
+            "ci95": [
+              0.1876,
+              0.8124
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+            ]
+          },
+          {
+            "id": "ate_closure_fix",
+            "label": {
+              "zh": "修复后：门店下线定位到商家",
+              "en": "After the fix: store closures located at the merchant"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "agent-trace-eval/eval/results/facts.md"
+            ],
+            "k": 6,
+            "n": 6,
+            "rate": 1.0,
+            "ci95": [
+              0.6097,
+              1.0
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+            ]
+          },
+          {
+            "id": "ate_fixbiz_success",
+            "label": {
+              "zh": "经营分析修复后：任务成功",
+              "en": "Business review after the fix: task success"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "agent-trace-eval/eval/results/summary.md"
+            ],
+            "k": 48,
+            "n": 54,
+            "rate": 0.8889,
+            "ci95": [
+              0.7781,
+              0.9481
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+            ]
+          },
+          {
+            "id": "ate_fixbiz_pass3",
+            "label": {
+              "zh": "经营分析修复后：三次都成功（pass^3）",
+              "en": "Business review after the fix: all three trials succeed (pass^3)"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "agent-trace-eval/eval/results/summary.md"
+            ],
+            "value": 83.0,
+            "unit": "pct",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+            ]
+          },
+          {
+            "id": "ate_fixbiz_worse",
+            "label": {
+              "zh": "经营分析修复后：按题看变差的题数",
+              "en": "Business review after the fix: tasks that got worse"
+            },
+            "direction": "lower",
+            "kind": "value",
+            "sources": [
+              "agent-trace-eval/eval/results/summary.md"
+            ],
+            "value": 2.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "judge",
+        "name": {
+          "zh": "判官校准和总花费",
+          "en": "Judge calibration and total spend"
+        },
+        "date": "2026-11-18",
+        "metrics": [
+          {
+            "id": "ate_judge_calib",
+            "label": {
+              "zh": "校准答案：和写好的结论一致（更正后）",
+              "en": "Calibration: agreement with the written verdicts (after the correction)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "agent-trace-eval/eval/results/facts.md"
+            ],
+            "k": 53,
+            "n": 56,
+            "rate": 0.9464,
+            "ci95": [
+              0.8539,
+              0.9816
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+            ]
+          },
+          {
+            "id": "ate_judge_calib_raw",
+            "label": {
+              "zh": "校准答案：和写好的结论一致（原样）",
+              "en": "Calibration: agreement with the written verdicts (as written)"
+            },
+            "direction": "none",
+            "kind": "proportion",
+            "sources": [
+              "agent-trace-eval/eval/results/facts.md"
+            ],
+            "k": 51,
+            "n": 56,
+            "rate": 0.9107,
+            "ci95": [
+              0.8074,
+              0.9613
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+            ]
+          },
+          {
+            "id": "ate_judge_agree",
+            "label": {
+              "zh": "基线答案：两遍判断一致",
+              "en": "Base answers: the two passes agree"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "agent-trace-eval/eval/results/facts.md"
+            ],
+            "k": 182,
+            "n": 194,
+            "rate": 0.9381,
+            "ci95": [
+              0.895,
+              0.9643
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+            ]
+          },
+          {
+            "id": "ate_cost_total",
+            "label": {
+              "zh": "全部花费（所有运行、判官和试跑）",
+              "en": "Total spend (all runs, the judge and the smoke test)"
+            },
+            "direction": "lower",
+            "kind": "value",
+            "sources": [
+              "agent-trace-eval/eval/results/facts.md"
+            ],
+            "value": 1.48,
+            "unit": "usd",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+            ]
+          }
+        ]
+      }
+    ],
+    "name": {
+      "zh": "Agent 评测台",
+      "en": "Agent Trace Eval"
+    },
+    "problem": {
+      "zh": "会调工具的 Agent 只看最后答案对不对不够：它每一步做了什么，上线前的检查能拦住哪些错，失败从哪一步开始，改了以后会不会把别处弄坏",
+      "en": "Grading only the final answer of a tool-using agent is not enough: what did each step do, which errors do release checks stop, where does a failure start, and does a fix break something else?"
+    },
+    "primary_metric": {
+      "zh": "任务成功率（pass^1）和三次都成功（pass^3）；五个阶段的通过率；关卡拦下和放过的失败",
+      "en": "Task success (pass^1) and all three trials succeeding (pass^3); pass rate per stage; failures the gates caught and let through"
+    },
+    "summary": {
+      "zh": "评一个会调工具的 Agent 每一步做了什么，不只看最后的答案。三个已有的 Agent 照原样运行（有据审核、有据经营分析、创作者 Skill），46 道新题：广告审核 20、经营分析 18、创作流程 8，从一步就能答的题到多轮对话、要拿捏分寸的题分成三档，每题三次。题目和答案在出题时定好，题目、答案、评分代码和配置跑前记下指纹。评分是对过程记录的规则检查，分五个阶段；任务成功只看结果检查，过程检查用来说明它怎么走到这一步。另有上线前的自动关卡（引文核对、数字核对、Skill 自带的检查脚本），关卡拦下的要人确认；失败归因记下每个失败从哪一步开始、为什么、怎么改。",
+      "en": "Evaluates what a tool-using agent does at every step, not only its final answer. Three existing agents run unchanged (Grounded Review, Grounded Business Review, Creator Skills) on 46 new tasks: 20 ad review, 18 business review and 8 creator workflow, in three tiers from one-step tasks to multi-turn ones that need judgement, three trials each. Answers were fixed when the tasks were written, and tasks, answers, rubric code and configurations were hashed before the runs. Scoring is rule checks over the recorded steps in five stages; task success uses the result checks only, and process checks explain how the agent got there. Release gates (quote checks, number checks, the skills' own checking scripts) hold results for a person; the attribution table records where each failure starts, why, and how to fix it."
+    },
+    "did": {
+      "zh": "我给三个已有的、会调工具的 Agent 新写了 46 道题，每题跑三次，把每一步记下来；评分按理解、规划、工具调用、知识引用、结果五个阶段写成规则，再加上线前的自动关卡和失败归因表。看完基线后，跑之前先写下两个修复的预测，再在整组题上做回归重测。",
+      "en": "I wrote 46 new tasks for three existing tool-using agents, ran each three times and recorded every step; scoring is written as rules over five stages (understanding, planning, tool calls, knowledge and citation, result), with release gates and a failure attribution table on top. After the base run, two fixes were registered with predictions before they ran, then re-tested on every task of their family."
+    },
+    "headline": [
+      {
+        "zh": "基线任务成功：广告审核 53/60、经营分析 47/54、创作流程 21/24；三次都成功 80%、72%、88%",
+        "en": "Base task success: ad review 53/60, business review 47/54, creator workflow 21/24; all three trials 80%, 72%, 88%"
+      },
+      {
+        "zh": "关卡管得住格式，管不住判断：基线失败 17 次，关卡拦下 1 次、放过 16 次",
+        "en": "The gates guard form, not judgement: of 17 failed base trials, the gates caught 1 and let 16 through"
+      },
+      {
+        "zh": "装 Skill 和不装：创作流程成功 21/24 对 8/24（符号检验 p = 0.031）",
+        "en": "Skills against none: creator workflow success 21/24 against 8/24 (sign test p = 0.031)"
+      },
+      {
+        "zh": "预注册的修复：审核轮误调建议工具 36/60 → 0/60；门店下线定位到商家 3/6 → 6/6，回归重测查出另一道题变差",
+        "en": "Registered fixes: advice tool called in a review turn 36/60 → 0/60; store closures located at the merchant 3/6 → 6/6, and the regression run caught another task getting worse"
+      }
+    ]
   }
 ]

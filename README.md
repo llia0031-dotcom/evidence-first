@@ -64,11 +64,11 @@
 
 ### 第六幕：怎么变成团队能天天用的能力
 
-**本仓库**（[评测卡](cards/) · [Prompt 资产库](prompts/README.md)）；**有据标注流水线**（[评测卡](cards/grounded-labelling-pipeline.md) · [代码和报告](https://github.com/llia0031-dotcom/grounded-labelling-pipeline)）；**模型裁判校准**（[评测卡](cards/judge-calibration.md) · [代码和报告](https://github.com/llia0031-dotcom/judge-calibration)）；**标注 Agent 工具箱**（[评测卡](cards/labelling-agent-kit.md) · [代码和报告](https://github.com/llia0031-dotcom/labelling-agent-kit) · [结果查看页](https://llia0031-dotcom.github.io/labelling-agent-kit/)）
+**本仓库**（[评测卡](cards/) · [Prompt 资产库](prompts/README.md)）；**有据标注流水线**（[评测卡](cards/grounded-labelling-pipeline.md) · [代码和报告](https://github.com/llia0031-dotcom/grounded-labelling-pipeline)）；**模型裁判校准**（[评测卡](cards/judge-calibration.md) · [代码和报告](https://github.com/llia0031-dotcom/judge-calibration)）；**标注 Agent 工具箱**（[评测卡](cards/labelling-agent-kit.md) · [代码和报告](https://github.com/llia0031-dotcom/labelling-agent-kit) · [结果查看页](https://llia0031-dotcom.github.io/labelling-agent-kit/)）；**Agent 评测台**（[评测卡](cards/agent-trace-eval.md) · [代码和报告](https://github.com/llia0031-dotcom/agent-trace-eval)）
 
 - **问题**：一个个评测做完以后，要让每个能力都有同样格式的评测证据、每次改提示词都能看到新旧分数、上线和回滚有章可循。
 - **我做了什么**：这个仓库：统一评测卡、Prompt 资产库（版本、上线标签、灰度回放、上线清单、改提示词时自动贴分数）；有据标注流水线把有据审核接成一条审核工作流：核对引文、复核队列、版本、灰度和回滚、每周指标。
-- **结果**：有据标注流水线：判错又自动生效的从 17/332 降到 9/332；第一轮灰度按事先写好的规则在 10% 回滚，改好规则后第二轮放到全量，v2 转为正式版本；第 3、4 版都没达到事先写好的采用标准，没上线（回放，不是真实用户）；14 张评测卡、358 个数字全部由脚本从结果文件算出；灰度回放：有据审核 v1.3 放到全量，v1.2 在放量中途触发回滚；模型裁判校准：和定好的答案一致 702/711；先规则、再裁判、拿不准的送人工，漏掉的错误 7/390 → 2/390；标注 Agent 工具箱：测试集 A 微平均 F1，短提示词 → 完整 Agent，广告 0.768 → 0.971；按根因改的第二版在没用过的点评上 +0.018，采用，广告区间碰到 0，不采用
+- **结果**：有据标注流水线：判错又自动生效的从 17/332 降到 9/332；第一轮灰度按事先写好的规则在 10% 回滚，改好规则后第二轮放到全量，v2 转为正式版本；第 3、4 版都没达到事先写好的采用标准，没上线（回放，不是真实用户）；15 张评测卡、387 个数字全部由脚本从结果文件算出；灰度回放：有据审核 v1.3 放到全量，v1.2 在放量中途触发回滚；模型裁判校准：和定好的答案一致 702/711；先规则、再裁判、拿不准的送人工，漏掉的错误 7/390 → 2/390；标注 Agent 工具箱：测试集 A 微平均 F1，短提示词 → 完整 Agent，广告 0.768 → 0.971；按根因改的第二版在没用过的点评上 +0.018，采用，广告区间碰到 0，不采用；Agent 评测台：三个会调工具的 Agent 按步骤评，基线失败 17 次、上线前的关卡只拦下 {agent-trace-eval.ate_gate_caught:k} 次；不装 Skill 时创作流程成功 21/24 → 8/24
 - **和其他项目的连接**：资产库收的是前面各幕已有的提示词版本；灰度回放用的是有据审核的真实对比数据。
 
 ## 结构
@@ -107,6 +107,7 @@ flowchart TB
 | **审核模型实验**<br>2026-11-17 – 2026-11-18 | 场景：判断类 | 按广告政策审核短视频广告，模型要看到什么才够；用合成广告训练的小模型能不能胜任 | 判断正确率；违规抓到的比例；合规广告被错拒的比例 | 视频广告：claude-haiku-5-5 看 16 帧判对 86/96，违规全抓到（64/64）；只给文案时违规只抓到 25/64<br>本机 Qwen3.5-4B 只看 16 帧上识别出的文字判对 80/96，和看整段视频（80/96）一样，每条只要 2.4 秒，看视频要 19.2 秒<br>用合成广告微调的 Qwen3-1.7B 在有据审核的测试题上判对 133/168，和 claude-haiku-5-5（138/168）分不出高下（配对差 -3.0 个百分点） | [代码和报告](https://github.com/llia0031-dotcom/policy-model-lab)<br>[评测卡](cards/policy-model-lab.md) |
 | **模型裁判校准**<br>2026-11-18 | 运营层 | 用模型当裁判打分省事，可它能信到什么程度；哪些检查可以交给它，哪些该用脚本，哪些必须留给人 | 和标准一致的比例；植入的错误抓到的比例；漏掉的错误和送人工的比例 | 和出题时定好的答案一致 702/711，植入的错误抓到 385/390<br>监管和法院结论：从广告本身能看出的 33/35，要靠外部证据的只有 6/11<br>先用规则、再交裁判、拿不准的送人：漏掉的错误 2/390，只用裁判时 7/390；送人工 49/711 | [代码和报告](https://github.com/llia0031-dotcom/judge-calibration)<br>[评测卡](cards/judge-calibration.md) |
 | **标注 Agent 工具箱**<br>2026-11-18 | 运营层 | 标注 Agent 怎么设计标得最好，错在哪些标签、哪类样本上，为什么错，改了以后在新样本上还成不成立 | 微平均 F1（附区间）；每个标签的精确率和召回率；漏判和误判 | 测试集 A 微平均 F1，短提示词 → 完整 Agent：广告 0.768 → 0.971，点评 0.715 → 0.824<br>形似违规其实合规的广告：短提示词打了标签 12/32，完整 Agent 0/32<br>按根因改的第二版，在没用过的测试集 B 上：点评 +0.018 [+0.005, +0.031]，采用；广告 +0.021 [+0.000, +0.048]，区间碰到 0，不采用 | [代码和报告](https://github.com/llia0031-dotcom/labelling-agent-kit) · [结果查看页](https://llia0031-dotcom.github.io/labelling-agent-kit/)<br>[评测卡](cards/labelling-agent-kit.md) |
+| **Agent 评测台**<br>2026-11-18 | 运营层 | 会调工具的 Agent 只看最后答案对不对不够：它每一步做了什么，上线前的检查能拦住哪些错，失败从哪一步开始，改了以后会不会把别处弄坏 | 任务成功率（pass^1）和三次都成功（pass^3）；五个阶段的通过率；关卡拦下和放过的失败 | 基线任务成功：广告审核 53/60、经营分析 47/54、创作流程 21/24；三次都成功 80%、72%、88%<br>关卡管得住格式，管不住判断：基线失败 17 次，关卡拦下 1 次、放过 16 次<br>装 Skill 和不装：创作流程成功 21/24 对 8/24（符号检验 p = 0.031）<br>预注册的修复：审核轮误调建议工具 36/60 → 0/60；门店下线定位到商家 3/6 → 6/6，回归重测查出另一道题变差 | [代码和报告](https://github.com/llia0031-dotcom/agent-trace-eval)<br>[评测卡](cards/agent-trace-eval.md) |
 
 ## 方法
 
@@ -146,6 +147,7 @@ Action 运行时把密钥写进一个临时文件，只由评测脚本读取，�
 | `policy-model-lab-public/` | [policy-model-lab](https://github.com/llia0031-dotcom/policy-model-lab) |
 | `judge-calibration-public/` | [judge-calibration](https://github.com/llia0031-dotcom/judge-calibration) |
 | `labelling-agent-kit-public/` | [labelling-agent-kit](https://github.com/llia0031-dotcom/labelling-agent-kit) |
+| `agent-trace-eval-public/` | [agent-trace-eval](https://github.com/llia0031-dotcom/agent-trace-eval) |
 | `launchpad-tracedesk/` | 没有公开（TraceDesk 卡的来源） |
 | `aigc-scene-eval/` | 没有公开（AI 生图卡的来源） |
 

@@ -505,3 +505,31 @@ def lak_acceptance(rd, path: str, task: str, set: str, code: str):
         raise ValueError(f"{path}: {task}/{set} {code}: no row count")
     return {"k": int(m.group(1)), "n": int(files[0]["rows"])}
 
+
+# --------------------------------------------------------------------------- numbers in running text
+def _numbers_after(rd, path: str, label: str) -> list[float]:
+    """Every number on the rest of the line after a label that appears exactly once."""
+    text = rd.text(path)
+    i = text.find(label)
+    if i < 0 or text.find(label, i + 1) >= 0:
+        raise ValueError(f"{path}: label {label!r} must appear exactly once")
+    line = text[i + len(label):].splitlines()[0].replace(",", "")
+    return [float(m.group(0)) for m in NUMBER.finditer(line)]
+
+
+@extractor
+def text_value(rd, path: str, label: str, nth: int = 0, unit: str = "", decimals: int = 0, signed: bool = False):
+    """The nth number after a label in running text, e.g. "Total spend ...: US$1.48"."""
+    nums = _numbers_after(rd, path, label)
+    return {"kind": "value", "value": nums[nth], "unit": unit, "decimals": decimals, "signed": signed}
+
+
+@extractor
+def text_count_ratio(rd, path: str, label: str, k_nth: int, n_nth: int):
+    """k/n from two whole numbers after a label, e.g. "agree on 182 of 194"."""
+    nums = _numbers_after(rd, path, label)
+    k, n = nums[k_nth], nums[n_nth]
+    if k != int(k) or n != int(n):
+        raise ValueError(f"{path}: {label!r} numbers {k}, {n} are not whole")
+    return {"k": int(k), "n": int(n)}
+

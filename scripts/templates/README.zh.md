@@ -77,6 +77,7 @@ Action 运行时把密钥写进一个临时文件，只由评测脚本读取，�
 | `policy-model-lab-public/` | [policy-model-lab](https://github.com/llia0031-dotcom/policy-model-lab) |
 | `judge-calibration-public/` | [judge-calibration](https://github.com/llia0031-dotcom/judge-calibration) |
 | `labelling-agent-kit-public/` | [labelling-agent-kit](https://github.com/llia0031-dotcom/labelling-agent-kit) |
+| `agent-trace-eval-public/` | [agent-trace-eval](https://github.com/llia0031-dotcom/agent-trace-eval) |
 | `launchpad-tracedesk/` | 没有公开（TraceDesk 卡的来源） |
 | `aigc-scene-eval/` | 没有公开（AI 生图卡的来源） |
 

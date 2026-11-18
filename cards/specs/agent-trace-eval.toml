@@ -1,0 +1,331 @@
+id = "agent-trace-eval"
+order = 15
+layer = "operations"
+status = "public"
+links = [
+  { label = { zh = "代码和报告", en = "Code and report" }, url = "https://github.com/llia0031-dotcom/agent-trace-eval" },
+]
+card_version = "1.0"
+updated = "2026-11-18"
+period = "2026-11-18"
+team = "Liang Liyuan"
+stack = { zh = "Python、批量接口、过程记录和逐步规则检查、evidence-check、agentevals、Inspect AI 日志", en = "Python, Message Batches API, step traces with rule checks, evidence-check, agentevals, Inspect AI logs" }
+did = { zh = "我给三个已有的、会调工具的 Agent 新写了 46 道题，每题跑三次，把每一步记下来；评分按理解、规划、工具调用、知识引用、结果五个阶段写成规则，再加上线前的自动关卡和失败归因表。看完基线后，跑之前先写下两个修复的预测，再在整组题上做回归重测。", en = "I wrote 46 new tasks for three existing tool-using agents, ran each three times and recorded every step; scoring is written as rules over five stages (understanding, planning, tool calls, knowledge and citation, result), with release gates and a failure attribution table on top. After the base run, two fixes were registered with predictions before they ran, then re-tested on every task of their family." }
+name = { zh = "Agent 评测台", en = "Agent Trace Eval" }
+problem = { zh = "会调工具的 Agent 只看最后答案对不对不够：它每一步做了什么，上线前的检查能拦住哪些错，失败从哪一步开始，改了以后会不会把别处弄坏", en = "Grading only the final answer of a tool-using agent is not enough: what did each step do, which errors do release checks stop, where does a failure start, and does a fix break something else?" }
+primary_metric = { zh = "任务成功率（pass^1）和三次都成功（pass^3）；五个阶段的通过率；关卡拦下和放过的失败", en = "Task success (pass^1) and all three trials succeeding (pass^3); pass rate per stage; failures the gates caught and let through" }
+headline = [
+  { zh = "基线任务成功：广告审核 {ate_ad_success}、经营分析 {ate_biz_success}、创作流程 {ate_cr_success}；三次都成功 {ate_ad_pass3}、{ate_biz_pass3}、{ate_cr_pass3}", en = "Base task success: ad review {ate_ad_success}, business review {ate_biz_success}, creator workflow {ate_cr_success}; all three trials {ate_ad_pass3}, {ate_biz_pass3}, {ate_cr_pass3}" },
+  { zh = "关卡管得住格式，管不住判断：基线失败 {ate_failed} 次，关卡拦下 {ate_gate_caught:k} 次、放过 {ate_gate_through:k} 次", en = "The gates guard form, not judgement: of {ate_failed} failed base trials, the gates caught {ate_gate_caught:k} and let {ate_gate_through:k} through" },
+  { zh = "装 Skill 和不装：创作流程成功 {ate_cr_success} 对 {ate_cr_noskills}（符号检验 p = {ate_sign_p}）", en = "Skills against none: creator workflow success {ate_cr_success} against {ate_cr_noskills} (sign test p = {ate_sign_p})" },
+  { zh = "预注册的修复：审核轮误调建议工具 {ate_ad_refused} → {ate_fixad_refused}；门店下线定位到商家 {ate_closure_base} → {ate_closure_fix}，回归重测查出另一道题变差", en = "Registered fixes: advice tool called in a review turn {ate_ad_refused} → {ate_fixad_refused}; store closures located at the merchant {ate_closure_base} → {ate_closure_fix}, and the regression run caught another task getting worse" },
+]
+summary = { zh = "评一个会调工具的 Agent 每一步做了什么，不只看最后的答案。三个已有的 Agent 照原样运行（有据审核、有据经营分析、创作者 Skill），46 道新题：广告审核 20、经营分析 18、创作流程 8，从一步就能答的题到多轮对话、要拿捏分寸的题分成三档，每题三次。题目和答案在出题时定好，题目、答案、评分代码和配置跑前记下指纹。评分是对过程记录的规则检查，分五个阶段；任务成功只看结果检查，过程检查用来说明它怎么走到这一步。另有上线前的自动关卡（引文核对、数字核对、Skill 自带的检查脚本），关卡拦下的要人确认；失败归因记下每个失败从哪一步开始、为什么、怎么改。", en = "Evaluates what a tool-using agent does at every step, not only its final answer. Three existing agents run unchanged (Grounded Review, Grounded Business Review, Creator Skills) on 46 new tasks: 20 ad review, 18 business review and 8 creator workflow, in three tiers from one-step tasks to multi-turn ones that need judgement, three trials each. Answers were fixed when the tasks were written, and tasks, answers, rubric code and configurations were hashed before the runs. Scoring is rule checks over the recorded steps in five stages; task success uses the result checks only, and process checks explain how the agent got there. Release gates (quote checks, number checks, the skills' own checking scripts) hold results for a person; the attribution table records where each failure starts, why, and how to fix it." }
+core_link = { zh = "引文和数字用 evidence-check 的脚本核对；评的是有据审核、有据经营分析和创作者 Skill 三个项目的 Agent，不改它们的代码，补的是它们各自评测没量的过程和关卡。", en = "Quotes and numbers are checked with evidence-check's script; the agents are those of Grounded Review, Grounded Business Review and Creator Skills, run without code changes, and this adds what their own evaluations did not measure: the steps and the gates." }
+models = { zh = "三个 Agent 和判官都用 claude-haiku-5-5（effort medium）；基线第一次试验走普通接口量时延，第二、三次和修复、对照都走批量接口。", en = "claude-haiku-5-5 (effort medium) for all three agents and the judge; the first base trial used the standard API to measure latency, the other trials, fixes and comparisons the Message Batches API." }
+iteration = { zh = ["基线任务成功：广告审核 {ate_ad_success}、经营分析 {ate_biz_success}、创作流程 {ate_cr_success}；广告审核引的原话和条款每次都对，错在结论和类别。", "关卡：事先预测关卡能拦下大多数失败，结果只拦下 {ate_gate_caught}；经营分析的数字核对拦下的大多是对的报告。", "不装 Skill：创作流程成功率从 {ate_cr_success} 掉到 {ate_cr_noskills}；给致死火灾做营销选题这种错，来源核对也放过了。", "修复广告审核：审核轮误调建议工具从 {ate_ad_refused} 降到 {ate_fixad_refused}，输出 token {ate_fixad_tokens}；任务成功没测出差别，提升在过程上。", "修复经营分析：门店下线定位到商家 {ate_closure_base} → {ate_closure_fix}，按事先的规则采用；回归重测发现另一道退款题被定位得过细，下一步把规则从提示词搬进代码。"], en = ["Base task success: ad review {ate_ad_success}, business review {ate_biz_success}, creator workflow {ate_cr_success}; ad review quotes and clauses were always right, its errors are decisions and categories.", "Gates: they were predicted to catch most failures and caught {ate_gate_caught}; most reports the business number check held were correct ones.", "Without skills: creator workflow success fell from {ate_cr_success} to {ate_cr_noskills}; promotional cards on a fatal fire passed the source check.", "Ad fix: the advice tool called in a review turn went from {ate_ad_refused} to {ate_fixad_refused}, output tokens {ate_fixad_tokens}; no measured change in task success, the gain is in the process.", "Business fix: store closures located at the merchant {ate_closure_base} → {ate_closure_fix}, adopted by the registered rule; the regression run found a refund task now located too finely, so the next step moves the rules from the prompt into code."] }
+conclusion = { zh = "上线前的自动关卡查的是形式：引文是不是原话、数字有没有出处、时长对不对；它们放过的，正是判断上的错。会调工具的 Agent 要按步骤评，才能看清失败从哪里开始、哪些是题目本身的问题。照失败写的修复要先写下预测，再在整组题上回归重测，否则修好一处、弄坏另一处也看不出来。", en = "Release gates check form: quotes are the item's own words, numbers have a source, timings fit; what they let through is errors of judgement. A tool-using agent needs scoring by step to see where a failure starts and which failures belong to the task itself. A fix written from a failure needs predictions first and a regression run over the whole family; otherwise one fix breaking something else goes unseen." }
+short_name = { zh = "Agent 评测", en = "Agent trace eval" }
+card_title = { zh = "会调工具的 Agent，每一步做对了吗", en = "Did a tool-using agent get each step right?" }
+assumed = { zh = "以为上线前的自动关卡能拦下大多数失败", en = "Expected the release gates to catch most failures" }
+showed = { zh = "基线失败 {ate_failed} 次，关卡只拦下 {ate_gate_caught:k} 次", en = "Of {ate_failed} failed base trials, the gates caught {ate_gate_caught:k}" }
+result_line = { zh = "关卡只拦下 {ate_gate_caught} 的失败；不装 Skill，成功 {ate_cr_success} → {ate_cr_noskills}", en = "The release gates caught {ate_gate_caught} of failures; without skills, creator success {ate_cr_success} → {ate_cr_noskills}" }
+key_numbers = [{ metric = "ate_gate_caught", label = { zh = "基线失败里被关卡拦下的", en = "Failed base trials the gates caught" } }, { metric = "ate_cr_noskills", label = { zh = "不装 Skill 的创作流程成功（装上 {ate_cr_success}）", en = "Creator workflow success without skills (with them {ate_cr_success})" } }, { metric = "ate_fixad_refused", label = { zh = "修复后审核轮误调建议工具（原来 {ate_ad_refused}）", en = "Advice tool called in a review turn after the fix (before {ate_ad_refused})" } }]
+timeline = [
+  { date = "2026-11-18", label = { zh = "基线", en = "Base run" }, text = { zh = "三类任务成功率接近", en = "Similar success in all three families" }, after = "ate_ad_success" },
+  { date = "2026-11-18", label = { zh = "关卡", en = "Gates" }, text = { zh = "预测拦下大多数失败，只拦下一次", en = "Predicted to catch most failures; caught one" }, after = "ate_gate_caught" },
+  { date = "2026-11-18", label = { zh = "不装 Skill", en = "No skills" }, text = { zh = "创作流程成功率大幅下降", en = "Creator workflow success falls sharply" }, before = "ate_cr_success", after = "ate_cr_noskills" },
+  { date = "2026-11-18", label = { zh = "修复广告审核", en = "Ad fix" }, text = { zh = "误调建议工具降到零，采用", en = "Stray advice calls gone; adopted" }, before = "ate_ad_refused", after = "ate_fixad_refused", adopted = true },
+  { date = "2026-11-18", label = { zh = "修复经营分析", en = "Business fix" }, text = { zh = "门店定位全对，回归查出副作用", en = "Closures all located; regression found a side effect" }, before = "ate_closure_base", after = "ate_closure_fix", adopted = true },
+]
+
+judge = { zh = [
+  "规则查不了的 7 条标准（建议是否讲清、建议是否从原因出发、选题是否贴合账号等）按写好的指南判两遍；判官用 claude-haiku-5-5，和被测的三个 Agent 是同一个模型。",
+  "校准：12 条写好结论的答案上一致 {ate_judge_calib}（原样 {ate_judge_calib_raw}，其中一条写好的结论本身错了，已更正）；基线上两遍判断一致 {ate_judge_agree}。判断项不影响任务成功；没有另做人工评分。",
+], en = [
+  "The 7 criteria rules cannot check (whether advice is clear, follows from a stated cause, suits the account, and so on) are judged twice against a written guide; the judge is claude-haiku-5-5, the same model as the three agents under test.",
+  "Calibration: agreement with 12 answers' written verdicts {ate_judge_calib} ({ate_judge_calib_raw} as written; one written verdict was itself wrong and was corrected); on base the two passes agree on {ate_judge_agree}. Judged items do not affect task success; no human ratings were collected.",
+] }
+
+[uses]
+zh = [
+  "给一个会调工具的 Agent 做上线前评测：按步骤看它在哪一步出错，哪些错关卡拦得住、哪些要靠人。",
+  "改提示词或规则之前：先写下预测，再在整组题上回归重测，确认修好的地方没有把别处弄坏。",
+]
+en = [
+  "Pre-release evaluation of a tool-using agent: see at which step it goes wrong, which errors the gates stop and which need a person.",
+  "Before changing a prompt or rule: write the predictions down, then re-test the whole family to confirm the fix breaks nothing else.",
+]
+
+[out_of_scope]
+zh = [
+  "不证明这三个 Agent 在真实业务里的表现；题目是为这套评测新写的合成或虚构题。",
+  "修复只在写它的那组题上验证过，能不能推广到新题还要新题来测。",
+]
+en = [
+  "Does not show how the three agents do on real work; the tasks are synthetic or fictional, written for this bench.",
+  "The fixes were checked only on the tasks they were written for; new tasks are needed to show they generalise.",
+]
+
+[[eval]]
+id = "base"
+name = { zh = "基线：三个 Agent 照原样运行", en = "Base: three agents run unchanged" }
+date = "2026-11-18"
+data = { zh = "广告审核（中英文广告，含三轮对话：审核、给修改建议、再审新版本）、经营分析（合成的本地生活平台数据，埋好的原因、平静的周、节假日、只问一件事的请求）、创作流程（同一段对话里热点选题、拆分镜、对字幕）。答案在出题时定好，用各 Agent 项目自己的校验和打分代码。", en = "Ad review (Chinese and English ads, including three-turn reviews: review, advice, review of the next version), business review (a synthetic local-services platform with planted causes, quiet weeks, holidays and scoped requests) and a creator workflow (trend topics, a shot list and a subtitle check in one conversation). Answers fixed when the tasks were written, with each agent project's own validators and scorers." }
+items = { zh = "46 道题：广告审核 20、经营分析 18、创作流程 8", en = "46 tasks: 20 ad review, 18 business review, 8 creator workflow" }
+runs = { zh = "每题 3 次", en = "3 trials per task" }
+setup = { zh = "claude-haiku-5-5，effort medium；第一次走普通接口，第二、三次走批量接口", en = "claude-haiku-5-5, effort medium; trial 1 standard API, trials 2 and 3 Message Batches API" }
+frozen = { zh = "`eval/PREREGISTRATION.md`、`eval/frozen.json`", en = "`eval/PREREGISTRATION.md`, `eval/frozen.json`" }
+takeaway = { zh = "三类任务的成功率接近，失败大多出在结果这一步：同一句话贴了两个类别、门店下线定位得太粗、把普通产品参数判成违规。过程上的毛病在答对的试验里也常见：广告审核多数试验在审核那一轮还顺手调了建议工具。", en = "The three families succeed at similar rates, and most failures start at the result: one phrase under two categories, a store closure located too coarsely, an ordinary specification rejected. Process faults are common even in successful trials: most ad review trials also called the advice tool in a review turn." }
+
+  [[eval.metric]]
+  id = "ate_ad_success"
+  label = { zh = "广告审核：任务成功", en = "Ad review: task success" }
+  extractor = "md_cell"
+  args = { path = "agent-trace-eval-public/eval/results/summary.md", section = "Run `base`", row = "Task success (pass^1)", col = "Ad review" }
+
+  [[eval.metric]]
+  id = "ate_biz_success"
+  label = { zh = "经营分析：任务成功", en = "Business review: task success" }
+  extractor = "md_cell"
+  args = { path = "agent-trace-eval-public/eval/results/summary.md", section = "Run `base`", row = "Task success (pass^1)", col = "Business review" }
+
+  [[eval.metric]]
+  id = "ate_cr_success"
+  label = { zh = "创作流程：任务成功", en = "Creator workflow: task success" }
+  extractor = "md_cell"
+  args = { path = "agent-trace-eval-public/eval/results/summary.md", section = "Run `base`", row = "Task success (pass^1)", col = "Creator workflow" }
+
+  [[eval.metric]]
+  id = "ate_ad_pass3"
+  label = { zh = "广告审核：三次都成功（pass^3）", en = "Ad review: all three trials succeed (pass^3)" }
+  extractor = "md_value"
+  args = { path = "agent-trace-eval-public/eval/results/summary.md", section = "Run `base`", row = "pass^3 (all three trials succeed)", col = "Ad review", unit = "pct", decimals = 0 }
+
+  [[eval.metric]]
+  id = "ate_biz_pass3"
+  label = { zh = "经营分析：三次都成功（pass^3）", en = "Business review: all three trials succeed (pass^3)" }
+  extractor = "md_value"
+  args = { path = "agent-trace-eval-public/eval/results/summary.md", section = "Run `base`", row = "pass^3 (all three trials succeed)", col = "Business review", unit = "pct", decimals = 0 }
+
+  [[eval.metric]]
+  id = "ate_cr_pass3"
+  label = { zh = "创作流程：三次都成功（pass^3）", en = "Creator workflow: all three trials succeed (pass^3)" }
+  extractor = "md_value"
+  args = { path = "agent-trace-eval-public/eval/results/summary.md", section = "Run `base`", row = "pass^3 (all three trials succeed)", col = "Creator workflow", unit = "pct", decimals = 0 }
+
+  [[eval.metric]]
+  id = "ate_ad_tools"
+  label = { zh = "广告审核：工具调用正确", en = "Ad review: tool calls correct" }
+  extractor = "md_cell"
+  args = { path = "agent-trace-eval-public/eval/results/summary.md", section = "Run `base`", row = "Tool calls correct", col = "Ad review" }
+
+  [[eval.metric]]
+  id = "ate_ad_refused"
+  label = { zh = "广告审核：审核那一轮还调了建议工具", en = "Ad review: advice tool called in a review turn" }
+  extractor = "text_fraction"
+  args = { path = "agent-trace-eval-public/eval/results/facts.md", label = "`base`: trials with submit_advice called in a review turn" }
+  direction = "lower"
+  note = { zh = "被运行框架拒掉，没有影响任务成功", en = "refused by the harness; it never failed a task" }
+
+  [[eval.metric]]
+  id = "ate_biz_held"
+  label = { zh = "经营分析：被数字核对拦下、要人确认", en = "Business review: held by the number check for a person" }
+  extractor = "md_cell"
+  args = { path = "agent-trace-eval-public/eval/results/summary.md", section = "Run `base`", row = "Needs human confirmation (an automatic gate held it)", col = "Business review" }
+  direction = "none"
+
+[[eval]]
+id = "gates"
+name = { zh = "上线前的自动关卡和失败归因（基线）", en = "Release gates and failure attribution (base)" }
+date = "2026-11-18"
+data = { zh = "关卡是上线前会跑的检查：引文核对、数字核对、Skill 自带的检查脚本，拦下的要人确认。每个失败的试验，最早没过的那条检查定阶段；原因来自每条检查的规则，或读完过程记录后写下的说明。", en = "The gates are the checks a deployment runs before release: quote checks, number checks and the skills' own checking scripts; what they hold goes to a person. For each failed trial the earliest failing check gives the stage, and the cause comes from a rule per check or a note written after reading the trace." }
+items = { zh = "基线 138 次试验里失败的那些", en = "The failed trials among 138 base trials" }
+runs = { zh = "每题 3 次", en = "3 trials per task" }
+setup = { zh = "claude-haiku-5-5，effort medium", en = "claude-haiku-5-5, effort medium" }
+frozen = { zh = "`eval/PREREGISTRATION.md`", en = "`eval/PREREGISTRATION.md`" }
+takeaway = { zh = "关卡几乎什么也没拦下：广告审核每次失败引的原话和条款都是真的，错在结论；经营分析的数字核对拦下的多是对的报告，反而加了复核量。失败里有一部分是题目或答案本身的问题，照实留在分数里并写明原因。", en = "The gates caught almost nothing: every failed ad review cites real words and real clauses, and the reading is what is wrong; the business number check held more correct reports than failures, adding review load. Some failures are problems of the tasks or answer keys; they stay in the scores, with the reason stated." }
+
+  [[eval.metric]]
+  id = "ate_failed"
+  label = { zh = "基线失败的试验", en = "Failed base trials" }
+  extractor = "text_value"
+  args = { path = "agent-trace-eval-public/eval/results/facts.md", label = "Base failed trials", nth = 0 }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "ate_gate_caught"
+  label = { zh = "失败里被关卡拦下的", en = "Failures the gates caught" }
+  extractor = "text_count_ratio"
+  args = { path = "agent-trace-eval-public/eval/results/facts.md", label = "Base failed trials", k_nth = 1, n_nth = 0 }
+
+  [[eval.metric]]
+  id = "ate_gate_through"
+  label = { zh = "失败里关卡放过去的", en = "Failures the gates let through" }
+  extractor = "text_count_ratio"
+  args = { path = "agent-trace-eval-public/eval/results/facts.md", label = "Base failed trials", k_nth = 2, n_nth = 0 }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "ate_cause_task"
+  label = { zh = "失败里属于题目或答案本身的问题", en = "Failures caused by the task or its answer key" }
+  extractor = "text_count_ratio"
+  args = { path = "agent-trace-eval-public/eval/results/facts.md", label = "Base failed trials", k_nth = 3, n_nth = 0 }
+  direction = "none"
+
+[[eval]]
+id = "skills"
+name = { zh = "装 Skill 和不装（创作流程）", en = "Skills against no skills (creator workflow)" }
+date = "2026-11-18"
+data = { zh = "同样的 8 道创作流程题，一组装上三个创作者 Skill 和它们的检查工具，一组不装；按题配对，用精确符号检验。", en = "The same 8 creator-workflow tasks, once with the three creator skills and their checking tools loaded and once without; paired by task, exact sign test." }
+items = { zh = "8 道题", en = "8 tasks" }
+runs = { zh = "每题 3 次", en = "3 trials per task" }
+setup = { zh = "claude-haiku-5-5，effort medium，批量接口", en = "claude-haiku-5-5, effort medium, Message Batches API" }
+frozen = { zh = "`eval/PREREGISTRATION.md`", en = "`eval/PREREGISTRATION.md`" }
+takeaway = { zh = "不装 Skill 时，分镜凭感觉定时长、字幕把临时改说的话改回稿子，还给致死火灾出了营销选题，而且引的都是真实、最新的网页，来源核对照样放过：这类政策上的错，形式检查拦不住。", en = "Without the skills, shots are sized by feel, captions restore the script over what was actually said, and promotional cards were made on a fatal fire while citing real, current pages, so the source check passed them: a policy failure no form check can catch." }
+
+  [[eval.metric]]
+  id = "ate_cr_noskills"
+  label = { zh = "不装 Skill：任务成功", en = "Without skills: task success" }
+  extractor = "md_cell"
+  args = { path = "agent-trace-eval-public/eval/results/summary.md", section = "Run `no-skills`", row = "Task success (pass^1)", col = "Creator workflow" }
+
+  [[eval.metric]]
+  id = "ate_sign_p"
+  label = { zh = "按题配对的精确符号检验 p 值", en = "Exact sign test over tasks, p" }
+  extractor = "text_value"
+  args = { path = "agent-trace-eval-public/eval/results/summary.md", label = "Per task, no-skills better on", nth = 3, decimals = 3 }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "ate_cost_ratio"
+  label = { zh = "装 Skill 每次试验的费用（按标准价）是不装的几倍", en = "Cost per trial with the skills, at the standard price, relative to without" }
+  extractor = "text_value"
+  args = { path = "agent-trace-eval-public/eval/results/facts.md", label = "Creator, base against no-skills:", nth = 3, unit = "x", decimals = 1 }
+  direction = "none"
+
+[[eval]]
+id = "fixes"
+name = { zh = "预注册的两个修复和回归重测", en = "Two registered fixes and the regression run" }
+date = "2026-11-18"
+data = { zh = "看完基线后，两个修复各在 Agent 的说明里加两条规则，跑之前写下预测和采用规则。广告审核：一句话只记一处违规、归到最具体的类别；每个请求只用它要的那个收尾工具。经营分析：门店下线的原因定位到商家；只把监控报警的切片当原因。各在整组题上重跑三次，这就是回归测试。", en = "After the base run, each fix adds two rules to the agent's instructions, with predictions and an adoption rule written before it ran. Ad review: one violation per phrase, under the most specific category; finish each request with the one tool it asks for. Business review: locate a store-closure cause at the merchant; name only slices the monitor flagged as causes. Each re-ran its whole family three times: the regression test." }
+items = { zh = "广告审核 20 道；经营分析 18 道", en = "20 ad review tasks; 18 business review tasks" }
+runs = { zh = "每题 3 次", en = "3 trials per task" }
+setup = { zh = "claude-haiku-5-5，effort medium，批量接口", en = "claude-haiku-5-5, effort medium, Message Batches API" }
+frozen = { zh = "`eval/PREREGISTRATION.md`（变更记录，2026-11-18 20:48）、`eval/frozen-changes.json`", en = "`eval/PREREGISTRATION.md` (change log, 2026-11-18 20:48), `eval/frozen-changes.json`" }
+takeaway = { zh = "两个修复都按事先的规则采用。广告审核的预测全部成立，提升在过程上，任务成功没测出差别。经营分析门店定位全对，但“只认报警切片”那条没管住，还让一道退款题被定位到某一家连锁、比实际更细：照失败写的规则会带出副作用，下一步把两条规则从提示词搬进代码。", en = "Both fixes were adopted by the registered rule. Every ad prediction held; the gain is in the process, with no measured change in task success. The business fix located every store closure, but the flagged-slice rule did not hold, and a refund task was narrowed to one chain, finer than the event: a rule written from a failure has side effects, so the next step moves both rules from the prompt into code." }
+
+  [[eval.metric]]
+  id = "ate_fixad_refused"
+  label = { zh = "修复后：审核那一轮还调了建议工具", en = "After the fix: advice tool called in a review turn" }
+  extractor = "text_fraction"
+  args = { path = "agent-trace-eval-public/eval/results/facts.md", label = "`fix-ad`: trials with submit_advice called in a review turn" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "ate_fixad_tokens"
+  label = { zh = "修复后：每次试验的输出 token 变化", en = "After the fix: change in output tokens per trial" }
+  extractor = "text_value"
+  args = { path = "agent-trace-eval-public/eval/results/facts.md", label = "fix-ad against base: output tokens per trial", nth = 2, unit = "pct", signed = true }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "ate_fixad_success"
+  label = { zh = "广告审核修复后：任务成功", en = "Ad review after the fix: task success" }
+  extractor = "md_cell"
+  args = { path = "agent-trace-eval-public/eval/results/summary.md", section = "Run `fix-ad`", row = "Task success (pass^1)", col = "Ad review" }
+
+  [[eval.metric]]
+  id = "ate_fixad_tools"
+  label = { zh = "广告审核修复后：工具调用正确", en = "Ad review after the fix: tool calls correct" }
+  extractor = "md_cell"
+  args = { path = "agent-trace-eval-public/eval/results/summary.md", section = "Run `fix-ad`", row = "Tool calls correct", col = "Ad review" }
+
+  [[eval.metric]]
+  id = "ate_closure_base"
+  label = { zh = "修复前：门店下线定位到商家", en = "Before the fix: store closures located at the merchant" }
+  extractor = "text_fraction"
+  args = { path = "agent-trace-eval-public/eval/results/facts.md", label = "`base`: store closures located at the merchant" }
+
+  [[eval.metric]]
+  id = "ate_closure_fix"
+  label = { zh = "修复后：门店下线定位到商家", en = "After the fix: store closures located at the merchant" }
+  extractor = "text_fraction"
+  args = { path = "agent-trace-eval-public/eval/results/facts.md", label = "`fix-biz`: store closures located at the merchant" }
+
+  [[eval.metric]]
+  id = "ate_fixbiz_success"
+  label = { zh = "经营分析修复后：任务成功", en = "Business review after the fix: task success" }
+  extractor = "md_cell"
+  args = { path = "agent-trace-eval-public/eval/results/summary.md", section = "Run `fix-biz`", row = "Task success (pass^1)", col = "Business review" }
+
+  [[eval.metric]]
+  id = "ate_fixbiz_pass3"
+  label = { zh = "经营分析修复后：三次都成功（pass^3）", en = "Business review after the fix: all three trials succeed (pass^3)" }
+  extractor = "md_value"
+  args = { path = "agent-trace-eval-public/eval/results/summary.md", section = "Run `fix-biz`", row = "pass^3 (all three trials succeed)", col = "Business review", unit = "pct", decimals = 0 }
+
+  [[eval.metric]]
+  id = "ate_fixbiz_worse"
+  label = { zh = "经营分析修复后：按题看变差的题数", en = "Business review after the fix: tasks that got worse" }
+  extractor = "text_value"
+  args = { path = "agent-trace-eval-public/eval/results/summary.md", label = "Per task, fix-biz better on", nth = 1 }
+  direction = "lower"
+
+[[eval]]
+id = "judge"
+name = { zh = "判官校准和总花费", en = "Judge calibration and total spend" }
+date = "2026-11-18"
+data = { zh = "规则查不了的 7 条标准，按写好的指南每个答案判两遍；先在 12 条写好结论的校准答案上检验，再判基线的答案。判断项不影响任务成功。", en = "The 7 criteria rules cannot check are judged twice per answer against a written guide, first on 12 calibration answers with written verdicts, then on the base answers. Judged items do not affect task success." }
+items = { zh = "校准答案 12 条；基线答案 88 条", en = "12 calibration answers; 88 base answers" }
+runs = { zh = "每个答案判 2 遍", en = "2 judgements per answer" }
+setup = { zh = "claude-haiku-5-5，effort medium", en = "claude-haiku-5-5, effort medium" }
+frozen = { zh = "`eval/PREREGISTRATION.md`", en = "`eval/PREREGISTRATION.md`" }
+takeaway = { zh = "两遍判断大多一致。判断项补出了规则看不见的两件事：改好的广告新加了需要证明的卖点词，规则检查却通过了；平静的周里“继续观察”被判不合格，是指南本身没写到这种情况，不是 Agent 的问题。", en = "The two passes mostly agree. The judged items add two things rules cannot see: corrected ads that add new selling words needing proof pass the rule checks; and \"keep watching\" in quiet weeks fails, a gap in the guide rather than in the agent." }
+
+  [[eval.metric]]
+  id = "ate_judge_calib"
+  label = { zh = "校准答案：和写好的结论一致（更正后）", en = "Calibration: agreement with the written verdicts (after the correction)" }
+  extractor = "text_count_ratio"
+  args = { path = "agent-trace-eval-public/eval/results/facts.md", label = "Judge calibration:", k_nth = 3, n_nth = 4 }
+
+  [[eval.metric]]
+  id = "ate_judge_calib_raw"
+  label = { zh = "校准答案：和写好的结论一致（原样）", en = "Calibration: agreement with the written verdicts (as written)" }
+  extractor = "text_count_ratio"
+  args = { path = "agent-trace-eval-public/eval/results/facts.md", label = "Judge calibration:", k_nth = 1, n_nth = 2 }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "ate_judge_agree"
+  label = { zh = "基线答案：两遍判断一致", en = "Base answers: the two passes agree" }
+  extractor = "text_count_ratio"
+  args = { path = "agent-trace-eval-public/eval/results/facts.md", label = "Judge on base:", k_nth = 1, n_nth = 2 }
+
+  [[eval.metric]]
+  id = "ate_cost_total"
+  label = { zh = "全部花费（所有运行、判官和试跑）", en = "Total spend (all runs, the judge and the smoke test)" }
+  extractor = "text_value"
+  args = { path = "agent-trace-eval-public/eval/results/facts.md", label = "Total spend, all runs, the judge and the smoke test:", unit = "usd", decimals = 2 }
+  direction = "lower"
+
+[[limitation]]
+text = { zh = "每题只跑三次，题目是为这套评测新写的，区间很宽：经营分析任务成功 {ate_biz_success:full}；按题比较只靠三次试验。", en = "Three trials per task over tasks written for this bench, so intervals are wide: business review task success {ate_biz_success:full}; per-task comparisons rest on three trials each." }
+advice = { zh = "重要的结论多跑几次、加新题再确认。", en = "Confirm the important findings with more trials and new tasks." }
+
+[[limitation]]
+text = { zh = "题目是合成或虚构的，出自运行它的同一个项目；有两道题的题目或答案本身有问题，照实留在分数里。", en = "The tasks are synthetic or fictional and come from the same project that runs them; two have a problem in the task or the key, kept in the scores." }
+advice = { zh = "给那两道题改名或重建后重跑，并用真实业务里已有结论的样本另建一组题。", en = "Fix and re-run those two tasks, and build another set from real work with settled outcomes." }
+
+[[limitation]]
+text = { zh = "判官和被测的 Agent 是同一个模型，指南在平静的周上有漏洞；判断项不影响任务成功，也没有另做人工评分。", en = "The judge is the model under evaluation, and its guide has a gap on quiet weeks; judged items do not affect task success, and no human ratings were collected." }
+advice = { zh = "补上指南的漏洞，换一个不同的模型做第二判官对照。", en = "Close the gap in the guide and add a second judge from a different model." }
+
+[[limitation]]
+text = { zh = "两个修复只在写它们的那组题上验证过；时延只来自基线第一次走普通接口的试验，每题一次。", en = "The fixes were checked only on the tasks they were written for; latency comes from the base standard-API trials only, one per task." }
+advice = { zh = "用新题检验修复能不能推广，再把规则搬进代码后重测退款类的题。", en = "Test the fixes on new tasks, and re-test the refund tasks after the rules move into code." }
+
+[[version]]
+id = "1.0"
+date = "2026-11-18"
+text = { zh = "第一张卡，照公开仓库 agent-trace-eval 的结果文件写。", en = "First card, from the result files in the public agent-trace-eval repository." }

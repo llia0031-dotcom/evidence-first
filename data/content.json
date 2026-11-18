@@ -13023,5 +13023,967 @@
       }
     ],
     "images": []
+  },
+  {
+    "id": "agent-trace-eval",
+    "lang": "zh",
+    "order": 15,
+    "name": "Agent 评测台",
+    "status": "public",
+    "layer": "运营层",
+    "period": "2026-11-18",
+    "team": "Liang Liyuan",
+    "stack": "Python、批量接口、过程记录和逐步规则检查、evidence-check、agentevals、Inspect AI 日志",
+    "one_line": "评一个会调工具的 Agent 每一步做了什么，不只看最后的答案。",
+    "facts": [
+      {
+        "label": "时间",
+        "value": "2026-11-18"
+      },
+      {
+        "label": "团队",
+        "value": "Liang Liyuan"
+      },
+      {
+        "label": "技术",
+        "value": "Python、批量接口、过程记录和逐步规则检查、evidence-check、agentevals、Inspect AI 日志"
+      },
+      {
+        "label": "在作品集里的位置",
+        "value": "运营层"
+      },
+      {
+        "label": "状态",
+        "value": "已公开"
+      }
+    ],
+    "links": [
+      {
+        "label": "代码和报告",
+        "url": "https://github.com/llia0031-dotcom/agent-trace-eval"
+      }
+    ],
+    "problem": [
+      "会调工具的 Agent 只看最后答案对不对不够：它每一步做了什么，上线前的检查能拦住哪些错，失败从哪一步开始，改了以后会不会把别处弄坏。"
+    ],
+    "did": [
+      "我给三个已有的、会调工具的 Agent 新写了 46 道题，每题跑三次，把每一步记下来；评分按理解、规划、工具调用、知识引用、结果五个阶段写成规则，再加上线前的自动关卡和失败归因表。看完基线后，跑之前先写下两个修复的预测，再在整组题上做回归重测。"
+    ],
+    "evaluation": [
+      "**基线：三个 Agent 照原样运行**：46 道题：广告审核 20、经营分析 18、创作流程 8；每题 3 次；claude-haiku-5-5，effort medium；第一次走普通接口，第二、三次走批量接口",
+      "**上线前的自动关卡和失败归因（基线）**：基线 138 次试验里失败的那些；每题 3 次；claude-haiku-5-5，effort medium",
+      "**装 Skill 和不装（创作流程）**：8 道题；每题 3 次；claude-haiku-5-5，effort medium，批量接口",
+      "**预注册的两个修复和回归重测**：广告审核 20 道；经营分析 18 道；每题 3 次；claude-haiku-5-5，effort medium，批量接口",
+      "**判官校准和总花费**：校准答案 12 条；基线答案 88 条；每个答案判 2 遍；claude-haiku-5-5，effort medium"
+    ],
+    "iteration": [
+      "基线任务成功：广告审核 53/60、经营分析 47/54、创作流程 21/24；广告审核引的原话和条款每次都对，错在结论和类别。",
+      "关卡：事先预测关卡能拦下大多数失败，结果只拦下 1/17；经营分析的数字核对拦下的大多是对的报告。",
+      "不装 Skill：创作流程成功率从 21/24 掉到 8/24；给致死火灾做营销选题这种错，来源核对也放过了。",
+      "修复广告审核：审核轮误调建议工具从 36/60 降到 0/60，输出 token -15%；任务成功没测出差别，提升在过程上。",
+      "修复经营分析：门店下线定位到商家 3/6 → 6/6，按事先的规则采用；回归重测发现另一道退款题被定位得过细，下一步把规则从提示词搬进代码。"
+    ],
+    "result": [
+      "上线前的自动关卡查的是形式：引文是不是原话、数字有没有出处、时长对不对；它们放过的，正是判断上的错。会调工具的 Agent 要按步骤评，才能看清失败从哪里开始、哪些是题目本身的问题。照失败写的修复要先写下预测，再在整组题上回归重测，否则修好一处、弄坏另一处也看不出来。"
+    ],
+    "limitations": [
+      "每题只跑三次，题目是为这套评测新写的，区间很宽：经营分析任务成功 47/54（87.0%，95% 区间 75.6–93.6%）；按题比较只靠三次试验。建议：重要的结论多跑几次、加新题再确认。",
+      "题目是合成或虚构的，出自运行它的同一个项目；有两道题的题目或答案本身有问题，照实留在分数里。建议：给那两道题改名或重建后重跑，并用真实业务里已有结论的样本另建一组题。",
+      "判官和被测的 Agent 是同一个模型，指南在平静的周上有漏洞；判断项不影响任务成功，也没有另做人工评分。建议：补上指南的漏洞，换一个不同的模型做第二判官对照。",
+      "两个修复只在写它们的那组题上验证过；时延只来自基线第一次走普通接口的试验，每题一次。建议：用新题检验修复能不能推广，再把规则搬进代码后重测退款类的题。"
+    ],
+    "headline": [
+      "基线任务成功：广告审核 53/60、经营分析 47/54、创作流程 21/24；三次都成功 80%、72%、88%",
+      "关卡管得住格式，管不住判断：基线失败 17 次，关卡拦下 1 次、放过 16 次",
+      "装 Skill 和不装：创作流程成功 21/24 对 8/24（符号检验 p = 0.031）",
+      "预注册的修复：审核轮误调建议工具 36/60 → 0/60；门店下线定位到商家 3/6 → 6/6，回归重测查出另一道题变差"
+    ],
+    "numbers": [
+      {
+        "id": "N1",
+        "metric": "ate_ad_success",
+        "label": "广告审核：任务成功",
+        "value": "53/60",
+        "full": "53/60（88.3%，95% 区间 77.8–94.2%）",
+        "evaluation": "基线：三个 Agent 照原样运行",
+        "sources": [
+          "agent-trace-eval/eval/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+        ],
+        "kind": "proportion",
+        "k": 53,
+        "n": 60,
+        "rate": 0.8833,
+        "ci95": [
+          0.7782,
+          0.9423
+        ],
+        "display": "53/60"
+      },
+      {
+        "id": "N2",
+        "metric": "ate_biz_success",
+        "label": "经营分析：任务成功",
+        "value": "47/54",
+        "full": "47/54（87.0%，95% 区间 75.6–93.6%）",
+        "evaluation": "基线：三个 Agent 照原样运行",
+        "sources": [
+          "agent-trace-eval/eval/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+        ],
+        "kind": "proportion",
+        "k": 47,
+        "n": 54,
+        "rate": 0.8704,
+        "ci95": [
+          0.7558,
+          0.9358
+        ],
+        "display": "47/54"
+      },
+      {
+        "id": "N3",
+        "metric": "ate_cr_success",
+        "label": "创作流程：任务成功",
+        "value": "21/24",
+        "full": "21/24（87.5%，95% 区间 69.0–95.7%）",
+        "evaluation": "基线：三个 Agent 照原样运行",
+        "sources": [
+          "agent-trace-eval/eval/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+        ],
+        "kind": "proportion",
+        "k": 21,
+        "n": 24,
+        "rate": 0.875,
+        "ci95": [
+          0.69,
+          0.9566
+        ],
+        "display": "21/24"
+      },
+      {
+        "id": "N4",
+        "metric": "ate_ad_pass3",
+        "label": "广告审核：三次都成功（pass^3）",
+        "value": 80.0,
+        "full": "80%",
+        "evaluation": "基线：三个 Agent 照原样运行",
+        "sources": [
+          "agent-trace-eval/eval/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+        ],
+        "kind": "value",
+        "unit": "pct",
+        "n": null,
+        "display": "80%"
+      },
+      {
+        "id": "N5",
+        "metric": "ate_biz_pass3",
+        "label": "经营分析：三次都成功（pass^3）",
+        "value": 72.0,
+        "full": "72%",
+        "evaluation": "基线：三个 Agent 照原样运行",
+        "sources": [
+          "agent-trace-eval/eval/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+        ],
+        "kind": "value",
+        "unit": "pct",
+        "n": null,
+        "display": "72%"
+      },
+      {
+        "id": "N6",
+        "metric": "ate_cr_pass3",
+        "label": "创作流程：三次都成功（pass^3）",
+        "value": 88.0,
+        "full": "88%",
+        "evaluation": "基线：三个 Agent 照原样运行",
+        "sources": [
+          "agent-trace-eval/eval/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+        ],
+        "kind": "value",
+        "unit": "pct",
+        "n": null,
+        "display": "88%"
+      },
+      {
+        "id": "N7",
+        "metric": "ate_failed",
+        "label": "基线失败的试验",
+        "value": 17.0,
+        "full": "17",
+        "evaluation": "上线前的自动关卡和失败归因（基线）",
+        "sources": [
+          "agent-trace-eval/eval/results/facts.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "17"
+      },
+      {
+        "id": "N8",
+        "metric": "ate_gate_caught",
+        "label": "失败里被关卡拦下的",
+        "value": "1/17",
+        "full": "1/17（5.9%，95% 区间 1.0–27.0%）",
+        "evaluation": "上线前的自动关卡和失败归因（基线）",
+        "sources": [
+          "agent-trace-eval/eval/results/facts.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+        ],
+        "kind": "proportion",
+        "k": 1,
+        "n": 17,
+        "rate": 0.0588,
+        "ci95": [
+          0.0105,
+          0.2698
+        ],
+        "display": "1/17"
+      },
+      {
+        "id": "N9",
+        "metric": "ate_gate_through",
+        "label": "失败里关卡放过去的",
+        "value": "16/17",
+        "full": "16/17（94.1%，95% 区间 73.0–99.0%）",
+        "evaluation": "上线前的自动关卡和失败归因（基线）",
+        "sources": [
+          "agent-trace-eval/eval/results/facts.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+        ],
+        "kind": "proportion",
+        "k": 16,
+        "n": 17,
+        "rate": 0.9412,
+        "ci95": [
+          0.7302,
+          0.9895
+        ],
+        "display": "16/17"
+      },
+      {
+        "id": "N10",
+        "metric": "ate_cr_noskills",
+        "label": "不装 Skill：任务成功",
+        "value": "8/24",
+        "full": "8/24（33.3%，95% 区间 18.0–53.3%）",
+        "evaluation": "装 Skill 和不装（创作流程）",
+        "sources": [
+          "agent-trace-eval/eval/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+        ],
+        "kind": "proportion",
+        "k": 8,
+        "n": 24,
+        "rate": 0.3333,
+        "ci95": [
+          0.1797,
+          0.5329
+        ],
+        "display": "8/24"
+      },
+      {
+        "id": "N11",
+        "metric": "ate_sign_p",
+        "label": "按题配对的精确符号检验 p 值",
+        "value": 0.031,
+        "full": "0.031",
+        "evaluation": "装 Skill 和不装（创作流程）",
+        "sources": [
+          "agent-trace-eval/eval/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "0.031"
+      },
+      {
+        "id": "N12",
+        "metric": "ate_ad_refused",
+        "label": "广告审核：审核那一轮还调了建议工具（被运行框架拒掉，没有影响任务成功）",
+        "value": "36/60",
+        "full": "36/60（60.0%，95% 区间 47.4–71.4%）",
+        "evaluation": "基线：三个 Agent 照原样运行",
+        "sources": [
+          "agent-trace-eval/eval/results/facts.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+        ],
+        "kind": "proportion",
+        "k": 36,
+        "n": 60,
+        "rate": 0.6,
+        "ci95": [
+          0.4737,
+          0.7143
+        ],
+        "display": "36/60"
+      },
+      {
+        "id": "N13",
+        "metric": "ate_fixad_refused",
+        "label": "修复后：审核那一轮还调了建议工具",
+        "value": "0/60",
+        "full": "0/60（0.0%，95% 区间 0.0–6.0%）",
+        "evaluation": "预注册的两个修复和回归重测",
+        "sources": [
+          "agent-trace-eval/eval/results/facts.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+        ],
+        "kind": "proportion",
+        "k": 0,
+        "n": 60,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0602
+        ],
+        "display": "0/60"
+      },
+      {
+        "id": "N14",
+        "metric": "ate_closure_base",
+        "label": "修复前：门店下线定位到商家",
+        "value": "3/6",
+        "full": "3/6（50.0%，95% 区间 18.8–81.2%）",
+        "evaluation": "预注册的两个修复和回归重测",
+        "sources": [
+          "agent-trace-eval/eval/results/facts.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+        ],
+        "kind": "proportion",
+        "k": 3,
+        "n": 6,
+        "rate": 0.5,
+        "ci95": [
+          0.1876,
+          0.8124
+        ],
+        "display": "3/6"
+      },
+      {
+        "id": "N15",
+        "metric": "ate_closure_fix",
+        "label": "修复后：门店下线定位到商家",
+        "value": "6/6",
+        "full": "6/6（100.0%，95% 区间 61.0–100.0%）",
+        "evaluation": "预注册的两个修复和回归重测",
+        "sources": [
+          "agent-trace-eval/eval/results/facts.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+        ],
+        "kind": "proportion",
+        "k": 6,
+        "n": 6,
+        "rate": 1.0,
+        "ci95": [
+          0.6097,
+          1.0
+        ],
+        "display": "6/6"
+      },
+      {
+        "id": "N16",
+        "metric": "ate_fixad_tokens",
+        "label": "修复后：每次试验的输出 token 变化",
+        "value": -15.0,
+        "full": "-15%",
+        "evaluation": "预注册的两个修复和回归重测",
+        "sources": [
+          "agent-trace-eval/eval/results/facts.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+        ],
+        "kind": "value",
+        "unit": "pct",
+        "n": null,
+        "signed": true,
+        "display": "-15%"
+      }
+    ],
+    "short_name": "Agent 评测",
+    "card_title": "会调工具的 Agent，每一步做对了吗",
+    "assumed": "以为上线前的自动关卡能拦下大多数失败",
+    "showed": "基线失败 17 次，关卡只拦下 1 次",
+    "result_line": "关卡只拦下 1/17 的失败；不装 Skill，成功 21/24 → 8/24",
+    "key_numbers": [
+      {
+        "id": "N8",
+        "label": "基线失败里被关卡拦下的"
+      },
+      {
+        "id": "N10",
+        "label": "不装 Skill 的创作流程成功（装上 21/24）"
+      },
+      {
+        "id": "N13",
+        "label": "修复后审核轮误调建议工具（原来 36/60）"
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-11-18",
+        "label": "基线",
+        "text": "三类任务成功率接近",
+        "after": "53/60",
+        "after_id": "N1"
+      },
+      {
+        "date": "2026-11-18",
+        "label": "关卡",
+        "text": "预测拦下大多数失败，只拦下一次",
+        "after": "1/17",
+        "after_id": "N8"
+      },
+      {
+        "date": "2026-11-18",
+        "label": "不装 Skill",
+        "text": "创作流程成功率大幅下降",
+        "before": "21/24",
+        "before_id": "N3",
+        "after": "8/24",
+        "after_id": "N10"
+      },
+      {
+        "date": "2026-11-18",
+        "label": "修复广告审核",
+        "text": "误调建议工具降到零，采用",
+        "before": "36/60",
+        "before_id": "N12",
+        "after": "0/60",
+        "after_id": "N13",
+        "adopted": true
+      },
+      {
+        "date": "2026-11-18",
+        "label": "修复经营分析",
+        "text": "门店定位全对，回归查出副作用",
+        "before": "3/6",
+        "before_id": "N14",
+        "after": "6/6",
+        "after_id": "N15",
+        "adopted": true
+      }
+    ],
+    "images": []
+  },
+  {
+    "id": "agent-trace-eval",
+    "lang": "en",
+    "order": 15,
+    "name": "Agent Trace Eval",
+    "status": "public",
+    "layer": "Operations",
+    "period": "2026-11-18",
+    "team": "Liang Liyuan",
+    "stack": "Python, Message Batches API, step traces with rule checks, evidence-check, agentevals, Inspect AI logs",
+    "one_line": "Evaluates what a tool-using agent does at every step, not only its final answer.",
+    "facts": [
+      {
+        "label": "When",
+        "value": "2026-11-18"
+      },
+      {
+        "label": "Team",
+        "value": "Liang Liyuan"
+      },
+      {
+        "label": "Stack",
+        "value": "Python, Message Batches API, step traces with rule checks, evidence-check, agentevals, Inspect AI logs"
+      },
+      {
+        "label": "Place in the portfolio",
+        "value": "Operations"
+      },
+      {
+        "label": "Status",
+        "value": "Public"
+      }
+    ],
+    "links": [
+      {
+        "label": "Code and report",
+        "url": "https://github.com/llia0031-dotcom/agent-trace-eval"
+      }
+    ],
+    "problem": [
+      "Grading only the final answer of a tool-using agent is not enough: what did each step do, which errors do release checks stop, where does a failure start, and does a fix break something else?"
+    ],
+    "did": [
+      "I wrote 46 new tasks for three existing tool-using agents, ran each three times and recorded every step; scoring is written as rules over five stages (understanding, planning, tool calls, knowledge and citation, result), with release gates and a failure attribution table on top. After the base run, two fixes were registered with predictions before they ran, then re-tested on every task of their family."
+    ],
+    "evaluation": [
+      "**Base: three agents run unchanged**: 46 tasks: 20 ad review, 18 business review, 8 creator workflow; 3 trials per task; claude-haiku-5-5, effort medium; trial 1 standard API, trials 2 and 3 Message Batches API",
+      "**Release gates and failure attribution (base)**: The failed trials among 138 base trials; 3 trials per task; claude-haiku-5-5, effort medium",
+      "**Skills against no skills (creator workflow)**: 8 tasks; 3 trials per task; claude-haiku-5-5, effort medium, Message Batches API",
+      "**Two registered fixes and the regression run**: 20 ad review tasks; 18 business review tasks; 3 trials per task; claude-haiku-5-5, effort medium, Message Batches API",
+      "**Judge calibration and total spend**: 12 calibration answers; 88 base answers; 2 judgements per answer; claude-haiku-5-5, effort medium"
+    ],
+    "iteration": [
+      "Base task success: ad review 53/60, business review 47/54, creator workflow 21/24; ad review quotes and clauses were always right, its errors are decisions and categories.",
+      "Gates: they were predicted to catch most failures and caught 1/17; most reports the business number check held were correct ones.",
+      "Without skills: creator workflow success fell from 21/24 to 8/24; promotional cards on a fatal fire passed the source check.",
+      "Ad fix: the advice tool called in a review turn went from 36/60 to 0/60, output tokens -15%; no measured change in task success, the gain is in the process.",
+      "Business fix: store closures located at the merchant 3/6 → 6/6, adopted by the registered rule; the regression run found a refund task now located too finely, so the next step moves the rules from the prompt into code."
+    ],
+    "result": [
+      "Release gates check form: quotes are the item's own words, numbers have a source, timings fit; what they let through is errors of judgement. A tool-using agent needs scoring by step to see where a failure starts and which failures belong to the task itself. A fix written from a failure needs predictions first and a regression run over the whole family; otherwise one fix breaking something else goes unseen."
+    ],
+    "limitations": [
+      "Three trials per task over tasks written for this bench, so intervals are wide: business review task success 47/54 (87.0%, 95% CI 75.6–93.6%); per-task comparisons rest on three trials each. Recommendation: Confirm the important findings with more trials and new tasks.",
+      "The tasks are synthetic or fictional and come from the same project that runs them; two have a problem in the task or the key, kept in the scores. Recommendation: Fix and re-run those two tasks, and build another set from real work with settled outcomes.",
+      "The judge is the model under evaluation, and its guide has a gap on quiet weeks; judged items do not affect task success, and no human ratings were collected. Recommendation: Close the gap in the guide and add a second judge from a different model.",
+      "The fixes were checked only on the tasks they were written for; latency comes from the base standard-API trials only, one per task. Recommendation: Test the fixes on new tasks, and re-test the refund tasks after the rules move into code."
+    ],
+    "headline": [
+      "Base task success: ad review 53/60, business review 47/54, creator workflow 21/24; all three trials 80%, 72%, 88%",
+      "The gates guard form, not judgement: of 17 failed base trials, the gates caught 1 and let 16 through",
+      "Skills against none: creator workflow success 21/24 against 8/24 (sign test p = 0.031)",
+      "Registered fixes: advice tool called in a review turn 36/60 → 0/60; store closures located at the merchant 3/6 → 6/6, and the regression run caught another task getting worse"
+    ],
+    "numbers": [
+      {
+        "id": "N1",
+        "metric": "ate_ad_success",
+        "label": "Ad review: task success",
+        "value": "53/60",
+        "full": "53/60 (88.3%, 95% CI 77.8–94.2%)",
+        "evaluation": "Base: three agents run unchanged",
+        "sources": [
+          "agent-trace-eval/eval/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+        ],
+        "kind": "proportion",
+        "k": 53,
+        "n": 60,
+        "rate": 0.8833,
+        "ci95": [
+          0.7782,
+          0.9423
+        ],
+        "display": "53/60"
+      },
+      {
+        "id": "N2",
+        "metric": "ate_biz_success",
+        "label": "Business review: task success",
+        "value": "47/54",
+        "full": "47/54 (87.0%, 95% CI 75.6–93.6%)",
+        "evaluation": "Base: three agents run unchanged",
+        "sources": [
+          "agent-trace-eval/eval/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+        ],
+        "kind": "proportion",
+        "k": 47,
+        "n": 54,
+        "rate": 0.8704,
+        "ci95": [
+          0.7558,
+          0.9358
+        ],
+        "display": "47/54"
+      },
+      {
+        "id": "N3",
+        "metric": "ate_cr_success",
+        "label": "Creator workflow: task success",
+        "value": "21/24",
+        "full": "21/24 (87.5%, 95% CI 69.0–95.7%)",
+        "evaluation": "Base: three agents run unchanged",
+        "sources": [
+          "agent-trace-eval/eval/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+        ],
+        "kind": "proportion",
+        "k": 21,
+        "n": 24,
+        "rate": 0.875,
+        "ci95": [
+          0.69,
+          0.9566
+        ],
+        "display": "21/24"
+      },
+      {
+        "id": "N4",
+        "metric": "ate_ad_pass3",
+        "label": "Ad review: all three trials succeed (pass^3)",
+        "value": 80.0,
+        "full": "80%",
+        "evaluation": "Base: three agents run unchanged",
+        "sources": [
+          "agent-trace-eval/eval/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+        ],
+        "kind": "value",
+        "unit": "pct",
+        "n": null,
+        "display": "80%"
+      },
+      {
+        "id": "N5",
+        "metric": "ate_biz_pass3",
+        "label": "Business review: all three trials succeed (pass^3)",
+        "value": 72.0,
+        "full": "72%",
+        "evaluation": "Base: three agents run unchanged",
+        "sources": [
+          "agent-trace-eval/eval/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+        ],
+        "kind": "value",
+        "unit": "pct",
+        "n": null,
+        "display": "72%"
+      },
+      {
+        "id": "N6",
+        "metric": "ate_cr_pass3",
+        "label": "Creator workflow: all three trials succeed (pass^3)",
+        "value": 88.0,
+        "full": "88%",
+        "evaluation": "Base: three agents run unchanged",
+        "sources": [
+          "agent-trace-eval/eval/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+        ],
+        "kind": "value",
+        "unit": "pct",
+        "n": null,
+        "display": "88%"
+      },
+      {
+        "id": "N7",
+        "metric": "ate_failed",
+        "label": "Failed base trials",
+        "value": 17.0,
+        "full": "17",
+        "evaluation": "Release gates and failure attribution (base)",
+        "sources": [
+          "agent-trace-eval/eval/results/facts.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "17"
+      },
+      {
+        "id": "N8",
+        "metric": "ate_gate_caught",
+        "label": "Failures the gates caught",
+        "value": "1/17",
+        "full": "1/17 (5.9%, 95% CI 1.0–27.0%)",
+        "evaluation": "Release gates and failure attribution (base)",
+        "sources": [
+          "agent-trace-eval/eval/results/facts.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+        ],
+        "kind": "proportion",
+        "k": 1,
+        "n": 17,
+        "rate": 0.0588,
+        "ci95": [
+          0.0105,
+          0.2698
+        ],
+        "display": "1/17"
+      },
+      {
+        "id": "N9",
+        "metric": "ate_gate_through",
+        "label": "Failures the gates let through",
+        "value": "16/17",
+        "full": "16/17 (94.1%, 95% CI 73.0–99.0%)",
+        "evaluation": "Release gates and failure attribution (base)",
+        "sources": [
+          "agent-trace-eval/eval/results/facts.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+        ],
+        "kind": "proportion",
+        "k": 16,
+        "n": 17,
+        "rate": 0.9412,
+        "ci95": [
+          0.7302,
+          0.9895
+        ],
+        "display": "16/17"
+      },
+      {
+        "id": "N10",
+        "metric": "ate_cr_noskills",
+        "label": "Without skills: task success",
+        "value": "8/24",
+        "full": "8/24 (33.3%, 95% CI 18.0–53.3%)",
+        "evaluation": "Skills against no skills (creator workflow)",
+        "sources": [
+          "agent-trace-eval/eval/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+        ],
+        "kind": "proportion",
+        "k": 8,
+        "n": 24,
+        "rate": 0.3333,
+        "ci95": [
+          0.1797,
+          0.5329
+        ],
+        "display": "8/24"
+      },
+      {
+        "id": "N11",
+        "metric": "ate_sign_p",
+        "label": "Exact sign test over tasks, p",
+        "value": 0.031,
+        "full": "0.031",
+        "evaluation": "Skills against no skills (creator workflow)",
+        "sources": [
+          "agent-trace-eval/eval/results/summary.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/summary.md"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "0.031"
+      },
+      {
+        "id": "N12",
+        "metric": "ate_ad_refused",
+        "label": "Ad review: advice tool called in a review turn (refused by the harness; it never failed a task)",
+        "value": "36/60",
+        "full": "36/60 (60.0%, 95% CI 47.4–71.4%)",
+        "evaluation": "Base: three agents run unchanged",
+        "sources": [
+          "agent-trace-eval/eval/results/facts.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+        ],
+        "kind": "proportion",
+        "k": 36,
+        "n": 60,
+        "rate": 0.6,
+        "ci95": [
+          0.4737,
+          0.7143
+        ],
+        "display": "36/60"
+      },
+      {
+        "id": "N13",
+        "metric": "ate_fixad_refused",
+        "label": "After the fix: advice tool called in a review turn",
+        "value": "0/60",
+        "full": "0/60 (0.0%, 95% CI 0.0–6.0%)",
+        "evaluation": "Two registered fixes and the regression run",
+        "sources": [
+          "agent-trace-eval/eval/results/facts.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+        ],
+        "kind": "proportion",
+        "k": 0,
+        "n": 60,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0602
+        ],
+        "display": "0/60"
+      },
+      {
+        "id": "N14",
+        "metric": "ate_closure_base",
+        "label": "Before the fix: store closures located at the merchant",
+        "value": "3/6",
+        "full": "3/6 (50.0%, 95% CI 18.8–81.2%)",
+        "evaluation": "Two registered fixes and the regression run",
+        "sources": [
+          "agent-trace-eval/eval/results/facts.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+        ],
+        "kind": "proportion",
+        "k": 3,
+        "n": 6,
+        "rate": 0.5,
+        "ci95": [
+          0.1876,
+          0.8124
+        ],
+        "display": "3/6"
+      },
+      {
+        "id": "N15",
+        "metric": "ate_closure_fix",
+        "label": "After the fix: store closures located at the merchant",
+        "value": "6/6",
+        "full": "6/6 (100.0%, 95% CI 61.0–100.0%)",
+        "evaluation": "Two registered fixes and the regression run",
+        "sources": [
+          "agent-trace-eval/eval/results/facts.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+        ],
+        "kind": "proportion",
+        "k": 6,
+        "n": 6,
+        "rate": 1.0,
+        "ci95": [
+          0.6097,
+          1.0
+        ],
+        "display": "6/6"
+      },
+      {
+        "id": "N16",
+        "metric": "ate_fixad_tokens",
+        "label": "After the fix: change in output tokens per trial",
+        "value": -15.0,
+        "full": "-15%",
+        "evaluation": "Two registered fixes and the regression run",
+        "sources": [
+          "agent-trace-eval/eval/results/facts.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/eval/results/facts.md"
+        ],
+        "kind": "value",
+        "unit": "pct",
+        "n": null,
+        "signed": true,
+        "display": "-15%"
+      }
+    ],
+    "short_name": "Agent trace eval",
+    "card_title": "Did a tool-using agent get each step right?",
+    "assumed": "Expected the release gates to catch most failures",
+    "showed": "Of 17 failed base trials, the gates caught 1",
+    "result_line": "The release gates caught 1/17 of failures; without skills, creator success 21/24 → 8/24",
+    "key_numbers": [
+      {
+        "id": "N8",
+        "label": "Failed base trials the gates caught"
+      },
+      {
+        "id": "N10",
+        "label": "Creator workflow success without skills (with them 21/24)"
+      },
+      {
+        "id": "N13",
+        "label": "Advice tool called in a review turn after the fix (before 36/60)"
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-11-18",
+        "label": "Base run",
+        "text": "Similar success in all three families",
+        "after": "53/60",
+        "after_id": "N1"
+      },
+      {
+        "date": "2026-11-18",
+        "label": "Gates",
+        "text": "Predicted to catch most failures; caught one",
+        "after": "1/17",
+        "after_id": "N8"
+      },
+      {
+        "date": "2026-11-18",
+        "label": "No skills",
+        "text": "Creator workflow success falls sharply",
+        "before": "21/24",
+        "before_id": "N3",
+        "after": "8/24",
+        "after_id": "N10"
+      },
+      {
+        "date": "2026-11-18",
+        "label": "Ad fix",
+        "text": "Stray advice calls gone; adopted",
+        "before": "36/60",
+        "before_id": "N12",
+        "after": "0/60",
+        "after_id": "N13",
+        "adopted": true
+      },
+      {
+        "date": "2026-11-18",
+        "label": "Business fix",
+        "text": "Closures all located; regression found a side effect",
+        "before": "3/6",
+        "before_id": "N14",
+        "after": "6/6",
+        "after_id": "N15",
+        "adopted": true
+      }
+    ],
+    "images": []
   }
 ]

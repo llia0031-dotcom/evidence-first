@@ -79,7 +79,7 @@ reuse = { zh = "语音评测照 evidence-check v2 的做法预注册；AI 生图
 
 [[scene]]
 title = { zh = "怎么变成团队能天天用的能力", en = "How does this become something a team uses every day?" }
-projects = ["grounded-labelling-pipeline", "judge-calibration", "labelling-agent-kit"]
+projects = ["grounded-labelling-pipeline", "judge-calibration", "labelling-agent-kit", "agent-trace-eval"]
 self = true
 purpose = { zh = "一个个评测做完以后，要让每个能力都有同样格式的评测证据、每次改提示词都能看到新旧分数、上线和回滚有章可循。", en = "Once the studies exist, every capability needs evaluation evidence in one format, every prompt change needs old and new scores side by side, and releases and rollbacks need a routine." }
 did = { zh = "这个仓库：统一评测卡、Prompt 资产库（版本、上线标签、灰度回放、上线清单、改提示词时自动贴分数）；有据标注流水线把有据审核接成一条审核工作流：核对引文、复核队列、版本、灰度和回滚、每周指标。", en = "This repository: evaluation cards in one format and a prompt registry (versions, release labels, canary replay, a release checklist in Chinese, scores posted on every prompt change); the Grounded Labelling Pipeline turns Grounded Review into a review workflow: quote checks, a review queue, versions, canary and rollback, weekly metrics." }
@@ -89,5 +89,6 @@ result = [
   { zh = "灰度回放：有据审核 v1.3 放到全量，v1.2 在放量中途触发回滚", en = "Canary replay: Grounded Review v1.3 reaches full release, v1.2 rolls back partway" },
   { zh = "模型裁判校准：和定好的答案一致 {judge-calibration.jc_constructed}；先规则、再裁判、拿不准的送人工，漏掉的错误 {judge-calibration.jc_missed_a} → {judge-calibration.jc_missed_b}", en = "Judge calibration: agreement with fixed answers {judge-calibration.jc_constructed}; rules, then the judge, unsure items to people, errors missed {judge-calibration.jc_missed_a} → {judge-calibration.jc_missed_b}" },
   { zh = "标注 Agent 工具箱：测试集 A 微平均 F1，短提示词 → 完整 Agent，广告 {labelling-agent-kit.lak_ad_short} → {labelling-agent-kit.lak_ad_full}；按根因改的第二版在没用过的点评上 {labelling-agent-kit.lak_h6_asap}，采用，广告区间碰到 0，不采用", en = "Labelling Agent Kit: test A micro F1, short prompt → full agent, ads {labelling-agent-kit.lak_ad_short} → {labelling-agent-kit.lak_ad_full}; the revision built from root causes gains {labelling-agent-kit.lak_h6_asap} on unseen reviews and is adopted, while on ads the interval reaches 0 and it is not" },
+  { zh = "Agent 评测台：三个会调工具的 Agent 按步骤评，基线失败 {agent-trace-eval.ate_failed} 次、上线前的关卡只拦下 {agent-trace-eval.ate_gate_caught:k} 次；不装 Skill 时创作流程成功 {agent-trace-eval.ate_cr_success} → {agent-trace-eval.ate_cr_noskills}", en = "Agent Trace Eval: three tool-using agents scored step by step; of {agent-trace-eval.ate_failed} failed base trials the release gates caught {agent-trace-eval.ate_gate_caught:k}; without skills, creator workflow success {agent-trace-eval.ate_cr_success} → {agent-trace-eval.ate_cr_noskills}" },
 ]
 reuse = { zh = "资产库收的是前面各幕已有的提示词版本；灰度回放用的是有据审核的真实对比数据。", en = "The registry holds the prompt versions from the earlier scenes; the canary replay uses Grounded Review's real comparison data." }

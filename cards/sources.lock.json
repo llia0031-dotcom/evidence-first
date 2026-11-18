@@ -115,5 +115,9 @@
     "labelling-agent-kit-public/results/main/rca/ad_policy-test_a-agent-cases-check.json": "a793aaaafe1f890702e6aa1a562c9fa324f7c6e97e294a70a2814564e23d93a1",
     "labelling-agent-kit-public/results/main/rca/asap-test_a-agent-cases-check.json": "17d8f4b8ad2b875c67efe077850341d3d173dccd805470b2288cd4860b9f35ef",
     "labelling-agent-kit-public/results/revision/analysis.json": "e266cea411a5ea2189818fd6f9ca19ff8836354a2386c567ff94b4407e280361"
+  },
+  "agent-trace-eval": {
+    "agent-trace-eval-public/eval/results/facts.md": "7b6634f408c31f1de76eac0a8925def3fa5af56a1eeaeb76ca33bce476b52da6",
+    "agent-trace-eval-public/eval/results/summary.md": "eb0b6abd18976bae6832e5c4e28524468c6947a776497547df60b1e0e87f1327"
   }
 }
