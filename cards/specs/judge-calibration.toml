@@ -149,8 +149,8 @@ takeaway = { zh = "能从广告本身看出结论的，裁判大多判对；要�
 id = "human"
 name = { zh = "公开数据集自带的人工评分", en = "Human ratings that ship with public datasets" }
 date = "2026-11-18"
-data = { zh = "Judge's Verdict（200 道，三位标注员）、SummEval（四个维度各 120 篇，三位专家）、WMT MQM 中译英（240 句）。人工评分都是数据集自带的。", en = "Judge's Verdict (200 items, three annotators), SummEval (120 summaries per dimension, three experts) and WMT MQM Chinese to English (240 segments). All human ratings come with the datasets." }
-items = { zh = "Judge's Verdict 200 道；SummEval 每维度 120 篇；WMT MQM 240 句", en = "200 Judge's Verdict items; 120 SummEval summaries per dimension; 240 WMT MQM segments" }
+data = { zh = "Judge's Verdict（200 道，三位标注员）、SummEval（30 篇新闻各 4 条摘要，四个维度各 120 条，三位专家）、WMT MQM 中译英（240 句）。人工评分都是数据集自带的。", en = "Judge's Verdict (200 items, three annotators), SummEval (30 news articles with 4 summaries each, 120 per dimension, three experts) and WMT MQM Chinese to English (240 segments). All human ratings come with the datasets." }
+items = { zh = "Judge's Verdict 200 道；SummEval 每个维度 120 条摘要；WMT MQM 240 句", en = "200 Judge's Verdict items; 120 SummEval summaries per dimension; 240 WMT MQM segments" }
 runs = { zh = "每题判三次", en = "Three judgments per item" }
 setup = { zh = "claude-haiku-5-5，effort medium，批量接口", en = "claude-haiku-5-5, effort medium, Message Batches API" }
 frozen = { zh = "`eval/PREREGISTRATION.md`", en = "`eval/PREREGISTRATION.md`" }

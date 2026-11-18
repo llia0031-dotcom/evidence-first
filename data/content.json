@@ -10699,7 +10699,7 @@
       "**裁判提示词 v1 到 v4（开发集）**：开发集；每版每题 1 遍；claude-haiku-5-5，effort medium，批量接口",
       "**定好答案的判断题（测试集，三次判断取多数）**：711 道；每题判三次，取多数；claude-haiku-5-5，effort medium，批量接口；提示词 v2",
       "**监管和法院的结论（46 条真实广告）**：46 条广告；每条判三次，取多数；claude-haiku-5-5，effort medium，批量接口",
-      "**公开数据集自带的人工评分**：Judge's Verdict 200 道；SummEval 每维度 120 篇；WMT MQM 240 句；每题判三次；claude-haiku-5-5，effort medium，批量接口",
+      "**公开数据集自带的人工评分**：Judge's Verdict 200 道；SummEval 每个维度 120 条摘要；WMT MQM 240 句；每题判三次；claude-haiku-5-5，effort medium，批量接口",
       "**规则、裁判和复核队列怎么分工（711 道）**：711 道，其中 390 道含错误；每种接法 1 遍；claude-haiku-5-5，effort medium，批量接口",
       "**加废话、加保证语会不会骗过裁判（368 道）**：368 道；每种改法 1 遍；claude-haiku-5-5，effort medium，批量接口",
       "**质检 Agent 和验收标准**：239 条记录；模拟批次；每条 1 遍；claude-haiku-5-5，effort medium，批量接口"

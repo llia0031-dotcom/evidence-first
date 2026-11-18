@@ -76,12 +76,12 @@
 
 ### 公开数据集自带的人工评分
 
-Judge's Verdict（200 道，三位标注员）、SummEval（四个维度各 120 篇，三位专家）、WMT MQM 中译英（240 句）。人工评分都是数据集自带的。
+Judge's Verdict（200 道，三位标注员）、SummEval（30 篇新闻各 4 条摘要，四个维度各 120 条，三位专家）、WMT MQM 中译英（240 句）。人工评分都是数据集自带的。
 
 | 项目 | 内容 |
 |---|---|
 | 日期 | 2026-11-18 |
-| 题目和答案 | Judge's Verdict 200 道；SummEval 每维度 120 篇；WMT MQM 240 句 |
+| 题目和答案 | Judge's Verdict 200 道；SummEval 每个维度 120 条摘要；WMT MQM 240 句 |
 | 跑了几次 | 每题判三次 |
 | 模型和发送方式 | claude-haiku-5-5，effort medium，批量接口 |
 | 跑前冻结 | `eval/PREREGISTRATION.md` |

@@ -76,7 +76,7 @@ Review opinions, resume verdicts and revision advice taken from the stored answe
 
 ### Human ratings that ship with public datasets
 
-Judge's Verdict (200 items, three annotators), SummEval (120 summaries per dimension, three experts) and WMT MQM Chinese to English (240 segments). All human ratings come with the datasets.
+Judge's Verdict (200 items, three annotators), SummEval (30 news articles with 4 summaries each, 120 per dimension, three experts) and WMT MQM Chinese to English (240 segments). All human ratings come with the datasets.
 
 | Field | Value |
 |---|---|
