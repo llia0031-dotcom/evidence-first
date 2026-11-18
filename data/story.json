@@ -270,8 +270,8 @@
           "en": "Labelling Agent Kit: test A micro F1, short prompt → full agent, ads 0.768 → 0.971; the revision built from root causes gains +0.018 on unseen reviews and is adopted, while on ads the interval reaches 0 and it is not"
         },
         {
-          "zh": "Agent 评测台：三个会调工具的 Agent 按步骤评，基线失败 17 次、上线前的关卡只拦下 {agent-trace-eval.ate_gate_caught:k} 次；不装 Skill 时创作流程成功 21/24 → 8/24",
-          "en": "Agent Trace Eval: three tool-using agents scored step by step; of 17 failed base trials the release gates caught {agent-trace-eval.ate_gate_caught:k}; without skills, creator workflow success 21/24 → 8/24"
+          "zh": "Agent 评测台：三个会调工具的 Agent 按步骤评，基线失败 17 次、上线前的关卡只拦下 1 次；不装 Skill 时创作流程成功 21/24 → 8/24",
+          "en": "Agent Trace Eval: three tool-using agents scored step by step; of 17 failed base trials the release gates caught 1; without skills, creator workflow success 21/24 → 8/24"
         }
       ]
     }

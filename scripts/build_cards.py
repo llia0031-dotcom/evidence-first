@@ -242,7 +242,11 @@ def fill(text: str, values: dict[str, Value], lang: str, where: str) -> str:
             return v.interval()
         raise BuildError(f"{where}: unknown placeholder mode {mode}")
 
-    return PLACEHOLDER.sub(sub, text)
+    out = PLACEHOLDER.sub(sub, text)
+    left = re.search(r"\{[a-z0-9_.:-]+\}", out)
+    if left:
+        raise BuildError(f"{where}: placeholder {left.group(0)} was not filled")
+    return out
 
 
 def tr(obj, lang: str):
@@ -537,17 +541,23 @@ def global_values(projects: list[dict]) -> dict[str, Value]:
     shown = [p for p in projects if p["spec"]["status"] == "public" and p["spec"]["id"] not in WITHHOLD]
     n_public = len(shown)
     n_timeline = sum(len(p["spec"].get("timeline", [])) for p in shown)
+    n_team = sum(1 for p in shown if tr(p["spec"]["team"], "en") != "Liang Liyuan")  # hackathon teams
     for key, val in (("_cards", len(projects)), ("_numbers", sum(len(p["values"]) for p in projects)),
-                     ("_records", n_records), ("_public", n_public), ("_timeline", n_timeline)):
+                     ("_records", n_records), ("_public", n_public), ("_timeline", n_timeline),
+                     ("_team", n_team), ("_solo", n_public - n_team)):
         flat[key] = Value(kind="value", value=val, decimals=0)
     return flat
 
 
 def fill_global(text: str, flat: dict[str, Value], lang: str, where: str) -> str:
     """Placeholders written as {project.metric} (or {_count}) across all cards."""
-    text = re.sub(r"\{([a-z0-9-]+)\.([a-z0-9_]+)\}",
-                  lambda m: "{" + f"{m.group(1)}__{m.group(2)}".replace("-", "_") + "}", text)
-    return fill(text, flat, lang, where)
+    text = re.sub(r"\{([a-z0-9-]+)\.([a-z0-9_]+)(:[a-z]+)?\}",
+                  lambda m: "{" + f"{m.group(1)}__{m.group(2)}".replace("-", "_") + (m.group(3) or "") + "}", text)
+    out = fill(text, flat, lang, where)
+    left = re.search(r"\{[a-z0-9_.:-]+\}", out)
+    if left:
+        raise BuildError(f"{where}: placeholder {left.group(0)} was not filled")
+    return out
 
 
 def render_scenes(story: dict, projects: list[dict], flat: dict[str, Value], lang: str) -> str:
