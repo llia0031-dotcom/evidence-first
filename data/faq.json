@@ -157,7 +157,10 @@
           "学历",
           "哪年毕业",
           "在读",
-          "哪个大学"
+          "哪个大学",
+          "学生",
+          "本科",
+          "研究生"
         ],
         "en": [
           "university",
@@ -165,7 +168,10 @@
           "degree",
           "major",
           "graduation",
-          "education"
+          "education",
+          "student",
+          "undergraduate",
+          "graduate"
         ]
       },
       "a": {
@@ -202,11 +208,14 @@
           "技能",
           "会什么",
           "核心能力",
-          "强项"
+          "强项",
+          "优点",
+          "长处"
         ],
         "en": [
           "skills",
           "strengths",
+          "strength",
           "good at",
           "expertise",
           "what can you do"
@@ -1276,15 +1285,15 @@
       "aliases": {
         "zh": [
           "招聘",
-          "简历",
           "初筛",
           "简历筛选",
+          "简历初筛",
           "公平"
         ],
         "en": [
           "recruiting",
           "hiring",
-          "resume",
+          "resume screening",
           "screening",
           "fairness"
         ]
@@ -2674,6 +2683,8 @@
         ],
         "en": [
           "failures",
+          "failed",
+          "what failed",
           "lessons",
           "what went wrong",
           "mistakes",

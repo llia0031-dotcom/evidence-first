@@ -614,6 +614,8 @@ def story_json(projects: list[dict]) -> dict:
     out = {"intro": {l: fill_global(tr(story["intro"], l), flat, l, "story") for l in ("zh", "en")},
            **({"about": {l: fill_global(tr(story["about"], l), flat, l, "story.about") for l in ("zh", "en")}}
               if "about" in story else {}),
+           **({"about_intro": {l: fill_global(tr(story["about_intro"], l), flat, l, "story.about_intro") for l in ("zh", "en")}}
+              if "about_intro" in story else {}),
            **({"about_stats": [{l: fill_global(tr(x, l), flat, l, "story.about_stats") for l in ("zh", "en")}
                                for x in story["about_stats"]]} if "about_stats" in story else {}),
            "links": story.get("links", []), "scenes": []}

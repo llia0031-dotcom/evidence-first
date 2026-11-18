@@ -4,19 +4,13 @@
     "en": "I'm Liang Liyuan. I build AI features that show their evidence: every sentence points to its source, and every capability brings an evaluation before it ships."
   },
   "about": {
-    "zh": "我做 AI 功能，也做它的评测",
-    "en": "I build AI features, and the tests that check them"
+    "zh": "面试之前，想了解什么？",
+    "en": "Before we talk, what would you like to know?"
   },
-  "about_stats": [
-    {
-      "zh": "15 个项目 / 评测和局限全部公开",
-      "en": "15 projects / evaluations and limits all public"
-    },
-    {
-      "zh": "73 条改版记录 / 没采用的版本也留着",
-      "en": "73 logged changes / dropped versions included"
-    }
-  ],
+  "about_intro": {
+    "zh": "计算机科学本科在读，做 AI 产品功能，也做它们的评测。",
+    "en": "Computer science undergraduate building AI product features and the evaluations behind them."
+  },
   "links": [
     {
       "label": {

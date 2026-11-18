@@ -81,7 +81,7 @@ group = "me"
 order = 3
 chip = true
 q = { zh = "你的背景？", en = "What is your background?" }
-aliases = { zh = ["学校", "专业", "学历", "哪年毕业", "在读", "哪个大学"], en = ["university", "school", "degree", "major", "graduation", "education"] }
+aliases = { zh = ["学校", "专业", "学历", "哪年毕业", "在读", "哪个大学", "学生", "本科", "研究生"], en = ["university", "school", "degree", "major", "graduation", "education", "student", "undergraduate", "graduate"] }
 a = { zh = "计算机科学本科在读，在莫纳什大学马来西亚校区，预计 2028 年毕业。先做带出处的问答，后来做到审核 Agent 和 Agent 评测，一共 {_public} 个项目。", en = "Computer science undergraduate at Monash University Malaysia, expected to graduate in 2028. I started with question answering that shows its sources, then moved on to review agents and agent evaluation: {_public} projects so far." }
 sources = [
   { type = "section", id = "work", label = { zh = "全部项目", en = "All projects" } },
@@ -94,7 +94,7 @@ group = "me"
 order = 4
 chip = true
 q = { zh = "你最拿手的是什么？", en = "What are you best at?" }
-aliases = { zh = ["擅长什么", "技能", "会什么", "核心能力", "强项"], en = ["skills", "strengths", "good at", "expertise", "what can you do"] }
+aliases = { zh = ["擅长什么", "技能", "会什么", "核心能力", "强项", "优点", "长处"], en = ["skills", "strengths", "strength", "good at", "expertise", "what can you do"] }
 a = { zh = "给 AI 功能出题、定标准，再照着结果把它改到位。搭 Agent 和工作流、写 Skill 和 MCP 工具、用 SQL 做分析，也都有项目可以看。", en = "Writing the test set and the scoring rules for an AI feature, then improving it against the results. I also build agents and workflows, write Skills and MCP tools, and analyse data in SQL, each with a project to show." }
 sources = [
   { type = "project", id = "agent-trace-eval" },
@@ -316,7 +316,7 @@ a = { zh = "看实时语音 Agent 体验评测：打断、附和、背景人声�
 id = "recruiting"
 projects = ["screening-audit"]
 q = { zh = "有招聘方向的项目吗？", en = "Anything on recruiting?" }
-aliases = { zh = ["招聘", "简历", "初筛", "简历筛选", "公平"], en = ["recruiting", "hiring", "resume", "screening", "fairness"] }
+aliases = { zh = ["招聘", "初筛", "简历筛选", "简历初筛", "公平"], en = ["recruiting", "hiring", "resume screening", "screening", "fairness"] }
 a = { zh = "看简历初筛：每个“符合”都要附简历原文，只换名字也不改变去留。", en = "Look at resume screening: every \"met\" has to quote the resume, and swapping the name alone doesn't change the decision." }
 
 [[direction]]
@@ -413,7 +413,7 @@ id = "what-failed"
 group = "more"
 order = 105
 q = { zh = "有没有没做成的？", en = "What didn't work?" }
-aliases = { zh = ["失败", "教训", "没做成", "踩坑", "最大的教训", "做错过什么"], en = ["failures", "lessons", "what went wrong", "mistakes", "lessons learned"] }
+aliases = { zh = ["失败", "教训", "没做成", "踩坑", "最大的教训", "做错过什么"], en = ["failures", "failed", "what failed", "lessons", "what went wrong", "mistakes", "lessons learned"] }
 a = { zh = "有，都写在卡上。Agent 评测台本以为上线前的关卡能拦下大多数失败，结果 {agent-trace-eval.ate_failed} 次只拦下 {agent-trace-eval.ate_gate_caught:k} 次。", en = "Yes, and the cards say so. In Agent Trace Eval I expected the release gates to catch most failures; of {agent-trace-eval.ate_failed} they caught {agent-trace-eval.ate_gate_caught:k}." }
 sources = [
   { type = "project", id = "agent-trace-eval", anchor = "iteration", label = { zh = "Agent 评测台的迭代", en = "Agent Trace Eval: iteration" } },
