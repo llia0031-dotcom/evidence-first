@@ -255,8 +255,8 @@ related = ["first-project", "live-demos"]
 # ---------------------------------------------------------------- one line per project (then a result line)
 [project_line]
 evidence-check = { zh = "一个 Agent Skill 加一个核对脚本：AI 写的每个数字和原话，都得在给它的资料里找得到", en = "An Agent Skill plus a checker: every number and quote an AI writes has to be found in the material it was given" }
-cairn = { zh = "黑客松上两人做的问答台，按机构公开的规定回答，每句话都逐字引原文", en = "A Q&A desk built by two at a hackathon: it answers from an organisation's published rules and quotes them word for word" }
-tracedesk = { zh = "黑客松上两人做的常见问题助手，只按给定资料回答，截止时间放最前、附出处", en = "An FAQ assistant built by two at a hackathon: it answers only from the given documents, deadlines first, each with its source" }
+cairn = { zh = "按机构公开的规定回答问题，每句话都逐字引原文", en = "It answers questions from an organisation's published rules and quotes them word for word" }
+tracedesk = { zh = "常见问题助手：只按给定资料回答，最要紧的截止时间放在最前面", en = "An FAQ assistant that answers only from the given documents and puts the deadlines first" }
 screening-audit = { zh = "初筛简历时，让模型给每个“符合”都附上简历原文，再用脚本核对", en = "Resume screening where the model backs every \"met\" with a quote from the resume, checked by script" }
 sellpoint-check = { zh = "把商品页的卖点拿到买家评价里找原话，证实了才给买家看，其余私下交给商家", en = "It takes a listing's claims to the buyer reviews for supporting quotes; buyers see only confirmed claims, the rest goes privately to the merchant" }
 grounded-review = { zh = "审广告的 Agent：说清违反哪一条、是哪几个字，广告主改完还能再审", en = "An ad-review agent that names the rule and the exact words, and reviews the advertiser's next version too" }

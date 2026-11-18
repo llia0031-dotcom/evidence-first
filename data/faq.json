@@ -1583,8 +1583,8 @@
         ]
       },
       "a": {
-        "zh": "黑客松上两人做的问答台，按机构公开的规定回答，每句话都逐字引原文。正确页面排进前五条结果的：自己写的题 44/45，学生的真实提问 14/15。",
-        "en": "A Q&A desk built by two at a hackathon: it answers from an organisation's published rules and quotes them word for word. The right page made the top five results for 44/45 written questions and 14/15 real student questions."
+        "zh": "按机构公开的规定回答问题，每句话都逐字引原文。正确页面排进前五条结果的：自己写的题 44/45，学生的真实提问 14/15。",
+        "en": "It answers questions from an organisation's published rules and quotes them word for word. The right page made the top five results for 44/45 written questions and 14/15 real student questions."
       },
       "sources": [
         {
@@ -1639,8 +1639,8 @@
         ]
       },
       "a": {
-        "zh": "黑客松上两人做的常见问题助手，只按给定资料回答，截止时间放最前、附出处。每个截止时间都附原文出处的回答有 20/20，普通写法只有 17/20。",
-        "en": "An FAQ assistant built by two at a hackathon: it answers only from the given documents, deadlines first, each with its source. Answers whose every deadline came with its source: 20/20, against 17/20 with a plain prompt."
+        "zh": "常见问题助手：只按给定资料回答，最要紧的截止时间放在最前面。每个截止时间都附原文出处的回答有 20/20，普通写法只有 17/20。",
+        "en": "An FAQ assistant that answers only from the given documents and puts the deadlines first. Answers whose every deadline came with its source: 20/20, against 17/20 with a plain prompt."
       },
       "sources": [
         {
