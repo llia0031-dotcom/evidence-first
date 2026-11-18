@@ -96,8 +96,10 @@ def project_items(faq: dict, by_id: dict, shown: list[str]) -> list[dict]:
         if pid not in faq.get("project_line", {}):
             raise bc.BuildError(f"faq: no [project_line] for {pid}")
         line = faq["project_line"][pid]
+        # the card's result line, unless the file gives one for this answer
+        result = faq.get("project_result", {}).get(pid) or spec["result_line"]
         answer = {l: _end(line[l], l) + ("" if l == "zh" else " ")
-                  + _end(_globalise(bc.tr(spec["result_line"], l), pid), l) for l in LANGS}
+                  + _end(_globalise(bc.tr(result, l), pid), l) for l in LANGS}
         sources = [{"type": "project", "id": pid}]
         if repo:
             sources.append({"type": "url", "url": repo, "label": tpl["code_label"]})
@@ -132,9 +134,10 @@ def build(projects: list[dict], card_texts: dict[tuple[str, str], str]) -> tuple
              if p["spec"]["status"] == "public" and p["spec"]["id"] not in bc.WITHHOLD]
     groups = {g["id"] for g in faq["group"]}
     written = faq["item"]
-    for pid, line in faq.get("project_line", {}).items():
-        for lang in LANGS:
-            _lint_digits(line[lang], allowed, f"faq.project_line.{pid}.{lang}")
+    for key in ("project_line", "project_result"):
+        for pid, line in faq.get(key, {}).items():
+            for lang in LANGS:
+                _lint_digits(line[lang], allowed, f"faq.{key}.{pid}.{lang}")
     for it in written + faq.get("direction", []):
         for lang in LANGS:
             for text in [it["a"][lang], it["q"][lang], *it["aliases"][lang]]:
