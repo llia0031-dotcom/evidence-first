@@ -10647,5 +10647,977 @@
       }
     ],
     "images": []
+  },
+  {
+    "id": "judge-calibration",
+    "lang": "zh",
+    "order": 13,
+    "name": "模型裁判校准",
+    "status": "public",
+    "layer": "运营层",
+    "period": "2026-11-18",
+    "team": "Liang Liyuan",
+    "stack": "Python、批量接口、Cohen's kappa 和自助区间、质检 Agent（两个工具）",
+    "one_line": "检验一个模型裁判能信到什么程度。",
+    "facts": [
+      {
+        "label": "时间",
+        "value": "2026-11-18"
+      },
+      {
+        "label": "团队",
+        "value": "Liang Liyuan"
+      },
+      {
+        "label": "技术",
+        "value": "Python、批量接口、Cohen's kappa 和自助区间、质检 Agent（两个工具）"
+      },
+      {
+        "label": "在作品集里的位置",
+        "value": "运营层"
+      },
+      {
+        "label": "状态",
+        "value": "已公开"
+      }
+    ],
+    "links": [
+      {
+        "label": "代码和报告",
+        "url": "https://github.com/llia0031-dotcom/judge-calibration"
+      }
+    ],
+    "problem": [
+      "用模型当裁判打分省事，可它能信到什么程度；哪些检查可以交给它，哪些该用脚本，哪些必须留给人。"
+    ],
+    "did": [
+      "我把一个模型裁判分别和三种标准比：出题时定好的答案、监管和法院的结论、公开数据集自带的人工评分；再定出哪些检查交给脚本、哪些交给裁判、哪些留给人，并做了一个带验收标准的质检 Agent。方案、冻结的文件和预测跑前写好。"
+    ],
+    "evaluation": [
+      "**裁判提示词 v1 到 v4（开发集）**：开发集；每版每题 1 遍；claude-haiku-5-5，effort medium，批量接口",
+      "**定好答案的判断题（测试集，三次判断取多数）**：711 道；每题判三次，取多数；claude-haiku-5-5，effort medium，批量接口；提示词 v2",
+      "**监管和法院的结论（46 条真实广告）**：46 条广告；每条判三次，取多数；claude-haiku-5-5，effort medium，批量接口",
+      "**公开数据集自带的人工评分**：Judge's Verdict 200 道；SummEval 每维度 120 篇；WMT MQM 240 句；每题判三次；claude-haiku-5-5，effort medium，批量接口",
+      "**规则、裁判和复核队列怎么分工（711 道）**：711 道，其中 390 道含错误；每种接法 1 遍；claude-haiku-5-5，effort medium，批量接口",
+      "**加废话、加保证语会不会骗过裁判（368 道）**：368 道；每种改法 1 遍；claude-haiku-5-5，effort medium，批量接口",
+      "**质检 Agent 和验收标准**：239 条记录；模拟批次；每条 1 遍；claude-haiku-5-5，effort medium，批量接口"
+    ],
+    "iteration": [
+      "裁判提示词 v1 到 v4：v2 在开发集上 0.976（v1 0.860），采用；v3 打平、v4 更严，都不采用。",
+      "对定好的答案几乎全对；对监管和法院的结论，要靠外部证据的那一半明显差。",
+      "对公开数据集的人工评分：和每位标注员的一致率 67.3%，落在标注员彼此之间的范围里；流畅度这类主观项和专家相关最低（0.408）。",
+      "规则、裁判、人工分工：先规则再裁判、拿不准的送人工，比只用裁判漏得少，也更便宜。",
+      "质检 Agent 查出全部错误记录（119/119），正确记录误报 6/120；验收标准在错误率百分之二的批次上达标，在百分之十的批次上没达到目标。"
+    ],
+    "result": [
+      "模型裁判在答案清楚、能对回原文的检查上可以放心用，能用规则查的交给脚本更稳；要靠外部证据的结论和主观质量评分，裁判和人差得多，应该留给人。裁判自己说“拿不准”的那部分错得多，正好可以拿来决定送人工。"
+    ],
+    "limitations": [
+      "判断题来自同一组项目的存档答案，错误是植入的；“论证成错误结论”这类错误样本由 `eval/gen_flips.py` 生成，生成时用的是同一个模型，裁判认得自己写法的偏差没有排除。建议：上线前用真实业务里已经有结论的记录再校准一次，错误样本换不同来源。",
+      "监管和法院的结论只有 46 条，要靠外部证据的只有 11 条；区间很宽。建议：这类结论直接留给人，或者先补齐外部证据再交裁判。",
+      "验收标准在错误率百分之十的批次上放行了 13.6%，没达到事先定的目标。建议：加大每批抽检量或收紧放行门槛，再在模拟批次上重测。"
+    ],
+    "headline": [
+      "和出题时定好的答案一致 699/711，植入的错误抓到 385/390",
+      "监管和法院结论：从广告本身能看出的 33/35，要靠外部证据的只有 6/11",
+      "先用规则、再交裁判、拿不准的送人：漏掉的错误 2/390，只用裁判时 7/390；送人工 49/711"
+    ],
+    "numbers": [
+      {
+        "id": "N1",
+        "metric": "jc_constructed",
+        "label": "和定好的答案一致",
+        "value": "699/711",
+        "full": "699/711（98.3%，95% 区间 97.1–99.0%）",
+        "evaluation": "定好答案的判断题（测试集，三次判断取多数）",
+        "sources": [
+          "judge-calibration/eval/results/RESULTS.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+        ],
+        "kind": "proportion",
+        "k": 699,
+        "n": 711,
+        "rate": 0.9831,
+        "ci95": [
+          0.9707,
+          0.9903
+        ],
+        "display": "699/711"
+      },
+      {
+        "id": "N2",
+        "metric": "jc_caught",
+        "label": "植入的错误抓到",
+        "value": "385/390",
+        "full": "385/390（98.7%，95% 区间 97.0–99.5%）",
+        "evaluation": "定好答案的判断题（测试集，三次判断取多数）",
+        "sources": [
+          "judge-calibration/eval/results/RESULTS.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+        ],
+        "kind": "proportion",
+        "k": 385,
+        "n": 390,
+        "rate": 0.9872,
+        "ci95": [
+          0.9703,
+          0.9945
+        ],
+        "display": "385/390"
+      },
+      {
+        "id": "N3",
+        "metric": "jc_reg_face",
+        "label": "从广告本身能看出的",
+        "value": "33/35",
+        "full": "33/35（94.3%，95% 区间 81.4–98.4%）",
+        "evaluation": "监管和法院的结论（46 条真实广告）",
+        "sources": [
+          "judge-calibration/eval/results/RESULTS.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+        ],
+        "kind": "proportion",
+        "k": 33,
+        "n": 35,
+        "rate": 0.9429,
+        "ci95": [
+          0.8139,
+          0.9842
+        ],
+        "display": "33/35"
+      },
+      {
+        "id": "N4",
+        "metric": "jc_reg_evidence",
+        "label": "要靠外部证据的",
+        "value": "6/11",
+        "full": "6/11（54.5%，95% 区间 28.0–78.7%）",
+        "evaluation": "监管和法院的结论（46 条真实广告）",
+        "sources": [
+          "judge-calibration/eval/results/RESULTS.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+        ],
+        "kind": "proportion",
+        "k": 6,
+        "n": 11,
+        "rate": 0.5455,
+        "ci95": [
+          0.2801,
+          0.7873
+        ],
+        "display": "6/11"
+      },
+      {
+        "id": "N5",
+        "metric": "jc_missed_b",
+        "label": "规则、裁判、复核队列：漏掉的错误",
+        "value": "2/390",
+        "full": "2/390（0.5%，95% 区间 0.1–1.9%）",
+        "evaluation": "规则、裁判和复核队列怎么分工（711 道）",
+        "sources": [
+          "judge-calibration/eval/results/summary.json"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+        ],
+        "kind": "proportion",
+        "k": 2,
+        "n": 390,
+        "rate": 0.0051,
+        "ci95": [
+          0.0014,
+          0.0185
+        ],
+        "display": "2/390"
+      },
+      {
+        "id": "N6",
+        "metric": "jc_missed_a",
+        "label": "只用裁判：漏掉的错误",
+        "value": "7/390",
+        "full": "7/390（1.8%，95% 区间 0.9–3.7%）",
+        "evaluation": "规则、裁判和复核队列怎么分工（711 道）",
+        "sources": [
+          "judge-calibration/eval/results/summary.json"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+        ],
+        "kind": "proportion",
+        "k": 7,
+        "n": 390,
+        "rate": 0.0179,
+        "ci95": [
+          0.0087,
+          0.0366
+        ],
+        "display": "7/390"
+      },
+      {
+        "id": "N7",
+        "metric": "jc_queue_b",
+        "label": "规则、裁判、复核队列：送人工",
+        "value": "49/711",
+        "full": "49/711（6.9%，95% 区间 5.3–9.0%）",
+        "evaluation": "规则、裁判和复核队列怎么分工（711 道）",
+        "sources": [
+          "judge-calibration/eval/results/summary.json"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+        ],
+        "kind": "proportion",
+        "k": 49,
+        "n": 711,
+        "rate": 0.0689,
+        "ci95": [
+          0.0525,
+          0.0899
+        ],
+        "display": "49/711"
+      },
+      {
+        "id": "N8",
+        "metric": "jc_dev_v2",
+        "label": "平均平衡准确率（v2）",
+        "value": 0.976,
+        "full": "0.976",
+        "evaluation": "裁判提示词 v1 到 v4（开发集）",
+        "sources": [
+          "judge-calibration/eval/results/RESULTS.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "0.976"
+      },
+      {
+        "id": "N9",
+        "metric": "jc_dev_v1",
+        "label": "平均平衡准确率（v1）",
+        "value": 0.86,
+        "full": "0.860",
+        "evaluation": "裁判提示词 v1 到 v4（开发集）",
+        "sources": [
+          "judge-calibration/eval/results/RESULTS.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "0.860"
+      },
+      {
+        "id": "N10",
+        "metric": "jc_jv_judge",
+        "label": "Judge's Verdict：裁判和每位标注员完全一致（平均）",
+        "value": 67.3333,
+        "full": "67.3%",
+        "evaluation": "公开数据集自带的人工评分",
+        "sources": [
+          "judge-calibration/eval/results/summary.json"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+        ],
+        "kind": "value",
+        "unit": "pct",
+        "n": null,
+        "display": "67.3%"
+      },
+      {
+        "id": "N11",
+        "metric": "jc_se_fluency",
+        "label": "SummEval 流畅度：和专家的 Spearman 相关",
+        "value": 0.407624,
+        "full": "0.408",
+        "evaluation": "公开数据集自带的人工评分",
+        "sources": [
+          "judge-calibration/eval/results/summary.json"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "0.408"
+      },
+      {
+        "id": "N12",
+        "metric": "jc_qc_caught",
+        "label": "质检 Agent：错误记录查出",
+        "value": "119/119",
+        "full": "119/119（100.0%，95% 区间 96.9–100.0%）",
+        "evaluation": "质检 Agent 和验收标准",
+        "sources": [
+          "judge-calibration/eval/results/summary.json"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+        ],
+        "kind": "proportion",
+        "k": 119,
+        "n": 119,
+        "rate": 1.0,
+        "ci95": [
+          0.9687,
+          1.0
+        ],
+        "display": "119/119"
+      },
+      {
+        "id": "N13",
+        "metric": "jc_qc_false",
+        "label": "质检 Agent：正确记录被误报",
+        "value": "6/120",
+        "full": "6/120（5.0%，95% 区间 2.3–10.5%）",
+        "evaluation": "质检 Agent 和验收标准",
+        "sources": [
+          "judge-calibration/eval/results/summary.json"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+        ],
+        "kind": "proportion",
+        "k": 6,
+        "n": 120,
+        "rate": 0.05,
+        "ci95": [
+          0.0231,
+          0.1048
+        ],
+        "display": "6/120"
+      },
+      {
+        "id": "N14",
+        "metric": "jc_verbose",
+        "label": "加废话后判断变了",
+        "value": "0/368",
+        "full": "0/368（0.0%，95% 区间 0.0–1.0%）",
+        "evaluation": "加废话、加保证语会不会骗过裁判（368 道）",
+        "sources": [
+          "judge-calibration/eval/results/RESULTS.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+        ],
+        "kind": "proportion",
+        "k": 0,
+        "n": 368,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0103
+        ],
+        "display": "0/368"
+      },
+      {
+        "id": "N15",
+        "metric": "jc_assertive",
+        "label": "加保证语后判断变了",
+        "value": "0/368",
+        "full": "0/368（0.0%，95% 区间 0.0–1.0%）",
+        "evaluation": "加废话、加保证语会不会骗过裁判（368 道）",
+        "sources": [
+          "judge-calibration/eval/results/RESULTS.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+        ],
+        "kind": "proportion",
+        "k": 0,
+        "n": 368,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0103
+        ],
+        "display": "0/368"
+      },
+      {
+        "id": "N16",
+        "metric": "jc_accept_10",
+        "label": "错误率百分之十的批次被放行（目标是不超过一成）",
+        "value": 13.6,
+        "full": "13.6%",
+        "evaluation": "质检 Agent 和验收标准",
+        "sources": [
+          "judge-calibration/eval/results/RESULTS.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+        ],
+        "kind": "value",
+        "unit": "pct",
+        "n": null,
+        "display": "13.6%"
+      }
+    ],
+    "short_name": "裁判校准",
+    "card_title": "模型裁判能信到什么程度，哪些该交给人",
+    "assumed": "以为在答案里加“保证没错”这类话会骗过裁判",
+    "showed": "加废话、加保证语都一道没变：0/368、0/368",
+    "result_line": "和定好的答案一致 699/711；要靠外部证据的监管结论只对 6/11",
+    "key_numbers": [
+      {
+        "id": "N1",
+        "label": "和出题时定好的答案一致"
+      },
+      {
+        "id": "N4",
+        "label": "要靠外部证据的监管结论，判对"
+      },
+      {
+        "id": "N5",
+        "label": "规则加裁判加复核漏掉（只用裁判 7/390）"
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-11-18",
+        "label": "提示词 v2",
+        "text": "开发集上最好，采用；v3、v4 不采用",
+        "before": "0.860",
+        "before_id": "N9",
+        "after": "0.976",
+        "after_id": "N8",
+        "adopted": true
+      },
+      {
+        "date": "2026-11-18",
+        "label": "定好的答案",
+        "text": "几乎全对，植入的错误大多抓到",
+        "after": "699/711",
+        "after_id": "N1"
+      },
+      {
+        "date": "2026-11-18",
+        "label": "监管和法院",
+        "text": "要靠外部证据的那一半明显差",
+        "before": "33/35",
+        "before_id": "N3",
+        "after": "6/11",
+        "after_id": "N4"
+      },
+      {
+        "date": "2026-11-18",
+        "label": "分工",
+        "text": "规则、裁判、人工分开，漏得更少",
+        "before": "7/390",
+        "before_id": "N6",
+        "after": "2/390",
+        "after_id": "N5",
+        "adopted": true
+      },
+      {
+        "date": "2026-11-18",
+        "label": "质检 Agent",
+        "text": "错误记录全部查出，验收标准一半达标",
+        "after": "119/119",
+        "after_id": "N12",
+        "adopted": true
+      }
+    ],
+    "images": []
+  },
+  {
+    "id": "judge-calibration",
+    "lang": "en",
+    "order": 13,
+    "name": "Judge Calibration",
+    "status": "public",
+    "layer": "Operations",
+    "period": "2026-11-18",
+    "team": "Liang Liyuan",
+    "stack": "Python, Message Batches API, Cohen's kappa with bootstrap intervals, a quality-check agent with two tools",
+    "one_line": "Measures how far one model judge can be trusted, against three standards kept apart: items with answers fixed when they were built (review opinions, resume verdicts, revision advice), regulator and court decisions on real ads, and the human ratings that ship with public datasets (Judge's Verdict, SummEval, WMT MQM Chinese to English).",
+    "facts": [
+      {
+        "label": "When",
+        "value": "2026-11-18"
+      },
+      {
+        "label": "Team",
+        "value": "Liang Liyuan"
+      },
+      {
+        "label": "Stack",
+        "value": "Python, Message Batches API, Cohen's kappa with bootstrap intervals, a quality-check agent with two tools"
+      },
+      {
+        "label": "Place in the portfolio",
+        "value": "Operations"
+      },
+      {
+        "label": "Status",
+        "value": "Public"
+      }
+    ],
+    "links": [
+      {
+        "label": "Code and report",
+        "url": "https://github.com/llia0031-dotcom/judge-calibration"
+      }
+    ],
+    "problem": [
+      "A model judge is convenient, but how far can it be trusted, which checks can it take, which belong to a script, and which must stay with people?"
+    ],
+    "did": [
+      "I measured one model judge against three standards kept apart: answers fixed when the items were built, regulator and court decisions, and the human ratings that ship with public datasets; then set which checks go to a script, a judge or a person, and built a quality-check agent with an acceptance standard. The plan, frozen files and predictions were written before the runs."
+    ],
+    "evaluation": [
+      "**Judge prompts v1 to v4 (development split)**: Development split; 1 run per item per version; claude-haiku-5-5, effort medium, Message Batches API",
+      "**Items with fixed answers (test split, majority of three judgments)**: 711 items; Three judgments per item, majority taken; claude-haiku-5-5, effort medium, Message Batches API; prompt v2",
+      "**Regulator and court decisions (46 real ads)**: 46 ads; Three judgments per ad, majority taken; claude-haiku-5-5, effort medium, Message Batches API",
+      "**Human ratings that ship with public datasets**: 200 Judge's Verdict items; 120 SummEval summaries per dimension; 240 WMT MQM segments; Three judgments per item; claude-haiku-5-5, effort medium, Message Batches API",
+      "**Rules, judge and a review queue (711 items)**: 711 items, 390 of them wrong; 1 run per arm; claude-haiku-5-5, effort medium, Message Batches API",
+      "**Does padding or assurance sway the judge? (368 items)**: 368 items; 1 run per change; claude-haiku-5-5, effort medium, Message Batches API",
+      "**Quality-check agent and acceptance standard**: 239 records; simulated batches; 1 run per record; claude-haiku-5-5, effort medium, Message Batches API"
+    ],
+    "iteration": [
+      "Judge prompt v1 to v4: v2 scored 0.976 on the development split (v1 0.860) and was adopted; v3 tied and v4 was stricter, neither adopted.",
+      "Against fixed answers the judge is almost always right; against regulator and court decisions it is clearly weaker where outside evidence decides.",
+      "Against published human ratings: agreement with each annotator 67.3%, within the range annotators reach with one another; subjective dimensions such as fluency correlate least with experts (0.408).",
+      "Splitting the work: rules first, then the judge, with unsure items to people, misses less than the judge alone and costs less.",
+      "The quality-check agent caught every wrong record (119/119) and flagged 6/120 correct ones; the acceptance standard met its target on batches with a two-percent error rate but not on ten-percent batches."
+    ],
+    "result": [
+      "A model judge can be trusted on checks with clear answers that trace back to the text, and rule-checkable parts are safer with a script; decisions that turn on outside evidence and subjective quality ratings stay far from people and should stay with them. The judge's own \"unsure\" marks the items it gets wrong most often, which makes it a good signal for sending items to people."
+    ],
+    "limitations": [
+      "The items come from the same set of projects' stored answers and the errors are planted; \"argued to a wrong conclusion\" samples were produced by `eval/gen_flips.py` with the same model, so a bias towards its own writing is not ruled out. Recommendation: Before use, calibrate again on real records with settled outcomes, with error samples from other sources.",
+      "Only 46 regulator and court decisions, 11 of them turning on outside evidence; the intervals are wide. Recommendation: Leave such decisions to people, or gather the outside evidence before handing them to a judge.",
+      "The acceptance standard passed 13.6% of ten-percent batches, missing the target set beforehand. Recommendation: Sample more per batch or tighten the pass threshold, then test again on simulated batches."
+    ],
+    "headline": [
+      "Agreed with the answers fixed at item-building time on 699/711; planted errors caught 385/390",
+      "Regulator and court decisions: 33/35 where the ad itself shows it, only 6/11 where outside evidence decides",
+      "Rules, then the judge, unsure items to people: errors missed 2/390 against 7/390 with the judge alone; sent to people 49/711"
+    ],
+    "numbers": [
+      {
+        "id": "N1",
+        "metric": "jc_constructed",
+        "label": "Agreement with the fixed answers",
+        "value": "699/711",
+        "full": "699/711 (98.3%, 95% CI 97.1–99.0%)",
+        "evaluation": "Items with fixed answers (test split, majority of three judgments)",
+        "sources": [
+          "judge-calibration/eval/results/RESULTS.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+        ],
+        "kind": "proportion",
+        "k": 699,
+        "n": 711,
+        "rate": 0.9831,
+        "ci95": [
+          0.9707,
+          0.9903
+        ],
+        "display": "699/711"
+      },
+      {
+        "id": "N2",
+        "metric": "jc_caught",
+        "label": "Planted errors caught",
+        "value": "385/390",
+        "full": "385/390 (98.7%, 95% CI 97.0–99.5%)",
+        "evaluation": "Items with fixed answers (test split, majority of three judgments)",
+        "sources": [
+          "judge-calibration/eval/results/RESULTS.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+        ],
+        "kind": "proportion",
+        "k": 385,
+        "n": 390,
+        "rate": 0.9872,
+        "ci95": [
+          0.9703,
+          0.9945
+        ],
+        "display": "385/390"
+      },
+      {
+        "id": "N3",
+        "metric": "jc_reg_face",
+        "label": "Readable from the ad itself",
+        "value": "33/35",
+        "full": "33/35 (94.3%, 95% CI 81.4–98.4%)",
+        "evaluation": "Regulator and court decisions (46 real ads)",
+        "sources": [
+          "judge-calibration/eval/results/RESULTS.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+        ],
+        "kind": "proportion",
+        "k": 33,
+        "n": 35,
+        "rate": 0.9429,
+        "ci95": [
+          0.8139,
+          0.9842
+        ],
+        "display": "33/35"
+      },
+      {
+        "id": "N4",
+        "metric": "jc_reg_evidence",
+        "label": "Turning on outside evidence",
+        "value": "6/11",
+        "full": "6/11 (54.5%, 95% CI 28.0–78.7%)",
+        "evaluation": "Regulator and court decisions (46 real ads)",
+        "sources": [
+          "judge-calibration/eval/results/RESULTS.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+        ],
+        "kind": "proportion",
+        "k": 6,
+        "n": 11,
+        "rate": 0.5455,
+        "ci95": [
+          0.2801,
+          0.7873
+        ],
+        "display": "6/11"
+      },
+      {
+        "id": "N5",
+        "metric": "jc_missed_b",
+        "label": "Rules, judge, review queue: errors missed",
+        "value": "2/390",
+        "full": "2/390 (0.5%, 95% CI 0.1–1.9%)",
+        "evaluation": "Rules, judge and a review queue (711 items)",
+        "sources": [
+          "judge-calibration/eval/results/summary.json"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+        ],
+        "kind": "proportion",
+        "k": 2,
+        "n": 390,
+        "rate": 0.0051,
+        "ci95": [
+          0.0014,
+          0.0185
+        ],
+        "display": "2/390"
+      },
+      {
+        "id": "N6",
+        "metric": "jc_missed_a",
+        "label": "Judge alone: errors missed",
+        "value": "7/390",
+        "full": "7/390 (1.8%, 95% CI 0.9–3.7%)",
+        "evaluation": "Rules, judge and a review queue (711 items)",
+        "sources": [
+          "judge-calibration/eval/results/summary.json"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+        ],
+        "kind": "proportion",
+        "k": 7,
+        "n": 390,
+        "rate": 0.0179,
+        "ci95": [
+          0.0087,
+          0.0366
+        ],
+        "display": "7/390"
+      },
+      {
+        "id": "N7",
+        "metric": "jc_queue_b",
+        "label": "Rules, judge, review queue: sent to people",
+        "value": "49/711",
+        "full": "49/711 (6.9%, 95% CI 5.3–9.0%)",
+        "evaluation": "Rules, judge and a review queue (711 items)",
+        "sources": [
+          "judge-calibration/eval/results/summary.json"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+        ],
+        "kind": "proportion",
+        "k": 49,
+        "n": 711,
+        "rate": 0.0689,
+        "ci95": [
+          0.0525,
+          0.0899
+        ],
+        "display": "49/711"
+      },
+      {
+        "id": "N8",
+        "metric": "jc_dev_v2",
+        "label": "Mean balanced accuracy (v2)",
+        "value": 0.976,
+        "full": "0.976",
+        "evaluation": "Judge prompts v1 to v4 (development split)",
+        "sources": [
+          "judge-calibration/eval/results/RESULTS.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "0.976"
+      },
+      {
+        "id": "N9",
+        "metric": "jc_dev_v1",
+        "label": "Mean balanced accuracy (v1)",
+        "value": 0.86,
+        "full": "0.860",
+        "evaluation": "Judge prompts v1 to v4 (development split)",
+        "sources": [
+          "judge-calibration/eval/results/RESULTS.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "0.860"
+      },
+      {
+        "id": "N10",
+        "metric": "jc_jv_judge",
+        "label": "Judge's Verdict: exact agreement with each annotator (mean)",
+        "value": 67.3333,
+        "full": "67.3%",
+        "evaluation": "Human ratings that ship with public datasets",
+        "sources": [
+          "judge-calibration/eval/results/summary.json"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+        ],
+        "kind": "value",
+        "unit": "pct",
+        "n": null,
+        "display": "67.3%"
+      },
+      {
+        "id": "N11",
+        "metric": "jc_se_fluency",
+        "label": "SummEval fluency: Spearman with experts",
+        "value": 0.407624,
+        "full": "0.408",
+        "evaluation": "Human ratings that ship with public datasets",
+        "sources": [
+          "judge-calibration/eval/results/summary.json"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "0.408"
+      },
+      {
+        "id": "N12",
+        "metric": "jc_qc_caught",
+        "label": "QC agent: wrong records caught",
+        "value": "119/119",
+        "full": "119/119 (100.0%, 95% CI 96.9–100.0%)",
+        "evaluation": "Quality-check agent and acceptance standard",
+        "sources": [
+          "judge-calibration/eval/results/summary.json"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+        ],
+        "kind": "proportion",
+        "k": 119,
+        "n": 119,
+        "rate": 1.0,
+        "ci95": [
+          0.9687,
+          1.0
+        ],
+        "display": "119/119"
+      },
+      {
+        "id": "N13",
+        "metric": "jc_qc_false",
+        "label": "QC agent: correct records flagged",
+        "value": "6/120",
+        "full": "6/120 (5.0%, 95% CI 2.3–10.5%)",
+        "evaluation": "Quality-check agent and acceptance standard",
+        "sources": [
+          "judge-calibration/eval/results/summary.json"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+        ],
+        "kind": "proportion",
+        "k": 6,
+        "n": 120,
+        "rate": 0.05,
+        "ci95": [
+          0.0231,
+          0.1048
+        ],
+        "display": "6/120"
+      },
+      {
+        "id": "N14",
+        "metric": "jc_verbose",
+        "label": "Verdicts changed by padding",
+        "value": "0/368",
+        "full": "0/368 (0.0%, 95% CI 0.0–1.0%)",
+        "evaluation": "Does padding or assurance sway the judge? (368 items)",
+        "sources": [
+          "judge-calibration/eval/results/RESULTS.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+        ],
+        "kind": "proportion",
+        "k": 0,
+        "n": 368,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0103
+        ],
+        "display": "0/368"
+      },
+      {
+        "id": "N15",
+        "metric": "jc_assertive",
+        "label": "Verdicts changed by assurances",
+        "value": "0/368",
+        "full": "0/368 (0.0%, 95% CI 0.0–1.0%)",
+        "evaluation": "Does padding or assurance sway the judge? (368 items)",
+        "sources": [
+          "judge-calibration/eval/results/RESULTS.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+        ],
+        "kind": "proportion",
+        "k": 0,
+        "n": 368,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.0103
+        ],
+        "display": "0/368"
+      },
+      {
+        "id": "N16",
+        "metric": "jc_accept_10",
+        "label": "Batches with a ten-percent error rate accepted (target: at most one in ten)",
+        "value": 13.6,
+        "full": "13.6%",
+        "evaluation": "Quality-check agent and acceptance standard",
+        "sources": [
+          "judge-calibration/eval/results/RESULTS.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+        ],
+        "kind": "value",
+        "unit": "pct",
+        "n": null,
+        "display": "13.6%"
+      }
+    ],
+    "short_name": "Judge calibration",
+    "card_title": "How far a model judge can be trusted",
+    "assumed": "Expected assurance phrases in an answer to sway the judge",
+    "showed": "Neither padding nor assurances changed a verdict: 0/368 and 0/368",
+    "result_line": "Agreed with fixed answers on 699/711; only 6/11 on regulator decisions that turn on outside evidence",
+    "key_numbers": [
+      {
+        "id": "N1",
+        "label": "Agreement with answers fixed at item-building time"
+      },
+      {
+        "id": "N4",
+        "label": "Regulator decisions that turn on outside evidence: right"
+      },
+      {
+        "id": "N5",
+        "label": "Errors missed with rules, judge and review (judge alone: 7/390)"
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-11-18",
+        "label": "Prompt v2",
+        "text": "Best on the development split; v3 and v4 dropped",
+        "before": "0.860",
+        "before_id": "N9",
+        "after": "0.976",
+        "after_id": "N8",
+        "adopted": true
+      },
+      {
+        "date": "2026-11-18",
+        "label": "Fixed answers",
+        "text": "Almost always right; most planted errors caught",
+        "after": "699/711",
+        "after_id": "N1"
+      },
+      {
+        "date": "2026-11-18",
+        "label": "Regulators and courts",
+        "text": "Weaker where outside evidence decides",
+        "before": "33/35",
+        "before_id": "N3",
+        "after": "6/11",
+        "after_id": "N4"
+      },
+      {
+        "date": "2026-11-18",
+        "label": "Splitting the work",
+        "text": "Rules, judge and people: fewer misses",
+        "before": "7/390",
+        "before_id": "N6",
+        "after": "2/390",
+        "after_id": "N5",
+        "adopted": true
+      },
+      {
+        "date": "2026-11-18",
+        "label": "QC agent",
+        "text": "Every wrong record caught; one target missed",
+        "after": "119/119",
+        "after_id": "N12",
+        "adopted": true
+      }
+    ],
+    "images": []
   }
 ]
