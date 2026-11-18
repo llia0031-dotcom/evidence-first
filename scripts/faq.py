@@ -5,8 +5,9 @@ what they are looking for, what they can do, which project to open, how to reach
 
 Three kinds of entries:
 - written ones in cards/faq.toml, with {project.metric} placeholders (and {_count} build counts);
-- one per public project, made from its card (title, result line, page and code links);
-- one per hiring direction, listing the projects that fit (from [[direction]] in the file).
+- one per public project: a line from [project_line] in the file, then the card's result line
+  (its numbers checked like any other), with the project page and code as links;
+- one per hiring direction ([[direction]] in the file), pointing to the projects that fit.
 
 No number is typed by hand: every sentence that carries a card number becomes an evidence-check claim
 quoting the card row it comes from. A sentence holds card numbers or build counts, not both (counts
@@ -92,7 +93,10 @@ def project_items(faq: dict, by_id: dict, shown: list[str]) -> list[dict]:
         repo = _repo(spec)
         alias = {l: list(dict.fromkeys([names[l], full[l], shorts[l], pid] + ([repo.rstrip("/").rsplit("/", 1)[1]] if repo else [])))
                  for l in LANGS}
-        answer = {l: _end(bc.tr(spec["card_title"], l), l) + ("" if l == "zh" else " ")
+        if pid not in faq.get("project_line", {}):
+            raise bc.BuildError(f"faq: no [project_line] for {pid}")
+        line = faq["project_line"][pid]
+        answer = {l: _end(line[l], l) + ("" if l == "zh" else " ")
                   + _end(_globalise(bc.tr(spec["result_line"], l), pid), l) for l in LANGS}
         sources = [{"type": "project", "id": pid}]
         if repo:
@@ -111,10 +115,7 @@ def direction_items(faq: dict, by_id: dict, shown: list[str]) -> list[dict]:
         for pid in d["projects"]:
             if pid not in shown:
                 raise bc.BuildError(f"faq direction {d['id']}: {pid} is not a public project")
-        parts = {l: [f"{_display(bc.tr(by_id[p]['spec']['name'], l))}{'（' if l == 'zh' else ' ('}"
-                     f"{bc.tr(by_id[p]['spec']['card_title'], l).rstrip('?')}{'）' if l == 'zh' else ')'}"
-                     for p in d["projects"]] for l in LANGS}
-        answer = {"zh": "；".join(parts["zh"]) + "。", "en": "; ".join(parts["en"]) + "."}
+        answer = d["a"]
         out.append({"id": f"direction-{d['id']}", "group": tpl["group"], "order": tpl["order"] + n,
                     "q": d["q"], "aliases": d["aliases"], "a": answer,
                     "sources": [{"type": "project", "id": p} for p in d["projects"]],
@@ -131,7 +132,10 @@ def build(projects: list[dict], card_texts: dict[tuple[str, str], str]) -> tuple
              if p["spec"]["status"] == "public" and p["spec"]["id"] not in bc.WITHHOLD]
     groups = {g["id"] for g in faq["group"]}
     written = faq["item"]
-    for it in written:
+    for pid, line in faq.get("project_line", {}).items():
+        for lang in LANGS:
+            _lint_digits(line[lang], allowed, f"faq.project_line.{pid}.{lang}")
+    for it in written + faq.get("direction", []):
         for lang in LANGS:
             for text in [it["a"][lang], it["q"][lang], *it["aliases"][lang]]:
                 _lint_digits(text, allowed, f"faq.{it['id']}.{lang}")
