@@ -8,13 +8,6 @@
       }
     },
     {
-      "id": "method",
-      "label": {
-        "zh": "怎么做评测",
-        "en": "How I evaluate"
-      }
-    },
-    {
       "id": "projects",
       "label": {
         "zh": "关于项目",
@@ -22,10 +15,24 @@
       }
     },
     {
-      "id": "results",
+      "id": "direction",
       "label": {
-        "zh": "结果和不足",
-        "en": "Results and gaps"
+        "zh": "按方向找项目",
+        "en": "Projects by area"
+      }
+    },
+    {
+      "id": "project",
+      "label": {
+        "zh": "每个项目",
+        "en": "Each project"
+      }
+    },
+    {
+      "id": "more",
+      "label": {
+        "zh": "更多",
+        "en": "More"
       }
     }
   ],
@@ -54,8 +61,8 @@
         ]
       },
       "a": {
-        "zh": "我做 AI 产品功能：按资料带出处回答的问答、广告审核和内容标注 Agent、经营分析 Agent、给创作者用的 Skill。每个功能都先出题、定好答案再评测，结果和局限写在评测卡里。作品集里一共 15 个项目，代码和报告都公开。",
-        "en": "I build AI product features: question answering that cites its sources, ad-review and content-labelling agents, a business-review agent and skills for creators. Each feature gets a test set with fixed answers before it is judged, and its results and limits go on an evaluation card. The portfolio holds 15 projects, with code and reports public."
+        "zh": "我做 AI 产品功能，也给每个功能出题做评测：带出处的问答、审核和标注 Agent、经营分析 Agent、给创作者用的 Skill。一共 15 个公开项目。",
+        "en": "I build AI product features and the tests that check them: question answering with sources, review and labelling agents, a business-review agent and skills for creators. There are 15 public projects."
       },
       "sources": [
         {
@@ -80,7 +87,7 @@
       ],
       "related": [
         "first-project",
-        "how-to-judge"
+        "strengths"
       ]
     },
     {
@@ -89,14 +96,15 @@
       "order": 2,
       "chip": true,
       "q": {
-        "zh": "你在找什么工作？什么时候能到岗？",
-        "en": "What are you looking for, and when can you start?"
+        "zh": "你在找什么工作？",
+        "en": "What are you looking for?"
       },
       "aliases": {
         "zh": [
           "求职意向",
           "找实习",
           "到岗时间",
+          "什么时候能到岗",
           "能实习多久",
           "每周几天",
           "什么时候能来"
@@ -105,6 +113,7 @@
           "internship",
           "job",
           "availability",
+          "when can you start",
           "start date",
           "how long",
           "days per week"
@@ -112,7 +121,7 @@
       },
       "a": {
         "zh": "正在找 AI 产品、评测、运营方向的实习。随时可以到岗，每周天数不限，可以实习 3 个月。",
-        "en": "I'm looking for an internship in AI product, evaluation or operations. I can start any time, work any number of days a week, and stay for 3 months."
+        "en": "An internship in AI product, evaluation or operations. I can start any time, work any number of days a week, and stay for 3 months."
       },
       "sources": [
         {
@@ -136,7 +145,7 @@
       "id": "background",
       "group": "me",
       "order": 3,
-      "chip": false,
+      "chip": true,
       "q": {
         "zh": "你的背景？",
         "en": "What is your background?"
@@ -161,7 +170,7 @@
       },
       "a": {
         "zh": "莫纳什大学马来西亚校区（Monash University Malaysia）计算机科学本科在读，预计 2028 年毕业。",
-        "en": "I'm studying for a bachelor's degree in computer science at Monash University Malaysia, expected to graduate in 2028."
+        "en": "Computer science undergraduate at Monash University Malaysia, expected to graduate in 2028."
       },
       "sources": [
         {
@@ -185,7 +194,7 @@
       "id": "strengths",
       "group": "me",
       "order": 4,
-      "chip": false,
+      "chip": true,
       "q": {
         "zh": "你最拿手的是什么？",
         "en": "What are you best at?"
@@ -207,8 +216,8 @@
         ]
       },
       "a": {
-        "zh": "出评测集和评分规则：模型裁判校准、Agent 评测台。搭 Agent 和工作流：有据审核、有据标注流水线（含 Lark 工作流）。写 Skill 和命令行、MCP 工具：有据可查、创作者 Skill 合集。用 SQL 和 Pandas 做数据分析：有据经营分析。",
-        "en": "Building test sets and scoring rules: Judge Calibration and Agent Trace Eval. Building agents and workflows: Grounded Review and the Grounded Labelling Pipeline, with a Lark workflow. Writing skills, command-line and MCP tools: evidence-check and Creator skills. Analysing data with SQL and Pandas: Grounded Business Review."
+        "zh": "出评测集和评分规则（Agent 评测台、模型裁判校准）；搭 Agent 和工作流（有据审核、有据标注流水线）；写 Skill、命令行和 MCP 工具（有据可查）；用 SQL 和 Pandas 做数据分析（有据经营分析）。",
+        "en": "Building test sets and scoring rules (Agent Trace Eval, Judge Calibration); building agents and workflows (Grounded Review, Grounded Labelling Pipeline); writing skills, command-line and MCP tools (evidence-check); analysing data with SQL and Pandas (Grounded Business Review)."
       },
       "sources": [
         {
@@ -249,400 +258,14 @@
         }
       ],
       "related": [
-        "tools-used",
-        "first-project"
-      ]
-    },
-    {
-      "id": "contact",
-      "group": "me",
-      "order": 5,
-      "chip": true,
-      "q": {
-        "zh": "怎么联系你？",
-        "en": "How can I reach you?"
-      },
-      "aliases": {
-        "zh": [
-          "联系方式",
-          "邮箱",
-          "电话",
-          "微信",
-          "领英",
-          "简历",
-          "怎么找你"
-        ],
-        "en": [
-          "contact",
-          "email",
-          "phone",
-          "linkedin",
-          "resume",
-          "cv",
-          "get in touch"
-        ]
-      },
-      "a": {
-        "zh": "目前只放了 GitHub：llia0031-dotcom。每个项目的代码和报告都在上面。",
-        "en": "For now the only channel here is GitHub: llia0031-dotcom, where every project's code and report live."
-      },
-      "sources": [
-        {
-          "type": "url",
-          "label": {
-            "zh": "在 GitHub 上找我",
-            "en": "Find me on GitHub"
-          },
-          "url": {
-            "zh": "https://github.com/llia0031-dotcom",
-            "en": "https://github.com/llia0031-dotcom"
-          }
-        }
-      ],
-      "related": [
-        "looking-for",
-        "open-source"
-      ]
-    },
-    {
-      "id": "how-to-judge",
-      "group": "method",
-      "order": 6,
-      "chip": true,
-      "q": {
-        "zh": "怎么判断一个 AI 功能好不好？",
-        "en": "How do you tell whether an AI feature is good?"
-      },
-      "aliases": {
-        "zh": [
-          "指标怎么定",
-          "怎么评测",
-          "评测方法",
-          "怎么衡量效果",
-          "成功标准",
-          "评估"
-        ],
-        "en": [
-          "metrics",
-          "how do you evaluate",
-          "evaluation method",
-          "measure quality",
-          "success criteria",
-          "assessment"
-        ]
-      },
-      "a": {
-        "zh": "先把题目和标准答案写好、冻结，再跑。指标跟着要解决的问题定，例如判对的比例、漏判和误判、每千次的费用，比例都附区间。每改一版就在同一套题上重测，按事先写好的规则决定采不采用。改版记录一共 73 条，没采用的也留着。",
-        "en": "Write the test items and answers first, freeze them, then run. The metrics follow the problem, such as the share judged right, misses and false alarms, and cost per thousand, with intervals on every proportion. Each version is re-run on the same items and adopted or not by a rule written beforehand. There are 73 logged changes, dropped versions included."
-      },
-      "sources": [
-        {
-          "type": "section",
-          "id": "method",
-          "label": {
-            "zh": "评测方法",
-            "en": "How it is evaluated"
-          }
-        },
-        {
-          "type": "section",
-          "id": "log",
-          "label": {
-            "zh": "改版记录",
-            "en": "Change log"
-          }
-        }
-      ],
-      "related": [
-        "iterate-adopt",
-        "data-source"
-      ]
-    },
-    {
-      "id": "data-source",
-      "group": "method",
-      "order": 7,
-      "chip": false,
-      "q": {
-        "zh": "题目和标准答案从哪来？有没有人工标注？",
-        "en": "Where do the test items and answers come from? Any human labels?"
-      },
-      "aliases": {
-        "zh": [
-          "标准答案",
-          "数据从哪来",
-          "人工标注",
-          "真实数据",
-          "真实用户",
-          "标注数据",
-          "测试集"
-        ],
-        "en": [
-          "ground truth",
-          "answer key",
-          "human annotation",
-          "real data",
-          "real users",
-          "labelled data",
-          "test set"
-        ]
-      },
-      "a": {
-        "zh": "多数题目的答案在出题时就定好。另外用到三种外部标准：监管机构和法院对真实广告的结论，公开数据集自带的标注和专家评分（例如 ASAP 点评的方面标签、SummEval），以及 Cairn 里学生用自己的话提的真实问题（经同意公开）。模型裁判校准、标注 Agent 工具箱和 Agent 评测台都没有另做人工评分。",
-        "en": "Most items have answers fixed when they were written. Three outside standards are also used: regulator and court decisions on real ads, the labels and expert ratings that ship with public datasets (such as ASAP review aspects and SummEval), and real questions students asked in their own words in Cairn, published with consent. Judge Calibration, the Labelling Agent Kit and Agent Trace Eval collected no human ratings of their own."
-      },
-      "sources": [
-        {
-          "type": "project",
-          "id": "judge-calibration",
-          "label": {
-            "zh": "模型裁判校准",
-            "en": "Judge Calibration"
-          },
-          "url": {
-            "zh": "https://github.com/llia0031-dotcom/judge-calibration",
-            "en": "https://github.com/llia0031-dotcom/judge-calibration"
-          }
-        },
-        {
-          "type": "project",
-          "id": "labelling-agent-kit",
-          "label": {
-            "zh": "标注 Agent 工具箱",
-            "en": "Labelling Agent Kit"
-          },
-          "url": {
-            "zh": "https://github.com/llia0031-dotcom/labelling-agent-kit",
-            "en": "https://github.com/llia0031-dotcom/labelling-agent-kit"
-          }
-        },
-        {
-          "type": "project",
-          "id": "cairn",
-          "label": {
-            "zh": "Cairn",
-            "en": "Cairn"
-          },
-          "url": {
-            "zh": "https://github.com/llia0031-dotcom/cairn",
-            "en": "https://github.com/llia0031-dotcom/cairn"
-          }
-        }
-      ],
-      "related": [
-        "how-to-judge",
-        "gaps-to-production"
-      ]
-    },
-    {
-      "id": "iterate-adopt",
-      "group": "method",
-      "order": 8,
-      "chip": false,
-      "q": {
-        "zh": "怎么迭代？怎么决定一个改动采用不采用？",
-        "en": "How do you iterate, and how do you decide whether to adopt a change?"
-      },
-      "aliases": {
-        "zh": [
-          "迭代",
-          "对照实验",
-          "采用标准",
-          "回滚",
-          "灰度",
-          "怎么改版"
-        ],
-        "en": [
-          "iteration",
-          "a/b test",
-          "experiment",
-          "adoption rule",
-          "rollback",
-          "canary"
-        ]
-      },
-      "a": {
-        "zh": "每次只改一处，跑之前写下预测和采用规则，再在同一套冻结的题上和上一版并排比。区间整个在零以上才算提升。例如标注 Agent 的第二版：点评上 +0.018 [+0.005, +0.031]，采用；广告上 +0.021 [+0.000, +0.048]，区间碰到零，不采用。上线类的改动先灰度，按写好的条件回滚。",
-        "en": "One change at a time, with predictions and an adoption rule written before the run, compared side by side with the previous version on the same frozen items. A gain counts only when the whole interval is above zero. For example, the labelling agent's second version: on reviews +0.018 [+0.005, +0.031], adopted; on ads +0.021 [+0.000, +0.048], the interval reaches zero, not adopted. Release changes go through a canary with rollback conditions written down."
-      },
-      "sources": [
-        {
-          "type": "project",
-          "id": "labelling-agent-kit",
-          "label": {
-            "zh": "标注 Agent 工具箱",
-            "en": "Labelling Agent Kit"
-          },
-          "url": {
-            "zh": "https://github.com/llia0031-dotcom/labelling-agent-kit",
-            "en": "https://github.com/llia0031-dotcom/labelling-agent-kit"
-          }
-        },
-        {
-          "type": "project",
-          "id": "grounded-labelling-pipeline",
-          "label": {
-            "zh": "有据标注流水线",
-            "en": "Grounded Labelling Pipeline"
-          },
-          "url": {
-            "zh": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline",
-            "en": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline"
-          }
-        },
-        {
-          "type": "section",
-          "id": "log",
-          "label": {
-            "zh": "改版记录",
-            "en": "Change log"
-          }
-        }
-      ],
-      "related": [
-        "how-to-judge",
-        "what-failed"
-      ]
-    },
-    {
-      "id": "numbers-true",
-      "group": "method",
-      "order": 9,
-      "chip": false,
-      "q": {
-        "zh": "怎么保证报告里的数字是真的？",
-        "en": "How do you make sure the numbers are real?"
-      },
-      "aliases": {
-        "zh": [
-          "数字可信吗",
-          "会不会编数字",
-          "数据真实",
-          "怎么核对",
-          "数字从哪来"
-        ],
-        "en": [
-          "are the numbers real",
-          "fabricated",
-          "verify numbers",
-          "trust the results",
-          "how do you check"
-        ]
-      },
-      "a": {
-        "zh": "评测卡上的 387 个数字全部由脚本从项目的结果文件算出，不手抄。作品集里的每个数字，再用有据可查（evidence-check）对回评测卡。题目和答案跑前冻结；跑完发现题目或答案有错，就公开更正、重跑，原来的数字并排保留，例如模型裁判校准的两次更正。",
-        "en": "All 387 numbers on the evaluation cards are computed by script from the projects' result files, never copied by hand. Every number in this portfolio is then checked against the cards with evidence-check. Items and answers are frozen before the runs; when a mistake in an item or answer turns up afterwards, it is corrected in public and run again, with the old numbers kept alongside, as in Judge Calibration's two corrections."
-      },
-      "sources": [
-        {
-          "type": "project",
-          "id": "evidence-check",
-          "label": {
-            "zh": "有据可查 evidence-check",
-            "en": "evidence-check"
-          },
-          "url": {
-            "zh": "https://github.com/llia0031-dotcom/evidence-check",
-            "en": "https://github.com/llia0031-dotcom/evidence-check"
-          }
-        },
-        {
-          "type": "card",
-          "id": "judge-calibration",
-          "label": {
-            "zh": "评测卡：模型裁判校准",
-            "en": "Evaluation card: Judge Calibration"
-          },
-          "url": {
-            "zh": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/judge-calibration.md",
-            "en": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/judge-calibration.en.md"
-          }
-        }
-      ],
-      "related": [
-        "how-to-judge",
-        "open-source"
-      ]
-    },
-    {
-      "id": "models-cost",
-      "group": "method",
-      "order": 10,
-      "chip": false,
-      "q": {
-        "zh": "用的什么模型？花了多少钱？",
-        "en": "Which models do you use, and what did it cost?"
-      },
-      "aliases": {
-        "zh": [
-          "模型",
-          "为什么用这个模型",
-          "费用",
-          "成本",
-          "花费",
-          "预算",
-          "多少钱"
-        ],
-        "en": [
-          "model",
-          "which llm",
-          "cost",
-          "budget",
-          "spend",
-          "price"
-        ]
-      },
-      "a": {
-        "zh": "默认用便宜的 claude-haiku-5-5，不急的大批评测走批量接口，价格减半。需要对照时才加别的模型，例如审核模型实验在本机跑的 Qwen 小模型，模型裁判校准里用 claude-sonnet-5-5 做第二裁判。整个项目的花费，例如 Agent 评测台 1.48 美元，模型裁判校准 2.63 美元，标注 Agent 工具箱 3.6325 美元。",
-        "en": "The default is the low-cost claude-haiku-5-5, with large evaluations that are not urgent sent through the batch API at half price. Other models come in only for comparison, such as the small Qwen models Policy Model Lab runs locally, or claude-sonnet-5-5 as a second judge in Judge Calibration. Whole-project spend, for example: Agent Trace Eval US$1.48, Judge Calibration US$2.63, Labelling Agent Kit US$3.6325."
-      },
-      "sources": [
-        {
-          "type": "card",
-          "id": "agent-trace-eval",
-          "label": {
-            "zh": "评测卡：Agent 评测台",
-            "en": "Evaluation card: Agent Trace Eval"
-          },
-          "url": {
-            "zh": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/agent-trace-eval.md",
-            "en": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/agent-trace-eval.en.md"
-          }
-        },
-        {
-          "type": "card",
-          "id": "judge-calibration",
-          "label": {
-            "zh": "评测卡：模型裁判校准",
-            "en": "Evaluation card: Judge Calibration"
-          },
-          "url": {
-            "zh": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/judge-calibration.md",
-            "en": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/judge-calibration.en.md"
-          }
-        },
-        {
-          "type": "card",
-          "id": "labelling-agent-kit",
-          "label": {
-            "zh": "评测卡：标注 Agent 工具箱",
-            "en": "Evaluation card: Labelling Agent Kit"
-          },
-          "url": {
-            "zh": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/labelling-agent-kit.md",
-            "en": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/labelling-agent-kit.en.md"
-          }
-        }
-      ],
-      "related": [
-        "tools-used",
-        "numbers-true"
+        "first-project",
+        "tools-used"
       ]
     },
     {
       "id": "first-project",
       "group": "projects",
-      "order": 11,
+      "order": 5,
       "chip": true,
       "q": {
         "zh": "先看哪个项目？",
@@ -666,8 +289,8 @@
         ]
       },
       "a": {
-        "zh": "按兴趣有三条路。想看 Agent 怎么评：先看 Agent 评测台。想看审核和标注：有据审核、标注 Agent 工具箱。想看能直接装上用的工具：有据可查。",
-        "en": "Three ways in, by interest. How agents are evaluated: Agent Trace Eval. Review and labelling: Grounded Review and the Labelling Agent Kit. A tool you can install and use today: evidence-check."
+        "zh": "看评测：Agent 评测台、模型裁判校准。看审核和标注：有据审核、标注 Agent 工具箱。看能直接装上用的工具：有据可查。",
+        "en": "Evaluation: Agent Trace Eval and Judge Calibration. Review and labelling: Grounded Review and the Labelling Agent Kit. A tool you can install today: evidence-check."
       },
       "sources": [
         {
@@ -709,341 +332,13 @@
       ],
       "related": [
         "live-demos",
-        "best-results"
-      ]
-    },
-    {
-      "id": "live-demos",
-      "group": "projects",
-      "order": 12,
-      "chip": false,
-      "q": {
-        "zh": "哪些项目能直接打开试？",
-        "en": "Which projects can I try in the browser?"
-      },
-      "aliases": {
-        "zh": [
-          "演示",
-          "在线体验",
-          "试用",
-          "能点的",
-          "演示视频",
-          "原型"
-        ],
-        "en": [
-          "demo",
-          "live demo",
-          "try it",
-          "online",
-          "prototype",
-          "video"
-        ]
-      },
-      "a": {
-        "zh": "能直接打开的有：Cairn 的在线演示，有据审核和简历初筛的演示页，卖点体检的可点击原型，AI 生图创作指南和它的上线前核对工具，标注 Agent 工具箱的结果查看页。TraceDesk Lite 和 Cairn 另有演示视频。",
-        "en": "You can open Cairn's live demo, the Grounded Review and resume-screening demo pages, Sellpoint Check's clickable prototype, the Text on Product guide with its pre-listing checker, and the Labelling Agent Kit's results viewer. TraceDesk Lite and Cairn also have demo videos."
-      },
-      "sources": [
-        {
-          "type": "url",
-          "label": {
-            "zh": "有据审核演示页",
-            "en": "Grounded Review demo"
-          },
-          "url": {
-            "zh": "https://llia0031-dotcom.github.io/grounded-review/",
-            "en": "https://llia0031-dotcom.github.io/grounded-review/"
-          }
-        },
-        {
-          "type": "url",
-          "label": {
-            "zh": "Cairn 在线演示",
-            "en": "Cairn live demo"
-          },
-          "url": {
-            "zh": "https://llia0031-dotcom.github.io/cairn/",
-            "en": "https://llia0031-dotcom.github.io/cairn/"
-          }
-        },
-        {
-          "type": "url",
-          "label": {
-            "zh": "卖点体检原型",
-            "en": "Sellpoint Check prototype"
-          },
-          "url": {
-            "zh": "https://llia0031-dotcom.github.io/sellpoint-check/design/prototype/product.html",
-            "en": "https://llia0031-dotcom.github.io/sellpoint-check/design/prototype/product.html"
-          }
-        }
-      ],
-      "related": [
-        "first-project",
-        "open-source"
-      ]
-    },
-    {
-      "id": "team-or-solo",
-      "group": "projects",
-      "order": 13,
-      "chip": false,
-      "q": {
-        "zh": "这些项目是一个人做的吗？",
-        "en": "Did you build these on your own?"
-      },
-      "aliases": {
-        "zh": [
-          "一个人做的吗",
-          "团队",
-          "合作",
-          "队友",
-          "分工",
-          "独立完成"
-        ],
-        "en": [
-          "solo",
-          "team",
-          "teammates",
-          "collaboration",
-          "did you build it alone",
-          "who built it"
-        ]
-      },
-      "a": {
-        "zh": "15 个项目里，Cairn 和 TraceDesk Lite 是黑客松上两人组队做的；其余 13 个是我一个人做的。",
-        "en": "Of the 15 projects, Cairn and TraceDesk Lite were built by a team of two at hackathons; the other 13 I built on my own."
-      },
-      "sources": [
-        {
-          "type": "project",
-          "id": "cairn",
-          "label": {
-            "zh": "Cairn",
-            "en": "Cairn"
-          },
-          "url": {
-            "zh": "https://github.com/llia0031-dotcom/cairn",
-            "en": "https://github.com/llia0031-dotcom/cairn"
-          }
-        },
-        {
-          "type": "project",
-          "id": "tracedesk",
-          "label": {
-            "zh": "TraceDesk Lite",
-            "en": "TraceDesk Lite"
-          },
-          "url": {
-            "zh": "https://github.com/llia0031-dotcom/tracedesk-lite",
-            "en": "https://github.com/llia0031-dotcom/tracedesk-lite"
-          }
-        }
-      ],
-      "related": [
-        "first-project",
-        "what-do-you-do"
-      ]
-    },
-    {
-      "id": "business-scenarios",
-      "group": "projects",
-      "order": 14,
-      "chip": false,
-      "q": {
-        "zh": "这些项目对应哪些业务场景？",
-        "en": "Which business scenarios do these projects cover?"
-      },
-      "aliases": {
-        "zh": [
-          "业务场景",
-          "应用场景",
-          "落地",
-          "能用在哪",
-          "行业",
-          "用在什么地方"
-        ],
-        "en": [
-          "use cases",
-          "business scenarios",
-          "applications",
-          "where would this be used",
-          "industry"
-        ]
-      },
-      "a": {
-        "zh": "广告审核（有据审核、审核模型实验），内容标注（标注 Agent 工具箱、有据标注流水线），电商卖点和商品图（卖点体检、AI 生图创作指南），经营分析（有据经营分析），创作工具（创作者 Skill 合集），实时语音（语音 Agent 评测），招聘初筛（简历初筛），以及按公开资料回答问题（Cairn、TraceDesk Lite）。每个都照业务里的用法设计，例如卖点体检里没被证实的卖点只私下交给商家。",
-        "en": "Ad review (Grounded Review, Policy Model Lab), content labelling (Labelling Agent Kit, Grounded Labelling Pipeline), product claims and product images (Sellpoint Check, Text on Product), business review (Grounded Business Review), creator tools (Creator skills), real-time voice (the voice agent study), resume screening, and answering from public documents (Cairn, TraceDesk Lite). Each is designed the way the business would use it; in Sellpoint Check, for example, unconfirmed claims go privately to the merchant."
-      },
-      "sources": [
-        {
-          "type": "project",
-          "id": "grounded-review",
-          "label": {
-            "zh": "有据审核（广告审核 Agent）",
-            "en": "Grounded Review (ad-review agent)"
-          },
-          "url": {
-            "zh": "https://github.com/llia0031-dotcom/grounded-review",
-            "en": "https://github.com/llia0031-dotcom/grounded-review"
-          }
-        },
-        {
-          "type": "project",
-          "id": "sellpoint-check",
-          "label": {
-            "zh": "卖点体检",
-            "en": "Sellpoint Check"
-          },
-          "url": {
-            "zh": "https://github.com/llia0031-dotcom/sellpoint-check",
-            "en": "https://github.com/llia0031-dotcom/sellpoint-check"
-          }
-        },
-        {
-          "type": "project",
-          "id": "grounded-business-review",
-          "label": {
-            "zh": "有据经营分析",
-            "en": "Grounded Business Review"
-          },
-          "url": {
-            "zh": "https://github.com/llia0031-dotcom/grounded-business-review",
-            "en": "https://github.com/llia0031-dotcom/grounded-business-review"
-          }
-        }
-      ],
-      "related": [
-        "first-project",
-        "gaps-to-production"
-      ]
-    },
-    {
-      "id": "vs-existing-tools",
-      "group": "projects",
-      "order": 15,
-      "chip": false,
-      "q": {
-        "zh": "和现成的工具比有什么不同？",
-        "en": "How is this different from existing tools?"
-      },
-      "aliases": {
-        "zh": [
-          "现成工具",
-          "竞品",
-          "为什么不用现成的",
-          "重复造轮子",
-          "有什么不一样"
-        ],
-        "en": [
-          "existing tools",
-          "alternatives",
-          "why not use",
-          "reinvent",
-          "competitors",
-          "what is different"
-        ]
-      },
-      "a": {
-        "zh": "开工前都先查过现成的，能用就直接用：例如回归评测用 promptfoo，工具轨迹比对用 agentevals，过程记录导出成 Inspect AI 的日志。补的是它们没管的那一块。例如有据可查只核对数字和原文在不在给定的材料里，不像 RefChecker 那样判断一句话本身对不对；比较写在有据可查、有据经营分析、创作者 Skill 合集的 README 里。",
-        "en": "Existing tools were checked first and used where they fit: promptfoo for regression runs, agentevals for comparing tool trajectories, Inspect AI's log format for the traces. What is added is the part they leave out. evidence-check, for instance, only checks whether numbers and quotes are in the given material, rather than judging whether a sentence is true the way RefChecker does; the comparisons are in the READMEs of evidence-check, Grounded Business Review and Creator skills."
-      },
-      "sources": [
-        {
-          "type": "project",
-          "id": "evidence-check",
-          "label": {
-            "zh": "有据可查 evidence-check",
-            "en": "evidence-check"
-          },
-          "url": {
-            "zh": "https://github.com/llia0031-dotcom/evidence-check",
-            "en": "https://github.com/llia0031-dotcom/evidence-check"
-          }
-        },
-        {
-          "type": "project",
-          "id": "agent-trace-eval",
-          "label": {
-            "zh": "Agent 评测台",
-            "en": "Agent Trace Eval"
-          },
-          "url": {
-            "zh": "https://github.com/llia0031-dotcom/agent-trace-eval",
-            "en": "https://github.com/llia0031-dotcom/agent-trace-eval"
-          }
-        }
-      ],
-      "related": [
-        "tools-used",
-        "open-source"
-      ]
-    },
-    {
-      "id": "open-source",
-      "group": "projects",
-      "order": 16,
-      "chip": false,
-      "q": {
-        "zh": "代码开源吗？别人能复现吗？",
-        "en": "Is the code open source, and can others reproduce the results?"
-      },
-      "aliases": {
-        "zh": [
-          "开源",
-          "许可证",
-          "复现",
-          "能跑吗",
-          "源码",
-          "代码在哪"
-        ],
-        "en": [
-          "open source",
-          "license",
-          "reproduce",
-          "run it",
-          "source code",
-          "where is the code"
-        ]
-      },
-      "a": {
-        "zh": "都是公开仓库，用 MIT 许可证。大多数项目存下了模型的回答，带一条离线命令，不用密钥就能重算全部表格，例如标注 Agent 工具箱的 python run_all.py --offline。",
-        "en": "Every repository is public under the MIT licence. Most projects keep the model answers they got and offer one offline command that recomputes every table without a key, such as the Labelling Agent Kit's python run_all.py --offline."
-      },
-      "sources": [
-        {
-          "type": "url",
-          "label": {
-            "zh": "GitHub",
-            "en": "GitHub"
-          },
-          "url": {
-            "zh": "https://github.com/llia0031-dotcom",
-            "en": "https://github.com/llia0031-dotcom"
-          }
-        },
-        {
-          "type": "project",
-          "id": "labelling-agent-kit",
-          "label": {
-            "zh": "标注 Agent 工具箱",
-            "en": "Labelling Agent Kit"
-          },
-          "url": {
-            "zh": "https://github.com/llia0031-dotcom/labelling-agent-kit",
-            "en": "https://github.com/llia0031-dotcom/labelling-agent-kit"
-          }
-        }
-      ],
-      "related": [
-        "numbers-true",
-        "contact"
+        "how-many-projects"
       ]
     },
     {
       "id": "tools-used",
       "group": "projects",
-      "order": 17,
+      "order": 6,
       "chip": true,
       "q": {
         "zh": "用过哪些工具？",
@@ -1067,8 +362,8 @@
         ]
       },
       "a": {
-        "zh": "评测：promptfoo、agentevals、Inspect AI，自助区间和配对检验。Agent 和工作流：Claude 接口和批量接口、工具调用、Agent Skill、MCP、Lark 多维表格的工作流、Dify。数据和检索：Python、SQL（DuckDB）、Pandas、BM25、本机向量检索、OCR、LoRA 微调。前端：React 和静态演示页。",
-        "en": "Evaluation: promptfoo, agentevals, Inspect AI, bootstrap intervals and paired tests. Agents and workflows: the Claude API and batch API, tool calling, Agent Skills, MCP, Lark Base workflows, Dify. Data and retrieval: Python, SQL (DuckDB), Pandas, BM25, local vector search, OCR, LoRA fine-tuning. Front end: React and static demo pages."
+        "zh": "评测：promptfoo、agentevals、Inspect AI。Agent 和工作流：Claude 接口和批量接口、Agent Skill、MCP、Lark 工作流、Dify。数据和检索：Python、SQL、Pandas、BM25、向量检索、OCR、LoRA 微调。",
+        "en": "Evaluation: promptfoo, agentevals, Inspect AI. Agents and workflows: the Claude API and batch API, Agent Skills, MCP, Lark workflows, Dify. Data and retrieval: Python, SQL, Pandas, BM25, vector search, OCR, LoRA fine-tuning."
       },
       "sources": [
         {
@@ -1110,35 +405,93 @@
       ],
       "related": [
         "strengths",
-        "models-cost"
+        "models"
+      ]
+    },
+    {
+      "id": "contact",
+      "group": "me",
+      "order": 7,
+      "chip": true,
+      "q": {
+        "zh": "怎么联系你？",
+        "en": "How can I reach you?"
+      },
+      "aliases": {
+        "zh": [
+          "联系方式",
+          "邮箱",
+          "电话",
+          "微信",
+          "领英",
+          "简历",
+          "怎么找你"
+        ],
+        "en": [
+          "contact",
+          "email",
+          "phone",
+          "linkedin",
+          "resume",
+          "cv",
+          "get in touch"
+        ]
+      },
+      "a": {
+        "zh": "目前只放了 GitHub：llia0031-dotcom，每个项目的代码和报告都在上面。",
+        "en": "For now, GitHub: llia0031-dotcom, where every project's code and report live."
+      },
+      "sources": [
+        {
+          "type": "url",
+          "label": {
+            "zh": "在 GitHub 上找我",
+            "en": "Find me on GitHub"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom",
+            "en": "https://github.com/llia0031-dotcom"
+          }
+        }
+      ],
+      "related": [
+        "looking-for",
+        "how-many-projects"
       ]
     },
     {
       "id": "how-many-projects",
       "group": "projects",
-      "order": 18,
+      "order": 8,
       "chip": false,
       "q": {
-        "zh": "一共有多少个项目？",
-        "en": "How many projects are there?"
+        "zh": "一共多少个项目？代码在哪？",
+        "en": "How many projects are there, and where is the code?"
       },
       "aliases": {
         "zh": [
           "项目数量",
           "多少个项目",
-          "项目列表",
-          "全部项目"
+          "全部项目",
+          "都公开吗",
+          "开源",
+          "源码",
+          "代码在哪",
+          "许可证"
         ],
         "en": [
           "number of projects",
-          "project list",
           "all projects",
-          "how many"
+          "are they public",
+          "open source",
+          "source code",
+          "where is the code",
+          "license"
         ]
       },
       "a": {
-        "zh": "一共 15 个项目，都已公开。每个都有评测卡，写着题目、指标、结果和局限。",
-        "en": "There are 15 projects, all public. Each has an evaluation card with its items, metrics, results and limits."
+        "zh": "一共 15 个项目，代码和报告都公开在 GitHub，用 MIT 许可证。",
+        "en": "15 projects, with code and reports public on GitHub under the MIT licence."
       },
       "sources": [
         {
@@ -1152,28 +505,271 @@
         {
           "type": "url",
           "label": {
-            "zh": "评测卡总览",
-            "en": "All evaluation cards"
+            "zh": "GitHub",
+            "en": "GitHub"
           },
           "url": {
-            "zh": "https://github.com/llia0031-dotcom/evidence-first",
-            "en": "https://github.com/llia0031-dotcom/evidence-first"
+            "zh": "https://github.com/llia0031-dotcom",
+            "en": "https://github.com/llia0031-dotcom"
           }
         }
       ],
       "related": [
         "first-project",
+        "live-demos"
+      ]
+    },
+    {
+      "id": "live-demos",
+      "group": "projects",
+      "order": 9,
+      "chip": false,
+      "q": {
+        "zh": "哪些项目能直接打开试？",
+        "en": "Which projects can I try in the browser?"
+      },
+      "aliases": {
+        "zh": [
+          "演示",
+          "在线体验",
+          "试用",
+          "能点的",
+          "演示视频",
+          "原型"
+        ],
+        "en": [
+          "demo",
+          "live demo",
+          "try it",
+          "online",
+          "prototype",
+          "video"
+        ]
+      },
+      "a": {
+        "zh": "Cairn 的在线演示，有据审核和简历初筛的演示页，卖点体检的可点击原型，AI 生图创作指南和它的核对工具，标注 Agent 工具箱的结果查看页。TraceDesk Lite 和 Cairn 另有演示视频。",
+        "en": "Cairn's live demo, the Grounded Review and resume-screening demo pages, Sellpoint Check's clickable prototype, the Text on Product guide and its checker, and the Labelling Agent Kit's results viewer. TraceDesk Lite and Cairn also have demo videos."
+      },
+      "sources": [
+        {
+          "type": "url",
+          "label": {
+            "zh": "有据审核演示页",
+            "en": "Grounded Review demo"
+          },
+          "url": {
+            "zh": "https://llia0031-dotcom.github.io/grounded-review/",
+            "en": "https://llia0031-dotcom.github.io/grounded-review/"
+          }
+        },
+        {
+          "type": "url",
+          "label": {
+            "zh": "Cairn 在线演示",
+            "en": "Cairn live demo"
+          },
+          "url": {
+            "zh": "https://llia0031-dotcom.github.io/cairn/",
+            "en": "https://llia0031-dotcom.github.io/cairn/"
+          }
+        },
+        {
+          "type": "url",
+          "label": {
+            "zh": "卖点体检原型",
+            "en": "Sellpoint Check prototype"
+          },
+          "url": {
+            "zh": "https://llia0031-dotcom.github.io/sellpoint-check/design/prototype/product.html",
+            "en": "https://llia0031-dotcom.github.io/sellpoint-check/design/prototype/product.html"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "team-or-solo",
+      "group": "projects",
+      "order": 10,
+      "chip": false,
+      "q": {
+        "zh": "这些项目是一个人做的吗？",
+        "en": "Did you build these on your own?"
+      },
+      "aliases": {
+        "zh": [
+          "一个人做的吗",
+          "团队",
+          "合作",
+          "队友",
+          "分工",
+          "独立完成"
+        ],
+        "en": [
+          "solo",
+          "team",
+          "teammates",
+          "collaboration",
+          "did you build it alone",
+          "who built it"
+        ]
+      },
+      "a": {
+        "zh": "Cairn 和 TraceDesk Lite 是黑客松上两人组队做的，其余 13 个是我一个人做的。",
+        "en": "Cairn and TraceDesk Lite were built by a team of two at hackathons; the other 13 I built on my own."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "cairn",
+          "label": {
+            "zh": "Cairn",
+            "en": "Cairn"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/cairn",
+            "en": "https://github.com/llia0031-dotcom/cairn"
+          }
+        },
+        {
+          "type": "project",
+          "id": "tracedesk",
+          "label": {
+            "zh": "TraceDesk Lite",
+            "en": "TraceDesk Lite"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/tracedesk-lite",
+            "en": "https://github.com/llia0031-dotcom/tracedesk-lite"
+          }
+        }
+      ],
+      "related": [
+        "how-many-projects",
         "what-do-you-do"
       ]
     },
     {
+      "id": "models",
+      "group": "projects",
+      "order": 11,
+      "chip": false,
+      "q": {
+        "zh": "用的什么模型？",
+        "en": "Which models do you use?"
+      },
+      "aliases": {
+        "zh": [
+          "模型",
+          "大模型",
+          "为什么用这个模型",
+          "用的哪家模型"
+        ],
+        "en": [
+          "model",
+          "which llm",
+          "llm",
+          "why this model"
+        ]
+      },
+      "a": {
+        "zh": "默认用 claude-haiku-5-5，大批评测走批量接口，价格减半；对照时才加别的模型，例如本机跑的 Qwen 小模型、做第二裁判的 claude-sonnet-5-5。",
+        "en": "claude-haiku-5-5 by default, with large evaluations through the batch API at half price; other models only for comparison, such as small Qwen models run locally or claude-sonnet-5-5 as a second judge."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "policy-model-lab",
+          "label": {
+            "zh": "审核模型实验",
+            "en": "Policy Model Lab"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/policy-model-lab",
+            "en": "https://github.com/llia0031-dotcom/policy-model-lab"
+          }
+        },
+        {
+          "type": "project",
+          "id": "judge-calibration",
+          "label": {
+            "zh": "模型裁判校准",
+            "en": "Judge Calibration"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/judge-calibration",
+            "en": "https://github.com/llia0031-dotcom/judge-calibration"
+          }
+        }
+      ],
+      "related": [
+        "tools-used",
+        "how-evaluated"
+      ]
+    },
+    {
+      "id": "how-evaluated",
+      "group": "projects",
+      "order": 12,
+      "chip": false,
+      "q": {
+        "zh": "评测是怎么做的？",
+        "en": "How are the projects evaluated?"
+      },
+      "aliases": {
+        "zh": [
+          "怎么评测",
+          "评测方法",
+          "指标怎么定",
+          "怎么判断好不好",
+          "怎么衡量效果"
+        ],
+        "en": [
+          "how do you evaluate",
+          "evaluation method",
+          "metrics",
+          "how do you measure quality",
+          "how is it tested"
+        ]
+      },
+      "a": {
+        "zh": "先把题目和标准答案写好、冻结，再跑；每改一版在同一套题上重测，按事先写好的规则决定采不采用。改版记录一共 73 条，没采用的也留着。",
+        "en": "Test items and answers are written and frozen before the run; every version is re-run on the same items and adopted or not by a rule written beforehand. There are 73 logged changes, dropped versions included."
+      },
+      "sources": [
+        {
+          "type": "section",
+          "id": "method",
+          "label": {
+            "zh": "评测方法",
+            "en": "How it is evaluated"
+          }
+        },
+        {
+          "type": "section",
+          "id": "log",
+          "label": {
+            "zh": "改版记录",
+            "en": "Change log"
+          }
+        }
+      ],
+      "related": [
+        "best-results",
+        "first-project"
+      ]
+    },
+    {
       "id": "best-results",
-      "group": "results",
-      "order": 19,
+      "group": "projects",
+      "order": 13,
       "chip": false,
       "q": {
         "zh": "做得最好的结果是什么？",
-        "en": "What are your strongest results?"
+        "en": "What are the strongest results?"
       },
       "aliases": {
         "zh": [
@@ -1192,8 +788,8 @@
         ]
       },
       "a": {
-        "zh": "标注 Agent：先读规则、再看相似案例，广告的微平均 F1 从 0.768 升到 0.971。模型裁判：和出题时定好的答案一致 702/711。有据可查：编造数字的回答从 4/32 降到 0/32。",
-        "en": "Labelling agent: reading the rules first and then similar cases took ad micro F1 from 0.768 to 0.971. Model judge: agreement with answers fixed when the items were built 702/711. evidence-check: answers with an invented number went from 4/32 to 0/32."
+        "zh": "标注 Agent：广告的微平均 F1 从 0.768 升到 0.971。模型裁判：和定好的答案一致 702/711。有据可查：编造数字的回答从 4/32 降到 0/32。",
+        "en": "Labelling agent: ad micro F1 from 0.768 to 0.971. Model judge: agreement with fixed answers 702/711. evidence-check: answers with an invented number from 4/32 to 0/32."
       },
       "sources": [
         {
@@ -1234,15 +830,1874 @@
         }
       ],
       "related": [
-        "what-failed",
+        "first-project",
+        "how-evaluated"
+      ]
+    },
+    {
+      "id": "english",
+      "group": "projects",
+      "order": 14,
+      "chip": false,
+      "q": {
+        "zh": "项目有英文版吗？",
+        "en": "Are the projects available in English?"
+      },
+      "aliases": {
+        "zh": [
+          "英文版",
+          "英文",
+          "有没有英文",
+          "中英文",
+          "双语"
+        ],
+        "en": [
+          "english",
+          "english version",
+          "in english",
+          "bilingual",
+          "chinese version"
+        ]
+      },
+      "a": {
+        "zh": "有。作品集的项目页和评测卡都有中英文两版；每个代码仓库都有英文说明，评测报告也是英文写的。",
+        "en": "Yes. Every project page and evaluation card here comes in Chinese and English; every repository has an English README, and the evaluation reports are in English."
+      },
+      "sources": [
+        {
+          "type": "section",
+          "id": "work",
+          "label": {
+            "zh": "全部项目",
+            "en": "All projects"
+          }
+        },
+        {
+          "type": "url",
+          "label": {
+            "zh": "评测卡总览",
+            "en": "All evaluation cards"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/evidence-first",
+            "en": "https://github.com/llia0031-dotcom/evidence-first"
+          }
+        }
+      ],
+      "related": [
+        "how-many-projects",
         "first-project"
       ]
     },
     {
+      "id": "business-scenarios",
+      "group": "projects",
+      "order": 15,
+      "chip": false,
+      "q": {
+        "zh": "这些项目对应哪些业务场景？",
+        "en": "Which business scenarios do the projects cover?"
+      },
+      "aliases": {
+        "zh": [
+          "业务场景",
+          "应用场景",
+          "落地",
+          "能用在哪",
+          "行业"
+        ],
+        "en": [
+          "use cases",
+          "business scenarios",
+          "applications",
+          "where would this be used",
+          "industry"
+        ]
+      },
+      "a": {
+        "zh": "广告审核、内容标注、电商卖点和商品图、经营分析、创作工具、实时语音、招聘初筛，以及按公开资料回答问题。",
+        "en": "Ad review, content labelling, product claims and product images, business review, creator tools, real-time voice, resume screening, and answering from public documents."
+      },
+      "sources": [
+        {
+          "type": "section",
+          "id": "work",
+          "label": {
+            "zh": "全部项目",
+            "en": "All projects"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "direction-ad-review",
+      "group": "direction",
+      "order": 40,
+      "chip": false,
+      "q": {
+        "zh": "有广告审核方向的项目吗？",
+        "en": "Anything on ad review?"
+      },
+      "aliases": {
+        "zh": [
+          "广告审核",
+          "内容审核",
+          "审核",
+          "广告合规",
+          "风控",
+          "安全审核"
+        ],
+        "en": [
+          "ad review",
+          "content moderation",
+          "moderation",
+          "ad compliance",
+          "trust and safety",
+          "policy review"
+        ]
+      },
+      "a": {
+        "zh": "有据审核（广告审核说清违反哪一条、是哪几个字）；审核模型实验（审视频广告，模型要看什么、小模型够不够）；有据标注流水线（把广告审核做成能灰度、能回滚的工作流）。",
+        "en": "Grounded Review (Ad review that names the rule and the exact words); Policy Model Lab (What a model must see to review a video ad); Grounded Labelling Pipeline (Ad review as a workflow with canary release and rollback)."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "grounded-review",
+          "label": {
+            "zh": "有据审核（广告审核 Agent）",
+            "en": "Grounded Review (ad-review agent)"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/grounded-review",
+            "en": "https://github.com/llia0031-dotcom/grounded-review"
+          }
+        },
+        {
+          "type": "project",
+          "id": "policy-model-lab",
+          "label": {
+            "zh": "审核模型实验",
+            "en": "Policy Model Lab"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/policy-model-lab",
+            "en": "https://github.com/llia0031-dotcom/policy-model-lab"
+          }
+        },
+        {
+          "type": "project",
+          "id": "grounded-labelling-pipeline",
+          "label": {
+            "zh": "有据标注流水线",
+            "en": "Grounded Labelling Pipeline"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline",
+            "en": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "direction-labelling",
+      "group": "direction",
+      "order": 41,
+      "chip": false,
+      "q": {
+        "zh": "有内容标注方向的项目吗？",
+        "en": "Anything on content labelling?"
+      },
+      "aliases": {
+        "zh": [
+          "内容标注",
+          "标注",
+          "数据标注",
+          "打标签",
+          "标注质量"
+        ],
+        "en": [
+          "content labelling",
+          "labeling",
+          "data annotation",
+          "annotation",
+          "tagging"
+        ]
+      },
+      "a": {
+        "zh": "标注 Agent 工具箱（标注 Agent 怎么调准，错在哪、为什么错）；有据标注流水线（把广告审核做成能灰度、能回滚的工作流）。",
+        "en": "Labelling Agent Kit (Tuning a labelling agent, and why it fails); Grounded Labelling Pipeline (Ad review as a workflow with canary release and rollback)."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "labelling-agent-kit",
+          "label": {
+            "zh": "标注 Agent 工具箱",
+            "en": "Labelling Agent Kit"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/labelling-agent-kit",
+            "en": "https://github.com/llia0031-dotcom/labelling-agent-kit"
+          }
+        },
+        {
+          "type": "project",
+          "id": "grounded-labelling-pipeline",
+          "label": {
+            "zh": "有据标注流水线",
+            "en": "Grounded Labelling Pipeline"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline",
+            "en": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "direction-ecommerce",
+      "group": "direction",
+      "order": 42,
+      "chip": false,
+      "q": {
+        "zh": "有电商方向的项目吗？",
+        "en": "Anything on e-commerce?"
+      },
+      "aliases": {
+        "zh": [
+          "电商",
+          "商品",
+          "卖点",
+          "商品图",
+          "主图",
+          "买家评价"
+        ],
+        "en": [
+          "e-commerce",
+          "ecommerce",
+          "product listing",
+          "product images",
+          "reviews",
+          "merchant"
+        ]
+      },
+      "a": {
+        "zh": "卖点体检（从买家评价里找原话，证实商品页的卖点）；AI 生图创作指南（电商主图上的中文卖点，怎么写字最稳）。",
+        "en": "Sellpoint Check (Checks listing claims against buyer reviews); Text on Product (How to keep Chinese copy right on AI product images)."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "sellpoint-check",
+          "label": {
+            "zh": "卖点体检",
+            "en": "Sellpoint Check"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/sellpoint-check",
+            "en": "https://github.com/llia0031-dotcom/sellpoint-check"
+          }
+        },
+        {
+          "type": "project",
+          "id": "text-on-product",
+          "label": {
+            "zh": "AI 生图创作指南：电商主图上的中文字",
+            "en": "Text on Product: Chinese copy on AI product images"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/text-on-product",
+            "en": "https://github.com/llia0031-dotcom/text-on-product"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "direction-business",
+      "group": "direction",
+      "order": 43,
+      "chip": false,
+      "q": {
+        "zh": "有经营分析方向的项目吗？",
+        "en": "Anything on business analysis?"
+      },
+      "aliases": {
+        "zh": [
+          "经营分析",
+          "数据分析",
+          "周报",
+          "指标异动",
+          "归因",
+          "SQL"
+        ],
+        "en": [
+          "business analysis",
+          "data analysis",
+          "weekly report",
+          "metrics",
+          "root cause",
+          "sql"
+        ]
+      },
+      "a": {
+        "zh": "有据经营分析（经营周报：找异动原因，每个数字都对回查询结果）。",
+        "en": "Grounded Business Review (Weekly review: find the cause, trace every number)."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "grounded-business-review",
+          "label": {
+            "zh": "有据经营分析",
+            "en": "Grounded Business Review"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/grounded-business-review",
+            "en": "https://github.com/llia0031-dotcom/grounded-business-review"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "direction-creator",
+      "group": "direction",
+      "order": 44,
+      "chip": false,
+      "q": {
+        "zh": "有创作工具方向的项目吗？",
+        "en": "Anything on creator tools?"
+      },
+      "aliases": {
+        "zh": [
+          "创作工具",
+          "创作者",
+          "短视频",
+          "字幕",
+          "分镜",
+          "AIGC",
+          "生图"
+        ],
+        "en": [
+          "creator tools",
+          "creators",
+          "short video",
+          "subtitles",
+          "shot list",
+          "aigc",
+          "image generation"
+        ]
+      },
+      "a": {
+        "zh": "创作者 Skill 合集（给短视频创作者的三个 Skill，交出去前先核对）；AI 生图创作指南（电商主图上的中文卖点，怎么写字最稳）。",
+        "en": "Creator skills (Three creator skills that check before they hand back); Text on Product (How to keep Chinese copy right on AI product images)."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "creator-skills",
+          "label": {
+            "zh": "创作者 Skill 合集",
+            "en": "Creator skills"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/creator-skills",
+            "en": "https://github.com/llia0031-dotcom/creator-skills"
+          }
+        },
+        {
+          "type": "project",
+          "id": "text-on-product",
+          "label": {
+            "zh": "AI 生图创作指南：电商主图上的中文字",
+            "en": "Text on Product: Chinese copy on AI product images"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/text-on-product",
+            "en": "https://github.com/llia0031-dotcom/text-on-product"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "direction-voice",
+      "group": "direction",
+      "order": 45,
+      "chip": false,
+      "q": {
+        "zh": "有语音方向的项目吗？",
+        "en": "Anything on voice?"
+      },
+      "aliases": {
+        "zh": [
+          "语音",
+          "语音助手",
+          "实时语音",
+          "语音 Agent",
+          "打断"
+        ],
+        "en": [
+          "voice",
+          "voice assistant",
+          "real-time voice",
+          "voice agent",
+          "speech"
+        ]
+      },
+      "a": {
+        "zh": "实时语音 Agent 体验评测（语音助手被打断、听到“嗯”时，还能办对事吗）。",
+        "en": "Real-time voice agent evaluation (Can a voice agent stay right when interrupted)."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "voice-agent-eval",
+          "label": {
+            "zh": "实时语音 Agent 体验评测",
+            "en": "Real-time voice agent evaluation"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/voice-agent-eval",
+            "en": "https://github.com/llia0031-dotcom/voice-agent-eval"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "direction-recruiting",
+      "group": "direction",
+      "order": 46,
+      "chip": false,
+      "q": {
+        "zh": "有招聘方向的项目吗？",
+        "en": "Anything on recruiting?"
+      },
+      "aliases": {
+        "zh": [
+          "招聘",
+          "简历",
+          "初筛",
+          "简历筛选",
+          "公平"
+        ],
+        "en": [
+          "recruiting",
+          "hiring",
+          "resume",
+          "screening",
+          "fairness"
+        ]
+      },
+      "a": {
+        "zh": "有据可查的简历初筛（初筛简历时，每个“符合”都附简历原文）。",
+        "en": "Evidence-backed resume screening (Resume screening where every verdict quotes the resume)."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "screening-audit",
+          "label": {
+            "zh": "有据可查的简历初筛",
+            "en": "Evidence-backed resume screening"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/evidence-screening",
+            "en": "https://github.com/llia0031-dotcom/evidence-screening"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "direction-agent-eval",
+      "group": "direction",
+      "order": 47,
+      "chip": false,
+      "q": {
+        "zh": "有 Agent 评测方向的项目吗？",
+        "en": "Anything on agent evaluation?"
+      },
+      "aliases": {
+        "zh": [
+          "Agent 评测",
+          "智能体评测",
+          "Agent",
+          "工具调用",
+          "多步骤"
+        ],
+        "en": [
+          "agent evaluation",
+          "agents",
+          "agent",
+          "tool use",
+          "multi-step"
+        ]
+      },
+      "a": {
+        "zh": "Agent 评测台（会调工具的 Agent，每一步做对了吗）；实时语音 Agent 体验评测（语音助手被打断、听到“嗯”时，还能办对事吗）。",
+        "en": "Agent Trace Eval (Did a tool-using agent get each step right); Real-time voice agent evaluation (Can a voice agent stay right when interrupted)."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "agent-trace-eval",
+          "label": {
+            "zh": "Agent 评测台",
+            "en": "Agent Trace Eval"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/agent-trace-eval",
+            "en": "https://github.com/llia0031-dotcom/agent-trace-eval"
+          }
+        },
+        {
+          "type": "project",
+          "id": "voice-agent-eval",
+          "label": {
+            "zh": "实时语音 Agent 体验评测",
+            "en": "Real-time voice agent evaluation"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/voice-agent-eval",
+            "en": "https://github.com/llia0031-dotcom/voice-agent-eval"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "direction-model-eval",
+      "group": "direction",
+      "order": 48,
+      "chip": false,
+      "q": {
+        "zh": "有模型评测方向的项目吗？",
+        "en": "Anything on model evaluation?"
+      },
+      "aliases": {
+        "zh": [
+          "模型评测",
+          "大模型评测",
+          "模型裁判",
+          "评测集",
+          "微调"
+        ],
+        "en": [
+          "model evaluation",
+          "llm evaluation",
+          "llm judge",
+          "benchmark",
+          "fine-tuning"
+        ]
+      },
+      "a": {
+        "zh": "模型裁判校准（模型裁判能信到什么程度，哪些该交给人）；审核模型实验（审视频广告，模型要看什么、小模型够不够）；标注 Agent 工具箱（标注 Agent 怎么调准，错在哪、为什么错）。",
+        "en": "Judge Calibration (How far a model judge can be trusted); Policy Model Lab (What a model must see to review a video ad); Labelling Agent Kit (Tuning a labelling agent, and why it fails)."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "judge-calibration",
+          "label": {
+            "zh": "模型裁判校准",
+            "en": "Judge Calibration"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/judge-calibration",
+            "en": "https://github.com/llia0031-dotcom/judge-calibration"
+          }
+        },
+        {
+          "type": "project",
+          "id": "policy-model-lab",
+          "label": {
+            "zh": "审核模型实验",
+            "en": "Policy Model Lab"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/policy-model-lab",
+            "en": "https://github.com/llia0031-dotcom/policy-model-lab"
+          }
+        },
+        {
+          "type": "project",
+          "id": "labelling-agent-kit",
+          "label": {
+            "zh": "标注 Agent 工具箱",
+            "en": "Labelling Agent Kit"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/labelling-agent-kit",
+            "en": "https://github.com/llia0031-dotcom/labelling-agent-kit"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "direction-grounded-qa",
+      "group": "direction",
+      "order": 49,
+      "chip": false,
+      "q": {
+        "zh": "有带出处的问答方向的项目吗？",
+        "en": "Anything on question answering with sources?"
+      },
+      "aliases": {
+        "zh": [
+          "问答",
+          "知识库",
+          "检索",
+          "带出处",
+          "引用原文",
+          "RAG"
+        ],
+        "en": [
+          "question answering",
+          "knowledge base",
+          "retrieval",
+          "citations",
+          "quotes",
+          "rag"
+        ]
+      },
+      "a": {
+        "zh": "Cairn（按机构公开的规定回答问题，每句都附原文）；TraceDesk Lite（常见问题助手只按资料回答，截止时间都有出处）；有据可查 evidence-check（让 AI 的每句事实都附原文，再用脚本核对）。",
+        "en": "Cairn (Answers from published rules, every sentence quoted); TraceDesk Lite (An FAQ assistant that answers only from its documents); evidence-check (Every fact an AI writes gets a quote a script checks)."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "cairn",
+          "label": {
+            "zh": "Cairn",
+            "en": "Cairn"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/cairn",
+            "en": "https://github.com/llia0031-dotcom/cairn"
+          }
+        },
+        {
+          "type": "project",
+          "id": "tracedesk",
+          "label": {
+            "zh": "TraceDesk Lite",
+            "en": "TraceDesk Lite"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/tracedesk-lite",
+            "en": "https://github.com/llia0031-dotcom/tracedesk-lite"
+          }
+        },
+        {
+          "type": "project",
+          "id": "evidence-check",
+          "label": {
+            "zh": "有据可查 evidence-check",
+            "en": "evidence-check"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/evidence-check",
+            "en": "https://github.com/llia0031-dotcom/evidence-check"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "project-evidence-check",
+      "group": "project",
+      "order": 60,
+      "chip": false,
+      "q": {
+        "zh": "有据可查 evidence-check 是什么？",
+        "en": "What is evidence-check?"
+      },
+      "aliases": {
+        "zh": [
+          "有据可查 evidence-check",
+          "有据可查",
+          "evidence-check"
+        ],
+        "en": [
+          "evidence-check"
+        ]
+      },
+      "a": {
+        "zh": "让 AI 的每句事实都附原文，再用脚本核对。装上这个 Skill 后，AI 按资料回答时，编了数字的回答从 4/32 降到 0/32。",
+        "en": "Every fact an AI writes gets a quote a script checks. With the skill, answers that made up a number fell from 4/32 to 0/32."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "evidence-check",
+          "label": {
+            "zh": "有据可查 evidence-check",
+            "en": "evidence-check"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/evidence-check",
+            "en": "https://github.com/llia0031-dotcom/evidence-check"
+          }
+        },
+        {
+          "type": "url",
+          "label": {
+            "zh": "代码和报告",
+            "en": "Code and report"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/evidence-check",
+            "en": "https://github.com/llia0031-dotcom/evidence-check"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "project-cairn",
+      "group": "project",
+      "order": 61,
+      "chip": false,
+      "q": {
+        "zh": "Cairn 是什么？",
+        "en": "What is Cairn?"
+      },
+      "aliases": {
+        "zh": [
+          "Cairn",
+          "cairn"
+        ],
+        "en": [
+          "Cairn",
+          "cairn"
+        ]
+      },
+      "a": {
+        "zh": "按机构公开的规定回答问题，每句都附原文。正确页面排进前五条结果的：自己写的题 44/45，学生的真实提问 14/15。",
+        "en": "Answers from published rules, every sentence quoted. The right page made the top five results for 44/45 written questions and 14/15 real student questions."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "cairn",
+          "label": {
+            "zh": "Cairn",
+            "en": "Cairn"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/cairn",
+            "en": "https://github.com/llia0031-dotcom/cairn"
+          }
+        },
+        {
+          "type": "url",
+          "label": {
+            "zh": "代码和报告",
+            "en": "Code and report"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/cairn",
+            "en": "https://github.com/llia0031-dotcom/cairn"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "project-tracedesk",
+      "group": "project",
+      "order": 62,
+      "chip": false,
+      "q": {
+        "zh": "TraceDesk Lite 是什么？",
+        "en": "What is TraceDesk Lite?"
+      },
+      "aliases": {
+        "zh": [
+          "TraceDesk Lite",
+          "TraceDesk",
+          "tracedesk",
+          "tracedesk-lite"
+        ],
+        "en": [
+          "TraceDesk Lite",
+          "tracedesk",
+          "tracedesk-lite"
+        ]
+      },
+      "a": {
+        "zh": "常见问题助手只按资料回答，截止时间都有出处。每个截止时间都附原文出处的回答有 20/20，普通写法只有 17/20。",
+        "en": "An FAQ assistant that answers only from its documents. Answers whose every deadline came with its source: 20/20, against 17/20 with a plain prompt."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "tracedesk",
+          "label": {
+            "zh": "TraceDesk Lite",
+            "en": "TraceDesk Lite"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/tracedesk-lite",
+            "en": "https://github.com/llia0031-dotcom/tracedesk-lite"
+          }
+        },
+        {
+          "type": "url",
+          "label": {
+            "zh": "代码和报告",
+            "en": "Code and report"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/tracedesk-lite",
+            "en": "https://github.com/llia0031-dotcom/tracedesk-lite"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "project-screening-audit",
+      "group": "project",
+      "order": 63,
+      "chip": false,
+      "q": {
+        "zh": "有据可查的简历初筛是什么？",
+        "en": "What is Evidence-backed resume screening?"
+      },
+      "aliases": {
+        "zh": [
+          "有据可查的简历初筛",
+          "简历初筛",
+          "screening-audit",
+          "evidence-screening"
+        ],
+        "en": [
+          "Evidence-backed resume screening",
+          "Resume screening",
+          "screening-audit",
+          "evidence-screening"
+        ]
+      },
+      "a": {
+        "zh": "初筛简历时，每个“符合”都附简历原文。附上简历原文后，判断几乎不出错（2735/2736），只换名字也不改变去留（0/240）。",
+        "en": "Resume screening where every verdict quotes the resume. With resume quotes, verdicts were right 2735/2736 times; swapping names changed 0/240 decisions."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "screening-audit",
+          "label": {
+            "zh": "有据可查的简历初筛",
+            "en": "Evidence-backed resume screening"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/evidence-screening",
+            "en": "https://github.com/llia0031-dotcom/evidence-screening"
+          }
+        },
+        {
+          "type": "url",
+          "label": {
+            "zh": "代码和报告",
+            "en": "Code and report"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/evidence-screening",
+            "en": "https://github.com/llia0031-dotcom/evidence-screening"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "project-sellpoint-check",
+      "group": "project",
+      "order": 64,
+      "chip": false,
+      "q": {
+        "zh": "卖点体检是什么？",
+        "en": "What is Sellpoint Check?"
+      },
+      "aliases": {
+        "zh": [
+          "卖点体检",
+          "sellpoint-check"
+        ],
+        "en": [
+          "Sellpoint Check",
+          "sellpoint-check"
+        ]
+      },
+      "a": {
+        "zh": "从买家评价里找原话，证实商品页的卖点。用买家评价核对卖点：答案已知的卖点判对 60/60，花费只有逐条读评价的 17%。",
+        "en": "Checks listing claims against buyer reviews. Claims checked against reviews: 60/60 right on known answers, at 17% of the cost of reading reviews one by one."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "sellpoint-check",
+          "label": {
+            "zh": "卖点体检",
+            "en": "Sellpoint Check"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/sellpoint-check",
+            "en": "https://github.com/llia0031-dotcom/sellpoint-check"
+          }
+        },
+        {
+          "type": "url",
+          "label": {
+            "zh": "代码和报告",
+            "en": "Code and report"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/sellpoint-check",
+            "en": "https://github.com/llia0031-dotcom/sellpoint-check"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "project-grounded-review",
+      "group": "project",
+      "order": 65,
+      "chip": false,
+      "q": {
+        "zh": "有据审核是什么？",
+        "en": "What is Grounded Review?"
+      },
+      "aliases": {
+        "zh": [
+          "有据审核",
+          "有据审核（广告审核 Agent）",
+          "grounded-review"
+        ],
+        "en": [
+          "Grounded Review",
+          "Grounded Review (ad-review agent)",
+          "grounded-review"
+        ]
+      },
+      "a": {
+        "zh": "广告审核说清违反哪一条、是哪几个字。对照英国监管机构的真实裁决，51/60 次判断一致，并指出违反哪条规定、哪几个字。",
+        "en": "Ad review that names the rule and the exact words. Matched the UK regulator's real rulings in 51/60 decisions, naming the rule and the exact words."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "grounded-review",
+          "label": {
+            "zh": "有据审核（广告审核 Agent）",
+            "en": "Grounded Review (ad-review agent)"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/grounded-review",
+            "en": "https://github.com/llia0031-dotcom/grounded-review"
+          }
+        },
+        {
+          "type": "url",
+          "label": {
+            "zh": "代码和报告",
+            "en": "Code and report"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/grounded-review",
+            "en": "https://github.com/llia0031-dotcom/grounded-review"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "project-text-on-product",
+      "group": "project",
+      "order": 66,
+      "chip": false,
+      "q": {
+        "zh": "AI 生图创作指南是什么？",
+        "en": "What is Text on Product?"
+      },
+      "aliases": {
+        "zh": [
+          "AI 生图创作指南",
+          "AI 生图创作指南：电商主图上的中文字",
+          "AI 生图指南",
+          "text-on-product"
+        ],
+        "en": [
+          "Text on Product",
+          "Text on Product: Chinese copy on AI product images",
+          "text-on-product"
+        ]
+      },
+      "a": {
+        "zh": "电商主图上的中文卖点，怎么写字最稳。Seedream 4.5 生成的主图，中文字全写对的 16/16；视频里只有 1/4。",
+        "en": "How to keep Chinese copy right on AI product images. Seedream 4.5 got every Chinese character right in 16/16 product images; only 1/4 videos did."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "text-on-product",
+          "label": {
+            "zh": "AI 生图创作指南：电商主图上的中文字",
+            "en": "Text on Product: Chinese copy on AI product images"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/text-on-product",
+            "en": "https://github.com/llia0031-dotcom/text-on-product"
+          }
+        },
+        {
+          "type": "url",
+          "label": {
+            "zh": "代码和报告",
+            "en": "Code and report"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/text-on-product",
+            "en": "https://github.com/llia0031-dotcom/text-on-product"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "project-voice-agent-eval",
+      "group": "project",
+      "order": 67,
+      "chip": false,
+      "q": {
+        "zh": "实时语音 Agent 体验评测是什么？",
+        "en": "What is Real-time voice agent evaluation?"
+      },
+      "aliases": {
+        "zh": [
+          "实时语音 Agent 体验评测",
+          "语音评测",
+          "voice-agent-eval"
+        ],
+        "en": [
+          "Real-time voice agent evaluation",
+          "Voice agent eval",
+          "voice-agent-eval"
+        ]
+      },
+      "a": {
+        "zh": "语音助手被打断、听到“嗯”时，还能办对事吗？背景有人说话时，助手从等 20.4 秒才开口，缩短到 4.56 秒。",
+        "en": "Can a voice agent stay right when interrupted? With someone talking in the background, the assistant's wait before replying fell from 20.4 s to 4.56 s."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "voice-agent-eval",
+          "label": {
+            "zh": "实时语音 Agent 体验评测",
+            "en": "Real-time voice agent evaluation"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/voice-agent-eval",
+            "en": "https://github.com/llia0031-dotcom/voice-agent-eval"
+          }
+        },
+        {
+          "type": "url",
+          "label": {
+            "zh": "代码和报告",
+            "en": "Code and report"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/voice-agent-eval",
+            "en": "https://github.com/llia0031-dotcom/voice-agent-eval"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "project-grounded-labelling-pipeline",
+      "group": "project",
+      "order": 68,
+      "chip": false,
+      "q": {
+        "zh": "有据标注流水线是什么？",
+        "en": "What is Grounded Labelling Pipeline?"
+      },
+      "aliases": {
+        "zh": [
+          "有据标注流水线",
+          "标注流水线",
+          "grounded-labelling-pipeline"
+        ],
+        "en": [
+          "Grounded Labelling Pipeline",
+          "Labelling pipeline",
+          "grounded-labelling-pipeline"
+        ]
+      },
+      "a": {
+        "zh": "把广告审核做成能灰度、能回滚的工作流。让模型说“拿不准”后，判错又自动生效的从 17/332 降到 9/332。",
+        "en": "Ad review as a workflow with canary release and rollback. Letting the model say it is unsure cut wrong decisions that went live from 17/332 to 9/332."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "grounded-labelling-pipeline",
+          "label": {
+            "zh": "有据标注流水线",
+            "en": "Grounded Labelling Pipeline"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline",
+            "en": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline"
+          }
+        },
+        {
+          "type": "url",
+          "label": {
+            "zh": "代码和报告",
+            "en": "Code and report"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline",
+            "en": "https://github.com/llia0031-dotcom/grounded-labelling-pipeline"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "project-grounded-business-review",
+      "group": "project",
+      "order": 69,
+      "chip": false,
+      "q": {
+        "zh": "有据经营分析是什么？",
+        "en": "What is Grounded Business Review?"
+      },
+      "aliases": {
+        "zh": [
+          "有据经营分析",
+          "经营分析",
+          "grounded-business-review"
+        ],
+        "en": [
+          "Grounded Business Review",
+          "Business review",
+          "grounded-business-review"
+        ]
+      },
+      "a": {
+        "zh": "经营周报：找异动原因，每个数字都对回查询结果。按题配对，Agent 比一次提示词多对 6 题、少对 0 题（p = 0.031）。",
+        "en": "Weekly review: find the cause, trace every number. Case by case, the agent beat the one prompt 6 to 0 (exact p = 0.031)."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "grounded-business-review",
+          "label": {
+            "zh": "有据经营分析",
+            "en": "Grounded Business Review"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/grounded-business-review",
+            "en": "https://github.com/llia0031-dotcom/grounded-business-review"
+          }
+        },
+        {
+          "type": "url",
+          "label": {
+            "zh": "代码和报告",
+            "en": "Code and report"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/grounded-business-review",
+            "en": "https://github.com/llia0031-dotcom/grounded-business-review"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "project-creator-skills",
+      "group": "project",
+      "order": 70,
+      "chip": false,
+      "q": {
+        "zh": "创作者 Skill 合集是什么？",
+        "en": "What is Creator skills?"
+      },
+      "aliases": {
+        "zh": [
+          "创作者 Skill 合集",
+          "创作者 Skill",
+          "creator-skills"
+        ],
+        "en": [
+          "Creator skills",
+          "creator-skills"
+        ]
+      },
+      "a": {
+        "zh": "给短视频创作者的三个 Skill，交出去前先核对。装上 Skill 后，改好的字幕文件 20/20 完全正确，不装只有 2/20。",
+        "en": "Three creator skills that check before they hand back. With the skill, corrected subtitle files were fully right 20/20; without it, 2/20."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "creator-skills",
+          "label": {
+            "zh": "创作者 Skill 合集",
+            "en": "Creator skills"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/creator-skills",
+            "en": "https://github.com/llia0031-dotcom/creator-skills"
+          }
+        },
+        {
+          "type": "url",
+          "label": {
+            "zh": "代码和报告",
+            "en": "Code and report"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/creator-skills",
+            "en": "https://github.com/llia0031-dotcom/creator-skills"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "project-policy-model-lab",
+      "group": "project",
+      "order": 71,
+      "chip": false,
+      "q": {
+        "zh": "审核模型实验是什么？",
+        "en": "What is Policy Model Lab?"
+      },
+      "aliases": {
+        "zh": [
+          "审核模型实验",
+          "policy-model-lab"
+        ],
+        "en": [
+          "Policy Model Lab",
+          "policy-model-lab"
+        ]
+      },
+      "a": {
+        "zh": "审视频广告，模型要看什么、小模型够不够。看 16 帧时违规全抓到（64/64），只给文案只抓到 25/64。",
+        "en": "What a model must see to review a video ad. With 16 frames every violation was caught (64/64); with the caption only, 25/64."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "policy-model-lab",
+          "label": {
+            "zh": "审核模型实验",
+            "en": "Policy Model Lab"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/policy-model-lab",
+            "en": "https://github.com/llia0031-dotcom/policy-model-lab"
+          }
+        },
+        {
+          "type": "url",
+          "label": {
+            "zh": "代码和报告",
+            "en": "Code and report"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/policy-model-lab",
+            "en": "https://github.com/llia0031-dotcom/policy-model-lab"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "project-judge-calibration",
+      "group": "project",
+      "order": 72,
+      "chip": false,
+      "q": {
+        "zh": "模型裁判校准是什么？",
+        "en": "What is Judge Calibration?"
+      },
+      "aliases": {
+        "zh": [
+          "模型裁判校准",
+          "裁判校准",
+          "judge-calibration"
+        ],
+        "en": [
+          "Judge Calibration",
+          "Judge calibration",
+          "judge-calibration"
+        ]
+      },
+      "a": {
+        "zh": "模型裁判能信到什么程度，哪些该交给人。和定好的答案一致 702/711；要靠外部证据的监管结论只对 6/11。",
+        "en": "How far a model judge can be trusted. Agreed with fixed answers on 702/711; only 6/11 on regulator decisions that turn on outside evidence."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "judge-calibration",
+          "label": {
+            "zh": "模型裁判校准",
+            "en": "Judge Calibration"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/judge-calibration",
+            "en": "https://github.com/llia0031-dotcom/judge-calibration"
+          }
+        },
+        {
+          "type": "url",
+          "label": {
+            "zh": "代码和报告",
+            "en": "Code and report"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/judge-calibration",
+            "en": "https://github.com/llia0031-dotcom/judge-calibration"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "project-labelling-agent-kit",
+      "group": "project",
+      "order": 73,
+      "chip": false,
+      "q": {
+        "zh": "标注 Agent 工具箱是什么？",
+        "en": "What is Labelling Agent Kit?"
+      },
+      "aliases": {
+        "zh": [
+          "标注 Agent 工具箱",
+          "标注 Agent",
+          "labelling-agent-kit"
+        ],
+        "en": [
+          "Labelling Agent Kit",
+          "Labelling agent",
+          "labelling-agent-kit"
+        ]
+      },
+      "a": {
+        "zh": "标注 Agent 怎么调准，错在哪、为什么错。测试集 A 微平均 F1：广告 0.768 → 0.971，点评 0.715 → 0.824。",
+        "en": "Tuning a labelling agent, and why it fails. Test A micro F1: ads 0.768 → 0.971, reviews 0.715 → 0.824."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "labelling-agent-kit",
+          "label": {
+            "zh": "标注 Agent 工具箱",
+            "en": "Labelling Agent Kit"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/labelling-agent-kit",
+            "en": "https://github.com/llia0031-dotcom/labelling-agent-kit"
+          }
+        },
+        {
+          "type": "url",
+          "label": {
+            "zh": "代码和报告",
+            "en": "Code and report"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/labelling-agent-kit",
+            "en": "https://github.com/llia0031-dotcom/labelling-agent-kit"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "project-agent-trace-eval",
+      "group": "project",
+      "order": 74,
+      "chip": false,
+      "q": {
+        "zh": "Agent 评测台是什么？",
+        "en": "What is Agent Trace Eval?"
+      },
+      "aliases": {
+        "zh": [
+          "Agent 评测台",
+          "Agent 评测",
+          "agent-trace-eval"
+        ],
+        "en": [
+          "Agent Trace Eval",
+          "Agent trace eval",
+          "agent-trace-eval"
+        ]
+      },
+      "a": {
+        "zh": "会调工具的 Agent，每一步做对了吗？关卡只拦下 1/17 的失败；不装 Skill，成功 21/24 → 8/24。",
+        "en": "Did a tool-using agent get each step right? The release gates caught 1/17 of failures; without skills, creator success 21/24 → 8/24."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "agent-trace-eval",
+          "label": {
+            "zh": "Agent 评测台",
+            "en": "Agent Trace Eval"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/agent-trace-eval",
+            "en": "https://github.com/llia0031-dotcom/agent-trace-eval"
+          }
+        },
+        {
+          "type": "url",
+          "label": {
+            "zh": "代码和报告",
+            "en": "Code and report"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/agent-trace-eval",
+            "en": "https://github.com/llia0031-dotcom/agent-trace-eval"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "how-many-projects"
+      ]
+    },
+    {
+      "id": "iterate-adopt",
+      "group": "more",
+      "order": 100,
+      "chip": false,
+      "q": {
+        "zh": "怎么决定一个改动采用不采用？",
+        "en": "How do you decide whether to adopt a change?"
+      },
+      "aliases": {
+        "zh": [
+          "迭代",
+          "对照实验",
+          "采用标准",
+          "回滚",
+          "灰度",
+          "怎么改版"
+        ],
+        "en": [
+          "iteration",
+          "a/b test",
+          "experiment",
+          "adoption rule",
+          "rollback",
+          "canary"
+        ]
+      },
+      "a": {
+        "zh": "每次只改一处，跑之前写下预测和采用规则，在同一套冻结的题上和上一版并排比；区间整个在零以上才算提升。例如标注 Agent 的第二版：点评上 +0.018 [+0.005, +0.031]，采用；广告上 +0.021 [+0.000, +0.048]，区间碰到零，不采用。",
+        "en": "One change at a time, with predictions and an adoption rule written before the run, compared with the previous version on the same frozen items; a gain counts only when the whole interval is above zero. For example, the labelling agent's second version: on reviews +0.018 [+0.005, +0.031], adopted; on ads +0.021 [+0.000, +0.048], the interval reaches zero, not adopted."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "labelling-agent-kit",
+          "label": {
+            "zh": "标注 Agent 工具箱的迭代",
+            "en": "Labelling Agent Kit: iteration"
+          },
+          "anchor": "iteration",
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/labelling-agent-kit",
+            "en": "https://github.com/llia0031-dotcom/labelling-agent-kit"
+          }
+        },
+        {
+          "type": "section",
+          "id": "log",
+          "label": {
+            "zh": "改版记录",
+            "en": "Change log"
+          }
+        }
+      ],
+      "related": [
+        "numbers-true",
+        "what-failed"
+      ]
+    },
+    {
+      "id": "numbers-true",
+      "group": "more",
+      "order": 101,
+      "chip": false,
+      "q": {
+        "zh": "怎么保证报告里的数字是真的？",
+        "en": "How do you make sure the numbers are real?"
+      },
+      "aliases": {
+        "zh": [
+          "数字可信吗",
+          "会不会编数字",
+          "数据真实",
+          "怎么核对",
+          "数字从哪来"
+        ],
+        "en": [
+          "are the numbers real",
+          "fabricated",
+          "verify numbers",
+          "trust the results",
+          "how do you check"
+        ]
+      },
+      "a": {
+        "zh": "评测卡上的 387 个数字全部由脚本从项目的结果文件算出，不手抄。作品集里的每个数字再用有据可查对回评测卡；跑完发现题目或答案有错，就公开更正、重跑，原来的数字并排保留。",
+        "en": "All 387 numbers on the evaluation cards are computed by script from the projects' result files, never copied by hand. Every number in this portfolio is checked against the cards with evidence-check; a mistake in an item or answer found after a run is corrected in public and run again, with the old numbers kept alongside."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "evidence-check",
+          "label": {
+            "zh": "有据可查 evidence-check",
+            "en": "evidence-check"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/evidence-check",
+            "en": "https://github.com/llia0031-dotcom/evidence-check"
+          }
+        },
+        {
+          "type": "card",
+          "id": "judge-calibration",
+          "label": {
+            "zh": "评测卡：模型裁判校准",
+            "en": "Evaluation card: Judge Calibration"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/judge-calibration.md",
+            "en": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/judge-calibration.en.md"
+          }
+        }
+      ],
+      "related": [
+        "iterate-adopt",
+        "data-source"
+      ]
+    },
+    {
+      "id": "data-source",
+      "group": "more",
+      "order": 102,
+      "chip": false,
+      "q": {
+        "zh": "题目和标准答案从哪来？有没有人工标注？",
+        "en": "Where do the test items and answers come from? Any human labels?"
+      },
+      "aliases": {
+        "zh": [
+          "标准答案",
+          "数据从哪来",
+          "人工标注",
+          "真实数据",
+          "真实用户",
+          "标注数据",
+          "测试集"
+        ],
+        "en": [
+          "ground truth",
+          "answer key",
+          "human annotation",
+          "real data",
+          "real users",
+          "labelled data",
+          "test set"
+        ]
+      },
+      "a": {
+        "zh": "多数题目的答案在出题时就定好；另外用到监管机构和法院对真实广告的结论、公开数据集自带的标注和专家评分（例如 ASAP、SummEval），以及 Cairn 里学生用自己的话提的真实问题（经同意公开）。模型裁判校准、标注 Agent 工具箱和 Agent 评测台都没有另做人工评分。",
+        "en": "Most items have answers fixed when they were written; also used are regulator and court decisions on real ads, the labels and expert ratings that ship with public datasets (such as ASAP and SummEval), and real questions students asked in their own words in Cairn, published with consent. Judge Calibration, the Labelling Agent Kit and Agent Trace Eval collected no human ratings of their own."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "judge-calibration",
+          "label": {
+            "zh": "模型裁判校准",
+            "en": "Judge Calibration"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/judge-calibration",
+            "en": "https://github.com/llia0031-dotcom/judge-calibration"
+          }
+        },
+        {
+          "type": "project",
+          "id": "labelling-agent-kit",
+          "label": {
+            "zh": "标注 Agent 工具箱",
+            "en": "Labelling Agent Kit"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/labelling-agent-kit",
+            "en": "https://github.com/llia0031-dotcom/labelling-agent-kit"
+          }
+        },
+        {
+          "type": "project",
+          "id": "cairn",
+          "label": {
+            "zh": "Cairn",
+            "en": "Cairn"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/cairn",
+            "en": "https://github.com/llia0031-dotcom/cairn"
+          }
+        }
+      ],
+      "related": [
+        "numbers-true",
+        "gaps-to-production"
+      ]
+    },
+    {
+      "id": "cost",
+      "group": "more",
+      "order": 103,
+      "chip": false,
+      "q": {
+        "zh": "花了多少钱？",
+        "en": "What did it cost?"
+      },
+      "aliases": {
+        "zh": [
+          "费用",
+          "成本",
+          "花费",
+          "预算",
+          "多少钱"
+        ],
+        "en": [
+          "cost",
+          "budget",
+          "spend",
+          "price",
+          "how much"
+        ]
+      },
+      "a": {
+        "zh": "整个项目的花费，例如 Agent 评测台 1.48 美元，模型裁判校准 2.63 美元，标注 Agent 工具箱 3.6325 美元。",
+        "en": "Whole-project spend, for example: Agent Trace Eval US$1.48, Judge Calibration US$2.63, Labelling Agent Kit US$3.6325."
+      },
+      "sources": [
+        {
+          "type": "card",
+          "id": "agent-trace-eval",
+          "label": {
+            "zh": "评测卡：Agent 评测台",
+            "en": "Evaluation card: Agent Trace Eval"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/agent-trace-eval.md",
+            "en": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/agent-trace-eval.en.md"
+          }
+        },
+        {
+          "type": "card",
+          "id": "judge-calibration",
+          "label": {
+            "zh": "评测卡：模型裁判校准",
+            "en": "Evaluation card: Judge Calibration"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/judge-calibration.md",
+            "en": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/judge-calibration.en.md"
+          }
+        },
+        {
+          "type": "card",
+          "id": "labelling-agent-kit",
+          "label": {
+            "zh": "评测卡：标注 Agent 工具箱",
+            "en": "Evaluation card: Labelling Agent Kit"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/labelling-agent-kit.md",
+            "en": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/labelling-agent-kit.en.md"
+          }
+        }
+      ],
+      "related": [
+        "numbers-true",
+        "data-source"
+      ]
+    },
+    {
+      "id": "vs-existing-tools",
+      "group": "more",
+      "order": 104,
+      "chip": false,
+      "q": {
+        "zh": "和现成的工具比有什么不同？",
+        "en": "How is this different from existing tools?"
+      },
+      "aliases": {
+        "zh": [
+          "现成工具",
+          "竞品",
+          "为什么不用现成的",
+          "重复造轮子",
+          "有什么不一样"
+        ],
+        "en": [
+          "existing tools",
+          "alternatives",
+          "why not use",
+          "reinvent",
+          "competitors",
+          "what is different"
+        ]
+      },
+      "a": {
+        "zh": "开工前都先查过现成的，能用就直接用，例如 promptfoo、agentevals、Inspect AI；补的是它们没管的那一块。例如有据可查只核对数字和原文在不在给定的材料里，不像 RefChecker 那样判断一句话本身对不对。",
+        "en": "Existing tools were checked first and used where they fit, such as promptfoo, agentevals and Inspect AI; what is added is the part they leave out. evidence-check, for instance, only checks whether numbers and quotes are in the given material, rather than judging whether a sentence is true the way RefChecker does."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "evidence-check",
+          "label": {
+            "zh": "有据可查 evidence-check",
+            "en": "evidence-check"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/evidence-check",
+            "en": "https://github.com/llia0031-dotcom/evidence-check"
+          }
+        },
+        {
+          "type": "project",
+          "id": "agent-trace-eval",
+          "label": {
+            "zh": "Agent 评测台",
+            "en": "Agent Trace Eval"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/agent-trace-eval",
+            "en": "https://github.com/llia0031-dotcom/agent-trace-eval"
+          }
+        }
+      ],
+      "related": [
+        "numbers-true",
+        "iterate-adopt"
+      ]
+    },
+    {
       "id": "what-failed",
-      "group": "results",
-      "order": 20,
-      "chip": true,
+      "group": "more",
+      "order": 105,
+      "chip": false,
       "q": {
         "zh": "有没有没做成的？",
         "en": "What didn't work?"
@@ -1265,8 +2720,8 @@
         ]
       },
       "a": {
-        "zh": "有，都照实写在评测卡里。Agent 评测台事先预测上线前的关卡能拦下大多数失败，结果 17 次失败只拦下 1 次。经营分析的修复把门店定位改对了，回归重测却查出另一道题变差。最大的教训：照失败写的修复要先写预测，再在整组题上重测。",
-        "en": "Yes, and the cards say so. Agent Trace Eval predicted the release gates would catch most failures; of 17 failures they caught 1. The business-review fix located store closures correctly, yet the regression run found another task getting worse. The main lesson: a fix written from a failure needs its predictions first and a re-run over the whole family."
+        "zh": "有，都照实写在评测卡里。Agent 评测台事先预测上线前的关卡能拦下大多数失败，结果 17 次失败只拦下 1 次。经营分析的修复把门店定位改对了，回归重测却查出另一道题变差。",
+        "en": "Yes, and the cards say so. Agent Trace Eval predicted the release gates would catch most failures; of 17 failures they caught 1. The business-review fix located store closures correctly, yet the regression run found another task getting worse."
       },
       "sources": [
         {
@@ -1280,18 +2735,6 @@
           "url": {
             "zh": "https://github.com/llia0031-dotcom/agent-trace-eval",
             "en": "https://github.com/llia0031-dotcom/agent-trace-eval"
-          }
-        },
-        {
-          "type": "card",
-          "id": "agent-trace-eval",
-          "label": {
-            "zh": "评测卡：Agent 评测台",
-            "en": "Evaluation card: Agent Trace Eval"
-          },
-          "url": {
-            "zh": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/agent-trace-eval.md",
-            "en": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/agent-trace-eval.en.md"
           }
         },
         {
@@ -1310,8 +2753,8 @@
     },
     {
       "id": "gaps-to-production",
-      "group": "results",
-      "order": 21,
+      "group": "more",
+      "order": 106,
       "chip": false,
       "q": {
         "zh": "放到真实业务里还差什么？",
@@ -1336,8 +2779,8 @@
         ]
       },
       "a": {
-        "zh": "题目多是合成或虚构的，上线前要用业务里已有结论的样本另建测试集。每题跑的次数少、区间偏宽，重要的结论要多跑几次。要靠外部证据才能定的判断应该留给人：模型裁判在这类监管结论上只对了 6/11。",
-        "en": "Most items are synthetic or fictional, so real use needs a test set built from business cases with settled outcomes. Few runs per item leave wide intervals, so key findings need more runs. Decisions that turn on outside evidence should stay with people: the model judge got only 6/11 of such regulator decisions right."
+        "zh": "题目多是合成或虚构的，上线前要用业务里已有结论的样本另建测试集；每题跑的次数少、区间偏宽。要靠外部证据才能定的判断应该留给人：模型裁判在这类监管结论上只对了 6/11。",
+        "en": "Most items are synthetic or fictional, so real use needs a test set from business cases with settled outcomes; few runs per item leave wide intervals. Decisions that turn on outside evidence should stay with people: the model judge got only 6/11 of such regulator decisions right."
       },
       "sources": [
         {
@@ -1374,12 +2817,12 @@
     },
     {
       "id": "hardest-problem",
-      "group": "results",
-      "order": 22,
+      "group": "more",
+      "order": 107,
       "chip": false,
       "q": {
-        "zh": "遇到过最难的问题是什么？怎么解决的？",
-        "en": "What was the hardest problem, and how did you solve it?"
+        "zh": "遇到过最难的问题是什么？",
+        "en": "What was the hardest problem?"
       },
       "aliases": {
         "zh": [
@@ -1398,32 +2841,21 @@
         ]
       },
       "a": {
-        "zh": "简历初筛里，核对引文的那一步把对的“符合”也当成错的丢掉了：70/424。这一步前后改了两版。改完后降到 0/422，再用陷阱题和植入的错误检验。模型裁判校准跑完后发现，有的题少给了商品页、有的答案漏标了必须写的提示语，就公开更正、重跑，原来的数字并排保留。",
-        "en": "In resume screening, the quote-checking step threw away correct \"met\" verdicts as well: 70/424. That step was rewired twice. It then came down to 0/422, checked with traps and planted errors. After Judge Calibration ran, some items turned out to lack the product listing and some answers missed a required statement; both were corrected in public and run again, with the old numbers kept alongside."
+        "zh": "简历初筛里，核对引文的那一步把对的“符合”也当成错的丢掉了：70/424。这一步前后改了两版。改完后降到 0/422，再用陷阱题和植入的错误检验。",
+        "en": "In resume screening, the quote-checking step threw away correct \"met\" verdicts as well: 70/424. That step was rewired twice. It then came down to 0/422, checked with traps and planted errors."
       },
       "sources": [
         {
           "type": "project",
           "id": "screening-audit",
           "label": {
-            "zh": "有据可查的简历初筛",
-            "en": "Evidence-backed resume screening"
+            "zh": "简历初筛的迭代",
+            "en": "Resume screening: iteration"
           },
+          "anchor": "iteration",
           "url": {
             "zh": "https://github.com/llia0031-dotcom/evidence-screening",
             "en": "https://github.com/llia0031-dotcom/evidence-screening"
-          }
-        },
-        {
-          "type": "card",
-          "id": "judge-calibration",
-          "label": {
-            "zh": "评测卡：模型裁判校准",
-            "en": "Evaluation card: Judge Calibration"
-          },
-          "url": {
-            "zh": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/judge-calibration.md",
-            "en": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/judge-calibration.en.md"
           }
         }
       ],
