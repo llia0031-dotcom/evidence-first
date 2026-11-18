@@ -14,6 +14,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 import build_cards as bc  # noqa: E402
 import extractors as ex  # noqa: E402
+import faq  # noqa: E402
 import prompts as pr  # noqa: E402
 from stats import bootstrap_median_ci, wilson  # noqa: E402
 
@@ -124,6 +125,33 @@ class Specs(unittest.TestCase):
                 if "judge" in spec:
                     self.assertEqual(set(spec["judge"]), {"zh", "en"})
                 self.assertIn(spec["layer"], bc.LAYERS)
+
+
+class Faq(unittest.TestCase):
+    """The "ask me" file: both languages everywhere, no typed numbers, placeholders that exist."""
+
+    def test_faq_shape(self):
+        data = faq.load()
+        metrics = {(s["id"], m["id"]) for s in bc.load_specs() for ev in s["eval"] for m in ev["metric"]}
+        groups = {g["id"] for g in data["group"]}
+        ids = [it["id"] for it in data["item"]]
+        self.assertEqual(len(ids), len(set(ids)))
+        self.assertTrue(4 <= sum(1 for it in data["item"] if it.get("chip")) <= 8)
+        for it in data["item"]:
+            with self.subTest(item=it["id"]):
+                self.assertIn(it["group"], groups)
+                for key in ("q", "a", "aliases"):
+                    self.assertEqual(set(it[key]), {"zh", "en"})
+                self.assertTrue(it["sources"])
+                for lang in ("zh", "en"):
+                    faq._lint_digits(it["a"][lang], data["allowed_literals"], it["id"])
+                    for m in faq.GLOBAL.finditer(it["a"][lang]):
+                        self.assertIn((m.group(1), m.group(2)), metrics)
+
+    def test_typed_numbers_are_rejected(self):
+        with self.assertRaises(bc.BuildError):
+            faq._lint_digits("一共 15 个项目", [], "t")
+        faq._lint_digits("一共 {_public} 个项目，预计 2028 年", ["2028"], "t")
 
 
 class Labels(unittest.TestCase):

@@ -23,6 +23,7 @@ ROOT = HERE.parent
 sys.path.insert(0, str(HERE))
 
 import build_cards as bc  # noqa: E402
+import faq  # noqa: E402
 
 DEFAULT_OUT = ROOT / "build" / "content"
 MEDIA = ROOT / "cards" / "media.toml"
@@ -320,11 +321,21 @@ def main(argv: list[str] | None = None) -> int:
     for order, pid, name, status in index:
         lines.append(f"| {order} | {name} | [{order:02d}_{pid}.md]({order:02d}_{pid}.md) | [{order:02d}_{pid}.en.md]({order:02d}_{pid}.en.md) | {'已公开' if status == 'public' else '未公开'} |")
     (out_dir / "README.md").write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
+    card_texts = {(p["spec"]["id"], lang): (bc.CARDS / f"{p['spec']['id']}{suffix}.md").read_text(encoding="utf-8")
+                  for p in projects if p["spec"]["id"] not in bc.WITHHOLD for lang, suffix in (("zh", ""), ("en", ".en"))}
+    try:
+        faq_data, faq_claims = faq.build(projects, card_texts)
+    except bc.BuildError as e:
+        print("PROBLEMS:", e)
+        return 1
+    all_claims += faq_claims
+    (bc.DATA / "faq.json").write_text(json.dumps(faq_data, ensure_ascii=False, indent=2) + "\n",
+                                      encoding="utf-8", newline="\n")
     (out_dir / "claims.json").write_text(json.dumps({"claims": all_claims}, ensure_ascii=False, indent=2) + "\n",
                                          encoding="utf-8", newline="\n")
     (bc.DATA / "content.json").write_text(json.dumps(all_data, ensure_ascii=False, indent=2) + "\n",
                                           encoding="utf-8", newline="\n")
-    print(f"Wrote {len(all_data)} drafts and {len(all_claims)} claims to {out_dir}")
+    print(f"Wrote {len(all_data)} drafts, {len(faq_data['items'])} questions and {len(all_claims)} claims to {out_dir}")
     return 0
 
 
