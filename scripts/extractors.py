@@ -449,3 +449,59 @@ def pl_canary_final_share(rd, path: str):
     if d.get("result") != "full":
         raise ValueError(f"{path}: replay did not reach full release")
     return {"kind": "value", "value": d["steps"][-1]["share"], "unit": "pct", "decimals": 0}
+
+
+# --------------------------------------------------------------------------- labelling-agent-kit
+@extractor
+def lak_compare(rd, path: str, id: str, field: str = "micro_f1", decimals: int = 3):
+    """A preregistered comparison (B minus A) with its paired-bootstrap interval, found by its id."""
+    hits = [c for c in rd.json(path)["comparisons"] if c["id"] == id]
+    if len(hits) != 1:
+        raise KeyError(f"{path}: comparison {id!r} found {len(hits)} times")
+    r = hits[0]["result"][field]
+    return {"kind": "value", "value": r["diff"], "ci": r["diff_ci"], "signed": True, "decimals": decimals}
+
+
+@extractor
+def lak_slice(rd, path: str, task: str, set: str, arm: str, field: str, value: str, what: str = "false_alarm"):
+    """k/n of one slice of one arm, e.g. look-alike ads given a label."""
+    groups = rd.json(path)["tasks"][task][set][arm]["slices"]["groups"]
+    hits = [s for g in groups if g["field"] == field for s in g["slices"] if s["value"] == value]
+    if len(hits) != 1:
+        raise KeyError(f"{path}: slice {field}={value!r} found {len(hits)} times")
+    return {"k": int(hits[0][what]["k"]), "n": int(hits[0][what]["n"])}
+
+
+OF_FRACTION = re.compile(r"(\d+)\s+of\s+(\d+)")
+
+
+@extractor
+def md_match_of(rd, path: str, match: dict, col: str):
+    """Like md_match_cell, for cells written as "k of n"."""
+    hits = []
+    for header, cells in _md_tables(rd.text(path), None):
+        names = [_clean(h) for h in header]
+        if col not in names or not all(k in names for k in match):
+            continue
+        if all(_clean(cells[names.index(k)]) == v for k, v in match.items()):
+            hits.append(_clean(cells[names.index(col)]))
+    if len(hits) != 1:
+        raise ValueError(f"{path}: {len(hits)} rows match {match}")
+    m = OF_FRACTION.fullmatch(hits[0])
+    if not m:
+        raise ValueError(f"{path}: {hits[0]!r} is not 'k of n'")
+    return {"k": int(m.group(1)), "n": int(m.group(2))}
+
+
+@extractor
+def lak_acceptance(rd, path: str, task: str, set: str, code: str):
+    """Rows flagged by one data-acceptance check, out of the set's rows (e.g. A10: strong cue, label missing)."""
+    files = [f for f in rd.json(path)["files"] if f["task"] == task and f["set"] == set]
+    if len(files) != 1:
+        raise KeyError(f"{path}: {task}/{set} found {len(files)} times")
+    checks = [c for c in files[0]["checks"] if c["code"] == code]
+    m = re.match(r"(\d+) rows \(", checks[0]["detail"]) if len(checks) == 1 else None
+    if not m:
+        raise ValueError(f"{path}: {task}/{set} {code}: no row count")
+    return {"k": int(m.group(1)), "n": int(files[0]["rows"])}
+

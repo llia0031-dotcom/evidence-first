@@ -65,6 +65,7 @@ class Value:
     unit: str = ""                # for value / median: "s", "usd", "" ...
     decimals: int = 1
     ci: tuple[float, float] | None = None
+    signed: bool = False          # a difference: always shows its sign
     sources: list[str] = field(default_factory=list)
 
     @property
@@ -74,7 +75,14 @@ class Value:
     def short(self, lang: str) -> str:
         if self.kind == "proportion":
             return f"{self.k}/{self.n}"
+        if self.signed:
+            return fmt_unit(self.value, self.unit, self.decimals, lang, signed=True)
         return fmt_unit(self.value, self.unit, self.decimals, lang)
+
+    def interval(self) -> str:
+        """A difference's interval in the projects' own style: [-0.001, +0.022]."""
+        lo, hi = (signed_num(x, self.decimals) for x in self.ci)
+        return f"[{lo}, {hi}]"
 
     def full(self, lang: str) -> str:
         if self.kind == "proportion":
@@ -90,7 +98,9 @@ class Value:
             if lang == "zh":
                 return f"{v}（中位数，n={self.n}，95% 区间 {rng}）"
             return f"{v} (median, n={self.n}, 95% CI {rng})"
-        v = fmt_unit(self.value, self.unit, self.decimals, lang)
+        v = self.short(lang)
+        if self.signed and self.ci:
+            return f"{v}（95% 区间 {self.interval()}）" if lang == "zh" else f"{v} (95% CI {self.interval()})"
         if self.kind == "mean":
             lo, hi = self.ci
             rng = f"{lo:.{self.decimals}f}–{hi:.{self.decimals}f}"
@@ -110,11 +120,19 @@ class Value:
             d.update(value=self.value, unit=self.unit, n=self.n)
             if self.ci:
                 d["ci95"] = [round(self.ci[0], 4), round(self.ci[1], 4)]
+            if self.signed:
+                d["signed"] = True
         return d
 
 
-def fmt_unit(v: float, unit: str, decimals: int, lang: str) -> str:
-    num = f"{v:.{decimals}f}"
+def signed_num(v: float, decimals: int) -> str:
+    if round(v, decimals) == 0:
+        v = 0.0
+    return f"{v:+.{decimals}f}"
+
+
+def fmt_unit(v: float, unit: str, decimals: int, lang: str, signed: bool = False) -> str:
+    num = signed_num(v, decimals) if signed else f"{v:.{decimals}f}"
     if unit == "s":
         return f"{num} 秒" if lang == "zh" else f"{num} s"
     if unit == "usd":
@@ -173,13 +191,14 @@ def compute(metric: dict, project: str) -> Value:
         v.value = float(raw["value"])
         v.unit = raw.get("unit", "")
         v.n = raw.get("n")
-        if kind == "mean":
+        v.signed = bool(raw.get("signed"))
+        if kind == "mean" or raw.get("ci"):
             v.ci = tuple(raw["ci"])
     return v
 
 
 def matches_record(v: Value, record: str) -> bool:
-    record = record.strip()
+    record = record.strip().lstrip("+")
     if "/" in record:
         k, n = (int(x) for x in record.split("/"))
         return v.kind == "proportion" and (v.k, v.n) == (k, n)
@@ -219,6 +238,8 @@ def fill(text: str, values: dict[str, Value], lang: str, where: str) -> str:
             return str(v.k)
         if mode == "n":
             return str(v.n)
+        if mode == "ci":
+            return v.interval()
         raise BuildError(f"{where}: unknown placeholder mode {mode}")
 
     return PLACEHOLDER.sub(sub, text)

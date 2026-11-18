@@ -76,6 +76,7 @@ Python 3.11+, standard library only. The project folders must sit next to this r
 | `creator-skills-public/` | [creator-skills](https://github.com/llia0031-dotcom/creator-skills) |
 | `policy-model-lab-public/` | [policy-model-lab](https://github.com/llia0031-dotcom/policy-model-lab) |
 | `judge-calibration-public/` | [judge-calibration](https://github.com/llia0031-dotcom/judge-calibration) |
+| `labelling-agent-kit-public/` | [labelling-agent-kit](https://github.com/llia0031-dotcom/labelling-agent-kit) |
 | `launchpad-tracedesk/` | not public (source of the TraceDesk card) |
 | `aigc-scene-eval/` | not public (source of the text-on-product card) |
 

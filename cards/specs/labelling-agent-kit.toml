@@ -1,0 +1,476 @@
+id = "labelling-agent-kit"
+order = 14
+layer = "operations"
+status = "public"
+links = [
+  { label = { zh = "代码和报告", en = "Code and report" }, url = "https://github.com/llia0031-dotcom/labelling-agent-kit" },
+  { label = { zh = "结果查看页", en = "Results viewer" }, url = { zh = "https://llia0031-dotcom.github.io/labelling-agent-kit/", en = "https://llia0031-dotcom.github.io/labelling-agent-kit/en.html" } },
+]
+card_version = "1.0"
+updated = "2026-11-18"
+period = "2026-11-18"
+team = "Liang Liyuan"
+stack = { zh = "Python、批量接口、BM25 检索、配对自助检验、五个 Agent Skill（只用标准库）", en = "Python, Message Batches API, BM25 retrieval, paired bootstrap tests, five Agent Skills (standard library only)" }
+did = { zh = "我做了一个通用的内容标注 Agent：换一个放规则和案例的文件夹就能接新任务。用两个任务、五种做法做预注册的 A/B 对照，算每个标签的精确率和召回率、混淆和切片；把最好的做法的失败样本归到五类根因，按根因改出第二版，再在没用过的测试集上检验。常用的分析做成了五个 Agent Skill。", en = "I built one content-labelling agent that takes on a new task through a folder of rules and cases. Two tasks and five arms go through preregistered A/B comparisons, with per-label precision and recall, confusion and slices; the best arm's failures are sorted into five root causes, a second version is built from them and checked on a test set nothing was tuned on. The common analyses are packaged as five Agent Skills." }
+name = { zh = "标注 Agent 工具箱", en = "Labelling Agent Kit" }
+problem = { zh = "标注 Agent 怎么设计标得最好，错在哪些标签、哪类样本上，为什么错，改了以后在新样本上还成不成立", en = "How should a labelling agent be built to label best, where and why does it fail, and does a fix still hold on new items?" }
+primary_metric = { zh = "微平均 F1（附区间）；每个标签的精确率和召回率；漏判和误判", en = "Micro F1 with intervals; per-label precision and recall; misses and false alarms" }
+headline = [
+  { zh = "测试集 A 微平均 F1，短提示词 → 完整 Agent：广告 {lak_ad_short} → {lak_ad_full}，点评 {lak_asap_short} → {lak_asap_full}", en = "Test A micro F1, short prompt → full agent: ads {lak_ad_short} → {lak_ad_full}, reviews {lak_asap_short} → {lak_asap_full}" },
+  { zh = "形似违规其实合规的广告：短提示词打了标签 {lak_lookalike_short}，完整 Agent {lak_lookalike_full}", en = "Look-alike ads that are compliant: the short prompt labelled {lak_lookalike_short}, the full agent {lak_lookalike_full}" },
+  { zh = "按根因改的第二版，在没用过的测试集 B 上：点评 {lak_h6_asap} {lak_h6_asap:ci}，采用；广告 {lak_h6_ad} {lak_h6_ad:ci}，区间碰到 0，不采用", en = "The revision built from root causes, on unseen test B: reviews {lak_h6_asap} {lak_h6_asap:ci}, adopted; ads {lak_h6_ad} {lak_h6_ad:ci}, the interval reaches 0, not adopted" },
+]
+summary = { zh = "一个换一套规则和案例就能接新任务的内容标注 Agent，配一整套用证据调它的工具：预注册的 A/B 对照、每个标签的精确率和召回率（带区间）、混淆和切片、失败样本根因表，以及按根因改版后在没用过的样本上验证。流程是：先检索相似案例，再用规则和案例工具标注，代码负责规则门（没读规则就给的标签，补发规则）、原话修正和自查。两个任务：中英文广告政策标签（每种语言 7 类，答案在写广告时定好），和公开数据集 ASAP 的餐厅点评 18 个方面（标签是数据集自带的）。五种做法从短提示词到“查规则 + 检索案例 + 自查”逐步加，点评另比较真实、合成和一半一半三种案例库。方案、假设和冻结文件跑前写好；最好的做法的失败样本，每个错误判断独立归因两次；按根因改出第二版，冻结后才在测试集 B 上跑。", en = "A content-labelling agent that plugs into any labelling task through a folder of rules and cases, and the kit to tune it with evidence: preregistered A/B experiments, per-label precision and recall with intervals, confusion and slices, a root-cause table of failures, and a revision checked on items it never saw. The flow: retrieve similar cases, label with rule and case tools, and let code run a rule gate (labels given without reading their rule get the rule sent), quote repair and a self-check. Two tasks: ad-policy labels in Chinese and English (7 per language, answers fixed when each ad was written) and 18 aspects of restaurant reviews from the public ASAP dataset (the dataset's own labels). Five arms add one piece at a time, from a short prompt to rules plus retrieved cases plus a self-check; on reviews, real, synthetic and half-and-half case libraries are also compared. Plan, hypotheses and frozen files were written before the runs; each wrong decision of the best arm was classified twice, independently; the revision built from the causes was frozen before it ran on test B." }
+core_link = { zh = "广告任务的题目和规则来自有据审核和审核模型实验公开的数据；有据标注流水线负责把 Agent 跑成每天的流程，这个工具箱负责把它调准。", en = "The ad items and rulebook come from the public data of Grounded Review and Policy Model Lab; the Grounded Labelling Pipeline runs the agent as a daily workflow, and this kit tunes it." }
+models = { zh = "claude-haiku-5-5（effort low，批量接口），每条样本每种做法跑一次。", en = "claude-haiku-5-5 (effort low, Message Batches API), one run per item and arm." }
+iteration = { zh = ["开发集第一轮：只把检索案例的工具交给 Agent 时，它在 40 条点评上第一步一次也没调用（{lak_dev1_cases_tool}），只给规则工具时 {lak_dev1_agent_tool}；检索改成流程里固定的一步。", "测试集 A：查规则是最大的一步（广告 {lak_h1_ad}，点评 {lak_h1_asap}）；检索相似案例两个任务都有用；自查只在点评上测出提升，每千条点评的费用从 {lak_cost_asap_cases}升到 {lak_cost_asap_full}。", "整本规则放进提示词，广告上已到 {lak_ad_rules}；Agent 比它高的那部分只在点评上测出来。", "根因：点评上 {lak_rca_decisions} 个错误判断，最多的是标签歧义（{lak_rca_ambiguity}）；能改的是提示词缺陷、规则冲突和模型能力。", "第二版只改根因表指出的地方：点评在测试集 B 上测出提升，采用；广告区间碰到 0，不采用。"], en = ["Development round one: with the case tools only offered, the agent's first turn called no tool on 40 reviews ({lak_dev1_cases_tool}), against {lak_dev1_agent_tool} with the rule tools alone; retrieval became a fixed step of the flow.", "Test A: reading the rules is the largest step (ads {lak_h1_ad}, reviews {lak_h1_asap}); retrieved cases help on both tasks; the self-check is a measured gain on reviews only and raises the cost per 1,000 reviews from {lak_cost_asap_cases} to {lak_cost_asap_full}.", "Putting the whole rulebook in the prompt already reaches {lak_ad_rules} on ads; the agent's lead over it is measured only on reviews.", "Root causes: of {lak_rca_decisions} wrong decisions on reviews, label ambiguity is the largest class ({lak_rca_ambiguity}); the fixable classes are prompt defects, rule conflicts and model capability.", "The revision changes only what the root-cause table points to: a measured gain on reviews in test B, adopted; on ads the interval reaches 0, not adopted."] }
+conclusion = { zh = "让 Agent 先读规则、再看相似案例，是标注质量最大的来源；自查只在标签多、边界细的任务上值得多花的钱。一个任务能标到多准，先受标准标签本身的限制：点评数据里不少“错误”是可两读或漏标的标签，这部分应该交给定标准的人，而不是继续调提示词。按根因改版要在没用过的样本上再验一次，没测出提升的就不上。", en = "Reading the rules first and then similar cases is where most of the labelling quality comes from; a self-check is worth its cost only on tasks with many fine-grained labels. How well a task can be labelled is bounded first by its gold labels: many \"errors\" on the review data are labels that read either way or were left out, which belongs with whoever sets the standard, not with more prompt tuning. A revision built from root causes needs a check on unseen items, and one with no measured gain does not ship." }
+short_name = { zh = "标注 Agent", en = "Labelling agent" }
+card_title = { zh = "标注 Agent 怎么调准，错在哪、为什么错", en = "Tuning a labelling agent, and why it fails" }
+assumed = { zh = "以为真实案例库比合成案例库更有用，因为真实案例带着数据集的标注习惯", en = "Expected real cases to beat synthetic ones, since they carry the dataset's labelling conventions" }
+showed = { zh = "真实对合成没测出差别：{lak_h5a} {lak_h5a:ci}", en = "No measured difference between real and synthetic cases: {lak_h5a} {lak_h5a:ci}" }
+result_line = { zh = "测试集 A 微平均 F1：广告 {lak_ad_short} → {lak_ad_full}，点评 {lak_asap_short} → {lak_asap_full}", en = "Test A micro F1: ads {lak_ad_short} → {lak_ad_full}, reviews {lak_asap_short} → {lak_asap_full}" }
+key_numbers = [{ metric = "lak_ad_full", label = { zh = "广告 F1，完整 Agent（短提示词 {lak_ad_short}）", en = "Ads, full agent micro F1 (short prompt {lak_ad_short})" } }, { metric = "lak_asap_full", label = { zh = "点评 F1，完整 Agent（短提示词 {lak_asap_short}）", en = "Reviews, full agent micro F1 (short prompt {lak_asap_short})" } }, { metric = "lak_h6_asap", label = { zh = "第二版在没用过的点评上的提升，采用", en = "Revision gain on unseen reviews, adopted" } }]
+timeline = [
+  { date = "2026-11-18", label = { zh = "检索固定", en = "Fixed retrieval" }, text = { zh = "只给工具时不调用，改成固定先检索", en = "Tools offered went unused; retrieval made a fixed step" }, adopted = true },
+  { date = "2026-11-18", label = { zh = "查规则", en = "Reading rules" }, text = { zh = "最大的一步，形似违规的误判没了", en = "The largest step; look-alike false alarms gone" }, before = "lak_ad_short", after = "lak_ad_agent", adopted = true },
+  { date = "2026-11-18", label = { zh = "检索案例", en = "Retrieved cases" }, text = { zh = "两个任务都有用", en = "Helps on both tasks" }, before = "lak_ad_agent", after = "lak_ad_cases", adopted = true },
+  { date = "2026-11-18", label = { zh = "自查", en = "Self-check" }, text = { zh = "只在点评上测出提升", en = "A measured gain on reviews only" }, before = "lak_asap_cases", after = "lak_asap_full", adopted = true },
+  { date = "2026-11-18", label = { zh = "合成案例", en = "Synthetic cases" }, text = { zh = "和真实案例没测出差别", en = "No measured difference from real cases" }, after = "lak_h5a" },
+  { date = "2026-11-18", label = { zh = "第二版（点评）", en = "Revision (reviews)" }, text = { zh = "没用过的测试集 B 上测出提升，采用", en = "A measured gain on unseen test B, adopted" }, before = "lak_v1_asap_b", after = "lak_v2_asap_b", adopted = true },
+  { date = "2026-11-18", label = { zh = "第二版（广告）", en = "Revision (ads)" }, text = { zh = "区间碰到 0，不采用", en = "Interval reaches 0, not adopted" }, before = "lak_v1_ad_b", after = "lak_v2_ad_b", adopted = false },
+]
+
+judge = { zh = [
+  "标准标签：广告是写广告时定好的答案，点评是 ASAP 数据集自带的标注；这个项目没有另做标注。",
+  "根因归类是判断：每个错误判断先由代码算出线索，再独立归类两次，两次一致的比例照实列出，不一致的单列为“分歧”。",
+], en = [
+  "Gold labels: for ads, the answers fixed when each ad was written; for reviews, the annotations that ship with the ASAP dataset; no labels were collected for this project.",
+  "Root causes are judgements: each wrong decision gets code-computed signals and is then classified twice, independently; agreement is reported and disagreements are listed as split.",
+] }
+
+[uses]
+zh = [
+  "接一个新的标注任务：写好规则和案例文件夹，用同一套对照实验选做法，用切片和混淆找出弱的标签。",
+  "标注质量出问题时：按根因表分清是规则、提示词还是标准标签本身的问题，改版后先在没用过的样本上验证再上线。",
+]
+en = [
+  "Taking on a new labelling task: write the rules and cases folder, pick an arm with the same experiments, and find weak labels with slices and confusion.",
+  "When labelling quality slips: use the root-cause table to tell rules, prompts and the gold labels apart, and check a revision on unseen items before it ships.",
+]
+
+[out_of_scope]
+zh = [
+  "不证明这套流程在别的模型、别的任务上同样有效；换任务要重新跑对照。",
+  "不替数据集改标准标签：可两读或漏标的标签照实报告，交给定标准的一方。",
+]
+en = [
+  "Does not show the flow works as well with other models or tasks; a new task needs its own comparison.",
+  "Does not rewrite a dataset's gold labels: labels that read either way or were left out are reported to whoever sets the standard.",
+]
+
+[[eval]]
+id = "dev"
+name = { zh = "开发集第一轮：Agent 第一步用不用工具", en = "Development round one: does the agent's first turn use a tool?" }
+date = "2026-11-18"
+data = { zh = "开发集上记下每种做法第一步有没有调用工具；结果用来改流程，测试集冻结前完成。", en = "On the dev sets, whether each arm's first turn called a tool; the result changed the flow before the test sets were frozen." }
+items = { zh = "点评开发集 40 条", en = "40 dev reviews" }
+runs = { zh = "每条每种做法 1 遍", en = "1 run per item and arm" }
+setup = { zh = "claude-haiku-5-5，effort low，批量接口", en = "claude-haiku-5-5, effort low, Message Batches API" }
+takeaway = { zh = "只给检索案例的工具，Agent 第一步一次也不用；检索改成流程里固定的一步，Agent 和加案例的做法之间只差案例本身。", en = "Offered the case tools alone, the agent never used them in its first turn; retrieval became a fixed step, so the agent and the case arm differ only in the cases." }
+
+  [[eval.metric]]
+  id = "lak_dev1_agent_tool"
+  label = { zh = "只给规则工具：第一步调用了工具", en = "Rule tools only: first turn called a tool" }
+  extractor = "md_match_of"
+  args = { path = "labelling-agent-kit-public/results/dev1/FIRST_TURN.md", match = { "Task" = "asap", "Arm" = "agent" }, col = "First turn called a tool" }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "lak_dev1_cases_tool"
+  label = { zh = "再给检索案例的工具：第一步调用了工具", en = "With case tools added: first turn called a tool" }
+  extractor = "md_match_of"
+  args = { path = "labelling-agent-kit-public/results/dev1/FIRST_TURN.md", match = { "Task" = "asap", "Arm" = "agent-cases" }, col = "First turn called a tool" }
+  direction = "none"
+
+[[eval]]
+id = "test_a"
+name = { zh = "测试集 A：五种做法", en = "Test A: five arms" }
+date = "2026-11-18"
+data = { zh = "广告：中英文广告文案加画面上的字，每种语言 7 类政策标签，答案在写广告时定好，其中 32 条形似违规其实合规。点评：大众点评的中文餐厅点评，18 个方面，标签是 ASAP 数据集自带的。五种做法：短提示词、整本规则放进提示词、会查规则的 Agent、再加检索相似案例、再加自查。", en = "Ads: caption plus on-screen text in Chinese and English, 7 policy labels per language, answers fixed when each ad was written, 32 of them compliant look-alikes. Reviews: Chinese Dianping restaurant reviews, 18 aspects, the ASAP dataset's own labels. Five arms: short prompt, whole rulebook in the prompt, an agent that reads rules, plus retrieved cases, plus a self-check." }
+items = { zh = "广告 119 条；点评 201 条", en = "119 ads; 201 reviews" }
+runs = { zh = "每条每种做法 1 遍", en = "1 run per item and arm" }
+setup = { zh = "claude-haiku-5-5，effort low，批量接口", en = "claude-haiku-5-5, effort low, Message Batches API" }
+frozen = { zh = "`experiments/PREREGISTRATION.md`（14 个冻结文件的指纹）", en = "`experiments/PREREGISTRATION.md` (fingerprints of 14 frozen files)" }
+takeaway = { zh = "每加一步，两个任务上都更好；广告上提升主要来自不再误判形似违规的合规广告。点评的天花板更低，和它的标准标签有关（见根因）。", en = "Each added piece helps on both tasks; on ads the gain is mostly no longer flagging compliant look-alikes. Reviews top out lower, which ties to their gold labels (see root causes)." }
+
+  [[eval.metric]]
+  id = "lak_ad_short"
+  label = { zh = "广告，短提示词：微平均 F1", en = "Ads, short prompt: micro F1" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", keys = ["tasks", "ad_policy", "test_a", "prompt-short", "metrics", "micro", "f1"], decimals = 3 }
+
+  [[eval.metric]]
+  id = "lak_ad_rules"
+  label = { zh = "广告，整本规则放进提示词：微平均 F1", en = "Ads, whole rulebook in the prompt: micro F1" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", keys = ["tasks", "ad_policy", "test_a", "prompt-rules", "metrics", "micro", "f1"], decimals = 3 }
+
+  [[eval.metric]]
+  id = "lak_ad_agent"
+  label = { zh = "广告，会查规则的 Agent：微平均 F1", en = "Ads, agent that reads rules: micro F1" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", keys = ["tasks", "ad_policy", "test_a", "agent", "metrics", "micro", "f1"], decimals = 3 }
+
+  [[eval.metric]]
+  id = "lak_ad_cases"
+  label = { zh = "广告，再加检索相似案例：微平均 F1", en = "Ads, plus retrieved cases: micro F1" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", keys = ["tasks", "ad_policy", "test_a", "agent-cases", "metrics", "micro", "f1"], decimals = 3 }
+
+  [[eval.metric]]
+  id = "lak_ad_full"
+  label = { zh = "广告，再加自查（完整 Agent）：微平均 F1", en = "Ads, plus self-check (full agent): micro F1" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", keys = ["tasks", "ad_policy", "test_a", "agent-cases-check", "metrics", "micro", "f1"], decimals = 3 }
+
+  [[eval.metric]]
+  id = "lak_asap_short"
+  label = { zh = "点评，短提示词：微平均 F1", en = "Reviews, short prompt: micro F1" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", keys = ["tasks", "asap", "test_a", "prompt-short", "metrics", "micro", "f1"], decimals = 3 }
+
+  [[eval.metric]]
+  id = "lak_asap_rules"
+  label = { zh = "点评，整本规则放进提示词：微平均 F1", en = "Reviews, whole rulebook in the prompt: micro F1" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", keys = ["tasks", "asap", "test_a", "prompt-rules", "metrics", "micro", "f1"], decimals = 3 }
+
+  [[eval.metric]]
+  id = "lak_asap_agent"
+  label = { zh = "点评，会查规则的 Agent：微平均 F1", en = "Reviews, agent that reads rules: micro F1" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", keys = ["tasks", "asap", "test_a", "agent", "metrics", "micro", "f1"], decimals = 3 }
+
+  [[eval.metric]]
+  id = "lak_asap_cases"
+  label = { zh = "点评，再加检索相似案例：微平均 F1", en = "Reviews, plus retrieved cases: micro F1" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", keys = ["tasks", "asap", "test_a", "agent-cases", "metrics", "micro", "f1"], decimals = 3 }
+
+  [[eval.metric]]
+  id = "lak_asap_full"
+  label = { zh = "点评，再加自查（完整 Agent）：微平均 F1", en = "Reviews, plus self-check (full agent): micro F1" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", keys = ["tasks", "asap", "test_a", "agent-cases-check", "metrics", "micro", "f1"], decimals = 3 }
+
+  [[eval.metric]]
+  id = "lak_lookalike_short"
+  label = { zh = "形似违规其实合规的广告被打了标签，短提示词", en = "Compliant look-alike ads given a label, short prompt" }
+  extractor = "lak_slice"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", task = "ad_policy", set = "test_a", arm = "prompt-short", field = "meta.difficulty", value = "look-alike" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "lak_lookalike_full"
+  label = { zh = "形似违规其实合规的广告被打了标签，完整 Agent", en = "Compliant look-alike ads given a label, full agent" }
+  extractor = "lak_slice"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", task = "ad_policy", set = "test_a", arm = "agent-cases-check", field = "meta.difficulty", value = "look-alike" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "lak_ad_miss_short"
+  label = { zh = "广告漏判（该有标签却一个没给），短提示词", en = "Ad misses (a labelled ad given no label), short prompt" }
+  extractor = "json_counts"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", at = ["tasks", "ad_policy", "test_a", "prompt-short", "metrics", "decision", "miss"] }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "lak_ad_miss_full"
+  label = { zh = "广告漏判，完整 Agent", en = "Ad misses, full agent" }
+  extractor = "json_counts"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", at = ["tasks", "ad_policy", "test_a", "agent-cases-check", "metrics", "decision", "miss"] }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "lak_ad_fa_short"
+  label = { zh = "广告误判（不该有标签却给了），短提示词", en = "Ad false alarms (an unlabelled ad given a label), short prompt" }
+  extractor = "json_counts"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", at = ["tasks", "ad_policy", "test_a", "prompt-short", "metrics", "decision", "false_alarm"] }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "lak_ad_fa_full"
+  label = { zh = "广告误判，完整 Agent", en = "Ad false alarms, full agent" }
+  extractor = "json_counts"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", at = ["tasks", "ad_policy", "test_a", "agent-cases-check", "metrics", "decision", "false_alarm"] }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "lak_quotes_short"
+  label = { zh = "点评，引的原话一字不差，短提示词", en = "Reviews, quotes that are the item's own words, short prompt" }
+  extractor = "json_counts"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", at = ["tasks", "asap", "test_a", "prompt-short", "ops", "evidence_exact"] }
+
+  [[eval.metric]]
+  id = "lak_quotes_full"
+  label = { zh = "点评，引的原话一字不差，完整 Agent", en = "Reviews, quotes that are the item's own words, full agent" }
+  extractor = "json_counts"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", at = ["tasks", "asap", "test_a", "agent-cases-check", "ops", "evidence_exact"] }
+
+  [[eval.metric]]
+  id = "lak_cost_ad_full"
+  label = { zh = "广告，完整 Agent：每 1,000 条的费用", en = "Ads, full agent: cost per 1,000 items" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", keys = ["tasks", "ad_policy", "test_a", "agent-cases-check", "ops", "cost_per_item_usd"], scale = 1000, unit = "usd", decimals = 2 }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "lak_cost_asap_cases"
+  label = { zh = "点评，加检索案例、不自查：每 1,000 条的费用", en = "Reviews, retrieved cases without self-check: cost per 1,000 items" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", keys = ["tasks", "asap", "test_a", "agent-cases", "ops", "cost_per_item_usd"], scale = 1000, unit = "usd", decimals = 2 }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "lak_cost_asap_full"
+  label = { zh = "点评，完整 Agent：每 1,000 条的费用", en = "Reviews, full agent: cost per 1,000 items" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", keys = ["tasks", "asap", "test_a", "agent-cases-check", "ops", "cost_per_item_usd"], scale = 1000, unit = "usd", decimals = 2 }
+  direction = "lower"
+
+[[eval]]
+id = "hypotheses"
+name = { zh = "测试集 A：预注册的对照（后一种减前一种，微平均 F1）", en = "Test A: preregistered comparisons (B minus A, micro F1)" }
+date = "2026-11-18"
+data = { zh = "同一批题上两种做法配对比较；配对自助区间整个在 0 以上才算“更好”，跨过 0 算“没测出差别”。", en = "Two arms compared on the same items; \"better\" only when the paired-bootstrap interval lies above 0, \"no measured difference\" when it crosses 0." }
+items = { zh = "广告 119 条；点评 201 条", en = "119 ads; 201 reviews" }
+runs = { zh = "每条每种做法 1 遍；区间按题目自助重抽样 2,000 次", en = "1 run per item and arm; intervals from 2,000 item bootstrap resamples" }
+setup = { zh = "claude-haiku-5-5，effort low，批量接口", en = "claude-haiku-5-5, effort low, Message Batches API" }
+frozen = { zh = "`experiments/PREREGISTRATION.md` 第五节", en = "`experiments/PREREGISTRATION.md`, section 5" }
+takeaway = { zh = "查规则、检索案例在两个任务上都测出提升；自查只在点评上；整本规则放进提示词和 Agent 比，广告上没测出差别。", en = "Reading rules and retrieved cases are measured gains on both tasks; the self-check on reviews only; against the whole rulebook in the prompt, the agent shows no measured difference on ads." }
+
+  [[eval.metric]]
+  id = "lak_h1_ad"
+  label = { zh = "广告：查规则的 Agent 减短提示词", en = "Ads: rule-reading agent minus short prompt" }
+  extractor = "lak_compare"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", id = "H1-ad" }
+
+  [[eval.metric]]
+  id = "lak_h1_asap"
+  label = { zh = "点评：查规则的 Agent 减短提示词", en = "Reviews: rule-reading agent minus short prompt" }
+  extractor = "lak_compare"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", id = "H1-asap" }
+
+  [[eval.metric]]
+  id = "lak_h2_ad"
+  label = { zh = "广告：加检索案例减不加", en = "Ads: with retrieved cases minus without" }
+  extractor = "lak_compare"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", id = "H2-ad" }
+
+  [[eval.metric]]
+  id = "lak_h2_asap"
+  label = { zh = "点评：加检索案例减不加", en = "Reviews: with retrieved cases minus without" }
+  extractor = "lak_compare"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", id = "H2-asap" }
+
+  [[eval.metric]]
+  id = "lak_h3_ad"
+  label = { zh = "广告：加自查减不加", en = "Ads: with self-check minus without" }
+  extractor = "lak_compare"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", id = "H3-ad" }
+
+  [[eval.metric]]
+  id = "lak_h3_asap"
+  label = { zh = "点评：加自查减不加", en = "Reviews: with self-check minus without" }
+  extractor = "lak_compare"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", id = "H3-asap" }
+
+  [[eval.metric]]
+  id = "lak_h4_ad"
+  label = { zh = "广告：查规则的 Agent 减整本规则放进提示词", en = "Ads: rule-reading agent minus whole rulebook in the prompt" }
+  extractor = "lak_compare"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", id = "H4-ad" }
+
+  [[eval.metric]]
+  id = "lak_h4_asap"
+  label = { zh = "点评：查规则的 Agent 减整本规则放进提示词", en = "Reviews: rule-reading agent minus whole rulebook in the prompt" }
+  extractor = "lak_compare"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", id = "H4-asap" }
+
+  [[eval.metric]]
+  id = "lak_h5a"
+  label = { zh = "点评：真实案例库减合成案例库", en = "Reviews: real case library minus synthetic" }
+  extractor = "lak_compare"
+  args = { path = "labelling-agent-kit-public/results/main/analysis.json", id = "H5a" }
+  direction = "none"
+
+[[eval]]
+id = "rca"
+name = { zh = "根因：完整 Agent 在测试集 A 上的错误判断", en = "Root causes: the full agent's wrong decisions on test A" }
+date = "2026-11-18"
+data = { zh = "最好的做法（两个任务都是完整 Agent）的每个错误标签判断，先由代码算出线索，再独立归类两次，归到五类：提示词缺陷、模型能力、规则冲突、样本分布、标签歧义（数据集的标签可两读或漏标）。两次不一致的单列为“分歧”。", en = "Each wrong label decision of the best arm (the full agent on both tasks) gets code-computed signals and is classified twice, independently, into five causes: prompt defect, model capability, rule conflict, sample distribution and label ambiguity (a gold label that reads either way or was left out). Disagreements are listed as split." }
+items = { zh = "点评 165 条里的错误判断；广告 4 条里的错误判断", en = "Wrong decisions on 165 reviews and on 4 ads" }
+runs = { zh = "每个错误判断归类 2 次", en = "2 classifications per wrong decision" }
+setup = { zh = "claude-haiku-5-5，批量接口", en = "claude-haiku-5-5, Message Batches API" }
+frozen = { zh = "`experiments/PREREGISTRATION.md` 第六节", en = "`experiments/PREREGISTRATION.md`, section 6" }
+takeaway = { zh = "点评最多的一类是标签歧义，近一半错误判断在所有做法里都错：这部分受标准标签本身限制，照实报告，不去拟合。能改的是规则和流程：提示词没让 Agent 想到的标签、自查删掉了数据集惯例要的标签、通用规则和数据集惯例冲突（价格、优惠、商场位置）。", en = "On reviews the largest class is label ambiguity, and nearly half of the wrong decisions were wrong in every arm: that part is bounded by the gold labels and is reported, not fitted. The fixable part is rules and flow: labels the prompt never led the agent to consider, a self-check that deleted labels the dataset's conventions require, and a general rule that clashes with those conventions (prices, deals, mall locations)." }
+
+  [[eval.metric]]
+  id = "lak_rca_decisions"
+  label = { zh = "点评：错误标签判断", en = "Reviews: wrong label decisions" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/main/rca/asap-test_a-agent-cases-check.json", keys = ["summary", "decisions"], decimals = 0 }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "lak_rca_agree"
+  label = { zh = "点评：两次独立归类一致", en = "Reviews: both classifications agree" }
+  extractor = "json_counts"
+  args = { path = "labelling-agent-kit-public/results/main/rca/asap-test_a-agent-cases-check.json", at = ["summary", "agreement"] }
+
+  [[eval.metric]]
+  id = "lak_rca_ambiguity"
+  label = { zh = "点评：标签歧义", en = "Reviews: label ambiguity" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/main/rca/asap-test_a-agent-cases-check.json", keys = ["summary", "by_cause", "label_ambiguity"], decimals = 0 }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "lak_rca_prompt"
+  label = { zh = "点评：提示词缺陷", en = "Reviews: prompt defect" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/main/rca/asap-test_a-agent-cases-check.json", keys = ["summary", "by_cause", "prompt_defect"], decimals = 0 }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "lak_rca_model"
+  label = { zh = "点评：模型能力", en = "Reviews: model capability" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/main/rca/asap-test_a-agent-cases-check.json", keys = ["summary", "by_cause", "model_capability"], decimals = 0 }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "lak_rca_rule"
+  label = { zh = "点评：规则冲突", en = "Reviews: rule conflict" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/main/rca/asap-test_a-agent-cases-check.json", keys = ["summary", "by_cause", "rule_conflict"], decimals = 0 }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "lak_rca_split"
+  label = { zh = "点评：两次归类不一致（分歧）", en = "Reviews: classifications disagree (split)" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/main/rca/asap-test_a-agent-cases-check.json", keys = ["summary", "by_cause", "split"], decimals = 0 }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "lak_rca_stable"
+  label = { zh = "点评：在所有做法里都错的判断", en = "Reviews: decisions wrong in every arm" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/main/rca/asap-test_a-agent-cases-check.json", keys = ["summary", "stable_errors"], decimals = 0 }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "lak_a10_test_a"
+  label = { zh = "点评测试集 A：含有强线索词却没有对应标签的点评", en = "Review test A: reviews with a strong cue for a label they lack" }
+  extractor = "lak_acceptance"
+  args = { path = "labelling-agent-kit-public/results/acceptance.json", task = "asap", set = "test_a", code = "A10" }
+  direction = "none"
+  note = { zh = "数据验收 A10：训练集里这个词出现时有这个标签的比例不低于 0.95；这是漏标的下限", en = "data acceptance A10: in the training split the phrase comes with the label at least 0.95 of the time; a lower bound on unlabelled mentions" }
+
+  [[eval.metric]]
+  id = "lak_rca_ad_agree"
+  label = { zh = "广告：两次独立归类一致", en = "Ads: both classifications agree" }
+  extractor = "json_counts"
+  args = { path = "labelling-agent-kit-public/results/main/rca/ad_policy-test_a-agent-cases-check.json", at = ["summary", "agreement"] }
+
+[[eval]]
+id = "revision"
+name = { zh = "按根因改的第二版：没用过的测试集 B", en = "The revision built from root causes: unseen test B" }
+date = "2026-11-18"
+data = { zh = "第二版只改根因表指出的地方：点评补上数据集对“只标有评价的方面”的例外（商场位置、优惠、标价）、两个价格标签的分界和自查保留惯例要求的标签；广告把检测得出的效果百分比归到数据类、把“立刻减重”只归到减重类；两个任务都让 Agent 答前过一遍全部标签。冻结后才在测试集 B 上跑。", en = "The revision changes only what the root-cause tables point to: for reviews, the dataset's exceptions to \"judged aspects only\" (mall locations, deals, stated prices), the boundary between the two price labels and a self-check that keeps convention-required labels; for ads, effect percentages from tests as the data label and immediate weight-loss claims as the weight label only; for both, going through the whole label list before answering. It was frozen before it ran on test B." }
+items = { zh = "广告 118 条；点评 199 条（测试集 B，之前没用过）", en = "118 ads; 199 reviews (test B, unused before)" }
+runs = { zh = "每条每个版本 1 遍；区间按题目自助重抽样", en = "1 run per item and version; item bootstrap intervals" }
+setup = { zh = "claude-haiku-5-5，effort low，批量接口", en = "claude-haiku-5-5, effort low, Message Batches API" }
+frozen = { zh = "`experiments/REVISION.md`（17 个冻结文件的指纹）", en = "`experiments/REVISION.md` (fingerprints of 17 frozen files)" }
+takeaway = { zh = "点评：第二版在没用过的题上测出提升，收益落在改动瞄准的价格、优惠和位置标签上，采用。广告：也高一点，但区间下端是 0，按事先定的规则不算提升，不采用；第一版在测试集 A 上只错了四条，能测的空间本来就小。", en = "Reviews: a measured gain on unseen items, sitting on the price, deal and location labels the changes aimed at; adopted. Ads: slightly higher, but the interval's lower end is 0, so by the rule set beforehand it is not a gain and is not adopted; v1 made only four errors on test A, leaving little to measure." }
+
+  [[eval.metric]]
+  id = "lak_v1_asap_b"
+  label = { zh = "点评，第一版：微平均 F1", en = "Reviews, v1: micro F1" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/revision/analysis.json", keys = ["tasks", "asap", "test_b", "agent-cases-check", "metrics", "micro", "f1"], decimals = 3 }
+
+  [[eval.metric]]
+  id = "lak_v2_asap_b"
+  label = { zh = "点评，第二版：微平均 F1", en = "Reviews, v2: micro F1" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/revision/analysis.json", keys = ["tasks", "asap", "test_b", "agent-cases-check-v2", "metrics", "micro", "f1"], decimals = 3 }
+
+  [[eval.metric]]
+  id = "lak_h6_asap"
+  label = { zh = "点评：第二版减第一版", en = "Reviews: v2 minus v1" }
+  extractor = "lak_compare"
+  args = { path = "labelling-agent-kit-public/results/revision/analysis.json", id = "H6-asap" }
+
+  [[eval.metric]]
+  id = "lak_v1_ad_b"
+  label = { zh = "广告，第一版：微平均 F1", en = "Ads, v1: micro F1" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/revision/analysis.json", keys = ["tasks", "ad_policy", "test_b", "agent-cases-check", "metrics", "micro", "f1"], decimals = 3 }
+
+  [[eval.metric]]
+  id = "lak_v2_ad_b"
+  label = { zh = "广告，第二版：微平均 F1", en = "Ads, v2: micro F1" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/revision/analysis.json", keys = ["tasks", "ad_policy", "test_b", "agent-cases-check-v2", "metrics", "micro", "f1"], decimals = 3 }
+
+  [[eval.metric]]
+  id = "lak_h6_ad"
+  label = { zh = "广告：第二版减第一版", en = "Ads: v2 minus v1" }
+  extractor = "lak_compare"
+  args = { path = "labelling-agent-kit-public/results/revision/analysis.json", id = "H6-ad" }
+
+  [[eval.metric]]
+  id = "lak_r_asap"
+  label = { zh = "点评，测试集 A 上复看：第二版减第一版", en = "Reviews, test A re-check: v2 minus v1" }
+  extractor = "lak_compare"
+  args = { path = "labelling-agent-kit-public/results/revision/analysis.json", id = "R-asap" }
+  direction = "none"
+  note = { zh = "改动是照测试集 A 的失败写的，这一行只作完整记录，不当证据", en = "the changes were written from test A's failures, so this row is for completeness, not evidence" }
+
+  [[eval.metric]]
+  id = "lak_r_ad"
+  label = { zh = "广告，测试集 A 上复看：第二版减第一版", en = "Ads, test A re-check: v2 minus v1" }
+  extractor = "lak_compare"
+  args = { path = "labelling-agent-kit-public/results/revision/analysis.json", id = "R-ad" }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "lak_cost_total"
+  label = { zh = "整个项目的模型调用费用（批量价）", en = "All model calls in the project (batch prices)" }
+  extractor = "json_value"
+  args = { path = "labelling-agent-kit-public/results/costs.json", keys = ["total_usd"], unit = "usd", decimals = 4 }
+  direction = "lower"
+
+[[limitation]]
+text = { zh = "每种做法每条只跑了一次；模型采样带来的波动不在按题目重抽样的区间里，几处差别离边界很近（点评上查规则对整本规则、一半一半案例库、广告的第二版）。", en = "Each arm labelled each item once; sampling variance is not in the item-bootstrap intervals, and several differences sit close to the edge (rules versus the whole rulebook on reviews, the half-and-half library, the ads revision)." }
+advice = { zh = "上线前对离边界近的几组多跑几次，确认结论不变。", en = "Before relying on the close calls, run them several more times and confirm they hold." }
+
+[[limitation]]
+text = { zh = "广告的题目和广告规则出自同一组项目（有据审核、审核模型实验），答案在写广告时定好，不是独立标注员定的；完整 Agent 在广告上已接近满分。", en = "The ad items come from the same projects as the ad rulebook (Grounded Review and Policy Model Lab), with answers fixed by construction rather than by independent annotators; the full agent is near the ceiling on ads." }
+advice = { zh = "接真实业务前，用业务里已有结论的样本另建测试集。", en = "Before real use, build a test set from business items with settled outcomes." }
+
+[[limitation]]
+text = { zh = "点评的标准标签漏掉了一些提及：测试集 A 的 {lak_a10_test_a:n} 条点评里，有 {lak_a10_test_a:k} 条含有在训练集里几乎总伴随某个标签的词，却没有那个标签；根因里还有 {lak_rca_ambiguity} 个判断归为标签歧义。点评上的精确率受这个限制，Agent 的一部分“错误”可能是数据集该有的标签。", en = "The review gold labels leave out some mentions: {lak_a10_test_a:k} of the {lak_a10_test_a:n} test A reviews contain a phrase that almost always comes with a label in the training split, yet lack that label; {lak_rca_ambiguity} decisions were classed as label ambiguity. Precision on reviews is bounded by this, and some of the agent's \"errors\" may be labels the dataset arguably should have." }
+advice = { zh = "把可两读或漏标的样本整理给定标准的一方，先统一标注口径，再比较做法。", en = "Hand the ambiguous or unlabelled cases to whoever sets the standard, settle the labelling rules first, then compare arms." }
+
+[[limitation]]
+text = { zh = "合成点评比真实点评短，而且是照 Agent 读的同一本规则生成的；换一种生成方式，真实对合成的结论可能不同。", en = "The synthetic reviews are shorter than real ones and were generated from the same rulebook the agent reads; a different generator could change the real-versus-synthetic result." }
+advice = { zh = "用不同的生成提示或模型再造一个案例库，重做这组对照。", en = "Build another library with a different generator or prompt and repeat the comparison." }
+
+[[version]]
+id = "1.0"
+date = "2026-11-18"
+text = { zh = "第一张卡，照公开仓库 labelling-agent-kit 的结果文件写。", en = "First card, from the result files in the public labelling-agent-kit repository." }

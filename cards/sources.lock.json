@@ -106,5 +106,14 @@
   "judge-calibration": {
     "judge-calibration-public/eval/results/RESULTS.md": "999ab3dad747a2568c31b36ed5af1b3fd9105c436178e5aea88e669acb04cdc9",
     "judge-calibration-public/eval/results/summary.json": "6b558a76923a003ecc71b3af332147f80f6e5c1ee2a34afd481fc538032098e1"
+  },
+  "labelling-agent-kit": {
+    "labelling-agent-kit-public/results/acceptance.json": "a9057f5613e3e656781288ae292fe620286ef352bc9c365b02bc3f54b1ea744d",
+    "labelling-agent-kit-public/results/costs.json": "bedb4d760718835e6716dcdfa934f74fb95f4aa3815ae78daadd54a80469b26d",
+    "labelling-agent-kit-public/results/dev1/FIRST_TURN.md": "c1f3ac38914b5e2f8345b36a3e430ebb979a19274a9230849206e1c5aed769dc",
+    "labelling-agent-kit-public/results/main/analysis.json": "966db5cb6823022dcb761262a327da04af53154f92fbf406521fa8151a4e7d88",
+    "labelling-agent-kit-public/results/main/rca/ad_policy-test_a-agent-cases-check.json": "a793aaaafe1f890702e6aa1a562c9fa324f7c6e97e294a70a2814564e23d93a1",
+    "labelling-agent-kit-public/results/main/rca/asap-test_a-agent-cases-check.json": "17d8f4b8ad2b875c67efe077850341d3d173dccd805470b2288cd4860b9f35ef",
+    "labelling-agent-kit-public/results/revision/analysis.json": "e266cea411a5ea2189818fd6f9ca19ff8836354a2386c567ff94b4407e280361"
   }
 }

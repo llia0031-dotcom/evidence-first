@@ -8151,5 +8151,1169 @@
         "en": "Rules, then the judge, unsure items to people: errors missed 2/390 against 7/390 with the judge alone; sent to people 49/711"
       }
     ]
+  },
+  {
+    "id": "labelling-agent-kit",
+    "order": 14,
+    "layer": "operations",
+    "status": "public",
+    "updated": "2026-11-18",
+    "card_version": "1.0",
+    "card": {
+      "zh": "cards/labelling-agent-kit.md",
+      "en": "cards/labelling-agent-kit.en.md"
+    },
+    "links": [
+      {
+        "label": {
+          "zh": "代码和报告",
+          "en": "Code and report"
+        },
+        "url": "https://github.com/llia0031-dotcom/labelling-agent-kit"
+      },
+      {
+        "label": {
+          "zh": "结果查看页",
+          "en": "Results viewer"
+        },
+        "url": {
+          "zh": "https://llia0031-dotcom.github.io/labelling-agent-kit/",
+          "en": "https://llia0031-dotcom.github.io/labelling-agent-kit/en.html"
+        }
+      }
+    ],
+    "period": {
+      "zh": "2026-11-18",
+      "en": "2026-11-18"
+    },
+    "team": {
+      "zh": "Liang Liyuan",
+      "en": "Liang Liyuan"
+    },
+    "stack": {
+      "zh": "Python、批量接口、BM25 检索、配对自助检验、五个 Agent Skill（只用标准库）",
+      "en": "Python, Message Batches API, BM25 retrieval, paired bootstrap tests, five Agent Skills (standard library only)"
+    },
+    "evals": [
+      {
+        "id": "dev",
+        "name": {
+          "zh": "开发集第一轮：Agent 第一步用不用工具",
+          "en": "Development round one: does the agent's first turn use a tool?"
+        },
+        "date": "2026-11-18",
+        "metrics": [
+          {
+            "id": "lak_dev1_agent_tool",
+            "label": {
+              "zh": "只给规则工具：第一步调用了工具",
+              "en": "Rule tools only: first turn called a tool"
+            },
+            "direction": "none",
+            "kind": "proportion",
+            "sources": [
+              "labelling-agent-kit/results/dev1/FIRST_TURN.md"
+            ],
+            "k": 36,
+            "n": 40,
+            "rate": 0.9,
+            "ci95": [
+              0.7695,
+              0.9604
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/dev1/FIRST_TURN.md"
+            ]
+          },
+          {
+            "id": "lak_dev1_cases_tool",
+            "label": {
+              "zh": "再给检索案例的工具：第一步调用了工具",
+              "en": "With case tools added: first turn called a tool"
+            },
+            "direction": "none",
+            "kind": "proportion",
+            "sources": [
+              "labelling-agent-kit/results/dev1/FIRST_TURN.md"
+            ],
+            "k": 0,
+            "n": 40,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.0876
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/dev1/FIRST_TURN.md"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "test_a",
+        "name": {
+          "zh": "测试集 A：五种做法",
+          "en": "Test A: five arms"
+        },
+        "date": "2026-11-18",
+        "metrics": [
+          {
+            "id": "lak_ad_short",
+            "label": {
+              "zh": "广告，短提示词：微平均 F1",
+              "en": "Ads, short prompt: micro F1"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "value": 0.7682926829268293,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_ad_rules",
+            "label": {
+              "zh": "广告，整本规则放进提示词：微平均 F1",
+              "en": "Ads, whole rulebook in the prompt: micro F1"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "value": 0.8783783783783784,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_ad_agent",
+            "label": {
+              "zh": "广告，会查规则的 Agent：微平均 F1",
+              "en": "Ads, agent that reads rules: micro F1"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "value": 0.9251700680272109,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_ad_cases",
+            "label": {
+              "zh": "广告，再加检索相似案例：微平均 F1",
+              "en": "Ads, plus retrieved cases: micro F1"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "value": 0.965034965034965,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_ad_full",
+            "label": {
+              "zh": "广告，再加自查（完整 Agent）：微平均 F1",
+              "en": "Ads, plus self-check (full agent): micro F1"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "value": 0.9714285714285714,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_asap_short",
+            "label": {
+              "zh": "点评，短提示词：微平均 F1",
+              "en": "Reviews, short prompt: micro F1"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "value": 0.7154728927582114,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_asap_rules",
+            "label": {
+              "zh": "点评，整本规则放进提示词：微平均 F1",
+              "en": "Reviews, whole rulebook in the prompt: micro F1"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "value": 0.7815126050420168,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_asap_agent",
+            "label": {
+              "zh": "点评，会查规则的 Agent：微平均 F1",
+              "en": "Reviews, agent that reads rules: micro F1"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "value": 0.7986080904741192,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_asap_cases",
+            "label": {
+              "zh": "点评，再加检索相似案例：微平均 F1",
+              "en": "Reviews, plus retrieved cases: micro F1"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "value": 0.812253829321663,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_asap_full",
+            "label": {
+              "zh": "点评，再加自查（完整 Agent）：微平均 F1",
+              "en": "Reviews, plus self-check (full agent): micro F1"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "value": 0.8243944636678201,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_lookalike_short",
+            "label": {
+              "zh": "形似违规其实合规的广告被打了标签，短提示词",
+              "en": "Compliant look-alike ads given a label, short prompt"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "k": 12,
+            "n": 32,
+            "rate": 0.375,
+            "ci95": [
+              0.2293,
+              0.5475
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_lookalike_full",
+            "label": {
+              "zh": "形似违规其实合规的广告被打了标签，完整 Agent",
+              "en": "Compliant look-alike ads given a label, full agent"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "k": 0,
+            "n": 32,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.1072
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_ad_miss_short",
+            "label": {
+              "zh": "广告漏判（该有标签却一个没给），短提示词",
+              "en": "Ad misses (a labelled ad given no label), short prompt"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "k": 5,
+            "n": 67,
+            "rate": 0.0746,
+            "ci95": [
+              0.0323,
+              0.1631
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_ad_miss_full",
+            "label": {
+              "zh": "广告漏判，完整 Agent",
+              "en": "Ad misses, full agent"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "k": 1,
+            "n": 67,
+            "rate": 0.0149,
+            "ci95": [
+              0.0026,
+              0.0798
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_ad_fa_short",
+            "label": {
+              "zh": "广告误判（不该有标签却给了），短提示词",
+              "en": "Ad false alarms (an unlabelled ad given a label), short prompt"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "k": 15,
+            "n": 52,
+            "rate": 0.2885,
+            "ci95": [
+              0.1833,
+              0.4227
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_ad_fa_full",
+            "label": {
+              "zh": "广告误判，完整 Agent",
+              "en": "Ad false alarms, full agent"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "k": 0,
+            "n": 52,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.0688
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_quotes_short",
+            "label": {
+              "zh": "点评，引的原话一字不差，短提示词",
+              "en": "Reviews, quotes that are the item's own words, short prompt"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "k": 1303,
+            "n": 1330,
+            "rate": 0.9797,
+            "ci95": [
+              0.9706,
+              0.986
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_quotes_full",
+            "label": {
+              "zh": "点评，引的原话一字不差，完整 Agent",
+              "en": "Reviews, quotes that are the item's own words, full agent"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "k": 1115,
+            "n": 1115,
+            "rate": 1.0,
+            "ci95": [
+              0.9966,
+              1.0
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_cost_ad_full",
+            "label": {
+              "zh": "广告，完整 Agent：每 1,000 条的费用",
+              "en": "Ads, full agent: cost per 1,000 items"
+            },
+            "direction": "lower",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "value": 0.533,
+            "unit": "usd",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_cost_asap_cases",
+            "label": {
+              "zh": "点评，加检索案例、不自查：每 1,000 条的费用",
+              "en": "Reviews, retrieved cases without self-check: cost per 1,000 items"
+            },
+            "direction": "lower",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "value": 0.9136,
+            "unit": "usd",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_cost_asap_full",
+            "label": {
+              "zh": "点评，完整 Agent：每 1,000 条的费用",
+              "en": "Reviews, full agent: cost per 1,000 items"
+            },
+            "direction": "lower",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "value": 1.5938,
+            "unit": "usd",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "hypotheses",
+        "name": {
+          "zh": "测试集 A：预注册的对照（后一种减前一种，微平均 F1）",
+          "en": "Test A: preregistered comparisons (B minus A, micro F1)"
+        },
+        "date": "2026-11-18",
+        "metrics": [
+          {
+            "id": "lak_h1_ad",
+            "label": {
+              "zh": "广告：查规则的 Agent 减短提示词",
+              "en": "Ads: rule-reading agent minus short prompt"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "value": 0.15687738510038163,
+            "unit": "",
+            "n": null,
+            "ci95": [
+              0.1056,
+              0.2143
+            ],
+            "signed": true,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_h1_asap",
+            "label": {
+              "zh": "点评：查规则的 Agent 减短提示词",
+              "en": "Reviews: rule-reading agent minus short prompt"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "value": 0.08313519771590783,
+            "unit": "",
+            "n": null,
+            "ci95": [
+              0.0637,
+              0.1019
+            ],
+            "signed": true,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_h2_ad",
+            "label": {
+              "zh": "广告：加检索案例减不加",
+              "en": "Ads: with retrieved cases minus without"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "value": 0.039864897007754085,
+            "unit": "",
+            "n": null,
+            "ci95": [
+              0.0073,
+              0.0762
+            ],
+            "signed": true,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_h2_asap",
+            "label": {
+              "zh": "点评：加检索案例减不加",
+              "en": "Reviews: with retrieved cases minus without"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "value": 0.013645738847543831,
+            "unit": "",
+            "n": null,
+            "ci95": [
+              0.0031,
+              0.024
+            ],
+            "signed": true,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_h3_ad",
+            "label": {
+              "zh": "广告：加自查减不加",
+              "en": "Ads: with self-check minus without"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "value": 0.006393606393606421,
+            "unit": "",
+            "n": null,
+            "ci95": [
+              -0.0229,
+              0.0381
+            ],
+            "signed": true,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_h3_asap",
+            "label": {
+              "zh": "点评：加自查减不加",
+              "en": "Reviews: with self-check minus without"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "value": 0.012140634346157086,
+            "unit": "",
+            "n": null,
+            "ci95": [
+              0.0007,
+              0.0234
+            ],
+            "signed": true,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_h4_ad",
+            "label": {
+              "zh": "广告：查规则的 Agent 减整本规则放进提示词",
+              "en": "Ads: rule-reading agent minus whole rulebook in the prompt"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "value": 0.04679168964883251,
+            "unit": "",
+            "n": null,
+            "ci95": [
+              -0.0042,
+              0.0972
+            ],
+            "signed": true,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_h4_asap",
+            "label": {
+              "zh": "点评：查规则的 Agent 减整本规则放进提示词",
+              "en": "Reviews: rule-reading agent minus whole rulebook in the prompt"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "value": 0.017095485432102375,
+            "unit": "",
+            "n": null,
+            "ci95": [
+              0.0005,
+              0.0332
+            ],
+            "signed": true,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_h5a",
+            "label": {
+              "zh": "点评：真实案例库减合成案例库",
+              "en": "Reviews: real case library minus synthetic"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/analysis.json"
+            ],
+            "value": 0.010312938276228478,
+            "unit": "",
+            "n": null,
+            "ci95": [
+              -0.0013,
+              0.0221
+            ],
+            "signed": true,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/analysis.json"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "rca",
+        "name": {
+          "zh": "根因：完整 Agent 在测试集 A 上的错误判断",
+          "en": "Root causes: the full agent's wrong decisions on test A"
+        },
+        "date": "2026-11-18",
+        "metrics": [
+          {
+            "id": "lak_rca_decisions",
+            "label": {
+              "zh": "点评：错误标签判断",
+              "en": "Reviews: wrong label decisions"
+            },
+            "direction": "lower",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/rca/asap-test_a-agent-cases-check.json"
+            ],
+            "value": 406.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/rca/asap-test_a-agent-cases-check.json"
+            ]
+          },
+          {
+            "id": "lak_rca_agree",
+            "label": {
+              "zh": "点评：两次独立归类一致",
+              "en": "Reviews: both classifications agree"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "labelling-agent-kit/results/main/rca/asap-test_a-agent-cases-check.json"
+            ],
+            "k": 257,
+            "n": 406,
+            "rate": 0.633,
+            "ci95": [
+              0.5851,
+              0.6784
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/rca/asap-test_a-agent-cases-check.json"
+            ]
+          },
+          {
+            "id": "lak_rca_ambiguity",
+            "label": {
+              "zh": "点评：标签歧义",
+              "en": "Reviews: label ambiguity"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/rca/asap-test_a-agent-cases-check.json"
+            ],
+            "value": 158.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/rca/asap-test_a-agent-cases-check.json"
+            ]
+          },
+          {
+            "id": "lak_rca_prompt",
+            "label": {
+              "zh": "点评：提示词缺陷",
+              "en": "Reviews: prompt defect"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/rca/asap-test_a-agent-cases-check.json"
+            ],
+            "value": 61.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/rca/asap-test_a-agent-cases-check.json"
+            ]
+          },
+          {
+            "id": "lak_rca_model",
+            "label": {
+              "zh": "点评：模型能力",
+              "en": "Reviews: model capability"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/rca/asap-test_a-agent-cases-check.json"
+            ],
+            "value": 20.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/rca/asap-test_a-agent-cases-check.json"
+            ]
+          },
+          {
+            "id": "lak_rca_rule",
+            "label": {
+              "zh": "点评：规则冲突",
+              "en": "Reviews: rule conflict"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/rca/asap-test_a-agent-cases-check.json"
+            ],
+            "value": 18.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/rca/asap-test_a-agent-cases-check.json"
+            ]
+          },
+          {
+            "id": "lak_rca_split",
+            "label": {
+              "zh": "点评：两次归类不一致（分歧）",
+              "en": "Reviews: classifications disagree (split)"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/rca/asap-test_a-agent-cases-check.json"
+            ],
+            "value": 149.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/rca/asap-test_a-agent-cases-check.json"
+            ]
+          },
+          {
+            "id": "lak_rca_stable",
+            "label": {
+              "zh": "点评：在所有做法里都错的判断",
+              "en": "Reviews: decisions wrong in every arm"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/main/rca/asap-test_a-agent-cases-check.json"
+            ],
+            "value": 194.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/rca/asap-test_a-agent-cases-check.json"
+            ]
+          },
+          {
+            "id": "lak_a10_test_a",
+            "label": {
+              "zh": "点评测试集 A：含有强线索词却没有对应标签的点评",
+              "en": "Review test A: reviews with a strong cue for a label they lack"
+            },
+            "direction": "none",
+            "kind": "proportion",
+            "sources": [
+              "labelling-agent-kit/results/acceptance.json"
+            ],
+            "k": 7,
+            "n": 201,
+            "rate": 0.0348,
+            "ci95": [
+              0.017,
+              0.0701
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/acceptance.json"
+            ]
+          },
+          {
+            "id": "lak_rca_ad_agree",
+            "label": {
+              "zh": "广告：两次独立归类一致",
+              "en": "Ads: both classifications agree"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "labelling-agent-kit/results/main/rca/ad_policy-test_a-agent-cases-check.json"
+            ],
+            "k": 3,
+            "n": 4,
+            "rate": 0.75,
+            "ci95": [
+              0.3006,
+              0.9544
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/main/rca/ad_policy-test_a-agent-cases-check.json"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "revision",
+        "name": {
+          "zh": "按根因改的第二版：没用过的测试集 B",
+          "en": "The revision built from root causes: unseen test B"
+        },
+        "date": "2026-11-18",
+        "metrics": [
+          {
+            "id": "lak_v1_asap_b",
+            "label": {
+              "zh": "点评，第一版：微平均 F1",
+              "en": "Reviews, v1: micro F1"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/revision/analysis.json"
+            ],
+            "value": 0.8344125809435707,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/revision/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_v2_asap_b",
+            "label": {
+              "zh": "点评，第二版：微平均 F1",
+              "en": "Reviews, v2: micro F1"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/revision/analysis.json"
+            ],
+            "value": 0.852014010507881,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/revision/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_h6_asap",
+            "label": {
+              "zh": "点评：第二版减第一版",
+              "en": "Reviews: v2 minus v1"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/revision/analysis.json"
+            ],
+            "value": 0.01760142956431021,
+            "unit": "",
+            "n": null,
+            "ci95": [
+              0.0046,
+              0.0306
+            ],
+            "signed": true,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/revision/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_v1_ad_b",
+            "label": {
+              "zh": "广告，第一版：微平均 F1",
+              "en": "Ads, v1: micro F1"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/revision/analysis.json"
+            ],
+            "value": 0.9714285714285714,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/revision/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_v2_ad_b",
+            "label": {
+              "zh": "广告，第二版：微平均 F1",
+              "en": "Ads, v2: micro F1"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/revision/analysis.json"
+            ],
+            "value": 0.9927007299270073,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/revision/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_h6_ad",
+            "label": {
+              "zh": "广告：第二版减第一版",
+              "en": "Ads: v2 minus v1"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/revision/analysis.json"
+            ],
+            "value": 0.02127215849843589,
+            "unit": "",
+            "n": null,
+            "ci95": [
+              0.0,
+              0.0482
+            ],
+            "signed": true,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/revision/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_r_asap",
+            "label": {
+              "zh": "点评，测试集 A 上复看：第二版减第一版",
+              "en": "Reviews, test A re-check: v2 minus v1"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/revision/analysis.json"
+            ],
+            "value": 0.016810748058564307,
+            "unit": "",
+            "n": null,
+            "ci95": [
+              0.003,
+              0.0312
+            ],
+            "signed": true,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/revision/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_r_ad",
+            "label": {
+              "zh": "广告，测试集 A 上复看：第二版减第一版",
+              "en": "Ads, test A re-check: v2 minus v1"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/revision/analysis.json"
+            ],
+            "value": 0.014486921529175079,
+            "unit": "",
+            "n": null,
+            "ci95": [
+              -0.0182,
+              0.0484
+            ],
+            "signed": true,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/revision/analysis.json"
+            ]
+          },
+          {
+            "id": "lak_cost_total",
+            "label": {
+              "zh": "整个项目的模型调用费用（批量价）",
+              "en": "All model calls in the project (batch prices)"
+            },
+            "direction": "lower",
+            "kind": "value",
+            "sources": [
+              "labelling-agent-kit/results/costs.json"
+            ],
+            "value": 3.6325,
+            "unit": "usd",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/labelling-agent-kit/blob/main/results/costs.json"
+            ]
+          }
+        ]
+      }
+    ],
+    "name": {
+      "zh": "标注 Agent 工具箱",
+      "en": "Labelling Agent Kit"
+    },
+    "problem": {
+      "zh": "标注 Agent 怎么设计标得最好，错在哪些标签、哪类样本上，为什么错，改了以后在新样本上还成不成立",
+      "en": "How should a labelling agent be built to label best, where and why does it fail, and does a fix still hold on new items?"
+    },
+    "primary_metric": {
+      "zh": "微平均 F1（附区间）；每个标签的精确率和召回率；漏判和误判",
+      "en": "Micro F1 with intervals; per-label precision and recall; misses and false alarms"
+    },
+    "summary": {
+      "zh": "一个换一套规则和案例就能接新任务的内容标注 Agent，配一整套用证据调它的工具：预注册的 A/B 对照、每个标签的精确率和召回率（带区间）、混淆和切片、失败样本根因表，以及按根因改版后在没用过的样本上验证。流程是：先检索相似案例，再用规则和案例工具标注，代码负责规则门（没读规则就给的标签，补发规则）、原话修正和自查。两个任务：中英文广告政策标签（每种语言 7 类，答案在写广告时定好），和公开数据集 ASAP 的餐厅点评 18 个方面（标签是数据集自带的）。五种做法从短提示词到“查规则 + 检索案例 + 自查”逐步加，点评另比较真实、合成和一半一半三种案例库。方案、假设和冻结文件跑前写好；最好的做法的失败样本，每个错误判断独立归因两次；按根因改出第二版，冻结后才在测试集 B 上跑。",
+      "en": "A content-labelling agent that plugs into any labelling task through a folder of rules and cases, and the kit to tune it with evidence: preregistered A/B experiments, per-label precision and recall with intervals, confusion and slices, a root-cause table of failures, and a revision checked on items it never saw. The flow: retrieve similar cases, label with rule and case tools, and let code run a rule gate (labels given without reading their rule get the rule sent), quote repair and a self-check. Two tasks: ad-policy labels in Chinese and English (7 per language, answers fixed when each ad was written) and 18 aspects of restaurant reviews from the public ASAP dataset (the dataset's own labels). Five arms add one piece at a time, from a short prompt to rules plus retrieved cases plus a self-check; on reviews, real, synthetic and half-and-half case libraries are also compared. Plan, hypotheses and frozen files were written before the runs; each wrong decision of the best arm was classified twice, independently; the revision built from the causes was frozen before it ran on test B."
+    },
+    "did": {
+      "zh": "我做了一个通用的内容标注 Agent：换一个放规则和案例的文件夹就能接新任务。用两个任务、五种做法做预注册的 A/B 对照，算每个标签的精确率和召回率、混淆和切片；把最好的做法的失败样本归到五类根因，按根因改出第二版，再在没用过的测试集上检验。常用的分析做成了五个 Agent Skill。",
+      "en": "I built one content-labelling agent that takes on a new task through a folder of rules and cases. Two tasks and five arms go through preregistered A/B comparisons, with per-label precision and recall, confusion and slices; the best arm's failures are sorted into five root causes, a second version is built from them and checked on a test set nothing was tuned on. The common analyses are packaged as five Agent Skills."
+    },
+    "headline": [
+      {
+        "zh": "测试集 A 微平均 F1，短提示词 → 完整 Agent：广告 0.768 → 0.971，点评 0.715 → 0.824",
+        "en": "Test A micro F1, short prompt → full agent: ads 0.768 → 0.971, reviews 0.715 → 0.824"
+      },
+      {
+        "zh": "形似违规其实合规的广告：短提示词打了标签 12/32，完整 Agent 0/32",
+        "en": "Look-alike ads that are compliant: the short prompt labelled 12/32, the full agent 0/32"
+      },
+      {
+        "zh": "按根因改的第二版，在没用过的测试集 B 上：点评 +0.018 [+0.005, +0.031]，采用；广告 +0.021 [+0.000, +0.048]，区间碰到 0，不采用",
+        "en": "The revision built from root causes, on unseen test B: reviews +0.018 [+0.005, +0.031], adopted; ads +0.021 [+0.000, +0.048], the interval reaches 0, not adopted"
+      }
+    ]
   }
 ]
