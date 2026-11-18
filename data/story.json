@@ -260,8 +260,8 @@
           "en": "Canary replay: Grounded Review v1.3 reaches full release, v1.2 rolls back partway"
         },
         {
-          "zh": "模型裁判校准：和定好的答案一致 699/711；先规则、再裁判、拿不准的送人工，漏掉的错误 7/390 → 2/390",
-          "en": "Judge calibration: agreement with fixed answers 699/711; rules, then the judge, unsure items to people, errors missed 7/390 → 2/390"
+          "zh": "模型裁判校准：和定好的答案一致 702/711；先规则、再裁判、拿不准的送人工，漏掉的错误 7/390 → 2/390",
+          "en": "Judge calibration: agreement with fixed answers 702/711; rules, then the judge, unsure items to people, errors missed 7/390 → 2/390"
         }
       ]
     }

@@ -5,7 +5,7 @@ status = "public"
 links = [
   { label = { zh = "代码和报告", en = "Code and report" }, url = "https://github.com/llia0031-dotcom/judge-calibration" },
 ]
-card_version = "1.0"
+card_version = "1.1"
 updated = "2026-11-18"
 period = "2026-11-18"
 team = "Liang Liyuan"
@@ -27,7 +27,7 @@ conclusion = { zh = "模型裁判在答案清楚、能对回原文的检查上�
 short_name = { zh = "裁判校准", en = "Judge calibration" }
 card_title = { zh = "模型裁判能信到什么程度，哪些该交给人", en = "How far a model judge can be trusted" }
 assumed = { zh = "以为在答案里加“保证没错”这类话会骗过裁判", en = "Expected assurance phrases in an answer to sway the judge" }
-showed = { zh = "加废话、加保证语都一道没变：{jc_verbose}、{jc_assertive}", en = "Neither padding nor assurances changed a verdict: {jc_verbose} and {jc_assertive}" }
+showed = { zh = "加废话 {jc_verbose}、加保证语 {jc_assertive}，没有让错的被放过", en = "Padding changed {jc_verbose} and assurances {jc_assertive}; no wrong answer got through" }
 result_line = { zh = "和定好的答案一致 {jc_constructed}；要靠外部证据的监管结论只对 {jc_reg_evidence}", en = "Agreed with fixed answers on {jc_constructed}; only {jc_reg_evidence} on regulator decisions that turn on outside evidence" }
 key_numbers = [{ metric = "jc_constructed", label = { zh = "和出题时定好的答案一致", en = "Agreement with answers fixed at item-building time" } }, { metric = "jc_reg_evidence", label = { zh = "要靠外部证据的监管结论，判对", en = "Regulator decisions that turn on outside evidence: right" } }, { metric = "jc_missed_b", label = { zh = "规则加裁判加复核漏掉（只用裁判 {jc_missed_a}）", en = "Errors missed with rules, judge and review (judge alone: {jc_missed_a})" } }]
 timeline = [
@@ -96,7 +96,7 @@ items = { zh = "711 道", en = "711 items" }
 runs = { zh = "每题判三次，取多数", en = "Three judgments per item, majority taken" }
 setup = { zh = "claude-haiku-5-5，effort medium，批量接口；提示词 v2", en = "claude-haiku-5-5, effort medium, Message Batches API; prompt v2" }
 frozen = { zh = "`eval/PREREGISTRATION.md`", en = "`eval/PREREGISTRATION.md`" }
-takeaway = { zh = "答案清楚的判断题上，裁判几乎全对，植入的错误大多抓到；不一致的地方里有一部分是答案本身要再斟酌。", en = "On items with clear answers the judge is almost always right and catches most planted errors; some of the disagreements point at answers worth revisiting." }
+takeaway = { zh = "答案清楚的判断题上，裁判几乎全对，植入的错误大多抓到。9 处不一致里 2 处是答案要再斟酌；另有 3 处是题目当初少给了商品页，补上后重跑已全部判对（更正 1）。", en = "On items with clear answers the judge is almost always right and catches most planted errors. Of the 9 disagreements, 2 point at answers worth revisiting; 3 more came from items first built without the product listing, and after it was added and the family judged again they were all right (correction 1)." }
 
   [[eval.metric]]
   id = "jc_constructed"
@@ -245,7 +245,7 @@ takeaway = { zh = "先用规则、再交裁判、拿不准的送人工，漏掉�
   id = "jc_unsure_wrong"
   label = { zh = "第一次判断说“拿不准”的错误率", en = "First judgments marked unsure: error rate" }
   extractor = "text_fraction"
-  args = { path = "judge-calibration-public/eval/results/RESULTS.md", label = "1.8%); marked unsure:" }
+  args = { path = "judge-calibration-public/eval/results/RESULTS.md", label = "); marked unsure:" }
   direction = "none"
 
 [[eval]]
@@ -257,7 +257,7 @@ items = { zh = "368 道", en = "368 items" }
 runs = { zh = "每种改法 1 遍", en = "1 run per change" }
 setup = { zh = "claude-haiku-5-5，effort medium，批量接口", en = "claude-haiku-5-5, effort medium, Message Batches API" }
 frozen = { zh = "`eval/PREREGISTRATION.md`", en = "`eval/PREREGISTRATION.md`" }
-takeaway = { zh = "加废话、加保证语都一道没变，事先预测的“会被骗”没成立。", en = "Neither padding nor assurances changed a single verdict; the prediction that they would did not hold." }
+takeaway = { zh = "加废话一道没变；加保证语变了 {jc_assertive}，都是边界上的好建议，没有让错的被放过；事先预测的“会被骗”没成立。", en = "Padding changed no verdict; assurances changed {jc_assertive}, all borderline good answers, and let no wrong one through; the prediction that they would sway the judge did not hold." }
 
   [[eval.metric]]
   id = "jc_verbose"
@@ -341,3 +341,8 @@ advice = { zh = "加大每批抽检量或收紧放行门槛，再在模拟批次
 id = "1.0"
 date = "2026-11-18"
 text = { zh = "第一张卡，照公开仓库 judge-calibration 的结果文件写。", en = "First card, from the result files in the public judge-calibration repository." }
+
+[[version]]
+id = "1.1"
+date = "2026-11-18"
+text = { zh = "跟随项目的更正 1：修改建议题当初少给了商品页，补上后整组重跑；卡上相关的数字按更正后的结果文件重新算出，不一致的说法照实改。提示词版本的选择不变。", en = "Follows the project's correction 1: the revision-advice items were first built without the product listing; with it added the family was judged again, and the affected numbers are recomputed from the corrected result files, with the account of the disagreements rewritten. The prompt-version choice is unchanged." }

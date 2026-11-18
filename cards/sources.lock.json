@@ -104,7 +104,7 @@
     "policy-model-lab-public/results/video_summary.md": "47094292abad87a2988660bc4cde07ef3ae422901ff00e5257d8ebeec14fe481"
   },
   "judge-calibration": {
-    "judge-calibration-public/eval/results/RESULTS.md": "ea24c79e77a58698d1f44a547ce9c42417c209f8589c18a861c255144226ae59",
-    "judge-calibration-public/eval/results/summary.json": "435eb5e59e51ada44b88741f485492b87f977b18dd9bf958dedea4aa82937323"
+    "judge-calibration-public/eval/results/RESULTS.md": "999ab3dad747a2568c31b36ed5af1b3fd9105c436178e5aea88e669acb04cdc9",
+    "judge-calibration-public/eval/results/summary.json": "6b558a76923a003ecc71b3af332147f80f6e5c1ee2a34afd481fc538032098e1"
   }
 }

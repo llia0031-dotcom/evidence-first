@@ -10720,7 +10720,7 @@
       "验收标准在错误率百分之十的批次上放行了 13.6%，没达到事先定的目标。建议：加大每批抽检量或收紧放行门槛，再在模拟批次上重测。"
     ],
     "headline": [
-      "和出题时定好的答案一致 699/711，植入的错误抓到 385/390",
+      "和出题时定好的答案一致 702/711，植入的错误抓到 385/390",
       "监管和法院结论：从广告本身能看出的 33/35，要靠外部证据的只有 6/11",
       "先用规则、再交裁判、拿不准的送人：漏掉的错误 2/390，只用裁判时 7/390；送人工 49/711"
     ],
@@ -10729,8 +10729,8 @@
         "id": "N1",
         "metric": "jc_constructed",
         "label": "和定好的答案一致",
-        "value": "699/711",
-        "full": "699/711（98.3%，95% 区间 97.1–99.0%）",
+        "value": "702/711",
+        "full": "702/711（98.7%，95% 区间 97.6–99.3%）",
         "evaluation": "定好答案的判断题（测试集，三次判断取多数）",
         "sources": [
           "judge-calibration/eval/results/RESULTS.md"
@@ -10739,14 +10739,14 @@
           "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
         ],
         "kind": "proportion",
-        "k": 699,
+        "k": 702,
         "n": 711,
-        "rate": 0.9831,
+        "rate": 0.9873,
         "ci95": [
-          0.9707,
-          0.9903
+          0.9761,
+          0.9933
         ],
-        "display": "699/711"
+        "display": "702/711"
       },
       {
         "id": "N2",
@@ -11031,8 +11031,8 @@
         "id": "N15",
         "metric": "jc_assertive",
         "label": "加保证语后判断变了",
-        "value": "0/368",
-        "full": "0/368（0.0%，95% 区间 0.0–1.0%）",
+        "value": "2/368",
+        "full": "2/368（0.5%，95% 区间 0.1–2.0%）",
         "evaluation": "加废话、加保证语会不会骗过裁判（368 道）",
         "sources": [
           "judge-calibration/eval/results/RESULTS.md"
@@ -11041,14 +11041,14 @@
           "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
         ],
         "kind": "proportion",
-        "k": 0,
+        "k": 2,
         "n": 368,
-        "rate": 0.0,
+        "rate": 0.0054,
         "ci95": [
-          0.0,
-          0.0103
+          0.0015,
+          0.0196
         ],
-        "display": "0/368"
+        "display": "2/368"
       },
       {
         "id": "N16",
@@ -11072,8 +11072,8 @@
     "short_name": "裁判校准",
     "card_title": "模型裁判能信到什么程度，哪些该交给人",
     "assumed": "以为在答案里加“保证没错”这类话会骗过裁判",
-    "showed": "加废话、加保证语都一道没变：0/368、0/368",
-    "result_line": "和定好的答案一致 699/711；要靠外部证据的监管结论只对 6/11",
+    "showed": "加废话 0/368、加保证语 2/368，没有让错的被放过",
+    "result_line": "和定好的答案一致 702/711；要靠外部证据的监管结论只对 6/11",
     "key_numbers": [
       {
         "id": "N1",
@@ -11103,7 +11103,7 @@
         "date": "2026-11-18",
         "label": "定好的答案",
         "text": "几乎全对，植入的错误大多抓到",
-        "after": "699/711",
+        "after": "702/711",
         "after_id": "N1"
       },
       {
@@ -11206,7 +11206,7 @@
       "The acceptance standard passed 13.6% of ten-percent batches, missing the target set beforehand. Recommendation: Sample more per batch or tighten the pass threshold, then test again on simulated batches."
     ],
     "headline": [
-      "Agreed with the answers fixed at item-building time on 699/711; planted errors caught 385/390",
+      "Agreed with the answers fixed at item-building time on 702/711; planted errors caught 385/390",
       "Regulator and court decisions: 33/35 where the ad itself shows it, only 6/11 where outside evidence decides",
       "Rules, then the judge, unsure items to people: errors missed 2/390 against 7/390 with the judge alone; sent to people 49/711"
     ],
@@ -11215,8 +11215,8 @@
         "id": "N1",
         "metric": "jc_constructed",
         "label": "Agreement with the fixed answers",
-        "value": "699/711",
-        "full": "699/711 (98.3%, 95% CI 97.1–99.0%)",
+        "value": "702/711",
+        "full": "702/711 (98.7%, 95% CI 97.6–99.3%)",
         "evaluation": "Items with fixed answers (test split, majority of three judgments)",
         "sources": [
           "judge-calibration/eval/results/RESULTS.md"
@@ -11225,14 +11225,14 @@
           "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
         ],
         "kind": "proportion",
-        "k": 699,
+        "k": 702,
         "n": 711,
-        "rate": 0.9831,
+        "rate": 0.9873,
         "ci95": [
-          0.9707,
-          0.9903
+          0.9761,
+          0.9933
         ],
-        "display": "699/711"
+        "display": "702/711"
       },
       {
         "id": "N2",
@@ -11517,8 +11517,8 @@
         "id": "N15",
         "metric": "jc_assertive",
         "label": "Verdicts changed by assurances",
-        "value": "0/368",
-        "full": "0/368 (0.0%, 95% CI 0.0–1.0%)",
+        "value": "2/368",
+        "full": "2/368 (0.5%, 95% CI 0.1–2.0%)",
         "evaluation": "Does padding or assurance sway the judge? (368 items)",
         "sources": [
           "judge-calibration/eval/results/RESULTS.md"
@@ -11527,14 +11527,14 @@
           "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
         ],
         "kind": "proportion",
-        "k": 0,
+        "k": 2,
         "n": 368,
-        "rate": 0.0,
+        "rate": 0.0054,
         "ci95": [
-          0.0,
-          0.0103
+          0.0015,
+          0.0196
         ],
-        "display": "0/368"
+        "display": "2/368"
       },
       {
         "id": "N16",
@@ -11558,8 +11558,8 @@
     "short_name": "Judge calibration",
     "card_title": "How far a model judge can be trusted",
     "assumed": "Expected assurance phrases in an answer to sway the judge",
-    "showed": "Neither padding nor assurances changed a verdict: 0/368 and 0/368",
-    "result_line": "Agreed with fixed answers on 699/711; only 6/11 on regulator decisions that turn on outside evidence",
+    "showed": "Padding changed 0/368 and assurances 2/368; no wrong answer got through",
+    "result_line": "Agreed with fixed answers on 702/711; only 6/11 on regulator decisions that turn on outside evidence",
     "key_numbers": [
       {
         "id": "N1",
@@ -11589,7 +11589,7 @@
         "date": "2026-11-18",
         "label": "Fixed answers",
         "text": "Almost always right; most planted errors caught",
-        "after": "699/711",
+        "after": "702/711",
         "after_id": "N1"
       },
       {

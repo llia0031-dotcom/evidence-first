@@ -1,6 +1,6 @@
 # 模型裁判校准：评测卡
 
-> 卡片版本 1.0 · 数据截至 2026-11-18 · 已公开
+> 卡片版本 1.1 · 数据截至 2026-11-18 · 已公开
 >
 > 数字由 `scripts/build_cards.py` 从项目的结果文件算出；比例附 Wilson 95% 区间。
 
@@ -14,7 +14,7 @@
 
 **结果**：
 
-- 和出题时定好的答案一致 699/711，植入的错误抓到 385/390
+- 和出题时定好的答案一致 702/711，植入的错误抓到 385/390
 - 监管和法院结论：从广告本身能看出的 33/35，要靠外部证据的只有 6/11
 - 先用规则、再交裁判、拿不准的送人：漏掉的错误 2/390，只用裁判时 7/390；送人工 49/711
 
@@ -139,11 +139,11 @@ v2 最好，采用；v3 和 v2 打平但更贵，v4 更严、把对的也判错�
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 和定好的答案一致 | 699/711（98.3%，95% 区间 97.1–99.0%） | 越高越好 | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
+| 和定好的答案一致 | 702/711（98.7%，95% 区间 97.6–99.3%） | 越高越好 | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
 | 植入的错误抓到 | 385/390（98.7%，95% 区间 97.0–99.5%） | 越高越好 | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
-| Cohen's kappa | 0.966 | 越高越好 | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
+| Cohen's kappa | 0.974 | 越高越好 | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
 
-答案清楚的判断题上，裁判几乎全对，植入的错误大多抓到；不一致的地方里有一部分是答案本身要再斟酌。
+答案清楚的判断题上，裁判几乎全对，植入的错误大多抓到。9 处不一致里 2 处是答案要再斟酌；另有 3 处是题目当初少给了商品页，补上后重跑已全部判对（更正 1）。
 
 ### 监管和法院的结论（46 条真实广告）
 
@@ -174,10 +174,10 @@ v2 最好，采用；v3 和 v2 打平但更贵，v4 更严、把对的也判错�
 | 只用裁判：漏掉的错误 | 7/390（1.8%，95% 区间 0.9–3.7%） | 越低越好 | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
 | 规则、裁判、复核队列：漏掉的错误 | 2/390（0.5%，95% 区间 0.1–1.9%） | 越低越好 | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
 | 规则、裁判、复核队列：送人工 | 49/711（6.9%，95% 区间 5.3–9.0%） | 越低越好 | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
-| 只用裁判：每 1,000 道的费用 | 0.303 美元 | 越低越好 | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
-| 规则、裁判、复核队列：每 1,000 道的费用 | 0.243 美元 | 越低越好 | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
-| 第一次判断说“确定”的错误率 | 5/662（0.8%，95% 区间 0.3–1.8%） | 越低越好 | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
-| 第一次判断说“拿不准”的错误率 | 11/49（22.4%，95% 区间 13.0–35.9%） | 只作说明 | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
+| 只用裁判：每 1,000 道的费用 | 0.304 美元 | 越低越好 | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
+| 规则、裁判、复核队列：每 1,000 道的费用 | 0.244 美元 | 越低越好 | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
+| 第一次判断说“确定”的错误率 | 3/662（0.5%，95% 区间 0.2–1.3%） | 越低越好 | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
+| 第一次判断说“拿不准”的错误率 | 10/49（20.4%，95% 区间 11.5–33.6%） | 只作说明 | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
 
 先用规则、再交裁判、拿不准的送人工，漏掉的错误更少，费用也更低；裁判自己说“拿不准”的那部分错得多，正好拿来决定送人工。
 
@@ -186,9 +186,9 @@ v2 最好，采用；v3 和 v2 打平但更贵，v4 更严、把对的也判错�
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
 | 加废话后判断变了 | 0/368（0.0%，95% 区间 0.0–1.0%） | 越低越好 | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
-| 加保证语后判断变了 | 0/368（0.0%，95% 区间 0.0–1.0%） | 越低越好 | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
+| 加保证语后判断变了 | 2/368（0.5%，95% 区间 0.1–2.0%） | 越低越好 | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
 
-加废话、加保证语都一道没变，事先预测的“会被骗”没成立。
+加废话一道没变；加保证语变了 2/368，都是边界上的好建议，没有让错的被放过；事先预测的“会被骗”没成立。
 
 ### 质检 Agent 和验收标准
 
@@ -198,8 +198,8 @@ v2 最好，采用；v3 和 v2 打平但更贵，v4 更严、把对的也判错�
 | 质检 Agent：正确记录被误报 | 6/120（5.0%，95% 区间 2.3–10.5%） | 越低越好 | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
 | 错误率百分之二的批次被放行 | 91.5% | 越高越好 | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
 | 错误率百分之十的批次被放行（目标是不超过一成） | 13.6% | 越低越好 | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
-| 事先写好的预测成立 | 7/12（58.3%，95% 区间 32.0–80.7%） | 只作说明 | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
-| 整个项目的接口费用（批量价） | 2.40 美元 | 越低越好 | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
+| 事先写好的预测成立 | 8/12（66.7%，95% 区间 39.1–86.2%） | 只作说明 | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
+| 整个项目的接口费用（批量价） | 2.61 美元 | 越低越好 | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
 
 质检 Agent 查出全部错误记录，误报少；验收标准放行了错误率低的批次，但错误率百分之十的批次也有一部分被放行，没达到事先定的目标。
 
@@ -219,6 +219,7 @@ v2 最好，采用；v3 和 v2 打平但更贵，v4 更严、把对的也判错�
 ## 版本
 
 - **1.0**（2026-11-18）第一张卡，照公开仓库 judge-calibration 的结果文件写。
+- **1.1**（2026-11-18）跟随项目的更正 1：修改建议题当初少给了商品页，补上后整组重跑；卡上相关的数字按更正后的结果文件重新算出，不一致的说法照实改。提示词版本的选择不变。
 
 ## 出处
 

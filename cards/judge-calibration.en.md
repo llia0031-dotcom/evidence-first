@@ -1,6 +1,6 @@
 # Judge Calibration: evaluation card
 
-> Card version 1.0 · Data as of 2026-11-18 · public
+> Card version 1.1 · Data as of 2026-11-18 · public
 >
 > Numbers are computed by `scripts/build_cards.py` from the project's result files; proportions carry a Wilson 95% interval.
 
@@ -14,7 +14,7 @@
 
 **Results**: 
 
-- Agreed with the answers fixed at item-building time on 699/711; planted errors caught 385/390
+- Agreed with the answers fixed at item-building time on 702/711; planted errors caught 385/390
 - Regulator and court decisions: 33/35 where the ad itself shows it, only 6/11 where outside evidence decides
 - Rules, then the judge, unsure items to people: errors missed 2/390 against 7/390 with the judge alone; sent to people 49/711
 
@@ -139,11 +139,11 @@ v2 was best and adopted; v3 tied at a higher cost and v4 was stricter, failing s
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Agreement with the fixed answers | 699/711 (98.3%, 95% CI 97.1–99.0%) | higher is better | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
+| Agreement with the fixed answers | 702/711 (98.7%, 95% CI 97.6–99.3%) | higher is better | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
 | Planted errors caught | 385/390 (98.7%, 95% CI 97.0–99.5%) | higher is better | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
-| Cohen's kappa | 0.966 | higher is better | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
+| Cohen's kappa | 0.974 | higher is better | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
 
-On items with clear answers the judge is almost always right and catches most planted errors; some of the disagreements point at answers worth revisiting.
+On items with clear answers the judge is almost always right and catches most planted errors. Of the 9 disagreements, 2 point at answers worth revisiting; 3 more came from items first built without the product listing, and after it was added and the family judged again they were all right (correction 1).
 
 ### Regulator and court decisions (46 real ads)
 
@@ -174,10 +174,10 @@ On right-or-wrong items the judge agrees with annotators about as well as they a
 | Judge alone: errors missed | 7/390 (1.8%, 95% CI 0.9–3.7%) | lower is better | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
 | Rules, judge, review queue: errors missed | 2/390 (0.5%, 95% CI 0.1–1.9%) | lower is better | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
 | Rules, judge, review queue: sent to people | 49/711 (6.9%, 95% CI 5.3–9.0%) | lower is better | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
-| Judge alone: cost per 1,000 items | US$0.303 | lower is better | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
-| Rules, judge, review queue: cost per 1,000 items | US$0.243 | lower is better | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
-| First judgments marked sure: error rate | 5/662 (0.8%, 95% CI 0.3–1.8%) | lower is better | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
-| First judgments marked unsure: error rate | 11/49 (22.4%, 95% CI 13.0–35.9%) | context only | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
+| Judge alone: cost per 1,000 items | US$0.304 | lower is better | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
+| Rules, judge, review queue: cost per 1,000 items | US$0.244 | lower is better | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
+| First judgments marked sure: error rate | 3/662 (0.5%, 95% CI 0.2–1.3%) | lower is better | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
+| First judgments marked unsure: error rate | 10/49 (20.4%, 95% CI 11.5–33.6%) | context only | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
 
 Rules first, then the judge, with unsure items to people, misses fewer errors at a lower cost; the items the judge marks unsure are the ones it gets wrong most, which makes them the right ones to send.
 
@@ -186,9 +186,9 @@ Rules first, then the judge, with unsure items to people, misses fewer errors at
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
 | Verdicts changed by padding | 0/368 (0.0%, 95% CI 0.0–1.0%) | lower is better | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
-| Verdicts changed by assurances | 0/368 (0.0%, 95% CI 0.0–1.0%) | lower is better | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
+| Verdicts changed by assurances | 2/368 (0.5%, 95% CI 0.1–2.0%) | lower is better | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
 
-Neither padding nor assurances changed a single verdict; the prediction that they would did not hold.
+Padding changed no verdict; assurances changed 2/368, all borderline good answers, and let no wrong one through; the prediction that they would sway the judge did not hold.
 
 ### Quality-check agent and acceptance standard
 
@@ -198,8 +198,8 @@ Neither padding nor assurances changed a single verdict; the prediction that the
 | QC agent: correct records flagged | 6/120 (5.0%, 95% CI 2.3–10.5%) | lower is better | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
 | Batches with a two-percent error rate accepted | 91.5% | higher is better | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
 | Batches with a ten-percent error rate accepted (target: at most one in ten) | 13.6% | lower is better | [`judge-calibration/eval/results/RESULTS.md`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md) |
-| Predictions written beforehand that held | 7/12 (58.3%, 95% CI 32.0–80.7%) | context only | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
-| Total API cost (batch prices) | US$2.40 | lower is better | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
+| Predictions written beforehand that held | 8/12 (66.7%, 95% CI 39.1–86.2%) | context only | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
+| Total API cost (batch prices) | US$2.61 | lower is better | [`judge-calibration/eval/results/summary.json`](https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json) |
 
 The agent caught every wrong record with few false flags; the acceptance standard passed low-error batches, but some ten-percent batches also passed, missing the target set beforehand.
 
@@ -219,6 +219,7 @@ The agent caught every wrong record with few false flags; the acceptance standar
 ## Versions
 
 - **1.0** (2026-11-18) First card, from the result files in the public judge-calibration repository.
+- **1.1** (2026-11-18) Follows the project's correction 1: the revision-advice items were first built without the product listing; with it added the family was judged again, and the affected numbers are recomputed from the corrected result files, with the account of the disagreements rewritten. The prompt-version choice is unchanged.
 
 ## Provenance
 

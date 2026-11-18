@@ -7455,7 +7455,7 @@
     "layer": "operations",
     "status": "public",
     "updated": "2026-11-18",
-    "card_version": "1.0",
+    "card_version": "1.1",
     "card": {
       "zh": "cards/judge-calibration.md",
       "en": "cards/judge-calibration.en.md"
@@ -7547,12 +7547,12 @@
             "sources": [
               "judge-calibration/eval/results/RESULTS.md"
             ],
-            "k": 699,
+            "k": 702,
             "n": 711,
-            "rate": 0.9831,
+            "rate": 0.9873,
             "ci95": [
-              0.9707,
-              0.9903
+              0.9761,
+              0.9933
             ],
             "source_urls": [
               "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
@@ -7591,7 +7591,7 @@
             "sources": [
               "judge-calibration/eval/results/summary.json"
             ],
-            "value": 0.965905,
+            "value": 0.97445,
             "unit": "",
             "n": null,
             "source_urls": [
@@ -7861,7 +7861,7 @@
             "sources": [
               "judge-calibration/eval/results/summary.json"
             ],
-            "value": 0.303012,
+            "value": 0.304355,
             "unit": "usd",
             "n": null,
             "source_urls": [
@@ -7879,7 +7879,7 @@
             "sources": [
               "judge-calibration/eval/results/summary.json"
             ],
-            "value": 0.242936,
+            "value": 0.244279,
             "unit": "usd",
             "n": null,
             "source_urls": [
@@ -7897,12 +7897,12 @@
             "sources": [
               "judge-calibration/eval/results/RESULTS.md"
             ],
-            "k": 5,
+            "k": 3,
             "n": 662,
-            "rate": 0.0076,
+            "rate": 0.0045,
             "ci95": [
-              0.0032,
-              0.0176
+              0.0015,
+              0.0132
             ],
             "source_urls": [
               "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
@@ -7919,12 +7919,12 @@
             "sources": [
               "judge-calibration/eval/results/RESULTS.md"
             ],
-            "k": 11,
+            "k": 10,
             "n": 49,
-            "rate": 0.2245,
+            "rate": 0.2041,
             "ci95": [
-              0.1302,
-              0.3588
+              0.1148,
+              0.3364
             ],
             "source_urls": [
               "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
@@ -7973,12 +7973,12 @@
             "sources": [
               "judge-calibration/eval/results/RESULTS.md"
             ],
-            "k": 0,
+            "k": 2,
             "n": 368,
-            "rate": 0.0,
+            "rate": 0.0054,
             "ci95": [
-              0.0,
-              0.0103
+              0.0015,
+              0.0196
             ],
             "source_urls": [
               "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
@@ -8085,12 +8085,12 @@
             "sources": [
               "judge-calibration/eval/results/summary.json"
             ],
-            "k": 7,
+            "k": 8,
             "n": 12,
-            "rate": 0.5833,
+            "rate": 0.6667,
             "ci95": [
-              0.3195,
-              0.8067
+              0.3906,
+              0.8619
             ],
             "source_urls": [
               "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
@@ -8107,7 +8107,7 @@
             "sources": [
               "judge-calibration/eval/results/summary.json"
             ],
-            "value": 2.4026,
+            "value": 2.6132,
             "unit": "usd",
             "n": null,
             "source_urls": [
@@ -8139,8 +8139,8 @@
     },
     "headline": [
       {
-        "zh": "和出题时定好的答案一致 699/711，植入的错误抓到 385/390",
-        "en": "Agreed with the answers fixed at item-building time on 699/711; planted errors caught 385/390"
+        "zh": "和出题时定好的答案一致 702/711，植入的错误抓到 385/390",
+        "en": "Agreed with the answers fixed at item-building time on 702/711; planted errors caught 385/390"
       },
       {
         "zh": "监管和法院结论：从广告本身能看出的 33/35，要靠外部证据的只有 6/11",
