@@ -254,6 +254,19 @@ def _first_number(cell: str) -> float:
 
 
 @extractor
+def md_cells_ratio(rd, path: str, num_row: str, den_row: str, col: str, section: str | None = None):
+    """k and n from two rows of the same column, for tables that give counts rather than fractions."""
+    cells = {}
+    for header, row in _md_tables(rd.text(path), section):
+        names = [_clean(h) for h in header]
+        if col in names and _clean(row[0]) in (num_row, den_row):
+            cells[_clean(row[0])] = _first_number(_clean(row[names.index(col)]))
+    if num_row not in cells or den_row not in cells:
+        raise KeyError(f"{path}: rows {num_row!r} / {den_row!r} not found under {col!r}")
+    return {"k": int(cells[num_row]), "n": int(cells[den_row])}
+
+
+@extractor
 def text_fraction(rd, path: str, label: str):
     """The k/n that follows a fixed label in running text, e.g. "marked unsure: 11/49"."""
     text = rd.text(path)

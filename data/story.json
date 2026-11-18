@@ -252,8 +252,8 @@
           "en": "Grounded Labelling Pipeline: wrong decisions that went live fell from 17/332 to 9/332; the first canary rolled back at 10% under the rules written beforehand, the second, with fixed rules, reached full release and v2 was promoted to production; versions 3 and 4 missed the adoption standard written beforehand and were not released (a replay, not real users)"
         },
         {
-          "zh": "13 张评测卡、305 个数字全部由脚本从结果文件算出",
-          "en": "13 evaluation cards and 305 numbers, all computed by script from the result files"
+          "zh": "13 张评测卡、307 个数字全部由脚本从结果文件算出",
+          "en": "13 evaluation cards and 307 numbers, all computed by script from the result files"
         },
         {
           "zh": "灰度回放：有据审核 v1.3 放到全量，v1.2 在放量中途触发回滚",

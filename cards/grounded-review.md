@@ -1,6 +1,6 @@
 # 有据审核（广告审核 Agent）：评测卡
 
-> 卡片版本 1.4 · 数据截至 2026-11-16 · 已公开
+> 卡片版本 1.5 · 数据截至 2026-11-16 · 已公开
 >
 > 数字由 `scripts/build_cards.py` 从项目的结果文件算出；比例附 Wilson 95% 区间。
 
@@ -163,6 +163,8 @@ v1.3 让模型先填修改后的文案、再写说明；题目在 v1.3 写好之
 | 陷阱正确放行（Agent） | 55/60（91.7%，95% 区间 81.9–96.4%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
 | 条款引对（单个提示词） | 129/129（100.0%，95% 区间 97.1–100.0%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
 | 条款引对（Agent） | 129/129（100.0%，95% 区间 97.1–100.0%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| 条款引对，答案补标后（单个提示词）（答案核对时给几条广告补标了漏写的必备提示语；对外报告的仍是冻结答案下的数） | 141/141（100.0%，95% 区间 97.3–100.0%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.corrected-key.md`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.corrected-key.md) |
+| 条款引对，答案补标后（Agent） | 141/141（100.0%，95% 区间 97.3–100.0%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.corrected-key.md`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.corrected-key.md) |
 | 条款引文通过核对（单个提示词） | 224/225（99.6%，95% 区间 97.5–99.9%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
 | 条款引文通过核对（Agent） | 200/200（100.0%，95% 区间 98.1–100.0%） | 越高越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
 | 每条广告的费用（单个提示词） | 0.0010 美元 | 越低越好 | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
@@ -283,6 +285,7 @@ v1.3 让模型先填修改后的文案、再写说明；题目在 v1.3 写好之
 - **1.2**（2026-11-16）加了演示页和产品方案的链接，加了记忆评测。
 - **1.3**（2026-11-17）改正说法：真实广告和留出集的数字按判断次数说（每条广告跑两遍），不说成广告条数；数据日期改成收进记忆评测的 2026-11-16；对比组补上 Qwen3Guard 和 Granite Guardian。两个文字审核模型在真实广告上的结果现在写在报告里，但没有汇总数据文件，所以仍不收进卡片。数字不变。
 - **1.4**（2026-11-17）真实广告上本机运行的三个对比组（违禁词表、Qwen3Guard、Granite Guardian）现在有公开的计数表，收进卡片。
+- **1.5**（2026-11-18）答案核对后，留出集有几条广告补标了漏写的必备提示语；判断层面的数字都不变，条款引对按补标后的答案另列一行，冻结答案下的数照旧报告。
 
 ## 出处
 

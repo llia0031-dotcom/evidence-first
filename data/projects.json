@@ -2508,7 +2508,7 @@
     "layer": "judgement",
     "status": "public",
     "updated": "2026-11-16",
-    "card_version": "1.4",
+    "card_version": "1.5",
     "card": {
       "zh": "cards/grounded-review.md",
       "en": "cards/grounded-review.en.md"
@@ -2737,6 +2737,50 @@
             ],
             "source_urls": [
               "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json"
+            ]
+          },
+          {
+            "id": "heldout_clause_corrected_oneshot",
+            "label": {
+              "zh": "条款引对，答案补标后（单个提示词）",
+              "en": "Clauses cited correctly, corrected answer key (single prompt)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "grounded-review/eval/results/test-2026-11-13.corrected-key.md"
+            ],
+            "k": 141,
+            "n": 141,
+            "rate": 1.0,
+            "ci95": [
+              0.9735,
+              1.0
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.corrected-key.md"
+            ]
+          },
+          {
+            "id": "heldout_clause_corrected_agent",
+            "label": {
+              "zh": "条款引对，答案补标后（Agent）",
+              "en": "Clauses cited correctly, corrected answer key (agent)"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "grounded-review/eval/results/test-2026-11-13.corrected-key.md"
+            ],
+            "k": 141,
+            "n": 141,
+            "rate": 1.0,
+            "ci95": [
+              0.9735,
+              1.0
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.corrected-key.md"
             ]
           },
           {

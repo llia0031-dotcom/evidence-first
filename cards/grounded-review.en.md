@@ -1,6 +1,6 @@
 # Grounded Review (ad-review agent): evaluation card
 
-> Card version 1.4 · Data as of 2026-11-16 · public
+> Card version 1.5 · Data as of 2026-11-16 · public
 >
 > Numbers are computed by `scripts/build_cards.py` from the project's result files; proportions carry a Wilson 95% interval.
 
@@ -163,6 +163,8 @@ Each evaluation version has its own table. Scores are not compared across versio
 | Traps correctly approved (agent) | 55/60 (91.7%, 95% CI 81.9–96.4%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
 | Clauses cited correctly (single prompt) | 129/129 (100.0%, 95% CI 97.1–100.0%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
 | Clauses cited correctly (agent) | 129/129 (100.0%, 95% CI 97.1–100.0%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
+| Clauses cited correctly, corrected answer key (single prompt) (the answer-key audit added missing required-statement labels to a few ads; the reported numbers stay those under the frozen key) | 141/141 (100.0%, 95% CI 97.3–100.0%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.corrected-key.md`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.corrected-key.md) |
+| Clauses cited correctly, corrected answer key (agent) | 141/141 (100.0%, 95% CI 97.3–100.0%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.corrected-key.md`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.corrected-key.md) |
 | Clause quotes passing the check (single prompt) | 224/225 (99.6%, 95% CI 97.5–99.9%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
 | Clause quotes passing the check (agent) | 200/200 (100.0%, 95% CI 98.1–100.0%) | higher is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
 | Cost per ad (single prompt) | US$0.0010 | lower is better | [`grounded-review/eval/results/test-2026-11-13.summary.json`](https://github.com/llia0031-dotcom/grounded-review/blob/main/eval/results/test-2026-11-13.summary.json) |
@@ -283,6 +285,7 @@ With memory every decision is right; the errors without memory all come from one
 - **1.2** (2026-11-16) Added links to the demo and the product plan, and the memory test.
 - **1.3** (2026-11-17) Wording corrected: the real-ad and held-out numbers are stated as decisions (two runs per ad), not as ad counts; the data date is now 2026-11-16, when the memory evaluation was added; Qwen3Guard and Granite Guardian added to the baselines. The two text guardrails' real-ad results are now in the report but have no summary data file, so they are still not on the card. Numbers unchanged.
 - **1.4** (2026-11-17) The three locally run arms on real ads (word list, Qwen3Guard, Granite Guardian) now have a published counts table and are on the card.
+- **1.5** (2026-11-18) After an answer-key audit a few held-out ads gained a missing required-statement label; decision-level numbers are unchanged, clause citation under the corrected key is listed separately, and the numbers under the frozen key are still the reported ones.
 
 ## Provenance
 

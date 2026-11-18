@@ -2,7 +2,7 @@ id = "grounded-review"
 order = 6
 layer = "judgement"
 status = "public"
-card_version = "1.4"
+card_version = "1.5"
 updated = "2026-11-16"
 period = "2026-11-13 – 2026-11-16"
 team = "Liang Liyuan"
@@ -135,6 +135,19 @@ takeaway = { zh = "两组都接近满分，说明自己写的题已经到顶；�
   label = { zh = "条款引对（Agent）", en = "Clauses cited correctly (agent)" }
   extractor = "json_counts"
   args = { path = "grounded-review-public/eval/results/test-2026-11-13.summary.json", arm = "agent", num = "clause_right", den = "clause_checked" }
+
+  [[eval.metric]]
+  id = "heldout_clause_corrected_oneshot"
+  label = { zh = "条款引对，答案补标后（单个提示词）", en = "Clauses cited correctly, corrected answer key (single prompt)" }
+  extractor = "md_cells_ratio"
+  args = { path = "grounded-review-public/eval/results/test-2026-11-13.corrected-key.md", num_row = "Right clause cited", den_row = "Found labels with a clause checked", col = "oneshot, corrected key" }
+  note = { zh = "答案核对时给几条广告补标了漏写的必备提示语；对外报告的仍是冻结答案下的数", en = "the answer-key audit added missing required-statement labels to a few ads; the reported numbers stay those under the frozen key" }
+
+  [[eval.metric]]
+  id = "heldout_clause_corrected_agent"
+  label = { zh = "条款引对，答案补标后（Agent）", en = "Clauses cited correctly, corrected answer key (agent)" }
+  extractor = "md_cells_ratio"
+  args = { path = "grounded-review-public/eval/results/test-2026-11-13.corrected-key.md", num_row = "Right clause cited", den_row = "Found labels with a clause checked", col = "agent, corrected key" }
 
   [[eval.metric]]
   id = "heldout_policyq_oneshot"
@@ -525,3 +538,8 @@ text = { zh = "改正说法：真实广告和留出集的数字按判断次数�
 id = "1.4"
 date = "2026-11-17"
 text = { zh = "真实广告上本机运行的三个对比组（违禁词表、Qwen3Guard、Granite Guardian）现在有公开的计数表，收进卡片。", en = "The three locally run arms on real ads (word list, Qwen3Guard, Granite Guardian) now have a published counts table and are on the card." }
+
+[[version]]
+id = "1.5"
+date = "2026-11-18"
+text = { zh = "答案核对后，留出集有几条广告补标了漏写的必备提示语；判断层面的数字都不变，条款引对按补标后的答案另列一行，冻结答案下的数照旧报告。", en = "After an answer-key audit a few held-out ads gained a missing required-statement label; decision-level numbers are unchanged, clause citation under the corrected key is listed separately, and the numbers under the frozen key are still the reported ones." }
