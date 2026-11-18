@@ -60,7 +60,7 @@
       "sources": [
         {
           "type": "section",
-          "id": "projects",
+          "id": "work",
           "label": {
             "zh": "全部项目",
             "en": "All projects"
@@ -346,7 +346,7 @@
         },
         {
           "type": "section",
-          "id": "iteration",
+          "id": "log",
           "label": {
             "zh": "改版记录",
             "en": "Change log"
@@ -492,7 +492,7 @@
         },
         {
           "type": "section",
-          "id": "iteration",
+          "id": "log",
           "label": {
             "zh": "改版记录",
             "en": "Change log"
@@ -1143,7 +1143,7 @@
       "sources": [
         {
           "type": "section",
-          "id": "projects",
+          "id": "work",
           "label": {
             "zh": "全部项目",
             "en": "All projects"
@@ -1270,6 +1270,19 @@
       },
       "sources": [
         {
+          "type": "project",
+          "id": "agent-trace-eval",
+          "label": {
+            "zh": "Agent 评测台的迭代",
+            "en": "Agent Trace Eval: iteration"
+          },
+          "anchor": "iteration",
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/agent-trace-eval",
+            "en": "https://github.com/llia0031-dotcom/agent-trace-eval"
+          }
+        },
+        {
           "type": "card",
           "id": "agent-trace-eval",
           "label": {
@@ -1283,7 +1296,7 @@
         },
         {
           "type": "section",
-          "id": "iteration",
+          "id": "log",
           "label": {
             "zh": "改版记录",
             "en": "Change log"
@@ -1328,27 +1341,29 @@
       },
       "sources": [
         {
-          "type": "card",
+          "type": "project",
           "id": "judge-calibration",
           "label": {
-            "zh": "评测卡：模型裁判校准",
-            "en": "Evaluation card: Judge Calibration"
+            "zh": "模型裁判校准的局限",
+            "en": "Judge Calibration: limits"
           },
+          "anchor": "limits",
           "url": {
-            "zh": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/judge-calibration.md",
-            "en": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/judge-calibration.en.md"
+            "zh": "https://github.com/llia0031-dotcom/judge-calibration",
+            "en": "https://github.com/llia0031-dotcom/judge-calibration"
           }
         },
         {
-          "type": "card",
+          "type": "project",
           "id": "agent-trace-eval",
           "label": {
-            "zh": "评测卡：Agent 评测台",
-            "en": "Evaluation card: Agent Trace Eval"
+            "zh": "Agent 评测台的局限",
+            "en": "Agent Trace Eval: limits"
           },
+          "anchor": "limits",
           "url": {
-            "zh": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/agent-trace-eval.md",
-            "en": "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/agent-trace-eval.en.md"
+            "zh": "https://github.com/llia0031-dotcom/agent-trace-eval",
+            "en": "https://github.com/llia0031-dotcom/agent-trace-eval"
           }
         }
       ],

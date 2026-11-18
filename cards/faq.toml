@@ -35,7 +35,7 @@ q = { zh = "你是做什么的？", en = "What do you do?" }
 aliases = { zh = ["自我介绍", "介绍一下你自己", "你是谁", "你做什么方向"], en = ["introduce yourself", "who are you", "tell me about yourself", "what is your focus"] }
 a = { zh = "我做 AI 产品功能：按资料带出处回答的问答、广告审核和内容标注 Agent、经营分析 Agent、给创作者用的 Skill。每个功能都先出题、定好答案再评测，结果和局限写在评测卡里。作品集里一共 {_public} 个项目，代码和报告都公开。", en = "I build AI product features: question answering that cites its sources, ad-review and content-labelling agents, a business-review agent and skills for creators. Each feature gets a test set with fixed answers before it is judged, and its results and limits go on an evaluation card. The portfolio holds {_public} projects, with code and reports public." }
 sources = [
-  { type = "section", id = "projects", label = { zh = "全部项目", en = "All projects" } },
+  { type = "section", id = "work", label = { zh = "全部项目", en = "All projects" } },
   { type = "url", url = "https://github.com/llia0031-dotcom/evidence-first", label = { zh = "评测卡总览", en = "All evaluation cards" } },
 ]
 related = ["first-project", "how-to-judge"]
@@ -103,7 +103,7 @@ aliases = { zh = ["指标怎么定", "怎么评测", "评测方法", "怎么衡�
 a = { zh = "先把题目和标准答案写好、冻结，再跑。指标跟着要解决的问题定，例如判对的比例、漏判和误判、每千次的费用，比例都附区间。每改一版就在同一套题上重测，按事先写好的规则决定采不采用。改版记录一共 {_timeline} 条，没采用的也留着。", en = "Write the test items and answers first, freeze them, then run. The metrics follow the problem, such as the share judged right, misses and false alarms, and cost per thousand, with intervals on every proportion. Each version is re-run on the same items and adopted or not by a rule written beforehand. There are {_timeline} logged changes, dropped versions included." }
 sources = [
   { type = "section", id = "method", label = { zh = "评测方法", en = "How it is evaluated" } },
-  { type = "section", id = "iteration", label = { zh = "改版记录", en = "Change log" } },
+  { type = "section", id = "log", label = { zh = "改版记录", en = "Change log" } },
 ]
 related = ["iterate-adopt", "data-source"]
 
@@ -131,7 +131,7 @@ a = { zh = "每次只改一处，跑之前写下预测和采用规则，再在�
 sources = [
   { type = "project", id = "labelling-agent-kit" },
   { type = "project", id = "grounded-labelling-pipeline" },
-  { type = "section", id = "iteration", label = { zh = "改版记录", en = "Change log" } },
+  { type = "section", id = "log", label = { zh = "改版记录", en = "Change log" } },
 ]
 related = ["how-to-judge", "what-failed"]
 
@@ -268,7 +268,7 @@ q = { zh = "一共有多少个项目？", en = "How many projects are there?" }
 aliases = { zh = ["项目数量", "多少个项目", "项目列表", "全部项目"], en = ["number of projects", "project list", "all projects", "how many"] }
 a = { zh = "一共 {_public} 个项目，都已公开。每个都有评测卡，写着题目、指标、结果和局限。", en = "There are {_public} projects, all public. Each has an evaluation card with its items, metrics, results and limits." }
 sources = [
-  { type = "section", id = "projects", label = { zh = "全部项目", en = "All projects" } },
+  { type = "section", id = "work", label = { zh = "全部项目", en = "All projects" } },
   { type = "url", url = "https://github.com/llia0031-dotcom/evidence-first", label = { zh = "评测卡总览", en = "All evaluation cards" } },
 ]
 related = ["first-project", "what-do-you-do"]
@@ -297,8 +297,9 @@ q = { zh = "有没有没做成的？", en = "What didn't work?" }
 aliases = { zh = ["失败", "教训", "没做成", "踩坑", "最大的教训", "做错过什么"], en = ["failures", "lessons", "what went wrong", "mistakes", "lessons learned"] }
 a = { zh = "有，都照实写在评测卡里。Agent 评测台事先预测上线前的关卡能拦下大多数失败，结果 {agent-trace-eval.ate_failed} 次失败只拦下 {agent-trace-eval.ate_gate_caught:k} 次。经营分析的修复把门店定位改对了，回归重测却查出另一道题变差。最大的教训：照失败写的修复要先写预测，再在整组题上重测。", en = "Yes, and the cards say so. Agent Trace Eval predicted the release gates would catch most failures; of {agent-trace-eval.ate_failed} failures they caught {agent-trace-eval.ate_gate_caught:k}. The business-review fix located store closures correctly, yet the regression run found another task getting worse. The main lesson: a fix written from a failure needs its predictions first and a re-run over the whole family." }
 sources = [
+  { type = "project", id = "agent-trace-eval", anchor = "iteration", label = { zh = "Agent 评测台的迭代", en = "Agent Trace Eval: iteration" } },
   { type = "card", id = "agent-trace-eval" },
-  { type = "section", id = "iteration", label = { zh = "改版记录", en = "Change log" } },
+  { type = "section", id = "log", label = { zh = "改版记录", en = "Change log" } },
 ]
 related = ["hardest-problem", "iterate-adopt"]
 
@@ -310,8 +311,8 @@ q = { zh = "放到真实业务里还差什么？", en = "What would it take to u
 aliases = { zh = ["上线", "生产环境", "真实业务", "局限", "风险", "还缺什么"], en = ["production", "real world", "limitations", "risks", "deploy", "what is missing"] }
 a = { zh = "题目多是合成或虚构的，上线前要用业务里已有结论的样本另建测试集。每题跑的次数少、区间偏宽，重要的结论要多跑几次。要靠外部证据才能定的判断应该留给人：模型裁判在这类监管结论上只对了 {judge-calibration.jc_reg_evidence}。", en = "Most items are synthetic or fictional, so real use needs a test set built from business cases with settled outcomes. Few runs per item leave wide intervals, so key findings need more runs. Decisions that turn on outside evidence should stay with people: the model judge got only {judge-calibration.jc_reg_evidence} of such regulator decisions right." }
 sources = [
-  { type = "card", id = "judge-calibration" },
-  { type = "card", id = "agent-trace-eval" },
+  { type = "project", id = "judge-calibration", anchor = "limits", label = { zh = "模型裁判校准的局限", en = "Judge Calibration: limits" } },
+  { type = "project", id = "agent-trace-eval", anchor = "limits", label = { zh = "Agent 评测台的局限", en = "Agent Trace Eval: limits" } },
 ]
 related = ["data-source", "what-failed"]
 

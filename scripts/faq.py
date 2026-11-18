@@ -22,7 +22,8 @@ ANY_PH = re.compile(r"\{[^{}]+\}")
 DIGIT = re.compile(r"\d")
 SENTENCE = {"zh": re.compile(r"(?<=[。！？])"), "en": re.compile(r"(?<=[.!?])\s+")}
 CARD_URL = "https://github.com/llia0031-dotcom/evidence-first/blob/main/cards/{id}{suffix}.md"
-SECTIONS = ("projects", "method", "iteration", "about")
+SECTIONS = ("top", "work", "method", "screens", "log", "about")  # home page anchors
+ANCHORS = ("evaluation", "iteration", "limits")  # project page anchors
 SOURCE_TYPES = ("project", "card", "section", "url")
 
 
@@ -120,8 +121,11 @@ def _source(s: dict, by_id: dict, shown: set, iid: str) -> dict:
         spec = by_id[s["id"]]["spec"]
         name = {l: bc.tr(spec["name"], l) for l in ("zh", "en")}
         if kind == "project":
+            if s.get("anchor") not in (None, *ANCHORS):
+                raise bc.BuildError(f"faq.{iid}: unknown project anchor {s['anchor']}")
             repo = next((l["url"] for l in spec.get("links", []) if "github.com/" in bc.tr(l["url"], "en")), None)
             return {"type": kind, "id": s["id"], "label": s.get("label", name),
+                    **({"anchor": s["anchor"]} if "anchor" in s else {}),
                     **({"url": {l: bc.tr(repo, l) for l in ("zh", "en")}} if repo else {})}
         return {"type": kind, "id": s["id"],
                 "label": s.get("label", {"zh": f"评测卡：{name['zh']}", "en": f"Evaluation card: {name['en']}"}),
