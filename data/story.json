@@ -4,9 +4,19 @@
     "en": "I'm Liang Liyuan. I build AI features that show their evidence: every sentence points to its source, and every capability brings an evaluation before it ships."
   },
   "about": {
-    "zh": "动手之前，我先把题目和答案写好、冻结，再让模型跑。每改一版就在新写的题上重测，没采用的版本和没成立的预测也照样记下来。结果和局限放在一起公开，每个数字都由脚本从结果文件算出。",
-    "en": "Before a model runs, I write the items and answers and freeze them. Every new version is tested again on newly written items, and the versions I dropped and the predictions that failed stay on the record. Results go out together with their limits, and every number is computed by script from the result files."
+    "zh": "我做 AI 功能，也做它的评测",
+    "en": "I build AI features, and the tests that check them"
   },
+  "about_stats": [
+    {
+      "zh": "12 个项目 / 评测和局限全部公开",
+      "en": "12 projects / evaluations and limits all public"
+    },
+    {
+      "zh": "56 条改版记录 / 没采用的版本也留着",
+      "en": "56 logged changes / dropped versions included"
+    }
+  ],
   "links": [
     {
       "label": {

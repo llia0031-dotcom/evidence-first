@@ -513,8 +513,11 @@ def global_values(projects: list[dict]) -> dict[str, Value]:
         for mid, v in p["values"].items():
             flat[f"{p['spec']['id']}__{mid}".replace("-", "_")] = v
     n_records = sum(1 for p in projects for ev in p["spec"]["eval"] for m in ev["metric"] if "record" in m)
+    shown = [p for p in projects if p["spec"]["status"] == "public" and p["spec"]["id"] not in WITHHOLD]
+    n_public = len(shown)
+    n_timeline = sum(len(p["spec"].get("timeline", [])) for p in shown)
     for key, val in (("_cards", len(projects)), ("_numbers", sum(len(p["values"]) for p in projects)),
-                     ("_records", n_records)):
+                     ("_records", n_records), ("_public", n_public), ("_timeline", n_timeline)):
         flat[key] = Value(kind="value", value=val, decimals=0)
     return flat
 
@@ -580,6 +583,8 @@ def story_json(projects: list[dict]) -> dict:
     out = {"intro": {l: fill_global(tr(story["intro"], l), flat, l, "story") for l in ("zh", "en")},
            **({"about": {l: fill_global(tr(story["about"], l), flat, l, "story.about") for l in ("zh", "en")}}
               if "about" in story else {}),
+           **({"about_stats": [{l: fill_global(tr(x, l), flat, l, "story.about_stats") for l in ("zh", "en")}
+                               for x in story["about_stats"]]} if "about_stats" in story else {}),
            "links": story.get("links", []), "scenes": []}
     for sc in story["scene"]:
         out["scenes"].append({

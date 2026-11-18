@@ -5,7 +5,12 @@
 # records (shared script, shared retrieval, shared method), never an invented cause and effect.
 
 intro = { zh = "我是 Liang Liyuan，做会拿出证据的 AI 功能：AI 说的每句话能指到原文，每个能力上线前先拿出评测。", en = "I'm Liang Liyuan. I build AI features that show their evidence: every sentence points to its source, and every capability brings an evaluation before it ships." }
-about = { zh = "动手之前，我先把题目和答案写好、冻结，再让模型跑。每改一版就在新写的题上重测，没采用的版本和没成立的预测也照样记下来。结果和局限放在一起公开，每个数字都由脚本从结果文件算出。", en = "Before a model runs, I write the items and answers and freeze them. Every new version is tested again on newly written items, and the versions I dropped and the predictions that failed stay on the record. Results go out together with their limits, and every number is computed by script from the result files." }
+about = { zh = "我做 AI 功能，也做它的评测", en = "I build AI features, and the tests that check them" }
+# The two counts are computed at build time: {_public} public projects, {_timeline} timeline entries on their cards.
+about_stats = [
+  { zh = "{_public} 个项目 / 评测和局限全部公开", en = "{_public} projects / evaluations and limits all public" },
+  { zh = "{_timeline} 条改版记录 / 没采用的版本也留着", en = "{_timeline} logged changes / dropped versions included" },
+]
 links = [
   { label = { zh = "个人网站", en = "Website" }, url = "https://llia0031-dotcom.github.io/" },
   { label = { zh = "GitHub", en = "GitHub" }, url = "https://github.com/llia0031-dotcom" },
