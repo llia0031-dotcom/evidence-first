@@ -243,6 +243,43 @@ def _md_tables(text: str, section: str | None):
         yield header, cells
 
 
+NUMBER = re.compile(r"[-+]?\d+(?:\.\d+)?")
+
+
+def _first_number(cell: str) -> float:
+    m = NUMBER.search(cell.replace(",", ""))
+    if not m:
+        raise ValueError(f"no number in {cell!r}")
+    return float(m.group(0))
+
+
+@extractor
+def text_fraction(rd, path: str, label: str):
+    """The k/n that follows a fixed label in running text, e.g. "marked unsure: 11/49"."""
+    text = rd.text(path)
+    i = text.find(label)
+    if i < 0 or text.find(label, i + 1) >= 0:
+        raise ValueError(f"{path}: label {label!r} must appear exactly once")
+    m = FRACTION.search(text, i + len(label))
+    return {"k": int(m.group(1)), "n": int(m.group(2))}
+
+
+@extractor
+def json_count_true(rd, path: str, at: list, field: str):
+    """How many entries of a dict or list have `field` true, out of all entries."""
+    node = _walk(rd.json(path), at)
+    rows = list(node.values()) if isinstance(node, dict) else list(node)
+    return {"k": sum(1 for r in rows if r.get(field) is True), "n": len(rows)}
+
+
+@extractor
+def json_sum(rd, path: str, at: list, field: str, unit: str = "", decimals: int = 2):
+    """The sum of one field over the entries of a dict, e.g. the cost of every stage."""
+    node = _walk(rd.json(path), at)
+    rows = list(node.values()) if isinstance(node, dict) else list(node)
+    return {"kind": "value", "value": sum(float(r[field]) for r in rows if isinstance(r, dict) and field in r), "unit": unit, "decimals": decimals}
+
+
 def _clean(cell: str) -> str:
     return cell.replace("**", "").strip()
 
@@ -296,7 +333,7 @@ def md_match_value(rd, path: str, match: dict, col: str, unit: str = "", decimal
             hits.append(_clean(cells[names.index(col)]))
     if len(hits) != 1:
         raise ValueError(f"{path}: {len(hits)} rows match {match}")
-    return {"kind": "value", "value": float(hits[0].replace("+", "")), "unit": unit, "decimals": decimals}
+    return {"kind": "value", "value": _first_number(hits[0]), "unit": unit, "decimals": decimals}
 
 
 @extractor
@@ -304,7 +341,7 @@ def md_value(rd, path: str, row: str, col: str, section: str | None = None, unit
     for header, cells in _md_tables(rd.text(path), section):
         if _clean(cells[0]) == row:
             idx = [_clean(h) for h in header].index(col)
-            return {"kind": "value", "value": float(_clean(cells[idx])), "unit": unit, "decimals": decimals}
+            return {"kind": "value", "value": _first_number(_clean(cells[idx])), "unit": unit, "decimals": decimals}
     raise KeyError(f"{path}: row {row!r} not found")
 
 

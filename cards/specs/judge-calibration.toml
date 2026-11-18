@@ -1,0 +1,343 @@
+id = "judge-calibration"
+order = 13
+layer = "operations"
+status = "public"
+links = [
+  { label = { zh = "代码和报告", en = "Code and report" }, url = "https://github.com/llia0031-dotcom/judge-calibration" },
+]
+card_version = "1.0"
+updated = "2026-11-18"
+period = "2026-11-18"
+team = "Liang Liyuan"
+stack = { zh = "Python、批量接口、Cohen's kappa 和自助区间、质检 Agent（两个工具）", en = "Python, Message Batches API, Cohen's kappa with bootstrap intervals, a quality-check agent with two tools" }
+did = { zh = "我把一个模型裁判分别和三种标准比：出题时定好的答案、监管和法院的结论、公开数据集自带的人工评分；再定出哪些检查交给脚本、哪些交给裁判、哪些留给人，并做了一个带验收标准的质检 Agent。方案、冻结的文件和预测跑前写好。", en = "I measured one model judge against three standards kept apart: answers fixed when the items were built, regulator and court decisions, and the human ratings that ship with public datasets; then set which checks go to a script, a judge or a person, and built a quality-check agent with an acceptance standard. The plan, frozen files and predictions were written before the runs." }
+name = { zh = "模型裁判校准", en = "Judge Calibration" }
+problem = { zh = "用模型当裁判打分省事，可它能信到什么程度；哪些检查可以交给它，哪些该用脚本，哪些必须留给人", en = "A model judge is convenient, but how far can it be trusted, which checks can it take, which belong to a script, and which must stay with people?" }
+primary_metric = { zh = "和标准一致的比例；植入的错误抓到的比例；漏掉的错误和送人工的比例", en = "Agreement with each standard; planted errors caught; errors missed and share sent to people" }
+headline = [
+  { zh = "和出题时定好的答案一致 {jc_constructed}，植入的错误抓到 {jc_caught}", en = "Agreed with the answers fixed at item-building time on {jc_constructed}; planted errors caught {jc_caught}" },
+  { zh = "监管和法院结论：从广告本身能看出的 {jc_reg_face}，要靠外部证据的只有 {jc_reg_evidence}", en = "Regulator and court decisions: {jc_reg_face} where the ad itself shows it, only {jc_reg_evidence} where outside evidence decides" },
+  { zh = "先用规则、再交裁判、拿不准的送人：漏掉的错误 {jc_missed_b}，只用裁判时 {jc_missed_a}；送人工 {jc_queue_b}", en = "Rules, then the judge, unsure items to people: errors missed {jc_missed_b} against {jc_missed_a} with the judge alone; sent to people {jc_queue_b}" },
+]
+summary = { zh = "检验一个模型裁判能信到什么程度。三种标准分开比：出题时定好答案的判断题（审核意见、简历判断、修改建议）、监管机构和法院对真实广告的结论、公开数据集自带的人工评分（Judge's Verdict、SummEval、WMT MQM 中译英）。再按结果把检查分成三类：能用脚本查的、能交给裁判的、必须留给人的，比较“只用裁判”和“先规则、再裁判、拿不准的送人工”两种接法；最后做了一个用两个工具的质检 Agent，并按模拟批次给它定验收标准。没有为这个项目另做人工评分。", en = "Measures how far one model judge can be trusted, against three standards kept apart: items with answers fixed when they were built (review opinions, resume verdicts, revision advice), regulator and court decisions on real ads, and the human ratings that ship with public datasets (Judge's Verdict, SummEval, WMT MQM Chinese to English). The results sort checks into three kinds: for a script, for the judge, and for people; the judge alone is compared with rules first, then the judge, with unsure items sent to people. Last, a quality-check agent with two tools gets an acceptance standard tested on simulated batches. No human ratings were collected for this project." }
+core_link = { zh = "判断题来自有据审核、简历初筛和卖点体检的存档答案；能用规则查的部分照 evidence-check 的做法交给脚本。", en = "The items come from the stored answers of Grounded Review, resume screening and Sellpoint Check; the rule-checkable part goes to a script, the way evidence-check does it." }
+models = { zh = "裁判用 claude-haiku-5-5（effort medium，批量接口）；在 120 道题上用 claude-sonnet-5-5 做第二裁判对照。", en = "The judge is claude-haiku-5-5 (effort medium, Message Batches API); claude-sonnet-5-5 serves as a second judge on 120 items." }
+iteration = { zh = ["裁判提示词 v1 到 v4：v2 在开发集上 {jc_dev_v2}（v1 {jc_dev_v1}），采用；v3 打平、v4 更严，都不采用。", "对定好的答案几乎全对；对监管和法院的结论，要靠外部证据的那一半明显差。", "对公开数据集的人工评分：和每位标注员的一致率 {jc_jv_judge}，落在标注员彼此之间的范围里；流畅度这类主观项和专家相关最低（{jc_se_fluency}）。", "规则、裁判、人工分工：先规则再裁判、拿不准的送人工，比只用裁判漏得少，也更便宜。", "质检 Agent 查出全部错误记录（{jc_qc_caught}），正确记录误报 {jc_qc_false}；验收标准在错误率百分之二的批次上达标，在百分之十的批次上没达到目标。"], en = ["Judge prompt v1 to v4: v2 scored {jc_dev_v2} on the development split (v1 {jc_dev_v1}) and was adopted; v3 tied and v4 was stricter, neither adopted.", "Against fixed answers the judge is almost always right; against regulator and court decisions it is clearly weaker where outside evidence decides.", "Against published human ratings: agreement with each annotator {jc_jv_judge}, within the range annotators reach with one another; subjective dimensions such as fluency correlate least with experts ({jc_se_fluency}).", "Splitting the work: rules first, then the judge, with unsure items to people, misses less than the judge alone and costs less.", "The quality-check agent caught every wrong record ({jc_qc_caught}) and flagged {jc_qc_false} correct ones; the acceptance standard met its target on batches with a two-percent error rate but not on ten-percent batches."] }
+conclusion = { zh = "模型裁判在答案清楚、能对回原文的检查上可以放心用，能用规则查的交给脚本更稳；要靠外部证据的结论和主观质量评分，裁判和人差得多，应该留给人。裁判自己说“拿不准”的那部分错得多，正好可以拿来决定送人工。", en = "A model judge can be trusted on checks with clear answers that trace back to the text, and rule-checkable parts are safer with a script; decisions that turn on outside evidence and subjective quality ratings stay far from people and should stay with them. The judge's own \"unsure\" marks the items it gets wrong most often, which makes it a good signal for sending items to people." }
+short_name = { zh = "裁判校准", en = "Judge calibration" }
+card_title = { zh = "模型裁判能信到什么程度，哪些该交给人", en = "How far a model judge can be trusted" }
+assumed = { zh = "以为在答案里加“保证没错”这类话会骗过裁判", en = "Expected assurance phrases in an answer to sway the judge" }
+showed = { zh = "加废话、加保证语都一道没变：{jc_verbose}、{jc_assertive}", en = "Neither padding nor assurances changed a verdict: {jc_verbose} and {jc_assertive}" }
+result_line = { zh = "和定好的答案一致 {jc_constructed}；要靠外部证据的监管结论只对 {jc_reg_evidence}", en = "Agreed with fixed answers on {jc_constructed}; only {jc_reg_evidence} on regulator decisions that turn on outside evidence" }
+key_numbers = [{ metric = "jc_constructed", label = { zh = "和出题时定好的答案一致", en = "Agreement with answers fixed at item-building time" } }, { metric = "jc_reg_evidence", label = { zh = "要靠外部证据的监管结论，判对", en = "Regulator decisions that turn on outside evidence: right" } }, { metric = "jc_missed_b", label = { zh = "规则加裁判加复核漏掉（只用裁判 {jc_missed_a}）", en = "Errors missed with rules, judge and review (judge alone: {jc_missed_a})" } }]
+timeline = [
+  { date = "2026-11-18", label = { zh = "提示词 v2", en = "Prompt v2" }, text = { zh = "开发集上最好，采用；v3、v4 不采用", en = "Best on the development split; v3 and v4 dropped" }, before = "jc_dev_v1", after = "jc_dev_v2", adopted = true },
+  { date = "2026-11-18", label = { zh = "定好的答案", en = "Fixed answers" }, text = { zh = "几乎全对，植入的错误大多抓到", en = "Almost always right; most planted errors caught" }, after = "jc_constructed" },
+  { date = "2026-11-18", label = { zh = "监管和法院", en = "Regulators and courts" }, text = { zh = "要靠外部证据的那一半明显差", en = "Weaker where outside evidence decides" }, before = "jc_reg_face", after = "jc_reg_evidence" },
+  { date = "2026-11-18", label = { zh = "分工", en = "Splitting the work" }, text = { zh = "规则、裁判、人工分开，漏得更少", en = "Rules, judge and people: fewer misses" }, before = "jc_missed_a", after = "jc_missed_b", adopted = true },
+  { date = "2026-11-18", label = { zh = "质检 Agent", en = "QC agent" }, text = { zh = "错误记录全部查出，验收标准一半达标", en = "Every wrong record caught; one target missed" }, after = "jc_qc_caught", adopted = true },
+]
+
+judge = { zh = [
+  "被检验的就是裁判本身：和每种标准的一致率都用脚本算；“人工评分”只指公开数据集自带的评分，没有为这个项目另做人工评分。",
+], en = [
+  "The judge itself is what is tested: agreement with each standard is computed by script; \"human ratings\" means only those shipped with the public datasets, and none were collected for this project.",
+] }
+
+[uses]
+zh = [
+  "评测团队决定哪些检查交给模型裁判：先在定好答案的题上校准，再看在外部标准上能信到哪里。",
+  "上线质检：规则先查、裁判再判、拿不准的送人工，按批次验收。",
+]
+en = [
+  "Deciding which checks an evaluation team can hand to a model judge: calibrate on fixed answers first, then see how far it holds against outside standards.",
+  "Quality checks in production: rules first, then the judge, unsure items to people, with batch acceptance.",
+]
+
+[out_of_scope]
+zh = [
+  "不评裁判以外的模型，也不证明某个裁判在别的任务上可靠；换任务要重新校准。",
+  "公开数据集的人工评分有自己的口径和噪声，裁判和它们一致不等于裁判对。",
+]
+en = [
+  "Does not evaluate models other than the judge, nor show a judge is reliable on other tasks; a new task needs a new calibration.",
+  "Published human ratings have their own definitions and noise; agreeing with them does not make the judge right.",
+]
+
+[[eval]]
+id = "prompts"
+name = { zh = "裁判提示词 v1 到 v4（开发集）", en = "Judge prompts v1 to v4 (development split)" }
+date = "2026-11-18"
+data = { zh = "开发集上比较四版裁判提示词，按三类判断题的平均平衡准确率选一版，选定后冻结，再在测试集上跑。", en = "Four judge prompts compared on the development split by mean balanced accuracy over the three item families; the chosen one was frozen before the test split ran." }
+items = { zh = "开发集", en = "Development split" }
+runs = { zh = "每版每题 1 遍", en = "1 run per item per version" }
+setup = { zh = "claude-haiku-5-5，effort medium，批量接口", en = "claude-haiku-5-5, effort medium, Message Batches API" }
+frozen = { zh = "`eval/PREREGISTRATION.md`", en = "`eval/PREREGISTRATION.md`" }
+takeaway = { zh = "v2 最好，采用；v3 和 v2 打平但更贵，v4 更严、把对的也判错了一些，都不采用。", en = "v2 was best and adopted; v3 tied at a higher cost and v4 was stricter, failing some right answers; neither was adopted." }
+
+  [[eval.metric]]
+  id = "jc_dev_v1"
+  label = { zh = "平均平衡准确率（v1）", en = "Mean balanced accuracy (v1)" }
+  extractor = "md_value"
+  args = { path = "judge-calibration-public/eval/results/RESULTS.md", section = "1. Prompt versions", row = "v1", col = "Score (mean BA)", decimals = 3 }
+
+  [[eval.metric]]
+  id = "jc_dev_v2"
+  label = { zh = "平均平衡准确率（v2）", en = "Mean balanced accuracy (v2)" }
+  extractor = "md_value"
+  args = { path = "judge-calibration-public/eval/results/RESULTS.md", section = "1. Prompt versions", row = "v2", col = "Score (mean BA)", decimals = 3 }
+
+[[eval]]
+id = "constructed"
+name = { zh = "定好答案的判断题（测试集，三次判断取多数）", en = "Items with fixed answers (test split, majority of three judgments)" }
+date = "2026-11-18"
+data = { zh = "审核意见、简历判断、修改建议三类判断题，取自有据审核、简历初筛和卖点体检的存档答案，并植入引文、条款、格式、结论等类型的错误；答案在出题时定好。", en = "Review opinions, resume verdicts and revision advice taken from the stored answers of Grounded Review, resume screening and Sellpoint Check, with planted errors in quotes, clauses, format and conclusions; answers fixed when the items were built." }
+items = { zh = "711 道", en = "711 items" }
+runs = { zh = "每题判三次，取多数", en = "Three judgments per item, majority taken" }
+setup = { zh = "claude-haiku-5-5，effort medium，批量接口；提示词 v2", en = "claude-haiku-5-5, effort medium, Message Batches API; prompt v2" }
+frozen = { zh = "`eval/PREREGISTRATION.md`", en = "`eval/PREREGISTRATION.md`" }
+takeaway = { zh = "答案清楚的判断题上，裁判几乎全对，植入的错误大多抓到；不一致的地方里有一部分是答案本身要再斟酌。", en = "On items with clear answers the judge is almost always right and catches most planted errors; some of the disagreements point at answers worth revisiting." }
+
+  [[eval.metric]]
+  id = "jc_constructed"
+  label = { zh = "和定好的答案一致", en = "Agreement with the fixed answers" }
+  extractor = "md_cell"
+  args = { path = "judge-calibration-public/eval/results/RESULTS.md", section = "2. Constructed answers", row = "all", col = "Agreement" }
+
+  [[eval.metric]]
+  id = "jc_caught"
+  label = { zh = "植入的错误抓到", en = "Planted errors caught" }
+  extractor = "md_cell"
+  args = { path = "judge-calibration-public/eval/results/RESULTS.md", section = "2. Constructed answers", row = "all", col = "Errors caught" }
+
+  [[eval.metric]]
+  id = "jc_kappa"
+  label = { zh = "Cohen's kappa", en = "Cohen's kappa" }
+  extractor = "json_value"
+  args = { path = "judge-calibration-public/eval/results/summary.json", keys = ["binary", "pooled", "kappa", "kappa"], decimals = 3 }
+
+[[eval]]
+id = "regulator"
+name = { zh = "监管和法院的结论（46 条真实广告）", en = "Regulator and court decisions (46 real ads)" }
+date = "2026-11-18"
+data = { zh = "英国广告标准局的 30 份裁决和中文的 16 个监管或法院案例；按结论能不能从广告本身看出来分成两组。", en = "30 UK ASA rulings and 16 Chinese regulator or court cases, split by whether the decision can be read from the ad itself." }
+items = { zh = "46 条广告", en = "46 ads" }
+runs = { zh = "每条判三次，取多数", en = "Three judgments per ad, majority taken" }
+setup = { zh = "claude-haiku-5-5，effort medium，批量接口", en = "claude-haiku-5-5, effort medium, Message Batches API" }
+frozen = { zh = "`eval/PREREGISTRATION.md`", en = "`eval/PREREGISTRATION.md`" }
+takeaway = { zh = "能从广告本身看出结论的，裁判大多判对；要靠外部证据（检测报告、资质、实际效果）才能定的，只对一半左右。", en = "Where the decision shows in the ad itself the judge is mostly right; where it rests on outside evidence (test reports, licences, actual effects) it is right about half the time." }
+
+  [[eval.metric]]
+  id = "jc_reg_all"
+  label = { zh = "和监管、法院结论一致", en = "Agreement with regulator and court decisions" }
+  extractor = "md_cell"
+  args = { path = "judge-calibration-public/eval/results/RESULTS.md", section = "3. Regulator", row = "all", col = "Agreement" }
+
+  [[eval.metric]]
+  id = "jc_reg_face"
+  label = { zh = "从广告本身能看出的", en = "Readable from the ad itself" }
+  extractor = "md_cell"
+  args = { path = "judge-calibration-public/eval/results/RESULTS.md", section = "3. Regulator", row = "on_the_face", col = "Agreement" }
+
+  [[eval.metric]]
+  id = "jc_reg_evidence"
+  label = { zh = "要靠外部证据的", en = "Turning on outside evidence" }
+  extractor = "md_cell"
+  args = { path = "judge-calibration-public/eval/results/RESULTS.md", section = "3. Regulator", row = "evidence_dependent", col = "Agreement" }
+
+[[eval]]
+id = "human"
+name = { zh = "公开数据集自带的人工评分", en = "Human ratings that ship with public datasets" }
+date = "2026-11-18"
+data = { zh = "Judge's Verdict（200 道，三位标注员）、SummEval（四个维度各 120 篇，三位专家）、WMT MQM 中译英（240 句）。人工评分都是数据集自带的。", en = "Judge's Verdict (200 items, three annotators), SummEval (120 summaries per dimension, three experts) and WMT MQM Chinese to English (240 segments). All human ratings come with the datasets." }
+items = { zh = "Judge's Verdict 200 道；SummEval 每维度 120 篇；WMT MQM 240 句", en = "200 Judge's Verdict items; 120 SummEval summaries per dimension; 240 WMT MQM segments" }
+runs = { zh = "每题判三次", en = "Three judgments per item" }
+setup = { zh = "claude-haiku-5-5，effort medium，批量接口", en = "claude-haiku-5-5, effort medium, Message Batches API" }
+frozen = { zh = "`eval/PREREGISTRATION.md`", en = "`eval/PREREGISTRATION.md`" }
+takeaway = { zh = "答对答错这类题，裁判和标注员的一致程度与标注员彼此之间差不多；主观质量（流畅度、连贯性）和翻译错误的严重程度，裁判和人差得多。", en = "On right-or-wrong items the judge agrees with annotators about as well as they agree with one another; on subjective quality (fluency, coherence) and translation error severity it is far from people." }
+
+  [[eval.metric]]
+  id = "jc_jv_judge"
+  label = { zh = "Judge's Verdict：裁判和每位标注员完全一致（平均）", en = "Judge's Verdict: exact agreement with each annotator (mean)" }
+  extractor = "json_value"
+  args = { path = "judge-calibration-public/eval/results/summary.json", keys = ["jv", "judge_mean_exact"], scale = 100, unit = "pct", decimals = 1 }
+  direction = "higher"
+
+  [[eval.metric]]
+  id = "jc_jv_human"
+  label = { zh = "Judge's Verdict：标注员彼此完全一致（平均）", en = "Judge's Verdict: exact agreement between annotators (mean)" }
+  extractor = "json_value"
+  args = { path = "judge-calibration-public/eval/results/summary.json", keys = ["jv", "human_mean_exact"], scale = 100, unit = "pct", decimals = 1 }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "jc_se_fluency"
+  label = { zh = "SummEval 流畅度：和专家的 Spearman 相关", en = "SummEval fluency: Spearman with experts" }
+  extractor = "json_value"
+  args = { path = "judge-calibration-public/eval/results/summary.json", keys = ["summeval", "fluency", "spearman"], decimals = 3 }
+
+  [[eval.metric]]
+  id = "jc_se_consistency"
+  label = { zh = "SummEval 事实一致：和专家的 Spearman 相关", en = "SummEval consistency: Spearman with experts" }
+  extractor = "json_value"
+  args = { path = "judge-calibration-public/eval/results/summary.json", keys = ["summeval", "consistency", "spearman"], decimals = 3 }
+
+  [[eval.metric]]
+  id = "jc_mqm_kappa"
+  label = { zh = "WMT MQM 中译英：加权 kappa", en = "WMT MQM Chinese to English: weighted kappa" }
+  extractor = "json_value"
+  args = { path = "judge-calibration-public/eval/results/summary.json", keys = ["mqm", "weighted_kappa", "kappa"], decimals = 3 }
+
+[[eval]]
+id = "routing"
+name = { zh = "规则、裁判和复核队列怎么分工（711 道）", en = "Rules, judge and a review queue (711 items)" }
+date = "2026-11-18"
+data = { zh = "同一批定好答案的判断题，比较只用裁判（A）和先用规则、再判一次、拿不准的送人工（B）。", en = "The same items with fixed answers, comparing the judge alone (A) with rules first, then one judgment, unsure items sent to a queue (B)." }
+items = { zh = "711 道，其中 390 道含错误", en = "711 items, 390 of them wrong" }
+runs = { zh = "每种接法 1 遍", en = "1 run per arm" }
+setup = { zh = "claude-haiku-5-5，effort medium，批量接口", en = "claude-haiku-5-5, effort medium, Message Batches API" }
+frozen = { zh = "`eval/PREREGISTRATION.md`", en = "`eval/PREREGISTRATION.md`" }
+takeaway = { zh = "先用规则、再交裁判、拿不准的送人工，漏掉的错误更少，费用也更低；裁判自己说“拿不准”的那部分错得多，正好拿来决定送人工。", en = "Rules first, then the judge, with unsure items to people, misses fewer errors at a lower cost; the items the judge marks unsure are the ones it gets wrong most, which makes them the right ones to send." }
+
+  [[eval.metric]]
+  id = "jc_missed_a"
+  label = { zh = "只用裁判：漏掉的错误", en = "Judge alone: errors missed" }
+  extractor = "json_counts"
+  args = { path = "judge-calibration-public/eval/results/summary.json", at = ["combination", "A", "missed"] }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "jc_missed_b"
+  label = { zh = "规则、裁判、复核队列：漏掉的错误", en = "Rules, judge, review queue: errors missed" }
+  extractor = "json_counts"
+  args = { path = "judge-calibration-public/eval/results/summary.json", at = ["combination", "B", "missed"] }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "jc_queue_b"
+  label = { zh = "规则、裁判、复核队列：送人工", en = "Rules, judge, review queue: sent to people" }
+  extractor = "json_counts"
+  args = { path = "judge-calibration-public/eval/results/summary.json", at = ["combination", "B", "queue"] }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "jc_cost_a"
+  label = { zh = "只用裁判：每 1,000 道的费用", en = "Judge alone: cost per 1,000 items" }
+  extractor = "json_value"
+  args = { path = "judge-calibration-public/eval/results/summary.json", keys = ["combination", "A", "cost_per_1000_items"], unit = "usd", decimals = 3 }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "jc_cost_b"
+  label = { zh = "规则、裁判、复核队列：每 1,000 道的费用", en = "Rules, judge, review queue: cost per 1,000 items" }
+  extractor = "json_value"
+  args = { path = "judge-calibration-public/eval/results/summary.json", keys = ["combination", "B", "cost_per_1000_items"], unit = "usd", decimals = 3 }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "jc_sure_wrong"
+  label = { zh = "第一次判断说“确定”的错误率", en = "First judgments marked sure: error rate" }
+  extractor = "text_fraction"
+  args = { path = "judge-calibration-public/eval/results/RESULTS.md", label = "Error rate of first judgments marked sure:" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "jc_unsure_wrong"
+  label = { zh = "第一次判断说“拿不准”的错误率", en = "First judgments marked unsure: error rate" }
+  extractor = "text_fraction"
+  args = { path = "judge-calibration-public/eval/results/RESULTS.md", label = "1.8%); marked unsure:" }
+  direction = "none"
+
+[[eval]]
+id = "sensitivity"
+name = { zh = "加废话、加保证语会不会骗过裁判（368 道）", en = "Does padding or assurance sway the judge? (368 items)" }
+date = "2026-11-18"
+data = { zh = "同一批题，答案里加上不相干的长段落，或加上“保证没错”这类话，看裁判的判断变不变；同时量重复判一次本来就会变多少。", en = "The same items with irrelevant padding or assurance phrases added to the answer, to see whether verdicts change; repeating the judgment measures the noise floor." }
+items = { zh = "368 道", en = "368 items" }
+runs = { zh = "每种改法 1 遍", en = "1 run per change" }
+setup = { zh = "claude-haiku-5-5，effort medium，批量接口", en = "claude-haiku-5-5, effort medium, Message Batches API" }
+frozen = { zh = "`eval/PREREGISTRATION.md`", en = "`eval/PREREGISTRATION.md`" }
+takeaway = { zh = "加废话、加保证语都一道没变，事先预测的“会被骗”没成立。", en = "Neither padding nor assurances changed a single verdict; the prediction that they would did not hold." }
+
+  [[eval.metric]]
+  id = "jc_verbose"
+  label = { zh = "加废话后判断变了", en = "Verdicts changed by padding" }
+  extractor = "md_cell"
+  args = { path = "judge-calibration-public/eval/results/RESULTS.md", section = "7. Sensitivity", row = "verbose", col = "Verdicts changed" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "jc_assertive"
+  label = { zh = "加保证语后判断变了", en = "Verdicts changed by assurances" }
+  extractor = "md_cell"
+  args = { path = "judge-calibration-public/eval/results/RESULTS.md", section = "7. Sensitivity", row = "assertive", col = "Verdicts changed" }
+  direction = "lower"
+
+[[eval]]
+id = "qc"
+name = { zh = "质检 Agent 和验收标准", en = "Quality-check agent and acceptance standard" }
+date = "2026-11-18"
+data = { zh = "239 条审核记录（119 条有错、120 条正确），比较只用脚本和用两个工具的质检 Agent；验收标准在每批 100 条、不同错误率的模拟批次上检验。", en = "239 review records (119 wrong, 120 right), comparing a script alone with a quality-check agent using two tools; the acceptance standard is tested on simulated batches of 100 records at several error rates." }
+items = { zh = "239 条记录；模拟批次", en = "239 records; simulated batches" }
+runs = { zh = "每条 1 遍", en = "1 run per record" }
+setup = { zh = "claude-haiku-5-5，effort medium，批量接口", en = "claude-haiku-5-5, effort medium, Message Batches API" }
+frozen = { zh = "`eval/PREREGISTRATION.md`", en = "`eval/PREREGISTRATION.md`" }
+takeaway = { zh = "质检 Agent 查出全部错误记录，误报少；验收标准放行了错误率低的批次，但错误率百分之十的批次也有一部分被放行，没达到事先定的目标。", en = "The agent caught every wrong record with few false flags; the acceptance standard passed low-error batches, but some ten-percent batches also passed, missing the target set beforehand." }
+
+  [[eval.metric]]
+  id = "jc_qc_caught"
+  label = { zh = "质检 Agent：错误记录查出", en = "QC agent: wrong records caught" }
+  extractor = "json_counts"
+  args = { path = "judge-calibration-public/eval/results/summary.json", at = ["qc", "agent", "caught"] }
+
+  [[eval.metric]]
+  id = "jc_qc_false"
+  label = { zh = "质检 Agent：正确记录被误报", en = "QC agent: correct records flagged" }
+  extractor = "json_counts"
+  args = { path = "judge-calibration-public/eval/results/summary.json", at = ["qc", "agent", "false_flags"] }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "jc_accept_2"
+  label = { zh = "错误率百分之二的批次被放行", en = "Batches with a two-percent error rate accepted" }
+  extractor = "md_value"
+  args = { path = "judge-calibration-public/eval/results/RESULTS.md", section = "Acceptance standard", row = "2%", col = "Accepted", unit = "pct", decimals = 1 }
+  direction = "higher"
+
+  [[eval.metric]]
+  id = "jc_accept_10"
+  label = { zh = "错误率百分之十的批次被放行（目标是不超过一成）", en = "Batches with a ten-percent error rate accepted (target: at most one in ten)" }
+  extractor = "md_value"
+  args = { path = "judge-calibration-public/eval/results/RESULTS.md", section = "Acceptance standard", row = "10%", col = "Accepted", unit = "pct", decimals = 1 }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "jc_predictions"
+  label = { zh = "事先写好的预测成立", en = "Predictions written beforehand that held" }
+  extractor = "json_count_true"
+  args = { path = "judge-calibration-public/eval/results/summary.json", at = ["predictions"], field = "held" }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "jc_cost_total"
+  label = { zh = "整个项目的接口费用（批量价）", en = "Total API cost (batch prices)" }
+  extractor = "json_value"
+  args = { path = "judge-calibration-public/eval/results/summary.json", keys = ["cost", "total_usd"], unit = "usd", decimals = 2 }
+  direction = "lower"
+
+[[limitation]]
+text = { zh = "判断题来自同一组项目的存档答案，错误是植入的；“论证成错误结论”这类错误样本由 `eval/gen_flips.py` 生成，生成时用的是同一个模型，裁判认得自己写法的偏差没有排除。", en = "The items come from the same set of projects' stored answers and the errors are planted; \"argued to a wrong conclusion\" samples were produced by `eval/gen_flips.py` with the same model, so a bias towards its own writing is not ruled out." }
+advice = { zh = "上线前用真实业务里已经有结论的记录再校准一次，错误样本换不同来源。", en = "Before use, calibrate again on real records with settled outcomes, with error samples from other sources." }
+
+[[limitation]]
+text = { zh = "监管和法院的结论只有 46 条，要靠外部证据的只有 11 条；区间很宽。", en = "Only 46 regulator and court decisions, 11 of them turning on outside evidence; the intervals are wide." }
+advice = { zh = "这类结论直接留给人，或者先补齐外部证据再交裁判。", en = "Leave such decisions to people, or gather the outside evidence before handing them to a judge." }
+
+[[limitation]]
+text = { zh = "验收标准在错误率百分之十的批次上放行了 {jc_accept_10}，没达到事先定的目标。", en = "The acceptance standard passed {jc_accept_10} of ten-percent batches, missing the target set beforehand." }
+advice = { zh = "加大每批抽检量或收紧放行门槛，再在模拟批次上重测。", en = "Sample more per batch or tighten the pass threshold, then test again on simulated batches." }
+
+[[version]]
+id = "1.0"
+date = "2026-11-18"
+text = { zh = "第一张卡，照公开仓库 judge-calibration 的结果文件写。", en = "First card, from the result files in the public judge-calibration repository." }

@@ -9,12 +9,12 @@
   },
   "about_stats": [
     {
-      "zh": "12 个项目 / 评测和局限全部公开",
-      "en": "12 projects / evaluations and limits all public"
+      "zh": "13 个项目 / 评测和局限全部公开",
+      "en": "13 projects / evaluations and limits all public"
     },
     {
-      "zh": "56 条改版记录 / 没采用的版本也留着",
-      "en": "56 logged changes / dropped versions included"
+      "zh": "61 条改版记录 / 没采用的版本也留着",
+      "en": "61 logged changes / dropped versions included"
     }
   ],
   "links": [
@@ -230,7 +230,8 @@
         "en": "How does this become something a team uses every day?"
       },
       "projects": [
-        "grounded-labelling-pipeline"
+        "grounded-labelling-pipeline",
+        "judge-calibration"
       ],
       "links": [],
       "purpose": {
@@ -251,12 +252,16 @@
           "en": "Grounded Labelling Pipeline: wrong decisions that went live fell from 17/332 to 9/332; the first canary rolled back at 10% under the rules written beforehand, the second, with fixed rules, reached full release and v2 was promoted to production; versions 3 and 4 missed the adoption standard written beforehand and were not released (a replay, not real users)"
         },
         {
-          "zh": "12 张评测卡、277 个数字全部由脚本从结果文件算出",
-          "en": "12 evaluation cards and 277 numbers, all computed by script from the result files"
+          "zh": "13 张评测卡、305 个数字全部由脚本从结果文件算出",
+          "en": "13 evaluation cards and 305 numbers, all computed by script from the result files"
         },
         {
           "zh": "灰度回放：有据审核 v1.3 放到全量，v1.2 在放量中途触发回滚",
           "en": "Canary replay: Grounded Review v1.3 reaches full release, v1.2 rolls back partway"
+        },
+        {
+          "zh": "模型裁判校准：和定好的答案一致 699/711；先规则、再裁判、拿不准的送人工，漏掉的错误 7/390 → 2/390",
+          "en": "Judge calibration: agreement with fixed answers 699/711; rules, then the judge, unsure items to people, errors missed 7/390 → 2/390"
         }
       ]
     }

@@ -7404,5 +7404,708 @@
         "en": "Qwen3-1.7B fine-tuned on synthetic ads was right on 133/168 of Grounded Review's test items, too close to call against claude-haiku-5-5 (138/168; paired difference -3.0 points)"
       }
     ]
+  },
+  {
+    "id": "judge-calibration",
+    "order": 13,
+    "layer": "operations",
+    "status": "public",
+    "updated": "2026-11-18",
+    "card_version": "1.0",
+    "card": {
+      "zh": "cards/judge-calibration.md",
+      "en": "cards/judge-calibration.en.md"
+    },
+    "links": [
+      {
+        "label": {
+          "zh": "代码和报告",
+          "en": "Code and report"
+        },
+        "url": "https://github.com/llia0031-dotcom/judge-calibration"
+      }
+    ],
+    "period": {
+      "zh": "2026-11-18",
+      "en": "2026-11-18"
+    },
+    "team": {
+      "zh": "Liang Liyuan",
+      "en": "Liang Liyuan"
+    },
+    "stack": {
+      "zh": "Python、批量接口、Cohen's kappa 和自助区间、质检 Agent（两个工具）",
+      "en": "Python, Message Batches API, Cohen's kappa with bootstrap intervals, a quality-check agent with two tools"
+    },
+    "evals": [
+      {
+        "id": "prompts",
+        "name": {
+          "zh": "裁判提示词 v1 到 v4（开发集）",
+          "en": "Judge prompts v1 to v4 (development split)"
+        },
+        "date": "2026-11-18",
+        "metrics": [
+          {
+            "id": "jc_dev_v1",
+            "label": {
+              "zh": "平均平衡准确率（v1）",
+              "en": "Mean balanced accuracy (v1)"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "judge-calibration/eval/results/RESULTS.md"
+            ],
+            "value": 0.86,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+            ]
+          },
+          {
+            "id": "jc_dev_v2",
+            "label": {
+              "zh": "平均平衡准确率（v2）",
+              "en": "Mean balanced accuracy (v2)"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "judge-calibration/eval/results/RESULTS.md"
+            ],
+            "value": 0.976,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "constructed",
+        "name": {
+          "zh": "定好答案的判断题（测试集，三次判断取多数）",
+          "en": "Items with fixed answers (test split, majority of three judgments)"
+        },
+        "date": "2026-11-18",
+        "metrics": [
+          {
+            "id": "jc_constructed",
+            "label": {
+              "zh": "和定好的答案一致",
+              "en": "Agreement with the fixed answers"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "judge-calibration/eval/results/RESULTS.md"
+            ],
+            "k": 699,
+            "n": 711,
+            "rate": 0.9831,
+            "ci95": [
+              0.9707,
+              0.9903
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+            ]
+          },
+          {
+            "id": "jc_caught",
+            "label": {
+              "zh": "植入的错误抓到",
+              "en": "Planted errors caught"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "judge-calibration/eval/results/RESULTS.md"
+            ],
+            "k": 385,
+            "n": 390,
+            "rate": 0.9872,
+            "ci95": [
+              0.9703,
+              0.9945
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+            ]
+          },
+          {
+            "id": "jc_kappa",
+            "label": {
+              "zh": "Cohen's kappa",
+              "en": "Cohen's kappa"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "judge-calibration/eval/results/summary.json"
+            ],
+            "value": 0.965905,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "regulator",
+        "name": {
+          "zh": "监管和法院的结论（46 条真实广告）",
+          "en": "Regulator and court decisions (46 real ads)"
+        },
+        "date": "2026-11-18",
+        "metrics": [
+          {
+            "id": "jc_reg_all",
+            "label": {
+              "zh": "和监管、法院结论一致",
+              "en": "Agreement with regulator and court decisions"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "judge-calibration/eval/results/RESULTS.md"
+            ],
+            "k": 39,
+            "n": 46,
+            "rate": 0.8478,
+            "ci95": [
+              0.7178,
+              0.9243
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+            ]
+          },
+          {
+            "id": "jc_reg_face",
+            "label": {
+              "zh": "从广告本身能看出的",
+              "en": "Readable from the ad itself"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "judge-calibration/eval/results/RESULTS.md"
+            ],
+            "k": 33,
+            "n": 35,
+            "rate": 0.9429,
+            "ci95": [
+              0.8139,
+              0.9842
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+            ]
+          },
+          {
+            "id": "jc_reg_evidence",
+            "label": {
+              "zh": "要靠外部证据的",
+              "en": "Turning on outside evidence"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "judge-calibration/eval/results/RESULTS.md"
+            ],
+            "k": 6,
+            "n": 11,
+            "rate": 0.5455,
+            "ci95": [
+              0.2801,
+              0.7873
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "human",
+        "name": {
+          "zh": "公开数据集自带的人工评分",
+          "en": "Human ratings that ship with public datasets"
+        },
+        "date": "2026-11-18",
+        "metrics": [
+          {
+            "id": "jc_jv_judge",
+            "label": {
+              "zh": "Judge's Verdict：裁判和每位标注员完全一致（平均）",
+              "en": "Judge's Verdict: exact agreement with each annotator (mean)"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "judge-calibration/eval/results/summary.json"
+            ],
+            "value": 67.3333,
+            "unit": "pct",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+            ]
+          },
+          {
+            "id": "jc_jv_human",
+            "label": {
+              "zh": "Judge's Verdict：标注员彼此完全一致（平均）",
+              "en": "Judge's Verdict: exact agreement between annotators (mean)"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "judge-calibration/eval/results/summary.json"
+            ],
+            "value": 64.33330000000001,
+            "unit": "pct",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+            ]
+          },
+          {
+            "id": "jc_se_fluency",
+            "label": {
+              "zh": "SummEval 流畅度：和专家的 Spearman 相关",
+              "en": "SummEval fluency: Spearman with experts"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "judge-calibration/eval/results/summary.json"
+            ],
+            "value": 0.407624,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+            ]
+          },
+          {
+            "id": "jc_se_consistency",
+            "label": {
+              "zh": "SummEval 事实一致：和专家的 Spearman 相关",
+              "en": "SummEval consistency: Spearman with experts"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "judge-calibration/eval/results/summary.json"
+            ],
+            "value": 0.681804,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+            ]
+          },
+          {
+            "id": "jc_mqm_kappa",
+            "label": {
+              "zh": "WMT MQM 中译英：加权 kappa",
+              "en": "WMT MQM Chinese to English: weighted kappa"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "judge-calibration/eval/results/summary.json"
+            ],
+            "value": 0.290076,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "routing",
+        "name": {
+          "zh": "规则、裁判和复核队列怎么分工（711 道）",
+          "en": "Rules, judge and a review queue (711 items)"
+        },
+        "date": "2026-11-18",
+        "metrics": [
+          {
+            "id": "jc_missed_a",
+            "label": {
+              "zh": "只用裁判：漏掉的错误",
+              "en": "Judge alone: errors missed"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "judge-calibration/eval/results/summary.json"
+            ],
+            "k": 7,
+            "n": 390,
+            "rate": 0.0179,
+            "ci95": [
+              0.0087,
+              0.0366
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+            ]
+          },
+          {
+            "id": "jc_missed_b",
+            "label": {
+              "zh": "规则、裁判、复核队列：漏掉的错误",
+              "en": "Rules, judge, review queue: errors missed"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "judge-calibration/eval/results/summary.json"
+            ],
+            "k": 2,
+            "n": 390,
+            "rate": 0.0051,
+            "ci95": [
+              0.0014,
+              0.0185
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+            ]
+          },
+          {
+            "id": "jc_queue_b",
+            "label": {
+              "zh": "规则、裁判、复核队列：送人工",
+              "en": "Rules, judge, review queue: sent to people"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "judge-calibration/eval/results/summary.json"
+            ],
+            "k": 49,
+            "n": 711,
+            "rate": 0.0689,
+            "ci95": [
+              0.0525,
+              0.0899
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+            ]
+          },
+          {
+            "id": "jc_cost_a",
+            "label": {
+              "zh": "只用裁判：每 1,000 道的费用",
+              "en": "Judge alone: cost per 1,000 items"
+            },
+            "direction": "lower",
+            "kind": "value",
+            "sources": [
+              "judge-calibration/eval/results/summary.json"
+            ],
+            "value": 0.303012,
+            "unit": "usd",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+            ]
+          },
+          {
+            "id": "jc_cost_b",
+            "label": {
+              "zh": "规则、裁判、复核队列：每 1,000 道的费用",
+              "en": "Rules, judge, review queue: cost per 1,000 items"
+            },
+            "direction": "lower",
+            "kind": "value",
+            "sources": [
+              "judge-calibration/eval/results/summary.json"
+            ],
+            "value": 0.242936,
+            "unit": "usd",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+            ]
+          },
+          {
+            "id": "jc_sure_wrong",
+            "label": {
+              "zh": "第一次判断说“确定”的错误率",
+              "en": "First judgments marked sure: error rate"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "judge-calibration/eval/results/RESULTS.md"
+            ],
+            "k": 5,
+            "n": 662,
+            "rate": 0.0076,
+            "ci95": [
+              0.0032,
+              0.0176
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+            ]
+          },
+          {
+            "id": "jc_unsure_wrong",
+            "label": {
+              "zh": "第一次判断说“拿不准”的错误率",
+              "en": "First judgments marked unsure: error rate"
+            },
+            "direction": "none",
+            "kind": "proportion",
+            "sources": [
+              "judge-calibration/eval/results/RESULTS.md"
+            ],
+            "k": 11,
+            "n": 49,
+            "rate": 0.2245,
+            "ci95": [
+              0.1302,
+              0.3588
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sensitivity",
+        "name": {
+          "zh": "加废话、加保证语会不会骗过裁判（368 道）",
+          "en": "Does padding or assurance sway the judge? (368 items)"
+        },
+        "date": "2026-11-18",
+        "metrics": [
+          {
+            "id": "jc_verbose",
+            "label": {
+              "zh": "加废话后判断变了",
+              "en": "Verdicts changed by padding"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "judge-calibration/eval/results/RESULTS.md"
+            ],
+            "k": 0,
+            "n": 368,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.0103
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+            ]
+          },
+          {
+            "id": "jc_assertive",
+            "label": {
+              "zh": "加保证语后判断变了",
+              "en": "Verdicts changed by assurances"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "judge-calibration/eval/results/RESULTS.md"
+            ],
+            "k": 0,
+            "n": 368,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.0103
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "qc",
+        "name": {
+          "zh": "质检 Agent 和验收标准",
+          "en": "Quality-check agent and acceptance standard"
+        },
+        "date": "2026-11-18",
+        "metrics": [
+          {
+            "id": "jc_qc_caught",
+            "label": {
+              "zh": "质检 Agent：错误记录查出",
+              "en": "QC agent: wrong records caught"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "judge-calibration/eval/results/summary.json"
+            ],
+            "k": 119,
+            "n": 119,
+            "rate": 1.0,
+            "ci95": [
+              0.9687,
+              1.0
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+            ]
+          },
+          {
+            "id": "jc_qc_false",
+            "label": {
+              "zh": "质检 Agent：正确记录被误报",
+              "en": "QC agent: correct records flagged"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "judge-calibration/eval/results/summary.json"
+            ],
+            "k": 6,
+            "n": 120,
+            "rate": 0.05,
+            "ci95": [
+              0.0231,
+              0.1048
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+            ]
+          },
+          {
+            "id": "jc_accept_2",
+            "label": {
+              "zh": "错误率百分之二的批次被放行",
+              "en": "Batches with a two-percent error rate accepted"
+            },
+            "direction": "higher",
+            "kind": "value",
+            "sources": [
+              "judge-calibration/eval/results/RESULTS.md"
+            ],
+            "value": 91.5,
+            "unit": "pct",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+            ]
+          },
+          {
+            "id": "jc_accept_10",
+            "label": {
+              "zh": "错误率百分之十的批次被放行（目标是不超过一成）",
+              "en": "Batches with a ten-percent error rate accepted (target: at most one in ten)"
+            },
+            "direction": "lower",
+            "kind": "value",
+            "sources": [
+              "judge-calibration/eval/results/RESULTS.md"
+            ],
+            "value": 13.6,
+            "unit": "pct",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/RESULTS.md"
+            ]
+          },
+          {
+            "id": "jc_predictions",
+            "label": {
+              "zh": "事先写好的预测成立",
+              "en": "Predictions written beforehand that held"
+            },
+            "direction": "none",
+            "kind": "proportion",
+            "sources": [
+              "judge-calibration/eval/results/summary.json"
+            ],
+            "k": 7,
+            "n": 12,
+            "rate": 0.5833,
+            "ci95": [
+              0.3195,
+              0.8067
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+            ]
+          },
+          {
+            "id": "jc_cost_total",
+            "label": {
+              "zh": "整个项目的接口费用（批量价）",
+              "en": "Total API cost (batch prices)"
+            },
+            "direction": "lower",
+            "kind": "value",
+            "sources": [
+              "judge-calibration/eval/results/summary.json"
+            ],
+            "value": 2.4026,
+            "unit": "usd",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/judge-calibration/blob/main/eval/results/summary.json"
+            ]
+          }
+        ]
+      }
+    ],
+    "name": {
+      "zh": "模型裁判校准",
+      "en": "Judge Calibration"
+    },
+    "problem": {
+      "zh": "用模型当裁判打分省事，可它能信到什么程度；哪些检查可以交给它，哪些该用脚本，哪些必须留给人",
+      "en": "A model judge is convenient, but how far can it be trusted, which checks can it take, which belong to a script, and which must stay with people?"
+    },
+    "primary_metric": {
+      "zh": "和标准一致的比例；植入的错误抓到的比例；漏掉的错误和送人工的比例",
+      "en": "Agreement with each standard; planted errors caught; errors missed and share sent to people"
+    },
+    "summary": {
+      "zh": "检验一个模型裁判能信到什么程度。三种标准分开比：出题时定好答案的判断题（审核意见、简历判断、修改建议）、监管机构和法院对真实广告的结论、公开数据集自带的人工评分（Judge's Verdict、SummEval、WMT MQM 中译英）。再按结果把检查分成三类：能用脚本查的、能交给裁判的、必须留给人的，比较“只用裁判”和“先规则、再裁判、拿不准的送人工”两种接法；最后做了一个用两个工具的质检 Agent，并按模拟批次给它定验收标准。没有为这个项目另做人工评分。",
+      "en": "Measures how far one model judge can be trusted, against three standards kept apart: items with answers fixed when they were built (review opinions, resume verdicts, revision advice), regulator and court decisions on real ads, and the human ratings that ship with public datasets (Judge's Verdict, SummEval, WMT MQM Chinese to English). The results sort checks into three kinds: for a script, for the judge, and for people; the judge alone is compared with rules first, then the judge, with unsure items sent to people. Last, a quality-check agent with two tools gets an acceptance standard tested on simulated batches. No human ratings were collected for this project."
+    },
+    "did": {
+      "zh": "我把一个模型裁判分别和三种标准比：出题时定好的答案、监管和法院的结论、公开数据集自带的人工评分；再定出哪些检查交给脚本、哪些交给裁判、哪些留给人，并做了一个带验收标准的质检 Agent。方案、冻结的文件和预测跑前写好。",
+      "en": "I measured one model judge against three standards kept apart: answers fixed when the items were built, regulator and court decisions, and the human ratings that ship with public datasets; then set which checks go to a script, a judge or a person, and built a quality-check agent with an acceptance standard. The plan, frozen files and predictions were written before the runs."
+    },
+    "headline": [
+      {
+        "zh": "和出题时定好的答案一致 699/711，植入的错误抓到 385/390",
+        "en": "Agreed with the answers fixed at item-building time on 699/711; planted errors caught 385/390"
+      },
+      {
+        "zh": "监管和法院结论：从广告本身能看出的 33/35，要靠外部证据的只有 6/11",
+        "en": "Regulator and court decisions: 33/35 where the ad itself shows it, only 6/11 where outside evidence decides"
+      },
+      {
+        "zh": "先用规则、再交裁判、拿不准的送人：漏掉的错误 2/390，只用裁判时 7/390；送人工 49/711",
+        "en": "Rules, then the judge, unsure items to people: errors missed 2/390 against 7/390 with the judge alone; sent to people 49/711"
+      }
+    ]
   }
 ]

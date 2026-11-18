@@ -75,6 +75,7 @@ Python 3.11+, standard library only. The project folders must sit next to this r
 | `grounded-business-review-public/` | [grounded-business-review](https://github.com/llia0031-dotcom/grounded-business-review) |
 | `creator-skills-public/` | [creator-skills](https://github.com/llia0031-dotcom/creator-skills) |
 | `policy-model-lab-public/` | [policy-model-lab](https://github.com/llia0031-dotcom/policy-model-lab) |
+| `judge-calibration-public/` | [judge-calibration](https://github.com/llia0031-dotcom/judge-calibration) |
 | `launchpad-tracedesk/` | not public (source of the TraceDesk card) |
 | `aigc-scene-eval/` | not public (source of the text-on-product card) |
 
