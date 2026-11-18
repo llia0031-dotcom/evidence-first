@@ -2299,9 +2299,10 @@
     ],
     "images": [
       {
-        "path": "evidence-screening-public/assets/demo-zh.jpg",
+        "path": "evidence-screening/assets/demo-zh.jpg",
         "caption": "演示页（中文）：逐条要求的判断，每条附简历原文",
-        "public": true
+        "public": true,
+        "url": "https://raw.githubusercontent.com/llia0031-dotcom/evidence-screening/main/assets/demo-zh.jpg"
       }
     ]
   },
@@ -2639,9 +2640,10 @@
     ],
     "images": [
       {
-        "path": "evidence-screening-public/assets/demo-en.jpg",
+        "path": "evidence-screening/assets/demo-en.jpg",
         "caption": "Demo (English)",
-        "public": true
+        "public": true,
+        "url": "https://raw.githubusercontent.com/llia0031-dotcom/evidence-screening/main/assets/demo-en.jpg"
       }
     ]
   },

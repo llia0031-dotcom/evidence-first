@@ -163,6 +163,7 @@ caption = { zh = "开口时延对比", en = "First-audio latency comparison" }
 [[media]]
 project = "screening-audit"
 path = "evidence-screening-public/assets/demo-zh.jpg"
+url = "https://raw.githubusercontent.com/llia0031-dotcom/evidence-screening/main/assets/demo-zh.jpg"
 lang = "zh"
 public = true
 caption = { zh = "演示页（中文）：逐条要求的判断，每条附简历原文", en = "Demo (Chinese): verdict per requirement, each with the resume quote" }
@@ -170,6 +171,7 @@ caption = { zh = "演示页（中文）：逐条要求的判断，每条附简�
 [[media]]
 project = "screening-audit"
 path = "evidence-screening-public/assets/demo-en.jpg"
+url = "https://raw.githubusercontent.com/llia0031-dotcom/evidence-screening/main/assets/demo-en.jpg"
 lang = "en"
 public = true
 caption = { zh = "演示页（英文）", en = "Demo (English)" }

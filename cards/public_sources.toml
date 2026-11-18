@@ -59,3 +59,8 @@ url = "https://github.com/llia0031-dotcom/policy-model-lab/blob/main/"
 prefix = "judge-calibration-public/"
 repo = "judge-calibration"
 url = "https://github.com/llia0031-dotcom/judge-calibration/blob/main/"
+
+[[map]]
+prefix = "evidence-screening-public/"
+repo = "evidence-screening"
+url = "https://github.com/llia0031-dotcom/evidence-screening/blob/main/"
