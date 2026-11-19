@@ -6,12 +6,12 @@ links = [
   { label = { zh = "代码和资料", en = "Code and materials" }, url = "https://github.com/llia0031-dotcom/merchant-sourcing-my" },
   { label = { zh = "先联系谁", en = "Who to contact first" }, url = "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/pool/PRIORITY.md" },
 ]
-card_version = "1.0"
-updated = "2026-11-19"
+card_version = "1.1"
+updated = "2026-11-20"
 period = "2026-11-19"
 team = "Liang Liyuan"
 stack = { zh = "Python、DuckDB、SQL、Excel（openpyxl）、evidence-check、公开页面存档", en = "Python, DuckDB, SQL, Excel (openpyxl), evidence-check, saved public pages" }
-did = { zh = "我先查了现成的店铺排行工具：它们只排已经在平台上的商家，回答不了“还没进来或还没做起来的商家里先招谁”。于是用公开来源补这一块：存下官方、市场和品牌的公开页面，写出行业洞察和按品类的资质清单；打分规则在填写任何一行之前写好并冻结，按它给本地品牌、经销商和连锁店排出先后；再配上入驻跟进表、头 30 天的 SQL 和触达模板。每条事实和商家池的每一格都用 evidence-check 对回存档原文。", en = "I first checked the existing shop-ranking tools: they rank merchants already on a platform and cannot answer \"which merchants not yet there, or not yet large, to recruit first\". This pack fills that gap from public sources: saved official, market and brand pages, an industry insight and a per-category approvals checklist; scoring rules written and frozen before any row was filled, ranking local brands, distributors and retailers; then an onboarding tracker, first-30-days SQL and outreach templates. Every fact and every cell of the pool is checked against its saved page with evidence-check." }
+did = { zh = "我先查了现成的店铺排行工具：它们只排已经在平台上的商家，回答不了“还没进来或还没做起来的商家里先招谁”。于是用公开来源补这一块：存下官方、市场和品牌的公开页面，写出行业洞察和按品类的资质清单；打分规则在填写任何一行之前写好并冻结，按它给本地品牌、经销商和连锁店排出先后；再配上入驻跟进表、头 30 天的 SQL 和触达模板；充电器、充电宝和数据线单独做了一页深挖；另写了进团队以后先换哪些公开字段、怎么用结果检验打分权重，附校准脚本。每条事实和商家池的每一格都用 evidence-check 对回存档原文。", en = "I first checked the existing shop-ranking tools: they rank merchants already on a platform and cannot answer \"which merchants not yet there, or not yet large, to recruit first\". This pack fills that gap from public sources: saved official, market and brand pages, an industry insight and a per-category approvals checklist; scoring rules written and frozen before any row was filled, ranking local brands, distributors and retailers; then an onboarding tracker, first-30-days SQL and outreach templates; a one-page deep dive on chargers, power banks and cables; and a guide to which public fields to replace with team data first and how to test the scoring weights against results, with a calibration script. Every fact and every cell of the pool is checked against its saved page with evidence-check." }
 name = { zh = "马来西亚电子类目招商样本", en = "Malaysia Electronics Merchant Sourcing Pack" }
 problem = { zh = "类目团队招商的第一周：市场什么样、先联系哪些商家、凭什么，每类产品要哪些认证，入驻怎么跟进；每条理由都要拿得出公开出处", en = "A category team's first week of merchant recruiting: what the market looks like, which merchants to contact first and why, which approvals each product needs, how onboarding is tracked; every reason backed by a public source" }
 primary_metric = { zh = "带出处的说法逐字对回存档原文的比例；商家池里有核对过原文的格子数", en = "Share of sourced claims matched word for word against the saved pages; cells in the pool backed by a checked quote" }
@@ -41,10 +41,12 @@ timeline = [
 zh = [
   "类目团队开拓一个新市场的细分品类时：先看行业洞察定先招什么，再按商家池的先后和下一步去联系。",
   "商家第一次通话后：把对应品类的资质清单发过去，用跟进表排出入驻节点，用头 30 天的 SQL 看新店起步。",
+  "第一批商家有了结果后：把公开字段换成团队自己的数据，用校准脚本检验各维度的分数跟不跟得上结果，再定下一版规则。",
 ]
 en = [
   "When a category team opens sub-categories in a new market: the insight decides what to recruit first, the pool's order and next steps decide whom to call.",
   "After a merchant's first call: send the approvals checklist for its category, plan onboarding dates in the tracker, and follow the new shop with the first-30-days SQL.",
+  "Once the first batch has results: replace public fields with the team's own data, check with the calibration script whether each dimension tracks results, then set the next version of the rules.",
 ]
 
 [out_of_scope]
@@ -183,9 +185,14 @@ advice = { zh = "拿到平台或商家自己的数据后，用它替换估算再
 
 [[limitation]]
 text = { zh = "没有联系过任何商家，触达模板没有发出过；头 30 天的示例数据是虚构的，只用来测 SQL。", en = "No merchant has been contacted and the outreach templates have not been sent; the first-30-days example data is fictional and only tests the SQL." }
-advice = { zh = "真正联系后，把回复率和入驻进度记进跟进表，再回头校准打分规则。", en = "Once outreach starts, record replies and onboarding progress in the tracker and recalibrate the scoring rules." }
+advice = { zh = "真正联系后，把入驻结果和第四周的销售记下来，照 pool/INSIDE_THE_TEAM.md 用 pool/calibrate.py 检验权重。", en = "Once outreach starts, record onboarding and week-4 sales, then test the weights with pool/calibrate.py as pool/INSIDE_THE_TEAM.md describes." }
 
 [[version]]
 id = "1.0"
 date = "2026-11-19"
 text = { zh = "第一张卡，照公开仓库 merchant-sourcing-my 的结果文件写。", en = "First card, from the result files in the public merchant-sourcing-my repository." }
+
+[[version]]
+id = "1.1"
+date = "2026-11-20"
+text = { zh = "跟上项目的 a29f0c8：核对条数和被引用页面数照新的结果文件；补上充电类深挖、团队数据和校准说明。", en = "Follows the project's a29f0c8: claim and quoted-page counts from the new result files; adds the charging deep dive and the team-data and calibration guide." }

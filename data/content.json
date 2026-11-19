@@ -14033,7 +14033,7 @@
       "类目团队招商的第一周：市场什么样、先联系哪些商家、凭什么，每类产品要哪些认证，入驻怎么跟进；每条理由都要拿得出公开出处。"
     ],
     "did": [
-      "我先查了现成的店铺排行工具：它们只排已经在平台上的商家，回答不了“还没进来或还没做起来的商家里先招谁”。于是用公开来源补这一块：存下官方、市场和品牌的公开页面，写出行业洞察和按品类的资质清单；打分规则在填写任何一行之前写好并冻结，按它给本地品牌、经销商和连锁店排出先后；再配上入驻跟进表、头 30 天的 SQL 和触达模板。每条事实和商家池的每一格都用 evidence-check 对回存档原文。"
+      "我先查了现成的店铺排行工具：它们只排已经在平台上的商家，回答不了“还没进来或还没做起来的商家里先招谁”。于是用公开来源补这一块：存下官方、市场和品牌的公开页面，写出行业洞察和按品类的资质清单；打分规则在填写任何一行之前写好并冻结，按它给本地品牌、经销商和连锁店排出先后；再配上入驻跟进表、头 30 天的 SQL 和触达模板；充电器、充电宝和数据线单独做了一页深挖；另写了进团队以后先换哪些公开字段、怎么用结果检验打分权重，附校准脚本。每条事实和商家池的每一格都用 evidence-check 对回存档原文。"
     ],
     "evaluation": [
       "**全文核对：每条带出处的说法**：全部带出处的说法；每次构建都跑；evidence-check 0.5.0 的核对脚本；不调用模型",
@@ -14050,20 +14050,20 @@
     "limitations": [
       "“公开来源里没找到”不代表不存在，也不是对商家的评价；只读了不登录能看的页面。建议：第一次联系前，先查平台自己的卖家名单。",
       "第三方给的销量数字是它们的估算；店铺榜只来自一个数据集，按件数排序。建议：拿到平台或商家自己的数据后，用它替换估算再排一次。",
-      "没有联系过任何商家，触达模板没有发出过；头 30 天的示例数据是虚构的，只用来测 SQL。建议：真正联系后，把回复率和入驻进度记进跟进表，再回头校准打分规则。"
+      "没有联系过任何商家，触达模板没有发出过；头 30 天的示例数据是虚构的，只用来测 SQL。建议：真正联系后，把入驻结果和第四周的销售记下来，照 pool/INSIDE_THE_TEAM.md 用 pool/calibrate.py 检验权重。"
     ],
     "headline": [
-      "洞察、资质清单、两份 README 和商家池里带出处的说法，逐字对回存档原文：451/451",
+      "洞察、资质清单、两份 README 和商家池里带出处的说法，逐字对回存档原文：493/493",
       "商家池 42 家、9 个细分品类，303 个格子各有核对过的原文；按冻结的规则分档，A 档 14 家",
-      "存了 183 个公开页面，被引用的 130 个"
+      "存了 183 个公开页面，被引用的 131 个"
     ],
     "numbers": [
       {
         "id": "N1",
         "metric": "msm_claims",
         "label": "带出处的说法对回存档原文",
-        "value": "451/451",
-        "full": "451/451（100.0%，95% 区间 99.2–100.0%）",
+        "value": "493/493",
+        "full": "493/493（100.0%，95% 区间 99.2–100.0%）",
         "evaluation": "全文核对：每条带出处的说法",
         "sources": [
           "merchant-sourcing-my/results/CLAIM_CHECK.md"
@@ -14072,14 +14072,14 @@
           "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/CLAIM_CHECK.md"
         ],
         "kind": "proportion",
-        "k": 451,
-        "n": 451,
+        "k": 493,
+        "n": 493,
         "rate": 1.0,
         "ci95": [
-          0.9916,
+          0.9923,
           1.0
         ],
-        "display": "451/451"
+        "display": "493/493"
       },
       {
         "id": "N2",
@@ -14175,8 +14175,8 @@
         "id": "N7",
         "metric": "msm_quoted",
         "label": "被引用的页面",
-        "value": "130/183",
-        "full": "130/183（71.0%，95% 区间 64.1–77.1%）",
+        "value": "131/183",
+        "full": "131/183（71.6%，95% 区间 64.7–77.6%）",
         "evaluation": "来源：存档的公开页面",
         "sources": [
           "merchant-sourcing-my/results/SUMMARY.md"
@@ -14185,14 +14185,14 @@
           "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md"
         ],
         "kind": "proportion",
-        "k": 130,
+        "k": 131,
         "n": 183,
-        "rate": 0.7104,
+        "rate": 0.7158,
         "ci95": [
-          0.6409,
-          0.7712
+          0.6466,
+          0.7762
         ],
-        "display": "130/183"
+        "display": "131/183"
       },
       {
         "id": "N8",
@@ -14222,7 +14222,7 @@
     "card_title": "先招哪些商家，每条理由都有出处",
     "assumed": "以为现成的店铺排行工具就能定招商名单",
     "showed": "它们只排已在平台上的商家；公开来源补出 42 家的打分商家池",
-    "result_line": "带出处的说法逐字对回原文 451/451；商家池 42 家，303 个格子各有核对过的原文",
+    "result_line": "带出处的说法逐字对回原文 493/493；商家池 42 家，303 个格子各有核对过的原文",
     "key_numbers": [
       {
         "id": "N1",
@@ -14255,7 +14255,7 @@
         "date": "2026-11-19",
         "label": "全文核对",
         "text": "洞察、清单和 README 全部对上",
-        "after": "451/451",
+        "after": "493/493",
         "after_id": "N1"
       }
     ],
@@ -14324,7 +14324,7 @@
       "A category team's first week of merchant recruiting: what the market looks like, which merchants to contact first and why, which approvals each product needs, how onboarding is tracked; every reason backed by a public source."
     ],
     "did": [
-      "I first checked the existing shop-ranking tools: they rank merchants already on a platform and cannot answer \"which merchants not yet there, or not yet large, to recruit first\". This pack fills that gap from public sources: saved official, market and brand pages, an industry insight and a per-category approvals checklist; scoring rules written and frozen before any row was filled, ranking local brands, distributors and retailers; then an onboarding tracker, first-30-days SQL and outreach templates. Every fact and every cell of the pool is checked against its saved page with evidence-check."
+      "I first checked the existing shop-ranking tools: they rank merchants already on a platform and cannot answer \"which merchants not yet there, or not yet large, to recruit first\". This pack fills that gap from public sources: saved official, market and brand pages, an industry insight and a per-category approvals checklist; scoring rules written and frozen before any row was filled, ranking local brands, distributors and retailers; then an onboarding tracker, first-30-days SQL and outreach templates; a one-page deep dive on chargers, power banks and cables; and a guide to which public fields to replace with team data first and how to test the scoring weights against results, with a calibration script. Every fact and every cell of the pool is checked against its saved page with evidence-check."
     ],
     "evaluation": [
       "**Full check: every sourced claim**: All sourced claims; Run on every build; The evidence-check 0.5.0 script; no model called",
@@ -14341,20 +14341,20 @@
     "limitations": [
       "\"Not found in public sources\" does not mean it does not exist, and is no judgement of the merchant; only pages readable without signing in were read. Recommendation: Check the platform's own seller list before the first call.",
       "Third-party sales figures are their estimates; the shop ranking comes from one dataset, ordered by units. Recommendation: Re-rank with the platform's or the merchant's own data once available.",
-      "No merchant has been contacted and the outreach templates have not been sent; the first-30-days example data is fictional and only tests the SQL. Recommendation: Once outreach starts, record replies and onboarding progress in the tracker and recalibrate the scoring rules."
+      "No merchant has been contacted and the outreach templates have not been sent; the first-30-days example data is fictional and only tests the SQL. Recommendation: Once outreach starts, record onboarding and week-4 sales, then test the weights with pool/calibrate.py as pool/INSIDE_THE_TEAM.md describes."
     ],
     "headline": [
-      "Sourced claims in the insight, the checklist, both READMEs and the pool, matched word for word against the saved pages: 451/451",
+      "Sourced claims in the insight, the checklist, both READMEs and the pool, matched word for word against the saved pages: 493/493",
       "A pool of 42 merchants across 9 sub-categories, 303 cells each with a checked quote; tiered by the frozen rules, 14 in tier A",
-      "183 public pages saved, 130 of them quoted"
+      "183 public pages saved, 131 of them quoted"
     ],
     "numbers": [
       {
         "id": "N1",
         "metric": "msm_claims",
         "label": "Sourced claims matched to saved pages",
-        "value": "451/451",
-        "full": "451/451 (100.0%, 95% CI 99.2–100.0%)",
+        "value": "493/493",
+        "full": "493/493 (100.0%, 95% CI 99.2–100.0%)",
         "evaluation": "Full check: every sourced claim",
         "sources": [
           "merchant-sourcing-my/results/CLAIM_CHECK.md"
@@ -14363,14 +14363,14 @@
           "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/CLAIM_CHECK.md"
         ],
         "kind": "proportion",
-        "k": 451,
-        "n": 451,
+        "k": 493,
+        "n": 493,
         "rate": 1.0,
         "ci95": [
-          0.9916,
+          0.9923,
           1.0
         ],
-        "display": "451/451"
+        "display": "493/493"
       },
       {
         "id": "N2",
@@ -14466,8 +14466,8 @@
         "id": "N7",
         "metric": "msm_quoted",
         "label": "Pages quoted",
-        "value": "130/183",
-        "full": "130/183 (71.0%, 95% CI 64.1–77.1%)",
+        "value": "131/183",
+        "full": "131/183 (71.6%, 95% CI 64.7–77.6%)",
         "evaluation": "Sources: saved public pages",
         "sources": [
           "merchant-sourcing-my/results/SUMMARY.md"
@@ -14476,14 +14476,14 @@
           "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md"
         ],
         "kind": "proportion",
-        "k": 130,
+        "k": 131,
         "n": 183,
-        "rate": 0.7104,
+        "rate": 0.7158,
         "ci95": [
-          0.6409,
-          0.7712
+          0.6466,
+          0.7762
         ],
-        "display": "130/183"
+        "display": "131/183"
       },
       {
         "id": "N8",
@@ -14513,7 +14513,7 @@
     "card_title": "Which merchants to recruit first, every reason sourced",
     "assumed": "Expected existing shop-ranking tools to settle the recruiting list",
     "showed": "They rank only merchants already on a platform; public sources fill a scored pool of 42",
-    "result_line": "Sourced claims matched word for word: 451/451; a pool of 42 merchants, 303 cells each with a checked quote",
+    "result_line": "Sourced claims matched word for word: 493/493; a pool of 42 merchants, 303 cells each with a checked quote",
     "key_numbers": [
       {
         "id": "N1",
@@ -14546,7 +14546,7 @@
         "date": "2026-11-19",
         "label": "Full check",
         "text": "Insight, checklist and READMEs all match",
-        "after": "451/451",
+        "after": "493/493",
         "after_id": "N1"
       }
     ],

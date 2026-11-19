@@ -1,6 +1,6 @@
 # 马来西亚电子类目招商样本：评测卡
 
-> 卡片版本 1.0 · 数据截至 2026-11-19 · 已公开
+> 卡片版本 1.1 · 数据截至 2026-11-20 · 已公开
 >
 > 数字由 `scripts/build_cards.py` 从项目的结果文件算出；比例附 Wilson 95% 区间。
 
@@ -10,13 +10,13 @@
 
 **问题**：类目团队招商的第一周：市场什么样、先联系哪些商家、凭什么，每类产品要哪些认证，入驻怎么跟进；每条理由都要拿得出公开出处。
 
-**我做了什么**：我先查了现成的店铺排行工具：它们只排已经在平台上的商家，回答不了“还没进来或还没做起来的商家里先招谁”。于是用公开来源补这一块：存下官方、市场和品牌的公开页面，写出行业洞察和按品类的资质清单；打分规则在填写任何一行之前写好并冻结，按它给本地品牌、经销商和连锁店排出先后；再配上入驻跟进表、头 30 天的 SQL 和触达模板。每条事实和商家池的每一格都用 evidence-check 对回存档原文。
+**我做了什么**：我先查了现成的店铺排行工具：它们只排已经在平台上的商家，回答不了“还没进来或还没做起来的商家里先招谁”。于是用公开来源补这一块：存下官方、市场和品牌的公开页面，写出行业洞察和按品类的资质清单；打分规则在填写任何一行之前写好并冻结，按它给本地品牌、经销商和连锁店排出先后；再配上入驻跟进表、头 30 天的 SQL 和触达模板；充电器、充电宝和数据线单独做了一页深挖；另写了进团队以后先换哪些公开字段、怎么用结果检验打分权重，附校准脚本。每条事实和商家池的每一格都用 evidence-check 对回存档原文。
 
 **结果**：
 
-- 洞察、资质清单、两份 README 和商家池里带出处的说法，逐字对回存档原文：451/451
+- 洞察、资质清单、两份 README 和商家池里带出处的说法，逐字对回存档原文：493/493
 - 商家池 42 家、9 个细分品类，303 个格子各有核对过的原文；按冻结的规则分档，A 档 14 家
-- 存了 183 个公开页面，被引用的 130 个
+- 存了 183 个公开页面，被引用的 131 个
 
 ## 概况
 
@@ -30,6 +30,7 @@
 
 - 类目团队开拓一个新市场的细分品类时：先看行业洞察定先招什么，再按商家池的先后和下一步去联系。
 - 商家第一次通话后：把对应品类的资质清单发过去，用跟进表排出入驻节点，用头 30 天的 SQL 看新店起步。
+- 第一批商家有了结果后：把公开字段换成团队自己的数据，用校准脚本检验各维度的分数跟不跟得上结果，再定下一版规则。
 
 ## 不适用的地方
 
@@ -82,7 +83,7 @@
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 带出处的说法对回存档原文 | 451/451（100.0%，95% 区间 99.2–100.0%） | 越高越好 | [`merchant-sourcing-my/results/CLAIM_CHECK.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/CLAIM_CHECK.md) |
+| 带出处的说法对回存档原文 | 493/493（100.0%，95% 区间 99.2–100.0%） | 越高越好 | [`merchant-sourcing-my/results/CLAIM_CHECK.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/CLAIM_CHECK.md) |
 | 带数字却没标出处的行 | 0 | 越低越好 | [`merchant-sourcing-my/results/CLAIM_CHECK.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/CLAIM_CHECK.md) |
 
 每条说法都对回了原文，带数字却没标出处的行一条也没有。
@@ -106,7 +107,7 @@
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
 | 存档的公开页面 | 183 | 只作说明 | [`merchant-sourcing-my/results/SUMMARY.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md) |
-| 被引用的页面 | 130/183（71.0%，95% 区间 64.1–77.1%） | 只作说明 | [`merchant-sourcing-my/results/SUMMARY.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md) |
+| 被引用的页面 | 131/183（71.6%，95% 区间 64.7–77.6%） | 只作说明 | [`merchant-sourcing-my/results/SUMMARY.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md) |
 | 官方页面 | 42 | 只作说明 | [`merchant-sourcing-my/results/SUMMARY.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md) |
 
 大部分存下的页面都被洞察、清单或商家池引用；资质清单只引监管机构的页面。
@@ -118,11 +119,12 @@
 - 第三方给的销量数字是它们的估算；店铺榜只来自一个数据集，按件数排序。
   - 建议：拿到平台或商家自己的数据后，用它替换估算再排一次。
 - 没有联系过任何商家，触达模板没有发出过；头 30 天的示例数据是虚构的，只用来测 SQL。
-  - 建议：真正联系后，把回复率和入驻进度记进跟进表，再回头校准打分规则。
+  - 建议：真正联系后，把入驻结果和第四周的销售记下来，照 pool/INSIDE_THE_TEAM.md 用 pool/calibrate.py 检验权重。
 
 ## 版本
 
 - **1.0**（2026-11-19）第一张卡，照公开仓库 merchant-sourcing-my 的结果文件写。
+- **1.1**（2026-11-20）跟上项目的 a29f0c8：核对条数和被引用页面数照新的结果文件；补上充电类深挖、团队数据和校准说明。
 
 ## 出处
 

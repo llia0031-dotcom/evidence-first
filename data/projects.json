@@ -10043,8 +10043,8 @@
     "order": 16,
     "layer": "judgement",
     "status": "public",
-    "updated": "2026-11-19",
-    "card_version": "1.0",
+    "updated": "2026-11-20",
+    "card_version": "1.1",
     "card": {
       "zh": "cards/merchant-sourcing-my.md",
       "en": "cards/merchant-sourcing-my.en.md"
@@ -10097,11 +10097,11 @@
             "sources": [
               "merchant-sourcing-my/results/CLAIM_CHECK.md"
             ],
-            "k": 451,
-            "n": 451,
+            "k": 493,
+            "n": 493,
             "rate": 1.0,
             "ci95": [
-              0.9916,
+              0.9923,
               1.0
             ],
             "source_urls": [
@@ -10305,12 +10305,12 @@
             "sources": [
               "merchant-sourcing-my/results/SUMMARY.md"
             ],
-            "k": 130,
+            "k": 131,
             "n": 183,
-            "rate": 0.7104,
+            "rate": 0.7158,
             "ci95": [
-              0.6409,
-              0.7712
+              0.6466,
+              0.7762
             ],
             "source_urls": [
               "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md"
@@ -10354,21 +10354,21 @@
       "en": "A first-week recruiting pack for a category team: industry insight, a scored pool of local brands, distributors and retailers, a per-category approvals checklist, an onboarding tracker, first-30-days SQL and outreach templates. What is evaluated is every fact in the pack: the quote must be in the saved page, the number in the quote, and a pool quote must contain a word that counts as evidence; if not, the build stops."
     },
     "did": {
-      "zh": "我先查了现成的店铺排行工具：它们只排已经在平台上的商家，回答不了“还没进来或还没做起来的商家里先招谁”。于是用公开来源补这一块：存下官方、市场和品牌的公开页面，写出行业洞察和按品类的资质清单；打分规则在填写任何一行之前写好并冻结，按它给本地品牌、经销商和连锁店排出先后；再配上入驻跟进表、头 30 天的 SQL 和触达模板。每条事实和商家池的每一格都用 evidence-check 对回存档原文。",
-      "en": "I first checked the existing shop-ranking tools: they rank merchants already on a platform and cannot answer \"which merchants not yet there, or not yet large, to recruit first\". This pack fills that gap from public sources: saved official, market and brand pages, an industry insight and a per-category approvals checklist; scoring rules written and frozen before any row was filled, ranking local brands, distributors and retailers; then an onboarding tracker, first-30-days SQL and outreach templates. Every fact and every cell of the pool is checked against its saved page with evidence-check."
+      "zh": "我先查了现成的店铺排行工具：它们只排已经在平台上的商家，回答不了“还没进来或还没做起来的商家里先招谁”。于是用公开来源补这一块：存下官方、市场和品牌的公开页面，写出行业洞察和按品类的资质清单；打分规则在填写任何一行之前写好并冻结，按它给本地品牌、经销商和连锁店排出先后；再配上入驻跟进表、头 30 天的 SQL 和触达模板；充电器、充电宝和数据线单独做了一页深挖；另写了进团队以后先换哪些公开字段、怎么用结果检验打分权重，附校准脚本。每条事实和商家池的每一格都用 evidence-check 对回存档原文。",
+      "en": "I first checked the existing shop-ranking tools: they rank merchants already on a platform and cannot answer \"which merchants not yet there, or not yet large, to recruit first\". This pack fills that gap from public sources: saved official, market and brand pages, an industry insight and a per-category approvals checklist; scoring rules written and frozen before any row was filled, ranking local brands, distributors and retailers; then an onboarding tracker, first-30-days SQL and outreach templates; a one-page deep dive on chargers, power banks and cables; and a guide to which public fields to replace with team data first and how to test the scoring weights against results, with a calibration script. Every fact and every cell of the pool is checked against its saved page with evidence-check."
     },
     "headline": [
       {
-        "zh": "洞察、资质清单、两份 README 和商家池里带出处的说法，逐字对回存档原文：451/451",
-        "en": "Sourced claims in the insight, the checklist, both READMEs and the pool, matched word for word against the saved pages: 451/451"
+        "zh": "洞察、资质清单、两份 README 和商家池里带出处的说法，逐字对回存档原文：493/493",
+        "en": "Sourced claims in the insight, the checklist, both READMEs and the pool, matched word for word against the saved pages: 493/493"
       },
       {
         "zh": "商家池 42 家、9 个细分品类，303 个格子各有核对过的原文；按冻结的规则分档，A 档 14 家",
         "en": "A pool of 42 merchants across 9 sub-categories, 303 cells each with a checked quote; tiered by the frozen rules, 14 in tier A"
       },
       {
-        "zh": "存了 183 个公开页面，被引用的 130 个",
-        "en": "183 public pages saved, 130 of them quoted"
+        "zh": "存了 183 个公开页面，被引用的 131 个",
+        "en": "183 public pages saved, 131 of them quoted"
       }
     ]
   }

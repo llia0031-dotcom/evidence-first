@@ -1,6 +1,6 @@
 # Malaysia Electronics Merchant Sourcing Pack: evaluation card
 
-> Card version 1.0 · Data as of 2026-11-19 · public
+> Card version 1.1 · Data as of 2026-11-20 · public
 >
 > Numbers are computed by `scripts/build_cards.py` from the project's result files; proportions carry a Wilson 95% interval.
 
@@ -10,13 +10,13 @@
 
 **Problem**: A category team's first week of merchant recruiting: what the market looks like, which merchants to contact first and why, which approvals each product needs, how onboarding is tracked; every reason backed by a public source.
 
-**What I did**: I first checked the existing shop-ranking tools: they rank merchants already on a platform and cannot answer "which merchants not yet there, or not yet large, to recruit first". This pack fills that gap from public sources: saved official, market and brand pages, an industry insight and a per-category approvals checklist; scoring rules written and frozen before any row was filled, ranking local brands, distributors and retailers; then an onboarding tracker, first-30-days SQL and outreach templates. Every fact and every cell of the pool is checked against its saved page with evidence-check.
+**What I did**: I first checked the existing shop-ranking tools: they rank merchants already on a platform and cannot answer "which merchants not yet there, or not yet large, to recruit first". This pack fills that gap from public sources: saved official, market and brand pages, an industry insight and a per-category approvals checklist; scoring rules written and frozen before any row was filled, ranking local brands, distributors and retailers; then an onboarding tracker, first-30-days SQL and outreach templates; a one-page deep dive on chargers, power banks and cables; and a guide to which public fields to replace with team data first and how to test the scoring weights against results, with a calibration script. Every fact and every cell of the pool is checked against its saved page with evidence-check.
 
 **Results**: 
 
-- Sourced claims in the insight, the checklist, both READMEs and the pool, matched word for word against the saved pages: 451/451
+- Sourced claims in the insight, the checklist, both READMEs and the pool, matched word for word against the saved pages: 493/493
 - A pool of 42 merchants across 9 sub-categories, 303 cells each with a checked quote; tiered by the frozen rules, 14 in tier A
-- 183 public pages saved, 130 of them quoted
+- 183 public pages saved, 131 of them quoted
 
 ## Summary
 
@@ -30,6 +30,7 @@ A first-week recruiting pack for a category team: industry insight, a scored poo
 
 - When a category team opens sub-categories in a new market: the insight decides what to recruit first, the pool's order and next steps decide whom to call.
 - After a merchant's first call: send the approvals checklist for its category, plan onboarding dates in the tracker, and follow the new shop with the first-30-days SQL.
+- Once the first batch has results: replace public fields with the team's own data, check with the calibration script whether each dimension tracks results, then set the next version of the rules.
 
 ## Out of scope
 
@@ -82,7 +83,7 @@ Each evaluation version has its own table. Scores are not compared across versio
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Sourced claims matched to saved pages | 451/451 (100.0%, 95% CI 99.2–100.0%) | higher is better | [`merchant-sourcing-my/results/CLAIM_CHECK.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/CLAIM_CHECK.md) |
+| Sourced claims matched to saved pages | 493/493 (100.0%, 95% CI 99.2–100.0%) | higher is better | [`merchant-sourcing-my/results/CLAIM_CHECK.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/CLAIM_CHECK.md) |
 | Lines with a number but no source tag | 0 | lower is better | [`merchant-sourcing-my/results/CLAIM_CHECK.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/CLAIM_CHECK.md) |
 
 Every claim matches its source, and no line carries a number without a source tag.
@@ -106,7 +107,7 @@ The top of the list is local merchants that already sell well elsewhere but have
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
 | Public pages saved | 183 | context only | [`merchant-sourcing-my/results/SUMMARY.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md) |
-| Pages quoted | 130/183 (71.0%, 95% CI 64.1–77.1%) | context only | [`merchant-sourcing-my/results/SUMMARY.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md) |
+| Pages quoted | 131/183 (71.6%, 95% CI 64.7–77.6%) | context only | [`merchant-sourcing-my/results/SUMMARY.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md) |
 | Official pages | 42 | context only | [`merchant-sourcing-my/results/SUMMARY.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md) |
 
 Most saved pages are quoted by the insight, the checklist or the pool; the approvals checklist quotes regulators only.
@@ -118,11 +119,12 @@ Most saved pages are quoted by the insight, the checklist or the pool; the appro
 - Third-party sales figures are their estimates; the shop ranking comes from one dataset, ordered by units.
   - Recommendation: Re-rank with the platform's or the merchant's own data once available.
 - No merchant has been contacted and the outreach templates have not been sent; the first-30-days example data is fictional and only tests the SQL.
-  - Recommendation: Once outreach starts, record replies and onboarding progress in the tracker and recalibrate the scoring rules.
+  - Recommendation: Once outreach starts, record onboarding and week-4 sales, then test the weights with pool/calibrate.py as pool/INSIDE_THE_TEAM.md describes.
 
 ## Versions
 
 - **1.0** (2026-11-19) First card, from the result files in the public merchant-sourcing-my repository.
+- **1.1** (2026-11-20) Follows the project's a29f0c8: claim and quoted-page counts from the new result files; adds the charging deep dive and the team-data and calibration guide.
 
 ## Provenance
 
