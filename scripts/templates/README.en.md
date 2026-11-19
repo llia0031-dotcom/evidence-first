@@ -78,6 +78,7 @@ Python 3.11+, standard library only. The project folders must sit next to this r
 | `judge-calibration-public/` | [judge-calibration](https://github.com/llia0031-dotcom/judge-calibration) |
 | `labelling-agent-kit-public/` | [labelling-agent-kit](https://github.com/llia0031-dotcom/labelling-agent-kit) |
 | `agent-trace-eval-public/` | [agent-trace-eval](https://github.com/llia0031-dotcom/agent-trace-eval) |
+| `merchant-sourcing-my-public/` | [merchant-sourcing-my](https://github.com/llia0031-dotcom/merchant-sourcing-my) |
 | `launchpad-tracedesk/` | not public (source of the TraceDesk card) |
 | `aigc-scene-eval/` | not public (source of the text-on-product card) |
 

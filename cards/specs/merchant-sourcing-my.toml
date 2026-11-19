@@ -1,0 +1,191 @@
+id = "merchant-sourcing-my"
+order = 16
+layer = "judgement"
+status = "public"
+links = [
+  { label = { zh = "代码和资料", en = "Code and materials" }, url = "https://github.com/llia0031-dotcom/merchant-sourcing-my" },
+  { label = { zh = "先联系谁", en = "Who to contact first" }, url = "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/pool/PRIORITY.md" },
+]
+card_version = "1.0"
+updated = "2026-11-19"
+period = "2026-11-19"
+team = "Liang Liyuan"
+stack = { zh = "Python、DuckDB、SQL、Excel（openpyxl）、evidence-check、公开页面存档", en = "Python, DuckDB, SQL, Excel (openpyxl), evidence-check, saved public pages" }
+did = { zh = "我先查了现成的店铺排行工具：它们只排已经在平台上的商家，回答不了“还没进来或还没做起来的商家里先招谁”。于是用公开来源补这一块：存下官方、市场和品牌的公开页面，写出行业洞察和按品类的资质清单；打分规则在填写任何一行之前写好并冻结，按它给本地品牌、经销商和连锁店排出先后；再配上入驻跟进表、头 30 天的 SQL 和触达模板。每条事实和商家池的每一格都用 evidence-check 对回存档原文。", en = "I first checked the existing shop-ranking tools: they rank merchants already on a platform and cannot answer \"which merchants not yet there, or not yet large, to recruit first\". This pack fills that gap from public sources: saved official, market and brand pages, an industry insight and a per-category approvals checklist; scoring rules written and frozen before any row was filled, ranking local brands, distributors and retailers; then an onboarding tracker, first-30-days SQL and outreach templates. Every fact and every cell of the pool is checked against its saved page with evidence-check." }
+name = { zh = "马来西亚电子类目招商样本", en = "Malaysia Electronics Merchant Sourcing Pack" }
+problem = { zh = "类目团队招商的第一周：市场什么样、先联系哪些商家、凭什么，每类产品要哪些认证，入驻怎么跟进；每条理由都要拿得出公开出处", en = "A category team's first week of merchant recruiting: what the market looks like, which merchants to contact first and why, which approvals each product needs, how onboarding is tracked; every reason backed by a public source" }
+primary_metric = { zh = "带出处的说法逐字对回存档原文的比例；商家池里有核对过原文的格子数", en = "Share of sourced claims matched word for word against the saved pages; cells in the pool backed by a checked quote" }
+headline = [
+  { zh = "洞察、资质清单、两份 README 和商家池里带出处的说法，逐字对回存档原文：{msm_claims}", en = "Sourced claims in the insight, the checklist, both READMEs and the pool, matched word for word against the saved pages: {msm_claims}" },
+  { zh = "商家池 {msm_merchants} 家、{msm_subcats} 个细分品类，{msm_cells} 个格子各有核对过的原文；按冻结的规则分档，A 档 {msm_tier_a} 家", en = "A pool of {msm_merchants} merchants across {msm_subcats} sub-categories, {msm_cells} cells each with a checked quote; tiered by the frozen rules, {msm_tier_a} in tier A" },
+  { zh = "存了 {msm_pages} 个公开页面，被引用的 {msm_quoted:k} 个", en = "{msm_pages} public pages saved, {msm_quoted:k} of them quoted" },
+]
+summary = { zh = "给类目团队的招商“第一周作业”：行业洞察、本地品牌、经销商和连锁店的打分商家池、按品类的资质清单、入驻跟进表、头 30 天的 SQL 和触达模板。评的是这份材料里的每条事实：引文要在存档页面里，数字要在引文里，商家池的引文里还要有能当证据的词；对不上，构建就停下。", en = "A first-week recruiting pack for a category team: industry insight, a scored pool of local brands, distributors and retailers, a per-category approvals checklist, an onboarding tracker, first-30-days SQL and outreach templates. What is evaluated is every fact in the pack: the quote must be in the saved page, the number in the quote, and a pool quote must contain a word that counts as evidence; if not, the build stops." }
+core_link = { zh = "每条事实都用 evidence-check 0.5.0 的核对脚本对回存档原文；头 30 天的 SQL 沿用有据经营分析的周指标做法。", en = "Every fact is checked against its saved page with the evidence-check 0.5.0 script; the first-30-days SQL follows Grounded Business Review's weekly metrics." }
+models = { zh = "没有调用模型：读页面、打分、核对和出表都由脚本完成。", en = "No model is called: reading pages, scoring, checking and building the tables are all done by scripts." }
+iteration = { zh = ["打分规则：第一版在填写任何一行之前就换成第二版，重点改成“在别处已经卖得好、内容电商上还没做大”的本地商家；变更记录写在规则文件里，规则一改，构建就拒绝打分。", "核对：引文不在页面里、数字不在引文里、引文里没有能当证据的词（例如认证要有 SIRIM、MCMC 或能源委员会），构建都会停下。"], en = ["Scoring rules: version one was replaced by version two before any row was filled, refocusing on local merchants that already sell well elsewhere but are not yet large on content commerce; the change log is in the rules file, and the build refuses to score if the rules change.", "Checks: the build stops when a quote is not in its page, a number is not in its quote, or a quote lacks a word that counts as evidence (a certification must name SIRIM, MCMC or the Energy Commission, for example)."] }
+conclusion = { zh = "招商名单的每条理由都能当面翻到原文：先联系谁、为什么、要什么资质，都有公开出处。规则先写死再打分，排序就不会跟着手上的名单走；拿不到的信息照实写“公开来源里没找到”，第一次联系前再查。", en = "Every reason on the recruiting list opens to its source: who to contact first, why, and which approvals apply. Rules fixed before scoring keep the ranking from bending to the list at hand; what public sources lack is written as \"not found in public sources\" and checked before the first call." }
+short_name = { zh = "招商样本", en = "Merchant sourcing" }
+card_title = { zh = "先招哪些商家，每条理由都有出处", en = "Which merchants to recruit first, every reason sourced" }
+assumed = { zh = "以为现成的店铺排行工具就能定招商名单", en = "Expected existing shop-ranking tools to settle the recruiting list" }
+showed = { zh = "它们只排已在平台上的商家；公开来源补出 {msm_merchants} 家的打分商家池", en = "They rank only merchants already on a platform; public sources fill a scored pool of {msm_merchants}" }
+result_line = { zh = "带出处的说法逐字对回原文 {msm_claims}；商家池 {msm_merchants} 家，{msm_cells} 个格子各有核对过的原文", en = "Sourced claims matched word for word: {msm_claims}; a pool of {msm_merchants} merchants, {msm_cells} cells each with a checked quote" }
+key_numbers = [{ metric = "msm_claims", label = { zh = "带出处的说法对回存档原文", en = "Sourced claims matched to saved pages" } }, { metric = "msm_cells", label = { zh = "商家池里核对过原文的格子", en = "Pool cells with a checked quote" } }, { metric = "msm_local", label = { zh = "找到马来西亚公司或经销商的商家", en = "Merchants with a Malaysian company or distributor found" } }]
+timeline = [
+  { date = "2026-11-19", label = { zh = "打分规则", en = "Scoring rules" }, text = { zh = "填写前换成第二版并冻结", en = "Replaced by version two and frozen before any row" }, adopted = true },
+  { date = "2026-11-19", label = { zh = "商家池", en = "Pool" }, text = { zh = "每个格子都有核对过的原文", en = "Every cell has a checked quote" }, after = "msm_cells" },
+  { date = "2026-11-19", label = { zh = "全文核对", en = "Full check" }, text = { zh = "洞察、清单和 README 全部对上", en = "Insight, checklist and READMEs all match" }, after = "msm_claims" },
+]
+
+[uses]
+zh = [
+  "类目团队开拓一个新市场的细分品类时：先看行业洞察定先招什么，再按商家池的先后和下一步去联系。",
+  "商家第一次通话后：把对应品类的资质清单发过去，用跟进表排出入驻节点，用头 30 天的 SQL 看新店起步。",
+]
+en = [
+  "When a category team opens sub-categories in a new market: the insight decides what to recruit first, the pool's order and next steps decide whom to call.",
+  "After a merchant's first call: send the approvals checklist for its category, plan onboarding dates in the tracker, and follow the new shop with the first-30-days SQL.",
+]
+
+[out_of_scope]
+zh = [
+  "不评价任何商家；分数低只表示公开证据少或眼下能补的少。",
+  "不替代平台自己的卖家名单和后台数据；只用不登录就能读的公开页面。",
+]
+en = [
+  "Does not judge any merchant; a low score means less public evidence or less to gain right now.",
+  "Does not replace a platform's own seller lists or back-office data; only pages readable without signing in are used.",
+]
+
+[[eval]]
+id = "claims"
+name = { zh = "全文核对：每条带出处的说法", en = "Full check: every sourced claim" }
+date = "2026-11-19"
+data = { zh = "洞察、资质清单、中英两份 README 里每一行带出处标签的话，商家池每一行的每个字段，还有每条需求信号；对照的是存档的公开页面原文和结果文件。", en = "Every tagged line of the insight, the checklist and both READMEs, every field of every pool row and every demand signal, against the saved public pages and the result files." }
+items = { zh = "全部带出处的说法", en = "All sourced claims" }
+runs = { zh = "每次构建都跑", en = "Run on every build" }
+setup = { zh = "evidence-check 0.5.0 的核对脚本；不调用模型", en = "The evidence-check 0.5.0 script; no model called" }
+frozen = { zh = "`sources/manifests/`（每个网址、读取时间和原文的 SHA-256）", en = "`sources/manifests/` (each URL, fetch time and the SHA-256 of the text)" }
+takeaway = { zh = "每条说法都对回了原文，带数字却没标出处的行一条也没有。", en = "Every claim matches its source, and no line carries a number without a source tag." }
+
+  [[eval.metric]]
+  id = "msm_claims"
+  label = { zh = "带出处的说法对回存档原文", en = "Sourced claims matched to saved pages" }
+  extractor = "text_ratio_labels"
+  args = { path = "merchant-sourcing-my-public/results/CLAIM_CHECK.md", k_label = "- supported:", n_label = "- claims checked:" }
+
+  [[eval.metric]]
+  id = "msm_untagged"
+  label = { zh = "带数字却没标出处的行", en = "Lines with a number but no source tag" }
+  extractor = "text_value"
+  args = { path = "merchant-sourcing-my-public/results/CLAIM_CHECK.md", label = "- lines with a number but no source tag:" }
+  direction = "lower"
+
+[[eval]]
+id = "pool"
+name = { zh = "商家池：按冻结的规则打分", en = "Merchant pool: scored by frozen rules" }
+date = "2026-11-19"
+data = { zh = "本地品牌、经销商和连锁店，每个字段只从存档的公开页面填，带出处编号和原文；四个维度：需求信号、内容电商缺口、资质准备度、内容能力。", en = "Local brands, distributors and retailers; every field filled only from saved public pages, with a source id and a verbatim quote; four dimensions: demand signal, content-commerce gap, qualification readiness and content capability." }
+items = { zh = "商家池全部商家", en = "Every merchant in the pool" }
+runs = { zh = "每次构建都跑", en = "Run on every build" }
+setup = { zh = "`pool/build.py` 照规则打分，先校验规则文件的指纹", en = "`pool/build.py` scores by the rules after checking the rules file's fingerprint" }
+frozen = { zh = "`pool/SCORING.md` 第二版", en = "`pool/SCORING.md` version two" }
+takeaway = { zh = "排在最前的是在别处已经卖得好、在内容电商上还没开店或还没做大的本地商家；一半以上找到了马来西亚公司或具名经销商。", en = "The top of the list is local merchants that already sell well elsewhere but have no content-commerce shop yet, or a small one; more than half have a Malaysian company or named distributor." }
+
+  [[eval.metric]]
+  id = "msm_cells"
+  label = { zh = "有核对过原文的格子", en = "Cells with a checked quote" }
+  extractor = "text_value"
+  args = { path = "merchant-sourcing-my-public/results/SUMMARY.md", label = "- checked values (each with a quote found in the saved page):" }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "msm_merchants"
+  label = { zh = "商家池里的商家", en = "Merchants in the pool" }
+  extractor = "text_value"
+  args = { path = "merchant-sourcing-my-public/results/SUMMARY.md", label = "- merchants in the candidate pool:" }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "msm_subcats"
+  label = { zh = "覆盖的细分品类", en = "Sub-categories covered" }
+  extractor = "text_value"
+  args = { path = "merchant-sourcing-my-public/results/SUMMARY.md", label = "- sub-categories covered:" }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "msm_local"
+  label = { zh = "找到马来西亚公司或具名经销商", en = "Malaysian company or named distributor found" }
+  extractor = "text_ratio_labels"
+  args = { path = "merchant-sourcing-my-public/results/SUMMARY.md", k_label = "- local merchants (Malaysian company or distributor):", n_label = "- merchants in the candidate pool:" }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "msm_tier_a"
+  label = { zh = "A 档商家", en = "Tier A merchants" }
+  extractor = "text_value"
+  args = { path = "merchant-sourcing-my-public/results/SUMMARY.md", label = "- tiers:", nth = 0 }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "msm_open"
+  label = { zh = "帮它开第一家内容电商店", en = "To open a first content-commerce shop" }
+  extractor = "text_value"
+  args = { path = "merchant-sourcing-my-public/results/SUMMARY.md", label = "- segments:", nth = 3 }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "msm_activate"
+  label = { zh = "帮已开但还小的店做起来", en = "To grow a shop that is open but small" }
+  extractor = "text_value"
+  args = { path = "merchant-sourcing-my-public/results/SUMMARY.md", label = "- segments:", nth = 0 }
+  direction = "none"
+
+[[eval]]
+id = "sources"
+name = { zh = "来源：存档的公开页面", en = "Sources: saved public pages" }
+date = "2026-11-19"
+data = { zh = "只读单个公开页面：先查 robots.txt，同一网站至少隔几秒，不登录，不读电商平台的商品页、店铺页和搜索页；资质只引监管机构。页面原文归原发布方，不公开，清单里有网址、读取时间和原文的 SHA-256。", en = "Single public pages only: robots.txt first, a pause between requests to the same site, no sign-in, no platform product, shop or search pages; approvals quote regulators only. Page texts belong to their publishers and are not redistributed; the manifests list each URL, fetch time and text SHA-256." }
+items = { zh = "全部存档页面", en = "Every saved page" }
+runs = { zh = "读取一次，可用 `tools/refetch.py` 重新保存", en = "Fetched once; `tools/refetch.py` saves them again" }
+setup = { zh = "不调用模型", en = "No model called" }
+frozen = { zh = "`sources/manifests/`", en = "`sources/manifests/`" }
+takeaway = { zh = "大部分存下的页面都被洞察、清单或商家池引用；资质清单只引监管机构的页面。", en = "Most saved pages are quoted by the insight, the checklist or the pool; the approvals checklist quotes regulators only." }
+
+  [[eval.metric]]
+  id = "msm_pages"
+  label = { zh = "存档的公开页面", en = "Public pages saved" }
+  extractor = "text_value"
+  args = { path = "merchant-sourcing-my-public/results/SUMMARY.md", label = "- public pages saved:", nth = 0 }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "msm_quoted"
+  label = { zh = "被引用的页面", en = "Pages quoted" }
+  extractor = "text_ratio_labels"
+  args = { path = "merchant-sourcing-my-public/results/SUMMARY.md", k_label = "- pages quoted in the insight, the checklist and the pool:", n_label = "- public pages saved:" }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "msm_official"
+  label = { zh = "官方页面", en = "Official pages" }
+  extractor = "text_value"
+  args = { path = "merchant-sourcing-my-public/results/SUMMARY.md", label = "- public pages saved:", nth = 1 }
+  direction = "none"
+
+[[limitation]]
+text = { zh = "“公开来源里没找到”不代表不存在，也不是对商家的评价；只读了不登录能看的页面。", en = "\"Not found in public sources\" does not mean it does not exist, and is no judgement of the merchant; only pages readable without signing in were read." }
+advice = { zh = "第一次联系前，先查平台自己的卖家名单。", en = "Check the platform's own seller list before the first call." }
+
+[[limitation]]
+text = { zh = "第三方给的销量数字是它们的估算；店铺榜只来自一个数据集，按件数排序。", en = "Third-party sales figures are their estimates; the shop ranking comes from one dataset, ordered by units." }
+advice = { zh = "拿到平台或商家自己的数据后，用它替换估算再排一次。", en = "Re-rank with the platform's or the merchant's own data once available." }
+
+[[limitation]]
+text = { zh = "没有联系过任何商家，触达模板没有发出过；头 30 天的示例数据是虚构的，只用来测 SQL。", en = "No merchant has been contacted and the outreach templates have not been sent; the first-30-days example data is fictional and only tests the SQL." }
+advice = { zh = "真正联系后，把回复率和入驻进度记进跟进表，再回头校准打分规则。", en = "Once outreach starts, record replies and onboarding progress in the tracker and recalibrate the scoring rules." }
+
+[[version]]
+id = "1.0"
+date = "2026-11-19"
+text = { zh = "第一张卡，照公开仓库 merchant-sourcing-my 的结果文件写。", en = "First card, from the result files in the public merchant-sourcing-my repository." }

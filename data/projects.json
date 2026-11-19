@@ -10037,5 +10037,339 @@
         "en": "Registered fixes: advice tool called in a review turn 36/60 → 0/60; store closures located at the merchant 3/6 → 6/6, and the regression run caught another task getting worse"
       }
     ]
+  },
+  {
+    "id": "merchant-sourcing-my",
+    "order": 16,
+    "layer": "judgement",
+    "status": "public",
+    "updated": "2026-11-19",
+    "card_version": "1.0",
+    "card": {
+      "zh": "cards/merchant-sourcing-my.md",
+      "en": "cards/merchant-sourcing-my.en.md"
+    },
+    "links": [
+      {
+        "label": {
+          "zh": "代码和资料",
+          "en": "Code and materials"
+        },
+        "url": "https://github.com/llia0031-dotcom/merchant-sourcing-my"
+      },
+      {
+        "label": {
+          "zh": "先联系谁",
+          "en": "Who to contact first"
+        },
+        "url": "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/pool/PRIORITY.md"
+      }
+    ],
+    "period": {
+      "zh": "2026-11-19",
+      "en": "2026-11-19"
+    },
+    "team": {
+      "zh": "Liang Liyuan",
+      "en": "Liang Liyuan"
+    },
+    "stack": {
+      "zh": "Python、DuckDB、SQL、Excel（openpyxl）、evidence-check、公开页面存档",
+      "en": "Python, DuckDB, SQL, Excel (openpyxl), evidence-check, saved public pages"
+    },
+    "evals": [
+      {
+        "id": "claims",
+        "name": {
+          "zh": "全文核对：每条带出处的说法",
+          "en": "Full check: every sourced claim"
+        },
+        "date": "2026-11-19",
+        "metrics": [
+          {
+            "id": "msm_claims",
+            "label": {
+              "zh": "带出处的说法对回存档原文",
+              "en": "Sourced claims matched to saved pages"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "merchant-sourcing-my/results/CLAIM_CHECK.md"
+            ],
+            "k": 453,
+            "n": 453,
+            "rate": 1.0,
+            "ci95": [
+              0.9916,
+              1.0
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/CLAIM_CHECK.md"
+            ]
+          },
+          {
+            "id": "msm_untagged",
+            "label": {
+              "zh": "带数字却没标出处的行",
+              "en": "Lines with a number but no source tag"
+            },
+            "direction": "lower",
+            "kind": "value",
+            "sources": [
+              "merchant-sourcing-my/results/CLAIM_CHECK.md"
+            ],
+            "value": 0.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/CLAIM_CHECK.md"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pool",
+        "name": {
+          "zh": "商家池：按冻结的规则打分",
+          "en": "Merchant pool: scored by frozen rules"
+        },
+        "date": "2026-11-19",
+        "metrics": [
+          {
+            "id": "msm_cells",
+            "label": {
+              "zh": "有核对过原文的格子",
+              "en": "Cells with a checked quote"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "merchant-sourcing-my/results/SUMMARY.md"
+            ],
+            "value": 305.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md"
+            ]
+          },
+          {
+            "id": "msm_merchants",
+            "label": {
+              "zh": "商家池里的商家",
+              "en": "Merchants in the pool"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "merchant-sourcing-my/results/SUMMARY.md"
+            ],
+            "value": 42.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md"
+            ]
+          },
+          {
+            "id": "msm_subcats",
+            "label": {
+              "zh": "覆盖的细分品类",
+              "en": "Sub-categories covered"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "merchant-sourcing-my/results/SUMMARY.md"
+            ],
+            "value": 9.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md"
+            ]
+          },
+          {
+            "id": "msm_local",
+            "label": {
+              "zh": "找到马来西亚公司或具名经销商",
+              "en": "Malaysian company or named distributor found"
+            },
+            "direction": "none",
+            "kind": "proportion",
+            "sources": [
+              "merchant-sourcing-my/results/SUMMARY.md"
+            ],
+            "k": 23,
+            "n": 42,
+            "rate": 0.5476,
+            "ci95": [
+              0.3995,
+              0.6878
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md"
+            ]
+          },
+          {
+            "id": "msm_tier_a",
+            "label": {
+              "zh": "A 档商家",
+              "en": "Tier A merchants"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "merchant-sourcing-my/results/SUMMARY.md"
+            ],
+            "value": 14.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md"
+            ]
+          },
+          {
+            "id": "msm_open",
+            "label": {
+              "zh": "帮它开第一家内容电商店",
+              "en": "To open a first content-commerce shop"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "merchant-sourcing-my/results/SUMMARY.md"
+            ],
+            "value": 17.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md"
+            ]
+          },
+          {
+            "id": "msm_activate",
+            "label": {
+              "zh": "帮已开但还小的店做起来",
+              "en": "To grow a shop that is open but small"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "merchant-sourcing-my/results/SUMMARY.md"
+            ],
+            "value": 18.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sources",
+        "name": {
+          "zh": "来源：存档的公开页面",
+          "en": "Sources: saved public pages"
+        },
+        "date": "2026-11-19",
+        "metrics": [
+          {
+            "id": "msm_pages",
+            "label": {
+              "zh": "存档的公开页面",
+              "en": "Public pages saved"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "merchant-sourcing-my/results/SUMMARY.md"
+            ],
+            "value": 183.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md"
+            ]
+          },
+          {
+            "id": "msm_quoted",
+            "label": {
+              "zh": "被引用的页面",
+              "en": "Pages quoted"
+            },
+            "direction": "none",
+            "kind": "proportion",
+            "sources": [
+              "merchant-sourcing-my/results/SUMMARY.md"
+            ],
+            "k": 130,
+            "n": 183,
+            "rate": 0.7104,
+            "ci95": [
+              0.6409,
+              0.7712
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md"
+            ]
+          },
+          {
+            "id": "msm_official",
+            "label": {
+              "zh": "官方页面",
+              "en": "Official pages"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "merchant-sourcing-my/results/SUMMARY.md"
+            ],
+            "value": 42.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md"
+            ]
+          }
+        ]
+      }
+    ],
+    "name": {
+      "zh": "马来西亚电子类目招商样本",
+      "en": "Malaysia Electronics Merchant Sourcing Pack"
+    },
+    "problem": {
+      "zh": "类目团队招商的第一周：市场什么样、先联系哪些商家、凭什么，每类产品要哪些认证，入驻怎么跟进；每条理由都要拿得出公开出处",
+      "en": "A category team's first week of merchant recruiting: what the market looks like, which merchants to contact first and why, which approvals each product needs, how onboarding is tracked; every reason backed by a public source"
+    },
+    "primary_metric": {
+      "zh": "带出处的说法逐字对回存档原文的比例；商家池里有核对过原文的格子数",
+      "en": "Share of sourced claims matched word for word against the saved pages; cells in the pool backed by a checked quote"
+    },
+    "summary": {
+      "zh": "给类目团队的招商“第一周作业”：行业洞察、本地品牌、经销商和连锁店的打分商家池、按品类的资质清单、入驻跟进表、头 30 天的 SQL 和触达模板。评的是这份材料里的每条事实：引文要在存档页面里，数字要在引文里，商家池的引文里还要有能当证据的词；对不上，构建就停下。",
+      "en": "A first-week recruiting pack for a category team: industry insight, a scored pool of local brands, distributors and retailers, a per-category approvals checklist, an onboarding tracker, first-30-days SQL and outreach templates. What is evaluated is every fact in the pack: the quote must be in the saved page, the number in the quote, and a pool quote must contain a word that counts as evidence; if not, the build stops."
+    },
+    "did": {
+      "zh": "我先查了现成的店铺排行工具：它们只排已经在平台上的商家，回答不了“还没进来或还没做起来的商家里先招谁”。于是用公开来源补这一块：存下官方、市场和品牌的公开页面，写出行业洞察和按品类的资质清单；打分规则在填写任何一行之前写好并冻结，按它给本地品牌、经销商和连锁店排出先后；再配上入驻跟进表、头 30 天的 SQL 和触达模板。每条事实和商家池的每一格都用 evidence-check 对回存档原文。",
+      "en": "I first checked the existing shop-ranking tools: they rank merchants already on a platform and cannot answer \"which merchants not yet there, or not yet large, to recruit first\". This pack fills that gap from public sources: saved official, market and brand pages, an industry insight and a per-category approvals checklist; scoring rules written and frozen before any row was filled, ranking local brands, distributors and retailers; then an onboarding tracker, first-30-days SQL and outreach templates. Every fact and every cell of the pool is checked against its saved page with evidence-check."
+    },
+    "headline": [
+      {
+        "zh": "洞察、资质清单、两份 README 和商家池里带出处的说法，逐字对回存档原文：453/453",
+        "en": "Sourced claims in the insight, the checklist, both READMEs and the pool, matched word for word against the saved pages: 453/453"
+      },
+      {
+        "zh": "商家池 42 家、9 个细分品类，305 个格子各有核对过的原文；按冻结的规则分档，A 档 14 家",
+        "en": "A pool of 42 merchants across 9 sub-categories, 305 cells each with a checked quote; tiered by the frozen rules, 14 in tier A"
+      },
+      {
+        "zh": "存了 183 个公开页面，被引用的 130 个",
+        "en": "183 public pages saved, 130 of them quoted"
+      }
+    ]
   }
 ]

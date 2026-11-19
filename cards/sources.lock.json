@@ -119,5 +119,9 @@
   "agent-trace-eval": {
     "agent-trace-eval-public/eval/results/facts.md": "7b6634f408c31f1de76eac0a8925def3fa5af56a1eeaeb76ca33bce476b52da6",
     "agent-trace-eval-public/eval/results/summary.md": "eb0b6abd18976bae6832e5c4e28524468c6947a776497547df60b1e0e87f1327"
+  },
+  "merchant-sourcing-my": {
+    "merchant-sourcing-my-public/results/CLAIM_CHECK.md": "b79c085693c34c6c9c7534386d58ec65ac4919e340883cabcf58f134e2653516",
+    "merchant-sourcing-my-public/results/SUMMARY.md": "62a89e105967a475e5041b558e414857cfc279d263c713398ebbd8770952bb45"
   }
 }

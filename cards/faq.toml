@@ -246,7 +246,7 @@ group = "projects"
 order = 15
 q = { zh = "这些项目对应哪些业务场景？", en = "Which business scenarios do the projects cover?" }
 aliases = { zh = ["业务场景", "应用场景", "落地", "能用在哪", "行业"], en = ["use cases", "business scenarios", "applications", "where would this be used", "industry"] }
-a = { zh = "广告审核、内容标注、电商、经营分析、创作工具、语音、招聘初筛，还有按资料带出处地回答问题，每个都照业务里真会用的方式来做。", en = "Ad review, content labelling, e-commerce, business review, creator tools, voice, resume screening, and answering from documents with sources, each built the way the business would use it." }
+a = { zh = "广告审核、内容标注、电商、招商、经营分析、创作工具、语音、招聘初筛，还有按资料带出处地回答问题，每个都照业务里真会用的方式来做。", en = "Ad review, content labelling, e-commerce, merchant recruiting, business review, creator tools, voice, resume screening, and answering from documents with sources, each built the way the business would use it." }
 sources = [
   { type = "section", id = "work", label = { zh = "全部项目", en = "All projects" } },
 ]
@@ -269,6 +269,7 @@ policy-model-lab = { zh = "审视频广告时，模型要看文案、抽帧还�
 judge-calibration = { zh = "测模型当裁判能信到什么程度，再定哪些检查交给脚本、哪些交给裁判、哪些留给人", en = "It measures how far a model judge can be trusted, then sorts checks into those for a script, for the judge and for people" }
 labelling-agent-kit = { zh = "一个换套规则和案例就能接新任务的标注 Agent，配上用对照实验和根因分析调它的工具", en = "A labelling agent that takes on a new task with a new folder of rules and cases, plus the experiments and root-cause analysis to tune it" }
 agent-trace-eval = { zh = "评会调工具的 Agent 每一步做了什么，看得出失败从哪一步开始", en = "It scores what a tool-using agent does at every step, so you can see where a failure starts" }
+merchant-sourcing-my = { zh = "给类目团队的招商“第一周作业”：行业洞察、先联系哪些本地商家和为什么、每类产品要哪些资质，再配上入驻跟进表和触达模板", en = "A category team's first week of merchant recruiting: industry insight, which local merchants to call first and why, the approvals each product needs, plus an onboarding tracker and outreach templates" }
 
 # A result line written for the answer where the card's own line leads with a finding about others.
 [project_result]
@@ -296,6 +297,13 @@ projects = ["sellpoint-check", "text-on-product"]
 q = { zh = "有电商方向的项目吗？", en = "Anything on e-commerce?" }
 aliases = { zh = ["电商", "商品", "卖点", "商品图", "主图", "买家评价"], en = ["e-commerce", "ecommerce", "product listing", "product images", "reviews", "merchant"] }
 a = { zh = "看卖点体检：卖点要在买家评价里找到原话才算数。做商品图的话，再看 AI 生图创作指南。", en = "Look at Sellpoint Check: a claim counts only when buyer reviews back it word for word. For product images, Text on Product." }
+
+[[direction]]
+id = "merchant"
+projects = ["merchant-sourcing-my", "sellpoint-check"]
+q = { zh = "有招商或商家运营方向的项目吗？", en = "Anything on merchant recruiting or merchant operations?" }
+aliases = { zh = ["招商", "商家运营", "行业运营", "类目运营", "商家拓展", "入驻", "马来西亚"], en = ["merchant recruiting", "merchant sourcing", "merchant operations", "seller onboarding", "category management", "business development", "malaysia"] }
+a = { zh = "看马来西亚电子类目招商样本：先联系谁、凭什么、要哪些资质都写清了，跟进表和触达模板也备好了。商家入驻以后卖点怎么写才站得住，再看卖点体检。", en = "Look at the Malaysia Electronics Merchant Sourcing Pack: whom to call first, why, and which approvals apply, with the tracker and outreach templates ready. For listing claims that hold up after onboarding, Sellpoint Check." }
 
 [[direction]]
 id = "business"

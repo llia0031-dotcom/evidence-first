@@ -525,6 +525,16 @@ def text_value(rd, path: str, label: str, nth: int = 0, unit: str = "", decimals
 
 
 @extractor
+def text_ratio_labels(rd, path: str, k_label: str, n_label: str, k_nth: int = 0, n_nth: int = 0):
+    """k/n from two labelled lines, e.g. "- supported: 453" over "- claims checked: 453"."""
+    k = _numbers_after(rd, path, k_label)[k_nth]
+    n = _numbers_after(rd, path, n_label)[n_nth]
+    if k != int(k) or n != int(n):
+        raise ValueError(f"{path}: {k_label!r} / {n_label!r} numbers {k}, {n} are not whole")
+    return {"k": int(k), "n": int(n)}
+
+
+@extractor
 def text_count_ratio(rd, path: str, label: str, k_nth: int, n_nth: int):
     """k/n from two whole numbers after a label, e.g. "agree on 182 of 194"."""
     nums = _numbers_after(rd, path, label)

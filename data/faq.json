@@ -904,8 +904,8 @@
         ]
       },
       "a": {
-        "zh": "广告审核、内容标注、电商、经营分析、创作工具、语音、招聘初筛，还有按资料带出处地回答问题，每个都照业务里真会用的方式来做。",
-        "en": "Ad review, content labelling, e-commerce, business review, creator tools, voice, resume screening, and answering from documents with sources, each built the way the business would use it."
+        "zh": "广告审核、内容标注、电商、招商、经营分析、创作工具、语音、招聘初筛，还有按资料带出处地回答问题，每个都照业务里真会用的方式来做。",
+        "en": "Ad review, content labelling, e-commerce, merchant recruiting, business review, creator tools, voice, resume screening, and answering from documents with sources, each built the way the business would use it."
       },
       "sources": [
         {
@@ -1107,9 +1107,73 @@
       ]
     },
     {
-      "id": "direction-business",
+      "id": "direction-merchant",
       "group": "direction",
       "order": 43,
+      "chip": false,
+      "q": {
+        "zh": "有招商或商家运营方向的项目吗？",
+        "en": "Anything on merchant recruiting or merchant operations?"
+      },
+      "aliases": {
+        "zh": [
+          "招商",
+          "商家运营",
+          "行业运营",
+          "类目运营",
+          "商家拓展",
+          "入驻",
+          "马来西亚"
+        ],
+        "en": [
+          "merchant recruiting",
+          "merchant sourcing",
+          "merchant operations",
+          "seller onboarding",
+          "category management",
+          "business development",
+          "malaysia"
+        ]
+      },
+      "a": {
+        "zh": "看马来西亚电子类目招商样本：先联系谁、凭什么、要哪些资质都写清了，跟进表和触达模板也备好了。商家入驻以后卖点怎么写才站得住，再看卖点体检。",
+        "en": "Look at the Malaysia Electronics Merchant Sourcing Pack: whom to call first, why, and which approvals apply, with the tracker and outreach templates ready. For listing claims that hold up after onboarding, Sellpoint Check."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "merchant-sourcing-my",
+          "label": {
+            "zh": "马来西亚电子类目招商样本",
+            "en": "Malaysia Electronics Merchant Sourcing Pack"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/merchant-sourcing-my",
+            "en": "https://github.com/llia0031-dotcom/merchant-sourcing-my"
+          }
+        },
+        {
+          "type": "project",
+          "id": "sellpoint-check",
+          "label": {
+            "zh": "卖点体检",
+            "en": "Sellpoint Check"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/sellpoint-check",
+            "en": "https://github.com/llia0031-dotcom/sellpoint-check"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "live-demos"
+      ]
+    },
+    {
+      "id": "direction-business",
+      "group": "direction",
+      "order": 44,
       "chip": false,
       "q": {
         "zh": "有经营分析方向的项目吗？",
@@ -1159,7 +1223,7 @@
     {
       "id": "direction-creator",
       "group": "direction",
-      "order": 44,
+      "order": 45,
       "chip": false,
       "q": {
         "zh": "有创作工具方向的项目吗？",
@@ -1223,7 +1287,7 @@
     {
       "id": "direction-voice",
       "group": "direction",
-      "order": 45,
+      "order": 46,
       "chip": false,
       "q": {
         "zh": "有语音方向的项目吗？",
@@ -1271,7 +1335,7 @@
     {
       "id": "direction-recruiting",
       "group": "direction",
-      "order": 46,
+      "order": 47,
       "chip": false,
       "q": {
         "zh": "有招聘方向的项目吗？",
@@ -1319,7 +1383,7 @@
     {
       "id": "direction-agent-eval",
       "group": "direction",
-      "order": 47,
+      "order": 48,
       "chip": false,
       "q": {
         "zh": "有 Agent 评测方向的项目吗？",
@@ -1379,7 +1443,7 @@
     {
       "id": "direction-model-eval",
       "group": "direction",
-      "order": 48,
+      "order": 49,
       "chip": false,
       "q": {
         "zh": "有模型评测方向的项目吗？",
@@ -1439,7 +1503,7 @@
     {
       "id": "direction-grounded-qa",
       "group": "direction",
-      "order": 49,
+      "order": 50,
       "chip": false,
       "q": {
         "zh": "有带出处的问答方向的项目吗？",
@@ -2322,6 +2386,61 @@
           "url": {
             "zh": "https://github.com/llia0031-dotcom/agent-trace-eval",
             "en": "https://github.com/llia0031-dotcom/agent-trace-eval"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "live-demos"
+      ]
+    },
+    {
+      "id": "project-merchant-sourcing-my",
+      "group": "project",
+      "order": 75,
+      "chip": false,
+      "q": {
+        "zh": "马来西亚电子类目招商样本是什么？",
+        "en": "What is Malaysia Electronics Merchant Sourcing Pack?"
+      },
+      "aliases": {
+        "zh": [
+          "马来西亚电子类目招商样本",
+          "招商样本",
+          "merchant-sourcing-my"
+        ],
+        "en": [
+          "Malaysia Electronics Merchant Sourcing Pack",
+          "Merchant sourcing",
+          "merchant-sourcing-my"
+        ]
+      },
+      "a": {
+        "zh": "给类目团队的招商“第一周作业”：行业洞察、先联系哪些本地商家和为什么、每类产品要哪些资质，再配上入驻跟进表和触达模板。带出处的说法逐字对回原文 453/453；商家池 42 家，305 个格子各有核对过的原文。",
+        "en": "A category team's first week of merchant recruiting: industry insight, which local merchants to call first and why, the approvals each product needs, plus an onboarding tracker and outreach templates. Sourced claims matched word for word: 453/453; a pool of 42 merchants, 305 cells each with a checked quote."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "merchant-sourcing-my",
+          "label": {
+            "zh": "马来西亚电子类目招商样本",
+            "en": "Malaysia Electronics Merchant Sourcing Pack"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/merchant-sourcing-my",
+            "en": "https://github.com/llia0031-dotcom/merchant-sourcing-my"
+          }
+        },
+        {
+          "type": "url",
+          "label": {
+            "zh": "代码和报告",
+            "en": "Code and report"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/merchant-sourcing-my",
+            "en": "https://github.com/llia0031-dotcom/merchant-sourcing-my"
           }
         }
       ],
