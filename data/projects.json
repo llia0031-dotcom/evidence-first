@@ -10063,6 +10063,23 @@
           "en": "Who to contact first"
         },
         "url": "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/pool/PRIORITY.md"
+      },
+      {
+        "label": {
+          "zh": "充电类深挖",
+          "en": "Charging deep dive"
+        },
+        "url": {
+          "zh": "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/insight/DEEP_DIVE_CHARGING.zh-CN.md",
+          "en": "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/insight/DEEP_DIVE_CHARGING.md"
+        }
+      },
+      {
+        "label": {
+          "zh": "进团队以后怎么校准",
+          "en": "Inside the team: data and calibration"
+        },
+        "url": "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/pool/INSIDE_THE_TEAM.md"
       }
     ],
     "period": {

@@ -6,7 +6,7 @@
 
 | When | Team | Stack | Links |
 |---|---|---|---|
-| 2026-11-19 | Liang Liyuan | Python, DuckDB, SQL, Excel (openpyxl), evidence-check, saved public pages | [Code and materials](https://github.com/llia0031-dotcom/merchant-sourcing-my) · [Who to contact first](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/pool/PRIORITY.md) |
+| 2026-11-19 | Liang Liyuan | Python, DuckDB, SQL, Excel (openpyxl), evidence-check, saved public pages | [Code and materials](https://github.com/llia0031-dotcom/merchant-sourcing-my) · [Who to contact first](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/pool/PRIORITY.md) · [Charging deep dive](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/insight/DEEP_DIVE_CHARGING.md) · [Inside the team: data and calibration](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/pool/INSIDE_THE_TEAM.md) |
 
 **Problem**: A category team's first week of merchant recruiting: what the market looks like, which merchants to contact first and why, which approvals each product needs, how onboarding is tracked; every reason backed by a public source.
 

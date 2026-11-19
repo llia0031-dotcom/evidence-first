@@ -6,7 +6,7 @@
 
 | 时间 | 团队 | 技术 | 链接 |
 |---|---|---|---|
-| 2026-11-19 | Liang Liyuan | Python、DuckDB、SQL、Excel（openpyxl）、evidence-check、公开页面存档 | [代码和资料](https://github.com/llia0031-dotcom/merchant-sourcing-my) · [先联系谁](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/pool/PRIORITY.md) |
+| 2026-11-19 | Liang Liyuan | Python、DuckDB、SQL、Excel（openpyxl）、evidence-check、公开页面存档 | [代码和资料](https://github.com/llia0031-dotcom/merchant-sourcing-my) · [先联系谁](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/pool/PRIORITY.md) · [充电类深挖](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/insight/DEEP_DIVE_CHARGING.zh-CN.md) · [进团队以后怎么校准](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/pool/INSIDE_THE_TEAM.md) |
 
 **问题**：类目团队招商的第一周：市场什么样、先联系哪些商家、凭什么，每类产品要哪些认证，入驻怎么跟进；每条理由都要拿得出公开出处。
 

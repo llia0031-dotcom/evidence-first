@@ -14027,6 +14027,14 @@
       {
         "label": "先联系谁",
         "url": "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/pool/PRIORITY.md"
+      },
+      {
+        "label": "充电类深挖",
+        "url": "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/insight/DEEP_DIVE_CHARGING.zh-CN.md"
+      },
+      {
+        "label": "进团队以后怎么校准",
+        "url": "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/pool/INSIDE_THE_TEAM.md"
       }
     ],
     "problem": [
@@ -14318,6 +14326,14 @@
       {
         "label": "Who to contact first",
         "url": "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/pool/PRIORITY.md"
+      },
+      {
+        "label": "Charging deep dive",
+        "url": "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/insight/DEEP_DIVE_CHARGING.md"
+      },
+      {
+        "label": "Inside the team: data and calibration",
+        "url": "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/pool/INSIDE_THE_TEAM.md"
       }
     ],
     "problem": [
