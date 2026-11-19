@@ -14053,8 +14053,8 @@
       "没有联系过任何商家，触达模板没有发出过；头 30 天的示例数据是虚构的，只用来测 SQL。建议：真正联系后，把回复率和入驻进度记进跟进表，再回头校准打分规则。"
     ],
     "headline": [
-      "洞察、资质清单、两份 README 和商家池里带出处的说法，逐字对回存档原文：453/453",
-      "商家池 42 家、9 个细分品类，305 个格子各有核对过的原文；按冻结的规则分档，A 档 14 家",
+      "洞察、资质清单、两份 README 和商家池里带出处的说法，逐字对回存档原文：451/451",
+      "商家池 42 家、9 个细分品类，303 个格子各有核对过的原文；按冻结的规则分档，A 档 14 家",
       "存了 183 个公开页面，被引用的 130 个"
     ],
     "numbers": [
@@ -14062,8 +14062,8 @@
         "id": "N1",
         "metric": "msm_claims",
         "label": "带出处的说法对回存档原文",
-        "value": "453/453",
-        "full": "453/453（100.0%，95% 区间 99.2–100.0%）",
+        "value": "451/451",
+        "full": "451/451（100.0%，95% 区间 99.2–100.0%）",
         "evaluation": "全文核对：每条带出处的说法",
         "sources": [
           "merchant-sourcing-my/results/CLAIM_CHECK.md"
@@ -14072,14 +14072,14 @@
           "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/CLAIM_CHECK.md"
         ],
         "kind": "proportion",
-        "k": 453,
-        "n": 453,
+        "k": 451,
+        "n": 451,
         "rate": 1.0,
         "ci95": [
           0.9916,
           1.0
         ],
-        "display": "453/453"
+        "display": "451/451"
       },
       {
         "id": "N2",
@@ -14121,8 +14121,8 @@
         "id": "N4",
         "metric": "msm_cells",
         "label": "有核对过原文的格子",
-        "value": 305.0,
-        "full": "305",
+        "value": 303.0,
+        "full": "303",
         "evaluation": "商家池：按冻结的规则打分",
         "sources": [
           "merchant-sourcing-my/results/SUMMARY.md"
@@ -14133,7 +14133,7 @@
         "kind": "value",
         "unit": "",
         "n": null,
-        "display": "305"
+        "display": "303"
       },
       {
         "id": "N5",
@@ -14222,7 +14222,7 @@
     "card_title": "先招哪些商家，每条理由都有出处",
     "assumed": "以为现成的店铺排行工具就能定招商名单",
     "showed": "它们只排已在平台上的商家；公开来源补出 42 家的打分商家池",
-    "result_line": "带出处的说法逐字对回原文 453/453；商家池 42 家，305 个格子各有核对过的原文",
+    "result_line": "带出处的说法逐字对回原文 451/451；商家池 42 家，303 个格子各有核对过的原文",
     "key_numbers": [
       {
         "id": "N1",
@@ -14248,14 +14248,14 @@
         "date": "2026-11-19",
         "label": "商家池",
         "text": "每个格子都有核对过的原文",
-        "after": "305",
+        "after": "303",
         "after_id": "N4"
       },
       {
         "date": "2026-11-19",
         "label": "全文核对",
         "text": "洞察、清单和 README 全部对上",
-        "after": "453/453",
+        "after": "451/451",
         "after_id": "N1"
       }
     ],
@@ -14328,8 +14328,8 @@
       "No merchant has been contacted and the outreach templates have not been sent; the first-30-days example data is fictional and only tests the SQL. Recommendation: Once outreach starts, record replies and onboarding progress in the tracker and recalibrate the scoring rules."
     ],
     "headline": [
-      "Sourced claims in the insight, the checklist, both READMEs and the pool, matched word for word against the saved pages: 453/453",
-      "A pool of 42 merchants across 9 sub-categories, 305 cells each with a checked quote; tiered by the frozen rules, 14 in tier A",
+      "Sourced claims in the insight, the checklist, both READMEs and the pool, matched word for word against the saved pages: 451/451",
+      "A pool of 42 merchants across 9 sub-categories, 303 cells each with a checked quote; tiered by the frozen rules, 14 in tier A",
       "183 public pages saved, 130 of them quoted"
     ],
     "numbers": [
@@ -14337,8 +14337,8 @@
         "id": "N1",
         "metric": "msm_claims",
         "label": "Sourced claims matched to saved pages",
-        "value": "453/453",
-        "full": "453/453 (100.0%, 95% CI 99.2–100.0%)",
+        "value": "451/451",
+        "full": "451/451 (100.0%, 95% CI 99.2–100.0%)",
         "evaluation": "Full check: every sourced claim",
         "sources": [
           "merchant-sourcing-my/results/CLAIM_CHECK.md"
@@ -14347,14 +14347,14 @@
           "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/CLAIM_CHECK.md"
         ],
         "kind": "proportion",
-        "k": 453,
-        "n": 453,
+        "k": 451,
+        "n": 451,
         "rate": 1.0,
         "ci95": [
           0.9916,
           1.0
         ],
-        "display": "453/453"
+        "display": "451/451"
       },
       {
         "id": "N2",
@@ -14396,8 +14396,8 @@
         "id": "N4",
         "metric": "msm_cells",
         "label": "Cells with a checked quote",
-        "value": 305.0,
-        "full": "305",
+        "value": 303.0,
+        "full": "303",
         "evaluation": "Merchant pool: scored by frozen rules",
         "sources": [
           "merchant-sourcing-my/results/SUMMARY.md"
@@ -14408,7 +14408,7 @@
         "kind": "value",
         "unit": "",
         "n": null,
-        "display": "305"
+        "display": "303"
       },
       {
         "id": "N5",
@@ -14497,7 +14497,7 @@
     "card_title": "Which merchants to recruit first, every reason sourced",
     "assumed": "Expected existing shop-ranking tools to settle the recruiting list",
     "showed": "They rank only merchants already on a platform; public sources fill a scored pool of 42",
-    "result_line": "Sourced claims matched word for word: 453/453; a pool of 42 merchants, 305 cells each with a checked quote",
+    "result_line": "Sourced claims matched word for word: 451/451; a pool of 42 merchants, 303 cells each with a checked quote",
     "key_numbers": [
       {
         "id": "N1",
@@ -14523,14 +14523,14 @@
         "date": "2026-11-19",
         "label": "Pool",
         "text": "Every cell has a checked quote",
-        "after": "305",
+        "after": "303",
         "after_id": "N4"
       },
       {
         "date": "2026-11-19",
         "label": "Full check",
         "text": "Insight, checklist and READMEs all match",
-        "after": "453/453",
+        "after": "451/451",
         "after_id": "N1"
       }
     ],

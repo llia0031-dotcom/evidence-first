@@ -14,8 +14,8 @@
 
 **Results**: 
 
-- Sourced claims in the insight, the checklist, both READMEs and the pool, matched word for word against the saved pages: 453/453
-- A pool of 42 merchants across 9 sub-categories, 305 cells each with a checked quote; tiered by the frozen rules, 14 in tier A
+- Sourced claims in the insight, the checklist, both READMEs and the pool, matched word for word against the saved pages: 451/451
+- A pool of 42 merchants across 9 sub-categories, 303 cells each with a checked quote; tiered by the frozen rules, 14 in tier A
 - 183 public pages saved, 130 of them quoted
 
 ## Summary
@@ -82,7 +82,7 @@ Each evaluation version has its own table. Scores are not compared across versio
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Sourced claims matched to saved pages | 453/453 (100.0%, 95% CI 99.2–100.0%) | higher is better | [`merchant-sourcing-my/results/CLAIM_CHECK.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/CLAIM_CHECK.md) |
+| Sourced claims matched to saved pages | 451/451 (100.0%, 95% CI 99.2–100.0%) | higher is better | [`merchant-sourcing-my/results/CLAIM_CHECK.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/CLAIM_CHECK.md) |
 | Lines with a number but no source tag | 0 | lower is better | [`merchant-sourcing-my/results/CLAIM_CHECK.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/CLAIM_CHECK.md) |
 
 Every claim matches its source, and no line carries a number without a source tag.
@@ -91,7 +91,7 @@ Every claim matches its source, and no line carries a number without a source ta
 
 | Metric | Result | Direction | Source file |
 |---|---|---|---|
-| Cells with a checked quote | 305 | context only | [`merchant-sourcing-my/results/SUMMARY.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md) |
+| Cells with a checked quote | 303 | context only | [`merchant-sourcing-my/results/SUMMARY.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md) |
 | Merchants in the pool | 42 | context only | [`merchant-sourcing-my/results/SUMMARY.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md) |
 | Sub-categories covered | 9 | context only | [`merchant-sourcing-my/results/SUMMARY.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md) |
 | Malaysian company or named distributor found | 23/42 (54.8%, 95% CI 39.9–68.8%) | context only | [`merchant-sourcing-my/results/SUMMARY.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md) |

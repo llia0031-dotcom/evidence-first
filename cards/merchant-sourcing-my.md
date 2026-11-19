@@ -14,8 +14,8 @@
 
 **结果**：
 
-- 洞察、资质清单、两份 README 和商家池里带出处的说法，逐字对回存档原文：453/453
-- 商家池 42 家、9 个细分品类，305 个格子各有核对过的原文；按冻结的规则分档，A 档 14 家
+- 洞察、资质清单、两份 README 和商家池里带出处的说法，逐字对回存档原文：451/451
+- 商家池 42 家、9 个细分品类，303 个格子各有核对过的原文；按冻结的规则分档，A 档 14 家
 - 存了 183 个公开页面，被引用的 130 个
 
 ## 概况
@@ -82,7 +82,7 @@
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 带出处的说法对回存档原文 | 453/453（100.0%，95% 区间 99.2–100.0%） | 越高越好 | [`merchant-sourcing-my/results/CLAIM_CHECK.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/CLAIM_CHECK.md) |
+| 带出处的说法对回存档原文 | 451/451（100.0%，95% 区间 99.2–100.0%） | 越高越好 | [`merchant-sourcing-my/results/CLAIM_CHECK.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/CLAIM_CHECK.md) |
 | 带数字却没标出处的行 | 0 | 越低越好 | [`merchant-sourcing-my/results/CLAIM_CHECK.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/CLAIM_CHECK.md) |
 
 每条说法都对回了原文，带数字却没标出处的行一条也没有。
@@ -91,7 +91,7 @@
 
 | 指标 | 结果 | 方向 | 来源文件 |
 |---|---|---|---|
-| 有核对过原文的格子 | 305 | 只作说明 | [`merchant-sourcing-my/results/SUMMARY.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md) |
+| 有核对过原文的格子 | 303 | 只作说明 | [`merchant-sourcing-my/results/SUMMARY.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md) |
 | 商家池里的商家 | 42 | 只作说明 | [`merchant-sourcing-my/results/SUMMARY.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md) |
 | 覆盖的细分品类 | 9 | 只作说明 | [`merchant-sourcing-my/results/SUMMARY.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md) |
 | 找到马来西亚公司或具名经销商 | 23/42（54.8%，95% 区间 39.9–68.8%） | 只作说明 | [`merchant-sourcing-my/results/SUMMARY.md`](https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/results/SUMMARY.md) |

@@ -10097,8 +10097,8 @@
             "sources": [
               "merchant-sourcing-my/results/CLAIM_CHECK.md"
             ],
-            "k": 453,
-            "n": 453,
+            "k": 451,
+            "n": 451,
             "rate": 1.0,
             "ci95": [
               0.9916,
@@ -10147,7 +10147,7 @@
             "sources": [
               "merchant-sourcing-my/results/SUMMARY.md"
             ],
-            "value": 305.0,
+            "value": 303.0,
             "unit": "",
             "n": null,
             "source_urls": [
@@ -10359,12 +10359,12 @@
     },
     "headline": [
       {
-        "zh": "洞察、资质清单、两份 README 和商家池里带出处的说法，逐字对回存档原文：453/453",
-        "en": "Sourced claims in the insight, the checklist, both READMEs and the pool, matched word for word against the saved pages: 453/453"
+        "zh": "洞察、资质清单、两份 README 和商家池里带出处的说法，逐字对回存档原文：451/451",
+        "en": "Sourced claims in the insight, the checklist, both READMEs and the pool, matched word for word against the saved pages: 451/451"
       },
       {
-        "zh": "商家池 42 家、9 个细分品类，305 个格子各有核对过的原文；按冻结的规则分档，A 档 14 家",
-        "en": "A pool of 42 merchants across 9 sub-categories, 305 cells each with a checked quote; tiered by the frozen rules, 14 in tier A"
+        "zh": "商家池 42 家、9 个细分品类，303 个格子各有核对过的原文；按冻结的规则分档，A 档 14 家",
+        "en": "A pool of 42 merchants across 9 sub-categories, 303 cells each with a checked quote; tiered by the frozen rules, 14 in tier A"
       },
       {
         "zh": "存了 183 个公开页面，被引用的 130 个",
