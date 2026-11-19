@@ -14259,7 +14259,23 @@
         "after_id": "N1"
       }
     ],
-    "images": []
+    "images": [
+      {
+        "path": "merchant-sourcing-my/images/priority-sheet.jpg",
+        "caption": "merchant_pool.xlsx 的优先名单表，前 12 家",
+        "public": true
+      },
+      {
+        "path": "merchant-sourcing-my/images/onboarding-tracker.jpg",
+        "caption": "入驻跟进表（示例日期）：填一个首次联系日期就排出各节点，逾期和临近自动标色",
+        "public": true
+      },
+      {
+        "path": "merchant-sourcing-my/images/pool-query-q1.jpg",
+        "caption": "pool.duckdb 上的查询 Q1“先联系谁”和结果",
+        "public": true
+      }
+    ]
   },
   {
     "id": "merchant-sourcing-my",
@@ -14534,6 +14550,22 @@
         "after_id": "N1"
       }
     ],
-    "images": []
+    "images": [
+      {
+        "path": "merchant-sourcing-my/images/priority-sheet.jpg",
+        "caption": "Priority sheet of merchant_pool.xlsx, first 12 merchants",
+        "public": true
+      },
+      {
+        "path": "merchant-sourcing-my/images/onboarding-tracker.jpg",
+        "caption": "Onboarding tracker with example dates: one first-contact date sets every due date, overdue and due-soon steps are coloured",
+        "public": true
+      },
+      {
+        "path": "merchant-sourcing-my/images/pool-query-q1.jpg",
+        "caption": "Pool query Q1 “who to contact first” and its answer in DuckDB",
+        "public": true
+      }
+    ]
   }
 ]
