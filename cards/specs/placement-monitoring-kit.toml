@@ -206,7 +206,7 @@ takeaway = { zh = "每张表都能在填表界面里填完，存下的提交和�
   direction = "none"
 
 [[limitation]]
-text = { zh = "样例是构造的；还没在真实的项目、真实的 KoboToolbox 或 ODK Central 服务器和 ODK Collect 手机端上用过，只在 Windows 上跑过。", en = "The sample is constructed; the kit has not yet run in a live programme, against a live KoboToolbox or ODK Central server or in ODK Collect, and only on Windows." }
+text = { zh = "样例是构造的；还没在真实的项目、真实的 KoboToolbox 或 ODK Central 服务器和 ODK Collect 手机端上用过，只在 Windows 上跑过。", en = "The sample is constructed; the kit has not yet run in a live programme, against a live KoboToolbox or ODK Central server or in ODK Collect, and has run only on Windows." }
 advice = { zh = "上线前在团队自己的服务器上建一个测试项目，用几份测试提交把每月流程跑通一次。", en = "Before going live, set up a test project on the team's own server and run the monthly cycle once with a few test submissions." }
 
 [[limitation]]

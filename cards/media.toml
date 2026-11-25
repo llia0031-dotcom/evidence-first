@@ -364,15 +364,9 @@ caption = { zh = "pool.duckdb 上的查询 Q1“先联系谁”和结果", en = 
 
 [[media]]
 project = "placement-monitoring-kit"
-path = "placement-monitoring-kit-public/images/brief_p1_en.png"
+path = "placement-monitoring-kit-public/images/deck_slide_4_en.png"
 public = true
-caption = { zh = "简报第一页（构造样例）：本月几个关键数、按月回访情况、要处理的事", en = "First page of the brief (constructed sample): the month's key numbers, check-ins by round, what needs action" }
-
-[[media]]
-project = "placement-monitoring-kit"
-path = "placement-monitoring-kit-public/images/tracker_followups_en.png"
-public = true
-caption = { zh = "跟进表（构造样例）：逾期排最前，状态用文字和颜色标出，提醒话术可以直接复制", en = "Follow-ups sheet of the tracker (constructed sample): overdue first, state in words and colour, reminder text ready to copy" }
+caption = { zh = "演示稿里的安置质量页（构造样例）", en = "Placement quality slide of the deck (constructed sample)" }
 
 [[media]]
 project = "placement-monitoring-kit"
@@ -382,9 +376,15 @@ caption = { zh = "数据问题表（构造样例）：哪一项检查、哪里�
 
 [[media]]
 project = "placement-monitoring-kit"
-path = "placement-monitoring-kit-public/images/deck_slide_4_en.png"
+path = "placement-monitoring-kit-public/images/tracker_followups_en.png"
 public = true
-caption = { zh = "演示稿里的安置质量页（构造样例）", en = "Placement quality slide of the deck (constructed sample)" }
+caption = { zh = "跟进表（构造样例）：逾期排最前，状态用文字和颜色标出，提醒话术可以直接复制", en = "Follow-ups sheet of the tracker (constructed sample): overdue first, state in words and colour, reminder text ready to copy" }
+
+[[media]]
+project = "placement-monitoring-kit"
+path = "placement-monitoring-kit-public/images/brief_p1_en.png"
+public = true
+caption = { zh = "简报第一页（构造样例）：本月几个关键数、按月回访情况、要处理的事", en = "First page of the brief (constructed sample): the month's key numbers, check-ins by round, what needs action" }
 
 [[media]]
 project = "placement-monitoring-kit"

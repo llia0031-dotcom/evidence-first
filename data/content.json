@@ -14859,16 +14859,10 @@
     ],
     "images": [
       {
-        "path": "placement-monitoring-kit/images/brief_p1_en.png",
-        "caption": "简报第一页（构造样例）：本月几个关键数、按月回访情况、要处理的事",
+        "path": "placement-monitoring-kit/images/deck_slide_4_en.png",
+        "caption": "演示稿里的安置质量页（构造样例）",
         "public": true,
-        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/brief_p1_en.png"
-      },
-      {
-        "path": "placement-monitoring-kit/images/tracker_followups_en.png",
-        "caption": "跟进表（构造样例）：逾期排最前，状态用文字和颜色标出，提醒话术可以直接复制",
-        "public": true,
-        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/tracker_followups_en.png"
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/deck_slide_4_en.png"
       },
       {
         "path": "placement-monitoring-kit/images/tracker_issues_en.png",
@@ -14877,10 +14871,16 @@
         "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/tracker_issues_en.png"
       },
       {
-        "path": "placement-monitoring-kit/images/deck_slide_4_en.png",
-        "caption": "演示稿里的安置质量页（构造样例）",
+        "path": "placement-monitoring-kit/images/tracker_followups_en.png",
+        "caption": "跟进表（构造样例）：逾期排最前，状态用文字和颜色标出，提醒话术可以直接复制",
         "public": true,
-        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/deck_slide_4_en.png"
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/tracker_followups_en.png"
+      },
+      {
+        "path": "placement-monitoring-kit/images/brief_p1_en.png",
+        "caption": "简报第一页（构造样例）：本月几个关键数、按月回访情况、要处理的事",
+        "public": true,
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/brief_p1_en.png"
       },
       {
         "path": "placement-monitoring-kit/images/forms/checkin_phone_fr_1.png",
@@ -14956,7 +14956,7 @@
       "A data-checking program has to show first that it is accurate: measured on a sample with known answers, it must flag every error and nothing else. With every report number traced to its row, the team can take the brief to a meeting or to managers without checking it by hand."
     ],
     "limitations": [
-      "The sample is constructed; the kit has not yet run in a live programme, against a live KoboToolbox or ODK Central server or in ODK Collect, and only on Windows. Recommendation: Before going live, set up a test project on the team's own server and run the monthly cycle once with a few test submissions.",
+      "The sample is constructed; the kit has not yet run in a live programme, against a live KoboToolbox or ODK Central server or in ODK Collect, and has run only on Windows. Recommendation: Before going live, set up a test project on the team's own server and run the monthly cycle once with a few test submissions.",
       "The French text still needs a read by a French-speaking colleague in the country; some check-in and host-feedback questions have no recognised instrument and use the kit's own wording, marked as such. Recommendation: Write the changes back into the forms' xlsx and rebuild; after a month or two, revise questions by how they are answered."
     ],
     "headline": [
@@ -15165,16 +15165,10 @@
     ],
     "images": [
       {
-        "path": "placement-monitoring-kit/images/brief_p1_en.png",
-        "caption": "First page of the brief (constructed sample): the month's key numbers, check-ins by round, what needs action",
+        "path": "placement-monitoring-kit/images/deck_slide_4_en.png",
+        "caption": "Placement quality slide of the deck (constructed sample)",
         "public": true,
-        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/brief_p1_en.png"
-      },
-      {
-        "path": "placement-monitoring-kit/images/tracker_followups_en.png",
-        "caption": "Follow-ups sheet of the tracker (constructed sample): overdue first, state in words and colour, reminder text ready to copy",
-        "public": true,
-        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/tracker_followups_en.png"
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/deck_slide_4_en.png"
       },
       {
         "path": "placement-monitoring-kit/images/tracker_issues_en.png",
@@ -15183,10 +15177,16 @@
         "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/tracker_issues_en.png"
       },
       {
-        "path": "placement-monitoring-kit/images/deck_slide_4_en.png",
-        "caption": "Placement quality slide of the deck (constructed sample)",
+        "path": "placement-monitoring-kit/images/tracker_followups_en.png",
+        "caption": "Follow-ups sheet of the tracker (constructed sample): overdue first, state in words and colour, reminder text ready to copy",
         "public": true,
-        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/deck_slide_4_en.png"
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/tracker_followups_en.png"
+      },
+      {
+        "path": "placement-monitoring-kit/images/brief_p1_en.png",
+        "caption": "First page of the brief (constructed sample): the month's key numbers, check-ins by round, what needs action",
+        "public": true,
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/brief_p1_en.png"
       },
       {
         "path": "placement-monitoring-kit/images/forms/checkin_phone_fr_1.png",

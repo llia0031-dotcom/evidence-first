@@ -118,7 +118,7 @@ Every form can be completed in the form interface, and the saved submissions mat
 
 ## Limitations and failure cases
 
-- The sample is constructed; the kit has not yet run in a live programme, against a live KoboToolbox or ODK Central server or in ODK Collect, and only on Windows.
+- The sample is constructed; the kit has not yet run in a live programme, against a live KoboToolbox or ODK Central server or in ODK Collect, and has run only on Windows.
   - Recommendation: Before going live, set up a test project on the team's own server and run the monthly cycle once with a few test submissions.
 - The French text still needs a read by a French-speaking colleague in the country; some check-in and host-feedback questions have no recognised instrument and use the kit's own wording, marked as such.
   - Recommendation: Write the changes back into the forms' xlsx and rebuild; after a month or two, revise questions by how they are answered.
