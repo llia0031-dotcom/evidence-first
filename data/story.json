@@ -232,20 +232,21 @@
         "grounded-labelling-pipeline",
         "judge-calibration",
         "labelling-agent-kit",
-        "agent-trace-eval"
+        "agent-trace-eval",
+        "placement-monitoring-kit"
       ],
       "links": [],
       "purpose": {
-        "zh": "一个个评测做完以后，要让每个能力都有同样格式的评测证据、每次改提示词都能看到新旧分数、上线和回滚有章可循。",
-        "en": "Once the studies exist, every capability needs evaluation evidence in one format, every prompt change needs old and new scores side by side, and releases and rollbacks need a routine."
+        "zh": "一个个评测做完以后，要让每个能力都有同样格式的评测证据、每次改提示词都能看到新旧分数、上线和回滚有章可循；团队每月跑的数据检查，也要先证明自己查得准。",
+        "en": "Once the studies exist, every capability needs evaluation evidence in one format, every prompt change needs old and new scores side by side, and releases and rollbacks need a routine; the data checks a team runs every month must first show they are accurate."
       },
       "did": {
-        "zh": "这个仓库：统一评测卡、Prompt 资产库（版本、上线标签、灰度回放、上线清单、改提示词时自动贴分数）；有据标注流水线把有据审核接成一条审核工作流：核对引文、复核队列、版本、灰度和回滚、每周指标。",
-        "en": "This repository: evaluation cards in one format and a prompt registry (versions, release labels, canary replay, a release checklist in Chinese, scores posted on every prompt change); the Grounded Labelling Pipeline turns Grounded Review into a review workflow: quote checks, a review queue, versions, canary and rollback, weekly metrics."
+        "zh": "这个仓库：统一评测卡、Prompt 资产库（版本、上线标签、灰度回放、上线清单、改提示词时自动贴分数）；有据标注流水线把有据审核接成一条审核工作流：核对引文、复核队列、版本、灰度和回滚、每周指标。实习安置监测包把表单、每月数据检查、跟进表和报告接成一套，检查先在埋好错误的构造样例上量过。",
+        "en": "This repository: evaluation cards in one format and a prompt registry (versions, release labels, canary replay, a release checklist in Chinese, scores posted on every prompt change); the Grounded Labelling Pipeline turns Grounded Review into a review workflow: quote checks, a review queue, versions, canary and rollback, weekly metrics. The Placement Monitoring Kit joins forms, monthly data checks, a tracker and reports, with the checks measured first on a constructed sample with planted errors."
       },
       "reuse": {
-        "zh": "资产库收的是前面各幕已有的提示词版本；灰度回放用的是有据审核的真实对比数据。",
-        "en": "The registry holds the prompt versions from the earlier scenes; the canary replay uses Grounded Review's real comparison data."
+        "zh": "资产库收的是前面各幕已有的提示词版本；灰度回放用的是有据审核的真实对比数据；实习安置监测包用 evidence-check 0.5.0 核对报告里的数字。",
+        "en": "The registry holds the prompt versions from the earlier scenes; the canary replay uses Grounded Review's real comparison data; the Placement Monitoring Kit checks its report numbers with evidence-check 0.5.0."
       },
       "result": [
         {
@@ -271,6 +272,10 @@
         {
           "zh": "Agent 评测台：三个会调工具的 Agent 按步骤评，基线失败 17 次、上线前的关卡只拦下 1 次；不装 Skill 时创作流程成功 21/24 → 8/24",
           "en": "Agent Trace Eval: three tool-using agents scored step by step; of 17 failed base trials the release gates caught 1; without skills, creator workflow success 21/24 → 8/24"
+        },
+        {
+          "zh": "实习安置监测包：埋好的数据错误全部查出 17/17，没有多报；简报和演示稿的数字对回数据 260/260",
+          "en": "Placement Monitoring Kit: planted data errors all caught, 17/17, with no extra flags; brief and deck numbers traced to the data, 260/260"
         }
       ]
     }

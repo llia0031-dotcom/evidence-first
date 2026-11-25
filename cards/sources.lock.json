@@ -123,5 +123,10 @@
   "merchant-sourcing-my": {
     "merchant-sourcing-my-public/results/CLAIM_CHECK.md": "470c0046ef509aeb14004e3e33327d501ed0936ae30f50bbecebbda9f5280357",
     "merchant-sourcing-my-public/results/SUMMARY.md": "ffbddda4a04d9653415d53f5fe0c841d1acaa7f25dde99e64db96404fa36b6a1"
+  },
+  "placement-monitoring-kit": {
+    "placement-monitoring-kit-public/data/sample/planted.json": "1a98bac4d3b6a2fc4825b4e123a9a122204e845af470b3c721b089b639d32fe6",
+    "placement-monitoring-kit-public/outputs/sample/en/2026-08/data/issues.csv": "32fbd0fb01851c71b8b0274f1aabd7276e7d3e063e0862c44556562dcc22d2a2",
+    "placement-monitoring-kit-public/results/SUMMARY.md": "5bdd82ec4041203a624a3e99c9d2179f63d9804f0ec696fdb3c7e4945c674269"
   }
 }

@@ -904,8 +904,8 @@
         ]
       },
       "a": {
-        "zh": "广告审核、内容标注、电商、招商、经营分析、创作工具、语音、招聘初筛，还有按资料带出处地回答问题，每个都照业务里真会用的方式来做。",
-        "en": "Ad review, content labelling, e-commerce, merchant recruiting, business review, creator tools, voice, resume screening, and answering from documents with sources, each built the way the business would use it."
+        "zh": "广告审核、内容标注、电商、招商、经营分析、项目监测、创作工具、语音、招聘初筛，还有按资料带出处地回答问题，每个都照业务里真会用的方式来做。",
+        "en": "Ad review, content labelling, e-commerce, merchant recruiting, business review, programme monitoring, creator tools, voice, resume screening, and answering from documents with sources, each built the way the business would use it."
       },
       "sources": [
         {
@@ -1171,9 +1171,78 @@
       ]
     },
     {
-      "id": "direction-business",
+      "id": "direction-monitoring",
       "group": "direction",
       "order": 44,
+      "chip": false,
+      "q": {
+        "zh": "有项目监测评估方向的项目吗？",
+        "en": "Anything on programme monitoring and evaluation?"
+      },
+      "aliases": {
+        "zh": [
+          "监测评估",
+          "M&E",
+          "项目监测",
+          "数据收集",
+          "问卷",
+          "表单",
+          "KoboToolbox",
+          "ODK",
+          "月报",
+          "实习项目"
+        ],
+        "en": [
+          "monitoring and evaluation",
+          "m&e",
+          "programme monitoring",
+          "data collection",
+          "survey",
+          "forms",
+          "kobotoolbox",
+          "odk",
+          "monthly report"
+        ]
+      },
+      "a": {
+        "zh": "看实习安置监测包：表单、每月数据检查、跟进表、简报和演示稿一套接好，检查先在埋好错误的样例上量过。要看指标变了怎么找原因，再看有据经营分析。",
+        "en": "Look at the Placement Monitoring Kit: forms, monthly data checks, a tracker, a brief and a deck in one set, with the checks measured first on a sample with planted errors. For finding why a metric moved, Grounded Business Review."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "placement-monitoring-kit",
+          "label": {
+            "zh": "实习安置监测包",
+            "en": "Placement Monitoring Kit"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/placement-monitoring-kit",
+            "en": "https://github.com/llia0031-dotcom/placement-monitoring-kit"
+          }
+        },
+        {
+          "type": "project",
+          "id": "grounded-business-review",
+          "label": {
+            "zh": "有据经营分析",
+            "en": "Grounded Business Review"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/grounded-business-review",
+            "en": "https://github.com/llia0031-dotcom/grounded-business-review"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "live-demos"
+      ]
+    },
+    {
+      "id": "direction-business",
+      "group": "direction",
+      "order": 45,
       "chip": false,
       "q": {
         "zh": "有经营分析方向的项目吗？",
@@ -1223,7 +1292,7 @@
     {
       "id": "direction-creator",
       "group": "direction",
-      "order": 45,
+      "order": 46,
       "chip": false,
       "q": {
         "zh": "有创作工具方向的项目吗？",
@@ -1287,7 +1356,7 @@
     {
       "id": "direction-voice",
       "group": "direction",
-      "order": 46,
+      "order": 47,
       "chip": false,
       "q": {
         "zh": "有语音方向的项目吗？",
@@ -1335,7 +1404,7 @@
     {
       "id": "direction-recruiting",
       "group": "direction",
-      "order": 47,
+      "order": 48,
       "chip": false,
       "q": {
         "zh": "有招聘方向的项目吗？",
@@ -1383,7 +1452,7 @@
     {
       "id": "direction-agent-eval",
       "group": "direction",
-      "order": 48,
+      "order": 49,
       "chip": false,
       "q": {
         "zh": "有 Agent 评测方向的项目吗？",
@@ -1443,7 +1512,7 @@
     {
       "id": "direction-model-eval",
       "group": "direction",
-      "order": 49,
+      "order": 50,
       "chip": false,
       "q": {
         "zh": "有模型评测方向的项目吗？",
@@ -1503,7 +1572,7 @@
     {
       "id": "direction-grounded-qa",
       "group": "direction",
-      "order": 50,
+      "order": 51,
       "chip": false,
       "q": {
         "zh": "有带出处的问答方向的项目吗？",
@@ -2441,6 +2510,61 @@
           "url": {
             "zh": "https://github.com/llia0031-dotcom/merchant-sourcing-my",
             "en": "https://github.com/llia0031-dotcom/merchant-sourcing-my"
+          }
+        }
+      ],
+      "related": [
+        "first-project",
+        "live-demos"
+      ]
+    },
+    {
+      "id": "project-placement-monitoring-kit",
+      "group": "project",
+      "order": 76,
+      "chip": false,
+      "q": {
+        "zh": "实习安置监测包是什么？",
+        "en": "What is Placement Monitoring Kit?"
+      },
+      "aliases": {
+        "zh": [
+          "实习安置监测包",
+          "实习监测",
+          "placement-monitoring-kit"
+        ],
+        "en": [
+          "Placement Monitoring Kit",
+          "Placement monitoring",
+          "placement-monitoring-kit"
+        ]
+      },
+      "a": {
+        "zh": "按月跟进实习安置的一套工具：英法双语的入组、回访、单位反馈和结束表单，每月双击一次就出跟进表、简报和演示稿。埋好的数据错误全部查出 17/17，没有多报；报告里的数字对回数据 260/260。",
+        "en": "For teams that follow placements month by month: English and French intake, check-in, host feedback and exit forms, and one double-click a month for the tracker, a brief and a deck. Planted data errors all caught, 17/17, with no extra flags; report numbers traced to the data, 260/260."
+      },
+      "sources": [
+        {
+          "type": "project",
+          "id": "placement-monitoring-kit",
+          "label": {
+            "zh": "实习安置监测包",
+            "en": "Placement Monitoring Kit"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/placement-monitoring-kit",
+            "en": "https://github.com/llia0031-dotcom/placement-monitoring-kit"
+          }
+        },
+        {
+          "type": "url",
+          "label": {
+            "zh": "代码和报告",
+            "en": "Code and report"
+          },
+          "url": {
+            "zh": "https://github.com/llia0031-dotcom/placement-monitoring-kit",
+            "en": "https://github.com/llia0031-dotcom/placement-monitoring-kit"
           }
         }
       ],

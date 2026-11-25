@@ -10388,5 +10388,455 @@
         "en": "183 public pages saved, 131 of them quoted"
       }
     ]
+  },
+  {
+    "id": "placement-monitoring-kit",
+    "order": 17,
+    "layer": "operations",
+    "status": "public",
+    "updated": "2026-11-26",
+    "card_version": "1.0",
+    "card": {
+      "zh": "cards/placement-monitoring-kit.md",
+      "en": "cards/placement-monitoring-kit.en.md"
+    },
+    "links": [
+      {
+        "label": {
+          "zh": "代码和说明",
+          "en": "Code and guide"
+        },
+        "url": {
+          "zh": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/README.zh-CN.md",
+          "en": "https://github.com/llia0031-dotcom/placement-monitoring-kit"
+        }
+      },
+      {
+        "label": {
+          "zh": "快速上手",
+          "en": "Quick start"
+        },
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/guide/en/QUICK_START.md"
+      },
+      {
+        "label": {
+          "zh": "数据检查说明",
+          "en": "Data checks"
+        },
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/guide/en/CHECKS.md"
+      }
+    ],
+    "period": {
+      "zh": "2026-11-22 至 2026-11-23",
+      "en": "2026-11-22 to 2026-11-23"
+    },
+    "team": {
+      "zh": "Liang Liyuan",
+      "en": "Liang Liyuan"
+    },
+    "stack": {
+      "zh": "Python、XLSForm（pyxform 和 ODK Validate）、KoboToolbox / ODK Central 导出、pandas、openpyxl、reportlab、python-pptx、evidence-check",
+      "en": "Python, XLSForm (pyxform and ODK Validate), KoboToolbox / ODK Central exports, pandas, openpyxl, reportlab, python-pptx, evidence-check"
+    },
+    "evals": [
+      {
+        "id": "planted",
+        "name": {
+          "zh": "数据检查：埋好错误的构造样例",
+          "en": "Data checks: a constructed sample with planted errors"
+        },
+        "date": "2026-11-23",
+        "metrics": [
+          {
+            "id": "pmk_found",
+            "label": {
+              "zh": "埋好的数据错误查出",
+              "en": "Planted data errors caught"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "placement-monitoring-kit/data/sample/planted.json",
+              "placement-monitoring-kit/outputs/sample/en/2026-08/data/issues.csv"
+            ],
+            "k": 17,
+            "n": 17,
+            "rate": 1.0,
+            "ci95": [
+              0.8157,
+              1.0
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/data/sample/planted.json",
+              "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/outputs/sample/en/2026-08/data/issues.csv"
+            ]
+          },
+          {
+            "id": "pmk_extra",
+            "label": {
+              "zh": "问题表里不是埋错的行",
+              "en": "Issue rows that are not planted errors"
+            },
+            "direction": "lower",
+            "kind": "proportion",
+            "sources": [
+              "placement-monitoring-kit/data/sample/planted.json",
+              "placement-monitoring-kit/outputs/sample/en/2026-08/data/issues.csv"
+            ],
+            "k": 0,
+            "n": 18,
+            "rate": 0.0,
+            "ci95": [
+              0.0,
+              0.1759
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/data/sample/planted.json",
+              "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/outputs/sample/en/2026-08/data/issues.csv"
+            ]
+          },
+          {
+            "id": "pmk_near",
+            "label": {
+              "zh": "看着像错、其实没错的记录",
+              "en": "Near misses: records that look wrong but are not"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "placement-monitoring-kit/results/SUMMARY.md"
+            ],
+            "value": 14.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+            ]
+          },
+          {
+            "id": "pmk_missing",
+            "label": {
+              "zh": "埋好的没收到的跟进",
+              "en": "Planted follow-ups not received"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "placement-monitoring-kit/results/SUMMARY.md"
+            ],
+            "value": 9.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+            ]
+          },
+          {
+            "id": "pmk_participants",
+            "label": {
+              "zh": "样例里同意参加的实习生",
+              "en": "Consenting interns in the sample"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "placement-monitoring-kit/results/SUMMARY.md"
+            ],
+            "value": 50.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+            ]
+          },
+          {
+            "id": "pmk_hosts",
+            "label": {
+              "zh": "样例里的接收单位",
+              "en": "Host organisations in the sample"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "placement-monitoring-kit/results/SUMMARY.md"
+            ],
+            "value": 18.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+            ]
+          },
+          {
+            "id": "pmk_months",
+            "label": {
+              "zh": "样例的月数",
+              "en": "Months in the sample"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "placement-monitoring-kit/results/SUMMARY.md"
+            ],
+            "value": 7.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+            ]
+          },
+          {
+            "id": "pmk_checks",
+            "label": {
+              "zh": "数据检查项",
+              "en": "Data checks"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "placement-monitoring-kit/results/SUMMARY.md"
+            ],
+            "value": 15.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "reports",
+        "name": {
+          "zh": "报告：简报和演示稿里的数字",
+          "en": "Reports: the numbers in the brief and deck"
+        },
+        "date": "2026-11-23",
+        "metrics": [
+          {
+            "id": "pmk_numbers",
+            "label": {
+              "zh": "简报和演示稿：带标签的行对回数据",
+              "en": "Brief and deck: tagged lines matched to data"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "placement-monitoring-kit/results/SUMMARY.md"
+            ],
+            "k": 260,
+            "n": 260,
+            "rate": 1.0,
+            "ci95": [
+              0.9854,
+              1.0
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+            ]
+          },
+          {
+            "id": "pmk_bg",
+            "label": {
+              "zh": "背景简报：带标签的行对回数据",
+              "en": "Background brief: tagged lines matched to data"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "placement-monitoring-kit/results/SUMMARY.md"
+            ],
+            "k": 24,
+            "n": 24,
+            "rate": 1.0,
+            "ci95": [
+              0.862,
+              1.0
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+            ]
+          },
+          {
+            "id": "pmk_indicators",
+            "label": {
+              "zh": "指标",
+              "en": "Indicators"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "placement-monitoring-kit/results/SUMMARY.md"
+            ],
+            "value": 39.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+            ]
+          },
+          {
+            "id": "pmk_pages",
+            "label": {
+              "zh": "简报页数",
+              "en": "Pages in the brief"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "placement-monitoring-kit/results/SUMMARY.md"
+            ],
+            "value": 2.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+            ]
+          },
+          {
+            "id": "pmk_slides",
+            "label": {
+              "zh": "演示稿页数",
+              "en": "Slides in the deck"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "placement-monitoring-kit/results/SUMMARY.md"
+            ],
+            "value": 8.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "forms",
+        "name": {
+          "zh": "表单：在填表界面里逐张填写",
+          "en": "Forms: filled in through the form interface"
+        },
+        "date": "2026-11-23",
+        "metrics": [
+          {
+            "id": "pmk_walk",
+            "label": {
+              "zh": "填表检查通过",
+              "en": "Form walk-through checks passed"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "placement-monitoring-kit/results/SUMMARY.md"
+            ],
+            "k": 418,
+            "n": 418,
+            "rate": 1.0,
+            "ci95": [
+              0.9909,
+              1.0
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+            ]
+          },
+          {
+            "id": "pmk_subs",
+            "label": {
+              "zh": "存下的提交和表单、字段对得上",
+              "en": "Saved submissions matching the forms and fields"
+            },
+            "direction": "higher",
+            "kind": "proportion",
+            "sources": [
+              "placement-monitoring-kit/results/SUMMARY.md"
+            ],
+            "k": 32,
+            "n": 32,
+            "rate": 1.0,
+            "ci95": [
+              0.8928,
+              1.0
+            ],
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+            ]
+          },
+          {
+            "id": "pmk_questions",
+            "label": {
+              "zh": "四张表单的题目",
+              "en": "Questions in the four forms"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "placement-monitoring-kit/results/SUMMARY.md"
+            ],
+            "value": 119.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+            ]
+          },
+          {
+            "id": "pmk_tests",
+            "label": {
+              "zh": "自动测试",
+              "en": "Automated tests"
+            },
+            "direction": "none",
+            "kind": "value",
+            "sources": [
+              "placement-monitoring-kit/results/SUMMARY.md"
+            ],
+            "value": 479.0,
+            "unit": "",
+            "n": null,
+            "source_urls": [
+              "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+            ]
+          }
+        ]
+      }
+    ],
+    "name": {
+      "zh": "实习安置监测包",
+      "en": "Placement Monitoring Kit"
+    },
+    "problem": {
+      "zh": "把实习生安置到接收单位的项目，要按月跟进每个人：谁的表还没交、数据哪里有错、本月该向管理层报什么；靠人工翻表，又慢又容易漏",
+      "en": "A placement programme follows every intern month by month: whose form is missing, where the data is wrong, what to report this month; done by hand, it is slow and things slip"
+    },
+    "primary_metric": {
+      "zh": "埋好的数据错误查出多少、有没有多报；简报和演示稿里的数字对回数据行的比例",
+      "en": "Planted data errors caught and any extra flags; share of numbers in the brief and deck traced to their data row"
+    },
+    "summary": {
+      "zh": "给按月跟进实习安置的团队用：四张英法双语表单（入组、每月回访、接收单位反馈、结束去向），可在 KoboToolbox 或 ODK Central 里用；每月双击一次，程序做 15 项数据检查、算 39 个指标，写出跟进表、2 页简报和 8 页演示稿。评的是两件事：检查查得准不准，用构造样例里埋好的错误和像错其实没错的记录来量；报告里的数字对不对，逐行对回数据。",
+      "en": "For teams that follow placements month by month: four English and French forms (intake, monthly check-in, host feedback, exit) for KoboToolbox or ODK Central; one double-click a month runs 15 data checks, computes 39 indicators and writes the tracker, a 2-page brief and an 8-slide deck. Two things are evaluated: whether the checks are accurate, measured with the planted errors and near misses of a constructed sample; and whether the report numbers are right, traced line by line to the data."
+    },
+    "did": {
+      "zh": "我先查了现成的：付费的监测平台要钱要账号，也没有实习就业的模板；大学的实习管理系统不面向离线收集和法语；公开仓库里没找到实习回访的表单。于是把公认的问法和指标定义接起来：结束去向的问法和就业分类照劳动统计的国际标准，自己写的题在表里注明。每月的程序读表单导出，做数据检查，列出谁该跟进并配好提醒话术，再出跟进表、简报和演示稿。检查先在构造的样例上量过：50 名同意参加的实习生、18 家接收单位、7 个月，里面埋好了错误，也放了看着像错、其实没错的记录。",
+      "en": "I first checked what exists: paid monitoring platforms need money and accounts and have no internship templates; university placement systems do not cover offline collection or French; no public repository had a placement check-in form. So the kit joins recognised wording and indicator definitions: exit and destination questions and the employment classification follow the international labour statistics standards, and the kit's own questions are marked as such. The monthly run reads the form exports, checks the data, lists who to follow up with reminder text ready, and writes the tracker, a brief and a deck. The checks were measured first on a constructed sample: 50 consenting interns, 18 host organisations and 7 months, with planted errors and records that look wrong but are not."
+    },
+    "headline": [
+      {
+        "zh": "构造样例里埋好的数据错误全部查出：17/17；问题表里没有多出的行，14 处看着像错、其实没错的记录一处没报",
+        "en": "Every planted data error in the constructed sample is caught: 17/17; the issue list has no extra rows, and none of the 14 records that look wrong but are not is flagged"
+      },
+      {
+        "zh": "简报和演示稿里带出处的数字逐行对回数据：260/260；背景简报 24/24",
+        "en": "Tagged numbers in the brief and deck traced line by line to the data: 260/260; background brief 24/24"
+      },
+      {
+        "zh": "四张英法双语表单共 119 道题，在填表界面里逐张填过：418/418 项检查通过",
+        "en": "Four English and French forms with 119 questions, each filled in through the form interface: 418/418 checks passed"
+      }
+    ]
   }
 ]

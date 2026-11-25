@@ -79,3 +79,8 @@ url = "https://github.com/llia0031-dotcom/agent-trace-eval/blob/main/"
 prefix = "merchant-sourcing-my-public/"
 repo = "merchant-sourcing-my"
 url = "https://github.com/llia0031-dotcom/merchant-sourcing-my/blob/main/"
+
+[[map]]
+prefix = "placement-monitoring-kit-public/"
+repo = "placement-monitoring-kit"
+url = "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/"

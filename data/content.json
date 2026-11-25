@@ -14583,5 +14583,617 @@
         "public": true
       }
     ]
+  },
+  {
+    "id": "placement-monitoring-kit",
+    "lang": "zh",
+    "order": 17,
+    "name": "实习安置监测包",
+    "status": "public",
+    "layer": "运营层",
+    "period": "2026-11-22 至 2026-11-23",
+    "team": "Liang Liyuan",
+    "stack": "Python、XLSForm（pyxform 和 ODK Validate）、KoboToolbox / ODK Central 导出、pandas、openpyxl、reportlab、python-pptx、evidence-check",
+    "one_line": "给按月跟进实习安置的团队用：四张英法双语表单（入组、每月回访、接收单位反馈、结束去向），可在 KoboToolbox 或 ODK Central 里用；每月双击一次，程序做 15 项数据检查、算 39 个指标，写出跟进表、2 页简报和 8 页演示稿。",
+    "facts": [
+      {
+        "label": "时间",
+        "value": "2026-11-22 至 2026-11-23"
+      },
+      {
+        "label": "团队",
+        "value": "Liang Liyuan"
+      },
+      {
+        "label": "技术",
+        "value": "Python、XLSForm（pyxform 和 ODK Validate）、KoboToolbox / ODK Central 导出、pandas、openpyxl、reportlab、python-pptx、evidence-check"
+      },
+      {
+        "label": "在作品集里的位置",
+        "value": "运营层"
+      },
+      {
+        "label": "状态",
+        "value": "已公开"
+      }
+    ],
+    "links": [
+      {
+        "label": "代码和说明",
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/README.zh-CN.md"
+      },
+      {
+        "label": "快速上手",
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/guide/en/QUICK_START.md"
+      },
+      {
+        "label": "数据检查说明",
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/guide/en/CHECKS.md"
+      }
+    ],
+    "problem": [
+      "把实习生安置到接收单位的项目，要按月跟进每个人：谁的表还没交、数据哪里有错、本月该向管理层报什么；靠人工翻表，又慢又容易漏。"
+    ],
+    "did": [
+      "我先查了现成的：付费的监测平台要钱要账号，也没有实习就业的模板；大学的实习管理系统不面向离线收集和法语；公开仓库里没找到实习回访的表单。于是把公认的问法和指标定义接起来：结束去向的问法和就业分类照劳动统计的国际标准，自己写的题在表里注明。每月的程序读表单导出，做数据检查，列出谁该跟进并配好提醒话术，再出跟进表、简报和演示稿。检查先在构造的样例上量过：50 名同意参加的实习生、18 家接收单位、7 个月，里面埋好了错误，也放了看着像错、其实没错的记录。"
+    ],
+    "evaluation": [
+      "**数据检查：埋好错误的构造样例**：全部埋错和像错其实没错的记录；每次运行和每次测试都跑；全部数据检查；不调用模型",
+      "**报告：简报和演示稿里的数字**：全部带标签的行；每次运行都核对；evidence-check 0.5.0 的核对脚本；不调用模型",
+      "**表单：在填表界面里逐张填写**：四张表单的全部题目；每张表、每种语言和宽度各一遍；填表脚本；不调用模型"
+    ],
+    "iteration": [
+      "检查：每项检查都配了埋错，另放了像错其实没错的记录，一起写进自动测试（tests/test_checks.py）；规则一改，漏报或多报都会让测试失败。",
+      "安装：在一份干净的副本里双击 setup.bat，用它装好的 Python 3.12 跑出的样例报告，文字、表格和页面图都和开发环境一致。"
+    ],
+    "result": [
+      "检查数据的程序要先证明自己查得准：在答案已知的样例上量，有错的要全报，没错的不能报。报告里的数字逐行对回数据，团队拿去开会、交给管理层之前，不用再手工核一遍。"
+    ],
+    "limitations": [
+      "样例是构造的；还没在真实的项目、真实的 KoboToolbox 或 ODK Central 服务器和 ODK Collect 手机端上用过，只在 Windows 上跑过。建议：上线前在团队自己的服务器上建一个测试项目，用几份测试提交把每月流程跑通一次。",
+      "法文文字还要请当地讲法语的同事通读一遍；每月回访和接收单位反馈的部分题目没有公认的现成问卷，是这套工具自己的写法，在表里注明了。建议：通读后把改动写回表单的 xlsx 再生成；用过一两个月后，照回答情况改题。"
+    ],
+    "headline": [
+      "构造样例里埋好的数据错误全部查出：17/17；问题表里没有多出的行，14 处看着像错、其实没错的记录一处没报",
+      "简报和演示稿里带出处的数字逐行对回数据：260/260；背景简报 24/24",
+      "四张英法双语表单共 119 道题，在填表界面里逐张填过：418/418 项检查通过"
+    ],
+    "numbers": [
+      {
+        "id": "N1",
+        "metric": "pmk_found",
+        "label": "埋好的数据错误查出",
+        "value": "17/17",
+        "full": "17/17（100.0%，95% 区间 81.6–100.0%）",
+        "evaluation": "数据检查：埋好错误的构造样例",
+        "sources": [
+          "placement-monitoring-kit/data/sample/planted.json",
+          "placement-monitoring-kit/outputs/sample/en/2026-08/data/issues.csv"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/data/sample/planted.json",
+          "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/outputs/sample/en/2026-08/data/issues.csv"
+        ],
+        "kind": "proportion",
+        "k": 17,
+        "n": 17,
+        "rate": 1.0,
+        "ci95": [
+          0.8157,
+          1.0
+        ],
+        "display": "17/17"
+      },
+      {
+        "id": "N2",
+        "metric": "pmk_near",
+        "label": "看着像错、其实没错的记录",
+        "value": 14.0,
+        "full": "14",
+        "evaluation": "数据检查：埋好错误的构造样例",
+        "sources": [
+          "placement-monitoring-kit/results/SUMMARY.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "14"
+      },
+      {
+        "id": "N3",
+        "metric": "pmk_numbers",
+        "label": "简报和演示稿：带标签的行对回数据",
+        "value": "260/260",
+        "full": "260/260（100.0%，95% 区间 98.5–100.0%）",
+        "evaluation": "报告：简报和演示稿里的数字",
+        "sources": [
+          "placement-monitoring-kit/results/SUMMARY.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+        ],
+        "kind": "proportion",
+        "k": 260,
+        "n": 260,
+        "rate": 1.0,
+        "ci95": [
+          0.9854,
+          1.0
+        ],
+        "display": "260/260"
+      },
+      {
+        "id": "N4",
+        "metric": "pmk_bg",
+        "label": "背景简报：带标签的行对回数据",
+        "value": "24/24",
+        "full": "24/24（100.0%，95% 区间 86.2–100.0%）",
+        "evaluation": "报告：简报和演示稿里的数字",
+        "sources": [
+          "placement-monitoring-kit/results/SUMMARY.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+        ],
+        "kind": "proportion",
+        "k": 24,
+        "n": 24,
+        "rate": 1.0,
+        "ci95": [
+          0.862,
+          1.0
+        ],
+        "display": "24/24"
+      },
+      {
+        "id": "N5",
+        "metric": "pmk_questions",
+        "label": "四张表单的题目",
+        "value": 119.0,
+        "full": "119",
+        "evaluation": "表单：在填表界面里逐张填写",
+        "sources": [
+          "placement-monitoring-kit/results/SUMMARY.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "119"
+      },
+      {
+        "id": "N6",
+        "metric": "pmk_walk",
+        "label": "填表检查通过",
+        "value": "418/418",
+        "full": "418/418（100.0%，95% 区间 99.1–100.0%）",
+        "evaluation": "表单：在填表界面里逐张填写",
+        "sources": [
+          "placement-monitoring-kit/results/SUMMARY.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+        ],
+        "kind": "proportion",
+        "k": 418,
+        "n": 418,
+        "rate": 1.0,
+        "ci95": [
+          0.9909,
+          1.0
+        ],
+        "display": "418/418"
+      },
+      {
+        "id": "N7",
+        "metric": "pmk_extra",
+        "label": "问题表里不是埋错的行",
+        "value": "0/18",
+        "full": "0/18（0.0%，95% 区间 0.0–17.6%）",
+        "evaluation": "数据检查：埋好错误的构造样例",
+        "sources": [
+          "placement-monitoring-kit/data/sample/planted.json",
+          "placement-monitoring-kit/outputs/sample/en/2026-08/data/issues.csv"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/data/sample/planted.json",
+          "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/outputs/sample/en/2026-08/data/issues.csv"
+        ],
+        "kind": "proportion",
+        "k": 0,
+        "n": 18,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.1759
+        ],
+        "display": "0/18"
+      }
+    ],
+    "short_name": "实习监测",
+    "card_title": "每月的数据检查，先用埋好的错误量过",
+    "assumed": "以为看着可疑的记录都该报出来",
+    "showed": "14 处看着像错的记录其实没错，检查要放过它们；埋好的错误 17/17 全部查出",
+    "result_line": "埋好的数据错误全部查出 17/17，没有多报；报告里的数字对回数据 260/260",
+    "key_numbers": [
+      {
+        "id": "N1",
+        "label": "埋好的数据错误查出"
+      },
+      {
+        "id": "N7",
+        "label": "问题表里不是埋错的行"
+      },
+      {
+        "id": "N3",
+        "label": "简报和演示稿的数字对回数据"
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-11-23",
+        "label": "表单",
+        "text": "四张表在填表界面里逐张填过",
+        "after": "418/418",
+        "after_id": "N6"
+      },
+      {
+        "date": "2026-11-23",
+        "label": "数据检查",
+        "text": "埋好的错误全部查出，没有多报",
+        "after": "17/17",
+        "after_id": "N1"
+      },
+      {
+        "date": "2026-11-23",
+        "label": "报告",
+        "text": "简报和演示稿的数字全部对回数据",
+        "after": "260/260",
+        "after_id": "N3"
+      }
+    ],
+    "images": [
+      {
+        "path": "placement-monitoring-kit/images/brief_p1_en.png",
+        "caption": "简报第一页（构造样例）：本月几个关键数、按月回访情况、要处理的事",
+        "public": true,
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/brief_p1_en.png"
+      },
+      {
+        "path": "placement-monitoring-kit/images/tracker_followups_en.png",
+        "caption": "跟进表（构造样例）：逾期排最前，状态用文字和颜色标出，提醒话术可以直接复制",
+        "public": true,
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/tracker_followups_en.png"
+      },
+      {
+        "path": "placement-monitoring-kit/images/tracker_issues_en.png",
+        "caption": "数据问题表（构造样例）：哪一项检查、哪里不对、怎么改",
+        "public": true,
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/tracker_issues_en.png"
+      },
+      {
+        "path": "placement-monitoring-kit/images/deck_slide_4_en.png",
+        "caption": "演示稿里的安置质量页（构造样例）",
+        "public": true,
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/deck_slide_4_en.png"
+      },
+      {
+        "path": "placement-monitoring-kit/images/forms/checkin_phone_fr_1.png",
+        "caption": "手机上的每月回访表（法文）",
+        "public": true,
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/forms/checkin_phone_fr_1.png"
+      }
+    ]
+  },
+  {
+    "id": "placement-monitoring-kit",
+    "lang": "en",
+    "order": 17,
+    "name": "Placement Monitoring Kit",
+    "status": "public",
+    "layer": "Operations",
+    "period": "2026-11-22 to 2026-11-23",
+    "team": "Liang Liyuan",
+    "stack": "Python, XLSForm (pyxform and ODK Validate), KoboToolbox / ODK Central exports, pandas, openpyxl, reportlab, python-pptx, evidence-check",
+    "one_line": "For teams that follow placements month by month: four English and French forms (intake, monthly check-in, host feedback, exit) for KoboToolbox or ODK Central; one double-click a month runs 15 data checks, computes 39 indicators and writes the tracker, a 2-page brief and an 8-slide deck.",
+    "facts": [
+      {
+        "label": "When",
+        "value": "2026-11-22 to 2026-11-23"
+      },
+      {
+        "label": "Team",
+        "value": "Liang Liyuan"
+      },
+      {
+        "label": "Stack",
+        "value": "Python, XLSForm (pyxform and ODK Validate), KoboToolbox / ODK Central exports, pandas, openpyxl, reportlab, python-pptx, evidence-check"
+      },
+      {
+        "label": "Place in the portfolio",
+        "value": "Operations"
+      },
+      {
+        "label": "Status",
+        "value": "Public"
+      }
+    ],
+    "links": [
+      {
+        "label": "Code and guide",
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit"
+      },
+      {
+        "label": "Quick start",
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/guide/en/QUICK_START.md"
+      },
+      {
+        "label": "Data checks",
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/guide/en/CHECKS.md"
+      }
+    ],
+    "problem": [
+      "A placement programme follows every intern month by month: whose form is missing, where the data is wrong, what to report this month; done by hand, it is slow and things slip."
+    ],
+    "did": [
+      "I first checked what exists: paid monitoring platforms need money and accounts and have no internship templates; university placement systems do not cover offline collection or French; no public repository had a placement check-in form. So the kit joins recognised wording and indicator definitions: exit and destination questions and the employment classification follow the international labour statistics standards, and the kit's own questions are marked as such. The monthly run reads the form exports, checks the data, lists who to follow up with reminder text ready, and writes the tracker, a brief and a deck. The checks were measured first on a constructed sample: 50 consenting interns, 18 host organisations and 7 months, with planted errors and records that look wrong but are not."
+    ],
+    "evaluation": [
+      "**Data checks: a constructed sample with planted errors**: Every planted error and near miss; On every run and every test; All data checks; no model called",
+      "**Reports: the numbers in the brief and deck**: Every tagged line; Checked on every run; The evidence-check 0.5.0 script; no model called",
+      "**Forms: filled in through the form interface**: Every question of the four forms; Once per form, language and width; A form-filling script; no model called"
+    ],
+    "iteration": [
+      "Checks: every check has a planted error, with near misses alongside, all written into the automated tests (tests/test_checks.py); if a rule changes, a missed or extra flag fails the tests.",
+      "Setup: in a clean copy, setup.bat installs Python 3.12, and the sample reports it produces have the same text, tables and page images as the development environment."
+    ],
+    "result": [
+      "A data-checking program has to show first that it is accurate: measured on a sample with known answers, it must flag every error and nothing else. With every report number traced to its row, the team can take the brief to a meeting or to managers without checking it by hand."
+    ],
+    "limitations": [
+      "The sample is constructed; the kit has not yet run in a live programme, against a live KoboToolbox or ODK Central server or in ODK Collect, and only on Windows. Recommendation: Before going live, set up a test project on the team's own server and run the monthly cycle once with a few test submissions.",
+      "The French text still needs a read by a French-speaking colleague in the country; some check-in and host-feedback questions have no recognised instrument and use the kit's own wording, marked as such. Recommendation: Write the changes back into the forms' xlsx and rebuild; after a month or two, revise questions by how they are answered."
+    ],
+    "headline": [
+      "Every planted data error in the constructed sample is caught: 17/17; the issue list has no extra rows, and none of the 14 records that look wrong but are not is flagged",
+      "Tagged numbers in the brief and deck traced line by line to the data: 260/260; background brief 24/24",
+      "Four English and French forms with 119 questions, each filled in through the form interface: 418/418 checks passed"
+    ],
+    "numbers": [
+      {
+        "id": "N1",
+        "metric": "pmk_found",
+        "label": "Planted data errors caught",
+        "value": "17/17",
+        "full": "17/17 (100.0%, 95% CI 81.6–100.0%)",
+        "evaluation": "Data checks: a constructed sample with planted errors",
+        "sources": [
+          "placement-monitoring-kit/data/sample/planted.json",
+          "placement-monitoring-kit/outputs/sample/en/2026-08/data/issues.csv"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/data/sample/planted.json",
+          "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/outputs/sample/en/2026-08/data/issues.csv"
+        ],
+        "kind": "proportion",
+        "k": 17,
+        "n": 17,
+        "rate": 1.0,
+        "ci95": [
+          0.8157,
+          1.0
+        ],
+        "display": "17/17"
+      },
+      {
+        "id": "N2",
+        "metric": "pmk_near",
+        "label": "Near misses: records that look wrong but are not",
+        "value": 14.0,
+        "full": "14",
+        "evaluation": "Data checks: a constructed sample with planted errors",
+        "sources": [
+          "placement-monitoring-kit/results/SUMMARY.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "14"
+      },
+      {
+        "id": "N3",
+        "metric": "pmk_numbers",
+        "label": "Brief and deck: tagged lines matched to data",
+        "value": "260/260",
+        "full": "260/260 (100.0%, 95% CI 98.5–100.0%)",
+        "evaluation": "Reports: the numbers in the brief and deck",
+        "sources": [
+          "placement-monitoring-kit/results/SUMMARY.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+        ],
+        "kind": "proportion",
+        "k": 260,
+        "n": 260,
+        "rate": 1.0,
+        "ci95": [
+          0.9854,
+          1.0
+        ],
+        "display": "260/260"
+      },
+      {
+        "id": "N4",
+        "metric": "pmk_bg",
+        "label": "Background brief: tagged lines matched to data",
+        "value": "24/24",
+        "full": "24/24 (100.0%, 95% CI 86.2–100.0%)",
+        "evaluation": "Reports: the numbers in the brief and deck",
+        "sources": [
+          "placement-monitoring-kit/results/SUMMARY.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+        ],
+        "kind": "proportion",
+        "k": 24,
+        "n": 24,
+        "rate": 1.0,
+        "ci95": [
+          0.862,
+          1.0
+        ],
+        "display": "24/24"
+      },
+      {
+        "id": "N5",
+        "metric": "pmk_questions",
+        "label": "Questions in the four forms",
+        "value": 119.0,
+        "full": "119",
+        "evaluation": "Forms: filled in through the form interface",
+        "sources": [
+          "placement-monitoring-kit/results/SUMMARY.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+        ],
+        "kind": "value",
+        "unit": "",
+        "n": null,
+        "display": "119"
+      },
+      {
+        "id": "N6",
+        "metric": "pmk_walk",
+        "label": "Form walk-through checks passed",
+        "value": "418/418",
+        "full": "418/418 (100.0%, 95% CI 99.1–100.0%)",
+        "evaluation": "Forms: filled in through the form interface",
+        "sources": [
+          "placement-monitoring-kit/results/SUMMARY.md"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/results/SUMMARY.md"
+        ],
+        "kind": "proportion",
+        "k": 418,
+        "n": 418,
+        "rate": 1.0,
+        "ci95": [
+          0.9909,
+          1.0
+        ],
+        "display": "418/418"
+      },
+      {
+        "id": "N7",
+        "metric": "pmk_extra",
+        "label": "Issue rows that are not planted errors",
+        "value": "0/18",
+        "full": "0/18 (0.0%, 95% CI 0.0–17.6%)",
+        "evaluation": "Data checks: a constructed sample with planted errors",
+        "sources": [
+          "placement-monitoring-kit/data/sample/planted.json",
+          "placement-monitoring-kit/outputs/sample/en/2026-08/data/issues.csv"
+        ],
+        "source_urls": [
+          "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/data/sample/planted.json",
+          "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/outputs/sample/en/2026-08/data/issues.csv"
+        ],
+        "kind": "proportion",
+        "k": 0,
+        "n": 18,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.1759
+        ],
+        "display": "0/18"
+      }
+    ],
+    "short_name": "Placement monitoring",
+    "card_title": "Monthly data checks, measured on planted errors first",
+    "assumed": "Expected every suspicious-looking record to be worth flagging",
+    "showed": "14 records that look wrong are not, and the checks must pass them; the planted errors are all caught, 17/17",
+    "result_line": "Planted data errors all caught, 17/17, with no extra flags; report numbers traced to the data, 260/260",
+    "key_numbers": [
+      {
+        "id": "N1",
+        "label": "Planted data errors caught"
+      },
+      {
+        "id": "N7",
+        "label": "Issue rows that are not planted errors"
+      },
+      {
+        "id": "N3",
+        "label": "Brief and deck numbers traced to data"
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-11-23",
+        "label": "Forms",
+        "text": "Every form filled in through the form interface",
+        "after": "418/418",
+        "after_id": "N6"
+      },
+      {
+        "date": "2026-11-23",
+        "label": "Data checks",
+        "text": "Planted errors all caught, no extra flags",
+        "after": "17/17",
+        "after_id": "N1"
+      },
+      {
+        "date": "2026-11-23",
+        "label": "Reports",
+        "text": "Every brief and deck number traced to the data",
+        "after": "260/260",
+        "after_id": "N3"
+      }
+    ],
+    "images": [
+      {
+        "path": "placement-monitoring-kit/images/brief_p1_en.png",
+        "caption": "First page of the brief (constructed sample): the month's key numbers, check-ins by round, what needs action",
+        "public": true,
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/brief_p1_en.png"
+      },
+      {
+        "path": "placement-monitoring-kit/images/tracker_followups_en.png",
+        "caption": "Follow-ups sheet of the tracker (constructed sample): overdue first, state in words and colour, reminder text ready to copy",
+        "public": true,
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/tracker_followups_en.png"
+      },
+      {
+        "path": "placement-monitoring-kit/images/tracker_issues_en.png",
+        "caption": "Data issues sheet (constructed sample): which check, what is wrong, how to fix it",
+        "public": true,
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/tracker_issues_en.png"
+      },
+      {
+        "path": "placement-monitoring-kit/images/deck_slide_4_en.png",
+        "caption": "Placement quality slide of the deck (constructed sample)",
+        "public": true,
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/deck_slide_4_en.png"
+      },
+      {
+        "path": "placement-monitoring-kit/images/forms/checkin_phone_fr_1.png",
+        "caption": "Monthly check-in on a phone, in French",
+        "public": true,
+        "url": "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/images/forms/checkin_phone_fr_1.png"
+      }
+    ]
   }
 ]

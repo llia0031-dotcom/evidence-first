@@ -524,6 +524,29 @@ def text_value(rd, path: str, label: str, nth: int = 0, unit: str = "", decimals
     return {"kind": "value", "value": nums[nth], "unit": unit, "decimals": decimals, "signed": signed}
 
 
+def _issue_ids(rd, issues: str) -> list[str]:
+    import csv
+    import io
+    text = rd.text(issues).lstrip("﻿")
+    return [r["issue_id"] for r in csv.DictReader(io.StringIO(text))]
+
+
+@extractor
+def planted_found(rd, planted: str, issues: str):
+    """Planted problems whose every expected issue id is in the run's issue list, out of all planted problems."""
+    plants = rd.json(planted)["issues"]
+    found = set(_issue_ids(rd, issues))
+    return {"k": sum(1 for p in plants if p["issue_ids"] and all(i in found for i in p["issue_ids"])), "n": len(plants)}
+
+
+@extractor
+def unplanted_flags(rd, planted: str, issues: str):
+    """Rows of the run's issue list that belong to no planted problem, out of all rows."""
+    expected = {i for p in rd.json(planted)["issues"] for i in p["issue_ids"]}
+    rows = _issue_ids(rd, issues)
+    return {"k": sum(1 for i in rows if i not in expected), "n": len(rows)}
+
+
 @extractor
 def text_ratio_labels(rd, path: str, k_label: str, n_label: str, k_nth: int = 0, n_nth: int = 0):
     """k/n from two labelled lines, e.g. "- supported: 453" over "- claims checked: 453"."""

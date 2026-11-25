@@ -79,6 +79,7 @@ Python 3.11+, standard library only. The project folders must sit next to this r
 | `labelling-agent-kit-public/` | [labelling-agent-kit](https://github.com/llia0031-dotcom/labelling-agent-kit) |
 | `agent-trace-eval-public/` | [agent-trace-eval](https://github.com/llia0031-dotcom/agent-trace-eval) |
 | `merchant-sourcing-my-public/` | [merchant-sourcing-my](https://github.com/llia0031-dotcom/merchant-sourcing-my) |
+| `placement-monitoring-kit-public/` | [placement-monitoring-kit](https://github.com/llia0031-dotcom/placement-monitoring-kit) |
 | `launchpad-tracedesk/` | not public (source of the TraceDesk card) |
 | `aigc-scene-eval/` | not public (source of the text-on-product card) |
 

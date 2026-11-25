@@ -246,7 +246,7 @@ group = "projects"
 order = 15
 q = { zh = "这些项目对应哪些业务场景？", en = "Which business scenarios do the projects cover?" }
 aliases = { zh = ["业务场景", "应用场景", "落地", "能用在哪", "行业"], en = ["use cases", "business scenarios", "applications", "where would this be used", "industry"] }
-a = { zh = "广告审核、内容标注、电商、招商、经营分析、创作工具、语音、招聘初筛，还有按资料带出处地回答问题，每个都照业务里真会用的方式来做。", en = "Ad review, content labelling, e-commerce, merchant recruiting, business review, creator tools, voice, resume screening, and answering from documents with sources, each built the way the business would use it." }
+a = { zh = "广告审核、内容标注、电商、招商、经营分析、项目监测、创作工具、语音、招聘初筛，还有按资料带出处地回答问题，每个都照业务里真会用的方式来做。", en = "Ad review, content labelling, e-commerce, merchant recruiting, business review, programme monitoring, creator tools, voice, resume screening, and answering from documents with sources, each built the way the business would use it." }
 sources = [
   { type = "section", id = "work", label = { zh = "全部项目", en = "All projects" } },
 ]
@@ -269,6 +269,7 @@ policy-model-lab = { zh = "审视频广告时，模型要看文案、抽帧还�
 judge-calibration = { zh = "测模型当裁判能信到什么程度，再定哪些检查交给脚本、哪些交给裁判、哪些留给人", en = "It measures how far a model judge can be trusted, then sorts checks into those for a script, for the judge and for people" }
 labelling-agent-kit = { zh = "一个换套规则和案例就能接新任务的标注 Agent，配上用对照实验和根因分析调它的工具", en = "A labelling agent that takes on a new task with a new folder of rules and cases, plus the experiments and root-cause analysis to tune it" }
 agent-trace-eval = { zh = "评会调工具的 Agent 每一步做了什么，看得出失败从哪一步开始", en = "It scores what a tool-using agent does at every step, so you can see where a failure starts" }
+placement-monitoring-kit = { zh = "按月跟进实习安置的一套工具：英法双语的入组、回访、单位反馈和结束表单，每月双击一次就出跟进表、简报和演示稿", en = "For teams that follow placements month by month: English and French intake, check-in, host feedback and exit forms, and one double-click a month for the tracker, a brief and a deck" }
 merchant-sourcing-my = { zh = "给类目团队的招商“第一周作业”：行业洞察、先联系哪些本地商家和为什么、每类产品要哪些资质，再配上入驻跟进表和触达模板", en = "A category team's first week of merchant recruiting: industry insight, which local merchants to call first and why, the approvals each product needs, plus an onboarding tracker and outreach templates" }
 
 # A result line written for the answer where the card's own line leads with a finding about others.
@@ -304,6 +305,13 @@ projects = ["merchant-sourcing-my", "sellpoint-check"]
 q = { zh = "有招商或商家运营方向的项目吗？", en = "Anything on merchant recruiting or merchant operations?" }
 aliases = { zh = ["招商", "商家运营", "行业运营", "类目运营", "商家拓展", "入驻", "马来西亚"], en = ["merchant recruiting", "merchant sourcing", "merchant operations", "seller onboarding", "category management", "business development", "malaysia"] }
 a = { zh = "看马来西亚电子类目招商样本：先联系谁、凭什么、要哪些资质都写清了，跟进表和触达模板也备好了。商家入驻以后卖点怎么写才站得住，再看卖点体检。", en = "Look at the Malaysia Electronics Merchant Sourcing Pack: whom to call first, why, and which approvals apply, with the tracker and outreach templates ready. For listing claims that hold up after onboarding, Sellpoint Check." }
+
+[[direction]]
+id = "monitoring"
+projects = ["placement-monitoring-kit", "grounded-business-review"]
+q = { zh = "有项目监测评估方向的项目吗？", en = "Anything on programme monitoring and evaluation?" }
+aliases = { zh = ["监测评估", "M&E", "项目监测", "数据收集", "问卷", "表单", "KoboToolbox", "ODK", "月报", "实习项目"], en = ["monitoring and evaluation", "m&e", "programme monitoring", "data collection", "survey", "forms", "kobotoolbox", "odk", "monthly report"] }
+a = { zh = "看实习安置监测包：表单、每月数据检查、跟进表、简报和演示稿一套接好，检查先在埋好错误的样例上量过。要看指标变了怎么找原因，再看有据经营分析。", en = "Look at the Placement Monitoring Kit: forms, monthly data checks, a tracker, a brief and a deck in one set, with the checks measured first on a sample with planted errors. For finding why a metric moved, Grounded Business Review." }
 
 [[direction]]
 id = "business"

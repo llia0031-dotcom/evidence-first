@@ -1,0 +1,219 @@
+id = "placement-monitoring-kit"
+order = 17
+layer = "operations"
+status = "public"
+links = [
+  { label = { zh = "代码和说明", en = "Code and guide" }, url = { zh = "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/README.zh-CN.md", en = "https://github.com/llia0031-dotcom/placement-monitoring-kit" } },
+  { label = { zh = "快速上手", en = "Quick start" }, url = "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/guide/en/QUICK_START.md" },
+  { label = { zh = "数据检查说明", en = "Data checks" }, url = "https://github.com/llia0031-dotcom/placement-monitoring-kit/blob/main/guide/en/CHECKS.md" },
+]
+card_version = "1.0"
+updated = "2026-11-26"
+period = { zh = "2026-11-22 至 2026-11-23", en = "2026-11-22 to 2026-11-23" }
+team = "Liang Liyuan"
+stack = { zh = "Python、XLSForm（pyxform 和 ODK Validate）、KoboToolbox / ODK Central 导出、pandas、openpyxl、reportlab、python-pptx、evidence-check", en = "Python, XLSForm (pyxform and ODK Validate), KoboToolbox / ODK Central exports, pandas, openpyxl, reportlab, python-pptx, evidence-check" }
+did = { zh = "我先查了现成的：付费的监测平台要钱要账号，也没有实习就业的模板；大学的实习管理系统不面向离线收集和法语；公开仓库里没找到实习回访的表单。于是把公认的问法和指标定义接起来：结束去向的问法和就业分类照劳动统计的国际标准，自己写的题在表里注明。每月的程序读表单导出，做数据检查，列出谁该跟进并配好提醒话术，再出跟进表、简报和演示稿。检查先在构造的样例上量过：{pmk_participants} 名同意参加的实习生、{pmk_hosts} 家接收单位、{pmk_months} 个月，里面埋好了错误，也放了看着像错、其实没错的记录。", en = "I first checked what exists: paid monitoring platforms need money and accounts and have no internship templates; university placement systems do not cover offline collection or French; no public repository had a placement check-in form. So the kit joins recognised wording and indicator definitions: exit and destination questions and the employment classification follow the international labour statistics standards, and the kit's own questions are marked as such. The monthly run reads the form exports, checks the data, lists who to follow up with reminder text ready, and writes the tracker, a brief and a deck. The checks were measured first on a constructed sample: {pmk_participants} consenting interns, {pmk_hosts} host organisations and {pmk_months} months, with planted errors and records that look wrong but are not." }
+name = { zh = "实习安置监测包", en = "Placement Monitoring Kit" }
+problem = { zh = "把实习生安置到接收单位的项目，要按月跟进每个人：谁的表还没交、数据哪里有错、本月该向管理层报什么；靠人工翻表，又慢又容易漏", en = "A placement programme follows every intern month by month: whose form is missing, where the data is wrong, what to report this month; done by hand, it is slow and things slip" }
+primary_metric = { zh = "埋好的数据错误查出多少、有没有多报；简报和演示稿里的数字对回数据行的比例", en = "Planted data errors caught and any extra flags; share of numbers in the brief and deck traced to their data row" }
+headline = [
+  { zh = "构造样例里埋好的数据错误全部查出：{pmk_found}；问题表里没有多出的行，{pmk_near} 处看着像错、其实没错的记录一处没报", en = "Every planted data error in the constructed sample is caught: {pmk_found}; the issue list has no extra rows, and none of the {pmk_near} records that look wrong but are not is flagged" },
+  { zh = "简报和演示稿里带出处的数字逐行对回数据：{pmk_numbers}；背景简报 {pmk_bg}", en = "Tagged numbers in the brief and deck traced line by line to the data: {pmk_numbers}; background brief {pmk_bg}" },
+  { zh = "四张英法双语表单共 {pmk_questions} 道题，在填表界面里逐张填过：{pmk_walk} 项检查通过", en = "Four English and French forms with {pmk_questions} questions, each filled in through the form interface: {pmk_walk} checks passed" },
+]
+summary = { zh = "给按月跟进实习安置的团队用：四张英法双语表单（入组、每月回访、接收单位反馈、结束去向），可在 KoboToolbox 或 ODK Central 里用；每月双击一次，程序做 {pmk_checks} 项数据检查、算 {pmk_indicators} 个指标，写出跟进表、{pmk_pages} 页简报和 {pmk_slides} 页演示稿。评的是两件事：检查查得准不准，用构造样例里埋好的错误和像错其实没错的记录来量；报告里的数字对不对，逐行对回数据。", en = "For teams that follow placements month by month: four English and French forms (intake, monthly check-in, host feedback, exit) for KoboToolbox or ODK Central; one double-click a month runs {pmk_checks} data checks, computes {pmk_indicators} indicators and writes the tracker, a {pmk_pages}-page brief and an {pmk_slides}-slide deck. Two things are evaluated: whether the checks are accurate, measured with the planted errors and near misses of a constructed sample; and whether the report numbers are right, traced line by line to the data." }
+core_link = { zh = "简报、演示稿、背景简报和 README 里每个带出处的数字，都用 evidence-check 0.5.0 的核对脚本对回它来自的那一行数据。", en = "Every tagged number in the briefs, decks, background brief and READMEs is checked against its data row with the evidence-check 0.5.0 script." }
+models = { zh = "没有调用模型：表单转换、数据检查、指标和报告都由脚本完成。", en = "No model is called: form conversion, data checks, indicators and reports are all done by scripts." }
+iteration = { zh = ["检查：每项检查都配了埋错，另放了像错其实没错的记录，一起写进自动测试（tests/test_checks.py）；规则一改，漏报或多报都会让测试失败。", "安装：在一份干净的副本里双击 setup.bat，用它装好的 Python 3.12 跑出的样例报告，文字、表格和页面图都和开发环境一致。"], en = ["Checks: every check has a planted error, with near misses alongside, all written into the automated tests (tests/test_checks.py); if a rule changes, a missed or extra flag fails the tests.", "Setup: in a clean copy, setup.bat installs Python 3.12, and the sample reports it produces have the same text, tables and page images as the development environment."] }
+conclusion = { zh = "检查数据的程序要先证明自己查得准：在答案已知的样例上量，有错的要全报，没错的不能报。报告里的数字逐行对回数据，团队拿去开会、交给管理层之前，不用再手工核一遍。", en = "A data-checking program has to show first that it is accurate: measured on a sample with known answers, it must flag every error and nothing else. With every report number traced to its row, the team can take the brief to a meeting or to managers without checking it by hand." }
+short_name = { zh = "实习监测", en = "Placement monitoring" }
+card_title = { zh = "每月的数据检查，先用埋好的错误量过", en = "Monthly data checks, measured on planted errors first" }
+assumed = { zh = "以为看着可疑的记录都该报出来", en = "Expected every suspicious-looking record to be worth flagging" }
+showed = { zh = "{pmk_near} 处看着像错的记录其实没错，检查要放过它们；埋好的错误 {pmk_found} 全部查出", en = "{pmk_near} records that look wrong are not, and the checks must pass them; the planted errors are all caught, {pmk_found}" }
+result_line = { zh = "埋好的数据错误全部查出 {pmk_found}，没有多报；报告里的数字对回数据 {pmk_numbers}", en = "Planted data errors all caught, {pmk_found}, with no extra flags; report numbers traced to the data, {pmk_numbers}" }
+key_numbers = [{ metric = "pmk_found", label = { zh = "埋好的数据错误查出", en = "Planted data errors caught" } }, { metric = "pmk_extra", label = { zh = "问题表里不是埋错的行", en = "Issue rows that are not planted errors" } }, { metric = "pmk_numbers", label = { zh = "简报和演示稿的数字对回数据", en = "Brief and deck numbers traced to data" } }]
+timeline = [
+  { date = "2026-11-23", label = { zh = "表单", en = "Forms" }, text = { zh = "四张表在填表界面里逐张填过", en = "Every form filled in through the form interface" }, after = "pmk_walk" },
+  { date = "2026-11-23", label = { zh = "数据检查", en = "Data checks" }, text = { zh = "埋好的错误全部查出，没有多报", en = "Planted errors all caught, no extra flags" }, after = "pmk_found" },
+  { date = "2026-11-23", label = { zh = "报告", en = "Reports" }, text = { zh = "简报和演示稿的数字全部对回数据", en = "Every brief and deck number traced to the data" }, after = "pmk_numbers" },
+]
+
+[uses]
+zh = [
+  "按月跟进实习或培训安置的团队：每月下载表单导出，双击一次，拿到谁该跟进、数据哪里有问题、本月的简报和演示稿。",
+  "开始收数据之前：把自己的设置写进表单，先拿构造样例跑一遍，看清每项检查会报什么、怎么改。",
+]
+en = [
+  "Teams that follow internship or training placements month by month: download the form exports, double-click once, and get who to follow up, where the data needs fixing, and the month's brief and deck.",
+  "Before data collection starts: write your settings into the forms and run the constructed sample first, to see what each check flags and how to fix it.",
+]
+
+[out_of_scope]
+zh = [
+  "不是在线平台：数据留在团队自己的表单服务器和电脑上，每月在 Windows 上跑一次。",
+  "不替人判断个人情况：安全方面的回访只列出该打的电话和最晚日期，由团队的人来打。",
+]
+en = [
+  "Not an online platform: the data stays on the team's own form server and computer, and the run happens once a month on Windows.",
+  "Does not judge anyone's situation: safeguarding call-backs are listed with a date to call by, and people on the team make the calls.",
+]
+
+[[eval]]
+id = "planted"
+name = { zh = "数据检查：埋好错误的构造样例", en = "Data checks: a constructed sample with planted errors" }
+date = "2026-11-23"
+data = { zh = "构造的样例队列，没有真实的人和单位：埋了数据错误（重复提交、编号对不上、日期不合理、前后矛盾等）、没收到的跟进，以及看着像错、其实没错的记录；每处埋了什么、该由哪项检查报出，都写在埋错清单里。", en = "A constructed cohort with no real people or organisations: planted data errors (duplicate submissions, unmatched IDs, impossible dates, contradictions and more), follow-ups not received, and records that look wrong but are not; what was planted and which check should flag it are listed in the planted file." }
+items = { zh = "全部埋错和像错其实没错的记录", en = "Every planted error and near miss" }
+runs = { zh = "每次运行和每次测试都跑", en = "On every run and every test" }
+setup = { zh = "全部数据检查；不调用模型", en = "All data checks; no model called" }
+frozen = { zh = "`data/sample/planted.json`（每处埋错、怎么埋的、应有的结果）", en = "`data/sample/planted.json` (each planted problem, how it was planted, the expected result)" }
+takeaway = { zh = "每处埋错都被对应的检查报出，问题表里没有多出的行；像错其实没错的记录一处没报。", en = "Every planted error is flagged by its check and the issue list has no extra rows; no near miss is flagged." }
+
+  [[eval.metric]]
+  id = "pmk_found"
+  label = { zh = "埋好的数据错误查出", en = "Planted data errors caught" }
+  extractor = "planted_found"
+  args = { planted = "placement-monitoring-kit-public/data/sample/planted.json", issues = "placement-monitoring-kit-public/outputs/sample/en/2026-08/data/issues.csv" }
+
+  [[eval.metric]]
+  id = "pmk_extra"
+  label = { zh = "问题表里不是埋错的行", en = "Issue rows that are not planted errors" }
+  extractor = "unplanted_flags"
+  args = { planted = "placement-monitoring-kit-public/data/sample/planted.json", issues = "placement-monitoring-kit-public/outputs/sample/en/2026-08/data/issues.csv" }
+  direction = "lower"
+
+  [[eval.metric]]
+  id = "pmk_near"
+  label = { zh = "看着像错、其实没错的记录", en = "Near misses: records that look wrong but are not" }
+  extractor = "text_value"
+  args = { path = "placement-monitoring-kit-public/results/SUMMARY.md", label = "- planted near misses:" }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "pmk_missing"
+  label = { zh = "埋好的没收到的跟进", en = "Planted follow-ups not received" }
+  extractor = "text_value"
+  args = { path = "placement-monitoring-kit-public/results/SUMMARY.md", label = "- planted follow-ups not received:" }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "pmk_participants"
+  label = { zh = "样例里同意参加的实习生", en = "Consenting interns in the sample" }
+  extractor = "text_value"
+  args = { path = "placement-monitoring-kit-public/results/SUMMARY.md", label = "- sample participants with a consented intake:" }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "pmk_hosts"
+  label = { zh = "样例里的接收单位", en = "Host organisations in the sample" }
+  extractor = "text_value"
+  args = { path = "placement-monitoring-kit-public/results/SUMMARY.md", label = "- sample host organisations:" }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "pmk_months"
+  label = { zh = "样例的月数", en = "Months in the sample" }
+  extractor = "text_value"
+  args = { path = "placement-monitoring-kit-public/results/SUMMARY.md", label = "- sample months:", nth = 0 }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "pmk_checks"
+  label = { zh = "数据检查项", en = "Data checks" }
+  extractor = "text_value"
+  args = { path = "placement-monitoring-kit-public/results/SUMMARY.md", label = "- data checks:", nth = 0 }
+  direction = "none"
+
+[[eval]]
+id = "reports"
+name = { zh = "报告：简报和演示稿里的数字", en = "Reports: the numbers in the brief and deck" }
+date = "2026-11-23"
+data = { zh = "构造样例当月的英文和法文简报、演示稿，以及背景简报；每一行带数字的话都标了它来自哪一行数据。", en = "The constructed sample's English and French brief and deck for the month, and the background brief; every line with a number is tagged with the data row it comes from." }
+items = { zh = "全部带标签的行", en = "Every tagged line" }
+runs = { zh = "每次运行都核对", en = "Checked on every run" }
+setup = { zh = "evidence-check 0.5.0 的核对脚本；不调用模型", en = "The evidence-check 0.5.0 script; no model called" }
+frozen = { zh = "`indicators/INDICATORS.md`（每个指标的分子、分母和规则）", en = "`indicators/INDICATORS.md` (each indicator's numerator, denominator and rules)" }
+takeaway = { zh = "每个带出处的数字都对回了数据行，英法两版的数字一致；同样的数据再跑一次，简报和演示稿逐字节相同。", en = "Every tagged number matches its data row and the English and French versions agree; run again on the same data, the brief and deck are byte for byte the same." }
+
+  [[eval.metric]]
+  id = "pmk_numbers"
+  label = { zh = "简报和演示稿：带标签的行对回数据", en = "Brief and deck: tagged lines matched to data" }
+  extractor = "text_count_ratio"
+  args = { path = "placement-monitoring-kit-public/results/SUMMARY.md", label = "- number check, sample brief and deck lines:", k_nth = 1, n_nth = 0 }
+
+  [[eval.metric]]
+  id = "pmk_bg"
+  label = { zh = "背景简报：带标签的行对回数据", en = "Background brief: tagged lines matched to data" }
+  extractor = "text_count_ratio"
+  args = { path = "placement-monitoring-kit-public/results/SUMMARY.md", label = "- number check, background brief lines:", k_nth = 1, n_nth = 0 }
+
+  [[eval.metric]]
+  id = "pmk_indicators"
+  label = { zh = "指标", en = "Indicators" }
+  extractor = "text_value"
+  args = { path = "placement-monitoring-kit-public/results/SUMMARY.md", label = "- indicators:", nth = 0 }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "pmk_pages"
+  label = { zh = "简报页数", en = "Pages in the brief" }
+  extractor = "text_value"
+  args = { path = "placement-monitoring-kit-public/results/SUMMARY.md", label = "- pages in the English sample brief:" }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "pmk_slides"
+  label = { zh = "演示稿页数", en = "Slides in the deck" }
+  extractor = "text_value"
+  args = { path = "placement-monitoring-kit-public/results/SUMMARY.md", label = "- slides in the English sample deck:" }
+  direction = "none"
+
+[[eval]]
+id = "forms"
+name = { zh = "表单：在填表界面里逐张填写", en = "Forms: filled in through the form interface" }
+date = "2026-11-23"
+data = { zh = "四张表单用 KoboToolbox 和 ODK Central 用的转换器 pyxform 转换，并过 ODK Validate；再在本机的 ODK Web Forms 里，用英文和法文、按手机和电脑宽度逐张填写，存下的提交和每月程序读的字段名逐项比对。", en = "The four forms are converted with pyxform, the converter KoboToolbox and ODK Central use, and pass ODK Validate; then each is filled in through ODK Web Forms on a local computer, in English and French, at phone and desktop width, and the saved submissions are compared with the field names the monthly run reads." }
+items = { zh = "四张表单的全部题目", en = "Every question of the four forms" }
+runs = { zh = "每张表、每种语言和宽度各一遍", en = "Once per form, language and width" }
+setup = { zh = "填表脚本；不调用模型", en = "A form-filling script; no model called" }
+frozen = { zh = "`forms/xlsform/`", en = "`forms/xlsform/`" }
+takeaway = { zh = "每张表都能在填表界面里填完，存下的提交和每月程序读的字段对得上。", en = "Every form can be completed in the form interface, and the saved submissions match the fields the monthly run reads." }
+
+  [[eval.metric]]
+  id = "pmk_walk"
+  label = { zh = "填表检查通过", en = "Form walk-through checks passed" }
+  extractor = "text_count_ratio"
+  args = { path = "placement-monitoring-kit-public/results/SUMMARY.md", label = "- form walk-through checks:", k_nth = 0, n_nth = 1 }
+
+  [[eval.metric]]
+  id = "pmk_subs"
+  label = { zh = "存下的提交和表单、字段对得上", en = "Saved submissions matching the forms and fields" }
+  extractor = "text_count_ratio"
+  args = { path = "placement-monitoring-kit-public/results/SUMMARY.md", label = "- form walk-through submissions matching the forms and the contract:", k_nth = 0, n_nth = 1 }
+
+  [[eval.metric]]
+  id = "pmk_questions"
+  label = { zh = "四张表单的题目", en = "Questions in the four forms" }
+  extractor = "text_value"
+  args = { path = "placement-monitoring-kit-public/results/SUMMARY.md", label = "- questions in all forms:" }
+  direction = "none"
+
+  [[eval.metric]]
+  id = "pmk_tests"
+  label = { zh = "自动测试", en = "Automated tests" }
+  extractor = "text_value"
+  args = { path = "placement-monitoring-kit-public/results/SUMMARY.md", label = "- tests:" }
+  direction = "none"
+
+[[limitation]]
+text = { zh = "样例是构造的；还没在真实的项目、真实的 KoboToolbox 或 ODK Central 服务器和 ODK Collect 手机端上用过，只在 Windows 上跑过。", en = "The sample is constructed; the kit has not yet run in a live programme, against a live KoboToolbox or ODK Central server or in ODK Collect, and only on Windows." }
+advice = { zh = "上线前在团队自己的服务器上建一个测试项目，用几份测试提交把每月流程跑通一次。", en = "Before going live, set up a test project on the team's own server and run the monthly cycle once with a few test submissions." }
+
+[[limitation]]
+text = { zh = "法文文字还要请当地讲法语的同事通读一遍；每月回访和接收单位反馈的部分题目没有公认的现成问卷，是这套工具自己的写法，在表里注明了。", en = "The French text still needs a read by a French-speaking colleague in the country; some check-in and host-feedback questions have no recognised instrument and use the kit's own wording, marked as such." }
+advice = { zh = "通读后把改动写回表单的 xlsx 再生成；用过一两个月后，照回答情况改题。", en = "Write the changes back into the forms' xlsx and rebuild; after a month or two, revise questions by how they are answered." }
+
+[[version]]
+id = "1.0"
+date = "2026-11-26"
+text = { zh = "第一张卡，照公开仓库 placement-monitoring-kit 的结果文件写。", en = "First card, from the result files in the public placement-monitoring-kit repository." }
